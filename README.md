@@ -42,7 +42,9 @@ python3 -m http.server 8080
       "tech": "技术点",
       "summary": "简介",
       "publishedAt": "2026-10-18T12:00:00+08:00",
-      "steps": ["步骤1", "步骤2"],
+      "steps": [
+        { "text": "步骤说明", "tools": "工具", "tech": "技术点", "prep": "前提条件" }
+      ],
       "isLong": true,
       "note": "可选备注，如「黄小木转发」"
     }

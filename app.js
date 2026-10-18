@@ -280,11 +280,75 @@
       .join("");
   }
 
+  function normalizeStep(s) {
+    if (!s) return null;
+    if (typeof s === "string") {
+      const text = s.trim();
+      return text ? { text, tools: "", tech: "", prep: "" } : null;
+    }
+    if (typeof s === "object" && s.text) {
+      return {
+        text: String(s.text),
+        tools: s.tools ? String(s.tools) : "",
+        tech: s.tech ? String(s.tech) : "",
+        prep: s.prep ? String(s.prep) : "",
+      };
+    }
+    return null;
+  }
+
+  function stepMetaChips(step) {
+    const chips = [];
+    if (step.tools) {
+      chips.push(
+        `<span class="flow-chip"><span class="flow-chip-label">工具</span>${escapeHtml(
+          step.tools
+        )}</span>`
+      );
+    }
+    if (step.tech) {
+      chips.push(
+        `<span class="flow-chip"><span class="flow-chip-label">技术</span>${escapeHtml(
+          step.tech
+        )}</span>`
+      );
+    }
+    if (step.prep) {
+      chips.push(
+        `<span class="flow-chip"><span class="flow-chip-label">前提</span>${escapeHtml(
+          step.prep
+        )}</span>`
+      );
+    }
+    return chips.length ? `<div class="flow-meta">${chips.join("")}</div>` : "";
+  }
+
   function stepsHtml(post) {
-    const steps = Array.isArray(post.steps) ? post.steps.filter(Boolean) : [];
+    const raw = Array.isArray(post.steps) ? post.steps : [];
+    const steps = raw.map(normalizeStep).filter(Boolean);
     if (!post.isLong || steps.length === 0) return "";
-    const items = steps.map((s) => `<li>${escapeHtml(s)}</li>`).join("");
-    return `<details class="steps"><summary>实现步骤（${steps.length}）</summary><ol>${items}</ol></details>`;
+
+    const nodes = steps
+      .map((step, i) => {
+        const n = i + 1;
+        const isLast = i === steps.length - 1;
+        return `<li class="flow-step${isLast ? " is-last" : ""}">
+        <div class="flow-rail" aria-hidden="true">
+          <span class="flow-node">${n}</span>
+          ${isLast ? "" : '<span class="flow-line"></span>'}
+        </div>
+        <div class="flow-card">
+          <p class="flow-text">${escapeHtml(step.text)}</p>
+          ${stepMetaChips(step)}
+        </div>
+      </li>`;
+      })
+      .join("");
+
+    return `<details class="steps">
+      <summary>实现步骤（${steps.length}）· 流程图</summary>
+      <ol class="flow-chart">${nodes}</ol>
+    </details>`;
   }
 
   function filteredPosts() {
@@ -294,6 +358,11 @@
     return allPosts.filter((p) => {
       if (selectedAuthors.size && !selectedAuthors.has(p.author)) return false;
       if (!q) return true;
+      const stepTexts = (Array.isArray(p.steps) ? p.steps : []).flatMap((s) => {
+        if (!s) return [];
+        if (typeof s === "string") return [s];
+        return [s.text, s.tools, s.tech, s.prep].filter(Boolean);
+      });
       const hay = [
         p.title,
         p.summary,
@@ -301,7 +370,7 @@
         p.tech,
         p.author,
         p.authorName,
-        ...(Array.isArray(p.steps) ? p.steps : []),
+        ...stepTexts,
       ]
         .join("\n")
         .toLowerCase();
