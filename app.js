@@ -888,7 +888,14 @@
     selectedAuthors.add(username);
     if (els.newUsername) els.newUsername.value = "";
     if (els.newDisplayName) els.newDisplayName.value = "";
-    setAddStatus(`已添加 @${username}`, true);
+    let msg = `已添加 @${username}`;
+    const hasPosts = (allPosts || []).some(
+      (p) => (p.author || "").toLowerCase() === username.toLowerCase()
+    );
+    if (!hasPosts) {
+      msg = `已加入关注 @${username}；日报数据里还没有 TA 的帖，等每日更新`;
+    }
+    setAddStatus(msg, true);
     renderWatchListUI();
     applyFiltersAndRender();
     return true;

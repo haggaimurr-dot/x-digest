@@ -6,11 +6,65 @@
       "avatar": "avatars/ai_xiaomu.jpg",
       "avatarRemote": "https://pbs.twimg.com/profile_images/2076716603392323584/v9BMuoo__400x400.jpg"
     },
-    "weiyong_wang": {
-      "username": "weiyong_wang",
-      "name": "唯庸",
-      "avatar": "avatars/weiyong_wang.jpg",
-      "avatarRemote": "https://pbs.twimg.com/profile_images/2111781489742639104/DVdfTDvY_400x400.jpg"
+    "miles_mazy": {
+      "username": "miles_mazy",
+      "name": "Miles Ma",
+      "avatar": "avatars/miles_mazy.jpg",
+      "avatarRemote": "https://pbs.twimg.com/profile_images/2087768614258798592/qUW6d1cZ_400x400.jpg"
+    },
+    "gkxspace": {
+      "username": "gkxspace",
+      "name": "余温",
+      "avatar": "avatars/gkxspace.jpg",
+      "avatarRemote": "https://pbs.twimg.com/profile_images/1952432952928784384/k7SIkQ7I_400x400.jpg"
+    },
+    "shengtang135754": {
+      "username": "shengtang135754",
+      "name": "麦麦提",
+      "avatar": "avatars/shengtang135754.jpg",
+      "avatarRemote": "https://pbs.twimg.com/profile_images/2081396750385098752/h8HX-oBN_400x400.jpg"
+    },
+    "mjjwiki": {
+      "username": "mjjwiki",
+      "name": "MJJ百科",
+      "avatar": "avatars/mjjwiki.jpg",
+      "avatarRemote": "https://pbs.twimg.com/profile_images/2088137987070803968/2ALz11RH_400x400.jpg"
+    },
+    "Astronaut_1216": {
+      "username": "Astronaut_1216",
+      "name": "叫我阿杭",
+      "avatar": "avatars/Astronaut_1216.jpg",
+      "avatarRemote": "https://pbs.twimg.com/profile_images/1994286771832557568/wUaZfjN5_400x400.jpg"
+    },
+    "Khazix0918": {
+      "username": "Khazix0918",
+      "name": "数字生命卡兹克",
+      "avatar": "avatars/Khazix0918.jpg",
+      "avatarRemote": "https://pbs.twimg.com/profile_images/1756592360367259648/GXJ4Kl6w_400x400.jpg"
+    },
+    "ChenshuoAI": {
+      "username": "ChenshuoAI",
+      "name": "陈硕KAI（思考中）",
+      "avatar": "avatars/ChenshuoAI.jpg",
+      "avatarRemote": "https://pbs.twimg.com/profile_images/2086788104967581696/dbHJ3lqY_400x400.jpg"
+    },
+    "yaojingang": {
+      "username": "yaojingang",
+      "name": "姚金刚",
+      "avatar": "avatars/yaojingang.jpg",
+      "avatarRemote": "https://pbs.twimg.com/profile_images/2039226063088463872/_zw7eSeM_400x400.jpg"
+    },
+    "0xlangeai": {
+      "username": "0xlangeai",
+      "name": "蓝哥AI",
+      "avatar": "avatars/0xlangeai.jpg",
+      "avatarRemote": "https://pbs.twimg.com/profile_images/2108429130471776256/bVX57DM8_400x400.png"
+    },
+    "LiumangtuCrypto": {
+      "username": "LiumangtuCrypto",
+      "name": "流氓兔🐰",
+      "avatar": "avatars/LiumangtuCrypto.jpg",
+      "avatarRemote": "https://pbs.twimg.com/profile_images/1804706859082997761/wzw71BuH_400x400.jpg"
     }
   }
 }
