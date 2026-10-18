@@ -4,6 +4,13 @@
   const STORAGE_KEY = "x-digest-watchlist";
   const THEME_KEY = "x-digest-theme";
   const DEFAULT_WATCHLIST = [{ username: "ai_xiaomu", name: "黄小木" }];
+  const AVATAR_COLORS = [
+    "var(--avatar-1)",
+    "var(--avatar-2)",
+    "var(--avatar-3)",
+    "var(--avatar-4)",
+    "var(--avatar-5)",
+  ];
 
   const els = {
     lastUpdated: document.getElementById("lastUpdated"),
@@ -11,11 +18,12 @@
     authorChips: document.getElementById("authorChips"),
     resultCount: document.getElementById("resultCount"),
     clearFilters: document.getElementById("clearFilters"),
-    postsTableBody: document.getElementById("postsTableBody"),
-    postsCards: document.getElementById("postsCards"),
+    timeline: document.getElementById("timeline"),
     emptyState: document.getElementById("emptyState"),
     themeToggle: document.getElementById("themeToggle"),
     openSettings: document.getElementById("openSettings"),
+    closeSettings: document.getElementById("closeSettings"),
+    doneSettings: document.getElementById("doneSettings"),
     settingsModal: document.getElementById("settingsModal"),
     watchList: document.getElementById("watchList"),
     addAuthor: document.getElementById("addAuthor"),
@@ -54,34 +62,57 @@
     return `${get("year")}-${get("month")}-${get("day")} ${get("hour")}:${get("minute")}（Asia/Shanghai）`;
   }
 
-  function formatDateShort(iso) {
-    if (!iso) return "—";
+  function formatRelativeOrDate(iso) {
+    if (!iso) return "";
     const d = new Date(iso);
     if (Number.isNaN(d.getTime())) return iso;
+    const now = Date.now();
+    const diffSec = Math.round((now - d.getTime()) / 1000);
+    if (diffSec < 60) return "刚刚";
+    if (diffSec < 3600) return `${Math.floor(diffSec / 60)} 分钟`;
+    if (diffSec < 86400) return `${Math.floor(diffSec / 3600)} 小时`;
+    if (diffSec < 86400 * 7) return `${Math.floor(diffSec / 86400)} 天`;
     return new Intl.DateTimeFormat("zh-CN", {
       timeZone: "Asia/Shanghai",
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
+      month: "short",
+      day: "numeric",
       hour: "2-digit",
       minute: "2-digit",
       hour12: false,
     }).format(d);
   }
 
+  function initials(name, username) {
+    const src = (name || username || "?").trim();
+    if (!src) return "?";
+    // CJK: take first char; Latin: first letter
+    const first = Array.from(src)[0];
+    return /[A-Za-z]/.test(first) ? first.toUpperCase() : first;
+  }
+
+  function avatarColor(username) {
+    let h = 0;
+    const s = String(username || "");
+    for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0;
+    return AVATAR_COLORS[h % AVATAR_COLORS.length];
+  }
+
   function loadTheme() {
     const saved = localStorage.getItem(THEME_KEY);
-    const theme =
-      saved ||
-      (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    // Dark is primary default (X aesthetic)
+    const theme = saved || "dark";
     document.documentElement.setAttribute("data-theme", theme);
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.content = theme === "light" ? "#ffffff" : "#000000";
   }
 
   function toggleTheme() {
-    const cur = document.documentElement.getAttribute("data-theme") || "light";
+    const cur = document.documentElement.getAttribute("data-theme") || "dark";
     const next = cur === "dark" ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", next);
     localStorage.setItem(THEME_KEY, next);
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.content = next === "light" ? "#ffffff" : "#000000";
   }
 
   function loadWatchlistFromStorage() {
@@ -145,7 +176,7 @@
         const label = escapeHtml(authorDisplay(u));
         return `<button type="button" class="chip ${active}" data-author="${escapeHtml(
           u
-        )}" aria-pressed="${selectedAuthors.has(u)}">@${escapeHtml(u)} · ${label}</button>`;
+        )}" aria-pressed="${selectedAuthors.has(u)}">${label}</button>`;
       })
       .join("");
   }
@@ -177,57 +208,55 @@
     });
   }
 
+  function renderCard(p) {
+    const name = p.authorName || authorDisplay(p.author);
+    const note = p.note
+      ? `<span class="note-pill">${escapeHtml(p.note)}</span>`
+      : "";
+    const tags = [
+      p.industry ? `<span class="tag">${escapeHtml(p.industry)}</span>` : "",
+      p.tech ? `<span class="tag">${escapeHtml(p.tech)}</span>` : "",
+    ].join("");
+
+    return `<article class="post-card">
+      <div class="avatar" style="background:${avatarColor(p.author)}" aria-hidden="true">${escapeHtml(
+        initials(name, p.author)
+      )}</div>
+      <div class="post-body">
+        <div class="post-meta">
+          <a class="display-name" href="https://x.com/${escapeHtml(
+            p.author
+          )}" target="_blank" rel="noopener">${escapeHtml(name)}</a>
+          <span class="handle">@${escapeHtml(p.author)}</span>
+          <span class="meta-dot">·</span>
+          <time class="meta-time" datetime="${escapeHtml(
+            p.publishedAt || ""
+          )}" title="${escapeHtml(formatShanghai(p.publishedAt))}">${escapeHtml(
+      formatRelativeOrDate(p.publishedAt)
+    )}</time>
+          ${note}
+        </div>
+        <h2 class="post-title">${escapeHtml(p.title || "")}</h2>
+        <p class="post-summary">${escapeHtml(p.summary || "")}</p>
+        ${tags ? `<div class="tags">${tags}</div>` : ""}
+        ${stepsHtml(p)}
+        <div class="post-footer">
+          <a class="link-original" href="${escapeHtml(
+            p.url
+          )}" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            查看原文
+          </a>
+        </div>
+      </div>
+    </article>`;
+  }
+
   function renderList() {
     const posts = filteredPosts();
     els.resultCount.textContent = `${posts.length} 条推文`;
     els.emptyState.hidden = posts.length > 0;
-
-    els.postsTableBody.innerHTML = posts
-      .map((p) => {
-        const note = p.note
-          ? `<span class="note-badge">${escapeHtml(p.note)}</span>`
-          : "";
-        return `<tr>
-          <td class="title-cell">${escapeHtml(p.title)}${note}${stepsHtml(p)}</td>
-          <td><span class="tag">${escapeHtml(p.industry || "—")}</span></td>
-          <td>${escapeHtml(p.tech || "—")}</td>
-          <td class="summary-cell">${escapeHtml(p.summary || "")}</td>
-          <td>${escapeHtml(formatDateShort(p.publishedAt))}</td>
-          <td><a class="author-link" href="https://x.com/${escapeHtml(
-            p.author
-          )}" target="_blank" rel="noopener">@${escapeHtml(p.author)}</a><br/><small>${escapeHtml(
-          p.authorName || ""
-        )}</small></td>
-          <td><a class="ext-link" href="${escapeHtml(
-            p.url
-          )}" target="_blank" rel="noopener">打开 ↗</a></td>
-        </tr>`;
-      })
-      .join("");
-
-    els.postsCards.innerHTML = posts
-      .map((p) => {
-        const note = p.note
-          ? `<span class="note-badge">${escapeHtml(p.note)}</span>`
-          : "";
-        return `<article class="card">
-          <h3>${escapeHtml(p.title)}${note}</h3>
-          <div class="card-meta">
-            <span class="tag">${escapeHtml(p.industry || "—")}</span>
-            <span>${escapeHtml(p.tech || "")}</span>
-            <span>${escapeHtml(formatDateShort(p.publishedAt))}</span>
-            <a class="author-link" href="https://x.com/${escapeHtml(
-              p.author
-            )}" target="_blank" rel="noopener">@${escapeHtml(p.author)}</a>
-          </div>
-          <p>${escapeHtml(p.summary || "")}</p>
-          ${stepsHtml(p)}
-          <p style="margin-top:10px"><a class="ext-link" href="${escapeHtml(
-            p.url
-          )}" target="_blank" rel="noopener">查看原文 ↗</a></p>
-        </article>`;
-      })
-      .join("");
+    els.timeline.innerHTML = posts.map(renderCard).join("");
   }
 
   function renderWatchListUI() {
@@ -238,7 +267,7 @@
           <strong>${escapeHtml(a.name || a.username)}</strong>
           <span>@${escapeHtml(a.username)}</span>
         </div>
-        <button type="button" class="btn btn-danger" data-remove="${i}">移除</button>
+        <button type="button" class="btn-remove" data-remove="${i}">移除</button>
       </li>`
       )
       .join("");
@@ -247,6 +276,10 @@
   function applyFiltersAndRender() {
     renderChips();
     renderList();
+  }
+
+  function closeModal() {
+    if (els.settingsModal.open) els.settingsModal.close();
   }
 
   els.authorChips.addEventListener("click", (e) => {
@@ -271,6 +304,13 @@
   els.openSettings.addEventListener("click", () => {
     renderWatchListUI();
     els.settingsModal.showModal();
+  });
+
+  els.closeSettings.addEventListener("click", closeModal);
+  els.doneSettings.addEventListener("click", closeModal);
+
+  els.settingsModal.addEventListener("click", (e) => {
+    if (e.target === els.settingsModal) closeModal();
   });
 
   els.watchList.addEventListener("click", (e) => {
