@@ -12,6 +12,40 @@
     "var(--avatar-5)",
   ];
 
+  /**
+   * Resolve data URLs against the site root (/x-digest/), not the current path.
+   * Works with <base href="/x-digest/"> and as a fallback without it.
+   */
+  function siteBaseUrl() {
+    // Prefer the directory that served app.js (immune to missing trailing slash).
+    const scripts = document.getElementsByTagName("script");
+    for (let i = scripts.length - 1; i >= 0; i--) {
+      const src = scripts[i].src || "";
+      if (src.includes("app.js")) {
+        return new URL(".", src);
+      }
+    }
+    const baseEl = document.querySelector("base[href]");
+    if (baseEl) {
+      try {
+        return new URL(baseEl.getAttribute("href"), window.location.origin);
+      } catch (_) {
+        /* fall through */
+      }
+    }
+    // Fallback: directory of current page
+    let path = window.location.pathname || "/";
+    if (!path.endsWith("/")) {
+      path = path.replace(/\/[^/]*$/, "/");
+      if (!path.endsWith("/")) path += "/";
+    }
+    return new URL(path, window.location.origin);
+  }
+
+  function asset(relPath) {
+    return new URL(relPath.replace(/^\//, ""), siteBaseUrl()).href;
+  }
+
   const els = {
     lastUpdated: document.getElementById("lastUpdated"),
     keyword: document.getElementById("keyword"),
@@ -83,9 +117,8 @@
   }
 
   function initials(name, username) {
-    const src = (name || username || "?").trim();
+    const src = String(name || username || "?").trim();
     if (!src) return "?";
-    // CJK: take first char; Latin: first letter
     const first = Array.from(src)[0];
     return /[A-Za-z]/.test(first) ? first.toUpperCase() : first;
   }
@@ -98,9 +131,9 @@
   }
 
   function loadTheme() {
+    // Dark is primary. Only honor explicit "light" from localStorage.
     const saved = localStorage.getItem(THEME_KEY);
-    // Dark is primary default (X aesthetic)
-    const theme = saved || "dark";
+    const theme = saved === "light" ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", theme);
     const meta = document.querySelector('meta[name="theme-color"]');
     if (meta) meta.content = theme === "light" ? "#ffffff" : "#000000";
@@ -133,22 +166,30 @@
     localStorage.setItem(STORAGE_KEY, JSON.stringify({ accounts: watchlist }));
   }
 
+  async function fetchJson(relPath) {
+    const url = asset(relPath);
+    const res = await fetch(url, { cache: "no-store" });
+    if (!res.ok) {
+      throw new Error(`无法加载 ${relPath}（HTTP ${res.status}）来自 ${url}`);
+    }
+    return res.json();
+  }
+
   async function loadData() {
-    const [postsRes, watchRes] = await Promise.all([
-      fetch("data/posts.json", { cache: "no-store" }),
-      fetch("config/watchlist.json", { cache: "no-store" }).catch(() => null),
-    ]);
-    if (!postsRes.ok) throw new Error("无法加载 data/posts.json");
-    const data = await postsRes.json();
+    // Load posts first (required). Watchlist is optional.
+    const data = await fetchJson("data/posts.json");
     allPosts = Array.isArray(data.posts) ? data.posts.slice() : [];
     allPosts.sort((a, b) => String(b.publishedAt).localeCompare(String(a.publishedAt)));
 
-    els.lastUpdated.textContent = `最近更新：${formatShanghai(data.updatedAt)}`;
+    if (els.lastUpdated) {
+      els.lastUpdated.textContent = `最近更新：${formatShanghai(data.updatedAt)}`;
+    }
 
-    if (watchRes && watchRes.ok) {
-      const w = await watchRes.json();
+    try {
+      const w = await fetchJson("config/watchlist.json");
       repoWatchlist = Array.isArray(w.accounts) ? w.accounts : DEFAULT_WATCHLIST;
-    } else {
+    } catch (err) {
+      console.warn("watchlist fallback:", err);
       repoWatchlist = DEFAULT_WATCHLIST;
     }
 
@@ -161,10 +202,11 @@
     const hit = watchlist.find((a) => a.username === username);
     if (hit) return hit.name || hit.username;
     const fromPost = allPosts.find((p) => p.author === username);
-    return fromPost?.authorName || username;
+    return (fromPost && fromPost.authorName) || username;
   }
 
   function renderChips() {
+    if (!els.authorChips) return;
     const authorsFromData = [...new Set(allPosts.map((p) => p.author))];
     const usernames = [
       ...new Set([...watchlist.map((a) => a.username), ...authorsFromData]),
@@ -189,7 +231,9 @@
   }
 
   function filteredPosts() {
-    const q = els.keyword.value.trim().toLowerCase();
+    const q = (els.keyword && els.keyword.value ? els.keyword.value : "")
+      .trim()
+      .toLowerCase();
     return allPosts.filter((p) => {
       if (selectedAuthors.size && !selectedAuthors.has(p.author)) return false;
       if (!q) return true;
@@ -254,12 +298,31 @@
 
   function renderList() {
     const posts = filteredPosts();
-    els.resultCount.textContent = `${posts.length} 条推文`;
-    els.emptyState.hidden = posts.length > 0;
+    if (els.resultCount) els.resultCount.textContent = `${posts.length} 条推文`;
+
+    if (!els.timeline) {
+      console.error("Missing #timeline element");
+      if (els.emptyState) {
+        els.emptyState.hidden = false;
+        els.emptyState.classList.add("boot-error");
+        els.emptyState.textContent = "页面结构异常：缺少时间线容器，请强制刷新（Ctrl+Shift+R）。";
+      }
+      return;
+    }
+
     els.timeline.innerHTML = posts.map(renderCard).join("");
+
+    if (els.emptyState) {
+      els.emptyState.hidden = posts.length > 0;
+      if (posts.length === 0) {
+        els.emptyState.classList.remove("boot-error");
+        els.emptyState.textContent = "没有匹配的推文，试试调整筛选条件。";
+      }
+    }
   }
 
   function renderWatchListUI() {
+    if (!els.watchList) return;
     els.watchList.innerHTML = watchlist
       .map(
         (a, i) => `<li>
@@ -279,87 +342,110 @@
   }
 
   function closeModal() {
-    if (els.settingsModal.open) els.settingsModal.close();
+    if (els.settingsModal && els.settingsModal.open) els.settingsModal.close();
   }
 
-  els.authorChips.addEventListener("click", (e) => {
-    const btn = e.target.closest("[data-author]");
-    if (!btn) return;
-    const u = btn.getAttribute("data-author");
-    if (selectedAuthors.has(u)) selectedAuthors.delete(u);
-    else selectedAuthors.add(u);
-    applyFiltersAndRender();
-  });
-
-  els.keyword.addEventListener("input", () => renderList());
-
-  els.clearFilters.addEventListener("click", () => {
-    els.keyword.value = "";
-    selectedAuthors = new Set(watchlist.map((a) => a.username));
-    applyFiltersAndRender();
-  });
-
-  els.themeToggle.addEventListener("click", toggleTheme);
-
-  els.openSettings.addEventListener("click", () => {
-    renderWatchListUI();
-    els.settingsModal.showModal();
-  });
-
-  els.closeSettings.addEventListener("click", closeModal);
-  els.doneSettings.addEventListener("click", closeModal);
-
-  els.settingsModal.addEventListener("click", (e) => {
-    if (e.target === els.settingsModal) closeModal();
-  });
-
-  els.watchList.addEventListener("click", (e) => {
-    const btn = e.target.closest("[data-remove]");
-    if (!btn) return;
-    const idx = Number(btn.getAttribute("data-remove"));
-    const removed = watchlist[idx];
-    watchlist = watchlist.filter((_, i) => i !== idx);
-    saveWatchlist(watchlist);
-    if (removed) selectedAuthors.delete(removed.username);
-    renderWatchListUI();
-    applyFiltersAndRender();
-  });
-
-  els.addAuthor.addEventListener("click", () => {
-    const username = els.newUsername.value.trim().replace(/^@/, "");
-    if (!/^[A-Za-z0-9_]{1,15}$/.test(username)) {
-      els.newUsername.focus();
-      return;
+  function showFatal(err) {
+    const msg = String((err && err.message) || err || "未知错误");
+    console.error(err);
+    if (els.lastUpdated) {
+      els.lastUpdated.textContent = "数据加载失败";
+      els.lastUpdated.classList.add("boot-error");
     }
-    if (watchlist.some((a) => a.username.toLowerCase() === username.toLowerCase())) {
-      els.newUsername.value = "";
-      return;
+    if (els.emptyState) {
+      els.emptyState.hidden = false;
+      els.emptyState.classList.add("boot-error");
+      els.emptyState.textContent = msg;
     }
-    const name = els.newDisplayName.value.trim() || username;
-    watchlist.push({ username, name });
-    saveWatchlist(watchlist);
-    selectedAuthors.add(username);
-    els.newUsername.value = "";
-    els.newDisplayName.value = "";
-    renderWatchListUI();
-    applyFiltersAndRender();
-  });
+  }
 
-  els.resetWatchlist.addEventListener("click", () => {
-    const base = (repoWatchlist || DEFAULT_WATCHLIST).slice();
-    saveWatchlist(base);
-    selectedAuthors = new Set(base.map((a) => a.username));
-    renderWatchListUI();
-    applyFiltersAndRender();
-  });
+  if (els.authorChips) {
+    els.authorChips.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-author]");
+      if (!btn) return;
+      const u = btn.getAttribute("data-author");
+      if (selectedAuthors.has(u)) selectedAuthors.delete(u);
+      else selectedAuthors.add(u);
+      applyFiltersAndRender();
+    });
+  }
+
+  if (els.keyword) els.keyword.addEventListener("input", () => renderList());
+
+  if (els.clearFilters) {
+    els.clearFilters.addEventListener("click", () => {
+      if (els.keyword) els.keyword.value = "";
+      selectedAuthors = new Set(watchlist.map((a) => a.username));
+      applyFiltersAndRender();
+    });
+  }
+
+  if (els.themeToggle) els.themeToggle.addEventListener("click", toggleTheme);
+
+  if (els.openSettings) {
+    els.openSettings.addEventListener("click", () => {
+      renderWatchListUI();
+      if (els.settingsModal) els.settingsModal.showModal();
+    });
+  }
+
+  if (els.closeSettings) els.closeSettings.addEventListener("click", closeModal);
+  if (els.doneSettings) els.doneSettings.addEventListener("click", closeModal);
+
+  if (els.settingsModal) {
+    els.settingsModal.addEventListener("click", (e) => {
+      if (e.target === els.settingsModal) closeModal();
+    });
+  }
+
+  if (els.watchList) {
+    els.watchList.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-remove]");
+      if (!btn) return;
+      const idx = Number(btn.getAttribute("data-remove"));
+      const removed = watchlist[idx];
+      watchlist = watchlist.filter((_, i) => i !== idx);
+      saveWatchlist(watchlist);
+      if (removed) selectedAuthors.delete(removed.username);
+      renderWatchListUI();
+      applyFiltersAndRender();
+    });
+  }
+
+  if (els.addAuthor) {
+    els.addAuthor.addEventListener("click", () => {
+      const username = (els.newUsername.value || "").trim().replace(/^@/, "");
+      if (!/^[A-Za-z0-9_]{1,15}$/.test(username)) {
+        if (els.newUsername) els.newUsername.focus();
+        return;
+      }
+      if (watchlist.some((a) => a.username.toLowerCase() === username.toLowerCase())) {
+        if (els.newUsername) els.newUsername.value = "";
+        return;
+      }
+      const name = (els.newDisplayName.value || "").trim() || username;
+      watchlist.push({ username, name });
+      saveWatchlist(watchlist);
+      selectedAuthors.add(username);
+      if (els.newUsername) els.newUsername.value = "";
+      if (els.newDisplayName) els.newDisplayName.value = "";
+      renderWatchListUI();
+      applyFiltersAndRender();
+    });
+  }
+
+  if (els.resetWatchlist) {
+    els.resetWatchlist.addEventListener("click", () => {
+      const base = (repoWatchlist || DEFAULT_WATCHLIST).slice();
+      saveWatchlist(base);
+      selectedAuthors = new Set(base.map((a) => a.username));
+      renderWatchListUI();
+      applyFiltersAndRender();
+    });
+  }
 
   loadTheme();
   loadData()
     .then(() => applyFiltersAndRender())
-    .catch((err) => {
-      els.lastUpdated.textContent = "数据加载失败";
-      els.emptyState.hidden = false;
-      els.emptyState.textContent = String(err.message || err);
-      console.error(err);
-    });
+    .catch(showFatal);
 })();
