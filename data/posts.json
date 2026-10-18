@@ -1,0 +1,219 @@
+{
+  "updatedAt": "2026-10-19T02:15:00+08:00",
+  "posts": [
+    {
+      "id": "2111841037492924709",
+      "url": "https://x.com/ai_xiaomu/status/2111841037492924709",
+      "author": "ai_xiaomu",
+      "authorName": "黄小木",
+      "title": "预告：开源流星雨视频工作流长文",
+      "industry": "AIGC / 短视频",
+      "tech": "AI 视频工作流、素材开源",
+      "summary": "预告明天写长文，开源《流星雨》整活视频的完整工作流与素材包，方便粉丝丢给 Codex 自学复刻。",
+      "publishedAt": "2026-10-18T23:25:14+08:00",
+      "steps": [],
+      "isLong": false
+    },
+    {
+      "id": "2111801530974445684",
+      "url": "https://x.com/ai_xiaomu/status/2111801530974445684",
+      "author": "ai_xiaomu",
+      "authorName": "黄小木",
+      "title": "转发唯庸：字节 Seed 大佬的 FDE 踩坑经验",
+      "industry": "增长 / 冷启动",
+      "tech": "FDE、智能体变现",
+      "summary": "黄小木转发唯庸长文：字节 Seed 项目组大佬两年智能体开发与 FDE 踩坑经验实打实分享，适合找技术合伙人和链接资源的人收藏。",
+      "publishedAt": "2026-10-18T20:48:15+08:00",
+      "steps": [],
+      "isLong": false
+    },
+    {
+      "id": "2111798398668136528",
+      "url": "https://x.com/weiyong_wang/status/2111798398668136528",
+      "author": "weiyong_wang",
+      "authorName": "唯庸",
+      "title": "智能体 FDE 赚了七位数后的血泪报价法",
+      "industry": "企业服务 / FDE",
+      "tech": "智能体落地、报价与收款",
+      "summary": "前字节 Seed 项目组大佬 all-in AI 做 FDE（智能体企业交付），干了两年挣到七位数后复盘：这是个坑比生意。文中拆开定边界、谈老板、报价三板斧到收款拆开等完整 SOP。黄小木 @ai_xiaomu 转发助力冷启动。",
+      "publishedAt": "2026-10-18T20:35:48+08:00",
+      "steps": [
+        "定边界：先写清交付范围、不做清单与验收标准，避免无限改需求。",
+        "先谈老板：直接对接拍板人谈预算与决策链路，别卡在中层传话。",
+        "报价三板斧：按模块拆价（底座/技能/知识库）、给可选包、留调优余量。",
+        "收款拆开：立项预付 + 里程碑款 + 验收尾款，现金流不要压在最后。",
+        "分期信任：小单先跑通信任，再扩成年度或多场景框架合同。",
+        "活拆开卖：Skill / 知识库 / Agent / Action 分开售卖，客户按需拼装。",
+        "调优进报价：把上线后的迭代与 prompt 调优写进报价单，不当免费售后。",
+        "路径选择：闲鱼低客单练手 → 垂直行业深耕 → 高客单 FDE，选一条主路径做深。"
+      ],
+      "isLong": true,
+      "note": "黄小木转发"
+    },
+    {
+      "id": "2111790144772563384",
+      "url": "https://x.com/ai_xiaomu/status/2111790144772563384",
+      "author": "ai_xiaomu",
+      "authorName": "黄小木",
+      "title": "冷启动贴写错了，转十多人也涨不过百",
+      "industry": "增长运营",
+      "tech": "X 冷启动、内容策略",
+      "summary": "有人红包求转冷启动贴，小木看完退回并指出问题；对方没改、找十多人转发仍涨粉不过百。结论：X 上开源冷启动方法不看，只能凉拌。",
+      "publishedAt": "2026-10-18T20:03:00+08:00",
+      "steps": [
+        "先对照公开冷启动清单自查标题、钩子与人设是否清晰。",
+        "启动贴必须说清「我是谁 / 我帮谁 / 给你什么」，避免空喊关注。",
+        "改完再找人转发；未改内容的互转几乎无效。"
+      ],
+      "isLong": true
+    },
+    {
+      "id": "2111787330994602105",
+      "url": "https://x.com/ai_xiaomu/status/2111787330994602105",
+      "author": "ai_xiaomu",
+      "authorName": "黄小木",
+      "title": "9980 的 AI 线下培训课被直接开源了",
+      "industry": "AI 教育",
+      "tech": "内容开源、口播素材",
+      "summary": "有人把标价 9980 的 AI 线下培训课内容直接开源。小木：好内容，口播稿有素材了。",
+      "publishedAt": "2026-10-18T19:51:49+08:00",
+      "steps": [],
+      "isLong": false
+    },
+    {
+      "id": "2111718421532651950",
+      "url": "https://x.com/ai_xiaomu/status/2111718421532651950",
+      "author": "ai_xiaomu",
+      "authorName": "黄小木",
+      "title": "3700 赞的原因：人味，大家苦 AI 味太久了",
+      "industry": "内容创作",
+      "tech": "人设、叙事",
+      "summary": "点评一条高达 3700 赞的推文，核心原因是「人味」——大家已经受够了千篇一律的 AI 味内容。",
+      "publishedAt": "2026-10-18T15:18:00+08:00",
+      "steps": [],
+      "isLong": false
+    },
+    {
+      "id": "2111625056464011649",
+      "url": "https://x.com/ai_xiaomu/status/2111625056464011649",
+      "author": "ai_xiaomu",
+      "authorName": "黄小木",
+      "title": "长短视频实测结论：情绪比时长重要",
+      "industry": "AIGC / 内容分发",
+      "tech": "长短视频、多平台分发",
+      "summary": "流星雨长视频因版权在 Threads、油管下架，其余八个平台也没跑起来；反而不如 30 秒切片直接上高潮的数据。结论：时长不重要，情绪才重要。",
+      "publishedAt": "2026-10-18T09:07:00+08:00",
+      "steps": [
+        "先做 30s 情绪高潮切片验证平台与选题。",
+        "确认版权与人设素材可用后再做完整版。",
+        "多平台分发时优先保完播与互动，而不是时长。"
+      ],
+      "isLong": true
+    },
+    {
+      "id": "2111471516324180058",
+      "url": "https://x.com/ai_xiaomu/status/2111471516324180058",
+      "author": "ai_xiaomu",
+      "authorName": "黄小木",
+      "title": "AI F4《流星雨》完整版上线",
+      "industry": "AIGC / 娱乐整活",
+      "tech": "AI 视频生成、角色一致性",
+      "summary": "道明寺黄仁勋、花泽类马斯克、西门奥特曼、美作达里奥——AI F4《流星雨》完整版献给爱看整活的粉丝。",
+      "publishedAt": "2026-10-17T22:56:53+08:00",
+      "steps": [],
+      "isLong": false
+    },
+    {
+      "id": "2111452639854747794",
+      "url": "https://x.com/ai_xiaomu/status/2111452639854747794",
+      "author": "ai_xiaomu",
+      "authorName": "黄小木",
+      "title": "DGX Spark 一个月涨 50%，RTX Spark 还要错过吗",
+      "industry": "AI 硬件",
+      "tech": "DGX Spark、本地算力",
+      "summary": "DGX Spark 一个月涨了 50%。提醒关注本地算力窗口：错过 DGX 的，别再错过 RTX Spark。",
+      "publishedAt": "2026-10-17T21:41:52+08:00",
+      "steps": [],
+      "isLong": false
+    },
+    {
+      "id": "2111362854813360554",
+      "url": "https://x.com/ai_xiaomu/status/2111362854813360554",
+      "author": "ai_xiaomu",
+      "authorName": "黄小木",
+      "title": "AI 硬件还在早期：先用 30 块 ESP32 玩 vibe 硬件",
+      "industry": "AI 硬件",
+      "tech": "ESP32、Codex、vibe coding",
+      "summary": "硬件还会涨价，AI+硬件仍是早期市场。拼多多 ESP32 约 30 元，可用 Codex 直接编程，先感受 vibe 硬件。",
+      "publishedAt": "2026-10-17T15:45:06+08:00",
+      "steps": [
+        "买一块入门 ESP32 开发板（约 30 元）。",
+        "用 Codex / Cursor 生成点灯、传感器示例并烧录。",
+        "再考虑更贵的本地算力硬件（如 DGX / RTX Spark）。"
+      ],
+      "isLong": true
+    },
+    {
+      "id": "2111307212521877625",
+      "url": "https://x.com/ai_xiaomu/status/2111307212521877625",
+      "author": "ai_xiaomu",
+      "authorName": "黄小木",
+      "title": "Opus 5.5 使用技巧：给明确任务别塞鸡皮 skill",
+      "industry": "AI 工具",
+      "tech": "Claude Opus、Agent Skills",
+      "summary": "给 Opus 5.5 一个明确任务让它自己发挥即可；不要把「鸡屁踢」开发的那堆 skill 硬塞进去执行，反而会降智。",
+      "publishedAt": "2026-10-17T12:04:00+08:00",
+      "steps": [],
+      "isLong": false
+    },
+    {
+      "id": "2111291358266974305",
+      "url": "https://x.com/ai_xiaomu/status/2111291358266974305",
+      "author": "ai_xiaomu",
+      "authorName": "黄小木",
+      "title": "普通人收益路径：万粉 → 群红 → 资源变现",
+      "industry": "增长 / 变现",
+      "tech": "内容运营、社群、商单",
+      "summary": "先搞流量卷到万粉拿创作者收益与商单；万粉后混圈子当群红接介绍；认识的人多了后变现方式多样，就不必死磕流量收益。",
+      "publishedAt": "2026-10-17T11:01:00+08:00",
+      "steps": [
+        "阶段一：用一切合法手段冲到万粉，优先吃平台创作者收益。",
+        "阶段二：进优质社群当群红，靠介绍拿商单，降低纯流量依赖。",
+        "阶段三：资源积累后做产品/服务/合作，流量收益变为可选项。"
+      ],
+      "isLong": true
+    },
+    {
+      "id": "2111284801223508401",
+      "url": "https://x.com/ai_xiaomu/status/2111284801223508401",
+      "author": "ai_xiaomu",
+      "authorName": "黄小木",
+      "title": "真实教 AI：从按开机键开始，不是一键出视频",
+      "industry": "AI 教育",
+      "tech": "教学路径、用户分层",
+      "summary": "你以为的教 AI 是「丢 skill 一键出视频」；真实的教 AI 是：开机 → 开浏览器 → 输网址 → 下载豆包 → 邮箱登录……面向小白要拆到原子步骤。",
+      "publishedAt": "2026-10-17T10:34:57+08:00",
+      "steps": [
+        "按电脑开机",
+        "打开浏览器",
+        "输入网址",
+        "下载并安装目标工具",
+        "用邮箱完成登录后再讲高级玩法"
+      ],
+      "isLong": true
+    },
+    {
+      "id": "2111261410630222293",
+      "url": "https://x.com/ai_xiaomu/status/2111261410630222293",
+      "author": "ai_xiaomu",
+      "authorName": "黄小木",
+      "title": "会 AI ≠ 能搞钱：信息差 + 执行力",
+      "industry": "认知 / 搞钱",
+      "tech": "信息差、执行力",
+      "summary": "会 AI 不等于能搞钱。搞钱 = 信息差 + 执行力。AI 能帮你挖平和抹平信息差，但解决不了执行力问题。",
+      "publishedAt": "2026-10-17T09:02:00+08:00",
+      "steps": [],
+      "isLong": false
+    }
+  ]
+}

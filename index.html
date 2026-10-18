@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="X 博主推文日报 — 多作者筛选、关键词搜索、实现步骤展开" />
+  <title>X 博主推文日报</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E📰%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="header-inner">
+        <div class="brand">
+          <span class="brand-icon" aria-hidden="true">📰</span>
+          <div>
+            <h1>X 博主推文日报</h1>
+            <p class="subtitle">关注列表推文精华 · 客户端筛选 · 每日更新</p>
+          </div>
+        </div>
+        <div class="header-actions">
+          <p class="updated" id="lastUpdated">加载中…</p>
+          <button type="button" class="btn btn-ghost" id="themeToggle" aria-label="切换主题" title="切换深色/浅色">◐</button>
+          <button type="button" class="btn btn-primary" id="openSettings" aria-haspopup="dialog">⚙ 设置</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="filters" aria-label="筛选">
+        <div class="filter-row">
+          <label class="filter-label" for="keyword">关键词</label>
+          <input type="search" id="keyword" class="input" placeholder="搜索标题 / 简介 / 步骤 / 行业 / 技术…" autocomplete="off" />
+        </div>
+        <div class="filter-row">
+          <span class="filter-label">作者</span>
+          <div class="chips" id="authorChips" role="group" aria-label="按作者筛选"></div>
+        </div>
+        <div class="filter-meta">
+          <span id="resultCount">0 条推文</span>
+          <button type="button" class="btn btn-link" id="clearFilters">清除筛选</button>
+        </div>
+      </section>
+
+      <section class="table-wrap" aria-label="推文列表">
+        <div class="desktop-only">
+          <table class="posts-table">
+            <thead>
+              <tr>
+                <th>推文名</th>
+                <th>行业</th>
+                <th>技术</th>
+                <th>推文简介</th>
+                <th>发布日期</th>
+                <th>作者</th>
+                <th>原文</th>
+              </tr>
+            </thead>
+            <tbody id="postsTableBody"></tbody>
+          </table>
+        </div>
+        <div class="cards mobile-only" id="postsCards"></div>
+        <p class="empty" id="emptyState" hidden>没有匹配的推文，试试调整筛选条件。</p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>数据来自 <code>data/posts.json</code> · 关注列表见 <code>config/watchlist.json</code></p>
+    </footer>
+  </div>
+
+  <dialog class="modal" id="settingsModal">
+    <form method="dialog" class="modal-card" id="settingsForm">
+      <header class="modal-header">
+        <h2>关注列表设置</h2>
+        <button type="submit" class="btn btn-ghost" value="cancel" aria-label="关闭">✕</button>
+      </header>
+      <div class="modal-body">
+        <p class="hint">本地会写入 localStorage；仓库中的 <code>config/watchlist.json</code> 是每日更新脚本的权威来源。</p>
+        <ul class="watch-list" id="watchList"></ul>
+        <div class="add-row">
+          <input type="text" id="newUsername" class="input" placeholder="用户名，如 ai_xiaomu" maxlength="15" />
+          <input type="text" id="newDisplayName" class="input" placeholder="显示名（可选）" maxlength="40" />
+          <button type="button" class="btn btn-primary" id="addAuthor">添加</button>
+        </div>
+      </div>
+      <footer class="modal-footer">
+        <button type="button" class="btn btn-ghost" id="resetWatchlist">恢复默认</button>
+        <button type="submit" class="btn btn-primary" value="ok">完成</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
