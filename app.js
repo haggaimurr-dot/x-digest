@@ -75,6 +75,7 @@
   let allPosts = [];
   let watchlist = [];
   let selectedAuthors = new Set();
+  let selectedTags = new Set();
   let repoWatchlist = null;
   /** @type {Record<string, string>} username -> avatar URL (local or remote) */
   let avatarMap = {};
