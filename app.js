@@ -3,6 +3,7 @@
 
   const STORAGE_KEY = "x-digest-watchlist";
   const THEME_KEY = "x-digest-theme";
+  const FILTER_COLLAPSE_KEY = "x-digest-filters-collapsed";
   const DEFAULT_WATCHLIST = [{ username: "ai_xiaomu", name: "黄小木" }];
   const AVATAR_COLORS = [
     "var(--avatar-1)",
@@ -55,6 +56,9 @@
     tagFilter: document.getElementById("tagFilter"),
     authorChips: document.getElementById("authorChips"),
     tagChips: document.getElementById("tagChips"),
+    filterBar: document.getElementById("filterBar"),
+    filterToggle: document.getElementById("filterToggle"),
+    filterPanel: document.getElementById("filterPanel"),
     resultCount: document.getElementById("resultCount"),
     activeFilterCount: document.getElementById("activeFilterCount"),
     clearFilters: document.getElementById("clearFilters"),
@@ -261,6 +265,41 @@
     </a>`;
   }
 
+
+
+  function isFiltersCollapsed() {
+    const saved = localStorage.getItem(FILTER_COLLAPSE_KEY);
+    // Default collapsed when unset
+    if (saved === null || saved === undefined || saved === "") return true;
+    return saved !== "0" && saved !== "false";
+  }
+
+  function setFiltersCollapsed(collapsed) {
+    localStorage.setItem(FILTER_COLLAPSE_KEY, collapsed ? "1" : "0");
+    applyFilterCollapseUI(collapsed);
+  }
+
+  function applyFilterCollapseUI(collapsed) {
+    const bar = els.filterBar;
+    const toggle = els.filterToggle;
+    const panel = els.filterPanel;
+    if (!bar || !toggle || !panel) return;
+    bar.classList.toggle("is-collapsed", collapsed);
+    panel.hidden = collapsed;
+    toggle.setAttribute("aria-expanded", collapsed ? "false" : "true");
+    const chev = toggle.querySelector(".filter-chevron");
+    if (chev) chev.textContent = collapsed ? "▸" : "▾";
+  }
+
+  function initFilterCollapse() {
+    applyFilterCollapseUI(isFiltersCollapsed());
+    if (els.filterToggle) {
+      els.filterToggle.addEventListener("click", () => {
+        const currentlyCollapsed = els.filterBar.classList.contains("is-collapsed");
+        setFiltersCollapsed(!currentlyCollapsed);
+      });
+    }
+  }
 
   function loadTheme() {
     // Dark is primary. Only honor explicit "light" from localStorage.

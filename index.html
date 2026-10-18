@@ -27,7 +27,7 @@
     }
     .boot-error { color: #f4212e; }
   </style>
-  <link rel="stylesheet" href="./styles.css?v=7" />
+  <link rel="stylesheet" href="./styles.css?v=8" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23e7e9ea' d='M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z'/%3E%3C/svg%3E" />
 </head>
 <body>
@@ -63,37 +63,43 @@
         <p class="updated" id="lastUpdated">加载中…</p>
       </div>
 
-      <section class="filter-bar" aria-label="筛选">
-        <div class="filter-row">
-          <label class="filter-field">
-            <span class="filter-field-label">时间区间</span>
-            <span class="date-range">
-              <input type="date" id="dateFrom" class="filter-input" aria-label="开始日期" />
-              <span class="date-sep">至</span>
-              <input type="date" id="dateTo" class="filter-input" aria-label="结束日期" />
-            </span>
-          </label>
-          <label class="filter-field grow">
-            <span class="filter-field-label">用户名称</span>
-            <input type="search" id="userFilter" class="filter-input" placeholder="显示名或 @username" autocomplete="off" />
-          </label>
-        </div>
-        <div class="filter-row">
-          <label class="filter-field grow">
-            <span class="filter-field-label">标签检索</span>
-            <input type="search" id="tagFilter" class="filter-input" placeholder="输入标签关键词…" autocomplete="off" />
-          </label>
-        </div>
-        <div class="filter-section-label">作者</div>
-        <div class="chips-scroll" id="authorChips" role="group" aria-label="按作者筛选"></div>
-        <div class="filter-section-label">标签</div>
-        <div class="chips-scroll" id="tagChips" role="group" aria-label="按标签筛选"></div>
-        <div class="filter-meta">
-          <span id="resultCount">0 条推文</span>
-          <span class="filter-meta-right">
+      <section class="filter-bar is-collapsed" id="filterBar" aria-label="筛选">
+        <div class="filter-compact">
+          <button type="button" class="filter-toggle" id="filterToggle" aria-expanded="false" aria-controls="filterPanel">
+            <span class="filter-chevron" aria-hidden="true">▸</span>
+            <span>筛选</span>
+          </button>
+          <span id="resultCount" class="result-count">0 条推文</span>
+          <span class="filter-compact-right">
             <span id="activeFilterCount" class="active-count" hidden>0 个筛选条件</span>
             <button type="button" class="text-btn" id="clearFilters">清除全部</button>
           </span>
+        </div>
+        <div class="filter-panel" id="filterPanel" hidden>
+          <div class="filter-row">
+            <label class="filter-field">
+              <span class="filter-field-label">时间区间</span>
+              <span class="date-range">
+                <input type="date" id="dateFrom" class="filter-input" aria-label="开始日期" />
+                <span class="date-sep">至</span>
+                <input type="date" id="dateTo" class="filter-input" aria-label="结束日期" />
+              </span>
+            </label>
+            <label class="filter-field grow">
+              <span class="filter-field-label">用户名称</span>
+              <input type="search" id="userFilter" class="filter-input" placeholder="显示名或 @username" autocomplete="off" />
+            </label>
+          </div>
+          <div class="filter-row">
+            <label class="filter-field grow">
+              <span class="filter-field-label">标签检索</span>
+              <input type="search" id="tagFilter" class="filter-input" placeholder="输入标签关键词…" autocomplete="off" />
+            </label>
+          </div>
+          <div class="filter-section-label">作者</div>
+          <div class="chips-scroll" id="authorChips" role="group" aria-label="按作者筛选"></div>
+          <div class="filter-section-label">标签</div>
+          <div class="chips-scroll" id="tagChips" role="group" aria-label="按标签筛选"></div>
         </div>
       </section>
 
@@ -126,6 +132,6 @@
     </div>
   </dialog>
 
-  <script src="./app.js?v=7" defer></script>
+  <script src="./app.js?v=8" defer></script>
 </body>
 </html>
