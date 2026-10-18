@@ -293,12 +293,16 @@
 
   function initFilterCollapse() {
     applyFilterCollapseUI(isFiltersCollapsed());
-    if (els.filterToggle) {
-      els.filterToggle.addEventListener("click", () => {
-        const currentlyCollapsed = els.filterBar.classList.contains("is-collapsed");
-        setFiltersCollapsed(!currentlyCollapsed);
-      });
+    if (!els.filterToggle || !els.filterBar) {
+      console.error("filter toggle/bar missing — cannot wire collapse UI");
+      return;
     }
+    els.filterToggle.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const currentlyCollapsed = els.filterBar.classList.contains("is-collapsed");
+      setFiltersCollapsed(!currentlyCollapsed);
+    });
   }
 
   function loadTheme() {
@@ -840,6 +844,7 @@
   }
 
   loadTheme();
+  initFilterCollapse();
   loadData()
     .then(() => applyFiltersAndRender())
     .catch(showFatal);
