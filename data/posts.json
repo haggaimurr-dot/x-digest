@@ -12,7 +12,8 @@
       "summary": "预告明天写长文，开源《流星雨》整活视频的完整工作流与素材包，方便粉丝丢给 Codex 自学复刻。",
       "publishedAt": "2026-10-18T23:25:14+08:00",
       "steps": [],
-      "isLong": false
+      "isLong": false,
+      "authorAvatar": "avatars/ai_xiaomu.jpg"
     },
     {
       "id": "2111801530974445684",
@@ -25,7 +26,8 @@
       "summary": "黄小木转发唯庸长文：字节 Seed 项目组大佬两年智能体开发与 FDE 踩坑经验实打实分享，适合找技术合伙人和链接资源的人收藏。",
       "publishedAt": "2026-10-18T20:48:15+08:00",
       "steps": [],
-      "isLong": false
+      "isLong": false,
+      "authorAvatar": "avatars/ai_xiaomu.jpg"
     },
     {
       "id": "2111798398668136528",
@@ -48,7 +50,8 @@
         "路径选择：闲鱼低客单练手 → 垂直行业深耕 → 高客单 FDE，选一条主路径做深。"
       ],
       "isLong": true,
-      "note": "黄小木转发"
+      "note": "黄小木转发",
+      "authorAvatar": "avatars/weiyong_wang.jpg"
     },
     {
       "id": "2111790144772563384",
@@ -65,7 +68,8 @@
         "启动贴必须说清「我是谁 / 我帮谁 / 给你什么」，避免空喊关注。",
         "改完再找人转发；未改内容的互转几乎无效。"
       ],
-      "isLong": true
+      "isLong": true,
+      "authorAvatar": "avatars/ai_xiaomu.jpg"
     },
     {
       "id": "2111787330994602105",
@@ -78,7 +82,8 @@
       "summary": "有人把标价 9980 的 AI 线下培训课内容直接开源。小木：好内容，口播稿有素材了。",
       "publishedAt": "2026-10-18T19:51:49+08:00",
       "steps": [],
-      "isLong": false
+      "isLong": false,
+      "authorAvatar": "avatars/ai_xiaomu.jpg"
     },
     {
       "id": "2111718421532651950",
@@ -91,7 +96,8 @@
       "summary": "点评一条高达 3700 赞的推文，核心原因是「人味」——大家已经受够了千篇一律的 AI 味内容。",
       "publishedAt": "2026-10-18T15:18:00+08:00",
       "steps": [],
-      "isLong": false
+      "isLong": false,
+      "authorAvatar": "avatars/ai_xiaomu.jpg"
     },
     {
       "id": "2111625056464011649",
@@ -108,7 +114,8 @@
         "确认版权与人设素材可用后再做完整版。",
         "多平台分发时优先保完播与互动，而不是时长。"
       ],
-      "isLong": true
+      "isLong": true,
+      "authorAvatar": "avatars/ai_xiaomu.jpg"
     },
     {
       "id": "2111471516324180058",
@@ -121,7 +128,8 @@
       "summary": "道明寺黄仁勋、花泽类马斯克、西门奥特曼、美作达里奥——AI F4《流星雨》完整版献给爱看整活的粉丝。",
       "publishedAt": "2026-10-17T22:56:53+08:00",
       "steps": [],
-      "isLong": false
+      "isLong": false,
+      "authorAvatar": "avatars/ai_xiaomu.jpg"
     },
     {
       "id": "2111452639854747794",
@@ -134,7 +142,8 @@
       "summary": "DGX Spark 一个月涨了 50%。提醒关注本地算力窗口：错过 DGX 的，别再错过 RTX Spark。",
       "publishedAt": "2026-10-17T21:41:52+08:00",
       "steps": [],
-      "isLong": false
+      "isLong": false,
+      "authorAvatar": "avatars/ai_xiaomu.jpg"
     },
     {
       "id": "2111362854813360554",
@@ -151,7 +160,8 @@
         "用 Codex / Cursor 生成点灯、传感器示例并烧录。",
         "再考虑更贵的本地算力硬件（如 DGX / RTX Spark）。"
       ],
-      "isLong": true
+      "isLong": true,
+      "authorAvatar": "avatars/ai_xiaomu.jpg"
     },
     {
       "id": "2111307212521877625",
@@ -164,7 +174,8 @@
       "summary": "给 Opus 5.5 一个明确任务让它自己发挥即可；不要把「鸡屁踢」开发的那堆 skill 硬塞进去执行，反而会降智。",
       "publishedAt": "2026-10-17T12:04:00+08:00",
       "steps": [],
-      "isLong": false
+      "isLong": false,
+      "authorAvatar": "avatars/ai_xiaomu.jpg"
     },
     {
       "id": "2111291358266974305",
@@ -181,7 +192,8 @@
         "阶段二：进优质社群当群红，靠介绍拿商单，降低纯流量依赖。",
         "阶段三：资源积累后做产品/服务/合作，流量收益变为可选项。"
       ],
-      "isLong": true
+      "isLong": true,
+      "authorAvatar": "avatars/ai_xiaomu.jpg"
     },
     {
       "id": "2111284801223508401",
@@ -200,7 +212,8 @@
         "下载并安装目标工具",
         "用邮箱完成登录后再讲高级玩法"
       ],
-      "isLong": true
+      "isLong": true,
+      "authorAvatar": "avatars/ai_xiaomu.jpg"
     },
     {
       "id": "2111261410630222293",
@@ -213,7 +226,8 @@
       "summary": "会 AI 不等于能搞钱。搞钱 = 信息差 + 执行力。AI 能帮你挖平和抹平信息差，但解决不了执行力问题。",
       "publishedAt": "2026-10-17T09:02:00+08:00",
       "steps": [],
-      "isLong": false
+      "isLong": false,
+      "authorAvatar": "avatars/ai_xiaomu.jpg"
     }
   ]
 }

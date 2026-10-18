@@ -1,0 +1,16 @@
+{
+  "avatars": {
+    "ai_xiaomu": {
+      "username": "ai_xiaomu",
+      "name": "黄小木",
+      "avatar": "avatars/ai_xiaomu.jpg",
+      "avatarRemote": "https://pbs.twimg.com/profile_images/2076716603392323584/v9BMuoo__400x400.jpg"
+    },
+    "weiyong_wang": {
+      "username": "weiyong_wang",
+      "name": "唯庸",
+      "avatar": "avatars/weiyong_wang.jpg",
+      "avatarRemote": "https://pbs.twimg.com/profile_images/2111781489742639104/DVdfTDvY_400x400.jpg"
+    }
+  }
+}

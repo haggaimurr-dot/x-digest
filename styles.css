@@ -356,6 +356,31 @@ code {
   color: #fff;
   flex-shrink: 0;
   user-select: none;
+  overflow: hidden;
+  background: #2f3336;
+}
+
+.avatar img,
+img.avatar-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+a.avatar-link {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+a.avatar-link:hover {
+  opacity: 0.9;
+  text-decoration: none;
 }
 
 .post-body {
@@ -679,4 +704,4 @@ code {
   color: #f4212e !important;
 }
 
-/* build v3 */
+/* build v4 */

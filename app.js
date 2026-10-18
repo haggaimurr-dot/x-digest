@@ -70,6 +70,8 @@
   let watchlist = [];
   let selectedAuthors = new Set();
   let repoWatchlist = null;
+  /** @type {Record<string, string>} username -> avatar URL (local or remote) */
+  let avatarMap = {};
 
   function escapeHtml(str) {
     return String(str ?? "")
@@ -129,6 +131,39 @@
     for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0;
     return AVATAR_COLORS[h % AVATAR_COLORS.length];
   }
+
+  function hiResTwimg(url) {
+    if (!url) return "";
+    return String(url).replace("_normal.", "_400x400.");
+  }
+
+  function resolveAvatar(username, postAvatar) {
+    const u = String(username || "").toLowerCase();
+    const candidates = [postAvatar, avatarMap[u]];
+    const fromWatch = watchlist.find((a) => a.username.toLowerCase() === u);
+    if (fromWatch && fromWatch.avatar) candidates.push(fromWatch.avatar);
+    for (const raw of candidates) {
+      if (!raw) continue;
+      if (/^https?:\/\//i.test(raw)) return hiResTwimg(raw);
+      return asset(raw);
+    }
+    return "";
+  }
+
+  function avatarHtml(username, displayName, postAvatar) {
+    const src = resolveAvatar(username, postAvatar);
+    const label = escapeHtml(displayName || username || "");
+    const ini = escapeHtml(initials(displayName, username));
+    const color = avatarColor(username);
+    const fallback = `<div class="avatar avatar-fallback" style="background:${color}" aria-hidden="true">${ini}</div>`;
+    if (!src) return fallback;
+    return `<a class="avatar-link" href="https://x.com/${escapeHtml(
+      username
+    )}" target="_blank" rel="noopener" title="@${escapeHtml(username)}">
+      <img class="avatar-img" src="${escapeHtml(src)}" alt="${label}" width="40" height="40" loading="lazy" decoding="async" data-fallback-initials="${ini}" data-fallback-color="${escapeHtml(color)}" />
+    </a>`;
+  }
+
 
   function loadTheme() {
     // Dark is primary. Only honor explicit "light" from localStorage.
@@ -196,6 +231,28 @@
     const stored = loadWatchlistFromStorage();
     watchlist = stored && stored.length ? stored : repoWatchlist.slice();
     selectedAuthors = new Set(watchlist.map((a) => a.username));
+
+    // Build avatar map: avatars.json + watchlist + posts
+    avatarMap = {};
+    try {
+      const av = await fetchJson("data/avatars.json");
+      const entries = av.avatars || av;
+      if (entries && typeof entries === "object") {
+        for (const [k, v] of Object.entries(entries)) {
+          const key = String(k).toLowerCase();
+          if (typeof v === "string") avatarMap[key] = v;
+          else if (v && (v.avatar || v.url)) avatarMap[key] = v.avatar || v.url;
+        }
+      }
+    } catch (err) {
+      console.warn("avatars.json optional:", err);
+    }
+    for (const a of watchlist) {
+      if (a.avatar) avatarMap[String(a.username).toLowerCase()] = a.avatar;
+    }
+    for (const p of allPosts) {
+      if (p.authorAvatar) avatarMap[String(p.author).toLowerCase()] = p.authorAvatar;
+    }
   }
 
   function authorDisplay(username) {
@@ -263,9 +320,7 @@
     ].join("");
 
     return `<article class="post-card">
-      <div class="avatar" style="background:${avatarColor(p.author)}" aria-hidden="true">${escapeHtml(
-        initials(name, p.author)
-      )}</div>
+      ${avatarHtml(p.author, name, p.authorAvatar)}
       <div class="post-body">
         <div class="post-meta">
           <a class="display-name" href="https://x.com/${escapeHtml(
@@ -311,6 +366,23 @@
     }
 
     els.timeline.innerHTML = posts.map(renderCard).join("");
+    els.timeline.querySelectorAll("img.avatar-img").forEach((img) => {
+      img.addEventListener("error", () => {
+        const ini = img.getAttribute("data-fallback-initials") || "?";
+        const color = img.getAttribute("data-fallback-color") || "#2f3336";
+        const div = document.createElement("div");
+        div.className = "avatar avatar-fallback";
+        div.style.background = color;
+        div.setAttribute("aria-hidden", "true");
+        div.textContent = ini;
+        const parent = img.parentElement;
+        if (parent && parent.classList.contains("avatar-link")) {
+          parent.replaceWith(div);
+        } else {
+          img.replaceWith(div);
+        }
+      }, { once: true });
+    });
 
     if (els.emptyState) {
       els.emptyState.hidden = posts.length > 0;

@@ -20,7 +20,9 @@ python3 -m http.server 8080
 | 路径 | 作用 |
 |------|------|
 | `data/posts.json` | 推文摘要列表（前端只读） |
-| `config/watchlist.json` | **权威关注列表**，供每日更新 Agent 使用 |
+| `config/watchlist.json` | **权威关注列表**（可含 `avatar` 路径），供每日更新 Agent 使用 |
+| `data/avatars.json` | 用户名 → 头像路径映射 |
+| `avatars/*.jpg` | 本地缓存的 X 头像（优先于 twimg 热链） |
 
 浏览器设置面板会把关注列表额外写入 `localStorage`（键名 `x-digest-watchlist`），仅影响本机筛选默认值；**改仓库关注列表请编辑 `config/watchlist.json` 并提交**。
 
