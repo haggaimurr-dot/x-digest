@@ -49,8 +49,14 @@
   const els = {
     lastUpdated: document.getElementById("lastUpdated"),
     keyword: document.getElementById("keyword"),
+    dateFrom: document.getElementById("dateFrom"),
+    dateTo: document.getElementById("dateTo"),
+    userFilter: document.getElementById("userFilter"),
+    tagFilter: document.getElementById("tagFilter"),
     authorChips: document.getElementById("authorChips"),
+    tagChips: document.getElementById("tagChips"),
     resultCount: document.getElementById("resultCount"),
+    activeFilterCount: document.getElementById("activeFilterCount"),
     clearFilters: document.getElementById("clearFilters"),
     timeline: document.getElementById("timeline"),
     emptyState: document.getElementById("emptyState"),
@@ -116,6 +122,96 @@
       minute: "2-digit",
       hour12: false,
     }).format(d);
+  }
+
+
+  /** Shanghai calendar day YYYY-MM-DD for an instant */
+  function shanghaiYmd(iso) {
+    if (!iso) return "";
+    const d = new Date(iso);
+    if (Number.isNaN(d.getTime())) return "";
+    const parts = new Intl.DateTimeFormat("en-CA", {
+      timeZone: "Asia/Shanghai",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }).formatToParts(d);
+    const get = (t) => parts.find((p) => p.type === t)?.value ?? "";
+    return `${get("year")}-${get("month")}-${get("day")}`;
+  }
+
+  /** Start/end of Shanghai day as epoch ms */
+  function shanghaiDayBound(ymd, end) {
+    if (!ymd) return null;
+    const suffix = end ? "T23:59:59.999+08:00" : "T00:00:00.000+08:00";
+    const t = Date.parse(`${ymd}${suffix}`);
+    return Number.isNaN(t) ? null : t;
+  }
+
+  function postTags(p) {
+    const out = [];
+    const seen = new Set();
+    const push = (t) => {
+      const s = String(t || "").trim();
+      if (!s || seen.has(s)) return;
+      seen.add(s);
+      out.push(s);
+    };
+    if (Array.isArray(p.tags)) p.tags.forEach(push);
+    String(p.industry || "")
+      .split(/[/、，,·|]+/)
+      .forEach(push);
+    String(p.tech || "")
+      .split(/[/、，,·|]+/)
+      .forEach(push);
+    return out;
+  }
+
+  function collectAllTags() {
+    const set = new Set();
+    for (const p of allPosts) postTags(p).forEach((t) => set.add(t));
+    return [...set].sort((a, b) => a.localeCompare(b, "zh-CN"));
+  }
+
+  function countActiveFilters() {
+    let n = 0;
+    if (els.keyword && els.keyword.value.trim()) n += 1;
+    if (els.dateFrom && els.dateFrom.value) n += 1;
+    if (els.dateTo && els.dateTo.value) n += 1;
+    if (els.userFilter && els.userFilter.value.trim()) n += 1;
+    if (els.tagFilter && els.tagFilter.value.trim()) n += 1;
+    n += selectedTags.size;
+    const defaultAuthors = new Set(watchlist.map((a) => a.username));
+    let authorChanged = selectedAuthors.size !== defaultAuthors.size;
+    if (!authorChanged) {
+      for (const u of defaultAuthors) {
+        if (!selectedAuthors.has(u)) {
+          authorChanged = true;
+          break;
+        }
+      }
+    }
+    if (!authorChanged) {
+      for (const u of selectedAuthors) {
+        if (!defaultAuthors.has(u)) {
+          authorChanged = true;
+          break;
+        }
+      }
+    }
+    if (authorChanged) n += 1;
+    return n;
+  }
+
+  function updateActiveFilterCount() {
+    const n = countActiveFilters();
+    if (!els.activeFilterCount) return;
+    if (n > 0) {
+      els.activeFilterCount.hidden = false;
+      els.activeFilterCount.textContent = `${n} 个筛选条件`;
+    } else {
+      els.activeFilterCount.hidden = true;
+    }
   }
 
   function initials(name, username) {
@@ -280,6 +376,33 @@
       .join("");
   }
 
+  function renderTagChips() {
+    if (!els.tagChips) return;
+    const tags = collectAllTags();
+    const q = (els.tagFilter && els.tagFilter.value ? els.tagFilter.value : "")
+      .trim()
+      .toLowerCase();
+    const visible = q
+      ? tags.filter((t) => t.toLowerCase().includes(q) || selectedTags.has(t))
+      : tags;
+    // Cap display for UX but always include selected
+    const maxShow = 40;
+    let list = visible;
+    if (list.length > maxShow) {
+      const selected = list.filter((t) => selectedTags.has(t));
+      const rest = list.filter((t) => !selectedTags.has(t)).slice(0, maxShow - selected.length);
+      list = [...selected, ...rest];
+    }
+    els.tagChips.innerHTML = list
+      .map((t) => {
+        const active = selectedTags.has(t) ? "active" : "";
+        return `<button type="button" class="chip chip-tag ${active}" data-tag="${escapeHtml(
+          t
+        )}" aria-pressed="${selectedTags.has(t)}">#${escapeHtml(t)}</button>`;
+      })
+      .join("");
+  }
+
   function normalizeStep(s) {
     if (!s) return null;
     if (typeof s === "string") {
@@ -355,26 +478,75 @@
     const q = (els.keyword && els.keyword.value ? els.keyword.value : "")
       .trim()
       .toLowerCase();
+    const userQ = (els.userFilter && els.userFilter.value ? els.userFilter.value : "")
+      .trim()
+      .replace(/^@/, "")
+      .toLowerCase();
+    const tagQ = (els.tagFilter && els.tagFilter.value ? els.tagFilter.value : "")
+      .trim()
+      .toLowerCase();
+    const fromMs = shanghaiDayBound(els.dateFrom && els.dateFrom.value, false);
+    const toMs = shanghaiDayBound(els.dateTo && els.dateTo.value, true);
+
     return allPosts.filter((p) => {
+      // Author chips (OR within selected set)
       if (selectedAuthors.size && !selectedAuthors.has(p.author)) return false;
-      if (!q) return true;
-      const stepTexts = (Array.isArray(p.steps) ? p.steps : []).flatMap((s) => {
-        if (!s) return [];
-        if (typeof s === "string") return [s];
-        return [s.text, s.tools, s.tech, s.prep].filter(Boolean);
-      });
-      const hay = [
-        p.title,
-        p.summary,
-        p.industry,
-        p.tech,
-        p.author,
-        p.authorName,
-        ...stepTexts,
-      ]
-        .join("\n")
-        .toLowerCase();
-      return hay.includes(q);
+
+      // Date range (Asia/Shanghai day bounds)
+      if (fromMs != null || toMs != null) {
+        const t = Date.parse(p.publishedAt || "");
+        if (Number.isNaN(t)) return false;
+        if (fromMs != null && t < fromMs) return false;
+        if (toMs != null && t > toMs) return false;
+      }
+
+      // User name text (authorName OR username)
+      if (userQ) {
+        const name = String(p.authorName || "").toLowerCase();
+        const handle = String(p.author || "").toLowerCase();
+        if (!name.includes(userQ) && !handle.includes(userQ)) return false;
+      }
+
+      // Tag chips (OR among selected) AND free-text tag query
+      const tags = postTags(p);
+      if (selectedTags.size) {
+        let hit = false;
+        for (const t of selectedTags) {
+          if (tags.includes(t)) {
+            hit = true;
+            break;
+          }
+        }
+        if (!hit) return false;
+      }
+      if (tagQ) {
+        const blob = tags.join("\n").toLowerCase();
+        if (!blob.includes(tagQ)) return false;
+      }
+
+      // Keyword search
+      if (q) {
+        const stepTexts = (Array.isArray(p.steps) ? p.steps : []).flatMap((s) => {
+          if (!s) return [];
+          if (typeof s === "string") return [s];
+          return [s.text, s.tools, s.tech, s.prep].filter(Boolean);
+        });
+        const hay = [
+          p.title,
+          p.summary,
+          p.industry,
+          p.tech,
+          p.author,
+          p.authorName,
+          ...tags,
+          ...stepTexts,
+        ]
+          .join("\n")
+          .toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+
+      return true;
     });
   }
 
@@ -383,10 +555,11 @@
     const note = p.note
       ? `<span class="note-pill">${escapeHtml(p.note)}</span>`
       : "";
-    const tags = [
-      p.industry ? `<span class="tag">${escapeHtml(p.industry)}</span>` : "",
-      p.tech ? `<span class="tag">${escapeHtml(p.tech)}</span>` : "",
-    ].join("");
+    const tagList = postTags(p);
+    const tags = tagList
+      .slice(0, 8)
+      .map((t) => `<button type="button" class="tag tag-click" data-tag="${escapeHtml(t)}">#${escapeHtml(t)}</button>`)
+      .join("");
 
     return `<article class="post-card">
       ${avatarHtml(p.author, name, p.authorAvatar)}
@@ -423,6 +596,7 @@
   function renderList() {
     const posts = filteredPosts();
     if (els.resultCount) els.resultCount.textContent = `${posts.length} 条推文`;
+    updateActiveFilterCount();
 
     if (!els.timeline) {
       console.error("Missing #timeline element");
@@ -479,7 +653,9 @@
 
   function applyFiltersAndRender() {
     renderChips();
+    renderTagChips();
     renderList();
+    updateActiveFilterCount();
   }
 
   function closeModal() {
@@ -500,6 +676,13 @@
     }
   }
 
+  function toggleTag(tag) {
+    if (!tag) return;
+    if (selectedTags.has(tag)) selectedTags.delete(tag);
+    else selectedTags.add(tag);
+    applyFiltersAndRender();
+  }
+
   if (els.authorChips) {
     els.authorChips.addEventListener("click", (e) => {
       const btn = e.target.closest("[data-author]");
@@ -511,11 +694,42 @@
     });
   }
 
-  if (els.keyword) els.keyword.addEventListener("input", () => renderList());
+  if (els.tagChips) {
+    els.tagChips.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-tag]");
+      if (!btn) return;
+      toggleTag(btn.getAttribute("data-tag"));
+    });
+  }
+
+  if (els.timeline) {
+    els.timeline.addEventListener("click", (e) => {
+      const btn = e.target.closest(".tag-click[data-tag]");
+      if (!btn) return;
+      toggleTag(btn.getAttribute("data-tag"));
+    });
+  }
+
+  const refilter = () => {
+    renderTagChips();
+    renderList();
+    updateActiveFilterCount();
+  };
+
+  if (els.keyword) els.keyword.addEventListener("input", refilter);
+  if (els.userFilter) els.userFilter.addEventListener("input", refilter);
+  if (els.tagFilter) els.tagFilter.addEventListener("input", refilter);
+  if (els.dateFrom) els.dateFrom.addEventListener("change", refilter);
+  if (els.dateTo) els.dateTo.addEventListener("change", refilter);
 
   if (els.clearFilters) {
     els.clearFilters.addEventListener("click", () => {
       if (els.keyword) els.keyword.value = "";
+      if (els.userFilter) els.userFilter.value = "";
+      if (els.tagFilter) els.tagFilter.value = "";
+      if (els.dateFrom) els.dateFrom.value = "";
+      if (els.dateTo) els.dateTo.value = "";
+      selectedTags = new Set();
       selectedAuthors = new Set(watchlist.map((a) => a.username));
       applyFiltersAndRender();
     });

@@ -300,6 +300,104 @@ code {
   outline-offset: 2px;
 }
 
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  padding: 4px 16px 8px;
+  align-items: flex-end;
+}
+
+.filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.filter-field.grow {
+  flex: 1 1 160px;
+}
+
+.filter-field-label,
+.filter-section-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+.filter-section-label {
+  padding: 2px 16px 0;
+}
+
+.date-range {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.date-sep {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.filter-input {
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  min-width: 0;
+  width: 100%;
+  color-scheme: dark;
+}
+
+[data-theme="light"] .filter-input {
+  color-scheme: light;
+}
+
+.filter-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+input[type="date"].filter-input {
+  border-radius: 10px;
+  min-width: 132px;
+  width: auto;
+}
+
+.filter-meta-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.active-count {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.chip-tag {
+  font-weight: 600;
+  font-size: 13px;
+  padding: 5px 12px;
+}
+
+button.tag {
+  border: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+button.tag:hover {
+  filter: brightness(1.15);
+}
+
 .filter-meta {
   display: flex;
   justify-content: space-between;
@@ -800,4 +898,4 @@ a.avatar-link:hover {
   color: #f4212e !important;
 }
 
-/* build v5 */
+/* build v6 */

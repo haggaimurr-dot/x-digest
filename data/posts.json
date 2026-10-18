@@ -13,7 +13,16 @@
       "publishedAt": "2026-10-18T23:25:14+08:00",
       "steps": [],
       "isLong": false,
-      "authorAvatar": "avatars/ai_xiaomu.jpg"
+      "authorAvatar": "avatars/ai_xiaomu.jpg",
+      "tags": [
+        "AIGC",
+        "短视频",
+        "AI 视频工作流",
+        "素材开源",
+        "流星雨",
+        "开源",
+        "工作流"
+      ]
     },
     {
       "id": "2111801530974445684",
@@ -27,7 +36,14 @@
       "publishedAt": "2026-10-18T20:48:15+08:00",
       "steps": [],
       "isLong": false,
-      "authorAvatar": "avatars/ai_xiaomu.jpg"
+      "authorAvatar": "avatars/ai_xiaomu.jpg",
+      "tags": [
+        "增长",
+        "冷启动",
+        "FDE",
+        "智能体变现",
+        "转发"
+      ]
     },
     {
       "id": "2111798398668136528",
@@ -91,7 +107,15 @@
       ],
       "isLong": true,
       "note": "黄小木转发",
-      "authorAvatar": "avatars/weiyong_wang.jpg"
+      "authorAvatar": "avatars/weiyong_wang.jpg",
+      "tags": [
+        "企业服务",
+        "FDE",
+        "智能体落地",
+        "报价与收款",
+        "报价",
+        "智能体"
+      ]
     },
     {
       "id": "2111790144772563384",
@@ -124,7 +148,14 @@
         }
       ],
       "isLong": true,
-      "authorAvatar": "avatars/ai_xiaomu.jpg"
+      "authorAvatar": "avatars/ai_xiaomu.jpg",
+      "tags": [
+        "增长运营",
+        "X 冷启动",
+        "内容策略",
+        "冷启动",
+        "增长"
+      ]
     },
     {
       "id": "2111787330994602105",
@@ -138,7 +169,14 @@
       "publishedAt": "2026-10-18T19:51:49+08:00",
       "steps": [],
       "isLong": false,
-      "authorAvatar": "avatars/ai_xiaomu.jpg"
+      "authorAvatar": "avatars/ai_xiaomu.jpg",
+      "tags": [
+        "AI 教育",
+        "内容开源",
+        "口播素材",
+        "开源",
+        "培训"
+      ]
     },
     {
       "id": "2111718421532651950",
@@ -152,7 +190,14 @@
       "publishedAt": "2026-10-18T15:18:00+08:00",
       "steps": [],
       "isLong": false,
-      "authorAvatar": "avatars/ai_xiaomu.jpg"
+      "authorAvatar": "avatars/ai_xiaomu.jpg",
+      "tags": [
+        "内容创作",
+        "人设",
+        "叙事",
+        "人味",
+        "内容"
+      ]
     },
     {
       "id": "2111625056464011649",
@@ -185,7 +230,15 @@
         }
       ],
       "isLong": true,
-      "authorAvatar": "avatars/ai_xiaomu.jpg"
+      "authorAvatar": "avatars/ai_xiaomu.jpg",
+      "tags": [
+        "AIGC",
+        "内容分发",
+        "长短视频",
+        "多平台分发",
+        "短视频",
+        "完播率"
+      ]
     },
     {
       "id": "2111471516324180058",
@@ -199,7 +252,15 @@
       "publishedAt": "2026-10-17T22:56:53+08:00",
       "steps": [],
       "isLong": false,
-      "authorAvatar": "avatars/ai_xiaomu.jpg"
+      "authorAvatar": "avatars/ai_xiaomu.jpg",
+      "tags": [
+        "AIGC",
+        "娱乐整活",
+        "AI 视频生成",
+        "角色一致性",
+        "流星雨",
+        "整活"
+      ]
     },
     {
       "id": "2111452639854747794",
@@ -213,7 +274,14 @@
       "publishedAt": "2026-10-17T21:41:52+08:00",
       "steps": [],
       "isLong": false,
-      "authorAvatar": "avatars/ai_xiaomu.jpg"
+      "authorAvatar": "avatars/ai_xiaomu.jpg",
+      "tags": [
+        "AI 硬件",
+        "DGX Spark",
+        "本地算力",
+        "DGX",
+        "算力"
+      ]
     },
     {
       "id": "2111362854813360554",
@@ -246,7 +314,14 @@
         }
       ],
       "isLong": true,
-      "authorAvatar": "avatars/ai_xiaomu.jpg"
+      "authorAvatar": "avatars/ai_xiaomu.jpg",
+      "tags": [
+        "AI 硬件",
+        "ESP32",
+        "Codex",
+        "vibe coding",
+        "硬件"
+      ]
     },
     {
       "id": "2111307212521877625",
@@ -260,7 +335,14 @@
       "publishedAt": "2026-10-17T12:04:00+08:00",
       "steps": [],
       "isLong": false,
-      "authorAvatar": "avatars/ai_xiaomu.jpg"
+      "authorAvatar": "avatars/ai_xiaomu.jpg",
+      "tags": [
+        "AI 工具",
+        "Claude Opus",
+        "Agent Skills",
+        "Opus",
+        "Skills"
+      ]
     },
     {
       "id": "2111291358266974305",
@@ -293,7 +375,15 @@
         }
       ],
       "isLong": true,
-      "authorAvatar": "avatars/ai_xiaomu.jpg"
+      "authorAvatar": "avatars/ai_xiaomu.jpg",
+      "tags": [
+        "增长",
+        "变现",
+        "内容运营",
+        "社群",
+        "商单",
+        "万粉"
+      ]
     },
     {
       "id": "2111284801223508401",
@@ -338,7 +428,14 @@
         }
       ],
       "isLong": true,
-      "authorAvatar": "avatars/ai_xiaomu.jpg"
+      "authorAvatar": "avatars/ai_xiaomu.jpg",
+      "tags": [
+        "AI 教育",
+        "教学路径",
+        "用户分层",
+        "教学",
+        "小白"
+      ]
     },
     {
       "id": "2111261410630222293",
@@ -352,7 +449,13 @@
       "publishedAt": "2026-10-17T09:02:00+08:00",
       "steps": [],
       "isLong": false,
-      "authorAvatar": "avatars/ai_xiaomu.jpg"
+      "authorAvatar": "avatars/ai_xiaomu.jpg",
+      "tags": [
+        "认知",
+        "搞钱",
+        "信息差",
+        "执行力"
+      ]
     }
   ]
 }

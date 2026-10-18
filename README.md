@@ -45,6 +45,7 @@ python3 -m http.server 8080
       "steps": [
         { "text": "步骤说明", "tools": "工具", "tech": "技术点", "prep": "前提条件" }
       ],
+      "tags": ["标签1", "标签2"],
       "isLong": true,
       "note": "可选备注，如「黄小木转发」"
     }
