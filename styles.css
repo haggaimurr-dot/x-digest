@@ -971,4 +971,13 @@ a.avatar-link:hover {
   color: #f4212e !important;
 }
 
-/* build v9 */
+/* build v10 */
+
+.add-status {
+  margin: 8px 0 0;
+  font-size: 13px;
+  color: var(--danger);
+}
+.add-status.is-ok {
+  color: var(--accent);
+}

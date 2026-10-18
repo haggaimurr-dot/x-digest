@@ -71,6 +71,7 @@
     settingsModal: document.getElementById("settingsModal"),
     watchList: document.getElementById("watchList"),
     addAuthor: document.getElementById("addAuthor"),
+    addStatus: document.getElementById("addStatus"),
     newUsername: document.getElementById("newUsername"),
     newDisplayName: document.getElementById("newDisplayName"),
     resetWatchlist: document.getElementById("resetWatchlist"),
@@ -680,6 +681,56 @@
     }
   }
 
+
+  /**
+   * Parse pasted X identity into { username, nameHint }.
+   * Accepts: handle | @handle | 显示名@handle | https://x.com/handle
+   */
+  function parseWatchlistInput(raw, displayNameField) {
+    let s = String(raw || "").trim();
+    let nameHint = String(displayNameField || "").trim();
+    if (!s) return { error: "请输入用户名或 显示名@handle" };
+
+    // URL forms
+    const urlMatch = s.match(/(?:x\.com|twitter\.com)\/([A-Za-z0-9_]{1,15})(?:\/|$|\?)/i);
+    if (urlMatch) {
+      return { username: urlMatch[1], nameHint: nameHint || "" };
+    }
+
+    // If contains @, take handle after the last @; text before is display name
+    if (s.includes("@")) {
+      const at = s.lastIndexOf("@");
+      const before = s.slice(0, at).trim();
+      const after = s.slice(at + 1).trim();
+      // after may still have path junk
+      const handle = after.split(/[\s/?#]/)[0];
+      if (before && !nameHint) nameHint = before;
+      s = handle;
+    } else {
+      s = s.replace(/^@/, "").split(/[\s/?#]/)[0];
+    }
+
+    s = s.trim();
+    if (!/^[A-Za-z0-9_]{1,15}$/.test(s)) {
+      return {
+        error: "无法识别 handle。请用 @Khazix0 或 显示名@Khazix0（仅字母数字下划线，最多 15 位）",
+      };
+    }
+    return { username: s, nameHint };
+  }
+
+  function setAddStatus(msg, ok) {
+    if (!els.addStatus) return;
+    if (!msg) {
+      els.addStatus.hidden = true;
+      els.addStatus.textContent = "";
+      return;
+    }
+    els.addStatus.hidden = false;
+    els.addStatus.textContent = msg;
+    els.addStatus.classList.toggle("is-ok", !!ok);
+  }
+
   function renderWatchListUI() {
     if (!els.watchList) return;
     els.watchList.innerHTML = watchlist
@@ -783,6 +834,7 @@
 
   if (els.openSettings) {
     els.openSettings.addEventListener("click", () => {
+      setAddStatus("");
       renderWatchListUI();
       if (els.settingsModal) els.settingsModal.showModal();
     });
@@ -801,35 +853,60 @@
     els.watchList.addEventListener("click", (e) => {
       const btn = e.target.closest("[data-remove]");
       if (!btn) return;
+      e.preventDefault();
+      e.stopPropagation();
       const idx = Number(btn.getAttribute("data-remove"));
+      if (!Number.isInteger(idx) || idx < 0 || idx >= watchlist.length) return;
       const removed = watchlist[idx];
       watchlist = watchlist.filter((_, i) => i !== idx);
       saveWatchlist(watchlist);
       if (removed) selectedAuthors.delete(removed.username);
+      setAddStatus(removed ? `已移除 @${removed.username}` : "已移除", true);
       renderWatchListUI();
       applyFiltersAndRender();
     });
   }
 
+  function addWatchlistAccount() {
+    const parsed = parseWatchlistInput(
+      els.newUsername && els.newUsername.value,
+      els.newDisplayName && els.newDisplayName.value
+    );
+    if (parsed.error) {
+      setAddStatus(parsed.error, false);
+      if (els.newUsername) els.newUsername.focus();
+      return false;
+    }
+    const username = parsed.username;
+    if (watchlist.some((a) => a.username.toLowerCase() === username.toLowerCase())) {
+      setAddStatus(`@${username} 已在关注列表中`, false);
+      return false;
+    }
+    const name = parsed.nameHint || username;
+    watchlist = watchlist.concat([{ username, name }]);
+    saveWatchlist(watchlist);
+    selectedAuthors.add(username);
+    if (els.newUsername) els.newUsername.value = "";
+    if (els.newDisplayName) els.newDisplayName.value = "";
+    setAddStatus(`已添加 @${username}`, true);
+    renderWatchListUI();
+    applyFiltersAndRender();
+    return true;
+  }
+
   if (els.addAuthor) {
-    els.addAuthor.addEventListener("click", () => {
-      const username = (els.newUsername.value || "").trim().replace(/^@/, "");
-      if (!/^[A-Za-z0-9_]{1,15}$/.test(username)) {
-        if (els.newUsername) els.newUsername.focus();
-        return;
+    els.addAuthor.addEventListener("click", (e) => {
+      e.preventDefault();
+      addWatchlistAccount();
+    });
+  }
+
+  if (els.newUsername) {
+    els.newUsername.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        addWatchlistAccount();
       }
-      if (watchlist.some((a) => a.username.toLowerCase() === username.toLowerCase())) {
-        if (els.newUsername) els.newUsername.value = "";
-        return;
-      }
-      const name = (els.newDisplayName.value || "").trim() || username;
-      watchlist.push({ username, name });
-      saveWatchlist(watchlist);
-      selectedAuthors.add(username);
-      if (els.newUsername) els.newUsername.value = "";
-      if (els.newDisplayName) els.newDisplayName.value = "";
-      renderWatchListUI();
-      applyFiltersAndRender();
     });
   }
 
