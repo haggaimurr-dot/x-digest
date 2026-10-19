@@ -208,45 +208,27 @@ code {
   outline-offset: 2px;
 }
 
-.btn-update {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 32px;
-  padding: 0 12px;
-  margin-right: 4px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-pill);
-  background: transparent;
-  color: var(--text);
-  font: inherit;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.btn-update:hover:not(:disabled) {
-  background: var(--bg-hover-soft);
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-.btn-update:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
-.btn-update:disabled {
+.icon-btn-update.is-dimmed {
   opacity: 0.45;
+}
+
+.icon-btn-update:disabled {
+  opacity: 0.55;
   cursor: not-allowed;
 }
 
-@media (max-width: 480px) {
-  .btn-update {
-    padding: 0 10px;
-    font-size: 12px;
-  }
+.icon-btn-update .update-icon {
+  display: block;
+  transform-origin: 50% 50%;
+}
+
+.icon-btn-update.is-spinning .update-icon {
+  animation: update-spin 0.85s linear infinite;
+}
+
+@keyframes update-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .update-toast {
@@ -389,6 +371,46 @@ code {
   display: none;
 }
 
+.chips-section {
+  margin: 0;
+}
+
+.chips-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 2px 16px 0;
+  min-height: 28px;
+}
+
+.chips-section-header .filter-section-label {
+  padding: 0;
+}
+
+.chips-expand-btn {
+  flex-shrink: 0;
+  border: none;
+  background: transparent;
+  color: var(--accent);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 4px 2px;
+  line-height: 1.2;
+}
+
+.chips-expand-btn:hover {
+  text-decoration: underline;
+}
+
+.chips-expand-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 .chips-scroll {
   display: flex;
   flex-wrap: wrap;
@@ -396,6 +418,26 @@ code {
   overflow: visible;
   max-width: 100%;
   padding: 0 16px 8px;
+}
+
+.chips-collapsible {
+  position: relative;
+}
+
+.chips-collapsible.is-collapsed {
+  max-height: 84px; /* ~2 chip rows */
+  overflow: hidden;
+}
+
+.chips-collapsible.is-collapsed.has-overflow::after {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 0;
+  height: 32px;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, var(--bg));
 }
 
 .chip {

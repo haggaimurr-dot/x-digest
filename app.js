@@ -4,6 +4,9 @@
   const STORAGE_KEY = "x-digest-watchlist";
   const THEME_KEY = "x-digest-theme";
   const FILTER_COLLAPSE_KEY = "x-digest-filters-collapsed";
+  const CHIPS_AUTHORS_EXPANDED_KEY = "x-digest-chips-authors-expanded";
+  const CHIPS_TAGS_EXPANDED_KEY = "x-digest-chips-tags-expanded";
+  const CHIPS_COLLAPSED_MAX_PX = 84;
   const WEBHOOK_URL_KEY = "x-digest-webhook-url";
   const WEBHOOK_KEY_KEY = "x-digest-webhook-key";
   const UPDATE_DEBOUNCE_MS = 30000;
@@ -61,6 +64,8 @@
     tagFilter: document.getElementById("tagFilter"),
     authorChips: document.getElementById("authorChips"),
     tagChips: document.getElementById("tagChips"),
+    authorChipsToggle: document.getElementById("authorChipsToggle"),
+    tagChipsToggle: document.getElementById("tagChipsToggle"),
     filterBar: document.getElementById("filterBar"),
     filterToggle: document.getElementById("filterToggle"),
     filterPanel: document.getElementById("filterPanel"),
@@ -364,6 +369,10 @@
     toggle.setAttribute("aria-expanded", collapsed ? "false" : "true");
     const chev = toggle.querySelector(".filter-chevron");
     if (chev) chev.textContent = collapsed ? "▸" : "▾";
+    if (!collapsed) {
+      // Panel just shown — measure chip overflow after layout
+      requestAnimationFrame(() => syncAllChipSections());
+    }
   }
 
   function initFilterCollapse() {
@@ -377,6 +386,79 @@
       e.stopPropagation();
       const currentlyCollapsed = els.filterBar.classList.contains("is-collapsed");
       setFiltersCollapsed(!currentlyCollapsed);
+    });
+  }
+
+
+  function isChipSectionExpanded(key) {
+    return localStorage.getItem(key) === "1" || localStorage.getItem(key) === "true";
+  }
+
+  function setChipSectionExpanded(key, expanded) {
+    localStorage.setItem(key, expanded ? "1" : "0");
+  }
+
+  function chipCount(container) {
+    if (!container) return 0;
+    return container.querySelectorAll(".chip").length;
+  }
+
+  function measureChipsOverflow(container) {
+    if (!container) return false;
+    if (container.classList.contains("is-collapsed")) {
+      // overflow:hidden + max-height: scrollHeight is still the full content height
+      return container.scrollHeight > container.clientHeight + 1;
+    }
+    // Expanded: compare natural height to the collapsed budget
+    return container.scrollHeight > CHIPS_COLLAPSED_MAX_PX + 1;
+  }
+
+  function syncChipSection(container, toggle, storageKey) {
+    if (!container || !toggle) return;
+    const n = chipCount(container);
+    const expanded = isChipSectionExpanded(storageKey);
+    const overflows = measureChipsOverflow(container);
+
+    container.classList.toggle("is-collapsed", !expanded);
+    container.classList.toggle("has-overflow", !expanded && overflows);
+
+    if (!overflows) {
+      toggle.hidden = true;
+      // Keep storage as-is; UI just hides the control when content fits
+      container.classList.remove("is-collapsed");
+      container.classList.remove("has-overflow");
+      toggle.setAttribute("aria-expanded", "true");
+      return;
+    }
+
+    toggle.hidden = false;
+    toggle.setAttribute("aria-expanded", expanded ? "true" : "false");
+    toggle.textContent = expanded ? "收起" : `展开全部 (${n})`;
+  }
+
+  function syncAllChipSections() {
+    syncChipSection(els.authorChips, els.authorChipsToggle, CHIPS_AUTHORS_EXPANDED_KEY);
+    syncChipSection(els.tagChips, els.tagChipsToggle, CHIPS_TAGS_EXPANDED_KEY);
+  }
+
+  function initChipSections() {
+    const wire = (toggle, storageKey) => {
+      if (!toggle) return;
+      toggle.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const next = !isChipSectionExpanded(storageKey);
+        setChipSectionExpanded(storageKey, next);
+        syncAllChipSections();
+      });
+    };
+    wire(els.authorChipsToggle, CHIPS_AUTHORS_EXPANDED_KEY);
+    wire(els.tagChipsToggle, CHIPS_TAGS_EXPANDED_KEY);
+
+    let resizeTimer = null;
+    window.addEventListener("resize", () => {
+      if (resizeTimer) clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => syncAllChipSections(), 100);
     });
   }
 
@@ -493,6 +575,7 @@
         )}" aria-pressed="${selectedAuthors.has(u)}">${label}</button>`;
       })
       .join("");
+    syncAllChipSections();
   }
 
   function renderTagChips() {
@@ -514,6 +597,7 @@
         )}" aria-pressed="${selectedTags.has(t)}">#${escapeHtml(t)}</button>`;
       })
       .join("");
+    syncAllChipSections();
   }
 
   function normalizeStep(s) {
@@ -825,6 +909,7 @@
 
   let updateCooldownUntil = 0;
   let updateCooldownTimer = null;
+  let updateInFlight = false;
   let toastTimer = null;
 
   function getWebhookConfig() {
@@ -880,17 +965,21 @@
     const cfg = getWebhookConfig();
     const configured = !!(cfg.url && cfg.key);
     const cooling = Date.now() < updateCooldownUntil;
-    btn.disabled = !configured || cooling;
+    const busy = updateInFlight || cooling;
+    // Unconfigured: keep clickable (opens settings) but dimmed.
+    btn.disabled = busy;
+    btn.classList.toggle("is-dimmed", !configured && !busy);
+    btn.classList.toggle("is-spinning", busy);
+    btn.setAttribute("aria-label", "立即更新");
     if (!configured) {
-      btn.title = "请先在设置中配置 Webhook";
-      btn.textContent = "立即更新";
+      btn.title = "先在设置里配置 Webhook";
+    } else if (updateInFlight) {
+      btn.title = "正在发送更新请求…";
     } else if (cooling) {
       const left = Math.max(1, Math.ceil((updateCooldownUntil - Date.now()) / 1000));
       btn.title = `请稍候 ${left}s`;
-      btn.textContent = `请稍候 ${left}s`;
     } else {
-      btn.title = "触发站内立即更新";
-      btn.textContent = "立即更新";
+      btn.title = "立即更新";
     }
   }
 
@@ -960,17 +1049,19 @@
       }
       return;
     }
-    if (Date.now() < updateCooldownUntil) return;
+    if (updateInFlight || Date.now() < updateCooldownUntil) return;
 
-    const btn = els.triggerUpdate;
-    if (btn) btn.disabled = true;
+    updateInFlight = true;
+    syncUpdateButton();
 
     try {
       await postWebhook(cfg.url, cfg.key);
       showUpdateToast(UPDATE_STATUS_MSG);
+      updateInFlight = false;
       startUpdateCooldown();
     } catch (err) {
       console.error(err);
+      updateInFlight = false;
       showUpdateToast("发送失败（可能是网络或 CORS）。请检查 URL/key，或稍后再试。");
       syncUpdateButton();
     }
@@ -1185,6 +1276,7 @@
 
   loadTheme();
   initFilterCollapse();
+  initChipSections();
   loadData()
     .then(() => applyFiltersAndRender())
     .catch(showFatal);

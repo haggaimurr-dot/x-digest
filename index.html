@@ -27,7 +27,7 @@
     }
     .boot-error { color: #f4212e; }
   </style>
-  <link rel="stylesheet" href="./styles.css?v=15" />
+  <link rel="stylesheet" href="./styles.css?v=16" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23e7e9ea' d='M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z'/%3E%3C/svg%3E" />
 </head>
 <body>
@@ -47,7 +47,11 @@
           <input type="search" id="keyword" class="search-input" placeholder="搜索标题、简介、行业、技术…" autocomplete="off" />
         </div>
         <div class="topbar-actions">
-          <button type="button" class="btn-update" id="triggerUpdate" disabled title="请先在设置中配置 Webhook">立即更新</button>
+          <button type="button" class="icon-btn icon-btn-update" id="triggerUpdate" aria-label="立即更新" title="先在设置里配置 Webhook">
+            <svg class="update-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+              <path fill="currentColor" d="M4.755 10.059a7.5 7.5 0 0 1 12.548-3.364l1.903 1.903h-4.5a.75.75 0 0 0 0 1.5h6.75a.75.75 0 0 0 .75-.75V2.5a.75.75 0 0 0-1.5 0v3.318l-1.903-1.903A9 9 0 0 0 3.252 9.339a.75.75 0 1 0 1.503.22zm14.49 3.882a.75.75 0 0 0-1.503-.22 7.5 7.5 0 0 1-12.548 3.364l-1.903-1.903h4.5a.75.75 0 0 0 0-1.5h-6.75a.75.75 0 0 0-.75.75v6.75a.75.75 0 0 0 1.5 0v-3.318l1.903 1.903a9 9 0 0 0 15.051-4.076z"/>
+            </svg>
+          </button>
           <button type="button" class="icon-btn" id="themeToggle" aria-label="切换主题" title="切换深色/浅色">
             <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2.25a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75zm0 15a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5a.75.75 0 0 1 .75-.75zM4.72 4.72a.75.75 0 0 1 1.06 0l1.06 1.06a.75.75 0 1 1-1.06 1.06L4.72 5.78a.75.75 0 0 1 0-1.06zm12.44 12.44a.75.75 0 0 1 1.06 0l1.06 1.06a.75.75 0 1 1-1.06 1.06l-1.06-1.06a.75.75 0 0 1 0-1.06zM2.25 12a.75.75 0 0 1 .75-.75h1.5a.75.75 0 0 1 0 1.5H3a.75.75 0 0 1-.75-.75zm15 0a.75.75 0 0 1 .75-.75h1.5a.75.75 0 0 1 0 1.5H18a.75.75 0 0 1-.75-.75zM4.72 19.28a.75.75 0 0 1 0-1.06l1.06-1.06a.75.75 0 1 1 1.06 1.06L5.78 19.28a.75.75 0 0 1-1.06 0zm12.44-12.44a.75.75 0 0 1 0-1.06l1.06-1.06a.75.75 0 1 1 1.06 1.06l-1.06 1.06a.75.75 0 0 1-1.06 0zM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg>
           </button>
@@ -97,10 +101,20 @@
               <input type="search" id="tagFilter" class="filter-input" placeholder="输入标签关键词…" autocomplete="off" />
             </label>
           </div>
-          <div class="filter-section-label">作者</div>
-          <div class="chips-scroll" id="authorChips" role="group" aria-label="按作者筛选"></div>
-          <div class="filter-section-label">标签</div>
-          <div class="chips-scroll" id="tagChips" role="group" aria-label="按标签筛选"></div>
+          <div class="chips-section" data-chips-section="authors">
+            <div class="chips-section-header">
+              <span class="filter-section-label">作者</span>
+              <button type="button" class="chips-expand-btn" id="authorChipsToggle" hidden aria-expanded="false">展开全部 (0)</button>
+            </div>
+            <div class="chips-scroll chips-collapsible is-collapsed" id="authorChips" role="group" aria-label="按作者筛选"></div>
+          </div>
+          <div class="chips-section" data-chips-section="tags">
+            <div class="chips-section-header">
+              <span class="filter-section-label">标签</span>
+              <button type="button" class="chips-expand-btn" id="tagChipsToggle" hidden aria-expanded="false">展开全部 (0)</button>
+            </div>
+            <div class="chips-scroll chips-collapsible is-collapsed" id="tagChips" role="group" aria-label="按标签筛选"></div>
+          </div>
         </div>
       </section>
 
@@ -153,6 +167,6 @@
     </div>
   </dialog>
 
-  <script src="./app.js?v=15" defer></script>
+  <script src="./app.js?v=16" defer></script>
 </body>
 </html>
