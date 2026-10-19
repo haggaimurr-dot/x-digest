@@ -2,6 +2,13 @@
   "use strict";
 
   const STORAGE_KEY = "x-digest-watchlist";
+  const SELECTED_KEY = "x-digest-selected-authors";
+  const SPECIAL_GROUP_ID = "special";
+  const SPECIAL_GROUP_NAME = "特别关注";
+  const DEFAULT_GROUPS = [
+    { id: SPECIAL_GROUP_ID, name: SPECIAL_GROUP_NAME, fixed: true },
+    { id: "other", name: "其他关注" },
+  ];
   const THEME_KEY = "x-digest-theme";
   const FILTER_COLLAPSE_KEY = "x-digest-filters-collapsed";
   const CHIPS_AUTHORS_EXPANDED_KEY = "x-digest-chips-authors-expanded";
@@ -85,6 +92,9 @@
     newUsername: document.getElementById("newUsername"),
     newDisplayName: document.getElementById("newDisplayName"),
     resetWatchlist: document.getElementById("resetWatchlist"),
+    groupList: document.getElementById("groupList"),
+    newGroupName: document.getElementById("newGroupName"),
+    addGroup: document.getElementById("addGroup"),
     triggerUpdate: document.getElementById("triggerUpdate"),
     webhookUrl: document.getElementById("webhookUrl"),
     webhookKey: document.getElementById("webhookKey"),
@@ -95,6 +105,8 @@
 
   let allPosts = [];
   let watchlist = [];
+  let groups = DEFAULT_GROUPS.map((g) => ({ ...g }));
+  let repoGroups = null;
   let selectedAuthors = new Set();
   let selectedTags = new Set();
   let repoWatchlist = null;
@@ -266,7 +278,7 @@
     if (els.userFilter && els.userFilter.value.trim()) n += 1;
     if (els.tagFilter && els.tagFilter.value.trim()) n += 1;
     n += selectedTags.size;
-    const defaultAuthors = new Set(watchlist.map((a) => a.username));
+    const defaultAuthors = specialAuthors();
     let authorChanged = selectedAuthors.size !== defaultAuthors.size;
     if (!authorChanged) {
       for (const u of defaultAuthors) {
@@ -480,13 +492,61 @@
     if (meta) meta.content = next === "light" ? "#ffffff" : "#000000";
   }
 
+  function normalizeGroups(raw) {
+    const out = [{ id: SPECIAL_GROUP_ID, name: SPECIAL_GROUP_NAME, fixed: true }];
+    const seen = new Set([SPECIAL_GROUP_ID]);
+    if (Array.isArray(raw)) {
+      for (const g of raw) {
+        if (!g || typeof g !== "object") continue;
+        const id = String(g.id || "").trim();
+        if (!id || seen.has(id)) continue;
+        seen.add(id);
+        out.push({ id, name: String(g.name || "").trim() || "其他关注" });
+      }
+    }
+    if (out.length < 2) out.push({ id: "other", name: "其他关注" });
+    return out;
+  }
+
+  function firstOtherGroupId() {
+    const g = groups.find((x) => x.id !== SPECIAL_GROUP_ID);
+    return g ? g.id : SPECIAL_GROUP_ID;
+  }
+
+  function normalizeAccounts(accounts) {
+    const valid = new Set(groups.map((g) => g.id));
+    return accounts.map((a) => ({
+      ...a,
+      group: valid.has(a.group) ? a.group : a.group === undefined && !hasGroupInfo ? SPECIAL_GROUP_ID : firstOtherGroupId(),
+    }));
+  }
+  let hasGroupInfo = true;
+
+  function groupOfAuthor(username) {
+    const hit = watchlist.find((a) => a.username === username);
+    if (hit && groups.some((g) => g.id === hit.group)) return hit.group;
+    return firstOtherGroupId();
+  }
+
+  function specialAuthors() {
+    return new Set(watchlist.filter((a) => a.group === SPECIAL_GROUP_ID).map((a) => a.username));
+  }
+
+  function newGroupId() {
+    let id;
+    do {
+      id = "g" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+    } while (groups.some((g) => g.id === id));
+    return id;
+  }
+
   function loadWatchlistFromStorage() {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (!raw) return null;
       const parsed = JSON.parse(raw);
-      if (Array.isArray(parsed?.accounts)) return parsed.accounts;
-      if (Array.isArray(parsed)) return parsed;
+      if (Array.isArray(parsed?.accounts)) return parsed;
+      if (Array.isArray(parsed)) return { accounts: parsed };
     } catch (_) {
       /* ignore */
     }
@@ -495,7 +555,22 @@
 
   function saveWatchlist(accounts) {
     watchlist = accounts.slice();
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({ accounts: watchlist }));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ groups, accounts: watchlist }));
+  }
+
+  function saveSelection() {
+    localStorage.setItem(SELECTED_KEY, JSON.stringify([...selectedAuthors]));
+  }
+
+  function loadSelection() {
+    try {
+      const raw = localStorage.getItem(SELECTED_KEY);
+      if (!raw) return null;
+      const arr = JSON.parse(raw);
+      return Array.isArray(arr) ? new Set(arr.map(String)) : null;
+    } catch (_) {
+      return null;
+    }
   }
 
   async function fetchJson(relPath) {
@@ -520,14 +595,24 @@
     try {
       const w = await fetchJson("config/watchlist.json");
       repoWatchlist = Array.isArray(w.accounts) ? w.accounts : DEFAULT_WATCHLIST;
+      repoGroups = Array.isArray(w.groups) ? w.groups : null;
     } catch (err) {
       console.warn("watchlist fallback:", err);
       repoWatchlist = DEFAULT_WATCHLIST;
     }
 
     const stored = loadWatchlistFromStorage();
-    watchlist = stored && stored.length ? stored : repoWatchlist.slice();
-    selectedAuthors = new Set(watchlist.map((a) => a.username));
+    if (stored && stored.accounts.length) {
+      hasGroupInfo = Array.isArray(stored.groups);
+      groups = normalizeGroups(stored.groups || repoGroups);
+      watchlist = normalizeAccounts(stored.accounts);
+      hasGroupInfo = true;
+      saveWatchlist(watchlist);
+    } else {
+      applyRepoDefault();
+    }
+    const sel = loadSelection();
+    selectedAuthors = sel || specialAuthors();
 
     // Build avatar map: avatars.json + watchlist + posts
     avatarMap = {};
@@ -559,6 +644,15 @@
     return (fromPost && fromPost.authorName) || username;
   }
 
+  function applyRepoDefault() {
+    groups = normalizeGroups(repoGroups);
+    hasGroupInfo = !!repoGroups;
+    const base = normalizeAccounts((repoWatchlist || DEFAULT_WATCHLIST).slice());
+    hasGroupInfo = true;
+    watchlist = base;
+    // Only persist once the user changes something; keep repo as source of truth
+  }
+
   function renderChips() {
     if (!els.authorChips) return;
     const authorsFromData = [...new Set(allPosts.map((p) => p.author))];
@@ -566,15 +660,36 @@
       ...new Set([...watchlist.map((a) => a.username), ...authorsFromData]),
     ];
 
-    els.authorChips.innerHTML = usernames
-      .map((u) => {
-        const active = selectedAuthors.has(u) ? "active" : "";
-        const label = escapeHtml(authorDisplay(u));
-        return `<button type="button" class="chip ${active}" data-author="${escapeHtml(
-          u
-        )}" aria-pressed="${selectedAuthors.has(u)}">${label}</button>`;
+    const chipHtml = (u) => {
+      const active = selectedAuthors.has(u) ? "active" : "";
+      const label = escapeHtml(authorDisplay(u));
+      return `<button type="button" class="chip ${active}" data-author="${escapeHtml(
+        u
+      )}" aria-pressed="${selectedAuthors.has(u)}">${label}</button>`;
+    };
+    els.authorChips.innerHTML = groups
+      .map((g) => {
+        const members = usernames.filter((u) => groupOfAuthor(u) === g.id);
+        const nSel = members.filter((u) => selectedAuthors.has(u)).length;
+        const all = members.length > 0 && nSel === members.length;
+        const some = nSel > 0 && !all;
+        return `<div class="author-group" data-group="${escapeHtml(g.id)}">
+          <label class="author-group-header">
+            <input type="checkbox" class="group-toggle" data-group-toggle="${escapeHtml(g.id)}" ${
+              all ? "checked" : ""
+            } ${some ? 'data-indeterminate="1"' : ""} ${members.length ? "" : "disabled"} />
+            <span class="author-group-name">${escapeHtml(g.name)}</span>
+            <span class="author-group-count">${nSel}/${members.length}</span>
+          </label>
+          <div class="author-group-chips">${
+            members.length ? members.map(chipHtml).join("") : '<span class="author-group-empty">暂无作者</span>'
+          }</div>
+        </div>`;
       })
       .join("");
+    els.authorChips.querySelectorAll("[data-indeterminate]").forEach((cb) => {
+      cb.indeterminate = true;
+    });
     syncAllChipSections();
   }
 
@@ -886,6 +1001,14 @@
 
   function renderWatchListUI() {
     if (!els.watchList) return;
+    renderGroupsUI();
+    const opts = (cur) =>
+      groups
+        .map(
+          (g) =>
+            `<option value="${escapeHtml(g.id)}" ${g.id === cur ? "selected" : ""}>${escapeHtml(g.name)}</option>`
+        )
+        .join("");
     els.watchList.innerHTML = watchlist
       .map(
         (a, i) => `<li>
@@ -893,9 +1016,34 @@
           <strong>${escapeHtml(a.name || a.username)}</strong>
           <span>@${escapeHtml(a.username)}</span>
         </div>
-        <button type="button" class="btn-remove" data-remove="${i}">移除</button>
+        <div class="watch-actions">
+          <select class="field group-select" data-group-select="${i}" aria-label="关注类别">${opts(a.group)}</select>
+          <button type="button" class="btn-remove" data-remove="${i}">移除</button>
+        </div>
       </li>`
       )
+      .join("");
+  }
+
+  function renderGroupsUI() {
+    if (!els.groupList) return;
+    const others = groups.filter((g) => g.id !== SPECIAL_GROUP_ID).length;
+    els.groupList.innerHTML = groups
+      .map((g) => {
+        const n = watchlist.filter((a) => a.group === g.id).length;
+        if (g.id === SPECIAL_GROUP_ID) {
+          return `<li><div class="meta"><strong>${escapeHtml(g.name)}</strong><span>固定类别 · ${n} 人</span></div></li>`;
+        }
+        return `<li>
+          <input type="text" class="field group-name-input" data-group-rename="${escapeHtml(
+            g.id
+          )}" value="${escapeHtml(g.name)}" maxlength="20" aria-label="类别名称" />
+          <span class="group-count">${n} 人</span>
+          <button type="button" class="btn-remove" data-group-delete="${escapeHtml(g.id)}" ${
+            others <= 1 ? 'disabled title="至少保留一个其他类别"' : ""
+          }>删除</button>
+        </li>`;
+      })
       .join("");
   }
 
@@ -1099,6 +1247,21 @@
       const u = btn.getAttribute("data-author");
       if (selectedAuthors.has(u)) selectedAuthors.delete(u);
       else selectedAuthors.add(u);
+      saveSelection();
+      applyFiltersAndRender();
+    });
+    els.authorChips.addEventListener("change", (e) => {
+      const cb = e.target.closest("[data-group-toggle]");
+      if (!cb) return;
+      const gid = cb.getAttribute("data-group-toggle");
+      const usernames = [
+        ...new Set([...watchlist.map((a) => a.username), ...allPosts.map((p) => p.author)]),
+      ].filter((u) => groupOfAuthor(u) === gid);
+      for (const u of usernames) {
+        if (cb.checked) selectedAuthors.add(u);
+        else selectedAuthors.delete(u);
+      }
+      saveSelection();
       applyFiltersAndRender();
     });
   }
@@ -1139,7 +1302,8 @@
       if (els.dateFrom) els.dateFrom.value = "";
       if (els.dateTo) els.dateTo.value = "";
       selectedTags = new Set();
-      selectedAuthors = new Set(watchlist.map((a) => a.username));
+      selectedAuthors = specialAuthors();
+      saveSelection();
       applyFiltersAndRender();
     });
   }
@@ -1177,6 +1341,7 @@
       watchlist = watchlist.filter((_, i) => i !== idx);
       saveWatchlist(watchlist);
       if (removed) selectedAuthors.delete(removed.username);
+      saveSelection();
       setAddStatus(removed ? `已移除 @${removed.username}` : "已移除", true);
       renderWatchListUI();
       applyFiltersAndRender();
@@ -1199,9 +1364,8 @@
       return false;
     }
     const name = parsed.nameHint || username;
-    watchlist = watchlist.concat([{ username, name }]);
+    watchlist = watchlist.concat([{ username, name, group: firstOtherGroupId() }]);
     saveWatchlist(watchlist);
-    selectedAuthors.add(username);
     if (els.newUsername) els.newUsername.value = "";
     if (els.newDisplayName) els.newDisplayName.value = "";
     let msg = `已添加 @${username}`;
@@ -1235,9 +1399,66 @@
 
   if (els.resetWatchlist) {
     els.resetWatchlist.addEventListener("click", () => {
-      const base = (repoWatchlist || DEFAULT_WATCHLIST).slice();
-      saveWatchlist(base);
-      selectedAuthors = new Set(base.map((a) => a.username));
+      applyRepoDefault();
+      saveWatchlist(watchlist);
+      selectedAuthors = specialAuthors();
+      saveSelection();
+      renderWatchListUI();
+      applyFiltersAndRender();
+    });
+  }
+
+  if (els.watchList) {
+    els.watchList.addEventListener("change", (e) => {
+      const sel = e.target.closest("[data-group-select]");
+      if (!sel) return;
+      const idx = Number(sel.getAttribute("data-group-select"));
+      if (!watchlist[idx]) return;
+      watchlist[idx] = { ...watchlist[idx], group: sel.value };
+      saveWatchlist(watchlist);
+      renderWatchListUI();
+      applyFiltersAndRender();
+    });
+  }
+
+  if (els.groupList) {
+    els.groupList.addEventListener("change", (e) => {
+      const inp = e.target.closest("[data-group-rename]");
+      if (!inp) return;
+      const g = groups.find((x) => x.id === inp.getAttribute("data-group-rename"));
+      if (!g || g.id === SPECIAL_GROUP_ID) return;
+      const name = inp.value.trim();
+      if (!name) {
+        inp.value = g.name;
+        return;
+      }
+      g.name = name;
+      saveWatchlist(watchlist);
+      renderWatchListUI();
+      applyFiltersAndRender();
+    });
+    els.groupList.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-group-delete]");
+      if (!btn || btn.disabled) return;
+      e.preventDefault();
+      const gid = btn.getAttribute("data-group-delete");
+      if (gid === SPECIAL_GROUP_ID) return;
+      groups = groups.filter((g) => g.id !== gid);
+      const target = firstOtherGroupId();
+      watchlist = watchlist.map((a) => (a.group === gid ? { ...a, group: target } : a));
+      saveWatchlist(watchlist);
+      renderWatchListUI();
+      applyFiltersAndRender();
+    });
+  }
+
+  if (els.addGroup) {
+    els.addGroup.addEventListener("click", (e) => {
+      e.preventDefault();
+      const name = (els.newGroupName && els.newGroupName.value.trim()) || `其他关注 ${groups.length}`;
+      groups.push({ id: newGroupId(), name });
+      if (els.newGroupName) els.newGroupName.value = "";
+      saveWatchlist(watchlist);
       renderWatchListUI();
       applyFiltersAndRender();
     });

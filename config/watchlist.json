@@ -1,64 +1,87 @@
 {
+  "groups": [
+    {
+      "id": "special",
+      "name": "特别关注",
+      "fixed": true
+    },
+    {
+      "id": "other",
+      "name": "其他关注"
+    }
+  ],
   "accounts": [
     {
       "username": "ai_xiaomu",
       "name": "黄小木",
-      "avatar": "avatars/ai_xiaomu.jpg"
+      "avatar": "avatars/ai_xiaomu.jpg",
+      "group": "special"
     },
     {
       "username": "miles_mazy",
       "name": "Miles Ma",
-      "avatar": "avatars/miles_mazy.jpg"
+      "avatar": "avatars/miles_mazy.jpg",
+      "group": "special"
     },
     {
       "username": "gkxspace",
       "name": "余温",
-      "avatar": "avatars/gkxspace.jpg"
+      "avatar": "avatars/gkxspace.jpg",
+      "group": "special"
     },
     {
       "username": "shengtang135754",
       "name": "麦麦提",
-      "avatar": "avatars/shengtang135754.jpg"
+      "avatar": "avatars/shengtang135754.jpg",
+      "group": "special"
     },
     {
       "username": "mjjwiki",
       "name": "MJJ百科",
-      "avatar": "avatars/mjjwiki.jpg"
+      "avatar": "avatars/mjjwiki.jpg",
+      "group": "special"
     },
     {
       "username": "Astronaut_1216",
       "name": "叫我阿杭",
-      "avatar": "avatars/Astronaut_1216.jpg"
+      "avatar": "avatars/Astronaut_1216.jpg",
+      "group": "special"
     },
     {
       "username": "Khazix0918",
       "name": "数字生命卡兹克",
-      "avatar": "avatars/Khazix0918.jpg"
+      "avatar": "avatars/Khazix0918.jpg",
+      "group": "special"
     },
     {
       "username": "ChenshuoAI",
       "name": "陈硕KAI（思考中）",
-      "avatar": "avatars/ChenshuoAI.jpg"
+      "avatar": "avatars/ChenshuoAI.jpg",
+      "group": "special"
     },
     {
       "username": "yaojingang",
       "name": "姚金刚",
-      "avatar": "avatars/yaojingang.jpg"
+      "avatar": "avatars/yaojingang.jpg",
+      "group": "special"
     },
     {
       "username": "0xlangeai",
       "name": "蓝哥AI",
-      "avatar": "avatars/0xlangeai.jpg"
+      "avatar": "avatars/0xlangeai.jpg",
+      "group": "special"
     },
     {
       "username": "LiumangtuCrypto",
       "name": "流氓兔🐰",
-      "avatar": "avatars/LiumangtuCrypto.jpg"
+      "avatar": "avatars/LiumangtuCrypto.jpg",
+      "group": "special"
     },
     {
       "username": "Saccc_c",
       "name": "Sac",
-      "avatar": "avatars/Saccc_c.jpg"
+      "avatar": "avatars/Saccc_c.jpg",
+      "group": "special"
     }
   ]
 }

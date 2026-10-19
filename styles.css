@@ -1190,3 +1190,32 @@ a.avatar-link:hover {
 .post-summary-wrap .post-summary {
   margin-top: 0;
 }
+
+/* build v17: follow groups */
+.author-group {
+  flex: 1 1 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.author-group-header {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-muted);
+  cursor: pointer;
+  user-select: none;
+}
+.author-group-header input { accent-color: var(--accent); width: 16px; height: 16px; margin: 0; cursor: pointer; }
+.author-group-name { color: var(--text); }
+.author-group-count { font-weight: 400; }
+.author-group-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.author-group-empty { color: var(--text-muted); font-size: 13px; }
+.watch-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.group-select { width: auto; min-width: 96px; padding: 6px 8px; }
+.group-list li { justify-content: flex-start; }
+.group-list .group-name-input { flex: 1 1 auto; min-width: 0; }
+.group-list .group-count { color: var(--text-muted); font-size: 13px; white-space: nowrap; }
+.btn-remove:disabled { opacity: 0.4; cursor: not-allowed; }
