@@ -1,6 +1,88 @@
 {
-  "updatedAt": "2026-10-19T04:07:18+08:00",
+  "updatedAt": "2026-10-19T08:13:35+08:00",
   "posts": [
+    {
+      "id": "2111971841896317087",
+      "url": "https://x.com/ai_xiaomu/status/2111971841896317087",
+      "author": "ai_xiaomu",
+      "authorName": "黄小木",
+      "authorAvatar": "avatars/ai_xiaomu.jpg",
+      "title": "Grok Bot Clipper 开源：浏览器采集投喂 Bot",
+      "industry": "AIGC / 开发者工具",
+      "tech": "Grok Bot、浏览器扩展",
+      "summary": "黄小木称在用 Grok Bot 做神秘商业案例，并转发开源项目 Grok Bot Clipper：把网页采集、截图标注、社交直发与材料篮装进浏览器，授权后直接连自己的 Grok Bot 账户投喂与追问。",
+      "publishedAt": "2026-10-19T08:05:00+08:00",
+      "isLong": true,
+      "note": "转发 @cgnot996 开源 Clipper",
+      "tags": [
+        "AIGC",
+        "开发者工具",
+        "Grok Bot",
+        "浏览器扩展",
+        "开源",
+        "Clipper"
+      ],
+      "steps": [
+        {
+          "text": "安装 Clipper 并授权登录自己的 Grok Bot 账户，打通浏览器侧栏。",
+          "tools": "Grok Bot Clipper / 浏览器",
+          "tech": "OAuth 授权登录",
+          "prep": "准备可用的 Grok Bot 账号"
+        },
+        {
+          "text": "网页采集：框选正文、图片与表格，保留原始来源链接。",
+          "tools": "Clipper 选区采集",
+          "tech": "DOM 选区提取",
+          "prep": "打开目标网页"
+        },
+        {
+          "text": "截图标注：框选/长截图，发送前打码、裁剪与标注。",
+          "tools": "Clipper 截图工具",
+          "tech": "长截图 · 打码",
+          "prep": "确认敏感信息区域"
+        },
+        {
+          "text": "材料篮合并：把分散网页、截图与本地文件合成一个投喂任务。",
+          "tools": "Clipper 材料篮",
+          "tech": "多源材料打包",
+          "prep": "整理本地文件清单"
+        },
+        {
+          "text": "社交直发：在 X / 小红书 / 抖音 / 公众号页面直接选 Bot 发送。",
+          "tools": "Clipper 社交直发",
+          "tech": "平台内直发",
+          "prep": "登录对应社交账号"
+        },
+        {
+          "text": "侧栏追问：在边栏看 Bot 回复并连续追问，无需跳出页面。",
+          "tools": "Clipper 侧栏",
+          "tech": "会话追问",
+          "prep": "保持侧栏开启"
+        }
+      ]
+    },
+    {
+      "id": "2111855566138290293",
+      "url": "https://x.com/Astronaut_1216/status/2111855566138290293",
+      "author": "Astronaut_1216",
+      "authorName": "叫我阿杭",
+      "authorAvatar": "avatars/Astronaut_1216.jpg",
+      "title": "垂类数据接口：补齐大模型缺数据的短板",
+      "industry": "数据服务 / AI 基础设施",
+      "tech": "数据 API、社媒抓取",
+      "summary": "阿杭强调垂类数据接口的价值：不直接卖数据，而是卖全球数据抓取接口（含 TikHub 等上千接口），覆盖跨境电商与全社媒。认为未来谁掌握数据、模型、显卡，谁就有定价权。",
+      "publishedAt": "2026-10-19T00:22:58+08:00",
+      "isLong": false,
+      "tags": [
+        "数据服务",
+        "AI 基础设施",
+        "数据 API",
+        "社媒抓取",
+        "TikHub",
+        "垂类数据"
+      ],
+      "steps": []
+    },
     {
       "id": "2111849057249526236",
       "url": "https://x.com/mjjwiki/status/2111849057249526236",
@@ -42,6 +124,47 @@
         "开源",
         "工作流"
       ]
+    },
+    {
+      "id": "2111829492343910725",
+      "url": "https://x.com/shengtang135754/status/2111829492343910725",
+      "author": "shengtang135754",
+      "authorName": "麦麦提",
+      "authorAvatar": "avatars/shengtang135754.jpg",
+      "title": "AI 自动化剪辑：半小时顶国内四五个小时",
+      "industry": "AIGC / 短视频",
+      "tech": "AI 剪辑、配音脚本",
+      "summary": "麦麦提升级配音脚本提高信息密度与听感，并表示考虑开课讲 AI 自动化剪辑：国内手工剪四五个小时的活，他半小时跑完，其中全神贯注大约十分钟。",
+      "publishedAt": "2026-10-18T22:39:21+08:00",
+      "isLong": false,
+      "tags": [
+        "AIGC",
+        "短视频",
+        "AI 剪辑",
+        "配音脚本",
+        "自动化"
+      ],
+      "steps": []
+    },
+    {
+      "id": "2111818241681363215",
+      "url": "https://x.com/0xlangeai/status/2111818241681363215",
+      "author": "0xlangeai",
+      "authorName": "蓝哥AI",
+      "authorAvatar": "avatars/0xlangeai.jpg",
+      "title": "出海别只看 TG：Discord 入门到精通值得收藏",
+      "industry": "出海 / 社区运营",
+      "tech": "Discord",
+      "summary": "蓝哥提醒出海产品未必有 TG 群但常有 Discord，并转发一篇从入门到搭建服务器与机器人的 Discord 教程，建议关注。",
+      "publishedAt": "2026-10-18T21:54:39+08:00",
+      "isLong": false,
+      "tags": [
+        "出海",
+        "社区运营",
+        "Discord",
+        "教程"
+      ],
+      "steps": []
     },
     {
       "id": "2111803230632206740",
@@ -176,6 +299,86 @@
       ]
     },
     {
+      "id": "2111784781256208525",
+      "url": "https://x.com/0xlangeai/status/2111784781256208525",
+      "author": "0xlangeai",
+      "authorName": "蓝哥AI",
+      "authorAvatar": "avatars/0xlangeai.jpg",
+      "title": "普通人 AI 赚钱老几样：基建、培训、商单",
+      "industry": "商业化 / AI 变现",
+      "tech": "AI 基建、培训、内容商单",
+      "summary": "蓝哥饭局盘点普通人较容易上手的 AI 赚钱路径：卖 token/代充/电话卡等基建、做 AI 培训、接 AI 内容商单。",
+      "publishedAt": "2026-10-18T19:41:41+08:00",
+      "isLong": true,
+      "tags": [
+        "商业化",
+        "AI 变现",
+        "AI 基建",
+        "培训",
+        "内容商单"
+      ],
+      "steps": [
+        {
+          "text": "卖 AI 基建：token、代充、电话卡等供给层服务，门槛相对低、复购清晰。",
+          "tools": "支付通道 / 号商资源",
+          "tech": "基建分销",
+          "prep": "确认合规与供货稳定性"
+        },
+        {
+          "text": "做 AI 培训：把可复用工作流讲清楚，按课包或企业内训定价。",
+          "tools": "课件 / 社群",
+          "tech": "培训交付",
+          "prep": "沉淀可演示案例"
+        },
+        {
+          "text": "接 AI 内容商单：用账号与生产能力换品牌预算。",
+          "tools": "内容账号 / 报价单",
+          "tech": "商单制作",
+          "prep": "准备作品集与报价区间"
+        }
+      ]
+    },
+    {
+      "id": "2111780581461668166",
+      "url": "https://x.com/ChenshuoAI/status/2111780581461668166",
+      "author": "ChenshuoAI",
+      "authorName": "陈硕KAI（思考中）",
+      "authorAvatar": "avatars/ChenshuoAI.jpg",
+      "title": "别只盯硅谷模型：洛杉矶三条线下现金流",
+      "industry": "出海 / 线下生意",
+      "tech": "线下服务、资产租赁",
+      "summary": "陈硕提醒：很多人只看硅谷大模型，却忽视洛杉矶真实线下需求——精洗车月入两万刀、二手新能源车日租两个月回本、电话卡养号自己下场可大幅降本。",
+      "publishedAt": "2026-10-18T19:25:00+08:00",
+      "isLong": true,
+      "tags": [
+        "出海",
+        "线下生意",
+        "洛杉矶",
+        "现金流",
+        "养号"
+      ],
+      "steps": [
+        {
+          "text": "洗车精洗：单次 180–200 刀，靠体力服务做高频现金收入。",
+          "tools": "场地 / 耗材 / 人力",
+          "tech": "精洗服务定价",
+          "prep": "调研本地客单价与场地"
+        },
+        {
+          "text": "二手新能源车租赁：约 2 万刀收车，日租约 300 刀，约两月回本。",
+          "tools": "车源 / 保险 / 租赁合同",
+          "tech": "资产周转租赁",
+          "prep": "算清保险与折旧"
+        },
+        {
+          "text": "电话卡养号：别轻信「一年两三百刀」，亲自下场可压到几十刀量级。",
+          "tools": "本地套餐 / 实名渠道",
+          "tech": "养号成本优化",
+          "prep": "核对套餐条款与风控"
+        }
+      ]
+    },
+    {
       "id": "2111777159551582387",
       "url": "https://x.com/shengtang135754/status/2111777159551582387",
       "author": "shengtang135754",
@@ -199,6 +402,67 @@
       ]
     },
     {
+      "id": "2111758706815971472",
+      "url": "https://x.com/shengtang135754/status/2111758706815971472",
+      "author": "shengtang135754",
+      "authorName": "麦麦提",
+      "authorAvatar": "avatars/shengtang135754.jpg",
+      "title": "Gemini Pro/Ultra 别忽略网页游乐场：一句话做游戏与 3D",
+      "industry": "AI 工具 / 创意",
+      "tech": "Gemini、Three.js",
+      "summary": "麦麦提提醒 Gemini Pro/Ultra 用户别忽略网页端游乐场：一句话做游戏、一句话出 Three.js 3D，速度比「反重力」类流程更快。",
+      "publishedAt": "2026-10-18T17:58:04+08:00",
+      "isLong": false,
+      "tags": [
+        "AI 工具",
+        "创意",
+        "Gemini",
+        "Three.js",
+        "游乐场"
+      ],
+      "steps": []
+    },
+    {
+      "id": "2111753760326496325",
+      "url": "https://x.com/Khazix0918/status/2111753760326496325",
+      "author": "Khazix0918",
+      "authorName": "数字生命卡兹克",
+      "authorAvatar": "avatars/Khazix0918.jpg",
+      "title": "卡兹克卸载 Grok Bot：嫌敷衍不思考",
+      "industry": "AI 产品 / 体验",
+      "tech": "Grok Bot 产品反馈",
+      "summary": "卡兹克称即使用尽「必须详细思考、看清再答」等约束，Grok Bot 仍常不思考、路由到弱模型直接回复，纠错耗时超过省时，遂卸载并转发此前吐槽帖。",
+      "publishedAt": "2026-10-18T17:38:25+08:00",
+      "isLong": false,
+      "tags": [
+        "AI 产品",
+        "体验",
+        "Grok Bot",
+        "产品反馈"
+      ],
+      "steps": []
+    },
+    {
+      "id": "2111736958599016941",
+      "url": "https://x.com/yaojingang/status/2111736958599016941",
+      "author": "yaojingang",
+      "authorName": "姚金刚",
+      "authorAvatar": "avatars/yaojingang.jpg",
+      "title": "老乡陈哥出海：小语种国家 + AI 拿反馈",
+      "industry": "出海 / 创业",
+      "tech": "小语种、AI 产品",
+      "summary": "姚金刚介绍四川老乡陈哥：06 年起创业、很早月入五十万，近两年进军海外，核心做小语种国家的互联网项目，借 AI 拿到不错反馈。",
+      "publishedAt": "2026-10-18T16:31:39+08:00",
+      "isLong": false,
+      "tags": [
+        "出海",
+        "创业",
+        "小语种",
+        "AI 产品"
+      ],
+      "steps": []
+    },
+    {
       "id": "2111733070202306651",
       "url": "https://x.com/shengtang135754/status/2111733070202306651",
       "author": "shengtang135754",
@@ -218,6 +482,26 @@
         "视频工作流",
         "本地部署"
       ]
+    },
+    {
+      "id": "2111727984847499287",
+      "url": "https://x.com/miles_mazy/status/2111727984847499287",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "authorAvatar": "avatars/miles_mazy.jpg",
+      "title": "中国人在 Discord 几乎没竞争，做起来变现效率高",
+      "industry": "出海 / 社区",
+      "tech": "Discord",
+      "summary": "Miles 转发 Discord 入门教程并点评：中文创作者在 Discord 竞争很少，一旦做起来变现效率值得想象。",
+      "publishedAt": "2026-10-18T15:56:00+08:00",
+      "isLong": false,
+      "tags": [
+        "出海",
+        "社区",
+        "Discord",
+        "变现"
+      ],
+      "steps": []
     },
     {
       "id": "2111721243670097969",
@@ -549,6 +833,53 @@
       ]
     },
     {
+      "id": "2111643235982655497",
+      "url": "https://x.com/Astronaut_1216/status/2111643235982655497",
+      "author": "Astronaut_1216",
+      "authorName": "叫我阿杭",
+      "authorAvatar": "avatars/Astronaut_1216.jpg",
+      "title": "Claude Pro 从 0-1 开通：Grok+新加坡地址保姆级教程",
+      "industry": "AI 工具 / 账号基建",
+      "tech": "Claude Pro、地区与支付",
+      "summary": "阿杭分享稳定半个月后的 Claude Pro 开通长文：从设备时区、新加坡地址到页面点击与绕过地区识别，按开通 Pro 举例写清保姆级步骤。",
+      "publishedAt": "2026-10-18T10:19:14+08:00",
+      "isLong": true,
+      "tags": [
+        "AI 工具",
+        "账号基建",
+        "Claude Pro",
+        "新加坡",
+        "教程",
+        "StarryBlu"
+      ],
+      "steps": [
+        {
+          "text": "设备时区设为台北（UTC+8），与北京同钟点，便于对齐支持地区列表。",
+          "tools": "iPhone/Mac 日期与时间设置",
+          "tech": "时区本地设置",
+          "prep": "确认设备可改时区"
+        },
+        {
+          "text": "准备新加坡/支持地区可用的网络与支付方式，避免地区识别拦截。",
+          "tools": "代理/新加坡地址方案（如 StarryBlu）",
+          "tech": "地区识别绕过",
+          "prep": "备好可用地址与支付卡"
+        },
+        {
+          "text": "按页面逐步点击开通 Claude Pro：从账号进入订阅页完成支付。",
+          "tools": "Claude 官网 / App",
+          "tech": "订阅开通流程",
+          "prep": "账号已注册并可登录"
+        },
+        {
+          "text": "开通后做稳定性验证：连续使用观察是否触发封号或地区复核。",
+          "tools": "Claude Pro",
+          "tech": "风控观察",
+          "prep": "记录开通时间与环境"
+        }
+      ]
+    },
+    {
       "id": "2111642176807731369",
       "url": "https://x.com/0xlangeai/status/2111642176807731369",
       "author": "0xlangeai",
@@ -568,6 +899,89 @@
         "开发工作流",
         "Grok Bot",
         "Muse"
+      ]
+    },
+    {
+      "id": "2111639562720329976",
+      "url": "https://x.com/Khazix0918/status/2111639562720329976",
+      "author": "Khazix0918",
+      "authorName": "数字生命卡兹克",
+      "authorAvatar": "avatars/Khazix0918.jpg",
+      "title": "37999 的 RTX Spark：本地 Token 自由实测长文",
+      "industry": "硬件 / 本地 AI",
+      "tech": "RTX Spark、统一内存、本地部署",
+      "summary": "卡兹克受邀参加英伟达 RTX Spark 开售活动并提前上手华硕 ProArt 创 16（128G 统一内存）。长文复盘开售抢空现象、机器体感，以及为何能带来本地 Token 自由。",
+      "publishedAt": "2026-10-18T10:04:38+08:00",
+      "isLong": true,
+      "tags": [
+        "硬件",
+        "本地 AI",
+        "RTX Spark",
+        "统一内存",
+        "本地部署",
+        "ProArt",
+        "Token 自由"
+      ],
+      "steps": [
+        {
+          "text": "选型：优先看统一内存容量（如 128G）与 CUDA 生态，本地大模型/视频更吃内存。",
+          "tools": "京东/官网参数页",
+          "tech": "统一内存 · CUDA",
+          "prep": "明确本地部署场景"
+        },
+        {
+          "text": "下单抢购：开售窗口短，热门 128G 版本可能数分钟售罄，提前加购与支付。",
+          "tools": "京东 / 英伟达渠道",
+          "tech": "限量开售",
+          "prep": "账号与支付预填好"
+        },
+        {
+          "text": "到手验证：跑通本地推理与视频生成，确认 Token 自由是否覆盖日常用量。",
+          "tools": "本地推理框架 / 视频工具",
+          "tech": "本地部署压测",
+          "prep": "准备测试模型与脚本"
+        }
+      ]
+    },
+    {
+      "id": "2111635768930443356",
+      "url": "https://x.com/ChenshuoAI/status/2111635768930443356",
+      "author": "ChenshuoAI",
+      "authorName": "陈硕KAI（思考中）",
+      "authorAvatar": "avatars/ChenshuoAI.jpg",
+      "title": "身体年龄+8：用 Health+GPT 把身体指标化",
+      "industry": "健康 / 个人 AI",
+      "tech": "Apple Health、指标追踪",
+      "summary": "陈硕发现身体年龄比实际大 8 岁，分享把 Apple Watch / Whoop 数据接入苹果 Health，再经 GPT 连到工作台定时跟踪，让身体指标透明化。",
+      "publishedAt": "2026-10-18T09:49:34+08:00",
+      "isLong": true,
+      "tags": [
+        "健康",
+        "个人 AI",
+        "Apple Health",
+        "Whoop",
+        "指标追踪",
+        "GPT"
+      ],
+      "steps": [
+        {
+          "text": "佩戴 Apple Watch 或 Whoop，持续采集心率、睡眠等数据。",
+          "tools": "Apple Watch / Whoop",
+          "tech": "可穿戴采集",
+          "prep": "完成设备配对"
+        },
+        {
+          "text": "在苹果端把设备数据写入 Health，统一健康数据源。",
+          "tools": "Apple Health",
+          "tech": "HealthKit 同步",
+          "prep": "打开对应读写权限"
+        },
+        {
+          "text": "用 GPT 连接手机 Health，并挂到日常工作台定时跟踪指标。",
+          "tools": "ChatGPT / 工作台 Agent",
+          "tech": "Health 数据读取 · 定时报告",
+          "prep": "授权 GPT 访问 Health"
+        }
       ]
     },
     {
