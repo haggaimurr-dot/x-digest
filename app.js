@@ -210,10 +210,36 @@
     return out;
   }
 
+  /**
+   * Tags for chip UI: only from posts by selectedAuthors (active author chips).
+   * If username search (userFilter) is set, further narrow to matching authors.
+   * selectedAuthors remains the source of truth for which author chips are on.
+   */
   function collectAllTags() {
+    const userQ = (els.userFilter && els.userFilter.value ? els.userFilter.value : "")
+      .trim()
+      .replace(/^@/, "")
+      .toLowerCase();
     const set = new Set();
-    for (const p of allPosts) postTags(p).forEach((t) => set.add(t));
+    for (const p of allPosts) {
+      // Filter posts by selectedAuthors before collecting tags
+      if (!selectedAuthors.has(p.author)) continue;
+      if (userQ) {
+        const name = String(p.authorName || "").toLowerCase();
+        const handle = String(p.author || "").toLowerCase();
+        if (!name.includes(userQ) && !handle.includes(userQ)) continue;
+      }
+      postTags(p).forEach((t) => set.add(t));
+    }
     return [...set].sort((a, b) => a.localeCompare(b, "zh-CN"));
+  }
+
+  /** Drop selectedTags that no longer appear in the author-filtered tag set. */
+  function pruneSelectedTags(available) {
+    const keep = new Set(available);
+    for (const t of [...selectedTags]) {
+      if (!keep.has(t)) selectedTags.delete(t);
+    }
   }
 
   function countActiveFilters() {
@@ -461,20 +487,14 @@
   function renderTagChips() {
     if (!els.tagChips) return;
     const tags = collectAllTags();
+    pruneSelectedTags(tags);
     const q = (els.tagFilter && els.tagFilter.value ? els.tagFilter.value : "")
       .trim()
       .toLowerCase();
-    const visible = q
+    // No max-cap / ellipsis: chip count shrinks with selected authors
+    const list = q
       ? tags.filter((t) => t.toLowerCase().includes(q) || selectedTags.has(t))
       : tags;
-    // Cap display for UX but always include selected
-    const maxShow = 40;
-    let list = visible;
-    if (list.length > maxShow) {
-      const selected = list.filter((t) => selectedTags.has(t));
-      const rest = list.filter((t) => !selectedTags.has(t)).slice(0, maxShow - selected.length);
-      list = [...selected, ...rest];
-    }
     els.tagChips.innerHTML = list
       .map((t) => {
         const active = selectedTags.has(t) ? "active" : "";
