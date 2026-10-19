@@ -1219,3 +1219,43 @@ a.avatar-link:hover {
 .group-list .group-name-input { flex: 1 1 auto; min-width: 0; }
 .group-list .group-count { color: var(--text-muted); font-size: 13px; white-space: nowrap; }
 .btn-remove:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* build v18: post categories */
+.post-card { position: relative; }
+.cat-control { position: relative; margin-left: auto; }
+.cat-btn {
+  display: inline-flex; align-items: center; gap: 4px;
+  border: 1px solid transparent; background: transparent; color: var(--text-muted);
+  border-radius: var(--radius-pill); padding: 4px 10px; font: inherit; font-size: 13px; cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+}
+.cat-btn:hover, .cat-btn[aria-expanded="true"] { background: rgba(29, 155, 240, 0.1); color: var(--accent); }
+.cat-btn.has-cats { color: var(--accent); }
+.cat-btn.has-cats svg path { fill: currentColor; }
+.cat-menu {
+  position: absolute; right: 0; bottom: calc(100% + 6px); z-index: 30;
+  min-width: 220px; max-width: 280px; max-height: 320px; overflow-y: auto;
+  background: var(--bg); border: 1px solid var(--border); border-radius: 12px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.12), 0 0 3px 1px rgba(255, 255, 255, 0.08);
+  padding: 6px 0;
+}
+.cat-menu-title { padding: 6px 14px; font-size: 13px; font-weight: 700; color: var(--text-muted); }
+.cat-menu-item {
+  display: flex; align-items: center; gap: 10px; padding: 8px 14px; cursor: pointer; font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.cat-menu-item:hover { background: var(--bg-hover-soft); }
+.cat-menu-item input { accent-color: var(--accent); width: 16px; height: 16px; margin: 0; flex-shrink: 0; }
+.cat-menu-empty { padding: 6px 14px; font-size: 13px; color: var(--text-muted); }
+.cat-menu-new { display: flex; gap: 6px; padding: 8px 10px 4px; border-top: 1px solid var(--border); margin-top: 4px; }
+.cat-menu-new .field { flex: 1 1 auto; min-width: 0; padding: 6px 10px; font-size: 13px; }
+.btn-sm { padding: 6px 12px; font-size: 13px; }
+.cat-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.cat-badge {
+  display: inline-flex; align-items: center; padding: 2px 10px; border-radius: var(--radius-pill);
+  font-size: 12px; font-weight: 700; color: var(--accent);
+  background: rgba(29, 155, 240, 0.12); border: 1px solid rgba(29, 155, 240, 0.35);
+}
+.chip-count { font-weight: 400; opacity: 0.7; margin-left: 2px; }
+.chip-uncat { border-style: dashed; }
+.empty-li { border-style: dashed !important; }

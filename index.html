@@ -27,7 +27,7 @@
     }
     .boot-error { color: #f4212e; }
   </style>
-  <link rel="stylesheet" href="./styles.css?v=17" />
+  <link rel="stylesheet" href="./styles.css?v=18" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23e7e9ea' d='M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z'/%3E%3C/svg%3E" />
 </head>
 <body>
@@ -108,6 +108,13 @@
             </div>
             <div class="chips-scroll chips-collapsible is-collapsed" id="authorChips" role="group" aria-label="按作者筛选"></div>
           </div>
+          <div class="chips-section" data-chips-section="cats">
+            <div class="chips-section-header">
+              <span class="filter-section-label">帖子类别</span>
+              <button type="button" class="chips-expand-btn" id="catChipsToggle" hidden aria-expanded="false">展开全部 (0)</button>
+            </div>
+            <div class="chips-scroll chips-collapsible is-collapsed" id="catChips" role="group" aria-label="按帖子类别筛选"></div>
+          </div>
           <div class="chips-section" data-chips-section="tags">
             <div class="chips-section-header">
               <span class="filter-section-label">标签</span>
@@ -140,6 +147,13 @@
         <div class="add-row">
           <input type="text" id="newGroupName" class="field" placeholder="新类别名称" maxlength="20" autocomplete="off" />
           <button type="button" class="btn-accent" id="addGroup">新增类别</button>
+        </div>
+        <h3 class="section-title">帖子类别</h3>
+        <p class="hint">在每条推文右下角的书签按钮里给帖子归类；仅保存在本机，「恢复仓库默认」不会清除。</p>
+        <ul class="watch-list group-list" id="catList"></ul>
+        <div class="add-row">
+          <input type="text" id="newCatName" class="field" placeholder="新帖子类别名称（回车添加）" maxlength="20" autocomplete="off" />
+          <button type="button" class="btn-accent" id="addCat">新增类别</button>
         </div>
         <h3 class="section-title">关注用户</h3>
         <ul class="watch-list" id="watchList"></ul>
@@ -174,6 +188,6 @@
     </div>
   </dialog>
 
-  <script src="./app.js?v=17" defer></script>
+  <script src="./app.js?v=18" defer></script>
 </body>
 </html>

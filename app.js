@@ -3,6 +3,9 @@
 
   const STORAGE_KEY = "x-digest-watchlist";
   const SELECTED_KEY = "x-digest-selected-authors";
+  const POST_CATS_KEY = "x-digest-post-categories";
+  const CHIPS_CATS_EXPANDED_KEY = "x-digest-chips-cats-expanded";
+  const UNCATEGORIZED = "__uncategorized__";
   const SPECIAL_GROUP_ID = "special";
   const SPECIAL_GROUP_NAME = "特别关注";
   const DEFAULT_GROUPS = [
@@ -73,6 +76,11 @@
     tagChips: document.getElementById("tagChips"),
     authorChipsToggle: document.getElementById("authorChipsToggle"),
     tagChipsToggle: document.getElementById("tagChipsToggle"),
+    catChips: document.getElementById("catChips"),
+    catChipsToggle: document.getElementById("catChipsToggle"),
+    catList: document.getElementById("catList"),
+    newCatName: document.getElementById("newCatName"),
+    addCat: document.getElementById("addCat"),
     filterBar: document.getElementById("filterBar"),
     filterToggle: document.getElementById("filterToggle"),
     filterPanel: document.getElementById("filterPanel"),
@@ -105,6 +113,10 @@
 
   let allPosts = [];
   let watchlist = [];
+  // Post categories: { categories: [{id,name}], assignments: { [postId]: [catId] } }
+  let postCats = { categories: [], assignments: {} };
+  let selectedCats = new Set();
+  let openCatMenuPost = null;
   let groups = DEFAULT_GROUPS.map((g) => ({ ...g }));
   let repoGroups = null;
   let selectedAuthors = new Set();
@@ -278,6 +290,7 @@
     if (els.userFilter && els.userFilter.value.trim()) n += 1;
     if (els.tagFilter && els.tagFilter.value.trim()) n += 1;
     n += selectedTags.size;
+    if (selectedCats.size) n += 1;
     const defaultAuthors = specialAuthors();
     let authorChanged = selectedAuthors.size !== defaultAuthors.size;
     if (!authorChanged) {
@@ -451,6 +464,7 @@
   function syncAllChipSections() {
     syncChipSection(els.authorChips, els.authorChipsToggle, CHIPS_AUTHORS_EXPANDED_KEY);
     syncChipSection(els.tagChips, els.tagChipsToggle, CHIPS_TAGS_EXPANDED_KEY);
+    syncChipSection(els.catChips, els.catChipsToggle, CHIPS_CATS_EXPANDED_KEY);
   }
 
   function initChipSections() {
@@ -466,6 +480,7 @@
     };
     wire(els.authorChipsToggle, CHIPS_AUTHORS_EXPANDED_KEY);
     wire(els.tagChipsToggle, CHIPS_TAGS_EXPANDED_KEY);
+    wire(els.catChipsToggle, CHIPS_CATS_EXPANDED_KEY);
 
     let resizeTimer = null;
     window.addEventListener("resize", () => {
@@ -556,6 +571,141 @@
   function saveWatchlist(accounts) {
     watchlist = accounts.slice();
     localStorage.setItem(STORAGE_KEY, JSON.stringify({ groups, accounts: watchlist }));
+  }
+
+  function loadPostCats() {
+    try {
+      const raw = localStorage.getItem(POST_CATS_KEY);
+      if (!raw) {
+        postCats = { categories: [{ id: "fav", name: "收藏" }], assignments: {} };
+        savePostCats();
+        return;
+      }
+      const p = JSON.parse(raw);
+      const cats = Array.isArray(p?.categories)
+        ? p.categories.filter((c) => c && c.id).map((c) => ({ id: String(c.id), name: String(c.name || "未命名") }))
+        : [];
+      const valid = new Set(cats.map((c) => c.id));
+      const assignments = {};
+      for (const [pid, arr] of Object.entries(p?.assignments || {})) {
+        const list = Array.isArray(arr) ? [...new Set(arr.map(String))].filter((c) => valid.has(c)) : [];
+        if (list.length) assignments[pid] = list;
+      }
+      postCats = { categories: cats, assignments };
+    } catch (_) {
+      postCats = { categories: [], assignments: {} };
+    }
+  }
+
+  function savePostCats() {
+    localStorage.setItem(POST_CATS_KEY, JSON.stringify(postCats));
+  }
+
+  function postKey(p) {
+    return String(p.id || p.url || "");
+  }
+
+  function catsOfPost(p) {
+    return postCats.assignments[postKey(p)] || [];
+  }
+
+  function catName(id) {
+    const c = postCats.categories.find((x) => x.id === id);
+    return c ? c.name : "";
+  }
+
+  function createCategory(name) {
+    const n = String(name || "").trim();
+    if (!n) return null;
+    const dup = postCats.categories.find((c) => c.name === n);
+    if (dup) return dup;
+    let id;
+    do {
+      id = "c" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+    } while (postCats.categories.some((c) => c.id === id));
+    const cat = { id, name: n };
+    postCats.categories.push(cat);
+    savePostCats();
+    return cat;
+  }
+
+  function setPostCat(pid, cid, on) {
+    const cur = new Set(postCats.assignments[pid] || []);
+    if (on) cur.add(cid);
+    else cur.delete(cid);
+    if (cur.size) postCats.assignments[pid] = [...cur];
+    else delete postCats.assignments[pid];
+    savePostCats();
+  }
+
+  function deleteCategory(cid) {
+    postCats.categories = postCats.categories.filter((c) => c.id !== cid);
+    for (const pid of Object.keys(postCats.assignments)) {
+      const list = postCats.assignments[pid].filter((c) => c !== cid);
+      if (list.length) postCats.assignments[pid] = list;
+      else delete postCats.assignments[pid];
+    }
+    selectedCats.delete(cid);
+    savePostCats();
+  }
+
+  function renderCatChips() {
+    if (!els.catChips) return;
+    const counts = {};
+    let unc = 0;
+    for (const p of allPosts) {
+      const cs = catsOfPost(p);
+      if (!cs.length) unc += 1;
+      for (const c of cs) counts[c] = (counts[c] || 0) + 1;
+    }
+    for (const c of [...selectedCats]) {
+      if (c !== UNCATEGORIZED && !postCats.categories.some((x) => x.id === c)) selectedCats.delete(c);
+    }
+    const chip = (id, label, n, extra) =>
+      `<button type="button" class="chip chip-cat ${extra || ""} ${selectedCats.has(id) ? "active" : ""}" data-cat="${escapeHtml(
+        id
+      )}" aria-pressed="${selectedCats.has(id)}">${escapeHtml(label)} <span class="chip-count">${n}</span></button>`;
+    els.catChips.innerHTML =
+      postCats.categories.map((c) => chip(c.id, c.name, counts[c.id] || 0)).join("") +
+      chip(UNCATEGORIZED, "未分类", unc, "chip-uncat");
+  }
+
+  function renderCatsUI() {
+    if (!els.catList) return;
+    els.catList.innerHTML = postCats.categories.length
+      ? postCats.categories
+          .map((c) => {
+            const n = Object.values(postCats.assignments).filter((l) => l.includes(c.id)).length;
+            return `<li>
+          <input type="text" class="field group-name-input" data-cat-rename="${escapeHtml(c.id)}" value="${escapeHtml(
+              c.name
+            )}" maxlength="20" aria-label="类别名称" />
+          <span class="group-count">${n} 条</span>
+          <button type="button" class="btn-remove" data-cat-delete="${escapeHtml(c.id)}">删除</button>
+        </li>`;
+          })
+          .join("")
+      : '<li class="empty-li"><span class="group-count">还没有帖子类别</span></li>';
+  }
+
+  function catMenuHtml(p) {
+    const pid = postKey(p);
+    const mine = new Set(catsOfPost(p));
+    const items = postCats.categories
+      .map(
+        (c) => `<label class="cat-menu-item"><input type="checkbox" data-menu-cat="${escapeHtml(c.id)}" data-pid="${escapeHtml(
+          pid
+        )}" ${mine.has(c.id) ? "checked" : ""} /><span>${escapeHtml(c.name)}</span></label>`
+      )
+      .join("");
+    return `<div class="cat-menu" role="menu" data-cat-menu="${escapeHtml(pid)}">
+      <div class="cat-menu-title">加入帖子类别</div>
+      ${items || '<div class="cat-menu-empty">还没有类别</div>'}
+      <div class="cat-menu-new">
+        <input type="text" class="field" data-menu-new="${escapeHtml(pid)}" placeholder="新建类别…" maxlength="20" />
+        <button type="button" class="btn-accent btn-sm" data-menu-new-btn="${escapeHtml(pid)}">新建</button>
+      </div>
+    </div>`;
   }
 
   function saveSelection() {
@@ -804,6 +954,14 @@
       // Author chips (OR within selected set)
       if (selectedAuthors.size && !selectedAuthors.has(p.author)) return false;
 
+      // Post categories (OR within selected set, AND with others)
+      if (selectedCats.size) {
+        const cs = catsOfPost(p);
+        const hit =
+          (selectedCats.has(UNCATEGORIZED) && cs.length === 0) || cs.some((c) => selectedCats.has(c));
+        if (!hit) return false;
+      }
+
       // Date range (Asia/Shanghai day bounds)
       if (fromMs != null || toMs != null) {
         const t = Date.parse(p.publishedAt || "");
@@ -873,7 +1031,16 @@
       .map((t) => `<button type="button" class="tag tag-click" data-tag="${escapeHtml(t)}">#${escapeHtml(t)}</button>`)
       .join("");
 
-    return `<article class="post-card">
+    const myCats = catsOfPost(p);
+    const catBadges = myCats.length
+      ? `<div class="cat-badges">${myCats
+          .map((c) => `<span class="cat-badge">${escapeHtml(catName(c))}</span>`)
+          .join("")}</div>`
+      : "";
+    const pid = postKey(p);
+    const menuOpen = openCatMenuPost === pid;
+
+    return `<article class="post-card" data-post-id="${escapeHtml(pid)}">
       ${avatarHtml(p.author, name, p.authorAvatar)}
       <div class="post-body">
         <div class="post-meta">
@@ -892,6 +1059,7 @@
         <h2 class="post-title">${escapeHtml(p.title || "")}</h2>
         ${collapsibleHtml(p.summary || "", { className: "post-summary", threshold: SUMMARY_COLLAPSE_CHARS })}
         ${tags ? `<div class="tags">${tags}</div>` : ""}
+        ${catBadges}
         ${stepsHtml(p)}
         <div class="post-footer">
           <a class="link-original" href="${escapeHtml(
@@ -900,6 +1068,15 @@
             <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
             查看原文
           </a>
+          <div class="cat-control">
+            <button type="button" class="cat-btn ${myCats.length ? "has-cats" : ""}" data-cat-toggle="${escapeHtml(
+              pid
+            )}" aria-haspopup="true" aria-expanded="${menuOpen}" title="帖子类别">
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M6 2.75A2.25 2.25 0 0 0 3.75 5v16.2a.75.75 0 0 0 1.18.62L12 16.97l7.07 4.85a.75.75 0 0 0 1.18-.62V5A2.25 2.25 0 0 0 18 2.75H6zm0 1.5h12c.41 0 .75.34.75.75v14.78l-6.32-4.33a.75.75 0 0 0-.86 0l-6.32 4.33V5c0-.41.34-.75.75-.75z"/></svg>
+              <span>${myCats.length ? `类别 ${myCats.length}` : "分类"}</span>
+            </button>
+            ${menuOpen ? catMenuHtml(p) : ""}
+          </div>
         </div>
       </div>
     </article>`;
@@ -1049,6 +1226,7 @@
 
   function applyFiltersAndRender() {
     renderChips();
+    renderCatChips();
     renderTagChips();
     renderList();
     updateActiveFilterCount();
@@ -1282,6 +1460,136 @@
     });
   }
 
+  if (els.catChips) {
+    els.catChips.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-cat]");
+      if (!btn) return;
+      const c = btn.getAttribute("data-cat");
+      if (selectedCats.has(c)) selectedCats.delete(c);
+      else selectedCats.add(c);
+      applyFiltersAndRender();
+    });
+  }
+
+  function rerenderPostsKeepScroll() {
+    const y = window.scrollY;
+    renderCatChips();
+    renderList();
+    updateActiveFilterCount();
+    syncAllChipSections();
+    window.scrollTo(0, y);
+  }
+
+  function focusMenuInput(pid) {
+    const inp = document.querySelector(`[data-menu-new="${CSS.escape(pid)}"]`);
+    if (inp) inp.focus();
+  }
+
+  function menuCreate(pid) {
+    const inp = document.querySelector(`[data-menu-new="${CSS.escape(pid)}"]`);
+    const cat = createCategory(inp && inp.value);
+    if (!cat) {
+      if (inp) inp.focus();
+      return;
+    }
+    setPostCat(pid, cat.id, true);
+    rerenderPostsKeepScroll();
+    focusMenuInput(pid);
+  }
+
+  if (els.timeline) {
+    els.timeline.addEventListener("click", (e) => {
+      const t = e.target.closest("[data-cat-toggle]");
+      if (t) {
+        e.preventDefault();
+        const pid = t.getAttribute("data-cat-toggle");
+        openCatMenuPost = openCatMenuPost === pid ? null : pid;
+        rerenderPostsKeepScroll();
+        return;
+      }
+      const nb = e.target.closest("[data-menu-new-btn]");
+      if (nb) {
+        e.preventDefault();
+        menuCreate(nb.getAttribute("data-menu-new-btn"));
+      }
+    });
+    els.timeline.addEventListener("change", (e) => {
+      const cb = e.target.closest("[data-menu-cat]");
+      if (!cb) return;
+      setPostCat(cb.getAttribute("data-pid"), cb.getAttribute("data-menu-cat"), cb.checked);
+      rerenderPostsKeepScroll();
+    });
+    els.timeline.addEventListener("keydown", (e) => {
+      const inp = e.target.closest("[data-menu-new]");
+      if (inp && e.key === "Enter") {
+        e.preventDefault();
+        menuCreate(inp.getAttribute("data-menu-new"));
+      }
+    });
+  }
+
+  document.addEventListener("click", (e) => {
+    if (!openCatMenuPost) return;
+    if (e.target.closest(".cat-control")) return;
+    openCatMenuPost = null;
+    rerenderPostsKeepScroll();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && openCatMenuPost) {
+      openCatMenuPost = null;
+      rerenderPostsKeepScroll();
+    }
+  });
+
+  if (els.catList) {
+    els.catList.addEventListener("change", (e) => {
+      const inp = e.target.closest("[data-cat-rename]");
+      if (!inp) return;
+      const c = postCats.categories.find((x) => x.id === inp.getAttribute("data-cat-rename"));
+      const name = inp.value.trim();
+      if (!c || !name) {
+        if (c) inp.value = c.name;
+        return;
+      }
+      c.name = name;
+      savePostCats();
+      renderCatsUI();
+      applyFiltersAndRender();
+    });
+    els.catList.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-cat-delete]");
+      if (!btn) return;
+      e.preventDefault();
+      deleteCategory(btn.getAttribute("data-cat-delete"));
+      renderCatsUI();
+      applyFiltersAndRender();
+    });
+  }
+
+  function addCategoryFromSettings() {
+    if (!createCategory(els.newCatName && els.newCatName.value)) {
+      if (els.newCatName) els.newCatName.focus();
+      return;
+    }
+    els.newCatName.value = "";
+    renderCatsUI();
+    applyFiltersAndRender();
+  }
+  if (els.addCat) {
+    els.addCat.addEventListener("click", (e) => {
+      e.preventDefault();
+      addCategoryFromSettings();
+    });
+  }
+  if (els.newCatName) {
+    els.newCatName.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        addCategoryFromSettings();
+      }
+    });
+  }
+
   const refilter = () => {
     renderTagChips();
     renderList();
@@ -1302,6 +1610,7 @@
       if (els.dateFrom) els.dateFrom.value = "";
       if (els.dateTo) els.dateTo.value = "";
       selectedTags = new Set();
+      selectedCats = new Set();
       selectedAuthors = specialAuthors();
       saveSelection();
       applyFiltersAndRender();
@@ -1315,6 +1624,7 @@
       setAddStatus("");
       setWebhookStatus("");
       renderWatchListUI();
+      renderCatsUI();
       loadWebhookFields();
       if (els.settingsModal) els.settingsModal.showModal();
     });
@@ -1498,6 +1808,7 @@
   loadTheme();
   initFilterCollapse();
   initChipSections();
+  loadPostCats();
   loadData()
     .then(() => applyFiltersAndRender())
     .catch(showFatal);
