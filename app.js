@@ -4,6 +4,11 @@
   const STORAGE_KEY = "x-digest-watchlist";
   const THEME_KEY = "x-digest-theme";
   const FILTER_COLLAPSE_KEY = "x-digest-filters-collapsed";
+  const WEBHOOK_URL_KEY = "x-digest-webhook-url";
+  const WEBHOOK_KEY_KEY = "x-digest-webhook-key";
+  const UPDATE_DEBOUNCE_MS = 30000;
+  const UPDATE_STATUS_MSG =
+    "已发送更新请求，一两分钟后刷新页面看结果；完成后我会在聊天里通知你";
   const DEFAULT_WATCHLIST = [{ username: "ai_xiaomu", name: "黄小木" }];
   const AVATAR_COLORS = [
     "var(--avatar-1)",
@@ -75,6 +80,12 @@
     newUsername: document.getElementById("newUsername"),
     newDisplayName: document.getElementById("newDisplayName"),
     resetWatchlist: document.getElementById("resetWatchlist"),
+    triggerUpdate: document.getElementById("triggerUpdate"),
+    webhookUrl: document.getElementById("webhookUrl"),
+    webhookKey: document.getElementById("webhookKey"),
+    saveWebhook: document.getElementById("saveWebhook"),
+    webhookStatus: document.getElementById("webhookStatus"),
+    updateToast: document.getElementById("updateToast"),
   };
 
   let allPosts = [];
@@ -811,6 +822,160 @@
     updateActiveFilterCount();
   }
 
+
+  let updateCooldownUntil = 0;
+  let updateCooldownTimer = null;
+  let toastTimer = null;
+
+  function getWebhookConfig() {
+    return {
+      url: (localStorage.getItem(WEBHOOK_URL_KEY) || "").trim(),
+      key: (localStorage.getItem(WEBHOOK_KEY_KEY) || "").trim(),
+    };
+  }
+
+  function saveWebhookConfig(url, key) {
+    localStorage.setItem(WEBHOOK_URL_KEY, String(url || "").trim());
+    localStorage.setItem(WEBHOOK_KEY_KEY, String(key || "").trim());
+  }
+
+  function authHeaderValue(key) {
+    const k = String(key || "").trim();
+    if (!k) return "";
+    if (/^Bearer\s+/i.test(k)) return k;
+    return `Bearer ${k}`;
+  }
+
+  function setWebhookStatus(msg, ok) {
+    if (!els.webhookStatus) return;
+    if (!msg) {
+      els.webhookStatus.hidden = true;
+      els.webhookStatus.textContent = "";
+      return;
+    }
+    els.webhookStatus.hidden = false;
+    els.webhookStatus.textContent = msg;
+    els.webhookStatus.classList.toggle("is-ok", !!ok);
+  }
+
+  function showUpdateToast(msg) {
+    if (!els.updateToast) return;
+    els.updateToast.textContent = msg;
+    els.updateToast.hidden = false;
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      els.updateToast.hidden = true;
+    }, 8000);
+  }
+
+  function loadWebhookFields() {
+    const cfg = getWebhookConfig();
+    if (els.webhookUrl) els.webhookUrl.value = cfg.url;
+    if (els.webhookKey) els.webhookKey.value = cfg.key;
+  }
+
+  function syncUpdateButton() {
+    const btn = els.triggerUpdate;
+    if (!btn) return;
+    const cfg = getWebhookConfig();
+    const configured = !!(cfg.url && cfg.key);
+    const cooling = Date.now() < updateCooldownUntil;
+    btn.disabled = !configured || cooling;
+    if (!configured) {
+      btn.title = "请先在设置中配置 Webhook";
+      btn.textContent = "立即更新";
+    } else if (cooling) {
+      const left = Math.max(1, Math.ceil((updateCooldownUntil - Date.now()) / 1000));
+      btn.title = `请稍候 ${left}s`;
+      btn.textContent = `请稍候 ${left}s`;
+    } else {
+      btn.title = "触发站内立即更新";
+      btn.textContent = "立即更新";
+    }
+  }
+
+  function startUpdateCooldown() {
+    updateCooldownUntil = Date.now() + UPDATE_DEBOUNCE_MS;
+    syncUpdateButton();
+    if (updateCooldownTimer) clearInterval(updateCooldownTimer);
+    updateCooldownTimer = setInterval(() => {
+      if (Date.now() >= updateCooldownUntil) {
+        clearInterval(updateCooldownTimer);
+        updateCooldownTimer = null;
+        updateCooldownUntil = 0;
+      }
+      syncUpdateButton();
+    }, 500);
+  }
+
+  async function postWebhook(url, key) {
+    const auth = authHeaderValue(key);
+    const headers = {
+      Authorization: auth,
+      "Content-Type": "application/json",
+    };
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        headers,
+        body: "{}",
+        mode: "cors",
+        credentials: "omit",
+      });
+      return { ok: true, status: res.status, cors: true };
+    } catch (err) {
+      // CORS or network: best-effort opaque send (custom headers may be stripped).
+      try {
+        await fetch(url, {
+          method: "POST",
+          headers,
+          body: "{}",
+          mode: "no-cors",
+          credentials: "omit",
+        });
+        return { ok: true, opaque: true, cors: false };
+      } catch (_) {
+        /* continue */
+      }
+      try {
+        if (typeof navigator !== "undefined" && navigator.sendBeacon) {
+          const blob = new Blob(["{}"], { type: "text/plain" });
+          const sent = navigator.sendBeacon(url, blob);
+          if (sent) return { ok: true, beacon: true, cors: false };
+        }
+      } catch (_) {
+        /* continue */
+      }
+      throw err;
+    }
+  }
+
+  async function triggerImmediateUpdate() {
+    const cfg = getWebhookConfig();
+    if (!cfg.url || !cfg.key) {
+      showUpdateToast("请先在设置中配置 Webhook URL 与 key");
+      if (els.settingsModal) {
+        loadWebhookFields();
+        els.settingsModal.showModal();
+      }
+      return;
+    }
+    if (Date.now() < updateCooldownUntil) return;
+
+    const btn = els.triggerUpdate;
+    if (btn) btn.disabled = true;
+
+    try {
+      await postWebhook(cfg.url, cfg.key);
+      showUpdateToast(UPDATE_STATUS_MSG);
+      startUpdateCooldown();
+    } catch (err) {
+      console.error(err);
+      showUpdateToast("发送失败（可能是网络或 CORS）。请检查 URL/key，或稍后再试。");
+      syncUpdateButton();
+    }
+  }
+
   function closeModal() {
     if (els.settingsModal && els.settingsModal.open) els.settingsModal.close();
   }
@@ -893,7 +1058,9 @@
   if (els.openSettings) {
     els.openSettings.addEventListener("click", () => {
       setAddStatus("");
+      setWebhookStatus("");
       renderWatchListUI();
+      loadWebhookFields();
       if (els.settingsModal) els.settingsModal.showModal();
     });
   }
@@ -984,6 +1151,37 @@
       applyFiltersAndRender();
     });
   }
+
+  if (els.saveWebhook) {
+    els.saveWebhook.addEventListener("click", () => {
+      const url = els.webhookUrl ? els.webhookUrl.value : "";
+      const key = els.webhookKey ? els.webhookKey.value : "";
+      if (!String(url || "").trim() || !String(key || "").trim()) {
+        setWebhookStatus("请填写 Webhook URL 与 key", false);
+        return;
+      }
+      try {
+        // Validate URL shape without storing anything else.
+        // eslint-disable-next-line no-new
+        new URL(String(url).trim());
+      } catch (_) {
+        setWebhookStatus("Webhook URL 格式无效", false);
+        return;
+      }
+      saveWebhookConfig(url, key);
+      setWebhookStatus("已保存到本机（不会上传到仓库）", true);
+      syncUpdateButton();
+    });
+  }
+
+  if (els.triggerUpdate) {
+    els.triggerUpdate.addEventListener("click", (e) => {
+      e.preventDefault();
+      triggerImmediateUpdate();
+    });
+  }
+
+  syncUpdateButton();
 
   loadTheme();
   initFilterCollapse();
