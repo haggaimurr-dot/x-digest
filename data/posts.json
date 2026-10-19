@@ -1,6 +1,48 @@
 {
-  "updatedAt": "2026-10-19T08:13:35+08:00",
+  "updatedAt": "2026-10-19T10:43:09+08:00",
   "posts": [
+    {
+      "id": "2111987947545534522",
+      "url": "https://x.com/ai_xiaomu/status/2111987947545534522",
+      "author": "ai_xiaomu",
+      "authorName": "黄小木",
+      "authorAvatar": "avatars/ai_xiaomu.jpg",
+      "title": "幼儿园 FDE：周视频集锦 + 蒙氏成长报告",
+      "industry": "企业服务 / FDE",
+      "tech": "DeepSeek harness、教育 Skill",
+      "summary": "黄小木分享近期幼儿园 FDE：用 DeepSeek harness 做智能体，分析孩子们日常视频，每周出每个孩子的视频集锦，家长满意；再做蒙氏教育 skill，不定期分析成长并出报告，老师也满意。",
+      "publishedAt": "2026-10-19T09:09:00+08:00",
+      "isLong": true,
+      "tags": [
+        "企业服务",
+        "FDE",
+        "教育",
+        "DeepSeek",
+        "智能体",
+        "Skill",
+        "幼儿园"
+      ],
+      "steps": [
+        {
+          "text": "用 DeepSeek harness 搭智能体，接入幼儿园日常视频素材。",
+          "tools": "DeepSeek harness / 视频素材库",
+          "tech": "视频分析 Agent",
+          "prep": "确认园区视频采集与家长授权"
+        },
+        {
+          "text": "按孩子维度剪辑，每周输出个人视频集锦给家长。",
+          "tools": "剪辑流水线 / 分发渠道",
+          "tech": "周更集锦交付",
+          "prep": "约定交付节奏与隐私边界"
+        },
+        {
+          "text": "沉淀蒙氏教育 Skill，不定期分析成长并生成教师报告。",
+          "tools": "蒙氏 Skill / 报告模板",
+          "tech": "成长评估报告",
+          "prep": "对齐园方评估维度与话术"
+        }
+      ]
+    },
     {
       "id": "2111971841896317087",
       "url": "https://x.com/ai_xiaomu/status/2111971841896317087",
