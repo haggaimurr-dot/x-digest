@@ -70,7 +70,13 @@ python3 -m http.server 8080
 4. `git add data/posts.json && git commit -m "chore: daily posts refresh" && git push origin main`。
 5. GitHub Pages 会自动发布；站点客户端下次打开即看到新数据。
 
-无需后端。不要在本仓库创建 Grok Bot routine（由统一调度负责）。
+### 正文完整性与中文（硬规则）
+
+- **禁止用 `…` / `...` 截断** title / summary / steps 正文。短链 API 不够时，改用完整 `note_tweet`，或 `https://api.fxtwitter.com/{user}/status/{id}` 取全文后再写库。
+- **面向用户的 title / summary / steps 必须是中文**：英文原文先完整理解再译写，不要把英文半截句子留在 steps 里。
+- **长文可以很长**：完整写入 JSON；站点 UI 用「显示更多 / 收起」折叠，不要在数据层截断。
+
+无需后端。Grok Bot 日常调度 routine 的 folder id 为 `x`（由统一调度维护；改规则时用 UpdateRoutine 更新该 routine，不要在本仓库另建一份）。
 
 ## GitHub Pages
 

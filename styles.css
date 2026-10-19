@@ -981,3 +981,72 @@ a.avatar-link:hover {
 .add-status.is-ok {
   color: var(--accent);
 }
+
+/* Collapsible full text — never CSS-truncate stored copy */
+.collapsible {
+  margin-top: 6px;
+  position: relative;
+}
+
+.collapsible .post-summary,
+.collapsible .flow-text {
+  margin: 0;
+}
+
+/* Collapse via max-height only — no ellipsis / line-clamp mid-sentence cut */
+.collapsible:not(.is-expanded) .collapsible-text {
+  display: block;
+  max-height: 6em; /* ~4 lines at 1.5 */
+  overflow: hidden;
+  text-overflow: clip;
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+  mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
+}
+
+.collapsible.flow-text-wrap:not(.is-expanded) .collapsible-text {
+  max-height: 3.05em; /* ~2 lines */
+}
+
+.collapsible.is-expanded .collapsible-text {
+  display: block;
+  max-height: none;
+  overflow: visible;
+  mask-image: none;
+  -webkit-mask-image: none;
+}
+
+.collapse-toggle {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.collapse-toggle:hover {
+  text-decoration: underline;
+}
+
+.post-title {
+  overflow: visible;
+  text-overflow: clip;
+  white-space: normal;
+  display: block;
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+}
+
+.post-summary-wrap {
+  margin-top: 6px;
+}
+
+.post-summary-wrap .post-summary {
+  margin-top: 0;
+}

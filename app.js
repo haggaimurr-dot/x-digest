@@ -93,6 +93,43 @@
       .replace(/"/g, "&quot;");
   }
 
+
+  /** Collapse long text in UI without truncating the stored string. */
+  const SUMMARY_COLLAPSE_CHARS = 120;
+  const STEP_COLLAPSE_CHARS = 80;
+
+  function collapsibleHtml(fullText, { className, threshold }) {
+    const text = String(fullText ?? "");
+    if (!text) return "";
+    const needs = [...text].length > threshold || text.split("\n").length > 4;
+    if (!needs) {
+      return `<p class="${className}">${escapeHtml(text)}</p>`;
+    }
+    return `<div class="collapsible ${className}-wrap" data-collapsed="true">
+      <p class="${className} collapsible-text">${escapeHtml(text)}</p>
+      <button type="button" class="collapse-toggle" aria-expanded="false">显示更多</button>
+    </div>`;
+  }
+
+  function bindCollapseToggles(root) {
+    if (!root) return;
+    root.querySelectorAll(".collapse-toggle").forEach((btn) => {
+      if (btn.dataset.bound === "1") return;
+      btn.dataset.bound = "1";
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const wrap = btn.closest(".collapsible");
+        if (!wrap) return;
+        const expanded = wrap.classList.toggle("is-expanded");
+        wrap.dataset.collapsed = expanded ? "false" : "true";
+        btn.setAttribute("aria-expanded", expanded ? "true" : "false");
+        btn.textContent = expanded ? "收起" : "显示更多";
+      });
+    });
+  }
+
+
   function formatShanghai(iso) {
     if (!iso) return "—";
     const d = new Date(iso);
@@ -506,7 +543,7 @@
           ${isLast ? "" : '<span class="flow-line"></span>'}
         </div>
         <div class="flow-card">
-          <p class="flow-text">${escapeHtml(step.text)}</p>
+          ${collapsibleHtml(step.text, { className: "flow-text", threshold: STEP_COLLAPSE_CHARS })}
           ${stepMetaChips(step)}
         </div>
       </li>`;
@@ -623,7 +660,7 @@
           ${note}
         </div>
         <h2 class="post-title">${escapeHtml(p.title || "")}</h2>
-        <p class="post-summary">${escapeHtml(p.summary || "")}</p>
+        ${collapsibleHtml(p.summary || "", { className: "post-summary", threshold: SUMMARY_COLLAPSE_CHARS })}
         ${tags ? `<div class="tags">${tags}</div>` : ""}
         ${stepsHtml(p)}
         <div class="post-footer">
@@ -654,6 +691,7 @@
     }
 
     els.timeline.innerHTML = posts.map(renderCard).join("");
+    bindCollapseToggles(els.timeline);
     els.timeline.querySelectorAll("img.avatar-img").forEach((img) => {
       img.addEventListener("error", () => {
         const ini = img.getAttribute("data-fallback-initials") || "?";

@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-19T10:43:09+08:00",
+  "updatedAt": "2026-10-19T10:49:49+08:00",
   "posts": [
     {
       "id": "2111987947545534522",
@@ -512,7 +512,7 @@
       "title": "ProArt 创 16（37999）值不值：看 CUDA 还是设计",
       "industry": "AIGC / 短视频",
       "tech": "AI 视频工作流",
-      "summary": "来看下proart创16的配置37999值不值 👉🏿👉🏿先说结论:值不值看你买电脑用来干什么，如果是做设计的，就直接看mac，不用看这个，如果注重英伟达的cuda生态，做大模型本地部署，本地生视频，这个绝对可以考虑。 我主要看中它的CUDA生态和128G统一内存。 Mac Studio 96g统一内存的也要将近3万了，还没有屏幕，优势是系统，流畅度要高的多…",
+      "summary": "来看下proart创16的配置37999值不值\n\n👉🏿👉🏿先说结论:值不值看你买电脑用来干什么，如果是做设计的，就直接看mac，不用看这个，如果注重英伟达的cuda生态，做大模型本地部署，本地生视频，这个绝对可以考虑。\n\n我主要看中它的CUDA生态和128G统一内存。\n\nMac Studio 96g统一内存的也要将近3万了，还没有屏幕，优势是系统，流畅度要高的多。\n\n不过我倾向于两个都拥有，Mac Studio放家里用，Proart带出去咖啡厅玩儿😼",
       "publishedAt": "2026-10-18T16:16:12+08:00",
       "steps": [],
       "isLong": false,
@@ -550,41 +550,29 @@
       "url": "https://x.com/LiumangtuCrypto/status/2111721243670097969",
       "author": "LiumangtuCrypto",
       "authorName": "流氓兔🐰",
-      "title": "国产 OCR 杀疯了：一个月 120 万次下载。",
+      "title": "百度开源 Unlimited-OCR：月下载 120 万次",
       "industry": "AI 硬件",
       "tech": "本地部署",
-      "summary": "国产 OCR 杀疯了：一个月 120 万次下载。 百度刚开源 Unlimited-OCR，免费、开放权重、MIT 协议。 它能干什么？ 丢给它一个文档、一张照片、一份扫描件、一整个 PDF，直接还你干净、有结构的文本。 表格、公式、阅读顺序，全都有。 不同之处就在名字里：Unlimited。 OCR 模型碰到长文档就容易崩。 这个模型专门为了一口气吞下整个…",
+      "summary": "百度开源 Unlimited-OCR（MIT、开放权重）：把文档、照片、扫描件或整本 PDF 丢进去，直接得到干净、有结构的文本，表格、公式与阅读顺序都能保留。名字里的 Unlimited 针对长文档：一页接一页不丢上下文，自称「长视野解析」。亮点包括结构化输出、多页连续 PDF、多语言、约 30 亿参数可在普通 GPU 跑，并支持 vLLM、SGLang、Ollama、LM Studio 本地部署。作者视之为对 DeepSeek-OCR 的回应；Hugging Face 约 4400 赞、上月约 120 万次下载。",
       "publishedAt": "2026-10-18T15:29:13+08:00",
       "steps": [
         {
-          "text": "丢给它一个文档、一张照片、一份扫描件、一整个 PDF，直接还你干净、有结构的文本。",
-          "tools": "DeepSeek",
-          "tech": "执行要点",
-          "prep": "准备好相关账号与素材"
+          "text": "在 Hugging Face / 官方渠道获取 Unlimited-OCR 权重（MIT 开放）。",
+          "tools": "Hugging Face",
+          "tech": "开源 OCR 权重",
+          "prep": "有 GPU 或本地推理环境更佳"
         },
         {
-          "text": "这个模型专门为了一口气吞下整个 PDF 而生，一页接一页，不丢上下文。",
-          "tools": "DeepSeek",
-          "tech": "本地部署",
-          "prep": "准备好相关账号与素材"
+          "text": "投入文档、照片、扫描件或整本 PDF，输出带表格/公式/阅读顺序的结构化文本。",
+          "tools": "Unlimited-OCR",
+          "tech": "长视野多页解析",
+          "prep": "准备待识别文件"
         },
         {
-          "text": "→ 文本、表格、公式，都能输出结构化结果\n→ 支持多页和连续 PDF\n→ 多语言\n→ 只有 30 亿参数：够轻，普通 GPU 就能跑\n→ 还能用 vLLM、SG…。",
-          "tools": "DeepSeek",
-          "tech": "执行要点",
-          "prep": "准备好相关账号与素材"
-        },
-        {
-          "text": "这是百度对 DeepSeek-OCR 的回应，而且他们自己直说：想再往前走一步。",
-          "tools": "DeepSeek",
-          "tech": "执行要点",
-          "prep": "准备好相关账号与素材"
-        },
-        {
-          "text": "Hugging Face 上 4400 个赞，上个月 120 万次下载，MIT 协议。",
-          "tools": "DeepSeek",
-          "tech": "执行要点",
-          "prep": "准备好相关账号与素材"
+          "text": "可用 vLLM、SGLang、Ollama 或 LM Studio 在本地部署（约 30 亿参数，普通 GPU 可跑）。",
+          "tools": "vLLM / SGLang / Ollama / LM Studio",
+          "tech": "本地推理部署",
+          "prep": "确认显存与依赖"
         }
       ],
       "isLong": true,
@@ -665,7 +653,7 @@
       "url": "https://x.com/mjjwiki/status/2111699538235036051",
       "author": "mjjwiki",
       "authorName": "MJJ百科",
-      "title": "可以初步确认他的ChatGPT成品号不是K12那种日抛号，于是好奇简单研…",
+      "title": "可以初步确认他的ChatGPT成品号不是K12那种日抛号",
       "industry": "AI 工具评测",
       "tech": "订阅与成本",
       "summary": "可以初步确认他的ChatGPT成品号不是K12那种日抛号，于是好奇简单研究了一下看看。 ChatGPT Plus目前最便宜的是菲律宾区的，₱999比索大概是106元人民币，他选菲区没有毛病。 GPT Plus 3个月半价订阅链接是 但很多账号是没有这半价资格的，",
@@ -686,7 +674,7 @@
       "url": "https://x.com/0xlangeai/status/2111694810667192732",
       "author": "0xlangeai",
       "authorName": "蓝哥AI",
-      "title": "AI  ppt skill 测评大全。 同一提示词、同一模型、同一 Ag…",
+      "title": "AI  ppt skill",
       "industry": "AI 编程 / Agent",
       "tech": "开发工作流",
       "summary": "AI  ppt skill 测评大全。 同一提示词、同一模型、同一 Agent，横评 6 款开源 AI PPT skill，还挂了 6 段成片。 原生 .pptx 能在 PowerPoint 里改字改图表；HTML 幻灯片更好看，改一字要么懂前端要么让 AI 重跑。",
@@ -788,35 +776,35 @@
       "url": "https://x.com/shengtang135754/status/2111655903787090219",
       "author": "shengtang135754",
       "authorName": "麦麦提",
-      "title": "60 秒竖屏短片万能复刻 SOP（Agent+Flow）",
+      "title": "60 秒竖屏短片万能复刻 SOP（Agent + Google Flow）",
       "industry": "AIGC / 短视频",
       "tech": "AI 视频工作流",
-      "summary": "万能复刻指令：打开你的 AI Agent（Antigravity / Claude Code / Cursor），把下面这段总控 Prompt + 你的 60 秒分镜剧本发给它，然后去喝杯咖啡： 📋【复制给 AI Agent 的总控指令】： “请帮我全自动制作一部 60 秒（6×10秒）9:16 竖屏短片并输出到桌面，严格按以下 SOP 执行： 1. 【连接…",
+      "summary": "盛唐给出一条可复制的总控 Prompt：打开 AI Agent（Antigravity / Claude Code / Cursor），把总控指令 + 60 秒分镜剧本发给它即可自动出片。SOP 共四步：① 经 CDP（localhost:9222）控制本地 Chrome，在 Google Flow 建 9:16 竖屏项目；② 把 6 段分镜写成 6 条全中文 Prompt，焊死统一视觉锚点，台词用中文普通话同期声句式，禁止旁白；③ 生成后进入 /edit/ 详情页按镜号导出 720p，并对 6 个文件做 MD5 互异校验；④ 用 Python + FFmpeg + PIL 叠毛玻璃字幕与终章卡，100% 保留原片中文同期声，按剧情节点合成配乐，输出 1080×1920 30fps 成片到桌面并抽帧质检。",
       "publishedAt": "2026-10-18T11:09:34+08:00",
       "steps": [
         {
-          "text": "【连接浏览器控制 Google Flow】：通过 websockets 连接我本地已开启的 Chrome CDP (http://127.0.0.1:9222)…。",
-          "tools": "Claude / Cursor / Google Flow",
-          "tech": "本地部署",
-          "prep": "先启动本地 Chrome 调试端口"
+          "text": "通过 WebSocket 连接本地已开 CDP 的 Chrome（http://127.0.0.1:9222），在 Google Flow 新建项目，设为 9:16 竖屏、生成数量 x1。",
+          "tools": "Chrome CDP, Google Flow",
+          "tech": "浏览器自动化",
+          "prep": "本地 Chrome 以远程调试端口 9222 启动"
         },
         {
-          "text": "【锁死视觉锚点与原生中文普通话同期声】：将我的 6 段分镜拆为 6 条全中文 Prompt。",
-          "tools": "Claude / Cursor / Google Flow",
-          "tech": "Prompt / 脚本",
-          "prep": "准备好相关账号与素材"
+          "text": "将 6 段分镜拆为 6 条全中文 Prompt：每条开头焊死一致的光影色调+场景+角色外貌服装+道具前缀；台词用「开口用[情绪]的中文普通话说道：“……”」，并注明仅限现场同期声、不要旁白。用 CDP 点击编辑器并 insertText 提交生成。",
+          "tools": "CDP Input.dispatchMouseEvent / insertText",
+          "tech": "视觉锚点锁定 + 中文同期声 Prompt",
+          "prep": "准备好 6×10 秒分镜剧本"
         },
         {
-          "text": "【进入 /edit/ 详情页精准导出与 MD5 校验】：等待 6 个视频生成完毕后，通过 Browser.setDownloadBehavior 接管下载目录。",
-          "tools": "Claude / Cursor / Google Flow",
-          "tech": "视频工作流",
-          "prep": "准备好相关账号与素材"
+          "text": "等待 6 个视频生成后，用 Browser.setDownloadBehavior 接管下载目录；逐个进入 /edit/ 详情页按 Shot 1~6 匹配镜号，导出 720p 为 raw_clips/shot_01.mp4 ~ shot_06.mp4，并校验 6 个文件 MD5 必须互不相同。",
+          "tools": "Google Flow /edit, CDP 下载",
+          "tech": "按镜号导出 + MD5 校验",
+          "prep": "创建 raw_clips 目录"
         },
         {
-          "text": "【Python + FFmpeg 全自动精剪成片】：编写并运行 Python 脚本，用 PIL 渲染 1080×1920 透明 PNG 毛玻璃字幕图层（按台词秒…。",
-          "tools": "Claude / Cursor / Google Flow",
-          "tech": "Prompt / 脚本",
-          "prep": "准备好相关账号与素材"
+          "text": "编写并运行 Python：用 PIL 渲染 1080×1920 透明 PNG 毛玻璃字幕（按台词秒数 between(t,a,b)）与最后 2 秒终章卡；FFmpeg 保留原片中文同期声轨、按剧情切 BGM，合成 1080×1920 30fps 成片到桌面并抽 12 帧验证。",
+          "tools": "Python, PIL, FFmpeg",
+          "tech": "精剪合成 + 同期声保留",
+          "prep": "本机已装 FFmpeg 与 Python 依赖"
         }
       ],
       "isLong": true,
@@ -926,7 +914,7 @@
       "url": "https://x.com/0xlangeai/status/2111642176807731369",
       "author": "0xlangeai",
       "authorName": "蓝哥AI",
-      "title": "Muse 重大消息 ,   Muse 8.0 升级推送来了 ,  记得…",
+      "title": "Muse 重大消息 ,",
       "industry": "AI 编程 / Agent",
       "tech": "开发工作流",
       "summary": "🚨🚨 Muse 重大消息 ,   Muse 8.0 升级推送来了 ,  记得 Muse 7.0  都是半个多月前了,  Muse 这明显是在憋大招啊  不像 Grok Bot 日常更新极其频繁 ,  两家公司产品风格区别有点大啊啊啊啊啊啊啊",
@@ -1050,47 +1038,23 @@
       "url": "https://x.com/LiumangtuCrypto/status/2111626321571037454",
       "author": "LiumangtuCrypto",
       "authorName": "流氓兔🐰",
-      "title": "别再说「抱歉回复晚了」：资深领导的 6 种说法",
+      "title": "别再说「抱歉回复晚了」：用翻转法改措辞",
       "industry": "职场沟通",
       "tech": "沟通话术",
-      "summary": "1/ 感谢翻转法 不要说：\"很抱歉回复晚了，我忙得不可开交。\" 改成：\"感谢你的耐心等待，这是我的答复。\" 将框架从内疚转向慷慨。读者感到被重视而非被冒犯。信息相同，能量完全不同。 1/ 感谢翻转法 不要说：\"很抱歉回复晚了，我忙得不可开交。\" 改成：\"感谢你的耐心等待，这是我的答复。\" 将框架从内疚转向慷慨。读者感到被重视而非被冒犯。信息相同，能量完全不同…",
+      "summary": "翻转法示例：不要说「很抱歉回复晚了，我忙得不可开交。」，改成「感谢你的耐心等待，这是我的答复。」把框架从内疚转向慷慨，读者感到被重视而非被冒犯——信息相同，能量完全不同。",
       "publishedAt": "2026-10-18T09:12:01+08:00",
       "steps": [
         {
-          "text": "感谢翻转法。 不要说：\"很抱歉回复晚了，我忙得不可开交。\" 改成：\"感谢你的耐心等待，这是我的答复。\"  将框架从内疚转向慷慨。读者感到被重视而非被冒犯。信息相同，能量完全不同。",
-          "tools": "邮件 / 即时通讯",
-          "tech": "沟通话术",
-          "prep": "先给出价值再解释间隔"
+          "text": "识别内疚式开场（如「抱歉回复晚了，我太忙」）。",
+          "tools": "",
+          "tech": "沟通框架",
+          "prep": "准备书面回复"
         },
         {
-          "text": "价值优先法。 不要说：\"为延迟回复道歉。\" 改成：\"关于[话题]你需要了解的是：[一句话答案]。如果有帮助可深入讨论。\"  没人在乎你为什么晚回。他们在乎答案。先给他们答案，延迟就…",
-          "tools": "邮件 / 即时通讯",
-          "tech": "沟通话术",
-          "prep": "先给出价值再解释间隔"
-        },
-        {
-          "text": "语境锚定法。 不要说：\"抱歉，这个事项被遗漏了。\" 改成：\"我想在回复前充分重视它。这是我的完整看法：\"  将延迟改为有意的深思熟虑。显得你周密而非健忘。资深领导经常用这招。",
-          "tools": "邮件 / 即时通讯",
-          "tech": "沟通话术",
-          "prep": "先给出价值再解释间隔"
-        },
-        {
-          "text": "快速确认法。 不要说：\"为迟迟未能回复致以诚挚歉意。\" 改成：\"回到这个话题，现在的情况是：[更新]。\"  一句话确认间隔无需纠缠。直接进入实质内容。简洁专业零卑躬屈膝。",
-          "tools": "邮件 / 即时通讯",
-          "tech": "沟通话术",
-          "prep": "先给出价值再解释间隔"
-        },
-        {
-          "text": "前进拉动法。 不要说：\"抱歉延迟了，告诉我这是否仍有意义。\" 改成：\"重新推进此事。我建议下一步：[行动]。\"  不是质疑他们是否关心，而是推进对话。展现主动而非犹豫。",
-          "tools": "邮件 / 即时通讯",
-          "tech": "沟通话术",
-          "prep": "先给出价值再解释间隔"
-        },
-        {
-          "text": "优先级重构法。 不要说：\"抱歉，我这周疯狂忙碌。\" 改成：\"我今天注意到这个因为[原因]。我的想法是：\"  给出理由无需过度解释你的日程。他们不需要你的日历，需要你的答案。",
-          "tools": "邮件 / 即时通讯",
-          "tech": "沟通话术",
-          "prep": "先给出价值再解释间隔"
+          "text": "改写成感谢等待 + 直接给答复，把内疚换成慷慨，让对方感到被重视。",
+          "tools": "",
+          "tech": "翻转法措辞",
+          "prep": "内容本身已就绪"
         }
       ],
       "isLong": true,
@@ -1105,7 +1069,7 @@
       "url": "https://x.com/0xlangeai/status/2111625126685114727",
       "author": "0xlangeai",
       "authorName": "蓝哥AI",
-      "title": "卧槽 ! ! !  DeepSeek 官方自研 Search 和 Fet…",
+      "title": "卧槽 ! ! !  DeepSeek",
       "industry": "AI 编程 / 出海",
       "tech": "Grok Bot · 工具",
       "summary": "卧槽 ! ! !  DeepSeek 官方自研 Search 和 Fetch API  这价格太便宜了 , 每个端点一千次成功请求 0.75 美元，不按 token 计。 更关键的是: 对 DeepSeek API 用户现在是限免.   10 月 31 日 16:00 UTC（北京 11 月 1 日零点）起才按次计费。",
@@ -1170,10 +1134,10 @@
       "url": "https://x.com/mjjwiki/status/2111491631367217285",
       "author": "mjjwiki",
       "authorName": "MJJ百科",
-      "title": "香港中银有两个中国内地消费满减活动，满30元减5元和满30元减10元。需…",
+      "title": "香港中银有两个中国内地消费满减活动",
       "industry": "加密 / 财商",
       "tech": "金融认知",
-      "summary": "香港中银有两个中国内地消费满减活动，满30元减5元和满30元减10元。需要下载安装它的Boc Pay+使用，商店支持银联即可。 活动一： 中国内地线下实体店，逢周五、周六和周日，消费满30元人民币即减5元人民币。每人每月只能参加两次，活动到期时间是2026年12月31日。 活动二： 中国内地的奈雪的茶、名创优品和哈根达斯，不限周几，消费满30元人民币减10元…",
+      "summary": "香港中银有两个中国内地消费满减活动，满30元减5元和满30元减10元。需要下载安装它的Boc Pay+使用，商店支持银联即可。\n\n活动一：\n中国内地线下实体店，逢周五、周六和周日，消费满30元人民币即减5元人民币。每人每月只能参加两次，活动到期时间是2026年12月31日。\n\n活动二：\n中国内地的奈雪的茶、名创优品和哈根达斯，不限周几，消费满30元人民币减10元人民币。三个的可参与次数不一样，具体看优惠规则，活动到期时间是2026年12月31日。",
       "publishedAt": "2026-10-18T00:16:49+08:00",
       "steps": [],
       "isLong": false,
@@ -1189,29 +1153,29 @@
       "url": "https://x.com/0xlangeai/status/2111463732299915338",
       "author": "0xlangeai",
       "authorName": "蓝哥AI",
-      "title": "DeepSeek 放出 V4.1-Flash-1017：基准更强、任务更…",
+      "title": "DeepSeek 放出 V4.1-Flash-1017：更快更短更便宜",
       "industry": "AI 编程 / Agent",
       "tech": "开发工作流",
-      "summary": "DeepSeek 放出 V4.1-Flash-1017：基准更强、任务更快、输出更短，自称性能和成本一起抬。 图上最扎眼的是 DeepSWE：Pass@1 到 77.0，大约 0.2 美元一题。旧 Flash 是 74.2；同表里 Opus 5 大约 74、成本量级到十几美元。Automation、Agents' Last Exam、Apex 也比上一版 F…",
+      "summary": "DeepSeek 发布 V4.1-Flash-1017：基准更强、任务更快、输出更短，自称性能与成本一起抬。DeepSWE Pass@1 约 77.0、约 0.2 美元/题（旧 Flash 74.2；同表 Opus 5 约 74、成本可到十几美元）。Automation、Agents' Last Exam、Apex 也较上一版 Flash 上跳；硬推理 HLE、Terminal-Bench 仍不压 Opus。官网 / App / API 已上线；DeepSeek Harness、腾讯 CodeBuddy、WorkBuddy 已适配，Harness 建议 ≥ v0.2.1-rc.1。同串还提到用自我反馈 RL 练端到端项目，以及 Search/Fetch API 对外开放（每端点千次 0.75 美元；Harness / Claude Code / Codex 服务端工具暂免，10 月 31 日 16:00 UTC 起计费）。权重已上 Hugging Face 与 ModelScope。",
       "publishedAt": "2026-10-17T22:25:57+08:00",
       "steps": [
         {
-          "text": "图上最扎眼的是 DeepSWE：Pass@1 到 77.0，大约 0.2 美元一题。",
-          "tools": "Claude / Codex / DeepSeek",
-          "tech": "执行要点",
-          "prep": "准备好相关账号与素材"
+          "text": "在官网、App 或 API 使用 V4.1-Flash-1017；需要本地权重则从 Hugging Face / ModelScope 拉取。",
+          "tools": "DeepSeek API / HF / ModelScope",
+          "tech": "Flash 推理模型",
+          "prep": "有 API Key 或本地环境"
         },
         {
-          "text": "官网、App、API 已上。",
-          "tools": "Claude / Codex / DeepSeek",
-          "tech": "执行要点",
-          "prep": "理清目标后再动手"
+          "text": "若用 DeepSeek Harness，升级到 v0.2.1-rc.1 及以上；CodeBuddy / WorkBuddy 等已做适配可直接试。",
+          "tools": "DeepSeek Harness, CodeBuddy, WorkBuddy",
+          "tech": "Agent Harness 适配",
+          "prep": "更新客户端版本"
         },
         {
-          "text": "同串还有两件事：模型用带自我反馈的强化学习练端到端项目，片子里从游戏做到 3D；Search 和 Fetch API 对外开放，每端点一千次 0.75 美元，在…。",
-          "tools": "Claude / Codex / DeepSeek",
-          "tech": "本地部署",
-          "prep": "准备好相关账号与素材"
+          "text": "评估 Search / Fetch API：每端点千次成功请求 0.75 美元；在 Harness、Claude Code、Codex 走服务端工具暂免，注意 10-31 16:00 UTC 起计费。",
+          "tools": "DeepSeek Search / Fetch API",
+          "tech": "服务端工具计费",
+          "prep": "确认计费窗口与配额"
         }
       ],
       "isLong": true,
@@ -1338,7 +1302,7 @@
       "title": "真实教 AI：从按开机键开始，不是一键出视频",
       "industry": "AI 教育",
       "tech": "教学路径、用户分层",
-      "summary": "你以为的教 AI 是「丢 skill 一键出视频」；真实的教 AI 是：开机 → 开浏览器 → 输网址 → 下载豆包 → 邮箱登录……面向小白要拆到原子步骤。",
+      "summary": "对比「把 skill 丢给 Opus 就一键出视频」的想象，真实教 AI 往往要从最基础教起：按电脑开机 → 打开浏览器 → 输入网址 → 下载安装豆包等工作工具 → 用邮箱登录，再谈高级玩法。作者用反差强调落地教学必须覆盖环境与账号准备，而不是只丢一个 skill。",
       "publishedAt": "2026-10-17T10:34:57+08:00",
       "steps": [
         {
@@ -1409,7 +1373,7 @@
       "title": "RTX Spark 开售：本地 Token 自由的想象力",
       "industry": "AI 硬件",
       "tech": "本地部署",
-      "summary": "等了很久的英伟达RTX Spark电脑今天晚上8点终于开售了，在线下举办了首发体验会，真的是人山人海... 然后RTX Spark 128G+1T的，华硕ProArt创16酷卖37999，在线上居然直接瞬间被人抢光了。。。 大家对AI本地布模型的需求还是太强了。 测了一下，本地最火的Qwen3.8-27B能跑到30 Token/秒，Qwen image 2…",
+      "summary": "等了很久的英伟达RTX Spark电脑今天晚上8点终于开售了，在线下举办了首发体验会，真的是人山人海...\n\n然后RTX Spark 128G+1T的，华硕ProArt创16酷卖37999，在线上居然直接瞬间被人抢光了。。。\n\n大家对AI本地布模型的需求还是太强了。\n\n测了一下，本地最火的Qwen3.8-27B能跑到30 Token/秒，Qwen image 2.1大概1分钟一张图，H3大概10分钟。\n\n如果是本地的2B翻译模型，可以6路并发，嵌入到Chrome插件里，直接实现几乎0延迟的实时翻译。\n我好像终于可以实现Token自由了。。。\n\n这玩意的想象力实在太大了。\n每个人，也都可以在自己的电脑里，拥有真正属于自己的，取之不尽、用之不竭的智能。\n\n我们已经花了几十年的时间，让计算属于每个人。\n接下来，智能，也将真正属于。\n每个人。",
       "publishedAt": "2026-10-16T20:53:13+08:00",
       "steps": [],
       "isLong": true,
@@ -1429,7 +1393,7 @@
       "title": "网易 UU + 叭哥说：终身免费的 AI 生产力",
       "industry": "AI 硬件",
       "tech": "本地部署",
-      "summary": "好家伙，网易做生产力工具这是真要卷死同行啊？？？ 前有 UU 远程成了玩 AI 出门挂机标配，现在“叭哥说”又把 AI 语音输入做的贼爽！ 两个产品都是完全终身免费，活菩萨不多说... 而且，他们真的把“听劝”做到极致了，听我娓娓道来😁 我的 Typeless 是年付 144 刀，现在都不用了，主要他们太狗了，三天两头降智，蠢得不能用😓，还砍免费额度 叭哥说…",
+      "summary": "好家伙，网易做生产力工具这是真要卷死同行啊？？？\n\n前有 UU 远程成了玩 AI 出门挂机标配，现在“叭哥说”又把 AI 语音输入做的贼爽！\n\n两个产品都是完全终身免费，活菩萨不多说...\n\n而且，他们真的把“听劝”做到极致了，听我娓娓道来😁\n\n我的 Typeless 是年付 144 刀，现在都不用了，主要他们太狗了，三天两头降智，蠢得不能用😓，还砍免费额度\n\n叭哥说直接终身免费，而且速度和体验完全不输：\n1、边想边说，自动整理成结构化文本：给 Agent 下达需求、写文章，哪怕你边说边改主意，它也能自动把废话滤掉、按逻辑分段排版，并保留你原本的说话口气。\n2、靠着有道翻译的底子，按个快捷键说中文，直接给你输出地道英文\n3、30dB 耳语识别 + 专业词库：很小声说话也能精准识别，而且加了 AI 词库中英混输效果也很好\n4、纯本地历史记录，云端不存数据，隐私安全直接拉满。\n\n最离谱的是，网易这波是把“听劝”发挥到极致了。\n\n之前 UU 远程就是靠疯狂听取用户建议迭代成神器的，这次叭哥说官方依旧如此，掏 10 万块来招募“荣誉联合创始人”，就是买用户的真实吐槽和差评建议（某某学着点）\n\n好的问题可以瓜分 10 万块（一个 5 万，还有 10 个 5000 块名额，带网易定制工卡和面试直通）。\n\n好用的东西还肯听劝，这种产品就该多来点！！！",
       "publishedAt": "2026-10-16T18:34:14+08:00",
       "steps": [
         {
@@ -1471,7 +1435,7 @@
       "url": "https://x.com/Astronaut_1216/status/2111032563909140565",
       "author": "Astronaut_1216",
       "authorName": "叫我阿杭",
-      "title": "呜呜呜！！兄弟们，太感动了！！！我买跟风买过的东西真的一点都没浪费！！！…",
+      "title": "呜呜呜！！兄弟们，太感动了",
       "industry": "AI 自媒体",
       "tech": "工具测评",
       "summary": "呜呜呜！！兄弟们，太感动了！！！我买跟风买过的东西真的一点都没浪费！！！！Beesim，giffgaff，这些东西真的太牛逼了，美国手机号、英国手机号还有我的中国手机号，在一部手机里",
@@ -1490,59 +1454,58 @@
       "url": "https://x.com/Astronaut_1216/status/2111009398201983340",
       "author": "Astronaut_1216",
       "authorName": "叫我阿杭",
-      "title": "OMG!!! This has to be one of the bes…",
-      "industry": "AIGC / 短视频",
-      "tech": "AI 视频工作流",
-      "summary": "OMG!!! This has to be one of the best ways to use Codex + a personal agent!!!! We can use this workflow to redesign local business websites and turn it into a paid service. I hones…",
+      "title": "Codex + 个人 Agent：本地生意网站改版也能做成付费服务",
+      "industry": "本地服务 / AI 落地",
+      "tech": "Codex + Sai（MCP）双 Agent",
+      "summary": "阿杭分享用 Codex 搭配个人 Agent（Sai）改造本地商家网站、做成付费服务的完整实践。他以 Marco’s Pizza 点餐站为例：受够了糟糕设计后，只用一条提示词让 Codex + Sai 做全面改版，目标是走完真实点餐流程、排查用户吐槽、做出可点击的英文原型，并区分历史差评与当下仍可复现的问题，同时保留官方品牌与披萨图、收集具体负面反馈。\n\n双 Agent 分工：Codex 经 MCP 把任务交给 Sai；Sai 在云端电脑打开浏览器找门店、探索点餐流，Codex 同时调研历史投诉并搭建页面与交互。Sai 会自主连点、比 Codex 原生电脑操作更快，并留下逐步执行日志（意图、页面返回、截图），ZIP 搜不到时会换邮编/城市或改走门店目录，还发现过「购物车 0 件却显示 $4.95」这类混乱状态。完成后把访问页、步骤、问题与未测项回报给 Codex，供改版决策。成品原型支持选店、改取餐时间、半半配料定制、改购物车、解释优惠码是否生效，流程更清晰，也方便向客户展示证据。阿杭认为这类「走查现站→找摩擦→可点击改版提案」很有服务化潜力，甚至可延伸到复刻多数 SaaS 核心体验；他估计同类交付对公司客户可值约 1 万美元。",
       "publishedAt": "2026-10-16T16:20:35+08:00",
       "steps": [
         {
-          "text": "I’m so tired of badly designed websites—especially Marco’s Pizza’s ordering site…。",
-          "tools": "Codex",
-          "tech": "执行要点",
-          "prep": "准备好相关账号与素材"
+          "text": "选定问题站点（如 Marco’s Pizza 点餐页），用一条总提示词让 Codex + Sai 做全面改版：走完点餐、查投诉、做可点击英文原型，并保留官方品牌与图片。",
+          "tools": "Codex, Sai",
+          "tech": "提示词驱动改版",
+          "prep": "明确目标站点与改版范围"
         },
         {
-          "text": "I connected Codex to Sai and asked it to walk through the actual ordering proces…。",
-          "tools": "Codex",
-          "tech": "执行要点",
-          "prep": "准备好相关账号与素材"
+          "text": "把 Codex 经 MCP 接到 Sai：要求走真实点餐流程，区分旧投诉与当下仍可复现的问题，并收集具体差评证据。",
+          "tools": "Codex MCP → Sai",
+          "tech": "浏览器自动化 + 投诉调研",
+          "prep": "已配置 MCP 与云端浏览器环境"
         },
         {
-          "text": "With Codex + Sai, I effectively have two agents working for me. I don’t even hav…。",
-          "tools": "Codex",
-          "tech": "Agent 协作",
-          "prep": "准备好相关账号与素材"
+          "text": "双 Agent 并行：Sai 在云电脑里点选门店、探索点餐流；Codex 同步做历史投诉研究并搭建页面交互。可从 live view 盯 Sai，再在工作流里打开成品原型。",
+          "tools": "Sai live view, Codex",
+          "tech": "MCP 委派 + 云端电脑",
+          "prep": "无需一直盯屏；Sai 可自主连点"
         },
         {
-          "text": "Codex delegates the task to Sai through MCP. Sai opens a browser on a cloud comp…。",
-          "tools": "Codex",
-          "tech": "执行要点",
-          "prep": "准备好相关账号与素材"
+          "text": "依赖 Sai 的逐步执行日志（意图、页面返回、截图）：浏览优惠、定制披萨、检查购物车等每步都有对应结果，便于向客户解释改版依据。",
+          "tools": "Sai execution log",
+          "tech": "步骤日志与截图证据",
+          "prep": "开启日志与截图"
         },
         {
-          "text": "I don’t have to watch constantly to understand what it did or how it worked arou…。",
-          "tools": "Codex",
-          "tech": "执行要点",
-          "prep": "准备好相关账号与素材"
+          "text": "把调查任务交给 Sai 让其自行拆成动作；遇 ZIP 无结果时换邮编/城市或改走门店目录；留意异常状态（如购物车 0 件却显示 $4.95）。",
+          "tools": "Sai",
+          "tech": "自主排障与异常发现",
+          "prep": "允许 Agent 自行换策略"
         },
         {
-          "text": "I gave Sai a task to investigate, and it broke that task down into individual ac…。",
-          "tools": "Codex",
-          "tech": "执行要点",
-          "prep": "准备好相关账号与素材"
+          "text": "Sai 完成后回报访问页、步骤、问题与未测项；Codex 据此出可点击原型（选店、取餐时间、半半配料、购物车、优惠码逻辑），并作为付费改版服务对外提案。",
+          "tools": "Codex + Sai",
+          "tech": "可点击原型 + 服务化交付",
+          "prep": "汇总报告后再定改版方案"
         }
       ],
       "isLong": true,
       "authorAvatar": "avatars/Astronaut_1216.jpg",
       "tags": [
-        "AIGC",
-        "短视频",
-        "AI",
-        "视频工作流",
-        "Agent",
         "Codex",
-        "Google Flow"
+        "Personal Agent",
+        "Sai",
+        "网站改版",
+        "本地生意",
+        "MCP"
       ]
     },
     {
@@ -1572,7 +1535,7 @@
       "title": "GEO 行业 12 种典型盈利模式",
       "industry": "GEO / AI 搜索",
       "tech": "GEO、可见度",
-      "summary": "简单总结了下GEO行业的12种典型盈利模式 1. 卖服务，目前的主流模式，一般按项目收费，季度起合作，提供全案运营服务，主要面向中大型客户 2. 卖系统，SaaS或一次性私有化部署授权，都可以 3. 卖信源，做信源媒介或自己做成AI信源，按一篇文章或一个短视频发布收费 4. 卖咨询，按小时，或按月提供顾问咨询服务 5. 卖课程，包括各种形式的课程，录播课，直…",
+      "summary": "简单总结了下GEO行业的12种典型盈利模式\n\n1. 卖服务，目前的主流模式，一般按项目收费，季度起合作，提供全案运营服务，主要面向中大型客户\n\n2. 卖系统，SaaS或一次性私有化部署授权，都可以\n\n3. 卖信源，做信源媒介或自己做成AI信源，按一篇文章或一个短视频发布收费\n\n4. 卖咨询，按小时，或按月提供顾问咨询服务\n\n5. 卖课程，包括各种形式的课程，录播课，直播，线下小班，线下训练营等等\n\n6. 卖陪跑，帮助客户从0-1完成全流程GEO运营陪跑与答疑支持\n\n7. 卖广告，通过行业垂直平台，主要卖给GEO行业相关公司，可以是常年赞助广告，也可以是按CPS线索分佣\n\n8. 卖加盟，预充值或发展区域代理，目前做得比较大的，目前有不少这类模式，营收过亿的有好几家\n\n9. 卖FDE，深入客户实际业务，做私有化GEO系统部署和培训\n\n10. 卖标准，各种协会或单位发起团标，GEO公司付费成为标准发起单位之一\n\n11. 卖数据，自建爬虫和数据展示能力，各种监测SaaS工具，按订阅收费或按API收费。还有一类，当你有足够稀缺的高质量行业数据，模型公司也愿意付费\n\n12. 卖产品，把GEO的某项指标产品化运营，比如品牌一致性",
       "publishedAt": "2026-10-16T14:22:44+08:00",
       "steps": [
         {
@@ -1644,7 +1607,7 @@
       "title": "想尽办法用上 Claude：很多事只有它能做",
       "industry": "AI 编程 / Agent",
       "tech": "开发工作流",
-      "summary": "大家一定要想尽办法用上 Claude，值得！！！ 因为很多事就只有 Claude 能做，Codex 等等就是不行 Claude 5X 用量甚至比 Codex 20X多得多，体验天差地别不开玩笑 最近在西安和混沌的老板们交流学习，大佬也都在想尽办法用，我也向大家提供完整方案： 1、这篇 170W 了，我光补充修改不下 10 次： (后续也会持续更新，整合各种大…",
+      "summary": "大家一定要想尽办法用上 Claude，值得！！！\n\n因为很多事就只有 Claude 能做，Codex 等等就是不行\n\nClaude 5X 用量甚至比 Codex 20X多得多，体验天差地别不开玩笑\n\n最近在西安和混沌的老板们交流学习，大佬也都在想尽办法用，我也向大家提供完整方案：\n\n1、这篇 170W 了，我光补充修改不下 10 次：\nhttps://x.com/gkxspace/status/2101993381303820704\n(后续也会持续更新，整合各种大家有价值的技巧)\n\n2、美国手机卡，目前已经帮不下 500 人成功拿下：\nhttps://x.com/gkxspace/status/2101984042635944146\n\n3、VPS 搭建、海外支付、设备清理也全都有：\nhttps://x.com/gkxspace/status/2101993381303820704\n\n4、海外 Apple ID、礼品卡购买、使用、开通：\nhttps://x.com/zureA255062/status/2103672988524855361\n\n5、Cladue Kyc：\nhttps://x.com/gengdaJ/status/2103049745984037061\n\n6、节点分流规则配置教程：https://x.com/gkxspace/status/2094386340645216468\n\n7、肉身出不了海那就设备出海（新加坡方案）：\nhttps://x.com/gkxspace/status/2108522433917702540",
       "publishedAt": "2026-10-16T13:33:09+08:00",
       "steps": [
         {
@@ -1731,69 +1694,49 @@
       "title": "开源还原 Profound：AI 可见度系统逆向",
       "industry": "GEO / AI 搜索",
       "tech": "GEO、可见度",
-      "summary": "估值18亿美元的Profound，通过REA逆向了下它的系统，包括官网、产品工作台、管理后台三个系统的相关页面 系统已开源到GitHub，链接见文末 整体的还原程度很高 有不少设计值得参考和学习的地方 核心功能包括： 1、7个AI 引擎可视化：ChatGPT、Perplexity、Claude、Gemini、Microsoft Copilot、AI Over…",
+      "summary": "姚金刚用 REA 逆向估值约 18 亿美元的 Profound，覆盖官网、产品工作台、管理后台相关页面，并开源到 GitHub（yaojingang/profound-clone），还原度高、可作学习参考。核心功能：7 个 AI 引擎可视化（ChatGPT、Perplexity、Claude、Gemini、Microsoft Copilot、AI Overviews、DeepSeek）含每日可见度趋势、引用分类、品牌情绪、FactCheck；AI Marketer 对话助手可自然语言查可见度/引用/情绪/提示词缺口或触发 Agent（写入运行记录与 trace、扣 trial credits）；Agent 系统含 7 个可复用工作流；认证用 scrypt + httpOnly session + middleware，owner/admin 双角色。示例数据为虚构品牌 Wrenfield。技术栈：Next.js 16.4 App Router、React 19 RSC、Tailwind CSS v4、better-sqlite3（WAL）。仅供个人学习研究。",
       "publishedAt": "2026-10-14T19:44:24+08:00",
       "steps": [
         {
-          "text": "7个AI 引擎可视化：ChatGPT、Perplexity、Claude、Gemini、Microsoft Copilot、AI Overviews、DeepS…。",
-          "tools": "Claude / ChatGPT / Gemini",
-          "tech": "执行要点",
-          "prep": "准备好相关账号与素材"
+          "text": "浏览 7 引擎可视化：每日可见度趋势、引用分类（earned/owned/social/competition）、品牌情绪与 FactCheck 勘误。",
+          "tools": "Profound clone 工作台",
+          "tech": "多引擎可见度仪表盘",
+          "prep": "本地或演示环境已 seed"
         },
         {
-          "text": "AI Marketer对话助手：用自然语言提问可见度 / 引用 / 情绪 / 提示词缺口，或直接触发 Agent —— 会真实写入运行记录与步骤 trace、扣…。",
-          "tools": "Claude / ChatGPT / Gemini",
-          "tech": "Prompt / 脚本",
-          "prep": "准备好相关账号与素材"
+          "text": "用 AI Marketer 自然语言提问可见度/引用/情绪/提示词缺口，或直接触发 Agent（写入运行记录与步骤 trace、扣 trial credits）。",
+          "tools": "AI Marketer",
+          "tech": "对话驱动 Agent",
+          "prep": "有 trial credits"
         },
         {
-          "text": "Agent系统：7 个可复用工作流（内容写作、页面优化、引用追踪、FactCheck、社交、购物、发布套件），带运行历史与逐工具耗时。",
-          "tools": "Claude / ChatGPT / Gemini",
-          "tech": "Agent 协作",
-          "prep": "准备好相关账号与素材"
+          "text": "运行 Agent 七大工作流：内容写作、页面优化、引用追踪、FactCheck、社交、购物、发布套件，并查看运行历史与逐工具耗时。",
+          "tools": "Agent 工作流",
+          "tech": "可复用 Agent 模板",
+          "prep": "选好工作区品牌数据"
         },
         {
-          "text": "认证与权限：scrypt 密码哈希、httpOnly session cookie、middleware 预检、owner / admin 双角色。",
-          "tools": "Claude / ChatGPT / Gemini",
-          "tech": "执行要点",
-          "prep": "准备好相关账号与素材"
+          "text": "理解认证与权限：scrypt 密码哈希、httpOnly session cookie、middleware 预检、owner/admin 双角色。",
+          "tools": "Next.js middleware",
+          "tech": "会话与 RBAC",
+          "prep": "阅读源码 auth 模块"
         },
         {
-          "text": "Next.js 16.4 — App Router、async params、cacheComponents（PPR 部分预渲染）、Turbopack。",
-          "tools": "Claude / ChatGPT / Gemini",
-          "tech": "执行要点",
-          "prep": "准备好相关账号与素材"
-        },
-        {
-          "text": "React 19 + server components（数据全部在服务端查询，图表 props 用可序列化枚举）。",
-          "tools": "Claude / ChatGPT / Gemini",
-          "tech": "执行要点",
-          "prep": "准备好相关账号与素材"
-        },
-        {
-          "text": "Tailwind CSS v4 — 单应用三套主题。",
-          "tools": "Claude / ChatGPT / Gemini",
-          "tech": "执行要点",
-          "prep": "准备好相关账号与素材"
-        },
-        {
-          "text": "better-sqlite3（WAL 模式）— 单文件数据库，scripts/seed.mjs 一键重建。",
-          "tools": "Claude / ChatGPT / Gemini",
-          "tech": "执行要点",
-          "prep": "准备好相关账号与素材"
+          "text": "技术栈研读：Next.js 16.4 App Router / PPR / Turbopack；React 19 RSC；Tailwind v4 三套主题；better-sqlite3 WAL + seed.mjs 一键重建。",
+          "tools": "Next.js, React, Tailwind, sqlite",
+          "tech": "现代 SaaS 信息架构",
+          "prep": "克隆 GitHub 仓库"
         }
       ],
       "isLong": true,
       "authorAvatar": "avatars/yaojingang.jpg",
       "tags": [
         "GEO",
-        "AI",
-        "搜索",
-        "可见度",
-        "Agent",
-        "Claude",
-        "GPT",
-        "Gemini"
+        "Profound",
+        "开源",
+        "REA",
+        "Next.js",
+        "AI可见度"
       ]
     },
     {
@@ -1824,7 +1767,7 @@
       "title": "卡兹克的 AI 会员订阅清单与用法",
       "industry": "AIGC / 短视频",
       "tech": "AI 视频工作流",
-      "summary": "经常有人问我订阅了啥AI的会员，所以今天正好分享一下。    1. ChatGPT Pro会员，100刀（约670块）。  GPT-6 Astra刚出来的时候，我是200刀的会员，那时候还在重构AIHOT，基本一天1个200刀账号，所以我还临时开了2个200刀的会员，配上重置才勉强够用。  现在Cluade Opus 5.5在实在太强了，所以对ChatGPT…",
+      "summary": "经常有人问我订阅了啥AI的会员，所以今天正好分享一下。\n\n1. ChatGPT Pro会员，100刀（约670块）。\nGPT-6 Astra刚出来的时候，我是200刀的会员，那时候还在重构AIHOT，基本一天1个200刀账号，所以我还临时开了2个200刀的会员，配上重置才勉强够用。\n现在Cluade Opus 5.5在实在太强了，所以对ChatGPT会员进行了降阶，11月初生效，100刀配上补偿的62500还有重置卡，感觉也够用了。\n我现在用它的是几个场景：自己和公司项目的反馈和PR自动化开发、项目运维监控的自动化等等，GPT-6.1 Sol在BUG优化和修复上确实还是很不错的。\n同时对后端、还有一些硬件进行定向优化或者协议破解，比如今晚就让它在优化新公司的网关和AP设置，提升大家的网络稳定性。\n不过对于大家来说，我觉得ChatGPT还是最水桶的，聊天是完全免费的，也有生图的额度，开发点小东西，GPT-6.1 Sol也够了。\n\n2. Claude Max会员，250刀（从Google Play订阅的，所以多收了50刀的渠道费，约1675人民币）\n没啥可说的，Claude Opus 5.5基本上是现在的版本真神，GPT-6.1 Sol和GPT-6 Astra除了在一些后端、硬件的优化还有浏览器操控上，我觉得很难跟Opus 5.5去打，并且我自己整体额度体感大概是Codex的5倍，高强度开发+设计+做动效做了一周了，明天下午重置，我周额度只用到了84%，还没用完。我整体消耗都是Claude Opus 5.5，Fable 5.1基本不咋用。\n\n3. X Ultra会员，260刀（今天新定，从Google Play订阅的，所以多收了60刀的渠道费，也约1742人民币）\n马斯克的全新会员体系，今天刚刚上线，我直接定了一下，首月130刀打半价，它直接把Grok、Grok Bot、Cursor和X合并掉了，Grok 4.7比较拉，但是我依然愿意买，纯粹就是冲着Grok Bot去的，这玩意相比ChatGPT的Dots，目前还是好用的比较多的，后端模型还给你用Claude Opus 5.5。\n且本身我是X用户，而且老马给的额度很足，200刀的Ultra直接给了50x的额度，Claude和Codex都是10x。所以我觉得性价比还行。\n不过如果ChatGPT把Dots优化好了，没有这么蠢了，且老马的Grok 4.8或者5又拉了，那我大概率不会定了。\n\n4. Suno Pro，8刀（我开了年付费，所以打折了，月53块）\n独一档做音乐的，不常用，但偶尔得用，属于刚需，直接包年了，跟团队共用。\n\n5. LibTV至尊版，1499元（我开了年付费，所以打折了）。\n我偶尔跑视频用，主要是跟团队共用，他们跑视频的量太大了，不是做视频方向的没必要定，现在视频的AI太贵了，贵的肉疼。\n\n我自己个人最常用的基本就这些。\n杂七八糟的每个月+API大概在AI上的花费是6000多一点吧，很贵，我也只想订阅一个。\n所以这么看，ChatGPT还是最全面的水桶，对所有人都友好的。\n 以上，做个参考，希望对大家有用。",
       "publishedAt": "2026-10-13T20:17:12+08:00",
       "steps": [
         {
@@ -1876,7 +1819,7 @@
       "url": "https://x.com/gkxspace/status/2109975883650150426",
       "author": "gkxspace",
       "authorName": "余温",
-      "title": "Claude 安全用一个多月了，打算再订一个 Claude 20X，但一…",
+      "title": "Claude 安全用一个多月了",
       "industry": "AI 编程 / Agent",
       "tech": "开发工作流",
       "summary": "Claude 安全用一个多月了，打算再订一个 Claude 20X，但一台电脑能行吗，大佬来分享下经验🥲 Codex 尽管天天重置，够用，但是趁年轻，还是想对自己好点🤣 另外，如果有人能完全解决 Claude 问题，绝对能在国内赚疯，一堆几百人公司被这问题困扰... AI 落地，就缺一个 Claude！",
@@ -1901,7 +1844,7 @@
       "title": "Claude/Codex + Atypica：让 AI 更会赚钱",
       "industry": "AI 编程 / Agent",
       "tech": "开发工作流",
-      "summary": "Claude/Codex + Atypica 太牛逼了，说帮你自动赚钱夸张了，但确实能让 AI 更会赚钱！ 我前几天一个点子，让 Claude 梭哈了个网站，从第一天起一直都有出单 20 注册有 8 个付钱，我想删数据库的时候才发现，居然有人付钱……😅 我让 AI 分析一下，一堆 bug、SEO 也没搞为啥有人付钱，结果都 ChatGPT 来的（如图，GPT…",
+      "summary": "Claude/Codex + Atypica 太牛逼了，说帮你自动赚钱夸张了，但确实能让 AI 更会赚钱！\n\n我前几天一个点子，让 Claude 梭哈了个网站，从第一天起一直都有出单\n\n20 注册有 8 个付钱，我想删数据库的时候才发现，居然有人付钱……😅\n\n我让 AI 分析一下，一堆 bug、SEO 也没搞为啥有人付钱，结果都 ChatGPT 来的（如图，GPT全责啊）\n\n那 AI 凭什么推荐我这个破站😑，我想了一下，确实是需求对了～\n\n当时我给 AI 配了 @atypica_AI 的 MCP，调研那几步一直在调它的云端功能，具体就是这里挖出来的：\n1、建一个研究，利用 MCP 先去社交媒体上看真实用户怎么聊这件事\n\n2、从 100 多万个 AI 人设里搜出对口的人，拉成一组挨个访谈\n\n3、谁会付钱，为什么会付钱，整理成报告返回给 AI，接着就开干\n\n结果，就是这件事真有人在找，但全网几乎没有一个像样的页面在回答。\n我每个页面只讲一件具体的事，价格直接标在上面，AI 搜一圈，能拿来回答用户的基本就我这个。\n\natypica 确实是一个很好的 personal research agent，如果你也想做产品、副业，很值得接进你的 AI：\n https://atypica.ai/?via=codex",
       "publishedAt": "2026-10-13T19:33:10+08:00",
       "steps": [
         {
@@ -1943,7 +1886,7 @@
       "title": "中文 IP 出海 ≠ 中国用户迁移到 X",
       "industry": "AIGC / 短视频",
       "tech": "AI 视频工作流",
-      "summary": "最近大量中文 IP 开始涌入 X，但我一直觉得： 中文 IP 出海 ≠ 中国用户会大规模迁移到 X。 中国已经有 11 亿网民，以及一整套极其成熟的内容、支付、电商和社交生态。 而 X、YouTube 等海外平台，目前依然不属于大陆用户可以无门槛使用的主流互联网基础设施。 这背后不是一个“图文还是视频”的问题，而是长期形成的监管、信息流动方式和商业生态问题…",
+      "summary": "最近大量中文 IP 开始涌入 X，但我一直觉得：\n中文 IP 出海 ≠ 中国用户会大规模迁移到 X。\n\n中国已经有 11 亿网民，以及一整套极其成熟的内容、支付、电商和社交生态。 而 X、YouTube 等海外平台，目前依然不属于大陆用户可以无门槛使用的主流互联网基础设施。\n这背后不是一个“图文还是视频”的问题，而是长期形成的监管、信息流动方式和商业生态问题。\n甚至数据跨境，到今天依然有自己完整的一套安全评估和合规体系。\n\n我反而觉得，这一轮真正发生的事情不是“中国互联网全面走向 X”\n\n而是：一小批有全球化需求的人，开始主动走向全球互联网。\n\n至于真正意义上的大规模开放，我个人甚至会按 10～15 年这个尺度去看，AI 会加速很多东西，但社会结构的变化，远没有模型迭代那么快。",
       "publishedAt": "2026-10-13T10:57:40+08:00",
       "steps": [],
       "isLong": false,
@@ -1963,7 +1906,7 @@
       "title": "龙虎山房车长帖：做 X 到底为了什么",
       "industry": "增长运营",
       "tech": "X 增长",
-      "summary": "今晚在龙虎山，住在房车上说出这篇思考长帖 从看完美国后，我一直在想一个问题：我做推特，到底是为了什么？ 接下来的时代，是一个注意力被彻底抢占的市场。最近我开始刻意不去看那些新出的模型和热点，Muse、jev 之类热闹的东西我都不追了，那些杂流量不是我要的。 AI 毫无疑问是未来的东西，但我不想再一头扎进无限的工具狂欢里。我现在真正想钻研的是我自己。日常我真正…",
+      "summary": "今晚在龙虎山，住在房车上说出这篇思考长帖\n\n从看完美国后，我一直在想一个问题：我做推特，到底是为了什么？\n\n接下来的时代，是一个注意力被彻底抢占的市场。最近我开始刻意不去看那些新出的模型和热点，Muse、jev 之类热闹的东西我都不追了，那些杂流量不是我要的。\n\nAI 毫无疑问是未来的东西，但我不想再一头扎进无限的工具狂欢里。我现在真正想钻研的是我自己。日常我真正离不开的生产力，其实也就 GPT、Cursor 和 Antigravity。\n\n前阵子在深圳有人推荐我去修佛，今天来龙虎山看道家。把近期的困惑聊完，他们说我有个坏毛病：不太会谋定而后动。\n\n道理谁都懂。但我骨子里偏偏是个极度直接的人，想到一件事就会立刻去试。坦白讲，靠着这个特质，我才赚到了一些钱。大一读完就休学，现在是休学第二年。国内跑了二十多个城市，海外也走了一圈。走得越多越觉得，大学对我意义不大，人活在这个世界上，最底层的渴望依然是表达自己、输出自己。\n\n在业务上，我的核心在 To B，AI漫剧这条线跑得很扎实，根本不需要靠网上炒作来获客。AI团队还有 6 个人，我现在琢磨的是怎么把服务放大、把增长做实——先把国内模型跑通，再去打全球模型。\n\n回头看推特，什么创作者收益、商单推广，我不太不需要。人在国内，不聊 Web3，也不会去发什么偏激言论。我只是需要把个人放大，方便后续的业务展开。最近也在跟董十一他们学习真人 IP 表达，归根结底是要突破自己内心的一些东西。\n\n今晚在龙虎山最大的收获，是对“基”这个字的理解。 底下一个“土”，那是人被埋在土里默默扎根；上面是要破土而出。人不破不立，所有的沉淀，最后都是为了去做替你套利的事。\n\n去美国最触动我的一件事，是和一个谷歌高管深聊。他一周上五天班，三天公司两天家里，年收入大概 50 万美金，在湾区根本不够用。后来他兼职去做房产销售，卖一套 200 万的房子抽 2.5%，一年兼职能多赚六七十万美金。两项加起来一年大概 110 万美金，才算能存下一点钱。\n\n当时我心里有个暴论：一张美国绿卡，其实就等于一年 100 万人民币。只要你是个正常人，有一张绿卡，一年就是这个底线。这个世界真的很参差。\n\n所以往后，推特我还是会发，但打法彻底变了。 关注我的朋友里，不少是因为我以前分享过纯粹的 AI 内容。后面我不会再那样追热点表达了，只发我自己真实在用、确实有内容的生态，更多发自己的真实想法和商业体感。\n\n我买了一个马克豆，后面会每天记一下经历和交流，想透了再输出。\n\n不追杂流量，先把地基打深，然后破土而出。",
       "publishedAt": "2026-10-12T22:06:04+08:00",
       "steps": [
         {
@@ -2018,44 +1961,38 @@
       "title": "用 REA 把剪映底裤扒了：可开源的 AI 剪辑通道",
       "industry": "AIGC / 短视频",
       "tech": "AI 视频工作流",
-      "summary": "我说拿 REA 把剪映底裤扒了，真不是开玩笑的😅 我用 Claude + Codex 一堆窗口并行，一天烧好几个 200 刀周限额，做出来的太逆天了。。。 等我完善一下，开源出来～ 1、实时编辑和刷新 实时改稿秒级刷新，你在 Codex 里对话，剪映播放器画面自然刷新，完全不占屏幕，也支持剪映自带的 Undo 和 Save，也能人工修改无缝交替。 2、剪映的…",
+      "summary": "gkxspace 用 Claude + Codex 多窗口并行（一天可烧掉多个 200 刀周限额），经 REA 打通剪映内部能力，计划脱敏后开源。已实现：对话改稿后播放器秒级刷新且支持 Undo/Save 与人工无缝交替；可调 200+ 条原生编辑命令（变换、裁剪、变速、关键帧、蒙版、调色、音量、切分、文字动画等），加功能只需写规则不必改代码/重启；素材库 13 类可一句话搜索下载上轨；云端算法（字幕识别、降噪、AI 配音、对口型、抠像等）仍在研究且不绕会员。细节含字幕逐字时间对齐、帧级切点与质检（黑帧、静音、响度、卡帧、字幕重叠）。口播试剪已能加推镜、章节花字、转场、贴纸、音效。",
       "publishedAt": "2026-10-12T21:55:52+08:00",
       "steps": [
         {
-          "text": "1、实时编辑和刷新\n实时改稿秒级刷新，你在 Codex 里对话，剪映播放器画面自然刷新，完全不占屏幕，也支持剪映自带的 Undo 和 Save，也能人工修改无缝…。",
-          "tools": "Claude / Codex / 剪映",
-          "tech": "执行要点",
-          "prep": "准备好相关账号与素材"
+          "text": "在 Codex 里对话改稿，剪映播放器秒级刷新；支持剪映自带 Undo/Save，可与人工修改无缝交替。",
+          "tools": "Codex + 剪映",
+          "tech": "实时编辑刷新",
+          "prep": "剪映与 Agent 通道已连通"
         },
         {
-          "text": "2、剪映的功能几乎都能调\n剪映内部 200 多条原生编辑命令：变换、裁剪、变速、关键帧、蒙版、调色、音量、切分、文字动画……。",
-          "tools": "Claude / Codex / 剪映",
-          "tech": "执行要点",
-          "prep": "准备好相关账号与素材"
+          "text": "通过剪映内部 200+ 原生命令做变换、裁剪、变速、关键帧、蒙版、调色、音量、切分、文字动画等；加新能力只写规则，不用改代码或重启。",
+          "tools": "剪映原生命令通道",
+          "tech": "规则驱动功能扩展",
+          "prep": "熟悉命令清单"
         },
         {
-          "text": "AI 走的是剪映自己的命令通道，加一个新功能只要写一条规则，不用改代码、不用重启剪映。",
-          "tools": "Claude / Codex / 剪映",
-          "tech": "执行要点",
-          "prep": "准备好相关账号与素材"
+          "text": "一句话搜索剪映素材库 13 类（滤镜、转场、贴纸、特效、花字、字体、文字模板、音乐、音效）并下载上轨。",
+          "tools": "剪映素材库",
+          "tech": "联网素材检索上轨",
+          "prep": "账号可访问素材库"
         },
         {
-          "text": "3、联网的东西也能直接用\n剪映素材库 13 类素材一句话搜：滤镜、转场、贴纸、特效、花字、字体、文字模板、音乐、音效，搜到直接下载上轨。",
-          "tools": "Claude / Codex / 剪映",
-          "tech": "执行要点",
-          "prep": "准备好相关账号与素材"
+          "text": "字幕按字对齐时间轴，切点精确到帧；剪完自动质检黑帧、静音、响度、卡帧、字幕重叠等问题。",
+          "tools": "质检脚本 / 规则",
+          "tech": "帧级对齐与质检",
+          "prep": "口播素材与字幕"
         },
         {
-          "text": "云端算法还在研究：识别字幕、降噪、AI 配音、对口型、抠像、补帧、超分、防抖(会员功能不绕哈，要不然得出事)。",
-          "tools": "Claude / Codex / 剪映",
-          "tech": "执行要点",
-          "prep": "确认订阅档位与额度"
-        },
-        {
-          "text": "4、细节抠到变态\n字幕按每个字的时间强制对齐，切点精确到帧，剪完还能自己质检：黑帧、静音、响度、卡帧、字幕重叠...。",
-          "tools": "Claude / Codex / 剪映",
-          "tech": "执行要点",
-          "prep": "准备好相关账号与素材"
+          "text": "在常规剪辑上叠加推镜、章节花字卡、转场、贴纸、音效；敏感能力脱敏后再考虑公开开源。",
+          "tools": "Claude + Codex 并行",
+          "tech": "成片增强与合规脱敏",
+          "prep": "控制 API 周限额消耗"
         }
       ],
       "isLong": true,
@@ -2079,7 +2016,7 @@
       "title": "如果你用 Chrome，记得把这个省内存模式打开",
       "industry": "开源分享",
       "tech": "开源项目",
-      "summary": "如果你用 Chrome，记得把这个省内存模式打开 默认是关闭的，我 48G 的 Mac 被它吃到 55G，打开均衡之后秒变成 20G😅 打开 chrome://settings/performance 就能看到，以后闲置标签页会自动释放内存 固定的标签页、给了通知权限的网站，不会被自动释放 或者也可以试一下这个 Chrome 开源插件： Auto Tab D…",
+      "summary": "如果你用 Chrome，记得把这个省内存模式打开\n\n默认是关闭的，我 48G 的 Mac 被它吃到 55G，打开均衡之后秒变成 20G😅\n\n打开 chrome://settings/performance 就能看到，以后闲置标签页会自动释放内存\n固定的标签页、给了通知权限的网站，不会被自动释放\n\n或者也可以试一下这个 Chrome 开源插件：\nAuto Tab Discard",
       "publishedAt": "2026-10-12T20:19:27+08:00",
       "steps": [],
       "isLong": false,
@@ -2095,63 +2032,58 @@
       "url": "https://x.com/Astronaut_1216/status/2109565234075599258",
       "author": "Astronaut_1216",
       "authorName": "叫我阿杭",
-      "title": "如何30天销售额271万美元，这个案例真的牛逼！！！最近研究出海，我有重…",
+      "title": "30 天卖 271 万美元：普拉提防滑袜的 AI 选品复盘",
       "industry": "AIGC / 短视频",
       "tech": "AI 视频工作流",
-      "summary": "如何30天销售额271万美元，这个案例真的牛逼！！！最近研究出海，我有重新看了几遍这个youtube，我愿称之为出海必学指南！！ 这个案例在我刚做X的时候，拿下了10万曝光，今天我对如何完成这件事儿有了新的理解，他之所以能赚这么多钱，就是因为对需求理解到极致，对AI的应用理解到极致！！ 一双普拉提防滑袜，怎么从AI调研变成出海生意？ 只有一招：先查趋势，再去…",
+      "summary": "阿杭复盘 Seena Rez「30 天约 271 万美元」出海案例：核心是把需求与 AI 用到极致。路径是先查趋势，再看 YouTube 普拉提女生日常字幕，找反复提到的商品，最终锁定防滑袜；用 Codex + Monid 约 10 分钟跑通调研。流程包括：用外部数据工具搜视频/取字幕做选品依据；结合 Google Trends、YouTube、Tavi / Pointe Studio 等形成研究简报；调 1688 接口锁定诸暨等多家袜厂；小样本验证约 20 条视频与长字幕，提炼保暖、防滑、是否包趾等痛点并核对品牌页；最终选定面向普拉提、包趾防滑袜打样。累计接口含 TikHub、DataForSEO、Apify、Context.dev、MrScraper，约 1575 条样本、袜子场景两轮 Monid 数据费约 0.03256 美元。他建议独立站或出海 AI 实施直接用这套选品 / 需求调研 / 竞品 / 供应商方法对接客户。",
       "publishedAt": "2026-10-12T16:42:00+08:00",
       "steps": [
         {
-          "text": "AI要判断什么商品值得做，先得拿到真实的用户内容。",
-          "tools": "Codex",
-          "tech": "执行要点",
-          "prep": "准备好相关账号与素材"
+          "text": "AI 判断商品是否值得做，先拿到真实用户内容：让 Monid 帮 Codex 找外部数据工具，搜视频、取字幕，整理成选品依据。",
+          "tools": "Codex + Monid",
+          "tech": "用户内容采集",
+          "prep": "明确品类方向（如普拉提）"
         },
         {
-          "text": "monid调用2400数据+接口搜索： 从女生在什么场合用袜子，到她们提了哪些品牌，再到需要补看哪些审美画面，一份研究简报就有了具体方向，这些网站链接分别是：G…。",
-          "tools": "Codex",
-          "tech": "执行要点",
-          "prep": "准备好相关账号与素材"
+          "text": "Monid 调用多源数据：从使用场合、提到的品牌到需补看的审美画面，形成研究简报（Google Trends、YouTube 生活视频、Tavi / Pointe Studio 官网等）。",
+          "tools": "Monid, Google Trends, YouTube",
+          "tech": "多源研究简报",
+          "prep": "接口与配额可用"
         },
         {
-          "text": "带着这些证据调用1688接口找中国工厂，找出了网页索引中提到的以下几个厂商：诸暨市迎悦针织有限公司；诸暨市雪洁针织有限公司；诸暨市众合针织有限公司；诸暨市椿楸袜…。",
-          "tools": "Codex",
-          "tech": "执行要点",
-          "prep": "准备好相关账号与素材"
+          "text": "带着证据调 1688 接口找中国工厂，锁定诸暨迎悦 / 雪洁 / 众合 / 椿楸等针织袜业厂商。",
+          "tools": "1688 接口 / MrScraper",
+          "tech": "供应商检索",
+          "prep": "有工厂检索通道"
         },
         {
-          "text": "我按这个入口做了小样本验证，搜到20条普拉提生活视频，再取一条21分52秒视频的英文自动字幕。",
-          "tools": "Codex",
-          "tech": "视频工作流",
-          "prep": "准备好相关账号与素材"
+          "text": "小样本验证：搜约 20 条普拉提生活视频，抽取长视频英文字幕，记录防滑袜相关表述（保暖、防滑、不想露脚趾等）。",
+          "tools": "YouTube + 字幕",
+          "tech": "字幕痛点提炼",
+          "prep": "选代表性视频"
         },
         {
-          "text": "痛点问题一下具体了：材料厚度怎么比较，在哪种垫面上验证，脚趾要不要包住，当monid调研字幕时，发现字幕还出现了品牌名，所以品牌竞争也得继续查，又调用http:…。",
-          "tools": "Codex",
-          "tech": "执行要点",
-          "prep": "准备好相关账号与素材"
+          "text": "把痛点具体化（厚度、垫面、是否包趾），并对字幕出现的品牌用网页搜索核对官方页，继续看竞争。",
+          "tools": "Context.dev /web/search",
+          "tech": "品牌竞争核对",
+          "prep": "品牌名列表"
         },
         {
-          "text": "于是最后没想到结果和视频里的这个老外完全契合，就是应该选择面向普拉提训练、包住脚趾的防滑袜作为打样候选。",
-          "tools": "Codex",
-          "tech": "视频工作流",
-          "prep": "准备好相关账号与素材"
-        },
-        {
-          "text": "累计用的接口都有：TikHub（抖音解析、YouTube视频搜索）、DataForSEO（Google Trends趋势）、Apify（YouTube字幕）、h…。",
-          "tools": "Codex",
-          "tech": "视频工作流",
-          "prep": "准备好相关账号与素材"
+          "text": "收敛打样候选：面向普拉提训练、包趾防滑袜；汇总 TikHub / DataForSEO / Apify / Context.dev / MrScraper 等成本与样本，再对外讲清选品与供应链故事。",
+          "tools": "Monid 数据费用账单",
+          "tech": "选品结论与服务话术",
+          "prep": "成本与样本统计"
         }
       ],
       "isLong": true,
       "authorAvatar": "avatars/Astronaut_1216.jpg",
       "tags": [
-        "AIGC",
-        "短视频",
-        "AI",
-        "视频工作流",
-        "Codex"
+        "出海",
+        "选品",
+        "Monid",
+        "Codex",
+        "普拉提",
+        "独立站"
       ]
     },
     {
@@ -2159,10 +2091,10 @@
       "url": "https://x.com/Astronaut_1216/status/2109328429728534719",
       "author": "Astronaut_1216",
       "authorName": "叫我阿杭",
-      "title": "我的天啊....开发已死，抄袭永生...我真的觉得AI时代没有SaaS…",
+      "title": "我的天啊....开发已死",
       "industry": "AI 编程 / Agent",
       "tech": "开发工作流",
-      "summary": "我的天啊....开发已死，抄袭永生...我真的觉得AI时代没有SaaS 产品了....所有的东西都可以被逆向，这个项目存在之后，世界会乱套啊.... 这可能是又一个增速媲美OpenClaw的项目，也许你用CodeX或者Claude Code有很多的安全围墙，有很多的道德限制，让你不能够完成 但如果这个时候你配一个开源模型，结合你自己的Harness，我都不敢…",
+      "summary": "我的天啊....开发已死，抄袭永生...我真的觉得AI时代没有SaaS 产品了....所有的东西都可以被逆向，这个项目存在之后，世界会乱套啊....\n\n这可能是又一个增速媲美OpenClaw的项目，也许你用CodeX或者Claude Code有很多的安全围墙，有很多的道德限制，让你不能够完成\n\n但如果这个时候你配一个开源模型，结合你自己的Harness，我都不敢想黑灰产和rea结合在一起到底能爆发怎么样的叙事\n\n比如人人可以逆向一个微信，人人可以逆向一个figma......比如各种合规小程序被逆向之后+中老年群体.....\n\nhttps://github.com/morluto/rea",
       "publishedAt": "2026-10-12T01:01:01+08:00",
       "steps": [],
       "isLong": false,
@@ -2205,7 +2137,7 @@
       "title": "论文：从公开内容到 AI 搜索引用的脆弱性（GEO）",
       "industry": "GEO / AI 搜索",
       "tech": "GEO、可见度",
-      "summary": "复旦大学与上海浦东密码学研究院团队的一篇最新的论文：《从公开内容发布到AI搜索引用：衡量AI搜索系统的脆弱性》 这是一篇与GEO行业高度相关的实证研究 它不仅研究 AI 搜索引用哪些网站，而且通过真实的内容发布实验，验证了内容发布平台的选择，如何影响内容进入AI搜索结果以及被AI引用的概率 论文研究了包括 ChatGPT、Google AI、Perplexi…",
+      "summary": "复旦大学与上海浦东密码学研究院团队的一篇最新的论文：《从公开内容发布到AI搜索引用：衡量AI搜索系统的脆弱性》\n\n这是一篇与GEO行业高度相关的实证研究\n它不仅研究 AI 搜索引用哪些网站，而且通过真实的内容发布实验，验证了内容发布平台的选择，如何影响内容进入AI搜索结果以及被AI引用的概率\n论文研究了包括 ChatGPT、Google AI、Perplexity、Grok、豆包、元宝、文心、千问、Kimi 和 DeepSeek 在内的10个AI搜索平台\n\n几个重要发现：\n- 17,211次AI引用： 研究发现，不同AI平台对信源存在明显的选择偏好，部分平台前20个网站贡献了超过70%的引用\n- 80%的平台引用了人为创造的概念： 研究人员在公开内容平台发布虚构概念，7天内有8个AI搜索平台引用了相关内容\n- 发布渠道比单纯增加数量更值得关注： 在特定实验中，1 篇发布在高引用偏好平台上的文章，其引用效果超过 20 多篇发布在低偏好平台上的文章\n- 内容可以较快进入AI答案： 不同平台的引用延迟从约24小时到超过5天不等；另一个GEO服务采购案例，在发布后1小时内观察到了AI引用\n- 低成本的商业化GEO服务已经存在： 研究人员花费14美元购买了一次GEO服务，服务商发布了13篇公开内容，随后观察到 AI 搜索引用了其中的内容\n\n一些有价值的数据\n1、不同AI平台的引用特征\nGrok平均每次回答有52.2条引用，而千问只有6.52条，相差约8倍，数据存在非常明显的差异，不过，这不能说明Grok的答案质量是千问的8倍，也不能简单理解为Grok对网站更加友好，各个平台的引用展示机制、回答长度、检索策略不同\n合理的做法，是在每个平台内部建立基线，再比较品牌自身的变化与竞争对手的表现\n\n2、AI引用具有显著的头部集中效应\n这个结论其实已经是常识了，不过仍然有必要分享下\n研究人员统计了各个平台引用最多的前 1、3、5、10、20 个域名，分析这些网站占据了多少引用份额\n结果发现：\n文心的前20个域名，占据了70.8%的引用\nDeepSeek的前20个域名，占据了20.5%的引用\n即使在四种不同问题类型内分别统计，头部网站的集中效应仍然存在\n这说明AI搜索并不是从互联网上均匀地选择信息来源，不同AI平台实际上呈现出了不同的信源分布\n\n3、不同AI平台的信源重叠程度很低\n研究人员引入了Jaccard相似系数，衡量两个AI平台最常引用的网站有多大程度的重合\n两个平台完全引用相同的域名集合时，Jaccard值为1，完全没有重合时，值为0\n研究发现，所有平台两两比较，前20个高频引用域名的平均Jaccard值只有0.201，也就是说，不同AI平台在信源选择上存在很大的差异\n所以，GEO系统应该建设面向不同AI平台的独立信源画像，而不是把所有平台混合为一个统一渠道\n\n4、平台存在关联信源集中现象\n论文还研究了AI平台是否倾向于引用自身母公司或关联公司的内容\n\n一些重要结论或观点总结\n1、AI搜索最大的权力，不是生成答案，而是决定哪些信息有资格成为答案\n2、AI看似在搜索整个互联网，实际上可能反复引用少数几个网站\n3、GEO不是把内容发布到更多地方，而是把内容发布到更有价值的地方\n4、互联网只有一个，但不同AI眼中的互联网，可能完全不同\n5、内容生产存在边际收益，但内容数量不等于影响力\n6、AI经常引用一个网站，不代表这个网站的信息就值得信任\n7、在信息稀缺的领域，最先建立可见信息的人，可能拥有更大的认知影响力\n8、内容可以在互联网上被删除，却不一定立即从 AI 的答案中消失\n9、GEO的终极目标，不是让AI引用品牌，而是让AI正确理解品牌，并影响真实的商业决策",
       "publishedAt": "2026-10-11T11:00:11+08:00",
       "steps": [
         {
@@ -2273,7 +2205,7 @@
       "url": "https://x.com/Astronaut_1216/status/2108850078052188486",
       "author": "Astronaut_1216",
       "authorName": "叫我阿杭",
-      "title": "我真的爽了！兄弟们！！！我觉得所有人都应该有一个目标就是疯狂的做SaaS…",
+      "title": "我真的爽了！兄弟们！！！我觉得所有人都应该有一个目标就是疯狂的做SaaS出海",
       "industry": "AI 自媒体",
       "tech": "工具测评",
       "summary": "我真的爽了！兄弟们！！！我觉得所有人都应该有一个目标就是疯狂的做SaaS出海，做独立站，成本其实就算上买域名也就10块钱啊，调研痛点这个事，我最近找到了个好东西，五毛钱就够了！！！！能够爬全球网站！",
@@ -2295,7 +2227,7 @@
       "title": "ChatGPT 更新后的严重 Bug 清单",
       "industry": "AI × Web3 思考",
       "tech": "高密度思考",
-      "summary": "最近 ChatGPT 的更新引入了大量 bug，所以我整理了一份目前人们遇到最严重问题的列表： → 新 UI 中图像加载失败。 → 对话消失或拒绝打开。 → GPT-6 难以从过去的聊天中检索上下文。 → 工作任务冻结数小时甚至数天。 → 失败的运行消耗使用量。 → 自动压缩丢失上下文和指令。 → 随机变慢和明显的子代理限速。 → 损坏的停止按钮和消失的输入…",
+      "summary": "最近 ChatGPT 的更新引入了大量 bug，所以我整理了一份目前人们遇到最严重问题的列表：\n\n→ 新 UI 中图像加载失败。\n→ 对话消失或拒绝打开。\n→ GPT-6 难以从过去的聊天中检索上下文。\n→ 工作任务冻结数小时甚至数天。\n→ 失败的运行消耗使用量。\n→ 自动压缩丢失上下文和指令。\n→ 随机变慢和明显的子代理限速。\n→ 损坏的停止按钮和消失的输入字段。\n→ 令人困惑的使用限制和重置时间。\n\n其中一些问题在 GPT-6 之前就存在，但整体体验感觉越来越不稳定。\n\n如果你正在遇到这些 bug 中的任何一个，请知道你不是一个人，OpenAI 正在努力修复它们。",
       "publishedAt": "2026-10-10T04:40:00+08:00",
       "steps": [],
       "isLong": false,
@@ -2314,10 +2246,10 @@
       "url": "https://x.com/ChenshuoAI/status/2108486067158708347",
       "author": "ChenshuoAI",
       "authorName": "陈硕KAI（思考中）",
-      "title": "听了孙宇晨和邵艾伦的访谈，听了差不多 20 分钟。说实话，不管是他在宣传…",
+      "title": "听了孙宇晨和邵艾伦的访谈",
       "industry": "加密 / 财商",
       "tech": "金融认知",
-      "summary": "听了孙宇晨和邵艾伦的访谈，听了差不多 20 分钟。说实话，不管是他在宣传他的 BAI、宣传他的火币，还是宣传他的孙学，已经无感了，也可能是因为成长到一定阶段了吧。 但这部分内容，对于国内一些认知可能并没有特别好的人群，仍然会有特别高的效果。但实际上，对于大部分对这个世界有一些洞察的人来说，没有必要听太多。这东西更多指向类似于心灵鸡汤，还有营销属性特别强。 我…",
+      "summary": "听了孙宇晨和邵艾伦的访谈，听了差不多 20 分钟。说实话，不管是他在宣传他的 BAI、宣传他的火币，还是宣传他的孙学，已经无感了，也可能是因为成长到一定阶段了吧。\n\n但这部分内容，对于国内一些认知可能并没有特别好的人群，仍然会有特别高的效果。但实际上，对于大部分对这个世界有一些洞察的人来说，没有必要听太多。这东西更多指向类似于心灵鸡汤，还有营销属性特别强。\n\n我只能说一句，孙哥已经不复当年少年了，",
       "publishedAt": "2026-10-09T17:13:46+08:00",
       "steps": [],
       "isLong": false,
@@ -2336,38 +2268,26 @@
       "title": "开源 17 套知识付费提示词",
       "industry": "AIGC / 短视频",
       "tech": "AI 视频工作流",
-      "summary": "开源17套知识付费提示词，分享给正在做课程的老师、知识创作者和教育产品团队，地址见文末 四年前，成立过一家知识付费类的MCN公司，主要模式是签约一些明星和艺术家，包括一些歌手、导演、奥运冠军和国粹大师等，通过短视频和直播的形式来运营他们的IP，并通过知识付费来形成商业闭环 这种模式的好处是，流量非常好做，账号也很容易做起来，不少IP本身也自带流量，随便一开播…",
+      "summary": "姚金刚开源 17 套知识付费提示词，面向做课老师、知识创作者与教育产品团队。背景是四年前做过知识付费 MCN：签约明星与艺术家靠短视频/直播做 IP，再用知识付费闭环；流量好做但服务重、情绪价值成本高。他结合十年在线教育经验写过《课程营销学》，有 AI 后把各章提炼成提示词，覆盖课程定位、设计、售卖、运营四大模块，可直接试用并欢迎反馈。",
       "publishedAt": "2026-10-08T16:05:49+08:00",
       "steps": [
         {
-          "text": "四年前，成立过一家知识付费类的MCN公司，主要模式是签约一些明星和艺术家，包括一些歌手、导演、奥运冠军和国粹大师等，通过短视频和直播的形式来运营他们的IP，并通…。",
-          "tools": "笔记 / 实践",
-          "tech": "视频工作流",
-          "prep": "准备好相关账号与素材"
+          "text": "打开文末开源地址，获取 17 套知识付费提示词。",
+          "tools": "开源提示词包",
+          "tech": "提示词模板",
+          "prep": "明确自己的课程阶段"
         },
         {
-          "text": "这种模式的好处是，流量非常好做，账号也很容易做起来，不少IP本身也自带流量，随便一开播，同时在线就能上万人在线。",
-          "tools": "笔记 / 实践",
-          "tech": "执行要点",
-          "prep": "准备好相关账号与素材"
+          "text": "按四大模块选用：课程定位、课程设计、课程售卖、课程运营，直接套到筹备中的第一门课或已有课程重梳。",
+          "tools": "提示词 + LLM",
+          "tech": "课程营销学拆解",
+          "prep": "准备课程素材与目标学员画像"
         },
         {
-          "text": "但弊端也很大，需要提供非常重的服务，包括非常重的情绪价值，这也导致整体的运营成本很高。",
-          "tools": "笔记 / 实践",
-          "tech": "执行要点",
-          "prep": "准备好相关账号与素材"
-        },
-        {
-          "text": "为了帮助他们做出更好的课程，结合之前十年的在线教育行业经验，闭关写了一本《课程营销学》，有了AI之后，便把这本书的每一个章节，提炼出了提示词，一共17套。",
-          "tools": "笔记 / 实践",
-          "tech": "Prompt / 脚本",
-          "prep": "准备好相关账号与素材"
-        },
-        {
-          "text": "这17套提示词，可以直接使用，涵盖课程定位、课程设计、课程售卖和课程运营四大核心模块。",
-          "tools": "笔记 / 实践",
-          "tech": "Prompt / 脚本",
-          "prep": "准备好相关账号与素材"
+          "text": "试用后把缺漏与补充需求反馈给作者，迭代提示词包。",
+          "tools": "",
+          "tech": "社区反馈迭代",
+          "prep": "记录使用问题"
         }
       ],
       "isLong": true,
@@ -2389,7 +2309,7 @@
       "title": "AIHOT 上线性价比（帕累托前沿）视图",
       "industry": "AI 编程 / Agent",
       "tech": "开发工作流",
-      "summary": "这两天有很多用户问我能不能在AIHOT里面加上帕累托前沿，也就是去看模型的性价比，反正数据和算法都有，于是花了半小时的时间把这个功能怼上去了。 目前已经上线，切换到右上角的性价比就可以看到：    根据场景的不同，几个场景的算法不太一样： 1. 综合、专业办公：按日常用量算，缓存命中 : 输入 : 输出 = 7 : 2 : 1 2. 编程：按 Agent 长…",
+      "summary": "这两天有很多用户问我能不能在AIHOT里面加上帕累托前沿，也就是去看模型的性价比，反正数据和算法都有，于是花了半小时的时间把这个功能怼上去了。\n\n目前已经上线，切换到右上角的性价比就可以看到：\n https://aihot.news/leaderboard\n\n根据场景的不同，几个场景的算法不太一样：\n1. 综合、专业办公：按日常用量算，缓存命中 : 输入 : 输出 = 7 : 2 : 1\n2. 编程：按 Agent 长时间写代码算，绝大部分 Token 都是缓存命中，缓存命中 : 输入 : 输出 = 97 : 2 : 1\n3. 科研：难题要想很久，思考算输出，输入 : 输出 = 1 : 3\n4. 知识问答：偏知识类问答或创作，不算缓存，输入 : 输出 = 3 : 1\n\n希望这个小功能对大家有用～",
       "publishedAt": "2026-10-06T17:00:33+08:00",
       "steps": [
         {
@@ -2434,7 +2354,7 @@
       "title": "抖音的相关搜索词数据爬虫skill来了，开源给大家",
       "industry": "AI 编程 / Agent",
       "tech": "开发工作流",
-      "summary": "抖音的相关搜索词数据爬虫skill来了，开源给大家 GitHub地址见文末 输入多个核心词根，AI自动按「词根→一级词→二级词」扩展进行操作 AI自动记录相关搜索词的下拉位置、来源路径，再按行业商业意图打分，最后完成统计，输出一份完整的Excel文件 还是一样的逻辑，Codex原生电脑操作，抖音网页版，无需点击和页面刷新动作，相对风控风险较低 为了谨慎起见…",
+      "summary": "抖音的相关搜索词数据爬虫skill来了，开源给大家\nGitHub地址见文末\n\n输入多个核心词根，AI自动按「词根→一级词→二级词」扩展进行操作\nAI自动记录相关搜索词的下拉位置、来源路径，再按行业商业意图打分，最后完成统计，输出一份完整的Excel文件\n\n还是一样的逻辑，Codex原生电脑操作，抖音网页版，无需点击和页面刷新动作，相对风控风险较低\n为了谨慎起见，建议小号测试\n\n截图为留学案例实测：3 个词根，200 条记录，142 个去重词\n\nGitHub地址：\nhttps://github.com/yaojingang/yao-geo-skills/tree/main/skills/yao-geo-douyin",
       "publishedAt": "2026-10-01T09:39:06+08:00",
       "steps": [],
       "isLong": false,
@@ -2456,7 +2376,7 @@
       "title": "GEO 公开课已完成 5 期：主题式连载复盘",
       "industry": "GEO / AI 搜索",
       "tech": "GEO、可见度",
-      "summary": "不知不觉，GEO公开课已经完成了5期了 和@vista8 向阳老师在开始讨论系列GEO公开课时，初步定的是每月1期，持续12期，还剩7期 每期定一个大的主题，然后通过直播的形式，完成关于这个主题的系统性分享 之后每次分享，会做个简单的调研，根据大家当前最关心的问题，来调整公开课的内容节奏与安排 下面是前五期直播的图文总结版，欢迎收藏： 1、第一节公开课：《从…",
+      "summary": "不知不觉，GEO公开课已经完成了5期了\n\n和@vista8 向阳老师在开始讨论系列GEO公开课时，初步定的是每月1期，持续12期，还剩7期\n\n每期定一个大的主题，然后通过直播的形式，完成关于这个主题的系统性分享\n之后每次分享，会做个简单的调研，根据大家当前最关心的问题，来调整公开课的内容节奏与安排\n\n下面是前五期直播的图文总结版，欢迎收藏：\n\n1、第一节公开课：《从AI搜索逻辑到GEOFlow落地实战》\nhttps://mp.weixin.qq.com/s/8Lyrzux7WacHjiHx_P9Fbg\n\n2、第二节公开课：《一文讲透GEO内容工程：目标、要素、关系与反馈》\nhttps://mp.weixin.qq.com/s/0ZZ5je2-W83HY7RtmsYkJA\n\n3、第三节公开课：《一次讲透GEO信源偏好与信源投放策略》\nhttps://mp.weixin.qq.com/s/u6wEeYcHWoumDNvHh4Zkww\n\n4、第四节公开课：《官网正在成为GEO主阵地：从企业事实到AI引用，官网GEO实战公开课》\nhttps://mp.weixin.qq.com/s/PVi74oPeoUTFUa23tDaBZA\n\n5、第五节公开课：《GEO到底该投多少钱？1.3万字讲透效果归因与ROI（附10种标记方法）》\nhttps://mp.weixin.qq.com/s/86cexOCX4AX-uwQc9O69-w",
       "publishedAt": "2026-09-28T08:40:46+08:00",
       "steps": [
         {
