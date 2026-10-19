@@ -1,6 +1,87 @@
 {
-  "updatedAt": "2026-10-19T10:49:49+08:00",
+  "updatedAt": "2026-10-19T23:11:35+08:00",
   "posts": [
+    {
+      "id": "2112131604902772804",
+      "url": "https://x.com/Saccc_c/status/2112131604902772804",
+      "author": "Saccc_c",
+      "authorName": "Sac",
+      "authorAvatar": "avatars/Saccc_c.jpg",
+      "title": "叭哥说：终身免费的 AI 口喷，平替 Typeless",
+      "industry": "AI 工具 / 生产力",
+      "tech": "语音输入、口喷润色、自定义词库",
+      "summary": "Sac 在做《小王子》游戏时高强度 vibe coding，发现 Typeless 免费额度降到 2000 字不够用，改用 Claude 推荐的「叭哥说」：终身免费、速度快、几乎不用改输出。优点包括自动润色排版、自定义词库、百语种边说边翻、语音加密且云端不留存。官方另有 10 万悬赏活动。",
+      "publishedAt": "2026-10-19T18:39:50+08:00",
+      "isLong": true,
+      "tags": [
+        "叭哥说",
+        "语音输入",
+        "Typeless",
+        "vibe coding",
+        "生产力",
+        "自媒体"
+      ],
+      "steps": [
+        {
+          "text": "在高强度和 AI 对话（vibe coding / 自媒体）时，改用「叭哥说」口喷输入，替代额度收紧的 Typeless。",
+          "tools": "叭哥说",
+          "tech": "语音转文字 + 自动润色",
+          "prep": "下载安装叭哥说客户端"
+        },
+        {
+          "text": "把行业术语、产品名、代码名写入自定义词库，减少反复纠正。",
+          "tools": "叭哥说词库",
+          "tech": "自定义热词",
+          "prep": "整理常用专有名词列表"
+        },
+        {
+          "text": "需要多语种时开启边说边翻；敏感内容依赖其语音加密、云端不保留的设定。",
+          "tools": "叭哥说翻译 / 加密传输",
+          "tech": "实时翻译、隐私传输",
+          "prep": "确认目标语言与隐私需求"
+        }
+      ]
+    },
+    {
+      "id": "2112076203830218911",
+      "url": "https://x.com/Saccc_c/status/2112076203830218911",
+      "author": "Saccc_c",
+      "authorName": "Sac",
+      "authorAvatar": "avatars/Saccc_c.jpg",
+      "title": "用 Open-Science 打通读论文学 AI 的渠道",
+      "industry": "AI 研究 / 学习工具",
+      "tech": "Open-Science、论文可视化、多模型接入",
+      "summary": "Sac 推荐 aipoch 开源的 Open-Science：把读论文、分析数据、跑代码、出图表放在同一 AI 研究工作台，可接 Codex/Claude 订阅。他以 DeepMind 参与的「AI 味」写作论文为例，对比孙哥爱情小作文与 ChatGPT 同题故事，验证线性叙事更偏 AI 味，并建议定期读高质量论文。",
+      "publishedAt": "2026-10-19T14:59:42+08:00",
+      "isLong": true,
+      "tags": [
+        "Open-Science",
+        "读论文",
+        "AI 研究",
+        "DeepMind",
+        "学习方法"
+      ],
+      "steps": [
+        {
+          "text": "从 GitHub 安装 Open-Science，把读论文、数据分析、跑代码、出图放进同一工作台。",
+          "tools": "Open-Science（github.com/aipoch/open-science）",
+          "tech": "AI 研究工作台",
+          "prep": "准备 Codex 或 Claude 等模型订阅"
+        },
+        {
+          "text": "选一篇高质量论文，用可视化图表理解概念与核心发现，再动手复现验证。",
+          "tools": "Open-Science + 论文 PDF",
+          "tech": "论文理解与复现",
+          "prep": "选定目标论文与验证问题"
+        },
+        {
+          "text": "按论文方法做对比实验（如 AI 味叙事分析），把结论沉淀为可复用学习习惯。",
+          "tools": "Open-Science / 自选模型",
+          "tech": "实验对比",
+          "prep": "准备对照样本（人工文 vs 模型文）"
+        }
+      ]
+    },
     {
       "id": "2111987947545534522",
       "url": "https://x.com/ai_xiaomu/status/2111987947545534522",
@@ -1214,6 +1295,27 @@
       ]
     },
     {
+      "id": "2111453785373688247",
+      "url": "https://x.com/Saccc_c/status/2111453785373688247",
+      "author": "Saccc_c",
+      "authorName": "Sac",
+      "authorAvatar": "avatars/Saccc_c.jpg",
+      "title": "沙发 vibe coding：电脑连电视边看边写",
+      "industry": "开发体验 / 硬件工作流",
+      "tech": "大屏投屏、vibe coding",
+      "summary": "Sac 试用郭宇老师新产品后进入「沙发 vibe coding」：电脑连电视，边看大屏边写。认同「人生要去享受挑战和创造的乐趣」，称自己今年初才大规模拥抱 AI，过去半年几乎每天学习、实践并在 X 分享。",
+      "publishedAt": "2026-10-17T21:46:26+08:00",
+      "isLong": false,
+      "tags": [
+        "vibe coding",
+        "郭宇",
+        "工作流",
+        "大屏",
+        "创造"
+      ],
+      "steps": []
+    },
+    {
       "id": "2111362854813360554",
       "url": "https://x.com/ai_xiaomu/status/2111362854813360554",
       "author": "ai_xiaomu",
@@ -1366,6 +1468,47 @@
       ]
     },
     {
+      "id": "2111148336954888249",
+      "url": "https://x.com/Saccc_c/status/2111148336954888249",
+      "author": "Saccc_c",
+      "authorName": "Sac",
+      "authorAvatar": "avatars/Saccc_c.jpg",
+      "title": "Glimpse：用视觉推理给 vibe coding 做验收",
+      "industry": "AI 模型 / 游戏开发",
+      "tech": "Glimpse、视觉理解、录屏验 bug",
+      "summary": "Elorian AI 发布的 Glimpse 主打视觉理解与推理。Sac 用内测版给《小王子》游戏做验收：上传游玩录屏即可按时间戳列出潜在 bug，酒馆章节实测梳理出的问题约为 Astra 的 3 倍。可接 Codex/Claude 完善验收流，也适合约束 AIGC 视频/图片提示词。",
+      "publishedAt": "2026-10-17T01:32:41+08:00",
+      "isLong": true,
+      "tags": [
+        "Glimpse",
+        "Elorian",
+        "视觉模型",
+        "bug 验收",
+        "vibe coding",
+        "游戏开发"
+      ],
+      "steps": [
+        {
+          "text": "录制实际游玩画面，把录屏交给 Glimpse，让它按画面判断设计合理性并列出潜在 bug。",
+          "tools": "Glimpse、游戏录屏",
+          "tech": "视觉推理验 bug",
+          "prep": "准备关键关卡录屏"
+        },
+        {
+          "text": "按时间戳逐条核验；点击时间戳跳到对应画面，补上 Astra/Opus 容易漏的细节。",
+          "tools": "Glimpse 时间戳面板",
+          "tech": "时间戳跳转核验",
+          "prep": "预留人工复查时间"
+        },
+        {
+          "text": "通过 API 把 Glimpse 接到 Codex / Claude Code，把视觉验收嵌进日常开发流；也可用于约束图生/视频提示词。",
+          "tools": "Glimpse API、Codex、Claude Code",
+          "tech": "验收流水线 / 提示词约束",
+          "prep": "申请 API 并写好验收 prompt"
+        }
+      ]
+    },
+    {
       "id": "2111078005330399726",
       "url": "https://x.com/Khazix0918/status/2111078005330399726",
       "author": "Khazix0918",
@@ -1383,6 +1526,46 @@
         "硬件",
         "本地部署",
         "RTX Spark"
+      ]
+    },
+    {
+      "id": "2111049272326230229",
+      "url": "https://x.com/Saccc_c/status/2111049272326230229",
+      "author": "Saccc_c",
+      "authorName": "Sac",
+      "authorAvatar": "avatars/Saccc_c.jpg",
+      "title": "靠读论文入门 AI，并用 Open-Science 复现项目",
+      "industry": "AI 学习 / 自媒体起号",
+      "tech": "论文精读、Open-Science、科研 Agent",
+      "summary": "Sac 认为大量读论文是入门 AI 的极佳路径：朋友韭二老师爆肝 60 篇论文后入职盛大 evermind；在 X 分发论文解读也是空白赛道。推荐 Open-Science 一体化科研工作台：内置科研 skills、灵活接模型、过程可回溯、支持动手复现，复现 5 篇以上可快速建立专业感。",
+      "publishedAt": "2026-10-16T18:59:02+08:00",
+      "isLong": true,
+      "tags": [
+        "读论文",
+        "Open-Science",
+        "AI 入门",
+        "起号",
+        "科研 Agent"
+      ],
+      "steps": [
+        {
+          "text": "选定论文主题，用 Open-Science 的科研 Agent 检索文献、梳理方法并产出报告。",
+          "tools": "Open-Science Agent / 科研 skills",
+          "tech": "文献检索与报告",
+          "prep": "写清研究目标与关键词"
+        },
+        {
+          "text": "按任务分配 Codex / Claude 等模型，动手复现计算与分析，并保存图表与执行记录便于回溯。",
+          "tools": "Open-Science、Codex、Claude",
+          "tech": "论文复现与过程留痕",
+          "prep": "准备运行环境与数据"
+        },
+        {
+          "text": "把复现心得写成 X 帖分发，把学习过程同时变成起号内容。",
+          "tools": "X / 内容模板",
+          "tech": "论文解读起号",
+          "prep": "整理可公开的结论与图表"
+        }
       ]
     },
     {
@@ -1665,6 +1848,69 @@
       ]
     },
     {
+      "id": "2110948050864865514",
+      "url": "https://x.com/Saccc_c/status/2110948050864865514",
+      "author": "Saccc_c",
+      "authorName": "Sac",
+      "authorAvatar": "avatars/Saccc_c.jpg",
+      "title": "小王子项目冷启动抖音小红书，下周开源三件事",
+      "industry": "自媒体 / 开源",
+      "tech": "跨平台冷启动、开源计划",
+      "summary": "Sac 称借助《小王子》项目已在抖音、小红书完成冷启动，全网同名 Sac。下周计划开源：3D 游戏创作 GitHub 仓库、如何入门 AI 自媒体（X 成长之路）、如何入门 AI 开发。",
+      "publishedAt": "2026-10-16T12:16:49+08:00",
+      "isLong": false,
+      "tags": [
+        "小王子",
+        "抖音",
+        "小红书",
+        "冷启动",
+        "开源",
+        "自媒体"
+      ],
+      "steps": []
+    },
+    {
+      "id": "2110930332803575978",
+      "url": "https://x.com/Saccc_c/status/2110930332803575978",
+      "author": "Saccc_c",
+      "authorName": "Sac",
+      "authorAvatar": "avatars/Saccc_c.jpg",
+      "title": "稳定使用 Opus 5.5 的环境与支付配置清单",
+      "industry": "AI 订阅 / 开发环境",
+      "tech": "Opus 5.5、KYC、静态 IP、Apple Pay",
+      "summary": "《小王子》发布后最多人问如何稳定用 Opus 5.5。Sac 开源自己的配置：中国护照做 KYC；DMIT + 相关域名走静态 IP；Apple Pay 配新加坡卡支付；Mac/iPhone 时区设为「中国台北」并关定位；手机号用新加坡号。强调留学留下的卡和号是关键资源。",
+      "publishedAt": "2026-10-16T11:06:25+08:00",
+      "isLong": true,
+      "tags": [
+        "Opus 5.5",
+        "Claude",
+        "KYC",
+        "网络配置",
+        "支付",
+        "开发环境"
+      ],
+      "steps": [
+        {
+          "text": "用中国护照完成 KYC 认证。",
+          "tools": "护照 / 平台 KYC",
+          "tech": "身份核验",
+          "prep": "准备护照照片与个人信息"
+        },
+        {
+          "text": "网络用 DMIT，Claude 相关域名单独走静态 IP，其余走 DMIT。",
+          "tools": "DMIT、静态 IP",
+          "tech": "分流代理",
+          "prep": "准备可配置分流的客户端"
+        },
+        {
+          "text": "支付用 Apple Pay + 新加坡卡；手机号用新加坡号；Mac/iPhone 时区设「中国台北」并关闭系统定位。",
+          "tools": "Apple Pay、新加坡卡/号、系统设置",
+          "tech": "支付与地区一致性",
+          "prep": "确认卡与号可用"
+        }
+      ]
+    },
+    {
       "id": "2110744607722176611",
       "url": "https://x.com/Khazix0918/status/2110744607722176611",
       "author": "Khazix0918",
@@ -1684,6 +1930,90 @@
         "开发工作流",
         "Codex",
         "提示词"
+      ]
+    },
+    {
+      "id": "2110694725640474759",
+      "url": "https://x.com/Saccc_c/status/2110694725640474759",
+      "author": "Saccc_c",
+      "authorName": "Sac",
+      "authorAvatar": "avatars/Saccc_c.jpg",
+      "title": "手把手：Opus 5.5 / Astra + Tripo 做《小王子》3D 游戏",
+      "industry": "游戏开发 / AIGC",
+      "tech": "Opus 5.5、Astra、Tripo、Blender、Unity、Image 2.5",
+      "summary": "Sac 用 Opus 5.5 + Tripo + Blender 把《小王子》星际旅行做成可探索 3D 游戏，全网近 300 万浏览。流程：Fable 写 PRD → Image 2.5 出图 → Tripo 做 3D 资产 → Opus 搭代码 → Astra 修 bug。长文拆解场景构建与人物建模（含 Auto-Rig Pro、Mixamo），并预告下周开源仓库。",
+      "publishedAt": "2026-10-15T19:30:12+08:00",
+      "isLong": true,
+      "tags": [
+        "小王子",
+        "3D 游戏",
+        "Tripo",
+        "Opus 5.5",
+        "Astra",
+        "Blender",
+        "Unity",
+        "AIGC"
+      ],
+      "steps": [
+        {
+          "text": "用 Fable 5.1 写 PRD，梳理核心场景、人物与剧情；安装 Blender CLI + Auto-Rig Pro、Unity + Unity CLI/Pipeline，让 Claude 经 Unity MCP 操作项目。",
+          "tools": "Fable 5.1、Blender、Auto-Rig Pro、Unity、Unity MCP",
+          "tech": "PRD 与工具链配置",
+          "prep": "安装 Blender/Unity 与插件，打通 Claude 操控"
+        },
+        {
+          "text": "场景：Image 2.5 生成多视角参考图 → AI 标注需 Tripo 单独生成的资产（建议 H3.1）→ Opus 5.5 操控 Blender+Unity 对照参考图摆放并多机位迭代。",
+          "tools": "GPT Image 2.5、Tripo H3.1、Opus 5.5、Blender、Unity",
+          "tech": "场景参考图 → 3D 资产 → 建模摆放",
+          "prep": "先定一张满意的场景效果图再补角度"
+        },
+        {
+          "text": "人物：Image 2.5 出 T-pose 四视图 → Tripo Smart Mesh P2.0 多视图生成 → Auto-Rig Pro 绑骨蒙皮 → Mixamo 下 FBX 动作并由 Opus 适配 → 复杂接触动作在 Blender 用 IK 细调。",
+          "tools": "Image 2.5、Tripo P2.0、Auto-Rig Pro、Mixamo、Opus 5.5",
+          "tech": "角色生成、绑骨、动作接入",
+          "prep": "准备角色设定与动作关键词列表"
+        }
+      ]
+    },
+    {
+      "id": "2110587412485443930",
+      "url": "https://x.com/Saccc_c/status/2110587412485443930",
+      "author": "Saccc_c",
+      "authorName": "Sac",
+      "authorAvatar": "avatars/Saccc_c.jpg",
+      "title": "AI 时代靠代表作拿影响力：半年成长六点",
+      "industry": "个人成长 / 自媒体",
+      "tech": "代表作驱动、日迭代、顶级模型",
+      "summary": "Sac 认为 AI 时代最好的影响力来自用 AI 做出代表作。《小王子》收获 Grok 官方、郭宇、花叔、cuimao、Jason Young 等转发。他从今年 3 月起大规模用 AI，总结六点：用好奇心探边界、凡事试 AI、系统学提示词、走 AI 自媒体近路、死磕最强模型、日更并复盘判断力。",
+      "publishedAt": "2026-10-15T12:23:46+08:00",
+      "isLong": true,
+      "tags": [
+        "代表作",
+        "影响力",
+        "成长方法",
+        "自媒体",
+        "提示词",
+        "日迭代"
+      ],
+      "steps": [
+        {
+          "text": "用好奇心探索 AI 边界，遇到问题优先尝试用 AI 解决。",
+          "tools": "日常 AI 对话 / 各类模型",
+          "tech": "问题驱动实践",
+          "prep": "记录待解决真实痛点"
+        },
+        {
+          "text": "系统学习提示词技巧，并坚持用最强可用模型做关键项目。",
+          "tools": "顶级模型订阅、提示词笔记",
+          "tech": "提示工程 + 模型选型",
+          "prep": "整理可复用提示词库"
+        },
+        {
+          "text": "把 AI 自媒体当近路：日更、日复盘，用代表作（如小王子）换注意力。",
+          "tools": "X / 短视频平台",
+          "tech": "内容日迭代",
+          "prep": "选定可公开的项目叙事"
+        }
       ]
     },
     {
@@ -1737,6 +2067,46 @@
         "REA",
         "Next.js",
         "AI可见度"
+      ]
+    },
+    {
+      "id": "2110333169643999327",
+      "url": "https://x.com/Saccc_c/status/2110333169643999327",
+      "author": "Saccc_c",
+      "authorName": "Sac",
+      "authorAvatar": "avatars/Saccc_c.jpg",
+      "title": "豆包工作上手：一键把其他 Agent 资产迁过来",
+      "industry": "AI 产品 / 桌面 Agent",
+      "tech": "豆包工作、Agent 迁移、Skill 导入",
+      "summary": "针对豆包日活破 2 亿与「豆包工作」桌面端，Sac 写迁移指南：更新客户端 → 设置 → 数据导入与同步 → 选择 Codex 等 Agent 的工具/项目/会话。他用自研「X 爆文搜索」Skill 验证迁移成功，并介绍对话摘要侧栏、消息注释、「在新对话中继续」三个新功能。",
+      "publishedAt": "2026-10-14T19:33:30+08:00",
+      "isLong": true,
+      "tags": [
+        "豆包工作",
+        "Agent 迁移",
+        "Codex",
+        "Skill",
+        "桌面端"
+      ],
+      "steps": [
+        {
+          "text": "下载或更新最新版豆包工作电脑端，用个人账号登录（doubao.com/work）。",
+          "tools": "豆包工作客户端",
+          "tech": "安装登录",
+          "prep": "准备豆包账号"
+        },
+        {
+          "text": "打开左下角设置 →「数据导入与同步」，勾选要导入的本地 Agent 资产（如 Codex 的工具、项目、会话）。",
+          "tools": "豆包工作设置 / Codex 本地资产",
+          "tech": "一键导入 Agent",
+          "prep": "确认本机已有可导入的 Agent 数据"
+        },
+        {
+          "text": "用已有 Skill（如 X 爆文搜索）跑一轮验收；善用对话摘要侧栏、消息注释、在新对话中继续（fork 上下文）并行探索。",
+          "tools": "豆包工作 Skill / 侧栏功能",
+          "tech": "迁移验收与多会话并行",
+          "prep": "准备一个熟悉的 Skill 做对照测试"
+        }
       ]
     },
     {
