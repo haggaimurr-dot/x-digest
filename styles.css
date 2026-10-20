@@ -15,6 +15,8 @@
   --chip-active-bg: #e7e9ea;
   --chip-active-text: #0f1419;
   --danger: #f4212e;
+  --danger-text: #f4212e; /* 5.10:1 on --bg */
+  --success: #00ba7c; /* 8.31:1 on --bg */
   --avatar-1: #1d9bf0;
   --avatar-2: #7856ff;
   --avatar-3: #00ba7c;
@@ -43,6 +45,8 @@
   --chip-active-bg: #0f1419;
   --chip-active-text: #ffffff;
   --danger: #f4212e;
+  --danger-text: #d0141e; /* 5.53:1 on --bg */
+  --success: #00794c; /* 5.47:1 on --bg */
 }
 
 *,
@@ -76,6 +80,12 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+:where(a, button, summary, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
 
 code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -174,9 +184,11 @@ code {
   color: var(--text-muted);
 }
 
-.search-input:focus {
+.search-input:focus-visible {
+  outline: none;
   background: var(--bg);
   border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(29, 155, 240, 0.35);
 }
 
 .topbar-actions {
@@ -534,9 +546,10 @@ code {
   color-scheme: light;
 }
 
-.filter-input:focus {
+.filter-input:focus-visible {
   outline: none;
   border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(29, 155, 240, 0.35);
 }
 
 input[type="date"].filter-input {
@@ -937,6 +950,7 @@ a.avatar-link:hover {
   border-radius: var(--radius-card);
   overflow: hidden;
   max-height: min(80vh, 640px);
+  position: relative; /* anchors .undo-toast */
   display: flex;
   flex-direction: column;
 }
@@ -1004,15 +1018,22 @@ a.avatar-link:hover {
 }
 
 .btn-remove {
-  border: 1px solid var(--border);
+  border: none;
   background: transparent;
   color: var(--danger);
-  border-radius: var(--radius-pill);
-  padding: 6px 12px;
+  border-radius: 8px;
+  padding: 10px 12px;
+  min-width: 44px;
+  min-height: 44px;
   font: inherit;
-  font-size: 13px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-remove:hover {
@@ -1022,6 +1043,7 @@ a.avatar-link:hover {
 .add-row {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
   gap: 8px;
 }
 
@@ -1037,9 +1059,10 @@ a.avatar-link:hover {
   border-radius: 8px;
 }
 
-.field:focus {
+.field:focus-visible {
   outline: none;
   border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(29, 155, 240, 0.35);
 }
 
 .btn-accent {
@@ -1090,13 +1113,9 @@ a.avatar-link:hover {
 
 .webhook-actions {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 10px;
-}
-
-.webhook-actions .add-status {
-  margin: 0;
 }
 
 .add-status.is-ok {
@@ -1269,3 +1288,353 @@ a.avatar-link:hover {
 .chip.is-pressing::before, .watch-list li.is-pressing::before { animation: lp-fill 600ms linear forwards; }
 .chip.is-pressing { transform: scale(0.96); transition: transform 0.6s; }
 @keyframes lp-fill { to { transform: scaleX(1); } }
+
+/* build v19: settings modal polish */
+.modal .field,
+.modal .webhook-field .field,
+.modal input.field {
+  height: 36px;
+  min-height: 36px;
+  max-height: 36px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  box-sizing: border-box;
+  font-size: 14px;
+  line-height: normal;
+  vertical-align: middle;
+}
+
+.modal .btn-accent {
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.btn-secondary {
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  width: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.btn-secondary:hover {
+  background: var(--bg-hover-soft);
+  border-color: var(--text-muted);
+}
+
+.btn-secondary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* 可编辑类别行：去掉外层卡片，左缘与下方输入框对齐 */
+.group-list li:has(.group-name-input) {
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.group-list li:has(.group-name-input) .group-name-input {
+  height: 36px;
+  padding: 0 12px;
+}
+
+.group-list li:has(.group-name-input) .group-count {
+  line-height: 36px;
+  padding: 0 4px;
+}
+
+.modal .add-row .field,
+.modal .add-row .btn-secondary,
+.modal .add-row .btn-accent {
+  height: 36px;
+}
+
+@media (max-width: 768px) {
+  .modal .field,
+  .modal .webhook-field .field,
+  .modal input.field,
+  .modal .btn-accent,
+  .btn-secondary,
+  .group-list li:has(.group-name-input) .group-name-input,
+  .modal .add-row .field,
+  .modal .add-row .btn-secondary,
+  .modal .add-row .btn-accent {
+    height: 44px;
+    min-height: 44px;
+    max-height: 44px;
+    line-height: normal;
+  }
+
+  .modal .btn-accent,
+  .btn-secondary {
+    line-height: 1;
+  }
+
+  .group-list li:has(.group-name-input) .group-count {
+    line-height: 44px;
+  }
+}
+
+
+/* —— Undo toast ——
+   Lives inside .modal-card (the settings dialog is in the top layer, so a page-level
+   toast would sit under its backdrop). Anchored just above the footer so it never
+   covers 完成. */
+.undo-toast {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(var(--modal-footer-h, 61px) + 24px);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 8px;
+  background: var(--text);
+  color: var(--bg);
+  font-size: 14px;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  transition: opacity 150ms ease;
+}
+
+.undo-toast.is-visible {
+  opacity: 1;
+}
+
+/* Author display:flex above would otherwise beat the UA [hidden] rule. */
+.undo-toast[hidden] {
+  display: none;
+}
+
+.undo-toast-msg {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.undo-toast-btn {
+  margin-left: auto;
+  border: none;
+  background: transparent;
+  color: var(--accent);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.undo-toast-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* —— Confirm dialog (stacked above settings) —— */
+.confirm-modal {
+  max-width: 360px;
+}
+
+.confirm-card {
+  padding: 20px;
+  gap: 12px;
+}
+
+.confirm-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.confirm-body {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.confirm-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.btn-danger {
+  height: 36px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 8px;
+  background: var(--danger);
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-danger:hover {
+  filter: brightness(0.92);
+}
+
+.btn-danger:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+  /* ≤768: the toast becomes an in-flow flex item of .modal-card right under the header
+     (order 1; body 2, footer 3). It never scrolls with the body and, because the body
+     shrinks to make room, it cannot overlap any input or button. */
+  .undo-toast {
+    position: static;
+    order: 1;
+    flex-shrink: 0;
+    margin: 8px 15px 0; /* + 1px card border = 16px from the card edge */
+    transform: none;
+  }
+
+  .modal-card > .modal-body {
+    order: 2;
+  }
+
+  .modal-card > .modal-footer {
+    order: 3;
+  }
+
+  .btn-danger,
+  .confirm-actions .btn-secondary {
+    height: 44px;
+  }
+}
+
+/* .text-btn sets display:flex, which would beat the UA [hidden] rule. */
+#clearFilters[hidden] {
+  display: none;
+}
+
+/* —— Webhook save: inline button feedback + field errors —— */
+.btn-save-webhook {
+  /* Fits the longest state (「保存中…」 / icon + 「已保存」) so the button never changes width. */
+  min-width: 96px;
+  gap: 6px;
+}
+
+.btn-save-webhook:disabled {
+  cursor: progress;
+  opacity: 0.7;
+}
+
+.btn-save-webhook.is-saved {
+  color: var(--success);
+  border-color: var(--success);
+}
+
+.btn-icon[hidden] {
+  display: none;
+}
+
+.webhook-field .field-error {
+  margin: 2px 0 0; /* + 6px column gap = 8px below the input */
+  font-size: 13px;
+  color: var(--danger-text);
+}
+
+.field-error[hidden] {
+  display: none;
+}
+
+.modal .field[aria-invalid="true"] {
+  border-color: var(--danger);
+}
+
+.modal .field[aria-invalid="true"]:focus-visible {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px rgba(244, 33, 46, 0.35);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 清除: plain text button left of 保存. Box height matches 保存 (36px, 44px ≤768) so both
+   share one row top; ::after extends the hit area to ≥44×44 on desktop. */
+.btn-clear-webhook {
+  position: relative;
+  min-width: 44px;
+  height: 36px;
+  padding: 0 8px;
+  margin-left: -8px; /* keep the text aligned with the inputs above */
+  border: none;
+  border-radius: 8px;
+  background: none;
+  color: var(--text-muted);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.btn-clear-webhook:hover,
+.btn-clear-webhook:focus-visible {
+  color: var(--danger-text);
+}
+
+.btn-clear-webhook:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.btn-clear-webhook::after {
+  content: "";
+  position: absolute;
+  inset: -4px 0;
+}
+
+.btn-clear-webhook[hidden] {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .btn-clear-webhook {
+    height: 44px;
+  }
+
+  .btn-clear-webhook::after {
+    inset: 0;
+  }
+}

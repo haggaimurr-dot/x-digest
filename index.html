@@ -27,7 +27,7 @@
     }
     .boot-error { color: #f4212e; }
   </style>
-  <link rel="stylesheet" href="./styles.css?v=19" />
+  <link rel="stylesheet" href="./styles.css?v=28" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23e7e9ea' d='M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z'/%3E%3C/svg%3E" />
 </head>
 <body>
@@ -146,14 +146,14 @@
         <ul class="watch-list group-list" id="groupList"></ul>
         <div class="add-row">
           <input type="text" id="newGroupName" class="field" placeholder="新类别名称" maxlength="20" autocomplete="off" />
-          <button type="button" class="btn-accent" id="addGroup">新增类别</button>
+          <button type="button" class="btn-secondary" id="addGroup">新增类别</button>
         </div>
         <h3 class="section-title">帖子类别</h3>
         <p class="hint">在每条推文右下角的书签按钮里给帖子归类；仅保存在本机，「恢复仓库默认」不会清除。</p>
         <ul class="watch-list group-list" id="catList"></ul>
         <div class="add-row">
           <input type="text" id="newCatName" class="field" placeholder="新帖子类别名称（回车添加）" maxlength="20" autocomplete="off" />
-          <button type="button" class="btn-accent" id="addCat">新增类别</button>
+          <button type="button" class="btn-secondary" id="addCat">新增类别</button>
         </div>
         <h3 class="section-title">关注用户</h3>
         <p class="hint">长按某位用户（或筛选区的作者标签）可将其移至「默认」。</p>
@@ -161,26 +161,36 @@
         <div class="add-row">
           <input type="text" id="newUsername" class="field" placeholder="@handle 或 显示名@handle" maxlength="80" autocomplete="off" />
           <input type="text" id="newDisplayName" class="field" placeholder="显示名（可选）" maxlength="40" autocomplete="off" />
-          <button type="button" class="btn-accent" id="addAuthor">添加</button>
+          <button type="button" class="btn-secondary" id="addAuthor">添加</button>
         </div>
         <p class="add-status" id="addStatus" hidden></p>
 
         <section class="webhook-section" aria-label="立即更新 Webhook">
           <h3 class="section-title">立即更新 Webhook</h3>
           <p class="hint">从 Grok Bot 例程「X日报站立即更新」面板复制 URL 与 key；密钥只存在本机。</p>
-          <label class="webhook-field">
-            <span class="filter-field-label">Webhook URL</span>
+          <div class="webhook-field">
+            <label class="filter-field-label" for="webhookUrl">Webhook URL</label>
             <input type="url" id="webhookUrl" class="field" placeholder="https://…" autocomplete="off" spellcheck="false" />
-          </label>
-          <label class="webhook-field">
-            <span class="filter-field-label">Webhook key</span>
+            <p class="field-error" id="webhookUrlError" hidden></p>
+          </div>
+          <div class="webhook-field">
+            <label class="filter-field-label" for="webhookKey">Webhook key</label>
             <input type="password" id="webhookKey" class="field" placeholder="密钥或完整 Authorization 值" autocomplete="off" spellcheck="false" />
-          </label>
+            <p class="field-error" id="webhookKeyError" hidden></p>
+          </div>
           <div class="webhook-actions">
-            <button type="button" class="btn-accent" id="saveWebhook">保存</button>
-            <p class="add-status" id="webhookStatus" hidden></p>
+            <button type="button" class="btn-clear-webhook" id="clearWebhook" hidden>清除</button>
+            <button type="button" class="btn-secondary btn-save-webhook" id="saveWebhook">
+              <svg class="btn-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" hidden><path fill="currentColor" d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              <span class="btn-label">保存</span>
+            </button>
+            <p class="sr-only" id="webhookStatus" role="status" aria-live="polite"></p>
           </div>
         </section>
+      </div>
+      <div class="undo-toast" id="undoToast" role="status" aria-live="polite" hidden>
+        <span class="undo-toast-msg" id="undoToastMsg"></span>
+        <button type="button" class="undo-toast-btn" id="undoToastBtn">撤销</button>
       </div>
       <footer class="modal-footer">
         <button type="button" class="text-btn" id="resetWatchlist">恢复仓库默认</button>
@@ -189,6 +199,17 @@
     </div>
   </dialog>
 
-  <script src="./app.js?v=19" defer></script>
+  <dialog class="modal confirm-modal" id="confirmModal" aria-labelledby="confirmTitle" aria-describedby="confirmBody">
+    <form method="dialog" class="modal-card confirm-card">
+      <h2 class="confirm-title" id="confirmTitle"></h2>
+      <p class="confirm-body" id="confirmBody"></p>
+      <div class="confirm-actions">
+        <button type="submit" class="btn-secondary" id="confirmCancel" value="cancel">取消</button>
+        <button type="submit" class="btn-danger" value="ok">删除</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="./app.js?v=25" defer></script>
 </body>
 </html>

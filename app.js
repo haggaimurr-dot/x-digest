@@ -3,6 +3,7 @@
 
   const STORAGE_KEY = "x-digest-watchlist";
   const SELECTED_KEY = "x-digest-selected-authors";
+  const SELECTED_CATS_KEY = "x-digest-selected-cats";
   const POST_CATS_KEY = "x-digest-post-categories";
   const CHIPS_CATS_EXPANDED_KEY = "x-digest-chips-cats-expanded";
   const UNCATEGORIZED = "__uncategorized__";
@@ -97,6 +98,13 @@
     closeSettings: document.getElementById("closeSettings"),
     doneSettings: document.getElementById("doneSettings"),
     settingsModal: document.getElementById("settingsModal"),
+    undoToast: document.getElementById("undoToast"),
+    undoToastMsg: document.getElementById("undoToastMsg"),
+    undoToastBtn: document.getElementById("undoToastBtn"),
+    confirmModal: document.getElementById("confirmModal"),
+    confirmTitle: document.getElementById("confirmTitle"),
+    confirmBody: document.getElementById("confirmBody"),
+    confirmCancel: document.getElementById("confirmCancel"),
     watchList: document.getElementById("watchList"),
     addAuthor: document.getElementById("addAuthor"),
     addStatus: document.getElementById("addStatus"),
@@ -110,7 +118,10 @@
     webhookUrl: document.getElementById("webhookUrl"),
     webhookKey: document.getElementById("webhookKey"),
     saveWebhook: document.getElementById("saveWebhook"),
+    clearWebhook: document.getElementById("clearWebhook"),
     webhookStatus: document.getElementById("webhookStatus"),
+    webhookUrlError: document.getElementById("webhookUrlError"),
+    webhookKeyError: document.getElementById("webhookKeyError"),
     updateToast: document.getElementById("updateToast"),
   };
 
@@ -325,6 +336,7 @@
     } else {
       els.activeFilterCount.hidden = true;
     }
+    if (els.clearFilters) els.clearFilters.hidden = n === 0;
   }
 
   function initials(name, username) {
@@ -577,6 +589,7 @@
   }
 
   function saveWatchlist(accounts) {
+    dropPendingUndo();
     watchlist = accounts.slice();
     localStorage.setItem(STORAGE_KEY, JSON.stringify({ groups, accounts: watchlist }));
   }
@@ -606,6 +619,7 @@
   }
 
   function savePostCats() {
+    dropPendingUndo();
     localStorage.setItem(POST_CATS_KEY, JSON.stringify(postCats));
   }
 
@@ -654,17 +668,184 @@
       else delete postCats.assignments[pid];
     }
     selectedCats.delete(cid);
+  }
+
+  // ---- Deferred delete with undo ----
+  // A delete snapshots all mutable settings state, applies the change in memory + UI,
+  // and only persists when the undo window ends (6s), the modal closes, the page is
+  // hidden, or another delete/save supersedes it. Undo restores the snapshot.
+  const UNDO_MS = 6000;
+  const TOAST_FADE_MS = 150;
+  // { snapshot, timer, remaining, startedAt }; timer is null while paused.
+  let pendingUndo = null;
+  let toastHideTimer = null; // finishes the fade-out by setting [hidden]
+  let toastHovered = false;
+  let toastFocused = false;
+
+  function snapshotState() {
+    return {
+      json: JSON.stringify({ groups, watchlist, postCats }),
+      selectedAuthors: [...selectedAuthors],
+      selectedCats: [...selectedCats],
+    };
+  }
+
+  function showUndoToast(message) {
+    const t = els.undoToast;
+    if (!t) return;
+    clearTimeout(toastHideTimer); // a fade from the previous toast must not hide this one
+    toastHideTimer = null;
+    els.undoToastMsg.textContent = message;
+    t.hidden = false;
+    void t.offsetWidth; // flush so the opacity transition runs from 0
+    t.classList.add("is-visible");
+  }
+
+  // Fade out (opacity 1→0, 150ms), then [hidden] removes it from view and the a11y tree.
+  function hideUndoToast() {
+    const t = els.undoToast;
+    if (!t || t.hidden) return;
+    t.classList.remove("is-visible");
+    clearTimeout(toastHideTimer);
+    toastHideTimer = setTimeout(() => {
+      toastHideTimer = null;
+      t.hidden = true;
+    }, TOAST_FADE_MS);
+  }
+
+  // Countdown runs only while the toast is neither hovered nor focused.
+  function startUndoCountdown() {
+    if (!pendingUndo || pendingUndo.timer) return;
+    pendingUndo.startedAt = Date.now();
+    pendingUndo.timer = setTimeout(commitPendingDelete, pendingUndo.remaining);
+  }
+
+  function pauseUndoCountdown() {
+    if (!pendingUndo || !pendingUndo.timer) return;
+    clearTimeout(pendingUndo.timer);
+    pendingUndo.timer = null;
+    pendingUndo.remaining = Math.max(0, pendingUndo.remaining - (Date.now() - pendingUndo.startedAt));
+  }
+
+  function syncUndoCountdown() {
+    if (toastHovered || toastFocused) pauseUndoCountdown();
+    else startUndoCountdown();
+  }
+
+  // Forget the pending undo without writing (caller is about to write current state).
+  function dropPendingUndo() {
+    if (!pendingUndo) return;
+    clearTimeout(pendingUndo.timer);
+    pendingUndo = null;
+    toastHovered = toastFocused = false;
+    hideUndoToast();
+  }
+
+  // Persist the pending delete (in-memory state already reflects it).
+  function commitPendingDelete() {
+    if (!pendingUndo) return;
+    dropPendingUndo();
+    saveWatchlist(watchlist);
     savePostCats();
+    saveSelection();
+  }
+
+  function undoPendingDelete() {
+    if (!pendingUndo) return;
+    const { snapshot: snap, onUndo } = pendingUndo;
+    dropPendingUndo();
+    if (onUndo) onUndo(); // restores state that lives outside the snapshot (e.g. webhook storage)
+    const st = JSON.parse(snap.json);
+    groups = st.groups;
+    watchlist = st.watchlist;
+    postCats = st.postCats;
+    selectedAuthors = new Set(snap.selectedAuthors);
+    selectedCats = new Set(snap.selectedCats);
+    if (els.settingsModal && els.settingsModal.open) {
+      renderWatchListUI();
+      renderCatsUI();
+    }
+    applyFiltersAndRender();
+  }
+
+  // Run `mutate` (in-memory only, no saves), re-render, and offer undo for 6s.
+  // `onUndo` (optional) reverts side effects that `mutate` applied outside the snapshot.
+  function deleteWithUndo(message, mutate, onUndo) {
+    commitPendingDelete(); // only one pending delete at a time
+    const snapshot = snapshotState();
+    mutate();
+    renderWatchListUI();
+    renderCatsUI();
+    applyFiltersAndRender();
+    pendingUndo = { snapshot, onUndo, timer: null, remaining: UNDO_MS, startedAt: 0 };
+    showUndoToast(message);
+    startUndoCountdown();
+  }
+
+  if (els.undoToast) {
+    const t = els.undoToast;
+    t.addEventListener("mouseenter", () => {
+      toastHovered = true;
+      syncUndoCountdown();
+    });
+    t.addEventListener("mouseleave", () => {
+      toastHovered = false;
+      syncUndoCountdown();
+    });
+    t.addEventListener("focusin", () => {
+      toastFocused = true;
+      syncUndoCountdown();
+    });
+    t.addEventListener("focusout", (e) => {
+      if (t.contains(e.relatedTarget)) return;
+      toastFocused = false;
+      syncUndoCountdown();
+    });
+  }
+
+  // Background tabs throttle timers; when the page becomes visible again, commit an
+  // undo window that has already run out instead of waiting for the delayed timer.
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden || !pendingUndo || !pendingUndo.timer) return;
+    if (Date.now() - pendingUndo.startedAt >= pendingUndo.remaining) commitPendingDelete();
+  });
+
+  // Confirm dialog for deleting non-empty categories. Resolves true on 删除.
+  function confirmDelete(title, body) {
+    const dlg = els.confirmModal;
+    if (!dlg) return Promise.resolve(true);
+    els.confirmTitle.textContent = title;
+    els.confirmBody.textContent = body;
+    dlg.returnValue = "";
+    dlg.showModal();
+    els.confirmCancel.focus();
+    return new Promise((resolve) => {
+      dlg.addEventListener("close", () => resolve(dlg.returnValue === "ok"), { once: true });
+    });
+  }
+
+  // The single definition of "未分类", shared by chip counts and the list filter.
+  function isUncategorized(p) {
+    return catsOfPost(p).length === 0;
+  }
+
+  // Post-category filter: OR across the selected chips (未分类 included).
+  function matchesSelectedCats(p) {
+    if (!selectedCats.size) return true;
+    if (selectedCats.has(UNCATEGORIZED) && isUncategorized(p)) return true;
+    return catsOfPost(p).some((c) => selectedCats.has(c));
   }
 
   function renderCatChips() {
     if (!els.catChips) return;
+    // Counts are taken over the posts that pass every *other* filter (authors, search,
+    // tags, dates), so a chip's number equals the list length when it alone is selected.
+    const base = filteredPosts({ ignoreCats: true });
     const counts = {};
     let unc = 0;
-    for (const p of allPosts) {
-      const cs = catsOfPost(p);
-      if (!cs.length) unc += 1;
-      for (const c of cs) counts[c] = (counts[c] || 0) + 1;
+    for (const p of base) {
+      if (isUncategorized(p)) unc += 1;
+      for (const c of catsOfPost(p)) counts[c] = (counts[c] || 0) + 1;
     }
     for (const c of [...selectedCats]) {
       if (c !== UNCATEGORIZED && !postCats.categories.some((x) => x.id === c)) selectedCats.delete(c);
@@ -716,8 +897,20 @@
     </div>`;
   }
 
+  // Persists author and post-category chip selections (one state for filter + highlight).
   function saveSelection() {
     localStorage.setItem(SELECTED_KEY, JSON.stringify([...selectedAuthors]));
+    localStorage.setItem(SELECTED_CATS_KEY, JSON.stringify([...selectedCats]));
+  }
+
+  function loadSelectedCats() {
+    try {
+      const arr = JSON.parse(localStorage.getItem(SELECTED_CATS_KEY) || "[]");
+      const valid = new Set(postCats.categories.map((c) => c.id).concat(UNCATEGORIZED));
+      return new Set((Array.isArray(arr) ? arr : []).map(String).filter((c) => valid.has(c)));
+    } catch (_) {
+      return new Set();
+    }
   }
 
   function loadSelection() {
@@ -945,7 +1138,8 @@
     </details>`;
   }
 
-  function filteredPosts() {
+  // All feed filters. `ignoreCats` skips the post-category step (used for chip counts).
+  function filteredPosts({ ignoreCats = false } = {}) {
     const q = (els.keyword && els.keyword.value ? els.keyword.value : "")
       .trim()
       .toLowerCase();
@@ -964,12 +1158,7 @@
       if (selectedAuthors.size && !selectedAuthors.has(p.author)) return false;
 
       // Post categories (OR within selected set, AND with others)
-      if (selectedCats.size) {
-        const cs = catsOfPost(p);
-        const hit =
-          (selectedCats.has(UNCATEGORIZED) && cs.length === 0) || cs.some((c) => selectedCats.has(c));
-        if (!hit) return false;
-      }
+      if (!ignoreCats && !matchesSelectedCats(p)) return false;
 
       // Date range (Asia/Shanghai day bounds)
       if (fromMs != null || toMs != null) {
@@ -1258,6 +1447,19 @@
     localStorage.setItem(WEBHOOK_KEY_KEY, String(key || "").trim());
   }
 
+  // Removing the config disables 立即更新 push.
+  function removeWebhookConfig() {
+    localStorage.removeItem(WEBHOOK_URL_KEY);
+    localStorage.removeItem(WEBHOOK_KEY_KEY);
+  }
+
+  // 「清除」 is offered only while a config is stored; also refreshes the 立即更新 button.
+  function syncWebhookClear() {
+    const cfg = getWebhookConfig();
+    if (els.clearWebhook) els.clearWebhook.hidden = !(cfg.url || cfg.key);
+    syncUpdateButton();
+  }
+
   function authHeaderValue(key) {
     const k = String(key || "").trim();
     if (!k) return "";
@@ -1265,16 +1467,116 @@
     return `Bearer ${k}`;
   }
 
-  function setWebhookStatus(msg, ok) {
-    if (!els.webhookStatus) return;
-    if (!msg) {
-      els.webhookStatus.hidden = true;
-      els.webhookStatus.textContent = "";
-      return;
+  // ---- Webhook 保存: inline button states (保存 → 保存中… → 已保存 → 保存) ----
+  const WEBHOOK_LOADING_MS = 300; // long enough for the loading state to be perceivable
+  const WEBHOOK_SAVED_MS = 2000;
+  let webhookTimer = null; // one timer for whichever phase is in flight
+
+  function setWebhookButton(state) {
+    const btn = els.saveWebhook;
+    if (!btn) return;
+    const done = state === "saved" || state === "closed";
+    btn.disabled = state === "loading";
+    btn.classList.toggle("is-saved", done);
+    // SVG elements have no .hidden property in browsers; toggle the attribute.
+    btn.querySelector(".btn-icon").toggleAttribute("hidden", !done);
+    btn.querySelector(".btn-label").textContent =
+      { loading: "保存中…", saved: "已保存", closed: "已关闭" }[state] || "保存";
+  }
+
+  // Cancel any pending phase and return to the idle button (repeated clicks, modal close).
+  function resetWebhookSave() {
+    clearTimeout(webhookTimer);
+    webhookTimer = null;
+    setWebhookButton("idle");
+    if (els.webhookStatus) els.webhookStatus.textContent = "";
+  }
+
+  function setFieldError(input, errEl, msg) {
+    if (!input || !errEl) return;
+    errEl.textContent = msg || "";
+    errEl.hidden = !msg;
+    if (msg) {
+      input.setAttribute("aria-invalid", "true");
+      input.setAttribute("aria-describedby", errEl.id);
+    } else {
+      input.removeAttribute("aria-invalid");
+      input.removeAttribute("aria-describedby");
     }
-    els.webhookStatus.hidden = false;
-    els.webhookStatus.textContent = msg;
-    els.webhookStatus.classList.toggle("is-ok", !!ok);
+  }
+
+  function clearWebhookErrors() {
+    setFieldError(els.webhookUrl, els.webhookUrlError, "");
+    setFieldError(els.webhookKey, els.webhookKeyError, "");
+  }
+
+  // Returns the trimmed config, or null after showing inline errors.
+  function validateWebhookFields() {
+    const url = (els.webhookUrl ? els.webhookUrl.value : "").trim();
+    const key = (els.webhookKey ? els.webhookKey.value : "").trim();
+    let urlOk = false;
+    try {
+      urlOk = /^https?:$/.test(new URL(url).protocol) && /^https?:\/\//i.test(url);
+    } catch (_) {
+      urlOk = false;
+    }
+    setFieldError(els.webhookUrl, els.webhookUrlError, urlOk ? "" : "请输入以 http:// 或 https:// 开头的 URL");
+    setFieldError(els.webhookKey, els.webhookKeyError, key ? "" : "请输入 key");
+    return urlOk && key ? { url, key } : null;
+  }
+
+  function saveWebhookFromSettings() {
+    resetWebhookSave();
+    setWebhookButton("loading");
+    webhookTimer = setTimeout(() => {
+      // Both fields empty = turn push off: remove the stored config instead of validating.
+      if (!els.webhookUrl.value.trim() && !els.webhookKey.value.trim()) {
+        clearWebhookErrors();
+        removeWebhookConfig();
+        showWebhookResult("closed", "Webhook 已关闭");
+        return;
+      }
+      const cfg = validateWebhookFields();
+      if (!cfg) {
+        resetWebhookSave();
+        const bad = els.webhookUrl.getAttribute("aria-invalid") ? els.webhookUrl : els.webhookKey;
+        bad.focus();
+        return;
+      }
+      // Saving identical values is still a successful save and gets the same feedback.
+      saveWebhookConfig(cfg.url, cfg.key);
+      showWebhookResult("saved", "Webhook 已保存");
+    }, WEBHOOK_LOADING_MS);
+  }
+
+  // Result phase: button shows the outcome for 2s, live region announces it.
+  function showWebhookResult(state, announcement) {
+    syncWebhookClear();
+    setWebhookButton(state);
+    if (els.webhookStatus) els.webhookStatus.textContent = announcement;
+    webhookTimer = setTimeout(resetWebhookSave, WEBHOOK_SAVED_MS);
+  }
+
+  // 清除: remove the config right away; the shared undo toast can put it back.
+  function clearWebhookFromSettings() {
+    const prev = getWebhookConfig();
+    resetWebhookSave();
+    deleteWithUndo(
+      "已清除 Webhook 配置",
+      () => {
+        els.webhookUrl.value = "";
+        els.webhookKey.value = "";
+        clearWebhookErrors();
+        removeWebhookConfig();
+        syncWebhookClear();
+      },
+      () => {
+        saveWebhookConfig(prev.url, prev.key);
+        els.webhookUrl.value = prev.url;
+        els.webhookKey.value = prev.key;
+        syncWebhookClear();
+      }
+    );
   }
 
   function showUpdateToast(msg) {
@@ -1291,6 +1593,7 @@
     const cfg = getWebhookConfig();
     if (els.webhookUrl) els.webhookUrl.value = cfg.url;
     if (els.webhookKey) els.webhookKey.value = cfg.key;
+    syncWebhookClear();
   }
 
   function syncUpdateButton() {
@@ -1479,6 +1782,7 @@
       const c = btn.getAttribute("data-cat");
       if (selectedCats.has(c)) selectedCats.delete(c);
       else selectedCats.add(c);
+      saveSelection();
       applyFiltersAndRender();
     });
   }
@@ -1572,9 +1876,14 @@
       const btn = e.target.closest("[data-cat-delete]");
       if (!btn) return;
       e.preventDefault();
-      deleteCategory(btn.getAttribute("data-cat-delete"));
-      renderCatsUI();
-      applyFiltersAndRender();
+      const cid = btn.getAttribute("data-cat-delete");
+      const cat = postCats.categories.find((c) => c.id === cid);
+      if (!cat) return;
+      const n = Object.values(postCats.assignments).filter((l) => l.includes(cid)).length;
+      const ask = n > 0 ? confirmDelete(`删除类别“${cat.name}”？`, `其中 ${n} 条帖子会取消该分类`) : Promise.resolve(true);
+      ask.then((ok) => {
+        if (ok) deleteWithUndo(`已删除类别 ${cat.name}`, () => deleteCategory(cid));
+      });
     });
   }
 
@@ -1634,7 +1943,8 @@
   if (els.openSettings) {
     els.openSettings.addEventListener("click", () => {
       setAddStatus("");
-      setWebhookStatus("");
+      resetWebhookSave();
+      clearWebhookErrors();
       renderWatchListUI();
       renderCatsUI();
       loadWebhookFields();
@@ -1649,7 +1959,14 @@
     els.settingsModal.addEventListener("click", (e) => {
       if (e.target === els.settingsModal) closeModal();
     });
+    // Closing the modal (完成, ×, Esc, backdrop) ends the undo window.
+    els.settingsModal.addEventListener("close", () => {
+      commitPendingDelete();
+      resetWebhookSave(); // drop in-flight 保存 timers
+    });
   }
+  if (els.undoToastBtn) els.undoToastBtn.addEventListener("click", undoPendingDelete);
+  window.addEventListener("pagehide", commitPendingDelete);
 
   if (els.watchList) {
     els.watchList.addEventListener("click", (e) => {
@@ -1660,13 +1977,10 @@
       const idx = Number(btn.getAttribute("data-remove"));
       if (!Number.isInteger(idx) || idx < 0 || idx >= watchlist.length) return;
       const removed = watchlist[idx];
-      watchlist = watchlist.filter((_, i) => i !== idx);
-      saveWatchlist(watchlist);
-      if (removed) selectedAuthors.delete(removed.username);
-      saveSelection();
-      setAddStatus(removed ? `已移除 @${removed.username}` : "已移除", true);
-      renderWatchListUI();
-      applyFiltersAndRender();
+      deleteWithUndo(`已移除 ${removed.name || removed.username}`, () => {
+        watchlist = watchlist.filter((_, i) => i !== idx);
+        selectedAuthors.delete(removed.username);
+      });
     });
   }
 
@@ -1835,13 +2149,19 @@
       if (!btn || btn.disabled) return;
       e.preventDefault();
       const gid = btn.getAttribute("data-group-delete");
-      if (isFixedGroup(gid)) return;
-      groups = groups.filter((g) => g.id !== gid);
-      const target = firstOtherGroupId();
-      watchlist = watchlist.map((a) => (a.group === gid ? { ...a, group: target } : a));
-      saveWatchlist(watchlist);
-      renderWatchListUI();
-      applyFiltersAndRender();
+      const group = groups.find((g) => g.id === gid);
+      if (!group || isFixedGroup(gid)) return;
+      const n = watchlist.filter((a) => a.group === gid).length;
+      const ask = n > 0 ? confirmDelete(`删除类别“${group.name}”？`, `其中 ${n} 个用户会变为未分类`) : Promise.resolve(true);
+      ask.then((ok) => {
+        if (!ok) return;
+        // Same as before: members move to the first remaining non-fixed-special group.
+        deleteWithUndo(`已删除类别 ${group.name}`, () => {
+          groups = groups.filter((g) => g.id !== gid);
+          const target = firstOtherGroupId();
+          watchlist = watchlist.map((a) => (a.group === gid ? { ...a, group: target } : a));
+        });
+      });
     });
   }
 
@@ -1857,27 +2177,11 @@
     });
   }
 
-  if (els.saveWebhook) {
-    els.saveWebhook.addEventListener("click", () => {
-      const url = els.webhookUrl ? els.webhookUrl.value : "";
-      const key = els.webhookKey ? els.webhookKey.value : "";
-      if (!String(url || "").trim() || !String(key || "").trim()) {
-        setWebhookStatus("请填写 Webhook URL 与 key", false);
-        return;
-      }
-      try {
-        // Validate URL shape without storing anything else.
-        // eslint-disable-next-line no-new
-        new URL(String(url).trim());
-      } catch (_) {
-        setWebhookStatus("Webhook URL 格式无效", false);
-        return;
-      }
-      saveWebhookConfig(url, key);
-      setWebhookStatus("已保存到本机（不会上传到仓库）", true);
-      syncUpdateButton();
-    });
-  }
+  if (els.saveWebhook) els.saveWebhook.addEventListener("click", saveWebhookFromSettings);
+  if (els.clearWebhook) els.clearWebhook.addEventListener("click", clearWebhookFromSettings);
+  // Editing a field clears its own error.
+  if (els.webhookUrl) els.webhookUrl.addEventListener("input", () => setFieldError(els.webhookUrl, els.webhookUrlError, ""));
+  if (els.webhookKey) els.webhookKey.addEventListener("input", () => setFieldError(els.webhookKey, els.webhookKeyError, ""));
 
   if (els.triggerUpdate) {
     els.triggerUpdate.addEventListener("click", (e) => {
@@ -1892,6 +2196,7 @@
   initFilterCollapse();
   initChipSections();
   loadPostCats();
+  selectedCats = loadSelectedCats();
   loadData()
     .then(() => applyFiltersAndRender())
     .catch(showFatal);
