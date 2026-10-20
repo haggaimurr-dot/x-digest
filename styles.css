@@ -1643,3 +1643,22 @@ a.avatar-link:hover {
     inset: 0;
   }
 }
+
+/* —— Search hit highlight + match snippet —— */
+mark.search-hit {
+  background: rgba(29, 155, 240, 0.35);
+  color: inherit; /* keep body text color for WCAG AA contrast */
+  border-radius: 2px;
+  padding: 0 1px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.match-snippet {
+  margin: 4px 0 0;
+  font-size: 13px; /* one step smaller than body (15px) */
+  line-height: 1.5;
+  color: var(--text);
+  white-space: pre-wrap;
+  word-break: break-word;
+}

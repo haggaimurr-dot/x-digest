@@ -147,20 +147,114 @@
       .replace(/"/g, "&quot;");
   }
 
+  function searchQuery() {
+    return (els.keyword && els.keyword.value ? els.keyword.value : "").trim();
+  }
+
+  // Escape text and wrap every case-insensitive occurrence of `q` in <mark class="search-hit">.
+  // Highlight keeps the surrounding text color (WCAG AA); only the background changes.
+  function highlightHtml(text, q) {
+    const raw = String(text ?? "");
+    if (!q) return escapeHtml(raw);
+    const lower = raw.toLowerCase();
+    const needle = q.toLowerCase();
+    let out = "";
+    let i = 0;
+    while (i < raw.length) {
+      const j = lower.indexOf(needle, i);
+      if (j < 0) {
+        out += escapeHtml(raw.slice(i));
+        break;
+      }
+      out += escapeHtml(raw.slice(i, j));
+      out += `<mark class="search-hit">${escapeHtml(raw.slice(j, j + q.length))}</mark>`;
+      i = j + (q.length || 1);
+    }
+    return out;
+  }
+
+  // One-line snippet: ~20 Unicode chars before & after the first hit in `text`.
+  function matchSnippetHtml(text, q) {
+    const raw = String(text ?? "");
+    if (!q || !raw) return "";
+    const j = raw.toLowerCase().indexOf(q.toLowerCase());
+    if (j < 0) return "";
+    const before = [...raw.slice(0, j)];
+    const hit = raw.slice(j, j + q.length);
+    const after = [...raw.slice(j + q.length)];
+    const pre = before.slice(-20).join("");
+    const post = after.slice(0, 20).join("");
+    const lead = before.length > 20 ? "…" : "";
+    const trail = after.length > 20 ? "…" : "";
+    return `<p class="match-snippet">${lead}${highlightHtml(pre + hit + post, q)}${trail}</p>`;
+  }
+
+  // First hit across title → body → tags → steps (document order for the card).
+  function firstHitSnippet(p, q) {
+    if (!q) return "";
+    const ql = q.toLowerCase();
+    if (String(p.title || "").toLowerCase().includes(ql)) return matchSnippetHtml(p.title, q);
+    if (String(p.summary || "").toLowerCase().includes(ql)) return matchSnippetHtml(p.summary, q);
+    for (const t of postTags(p)) {
+      if (String(t).toLowerCase().includes(ql)) return matchSnippetHtml(t, q);
+    }
+    for (const s of Array.isArray(p.steps) ? p.steps : []) {
+      const texts = typeof s === "string" ? [s] : [s && s.text, s && s.tools, s && s.tech, s && s.prep].filter(Boolean);
+      for (const t of texts) {
+        if (String(t).toLowerCase().includes(ql)) return matchSnippetHtml(t, q);
+      }
+    }
+    return "";
+  }
+
+  // After render: expand the collapsed region that holds the first hit, then scroll it into view.
+  function revealFirstSearchHit() {
+    if (!searchQuery() || !els.timeline) return;
+    // Prefer an in-content hit (title / body / tags / steps), not the match-snippet under the title.
+    const hit =
+      els.timeline.querySelector(
+        ".post-title .search-hit, .post-summary .search-hit, .tags .search-hit, .flow-text .search-hit"
+      ) || els.timeline.querySelector(".search-hit");
+    if (!hit) return;
+    let node = hit.parentElement;
+    while (node && node !== els.timeline) {
+      if (node.classList && node.classList.contains("collapsible") && !node.classList.contains("is-expanded")) {
+        node.classList.add("is-expanded");
+        node.dataset.collapsed = "false";
+        const btn = node.querySelector(":scope > .collapse-toggle");
+        if (btn) {
+          btn.setAttribute("aria-expanded", "true");
+          btn.textContent = "收起";
+        }
+      }
+      if (node.tagName === "DETAILS" && !node.open) node.open = true;
+      node = node.parentElement;
+    }
+    // Wait one frame so expansion has laid out, then scroll if the hit is off-screen.
+    requestAnimationFrame(() => {
+      const rect = hit.getBoundingClientRect();
+      const pad = 48;
+      const fullyVisible = rect.top >= pad && rect.bottom <= window.innerHeight - pad;
+      if (!fullyVisible) {
+        hit.scrollIntoView({ block: "center", behavior: "smooth" });
+      }
+    });
+  }
 
   /** Collapse long text in UI without truncating the stored string. */
   const SUMMARY_COLLAPSE_CHARS = 120;
   const STEP_COLLAPSE_CHARS = 80;
 
-  function collapsibleHtml(fullText, { className, threshold }) {
+  function collapsibleHtml(fullText, { className, threshold, query }) {
     const text = String(fullText ?? "");
     if (!text) return "";
+    const body = query ? highlightHtml(text, query) : escapeHtml(text);
     const needs = [...text].length > threshold || text.split("\n").length > 4;
     if (!needs) {
-      return `<p class="${className}">${escapeHtml(text)}</p>`;
+      return `<p class="${className}">${body}</p>`;
     }
     return `<div class="collapsible ${className}-wrap" data-collapsed="true">
-      <p class="${className} collapsible-text">${escapeHtml(text)}</p>
+      <p class="${className} collapsible-text">${body}</p>
       <button type="button" class="collapse-toggle" aria-expanded="false">显示更多</button>
     </div>`;
   }
@@ -1125,7 +1219,7 @@
           ${isLast ? "" : '<span class="flow-line"></span>'}
         </div>
         <div class="flow-card">
-          ${collapsibleHtml(step.text, { className: "flow-text", threshold: STEP_COLLAPSE_CHARS })}
+          ${collapsibleHtml(step.text, { className: "flow-text", threshold: STEP_COLLAPSE_CHARS, query: searchQuery() || undefined })}
           ${stepMetaChips(step)}
         </div>
       </li>`;
@@ -1219,6 +1313,7 @@
   }
 
   function renderCard(p) {
+    const q = searchQuery();
     const name = p.authorName || authorDisplay(p.author);
     const note = p.note
       ? `<span class="note-pill">${escapeHtml(p.note)}</span>`
@@ -1226,7 +1321,10 @@
     const tagList = postTags(p);
     const tags = tagList
       .slice(0, 8)
-      .map((t) => `<button type="button" class="tag tag-click" data-tag="${escapeHtml(t)}">#${escapeHtml(t)}</button>`)
+      .map((t) => {
+        const label = q ? highlightHtml(t, q) : escapeHtml(t);
+        return `<button type="button" class="tag tag-click" data-tag="${escapeHtml(t)}">#${label}</button>`;
+      })
       .join("");
 
     const myCats = catsOfPost(p);
@@ -1254,8 +1352,9 @@
     )}</time>
           ${note}
         </div>
-        <h2 class="post-title">${escapeHtml(p.title || "")}</h2>
-        ${collapsibleHtml(p.summary || "", { className: "post-summary", threshold: SUMMARY_COLLAPSE_CHARS })}
+        <h2 class="post-title">${q ? highlightHtml(p.title || "", q) : escapeHtml(p.title || "")}</h2>
+        ${q ? firstHitSnippet(p, q) : ""}
+        ${collapsibleHtml(p.summary || "", { className: "post-summary", threshold: SUMMARY_COLLAPSE_CHARS, query: q || undefined })}
         ${tags ? `<div class="tags">${tags}</div>` : ""}
         ${catBadges}
         ${stepsHtml(p)}
@@ -1297,6 +1396,7 @@
 
     els.timeline.innerHTML = posts.map(renderCard).join("");
     bindCollapseToggles(els.timeline);
+    revealFirstSearchHit();
     els.timeline.querySelectorAll("img.avatar-img").forEach((img) => {
       img.addEventListener("error", () => {
         const ini = img.getAttribute("data-fallback-initials") || "?";
