@@ -1405,19 +1405,18 @@ a.avatar-link:hover {
 
 
 /* —— Undo toast ——
-   Lives inside .modal-card (the settings dialog is in the top layer, so a page-level
-   toast would sit under its backdrop). Anchored just above the footer so it never
-   covers 完成. */
+   In-flow flex child of .modal-card, ordered under the header (order 1; body 2,
+   footer 3). Same at every viewport — never position:absolute over the body. */
 .undo-toast {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: calc(var(--modal-footer-h, 61px) + 24px);
+  position: static;
+  order: 1;
+  flex-shrink: 0;
   z-index: 2;
   display: flex;
   align-items: center;
   gap: 16px;
   height: 44px;
+  margin: 8px 15px; /* +1px card border ≈ 16px from the card edge; 8px top+bottom */
   padding: 0 16px;
   border-radius: 8px;
   background: var(--text);
@@ -1427,6 +1426,14 @@ a.avatar-link:hover {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
   opacity: 0;
   transition: opacity 150ms ease;
+}
+
+.modal-card > .modal-body {
+  order: 2;
+}
+
+.modal-card > .modal-footer {
+  order: 3;
 }
 
 .undo-toast.is-visible {
@@ -1513,25 +1520,6 @@ a.avatar-link:hover {
 }
 
 @media (max-width: 768px) {
-  /* ≤768: the toast becomes an in-flow flex item of .modal-card right under the header
-     (order 1; body 2, footer 3). It never scrolls with the body and, because the body
-     shrinks to make room, it cannot overlap any input or button. */
-  .undo-toast {
-    position: static;
-    order: 1;
-    flex-shrink: 0;
-    margin: 8px 15px 0; /* + 1px card border = 16px from the card edge */
-    transform: none;
-  }
-
-  .modal-card > .modal-body {
-    order: 2;
-  }
-
-  .modal-card > .modal-footer {
-    order: 3;
-  }
-
   .btn-danger,
   .confirm-actions .btn-secondary {
     height: 44px;
