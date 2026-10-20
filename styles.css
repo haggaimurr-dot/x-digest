@@ -1047,6 +1047,11 @@ a.avatar-link:hover {
   gap: 8px;
 }
 
+/* Room below an add row before the next section heading (also clears the 3px focus glow). */
+.add-row + .section-title {
+  margin-top: 16px;
+}
+
 .field {
   flex: 1;
   min-width: 120px;
