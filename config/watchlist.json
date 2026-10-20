@@ -7,7 +7,8 @@
     },
     {
       "id": "other",
-      "name": "其他关注"
+      "name": "默认",
+      "fixed": true
     }
   ],
   "accounts": [

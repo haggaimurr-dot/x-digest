@@ -10,8 +10,11 @@
   const SPECIAL_GROUP_NAME = "特别关注";
   const DEFAULT_GROUPS = [
     { id: SPECIAL_GROUP_ID, name: SPECIAL_GROUP_NAME, fixed: true },
-    { id: "other", name: "其他关注" },
+    { id: "other", name: "默认", fixed: true },
   ];
+  const DEFAULT_GROUP_ID = "other";
+  const DEFAULT_GROUP_NAME = "默认";
+  const LONG_PRESS_MS = 600;
   const THEME_KEY = "x-digest-theme";
   const FILTER_COLLAPSE_KEY = "x-digest-filters-collapsed";
   const CHIPS_AUTHORS_EXPANDED_KEY = "x-digest-chips-authors-expanded";
@@ -508,8 +511,11 @@
   }
 
   function normalizeGroups(raw) {
-    const out = [{ id: SPECIAL_GROUP_ID, name: SPECIAL_GROUP_NAME, fixed: true }];
-    const seen = new Set([SPECIAL_GROUP_ID]);
+    const out = [
+      { id: SPECIAL_GROUP_ID, name: SPECIAL_GROUP_NAME, fixed: true },
+      { id: DEFAULT_GROUP_ID, name: DEFAULT_GROUP_NAME, fixed: true },
+    ];
+    const seen = new Set([SPECIAL_GROUP_ID, DEFAULT_GROUP_ID]);
     if (Array.isArray(raw)) {
       for (const g of raw) {
         if (!g || typeof g !== "object") continue;
@@ -519,13 +525,15 @@
         out.push({ id, name: String(g.name || "").trim() || "其他关注" });
       }
     }
-    if (out.length < 2) out.push({ id: "other", name: "其他关注" });
     return out;
   }
 
   function firstOtherGroupId() {
-    const g = groups.find((x) => x.id !== SPECIAL_GROUP_ID);
-    return g ? g.id : SPECIAL_GROUP_ID;
+    return DEFAULT_GROUP_ID;
+  }
+
+  function isFixedGroup(id) {
+    return id === SPECIAL_GROUP_ID || id === DEFAULT_GROUP_ID;
   }
 
   function normalizeAccounts(accounts) {
@@ -813,9 +821,10 @@
     const chipHtml = (u) => {
       const active = selectedAuthors.has(u) ? "active" : "";
       const label = escapeHtml(authorDisplay(u));
-      return `<button type="button" class="chip ${active}" data-author="${escapeHtml(
+      const lp = groupOfAuthor(u) !== DEFAULT_GROUP_ID;
+      return `<button type="button" class="chip ${active} ${lp ? "lp-able" : ""}" data-author="${escapeHtml(
         u
-      )}" aria-pressed="${selectedAuthors.has(u)}">${label}</button>`;
+      )}" aria-pressed="${selectedAuthors.has(u)}" ${lp ? 'title="长按移至默认"' : ""}>${label}</button>`;
     };
     els.authorChips.innerHTML = groups
       .map((g) => {
@@ -1188,7 +1197,9 @@
         .join("");
     els.watchList.innerHTML = watchlist
       .map(
-        (a, i) => `<li>
+        (a, i) => `<li data-username="${escapeHtml(a.username)}" class="${
+          a.group !== DEFAULT_GROUP_ID ? "lp-able" : ""
+        }" title="${a.group !== DEFAULT_GROUP_ID ? "长按移至默认" : ""}">
         <div class="meta">
           <strong>${escapeHtml(a.name || a.username)}</strong>
           <span>@${escapeHtml(a.username)}</span>
@@ -1204,11 +1215,10 @@
 
   function renderGroupsUI() {
     if (!els.groupList) return;
-    const others = groups.filter((g) => g.id !== SPECIAL_GROUP_ID).length;
     els.groupList.innerHTML = groups
       .map((g) => {
         const n = watchlist.filter((a) => a.group === g.id).length;
-        if (g.id === SPECIAL_GROUP_ID) {
+        if (isFixedGroup(g.id)) {
           return `<li><div class="meta"><strong>${escapeHtml(g.name)}</strong><span>固定类别 · ${n} 人</span></div></li>`;
         }
         return `<li>
@@ -1216,9 +1226,7 @@
             g.id
           )}" value="${escapeHtml(g.name)}" maxlength="20" aria-label="类别名称" />
           <span class="group-count">${n} 人</span>
-          <button type="button" class="btn-remove" data-group-delete="${escapeHtml(g.id)}" ${
-            others <= 1 ? 'disabled title="至少保留一个其他类别"' : ""
-          }>删除</button>
+          <button type="button" class="btn-remove" data-group-delete="${escapeHtml(g.id)}">删除</button>
         </li>`;
       })
       .join("");
@@ -1422,6 +1430,10 @@
     els.authorChips.addEventListener("click", (e) => {
       const btn = e.target.closest("[data-author]");
       if (!btn) return;
+      if (suppressClickUntil > Date.now()) {
+        e.preventDefault();
+        return;
+      }
       const u = btn.getAttribute("data-author");
       if (selectedAuthors.has(u)) selectedAuthors.delete(u);
       else selectedAuthors.add(u);
@@ -1658,6 +1670,77 @@
     });
   }
 
+  // ---- Long press: move author to 默认 ----
+  let suppressClickUntil = 0;
+
+  function moveAuthorToDefault(username) {
+    const idx = watchlist.findIndex((a) => a.username === username);
+    const name = authorDisplay(username);
+    if (idx < 0 || watchlist[idx].group === DEFAULT_GROUP_ID) {
+      showUpdateToast(`${name} 已在「${DEFAULT_GROUP_NAME}」中`);
+      return false;
+    }
+    watchlist[idx] = { ...watchlist[idx], group: DEFAULT_GROUP_ID };
+    saveWatchlist(watchlist);
+    showUpdateToast(`已将 ${name} 移至${DEFAULT_GROUP_NAME}`);
+    if (els.settingsModal && els.settingsModal.open) renderWatchListUI();
+    applyFiltersAndRender();
+    return true;
+  }
+
+  function bindLongPress(root, selector, getUsername) {
+    if (!root) return;
+    let timer = null;
+    let target = null;
+    let startX = 0;
+    let startY = 0;
+    const cancel = () => {
+      if (timer) clearTimeout(timer);
+      timer = null;
+      if (target) target.classList.remove("is-pressing");
+      target = null;
+    };
+    root.addEventListener("pointerdown", (e) => {
+      if (e.button !== undefined && e.button !== 0) return;
+      const el = e.target.closest(selector);
+      if (!el || e.target.closest("select, input, button.btn-remove")) return;
+      const u = getUsername(el);
+      if (!u) return;
+      cancel();
+      target = el;
+      startX = e.clientX;
+      startY = e.clientY;
+      if (groupOfAuthor(u) !== DEFAULT_GROUP_ID) el.classList.add("is-pressing");
+      timer = setTimeout(() => {
+        timer = null;
+        el.classList.remove("is-pressing");
+        target = null;
+        suppressClickUntil = Date.now() + 800;
+        if (navigator.vibrate) {
+          try { navigator.vibrate(20); } catch (_) { /* ignore */ }
+        }
+        moveAuthorToDefault(u);
+      }, LONG_PRESS_MS);
+    });
+    root.addEventListener("pointermove", (e) => {
+      if (!target) return;
+      if (Math.abs(e.clientX - startX) > 10 || Math.abs(e.clientY - startY) > 10) cancel();
+    });
+    ["pointerup", "pointercancel", "pointerleave"].forEach((t) =>
+      root.addEventListener(t, () => {
+        cancel();
+        // Swallow only the click that immediately follows a long press
+        if (suppressClickUntil) setTimeout(() => (suppressClickUntil = 0), 0);
+      })
+    );
+    root.addEventListener("contextmenu", (e) => {
+      if (e.target.closest(selector)) e.preventDefault();
+    });
+  }
+
+  bindLongPress(els.authorChips, "[data-author]", (el) => el.getAttribute("data-author"));
+  bindLongPress(els.watchList, "li[data-username]", (el) => el.getAttribute("data-username"));
+
   function addWatchlistAccount() {
     const parsed = parseWatchlistInput(
       els.newUsername && els.newUsername.value,
@@ -1736,7 +1819,7 @@
       const inp = e.target.closest("[data-group-rename]");
       if (!inp) return;
       const g = groups.find((x) => x.id === inp.getAttribute("data-group-rename"));
-      if (!g || g.id === SPECIAL_GROUP_ID) return;
+      if (!g || isFixedGroup(g.id)) return;
       const name = inp.value.trim();
       if (!name) {
         inp.value = g.name;
@@ -1752,7 +1835,7 @@
       if (!btn || btn.disabled) return;
       e.preventDefault();
       const gid = btn.getAttribute("data-group-delete");
-      if (gid === SPECIAL_GROUP_ID) return;
+      if (isFixedGroup(gid)) return;
       groups = groups.filter((g) => g.id !== gid);
       const target = firstOtherGroupId();
       watchlist = watchlist.map((a) => (a.group === gid ? { ...a, group: target } : a));
@@ -1765,7 +1848,7 @@
   if (els.addGroup) {
     els.addGroup.addEventListener("click", (e) => {
       e.preventDefault();
-      const name = (els.newGroupName && els.newGroupName.value.trim()) || `其他关注 ${groups.length}`;
+      const name = (els.newGroupName && els.newGroupName.value.trim()) || `新类别 ${groups.length - 1}`;
       groups.push({ id: newGroupId(), name });
       if (els.newGroupName) els.newGroupName.value = "";
       saveWatchlist(watchlist);

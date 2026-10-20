@@ -1259,3 +1259,13 @@ a.avatar-link:hover {
 .chip-count { font-weight: 400; opacity: 0.7; margin-left: 2px; }
 .chip-uncat { border-style: dashed; }
 .empty-li { border-style: dashed !important; }
+
+/* build v19: long press to 默认 */
+.chip.lp-able, .watch-list li.lp-able { position: relative; overflow: hidden; -webkit-touch-callout: none; user-select: none; touch-action: manipulation; }
+.chip.lp-able::before, .watch-list li.lp-able::before {
+  content: ""; position: absolute; inset: 0; transform-origin: left center; transform: scaleX(0);
+  background: rgba(29, 155, 240, 0.35); pointer-events: none;
+}
+.chip.is-pressing::before, .watch-list li.is-pressing::before { animation: lp-fill 600ms linear forwards; }
+.chip.is-pressing { transform: scale(0.96); transition: transform 0.6s; }
+@keyframes lp-fill { to { transform: scaleX(1); } }
