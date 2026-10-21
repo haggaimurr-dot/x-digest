@@ -810,26 +810,45 @@ a.avatar-link:hover {
   padding-top: 2px;
 }
 
+/* 8px solid accent dots; numbers live in the step card as 「1. …」 */
 .flow-node {
-  width: 26px;
-  height: 26px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  border: 2px solid var(--accent);
-  background: var(--bg);
-  color: var(--accent);
-  font-size: 12px;
-  font-weight: 800;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border: none;
+  background: var(--accent);
+  color: transparent;
+  font-size: 0;
   flex-shrink: 0;
   z-index: 1;
-  box-shadow: 0 0 0 3px var(--accent-soft);
+  opacity: 1;
+  box-shadow: none;
 }
 
-.flow-step:first-child .flow-node {
-  background: var(--accent);
-  color: #fff;
+/* Breathe only while the flowchart <details> is open; adjacent steps stagger 0.3s */
+.steps[open] .flow-node {
+  animation: flow-breathe 2.4s ease-in-out infinite;
+  animation-delay: calc(var(--step-i, 0) * 0.3s);
+}
+
+@keyframes flow-breathe {
+  0%,
+  100% {
+    opacity: 0.75;
+    box-shadow: 0 0 0 0 transparent;
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .steps[open] .flow-node {
+    animation: none;
+    opacity: 1;
+    box-shadow: none;
+  }
 }
 
 .flow-line {
@@ -1242,6 +1261,23 @@ a.avatar-link:hover {
 .group-list li { justify-content: flex-start; }
 .group-list .group-name-input { flex: 1 1 auto; min-width: 0; }
 .group-list .group-count { color: var(--text-muted); font-size: 13px; white-space: nowrap; }
+
+/* Fixed categories (特别关注 / 默认): borderless rows; editable rows keep field borders */
+.group-list li.group-fixed {
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  padding: 8px 0;
+  gap: 8px;
+}
+.group-list li.group-fixed .meta strong {
+  font-size: 15px;
+  font-weight: 700;
+}
+.group-list li.group-fixed .meta span {
+  font-size: 13px;
+  color: var(--text-muted);
+}
 .btn-remove:disabled { opacity: 0.4; cursor: not-allowed; }
 
 /* build v18: post categories */

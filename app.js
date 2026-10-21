@@ -396,7 +396,8 @@
     if (els.dateFrom && els.dateFrom.value) n += 1;
     if (els.dateTo && els.dateTo.value) n += 1;
     if (els.userFilter && els.userFilter.value.trim()) n += 1;
-    if (els.tagFilter && els.tagFilter.value.trim()) n += 1;
+    // Only-# is empty after strip — don't count as an active filter.
+    if (els.tagFilter && els.tagFilter.value.trim().replace(/^#+/, "")) n += 1;
     n += selectedTags.size;
     if (selectedCats.size) n += 1;
     const defaultAuthors = specialAuthors();
@@ -1143,8 +1144,10 @@
     if (!els.tagChips) return;
     const tags = collectAllTags();
     pruneSelectedTags(tags);
+    // Strip leading #; only-# is treated as blank (show full chip list).
     const q = (els.tagFilter && els.tagFilter.value ? els.tagFilter.value : "")
       .trim()
+      .replace(/^#+/, "")
       .toLowerCase();
     // No max-cap / ellipsis: chip count shrinks with selected authors
     const list = q
@@ -1204,22 +1207,58 @@
     return chips.length ? `<div class="flow-meta">${chips.join("")}</div>` : "";
   }
 
+  // ---- Flowchart eligibility (技术/产品/工具介绍或教程 only) ----
+  // Durable flag `showFlowchart` is set at digest generation. For older posts without
+  // the flag, derive with the same heuristics: BOTH (a) concrete product/tool AND
+  // (b) usage/setup flow; if unsure → do not show.
+  const FLOW_PRODUCT_RE =
+    /Claude(?:\s*Code|\s*Pro)?|Codex|ChatGPT|GPT-?\d|Grok\s*Bot|\bGrok\b|豆包(?:工作)?|Open-?Science|Clipper|Typeless|叭哥说|Tripo|Blender|Unity|Remotion|ESP32|RTX\s*Spark|Hugging\s*Face|Live\s*Link\s*Face|抖音直播伴侣|剪映|Cursor|Antigravity|Opus(?:\s*5\.5)?|Astra|DeepSeek|Mole|Glimpse|AIHOT|Monid|Fable|Unlimited-?OCR|Whoop|Apple\s*Health|UU\s*远程|网易\s*UU|Node\.?js|ffmpeg|StarryBlu|DMIT|Apple\s*Pay|Auto-?Rig|Image\s*2\.5|Google\s*Flow|Profound|REA|Next\.?js|Health\+GPT|Atypica|Sai|MCP|Skill|直播伴侣|面捕/i;
+  const FLOW_ACTION_RE =
+    /打开|点击|选择|运行|执行|输入|登录|注册|安装|下载|配置|设置|新建|创建|连接|授权|上传|录制|挂载|部署|接入|切换|填写|复制|启动|关闭|佩戴|获取|导入|复现|迁移|报白|推流|第一步|第二步|首先|然后|接着|保姆级|手把手|教程|SOP|从\s*0|按步骤/;
+  const FLOW_HARD_NO_RE =
+    /必读合集|神帖合集|观察报告|盈利模式|到底为了什么|情绪比时长|抱歉回复晚了|翻转法|代表作拿影响力|半年成长六点|房车长帖|线下跑客户|普通人收益路径|普通人 AI 赚钱老几样|别只盯硅谷模型|放出.{0,20}Flash|月下载\s*\d|涨粉复盘|可复制性的 X 涨粉|从小白到单篇|冷启动贴写错了|血泪报价法|GEO 公开课|主题式连载|脆弱性（GEO）|论文：从公开内容/;
+  const FLOW_TUTORIAL_TITLE_RE =
+    /教程|保姆|手把手|SOP|从\s*0|开通|安装|部署|上手|清理|开播|配置清单|迁移|实测长文|打通|平替|开源还原|扒了|验收|指标化|万能复刻/;
+
+  function deriveShowFlowchart(p) {
+    const raw = Array.isArray(p.steps) ? p.steps : [];
+    if (raw.length < 2) return false;
+    const texts = raw.map((s) => (s && typeof s === "object" ? String(s.text || "") : String(s || "")));
+    const title = String(p.title || "");
+    const summary = String(p.summary || "");
+    const blob = [title, summary, String(p.tech || ""), ...(p.tags || []), ...texts].join("\n");
+    if (FLOW_HARD_NO_RE.test(title) || FLOW_HARD_NO_RE.test(summary.slice(0, 240))) return false;
+    if (!FLOW_PRODUCT_RE.test(blob)) return false;
+    const actionN = texts.filter((t) => FLOW_ACTION_RE.test(t)).length;
+    const tutorialish =
+      FLOW_TUTORIAL_TITLE_RE.test(title) || actionN >= 2 || (actionN >= 1 && FLOW_PRODUCT_RE.test(title));
+    return !!tutorialish;
+  }
+
+  function shouldShowFlowchart(p) {
+    if (typeof p.showFlowchart === "boolean") return p.showFlowchart;
+    return deriveShowFlowchart(p);
+  }
+
   function stepsHtml(post) {
+    if (!shouldShowFlowchart(post)) return "";
     const raw = Array.isArray(post.steps) ? post.steps : [];
     const steps = raw.map(normalizeStep).filter(Boolean);
-    if (!post.isLong || steps.length === 0) return "";
+    if (steps.length === 0) return "";
 
     const nodes = steps
       .map((step, i) => {
         const n = i + 1;
         const isLast = i === steps.length - 1;
-        return `<li class="flow-step${isLast ? " is-last" : ""}">
+        // Numbers live in the card title (「1. …」); track dots stay unlabeled.
+        const labeled = `${n}. ${step.text || ""}`;
+        return `<li class="flow-step${isLast ? " is-last" : ""}" style="--step-i: ${i}">
         <div class="flow-rail" aria-hidden="true">
-          <span class="flow-node">${n}</span>
+          <span class="flow-node"></span>
           ${isLast ? "" : '<span class="flow-line"></span>'}
         </div>
         <div class="flow-card">
-          ${collapsibleHtml(step.text, { className: "flow-text", threshold: STEP_COLLAPSE_CHARS, query: searchQuery() || undefined })}
+          ${collapsibleHtml(labeled, { className: "flow-text", threshold: STEP_COLLAPSE_CHARS, query: searchQuery() || undefined })}
           ${stepMetaChips(step)}
         </div>
       </li>`;
@@ -1241,15 +1280,18 @@
       .trim()
       .replace(/^@/, "")
       .toLowerCase();
+    // Strip leading # (like username search strips @). Only-# → empty query (no-op).
     const tagQ = (els.tagFilter && els.tagFilter.value ? els.tagFilter.value : "")
       .trim()
+      .replace(/^#+/, "")
       .toLowerCase();
     const fromMs = shanghaiDayBound(els.dateFrom && els.dateFrom.value, false);
     const toMs = shanghaiDayBound(els.dateTo && els.dateTo.value, true);
 
     return allPosts.filter((p) => {
-      // Author chips (OR within selected set)
-      if (selectedAuthors.size && !selectedAuthors.has(p.author)) return false;
+      // Author chips (OR within selected set). Empty selection = empty feed
+      // (not "skip author filter"), so counts/tags/chips stay consistent.
+      if (!selectedAuthors.has(p.author)) return false;
 
       // Post categories (OR within selected set, AND with others)
       if (!ignoreCats && !matchesSelectedCats(p)) return false;
@@ -1508,7 +1550,7 @@
       .map((g) => {
         const n = watchlist.filter((a) => a.group === g.id).length;
         if (isFixedGroup(g.id)) {
-          return `<li><div class="meta"><strong>${escapeHtml(g.name)}</strong><span>固定类别 · ${n} 人</span></div></li>`;
+          return `<li class="group-fixed"><div class="meta"><strong>${escapeHtml(g.name)}</strong><span>固定类别 · ${n} 人</span></div></li>`;
         }
         return `<li>
           <input type="text" class="field group-name-input" data-group-rename="${escapeHtml(

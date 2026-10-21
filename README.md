@@ -47,6 +47,7 @@ python3 -m http.server 8080
       ],
       "tags": ["标签1", "标签2"],
       "isLong": true,
+      "showFlowchart": true,
       "note": "可选备注，如「黄小木转发」"
     }
   ]
@@ -75,6 +76,21 @@ python3 -m http.server 8080
 - **禁止用 `…` / `...` 截断** title / summary / steps 正文。短链 API 不够时，改用完整 `note_tweet`，或 `https://api.fxtwitter.com/{user}/status/{id}` 取全文后再写库。
 - **面向用户的 title / summary / steps 必须是中文**：英文原文先完整理解再译写，不要把英文半截句子留在 steps 里。
 - **长文可以很长**：完整写入 JSON；站点 UI 用「显示更多 / 收起」折叠，不要在数据层截断。
+
+### 流程图 / 实现步骤（硬规则）
+
+仅对 **技术 / 产品 / 工具介绍或教程** 生成 `steps` 并设 `showFlowchart: true`。观点、新闻、闲聊、吐槽、纯涨粉复盘、合集、盈利模式盘点等 **不要** 生成流程图。
+
+须 **同时** 满足（拿不准则不生成）：
+
+1. 正文点名具体产品 / 工具 / 技术；
+2. 含使用步骤、原理拆解或搭建/配置流程。
+
+字段：
+
+- `showFlowchart`（boolean）：前端是否展示「实现步骤·流程图」折叠。旧数据若缺省，前端会用同一启发式推导。
+- `steps`：仅在 `showFlowchart: true` 时填写；否则写 `[]`。
+- `isLong`：仍可表示长文；**不再单独决定是否显示流程图**。
 
 无需后端。Grok Bot 日常调度 routine 的 folder id 为 `x`（由统一调度维护；改规则时用 UpdateRoutine 更新该 routine，不要在本仓库另建一份）。
 
