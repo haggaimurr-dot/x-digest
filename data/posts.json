@@ -1,6 +1,1115 @@
 {
-  "updatedAt": "2026-10-20T08:05:48+08:00",
+  "updatedAt": "2026-10-21T08:09:15+08:00",
   "posts": [
+    {
+      "id": "2112693959848005734",
+      "url": "https://x.com/shengtang135754/status/2112693959848005734",
+      "author": "shengtang135754",
+      "authorName": "麦麦提",
+      "authorAvatar": "avatars/shengtang135754.jpg",
+      "title": "Tibo 28 天计划收尾或扔王炸：猜 6.1 Astra",
+      "industry": "AI 产品 / 预测",
+      "tech": "Tibo、Astra、发布节奏",
+      "tags": [
+        "Tibo",
+        "Astra",
+        "产品发布"
+      ],
+      "summary": "麦麦提引用自己早前帖并配图：有人说他造谣，但他觉得自 28 天计划后中间划水，最后一天一定会扔王炸收尾——比如发布 6.1 Astra，他想不出更炸的事了。",
+      "publishedAt": "2026-10-21T07:54:26+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112687872587473262",
+      "url": "https://x.com/0xlangeai/status/2112687872587473262",
+      "author": "0xlangeai",
+      "authorName": "蓝哥AI",
+      "authorAvatar": "avatars/0xlangeai.jpg",
+      "title": "Matt Palmer 五分钟 Grok Bot 更新：速度×3、可读私信、@bot 操作帖子",
+      "industry": "AI 助手 / Grok Bot",
+      "tech": "Grok Bot、X 插件、连接器",
+      "tags": [
+        "Grok Bot",
+        "MattPalmer",
+        "更新",
+        "X插件"
+      ],
+      "summary": "蓝哥总结 SpaceXAI 的 Matt Palmer 本周 Grok Bot 更新视频：Bot 电脑上任务响应再快约三倍。X 侧两大能力——可读并可代回私信；在帖子下 @bot 让它收藏、查资料、解释帖子（需装 X 插件并绑账号）。邮箱可开加号别名等于无限地址；起草 Slack/Gmail 时修改处高亮；语音通话三十分钟内记得上下文；通知只推到正在用的设备。另有 Robinhood/Coinbase/Trello 等连接器、邀请队友、安卓可设默认助手、团队权限、未读一键跳转、卡片表格重设计等。",
+      "publishedAt": "2026-10-21T07:30:15+08:00",
+      "isLong": true,
+      "steps": [
+        {
+          "text": "若要用帖子下 @bot：先安装 X 插件并完成账号绑定，再在目标帖下召唤 Bot 做收藏/检索/解释。",
+          "tools": "Grok Bot、X 插件",
+          "tech": "账号绑定",
+          "prep": "准备要绑定的 X 账号"
+        },
+        {
+          "text": "需要多邮箱场景时，让 Bot 创建加号别名地址，避免共用单一收件箱。",
+          "tools": "Grok Bot 邮箱",
+          "tech": "别名邮箱",
+          "prep": "想好别名用途（订阅/注册/工单）"
+        },
+        {
+          "text": "团队场景打开权限管理与连接器（如 Trello），并设置通知只达当前设备以免多端轰炸。",
+          "tools": "团队 Bot、连接器",
+          "tech": "协作配置",
+          "prep": "列出需要接入的第三方账号"
+        }
+      ],
+      "showFlowchart": true
+    },
+    {
+      "id": "2112584126155088004",
+      "url": "https://x.com/Khazix0918/status/2112584126155088004",
+      "author": "Khazix0918",
+      "authorName": "数字生命卡兹克",
+      "authorAvatar": "avatars/Khazix0918.jpg",
+      "title": "闲置 M4 Mac mini 第二春：自建 CI + Agent 专用机",
+      "industry": "AI Agent / 工程基建",
+      "tech": "Mac mini、自建 CI、Agent 自动化",
+      "tags": [
+        "Mac mini",
+        "CI",
+        "Agent",
+        "飞书CLI"
+      ],
+      "summary": "卡兹克把本来准备卖掉的 M4 Mac mini 改成自建 CI，并给 Agent 跑自动化端到端测试。以前用 GitHub CI，Agent 太爱提 PR，开了会员每月还能再花二三十刀；现在本地速度快、可并行。机器 24 小时待命，闲时给 Agent 当专用机：Chrome 登录好、飞书 CLI 配好，扔给 Agent 自己全自动玩。",
+      "publishedAt": "2026-10-21T00:38:00+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112572550140100766",
+      "url": "https://x.com/miles_mazy/status/2112572550140100766",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "authorAvatar": "avatars/miles_mazy.jpg",
+      "title": "用两个 Grok Bot：一个学做视频，一个去闲鱼接单",
+      "industry": "AI 变现 / Grok Bot",
+      "tech": "Grok Bot、视频制作、闲鱼",
+      "tags": [
+        "Grok Bot",
+        "闲鱼",
+        "视频变现",
+        "Vibe知识大赏"
+      ],
+      "summary": "Miles 引用观默的《Vibe知识大赏》保姆级教程（二十天涨粉七十八万）说：可以直接在 Grok Bot 里创建两个 Bot——一个学会按文章流程做视频，另一个去闲鱼接定制单，一个月赚个万把块不难。配了截图示意双 Bot 分工。",
+      "publishedAt": "2026-10-20T23:52:00+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112571589531415035",
+      "url": "https://x.com/mjjwiki/status/2112571589531415035",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "authorAvatar": "avatars/mjjwiki.jpg",
+      "title": "马斯克公布 X 推荐算法两大改动：更看停留与读完",
+      "industry": "社交平台 / 算法",
+      "tech": "推荐算法、停留时长、完读率",
+      "tags": [
+        "X算法",
+        "ElonMusk",
+        "推荐",
+        "完读"
+      ],
+      "summary": "MJJ百科转述马斯克帖：X 推荐时间线两项大改——新的 AI/SI 排序模型更好预测可能停留时长；检索模型训练去推「会被从头读到尾」的帖。以前更看点赞转发评论等表面互动，现在更直接预测真实停留与阅读；更奖励被完整阅读的内容，而不是标题党、前两句就劝退的帖。",
+      "publishedAt": "2026-10-20T23:48:11+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112560723125551431",
+      "url": "https://x.com/ai_xiaomu/status/2112560723125551431",
+      "author": "ai_xiaomu",
+      "authorName": "黄小木",
+      "authorAvatar": "avatars/ai_xiaomu.jpg",
+      "title": "对比狗哥小红书商单经验：万粉 X 账号 ROI 极高",
+      "industry": "自媒体变现 / X 运营",
+      "tech": "商单、社群加热、海外合作",
+      "tags": [
+        "商单",
+        "X运营",
+        "AfterNoise",
+        "ROI"
+      ],
+      "summary": "黄小木引用狗哥笔记开源的小红书付费咨询商单经验后对比：自己接过海外商单，单笔三千到五千都有，连「返点」是什么都不知道；也不用投薯条，群里吼一声让兄弟加热就行，净收入到账，有些北美金主甚至不要数据。结论仍是：一个万粉 X 账号 ROI 极高，但要混圈子，AfterNoise 是很好的选择。",
+      "publishedAt": "2026-10-20T23:05:00+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112560043531133408",
+      "url": "https://x.com/mjjwiki/status/2112560043531133408",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "authorAvatar": "avatars/mjjwiki.jpg",
+      "title": "谷歌只修美区 8.99 订阅 Bug：其它区仍能白嫖 Gemini 4 Argon？",
+      "industry": "AI 订阅 / 风控",
+      "tech": "Antigravity、Gemini 4 Argon、订阅 Bug",
+      "tags": [
+        "Gemini",
+        "Antigravity",
+        "订阅",
+        "Google"
+      ],
+      "summary": "MJJ百科吐槽：谷歌似乎只修复了美区 8.99 美元订阅 Bug，其它地区没修。若白嫖用户都能在 Antigravity 里用 Gemini 4 Argon，模型很快会「降智流口水」；他希望事后像以前那样大清算，用一个月再收回。",
+      "publishedAt": "2026-10-20T23:02:18+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112549609512022419",
+      "url": "https://x.com/ai_xiaomu/status/2112549609512022419",
+      "author": "ai_xiaomu",
+      "authorName": "黄小木",
+      "authorAvatar": "avatars/ai_xiaomu.jpg",
+      "title": "WhatsToken 夜间免费 DeepSeek V4.1 Flash，适合做定时任务",
+      "industry": "AI 模型 / API",
+      "tech": "DeepSeek V4.1 Flash、WhatsToken、定时任务",
+      "tags": [
+        "DeepSeek",
+        "WhatsToken",
+        "免费额度",
+        "harness"
+      ],
+      "summary": "黄小木惊喜发现梁祖的 DeepSeek V4.1 Flash-1017 居然在 @WhatsTokenAI 免费：免费窗口是北京时间每天 22:00 到早上 8:00，配置进 deepseek harness 做定时任务很香。引用官方说明：窗外时段低至官价约 25%。",
+      "publishedAt": "2026-10-20T22:20:50+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112536083913490450",
+      "url": "https://x.com/shengtang135754/status/2112536083913490450",
+      "author": "shengtang135754",
+      "authorName": "麦麦提",
+      "authorAvatar": "avatars/shengtang135754.jpg",
+      "title": "Qoder 免费到 10 月 24 日：赶紧把模型接出来用",
+      "industry": "AI 编程 / 免费额度",
+      "tech": "Qoder、DeepSeek、阿里",
+      "tags": [
+        "Qoder",
+        "免费",
+        "DeepSeek"
+      ],
+      "summary": "麦麦提提醒 Qoder 免费用到 10 月 24 日，建议赶紧接出来；并调侃这钱到底是阿里出还是 DeepSeek 自己出。",
+      "publishedAt": "2026-10-20T21:27:06+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112530523394588891",
+      "url": "https://x.com/ai_xiaomu/status/2112530523394588891",
+      "author": "ai_xiaomu",
+      "authorName": "黄小木",
+      "authorAvatar": "avatars/ai_xiaomu.jpg",
+      "title": "邮箱上下文打通：领导任务可直接让 Agent 交差",
+      "industry": "AI Agent / 办公",
+      "tech": "邮箱 Agent、上下文贯通",
+      "tags": [
+        "Agent",
+        "邮箱",
+        "办公自动化"
+      ],
+      "summary": "黄小木引用 Roland.W 的文章《我让 AI 翻了翻邮箱，才发现这一年没白忙》，感慨帅：邮箱里上下文都打通了，领导任务安排过来直接让 Agent 生成就可交差，不用再在 Codex 里来回倒腾上下文。",
+      "publishedAt": "2026-10-20T21:05:00+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112523924433166611",
+      "url": "https://x.com/gkxspace/status/2112523924433166611",
+      "author": "gkxspace",
+      "authorName": "余温",
+      "authorAvatar": "avatars/gkxspace.jpg",
+      "title": "可灵 4.0 全流程：动动嘴做 AI 短剧还能自动剪辑",
+      "industry": "AI 视频 / 短剧",
+      "tech": "可灵4.0、对话式剪辑",
+      "tags": [
+        "可灵",
+        "AI短剧",
+        "剪辑",
+        "西堂"
+      ],
+      "summary": "余温转发西堂的可灵 4.0 全流程教程（附提示词），惊叹现在做 AI 短剧甚至可以一次剪映都不打开——西堂把全流程跑通，把 AI 视频推进到「对话式剪辑」阶段。余温还推荐西堂此前沉淀的百万字 AI 知识库。",
+      "publishedAt": "2026-10-20T20:38:47+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112523827548705236",
+      "url": "https://x.com/Astronaut_1216/status/2112523827548705236",
+      "author": "Astronaut_1216",
+      "authorName": "叫我阿杭",
+      "authorAvatar": "avatars/Astronaut_1216.jpg",
+      "title": "逆向 OpenPrice 如何被豆包推荐：外链、教程场景与 GitHub",
+      "industry": "AI 建站 / GEO",
+      "tech": "Monid、DataForSEO、外链、GitHub",
+      "tags": [
+        "豆包",
+        "GEO",
+        "外链",
+        "GitHub",
+        "OpenPrice"
+      ],
+      "summary": "阿杭用 Monid AI 逆向一家能被豆包推荐的站点归因：他们认为变现靠大流量入口与赞助，而非纯卖产品。要点包括：1）调用 DataForSEO 看到十余个引荐域、百余条外链（大量来自 sitedata.dev 多语言目录且为 nofollow），但页面问题与用户/豆包提问高度匹配；2）有一篇「没有海外支付方式」场景的中文教程把 OpenPrice 当比价工具并链到成品号页；3）与 AI 导航站、项目站共营（含 dofollow）；4）GitHub 是主要流量来源，结构化描述目标用户、技术栈、场景与商业模式。阿杭表示自己的个人站也要用这套方式优化。",
+      "publishedAt": "2026-10-20T20:38:23+08:00",
+      "isLong": true,
+      "steps": [
+        {
+          "text": "用外链/引荐分析工具看清谁在链你、哪些是目录站 nofollow、哪些是内容站 dofollow。",
+          "tools": "Monid、DataForSEO",
+          "tech": "外链审计",
+          "prep": "准备站点域名与分析账号"
+        },
+        {
+          "text": "写匹配真实提问的中文场景教程（例如「没有海外支付怎么订阅」），自然链到产品页。",
+          "tools": "博客/公众号",
+          "tech": "场景化内容",
+          "prep": "列出用户在豆包里会怎么问"
+        },
+        {
+          "text": "与 AI 导航站、评测站做共营收录，争取带功能描述的 dofollow。",
+          "tools": "导航站合作",
+          "tech": "共同营销",
+          "prep": "准备产品一页纸与视觉素材"
+        },
+        {
+          "text": "GitHub README 结构化写清用户、技术栈、场景、商业模式，作为稳定引荐源。",
+          "tools": "GitHub",
+          "tech": "开源落地页",
+          "prep": "整理项目定位四段式文案"
+        }
+      ],
+      "showFlowchart": true
+    },
+    {
+      "id": "2112516355455066170",
+      "url": "https://x.com/0xlangeai/status/2112516355455066170",
+      "author": "0xlangeai",
+      "authorName": "蓝哥AI",
+      "authorAvatar": "avatars/0xlangeai.jpg",
+      "title": "万粉复盘：三个月才千粉，一个多月接近万粉的方法与感谢",
+      "industry": "自媒体 / X 运营",
+      "tech": "选题、教程、复盘、社群",
+      "tags": [
+        "涨粉",
+        "复盘",
+        "Muse",
+        "REA",
+        "Grok Bot"
+      ],
+      "summary": "蓝哥发长文《万粉路上的复盘》：第一个千粉近三个月（6/16 开 Premium 到 9/11），从 9/11 千粉到 10/20 快万粉只用一月九天。路径上先因 Heavy 年卡被迫深用 Grok Bot 找到内容方向；Muse 保姆级教程带来爆炸传播（单帖曝光逾二百一十万），后有 REA 教程、Grok Bot 合集与建群接棒。他也坦言爆款不可求、平缓是常态；原创奖励因认证绑卡办晚落空打击热情。给新手六步：写清帮助谁完成什么、使用时攒五题、先写完整小问题、重复需求做成跟练教程、顺着追问补内容、发布后交流并每周复盘。文末感谢 Miles、AYi、Punk、Kin、铁柱、Chris 等一众朋友。",
+      "publishedAt": "2026-10-20T20:08:42+08:00",
+      "isLong": true,
+      "steps": [
+        {
+          "text": "写一句话定位：我想帮助【哪类人】，用【什么工具】，完成【什么具体任务】，并亲自跑通一次验证。",
+          "tools": "备忘录",
+          "tech": "内容定位",
+          "prep": "选定愿意持续用一周的工具或项目"
+        },
+        {
+          "text": "使用时按模板记：想完成什么、卡在哪、试过什么、有效做法、结果截图、别人跟练条件；先攒五条再发。",
+          "tools": "备忘录",
+          "tech": "选题积累",
+          "prep": "建一个固定笔记模板"
+        },
+        {
+          "text": "把重复出现且自己已跑通的需求写成跟练教程：适合谁、最终结果、准备、逐步操作、成功信号、失败处理、验收。",
+          "tools": "长文/Article",
+          "tech": "教程写作",
+          "prep": "自己从头照做一遍查漏"
+        },
+        {
+          "text": "每周复盘曝光/收藏、读者原问题与下一步改动；有互动就补充实践细节，并在同领域帖下留下可验证的操作经验。",
+          "tools": "X 后台",
+          "tech": "周复盘",
+          "prep": "导出几条代表作数据"
+        }
+      ],
+      "showFlowchart": true
+    },
+    {
+      "id": "2112500851881525445",
+      "url": "https://x.com/ai_xiaomu/status/2112500851881525445",
+      "author": "ai_xiaomu",
+      "authorName": "黄小木",
+      "authorAvatar": "avatars/ai_xiaomu.jpg",
+      "title": "AI 名人换脸从 0 到 1：七步工作流 + 物料包与 Skill 开源",
+      "industry": "AIGC / AI 视频",
+      "tech": "MiniMax H3、ComfyUI、DGX Spark、换脸工作流",
+      "tags": [
+        "换脸",
+        "AI视频",
+        "ComfyUI",
+        "开源",
+        "黄小木"
+      ],
+      "summary": "黄小木发布长文《AI名人换脸从 0 到 1 小白教程》，物料包与 Skill 均开源（GitHub：JayceHuang/recast-video-dgx）。完整流程按文件夹拆成七步：原始素材摸底（ffprobe/帧号）、拆镜头定角色、每镜先做换人剧照、打包提示词与 ComfyUI 工作流、三台 DGX Spark 跑 MiniMax H3 两轮生成、把 24fps 对齐回原片约 30fps、拼成片配乐质检。文中还复盘「三个人一起弯腰」「闭着嘴却在唱歌」「马斯克早半拍闭眼」等翻车，强调提示词写画面所见而非音乐所听，并建议先用单人五秒简单背景跑通再扩规模。",
+      "publishedAt": "2026-10-20T19:07:06+08:00",
+      "isLong": true,
+      "steps": [
+        {
+          "text": "准备 00_原始素材：放入完整原片，用 ffprobe 读帧数/帧率/音频，用 shasum 做指纹；帧号从 0 起算，别信播放器四舍五入的时长。",
+          "tools": "ffprobe、shasum",
+          "tech": "素材摸底",
+          "prep": "下载完整版官方 MV，勿用短副歌小样"
+        },
+        {
+          "text": "01_分镜与动作：定好角色映射，机器找切点后再人工复查；长镜头按动作拆到模型可生成的长度（约十秒内），写清每段出场与帧范围。",
+          "tools": "切点检测脚本",
+          "tech": "分镜",
+          "prep": "列出谁演谁、难镜头清单（多人同框、手势特效、大特写）"
+        },
+        {
+          "text": "02_场景参考：每段截头中尾帧，先出换人剧照再生成视频；脸、衣服、站位在图上过关后再下锅。",
+          "tools": "图像生成/换脸",
+          "tech": "剧照质检",
+          "prep": "为每镜建文件夹存放原片截图与剧照"
+        },
+        {
+          "text": "03_提示词与任务：剧照缩到两档尺寸，裁出参考视频，写动作说明（只写画面所见），必要时挂上一段真实末帧，脚本一键打包。",
+          "tools": "打包脚本、ComfyUI",
+          "tech": "任务打包",
+          "prep": "准备 ComfyUI 工作流模板"
+        },
+        {
+          "text": "04_生成片段：提交到 DGX Spark，同机单任务加锁；关联段排队、无关段并行；保留两轮草稿与精修视频便于溯源。",
+          "tools": "MiniMax H3、DGX Spark、ComfyUI",
+          "tech": "分布式生成",
+          "prep": "确认三台机器路径与密钥安全"
+        },
+        {
+          "text": "05–06 对齐与成片：按时间对齐到原片帧率，剪掉模型尾巴，拼 54 段配原声，人工核对歌词字幕与接口跳变；交片时写明版本、覆盖范围与已知问题。",
+          "tools": "对齐脚本、剪辑",
+          "tech": "合成质检",
+          "prep": "建立 07_质检 存放接口对比与抽查记录"
+        }
+      ],
+      "showFlowchart": true
+    },
+    {
+      "id": "2112492907362128049",
+      "url": "https://x.com/shengtang135754/status/2112492907362128049",
+      "author": "shengtang135754",
+      "authorName": "麦麦提",
+      "authorAvatar": "avatars/shengtang135754.jpg",
+      "title": "DeepSeek 开源 DeepInfer：对闭源三巨头的三记冲击",
+      "industry": "AI 基建 / 开源",
+      "tech": "DeepInfer、开源推理、私有化",
+      "tags": [
+        "DeepSeek",
+        "DeepInfer",
+        "开源",
+        "推理"
+      ],
+      "summary": "麦麦提认为 DeepSeek 开源是对闭源阵营的大杀器：想封杀 DS，DS 反手开源让用户自选。对闭源有三大冲击——API 高价难维持必然降价；闭源必须追赶推理速度；企业更倾向更安全的私有化部署。",
+      "publishedAt": "2026-10-20T18:35:31+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112487790965674223",
+      "url": "https://x.com/0xlangeai/status/2112487790965674223",
+      "author": "0xlangeai",
+      "authorName": "蓝哥AI",
+      "authorAvatar": "avatars/0xlangeai.jpg",
+      "title": "DeepSeek 开源推理框架 DeepInfer（Apache 2.0）",
+      "industry": "AI 基建 / 开源",
+      "tech": "DeepInfer、分布式推理、结构化输出",
+      "tags": [
+        "DeepSeek",
+        "DeepInfer",
+        "开源",
+        "推理框架"
+      ],
+      "summary": "蓝哥解读 DeepSeek 开源自家跑 V4.1 Flash 的推理框架 DeepInfer（Apache 2.0，github.com/deepseek-ai/DeepInfer）：等于把官方 API 背后引擎拿出来，压算力成本与耗电。包含优化算子（FlashMLA、DeepGEMM、DeepEP）、分布式推理与投机解码、SWA Bounded Replay 减少预填充计算、按正则/JSON schema 的结构化输出；另开源 deepseek-recipe 对齐官方分词编解码。硬件支持英伟达 SM100 与华为昇腾 950。本次是离线推理，完整在线服务所需的 KV cache 分离与负载均衡等尚未放出。",
+      "publishedAt": "2026-10-20T18:15:12+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112481709199622424",
+      "url": "https://x.com/0xlangeai/status/2112481709199622424",
+      "author": "0xlangeai",
+      "authorName": "蓝哥AI",
+      "authorAvatar": "avatars/0xlangeai.jpg",
+      "title": "Grok Bot 0.72.0 更新说明清晰，对比 Muse 更新令人懵",
+      "industry": "AI 产品 / 更新体验",
+      "tech": "Grok Bot、Muse、产品沟通",
+      "tags": [
+        "Grok Bot",
+        "Muse",
+        "版本更新"
+      ],
+      "summary": "蓝哥对比：每次看 Grok Bot 更新都舒心，至少知道更新了什么；每次看 Muse 更新都懵，因为不知道更新了啥。并指向 0.72.0 更新。",
+      "publishedAt": "2026-10-20T17:51:02+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112475355772756428",
+      "url": "https://x.com/0xlangeai/status/2112475355772756428",
+      "author": "0xlangeai",
+      "authorName": "蓝哥AI",
+      "authorAvatar": "avatars/0xlangeai.jpg",
+      "title": "网易邮箱大师 Agent 可白嫖 DeepSeek V4 Flash",
+      "industry": "AI 办公 / 免费模型",
+      "tech": "网易邮箱大师、DeepSeek V4 Flash",
+      "tags": [
+        "DeepSeek",
+        "网易邮箱",
+        "白嫖",
+        "Agent"
+      ],
+      "summary": "蓝哥分享白嫖 DeepSeek V4 Flash 最新模型的方法：用网易邮箱大师里的 Agent 处理邮件信息；自己有好几个网易邮箱很久没看，正好让 Agent 去翻。",
+      "publishedAt": "2026-10-20T17:25:47+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112471986022875240",
+      "url": "https://x.com/Astronaut_1216/status/2112471986022875240",
+      "author": "Astronaut_1216",
+      "authorName": "叫我阿杭",
+      "authorAvatar": "avatars/Astronaut_1216.jpg",
+      "title": "豆包工作 computer use：能直接帮你买 Claude / GPT 会员",
+      "industry": "AI Agent / 国内工具",
+      "tech": "豆包工作、Computer Use、代充场景",
+      "tags": [
+        "豆包",
+        "Claude",
+        "GPT",
+        "Computer Use",
+        "GEO"
+      ],
+      "summary": "阿杭实测震惊：用豆包对话说明要充值 GPT/Claude，再让「豆包工作」做 computer use，就能帮你把账号买到手；还提到 Claude Max 20x 约一千人民币量级。他进一步判断：把代充站点做好面向国人的 GEO 优化，因为国人最常用的就是豆包——不能把豆包工作用到极致，就很难在国内市场与抖音赚钱。附演示视频。",
+      "publishedAt": "2026-10-20T17:12:23+08:00",
+      "isLong": true,
+      "steps": [
+        {
+          "text": "先在豆包对话里明确需求：要充值的产品（GPT/Claude）、档位与预算。",
+          "tools": "豆包",
+          "tech": "需求澄清",
+          "prep": "准备目标套餐名称与支付方式"
+        },
+        {
+          "text": "切换到「豆包工作」启用 computer use，让它在浏览器里完成下单/购号流程，人工盯关键确认步骤。",
+          "tools": "豆包工作",
+          "tech": "Computer Use",
+          "prep": "确保账号已登录且能完成支付验证"
+        },
+        {
+          "text": "若你做代充站：针对豆包等国内入口做 GEO/内容优化，让 Agent 更容易检索到你的服务页。",
+          "tools": "站点 SEO/GEO",
+          "tech": "国内流量入口",
+          "prep": "梳理国人高频查询词与落地页"
+        }
+      ],
+      "showFlowchart": true
+    },
+    {
+      "id": "2112469874022772977",
+      "url": "https://x.com/miles_mazy/status/2112469874022772977",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "authorAvatar": "avatars/miles_mazy.jpg",
+      "title": "流量大师 5K/小时咨询：容易爆的内容就这 7 点",
+      "industry": "自媒体 / 内容增长",
+      "tech": "选题、互动设计",
+      "tags": [
+        "流量",
+        "选题",
+        "自媒体",
+        "咨询"
+      ],
+      "summary": "Miles 下午约了一位咨询费五千元一小时起的流量大师，问「什么样的内容容易爆发流量」。对方给了七点：观众想纠正你、想看结果、想看翻车、想辨真伪、想给你支招、想带入自己、想证明自己。Miles 把这七点原样放出，并反问兄弟们这钱花得值不值。",
+      "publishedAt": "2026-10-20T17:04:00+08:00",
+      "isLong": true,
+      "steps": [
+        {
+          "text": "写选题时对照七点：这条会不会让人想纠正、看结果、看翻车、辨真伪、支招、代入或证明自己？至少命中一两点再发。",
+          "tools": "选题清单",
+          "tech": "互动动机设计",
+          "prep": "准备一张七点自检表"
+        },
+        {
+          "text": "「想纠正你」类内容适合抛出有争议但可讨论的判断，而不是纯骂战；「想看结果」适合跟练与交付物展示。",
+          "tools": "X",
+          "tech": "钩子设计",
+          "prep": "各准备一条争议判断与一条结果展示样例"
+        }
+      ],
+      "showFlowchart": true
+    },
+    {
+      "id": "2112467144936190379",
+      "url": "https://x.com/0xlangeai/status/2112467144936190379",
+      "author": "0xlangeai",
+      "authorName": "蓝哥AI",
+      "authorAvatar": "avatars/0xlangeai.jpg",
+      "title": "AI 视频剪辑避坑：反应镜头、留镜时长、J/L-cut 与分镜余量",
+      "industry": "AI 视频 / 后期",
+      "tech": "剪辑、声音设计、分镜",
+      "tags": [
+        "AI视频",
+        "剪辑",
+        "声音",
+        "分镜"
+      ],
+      "summary": "蓝哥引用 Punk《AI 视频基础（下册）》总结常见坑：单镜漂亮但拼起来没故事、加音乐后人声听不清。要点：动作后要给反应（如《功夫》飞刀）；留镜看观众在等什么而非死板三秒一切（《疯狂动物城》树懒笑）；用 J-cut/L-cut 让声音先到或晚走，调声先关音乐再清人声再叠环境/音效/音乐；生成前写清每镜起态、动作、收束并前后留余量方便下刀。",
+      "publishedAt": "2026-10-20T16:53:09+08:00",
+      "isLong": true,
+      "steps": [
+        {
+          "text": "粗剪时检查每段是否具备动作与反应/结果，缺反应就补生成或补镜头。",
+          "tools": "剪辑软件",
+          "tech": "叙事完整性",
+          "prep": "列出每镜「动作→结果→反应」清单"
+        },
+        {
+          "text": "调声音：先solo人声调平，再加环境与音效，最后加音乐并在讲话段闪避。",
+          "tools": "音频轨",
+          "tech": "分层混音",
+          "prep": "分轨导入人声/环境/音效/音乐"
+        },
+        {
+          "text": "生成提示写清起态、动作、结束姿态，并预留可剪余量，避免素材掐头去尾无切点。",
+          "tools": "文生视频/图生视频",
+          "tech": "分镜提示",
+          "prep": "为每个镜头写三态描述"
+        }
+      ],
+      "showFlowchart": true
+    },
+    {
+      "id": "2112459303621730500",
+      "url": "https://x.com/Astronaut_1216/status/2112459303621730500",
+      "author": "Astronaut_1216",
+      "authorName": "叫我阿杭",
+      "authorAvatar": "avatars/Astronaut_1216.jpg",
+      "title": "豆包处理几万行财务表：某些场景吊打 Codex / Claude",
+      "industry": "AI 办公 / 国内工具",
+      "tech": "豆包、表格处理、Skill",
+      "tags": [
+        "豆包",
+        "办公",
+        "Codex",
+        "Claude",
+        "性价比"
+      ],
+      "summary": "阿杭让家人用豆包处理公司几万行财务表，对方用得又快又爽，且一个月才六十八块；他觉得这类场景让 Codex Astra 去干太慢，豆包更懂「中国宝宝体质」。再配几个 GitHub Skill 链接给家人，只需把指令和网址发过去就能上手。",
+      "publishedAt": "2026-10-20T16:22:00+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112452513891004786",
+      "url": "https://x.com/LiumangtuCrypto/status/2112452513891004786",
+      "author": "LiumangtuCrypto",
+      "authorName": "流氓兔🐰",
+      "authorAvatar": "avatars/LiumangtuCrypto.jpg",
+      "title": "旧手机变免费监控摄像头：AlfredCamera 零成本教程",
+      "industry": "智能家居 / 省钱技巧",
+      "tech": "AlfredCamera、旧机改造",
+      "tags": [
+        "AlfredCamera",
+        "监控",
+        "旧手机",
+        "省钱"
+      ],
+      "summary": "流氓兔教你把抽屉里的旧手机变成 24 小时监控：下载 AlfredCamera，一机当摄像头、一机当查看器，同账号登录后扫码配对，旧机放在要监控位置即可远程查看。对比 Ring/Nest/Arlo 年费，旧机+免费 App 可做到零订阅；还支持双向通话、动作预警、夜视、远程警报与事件云录。注意保持充电、靠近路由、打开动作检测。",
+      "publishedAt": "2026-10-20T15:55:01+08:00",
+      "isLong": true,
+      "steps": [
+        {
+          "text": "两部手机都安装 AlfredCamera；旧机角色选摄像头，主力机选查看器。",
+          "tools": "AlfredCamera",
+          "tech": "安装配置",
+          "prep": "准备旧机、充电器与同一 Wi‑Fi/数据环境"
+        },
+        {
+          "text": "两机登录同一谷歌/苹果账号后，在查看器端点查看器、旧机点摄像头，扫描二维码配对。",
+          "tools": "AlfredCamera",
+          "tech": "账号配对",
+          "prep": "确认账号可在两台设备登录"
+        },
+        {
+          "text": "把旧机固定在书架对门、客厅角落、婴儿床上方或后门等位置，主力机点直播查看；打开动作检测并保持充电、靠近路由。",
+          "tools": "支架/旧机",
+          "tech": "部署与告警",
+          "prep": "选好视野最大的角落机位"
+        }
+      ],
+      "showFlowchart": true
+    },
+    {
+      "id": "2112446975950156250",
+      "url": "https://x.com/ai_xiaomu/status/2112446975950156250",
+      "author": "ai_xiaomu",
+      "authorName": "黄小木",
+      "authorAvatar": "avatars/ai_xiaomu.jpg",
+      "title": "错过 Opus 5.5 起号？数字人「崩老登」方案已开源",
+      "industry": "AI 视频 / 直播变现",
+      "tech": "数字人、开源方案、短视频平台",
+      "tags": [
+        "数字人",
+        "开源",
+        "抖音",
+        "视频号",
+        "Opus"
+      ],
+      "summary": "黄小木引用 Gary曹淦的开源长文《抖音千人在线的 AI 实时美女主播，我也搭了一个（已开源）》，喊话：错过 Opus 5.5 起号的兄弟别再错过这个项目——数字人「崩老登」方案已开源，可以去视频号或抖音收割下沉市场。原帖互动很高（收藏一千八百多、曝光逾十一万）。",
+      "publishedAt": "2026-10-20T15:33:01+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112445606585364903",
+      "url": "https://x.com/Saccc_c/status/2112445606585364903",
+      "author": "Saccc_c",
+      "authorName": "Sac",
+      "authorAvatar": "avatars/Saccc_c.jpg",
+      "title": "开源「新词雷达」：抢先发现 AI 新词做 SEO 与选题",
+      "industry": "独立开发 / 情报工具",
+      "tech": "new-term-radar、SEO、开源",
+      "tags": [
+        "SEO",
+        "开源",
+        "AI新词",
+        "GitHub"
+      ],
+      "summary": "Sac 推荐 GitHub 开源项目 zhuyansen/new-term-radar：每日雷达扫描 X、Hugging Face、GitHub 与站点地图，在关键词工具收录前抓住新模型/产品/仓库名。可用于网站 SEO、出海与独立开发的市场情报，以及自媒体找选题。引用 Jason Zhu 开源帖称「加好友加累了，直接开源」。",
+      "publishedAt": "2026-10-20T15:27:34+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112437347505557675",
+      "url": "https://x.com/mjjwiki/status/2112437347505557675",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "authorAvatar": "avatars/mjjwiki.jpg",
+      "title": "鉴别家宽 IP 与机房 IP：推荐 IPPure 与 IPinfo",
+      "industry": "网络工具 / 账号安全",
+      "tech": "IP 纯净度、家宽检测",
+      "tags": [
+        "IP",
+        "IPPure",
+        "IPinfo",
+        "账号风控"
+      ],
+      "summary": "MJJ百科分享常用两个站鉴别家宽住宅 IP 与机房数据 IP：ippure.com 与 ipinfo.io，并贴美国家宽与华为云新加坡机房对比截图。也提到可用开源脚本做更全面测试，但不适合多数人。",
+      "publishedAt": "2026-10-20T14:54:45+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112428014428672052",
+      "url": "https://x.com/ai_xiaomu/status/2112428014428672052",
+      "author": "ai_xiaomu",
+      "authorName": "黄小木",
+      "authorAvatar": "avatars/ai_xiaomu.jpg",
+      "title": "Opus 5.5 防封：找有 Claude Team 资质的海外服务商",
+      "industry": "AI 账号 / 风控",
+      "tech": "Claude、Team 资质、防封",
+      "tags": [
+        "Claude",
+        "Opus5.5",
+        "防封",
+        "Team"
+      ],
+      "summary": "黄小木分享 Opus 5.5 的一个防封方法：去海外找有 Claude Team 资质的服务商。",
+      "publishedAt": "2026-10-20T14:17:40+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112414760029548636",
+      "url": "https://x.com/miles_mazy/status/2112414760029548636",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "authorAvatar": "avatars/miles_mazy.jpg",
+      "title": "隐藏卡 Chris：做出第一个中文 Grok Bot 教学站 usegrokbot.com",
+      "industry": "AI 工具 / 社区",
+      "tech": "Grok Bot、知识站",
+      "tags": [
+        "Grok Bot",
+        "Chris",
+        "教学网站"
+      ],
+      "summary": "Miles 补齐「三幻神」之后的隐藏卡：Chris（@Chris62771610）做了第一个中文 Grok Bot 教学网站 usegrokbot.com。圈里出新东西他总是第一个搬过来——Kin 公开 Bot 设定他立刻让大家抄，铁柱出新插件他第一个试，还冲动订了年费 Heavy。想知道 Grok Bot 最新能干嘛，找他就行。",
+      "publishedAt": "2026-10-20T13:25:00+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112413844903432391",
+      "url": "https://x.com/yaojingang/status/2112413844903432391",
+      "author": "yaojingang",
+      "authorName": "姚金刚",
+      "authorAvatar": "avatars/yaojingang.jpg",
+      "title": "《AI领导力》上架微信读书与京东当当，感谢读者反馈",
+      "industry": "AI 管理 / 出版",
+      "tech": "AI领导力、电子书",
+      "tags": [
+        "AI领导力",
+        "出版",
+        "微信读书"
+      ],
+      "summary": "姚金刚感谢 @hiheimu 的反馈与推荐，并说明与向阳乔木合著的《AI领导力》已上架微信读书，京东、当当、视频号小店搜书名可买。引用乔木关于版税与创作初心的帖。",
+      "publishedAt": "2026-10-20T13:21:22+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112405196978483611",
+      "url": "https://x.com/miles_mazy/status/2112405196978483611",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "authorAvatar": "avatars/miles_mazy.jpg",
+      "title": "GitHub 开源书《高性价比人生指南》被人打印卖了五千份",
+      "industry": "开源变现 / 知识付费",
+      "tech": "GitHub、印刷、抖音电商",
+      "tags": [
+        "GitHub",
+        "开源",
+        "变现",
+        "抖音"
+      ],
+      "summary": "Miles 引用想风的 GitHub 进阶教程长文吐槽：GitHub 是变现最快的平台之一——有人把开源书《高性价比人生指南》打印出来，在抖音挂三十九点九卖了五千份。",
+      "publishedAt": "2026-10-20T12:47:00+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112404897379578127",
+      "url": "https://x.com/shengtang135754/status/2112404897379578127",
+      "author": "shengtang135754",
+      "authorName": "麦麦提",
+      "authorAvatar": "avatars/shengtang135754.jpg",
+      "title": "家人问国产模型还能用啥：DeepSeek 仍是综合最强那一个",
+      "industry": "AI 模型 / 国产替代",
+      "tech": "DeepSeek、Workbuddy、GLM、Kimi",
+      "tags": [
+        "DeepSeek",
+        "国产模型",
+        "Workbuddy"
+      ],
+      "summary": "麦麦提被家人问：只能用国产模型，DeepSeek 最近卡顿，Workbuddy 里还能换什么更好的？他一时语塞——脑中闪过 GLM 有安全顾虑、Kimi 偏贵、某模型也慢——最后感慨 DeepSeek 仍是国内综合最强、独一份的真神。",
+      "publishedAt": "2026-10-20T12:45:48+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112396389061710085",
+      "url": "https://x.com/miles_mazy/status/2112396389061710085",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "authorAvatar": "avatars/miles_mazy.jpg",
+      "title": "抖音起号：把爆款丢给 Grok Bot 复刻，十条涨二十万粉",
+      "industry": "短视频 / 涨粉",
+      "tech": "Grok Bot、视频复刻",
+      "tags": [
+        "抖音",
+        "Grok Bot",
+        "Vibe知识大赏",
+        "涨粉"
+      ],
+      "summary": "Miles 说抖音起号很简单：把「Vibe知识大赏」里爆款视频丢给 Grok Bot 做复刻，十条视频涨个二十万粉不夸张。附演示视频。",
+      "publishedAt": "2026-10-20T12:12:00+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112392123563848187",
+      "url": "https://x.com/0xlangeai/status/2112392123563848187",
+      "author": "0xlangeai",
+      "authorName": "蓝哥AI",
+      "authorAvatar": "avatars/0xlangeai.jpg",
+      "title": "MiniMax M3.1 Flash 用代码给自己做了 24 秒发布宣传片",
+      "industry": "AI 视频 / 模型发布",
+      "tech": "MiniMax M3.1 Flash、代码生成动画",
+      "tags": [
+        "MiniMax",
+        "代码动画",
+        "发布"
+      ],
+      "summary": "蓝哥在 MiniMax 新模型刚发布时，让它给自己做了一条介绍能力的视频：这支 24 秒宣传片由 M3.1 Flash 用代码渲染而成；同时揭晓大家猜的 Space Bunny 就是 MiniMax。",
+      "publishedAt": "2026-10-20T11:55:03+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112386350934868374",
+      "url": "https://x.com/Khazix0918/status/2112386350934868374",
+      "author": "Khazix0918",
+      "authorName": "数字生命卡兹克",
+      "authorAvatar": "avatars/Khazix0918.jpg",
+      "title": "有人做了 35 万个 AI 专门骗骗子：Apate 与国内「反击小海」",
+      "industry": "AI 安全 / 社会应用",
+      "tech": "反诈 Agent、语音对话、内容对抗",
+      "tags": [
+        "反诈",
+        "Apate",
+        "AI伦理",
+        "小海"
+      ],
+      "summary": "卡兹克长文讲澳大利亚公司 Apate.ai 造了约三十五万个 AI，专门装成易骗受害者去拖住诈骗电话，累计与骗子聊约二百五十万次、耗掉约十七年时间；电信把近五十九万通可疑来电转给 AI，某银行报告诈骗损失降约七十六%。故事起源是创始人野餐时故意跟骗子聊四十四分钟。文中并联国内「AI 小海」带货骗局，以及大学生用 AI 生成「小海承认是骗子」视频劝退老人。结论：AI 也在放大善意，技术应保护最朴素的善良。",
+      "publishedAt": "2026-10-20T11:32:06+08:00",
+      "isLong": true,
+      "steps": [
+        {
+          "text": "理解对抗式防诈思路：用低成本、可规模化的「易骗人格」占用骗子时间，改变作恶与防范的成本结构。",
+          "tools": "对话 Agent",
+          "tech": "反诈产品设计",
+          "prep": "明确不向真实用户索取敏感信息的安全边界"
+        },
+        {
+          "text": "对内容型骗局（如「AI 小海」），可用同脸反制视频把话术拆穿，定向给已受影响的家人观看。",
+          "tools": "AI 视频生成",
+          "tech": "内容对抗",
+          "prep": "收集原话术样本与老人易信点"
+        }
+      ],
+      "showFlowchart": true
+    },
+    {
+      "id": "2112384751634121196",
+      "url": "https://x.com/Astronaut_1216/status/2112384751634121196",
+      "author": "Astronaut_1216",
+      "authorName": "叫我阿杭",
+      "authorAvatar": "avatars/Astronaut_1216.jpg",
+      "title": "豆包工作清 C 盘 + Mac 用 Mole：腾出几十 G 的实操步骤",
+      "industry": "系统维护 / AI 助手",
+      "tech": "豆包工作、Mole、磁盘清理",
+      "tags": [
+        "豆包",
+        "C盘",
+        "Mole",
+        "系统清理"
+      ],
+      "summary": "阿杭推荐磁盘快满时用豆包工作的「系统清理与优化助手」：选本地电脑技能，让它写只删缓存/临时/垃圾、保留系统与个人资料的强力清理 Bat 并运行；会生成清理脚本与清单，管理员运行回车即可。Mac 可配合开源项目 Mole（github.com/tw93/Mole）：mo clean / uninstall / analyze / status / purge，支持 --dry-run 预览。有人从只剩 2G 清出一百五十多 G。",
+      "publishedAt": "2026-10-20T11:25:45+08:00",
+      "isLong": true,
+      "steps": [
+        {
+          "text": "打开豆包工作 → 工作任务 → 本地电脑技能下滑，找到「系统清理与优化助手」。",
+          "tools": "豆包工作",
+          "tech": "技能调用",
+          "prep": "确认豆包工作已开通且可访问本地"
+        },
+        {
+          "text": "输入：帮我写一条适合我电脑系统版本、只删除系统缓存/临时文件/垃圾残留、保留系统文件与所有个人资料的强力清理 C 盘 Bat 命令并运行清理。",
+          "tools": "豆包工作",
+          "tech": "提示词",
+          "prep": "先备份重要数据"
+        },
+        {
+          "text": "核对清理清单后，双击脚本以管理员身份运行，按提示回车。",
+          "tools": "Windows 管理员权限",
+          "tech": "执行清理",
+          "prep": "关闭正在占用临时目录的软件"
+        },
+        {
+          "text": "Mac 用户安装 Mole 后用 mo 菜单；常用 mo clean、mo uninstall、mo analyze、mo status、mo purge，先 --dry-run 再删。",
+          "tools": "Mole",
+          "tech": "macOS 清理",
+          "prep": "从 GitHub tw93/Mole 安装"
+        }
+      ],
+      "showFlowchart": true
+    },
+    {
+      "id": "2112383858448691279",
+      "url": "https://x.com/shengtang135754/status/2112383858448691279",
+      "author": "shengtang135754",
+      "authorName": "麦麦提",
+      "authorAvatar": "avatars/shengtang135754.jpg",
+      "title": "开源 Preddit Skill：绕过难申请的 Reddit API 做情报挖掘",
+      "industry": "AI Agent / 开源 Skill",
+      "tech": "Reddit、Camoufox、Agent Skill",
+      "tags": [
+        "Reddit",
+        "Skill",
+        "开源",
+        "情报"
+      ],
+      "summary": "麦麦提自制并开源 Preddit：Reddit 深度情报搜索与社区洞察 Skill（基于 Camoufox 反指纹与 Reddrix），支持多社区监控、时效过滤与信息差提炼。他说 Reddit API 太难申请，自己写 Python 易 403，这套给 Agent 一键安装（git clone 到 ~/.gemini/config/skills/preddit 再软链）。仓库：STARKTANG108/preddit。",
+      "publishedAt": "2026-10-20T11:22:12+08:00",
+      "isLong": true,
+      "steps": [
+        {
+          "text": "克隆仓库到 Gemini skills 目录：git clone https://github.com/STARKTANG108/preddit.git ~/.gemini/config/skills/preddit",
+          "tools": "git、Gemini",
+          "tech": "Skill 安装",
+          "prep": "已安装可运行 Agent/Gemini 技能目录的环境"
+        },
+        {
+          "text": "建立软链：ln -sfn ~/.gemini/config/skills/preddit ~/.gemini/skills/preddit，然后在 Agent 里调用该 skill 做社区监控与情报提炼。",
+          "tools": "shell、Agent",
+          "tech": "技能启用",
+          "prep": "确认 skills 扫描路径"
+        }
+      ],
+      "showFlowchart": true
+    },
+    {
+      "id": "2112383811027923421",
+      "url": "https://x.com/LiumangtuCrypto/status/2112383811027923421",
+      "author": "LiumangtuCrypto",
+      "authorName": "流氓兔🐰",
+      "authorAvatar": "avatars/LiumangtuCrypto.jpg",
+      "title": "Claude 教你做 YouTube Shorts：8 个可直接抄的提示词",
+      "industry": "短视频 / 提示词",
+      "tech": "Claude、YouTube Shorts、增长提示词",
+      "tags": [
+        "Claude",
+        "YouTube",
+        "Shorts",
+        "提示词"
+      ],
+      "summary": "流氓兔放出 8 个用 Claude 做 YouTube 短视频的提示词框架：短视频操作系统、病毒内容研究引擎、留存与钩子、AI 制作 Shorts 工作流、Shorts 算法增长、变现生态、数据分析仪表板、以及 12 个月行动计划。可直接复制到 Claude 按自己的细分市场填写。",
+      "publishedAt": "2026-10-20T11:22:01+08:00",
+      "isLong": true,
+      "steps": [
+        {
+          "text": "先跑「短视频操作系统」提示词：让 Claude 基于你的细分、受众、竞品与目标，输出内容支柱、脚本框架、编辑流程与日历。",
+          "tools": "Claude",
+          "tech": "战略层提示词",
+          "prep": "准备账号定位与竞品名单"
+        },
+        {
+          "text": "再用研究引擎生成按需求/可分享性/长期价值分类的创意池，并用留存框架打磨前三秒与节奏。",
+          "tools": "Claude",
+          "tech": "选题与留存",
+          "prep": "收集近期爆款样例链接"
+        },
+        {
+          "text": "搭建 AI 制作工作流（脚本→配音→剪辑→字幕→分发到 Reels/TikTok/Threads），并建立周度数据复盘与 12 个月里程碑。",
+          "tools": "Claude、剪辑工具",
+          "tech": "生产与复盘",
+          "prep": "选定主力 AI 工具链"
+        }
+      ],
+      "showFlowchart": true
+    },
+    {
+      "id": "2112338507574452710",
+      "url": "https://x.com/miles_mazy/status/2112338507574452710",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "authorAvatar": "avatars/miles_mazy.jpg",
+      "title": "Grok Bot 中文圈「三幻神」齐聚：蓝哥、Kin、铁柱",
+      "industry": "AI 工具 / 社群",
+      "tech": "Grok Bot、内容运营、社群",
+      "tags": [
+        "Grok Bot",
+        "蓝哥AI",
+        "Kin",
+        "铁柱AGI",
+        "社群"
+      ],
+      "summary": "Miles 说 Grok Bot 中文圈「三幻神」在他社群里凑齐了：1）蓝哥AI（@0xlangeai）是第一批进群的人，还给群里做过 Grok Bot 内部分享；Miles 照着他讲的写了一篇跑了二十多万，蓝哥自己更狠——Grok Bot 合集十万加、Rea 保姆级教程三十万、Muse 保姆级教程二百多万，随口一句「要不开个群」四个群爆满，加微信加到凌晨两点。2）Kin（@KinGao476942）是 SpaceXAI 官方认证大使，本职还是老板，一篇《Grok Bot 接入微信》一百五十四万浏览、九千多人收藏，一个多月直接万粉。3）铁柱AGI（@cgnot996）做了官方还没做的 Grok App、浏览器插件、Touch Bar 版本，SDK 开源，还做了 Grok Bot 中文学习站 bot.fmcat.top，人称野生推广大使。召唤方法：加 Miles，进群。",
+      "publishedAt": "2026-10-20T08:22:00+08:00",
+      "isLong": true,
+      "steps": [
+        {
+          "text": "先认清三人分工：蓝哥擅长教程与合集爆款，Kin 用 Bot 本身做涨粉案例，铁柱做插件与开源基建；跟谁学取决于你卡在内容、增长还是工具。",
+          "tools": "Grok Bot",
+          "tech": "人设定位",
+          "prep": "列出自己当前最缺的一块（教程/涨粉/工具）"
+        },
+        {
+          "text": "蓝哥路径：深度使用后把卡点写成保姆级教程（Muse/Rea/合集），再靠大 V 助推与社群扩散。",
+          "tools": "Grok Bot、Muse、REA",
+          "tech": "教程写作",
+          "prep": "选定一个自己真正跑通的工具场景"
+        },
+        {
+          "text": "Kin 路径：用 Bot 做可传播的接入案例（如接入微信），让产品能力本身成为内容。",
+          "tools": "Grok Bot、微信",
+          "tech": "案例传播",
+          "prep": "准备一个普通人也能复现的接入 demo"
+        },
+        {
+          "text": "铁柱路径：补官方空白（插件、SDK、中文学习站），用开源建立信任与入口。",
+          "tools": "浏览器插件、SDK、bot.fmcat.top",
+          "tech": "开源基建",
+          "prep": "盘点官方还没做、社区却急需的能力"
+        }
+      ],
+      "showFlowchart": true
+    },
+    {
+      "id": "2112333620266582358",
+      "url": "https://x.com/gkxspace/status/2112333620266582358",
+      "author": "gkxspace",
+      "authorName": "余温",
+      "authorAvatar": "avatars/gkxspace.jpg",
+      "title": "WAN 3.0 走秀视频假乱真，Higgsfield 上线且比 Seedance 便宜 4.5 倍",
+      "industry": "AI 视频 / 模型",
+      "tech": "WAN 3.0、Higgsfield、Seedance",
+      "tags": [
+        "WAN3.0",
+        "AI视频",
+        "Higgsfield",
+        "Seedance"
+      ],
+      "summary": "余温发走秀视频：第一眼以为是前排观众手机拍的，实际是 WAN 3.0 做的。他感叹 AI 视频已经卷起来，不只 Seedance 一家独大；WAN 3.0 已上线 Higgsfield，价格比 Seedance 2.5 便宜约四点五倍，但真实质感与动态捕捉拉满。",
+      "publishedAt": "2026-10-20T08:02:34+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112333251062992948",
+      "url": "https://x.com/shengtang135754/status/2112333251062992948",
+      "author": "shengtang135754",
+      "authorName": "麦麦提",
+      "authorAvatar": "avatars/shengtang135754.jpg",
+      "title": "Devin SWE-2 免费期延到 11 月 1 日：模型一般但真的快",
+      "industry": "AI 编程 / 试用",
+      "tech": "Devin、SWE-2",
+      "tags": [
+        "Devin",
+        "SWE-2",
+        "免费期"
+      ],
+      "summary": "麦麦提说 Devin 的 swe2 模型免费期从原定 17 号又续到 11 月 1 日，为了推广大概率还会往后推。评价：模型不算顶尖，但是真的快。",
+      "publishedAt": "2026-10-20T08:01:06+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
     {
       "id": "2112332356996784569",
       "url": "https://x.com/0xlangeai/status/2112332356996784569",
@@ -19,7 +1128,8 @@
         "语音助手",
         "Action Button"
       ],
-      "steps": []
+      "steps": [],
+      "showFlowchart": false
     },
     {
       "id": "2112238958482739217",
@@ -39,7 +1149,8 @@
         "Token 成本",
         "模型选型"
       ],
-      "steps": []
+      "steps": [],
+      "showFlowchart": false
     },
     {
       "id": "2112231751187910863",
@@ -59,7 +1170,8 @@
         "Space",
         "自媒体"
       ],
-      "steps": []
+      "steps": [],
+      "showFlowchart": false
     },
     {
       "id": "2112211797939986687",
@@ -117,7 +1229,8 @@
           "tech": "持续更新",
           "prep": "制定日更或高频更新计划"
         }
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2112210916984930447",
@@ -137,7 +1250,8 @@
         "起号",
         "Opus 5.5"
       ],
-      "steps": []
+      "steps": [],
+      "showFlowchart": false
     },
     {
       "id": "2112202682803138907",
@@ -157,7 +1271,8 @@
         "复盘",
         "Grok Bot"
       ],
-      "steps": []
+      "steps": [],
+      "showFlowchart": false
     },
     {
       "id": "2112202612070289803",
@@ -239,7 +1354,8 @@
           "tech": "AI 视频生产",
           "prep": "打开 x.ai/bot 模版链接点 Add to Grok Bot 导入"
         }
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2112200790278566110",
@@ -260,7 +1376,8 @@
         "算力",
         "模型训练"
       ],
-      "steps": []
+      "steps": [],
+      "showFlowchart": false
     },
     {
       "id": "2112198082964119837",
@@ -324,7 +1441,8 @@
           "tech": "内容自动化",
           "prep": "准备 AI Agent 运行环境"
         }
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2112196320794685670",
@@ -364,7 +1482,8 @@
           "tech": "读者画像",
           "prep": "写下目标读者的身份与关心点"
         }
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2112194781669650607",
@@ -383,7 +1502,8 @@
         "社群",
         "AI 工具"
       ],
-      "steps": []
+      "steps": [],
+      "showFlowchart": false
     },
     {
       "id": "2112183516486406311",
@@ -436,7 +1556,8 @@
           "tech": "命令行磁盘清理",
           "prep": "先用 --dry-run 预览要删除的内容"
         }
-      ]
+      ],
+      "showFlowchart": true
     },
     {
       "id": "2112174791109361861",
@@ -456,7 +1577,8 @@
         "钩子",
         "活人感"
       ],
-      "steps": []
+      "steps": [],
+      "showFlowchart": false
     },
     {
       "id": "2112171349057978622",
@@ -538,7 +1660,8 @@
           "tech": "直播互动节奏",
           "prep": "练习开场话术和即时反应"
         }
-      ]
+      ],
+      "showFlowchart": true
     },
     {
       "id": "2112166350030536817",
@@ -559,7 +1682,8 @@
         "算力",
         "会员权益"
       ],
-      "steps": []
+      "steps": [],
+      "showFlowchart": false
     },
     {
       "id": "2112156500299010197",
@@ -578,7 +1702,8 @@
         "涨粉",
         "合集"
       ],
-      "steps": []
+      "steps": [],
+      "showFlowchart": false
     },
     {
       "id": "2112151912447676526",
@@ -630,7 +1755,8 @@
           "tech": "企业 AI 工作流",
           "prep": "梳理团队重复性琐事"
         }
-      ]
+      ],
+      "showFlowchart": true
     },
     {
       "id": "2112151627956437225",
@@ -650,7 +1776,8 @@
         "额度",
         "Bug"
       ],
-      "steps": []
+      "steps": [],
+      "showFlowchart": false
     },
     {
       "id": "2112145989104533889",
@@ -702,7 +1829,8 @@
           "tech": "社区冷启动",
           "prep": "安排几位种子成员带动分享"
         }
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2112131604902772804",
@@ -743,7 +1871,8 @@
           "tech": "实时翻译、隐私传输",
           "prep": "确认目标语言与隐私需求"
         }
-      ]
+      ],
+      "showFlowchart": true
     },
     {
       "id": "2112122585374756988",
@@ -826,7 +1955,8 @@
           "tech": "账号轮换",
           "prep": ""
         }
-      ]
+      ],
+      "showFlowchart": true
     },
     {
       "id": "2112076203830218911",
@@ -866,7 +1996,8 @@
           "tech": "实验对比",
           "prep": "准备对照样本（人工文 vs 模型文）"
         }
-      ]
+      ],
+      "showFlowchart": true
     },
     {
       "id": "2111987947545534522",
@@ -908,7 +2039,8 @@
           "tech": "成长评估报告",
           "prep": "对齐园方评估维度与话术"
         }
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111971841896317087",
@@ -968,7 +2100,8 @@
           "tech": "会话追问",
           "prep": "保持侧栏开启"
         }
-      ]
+      ],
+      "showFlowchart": true
     },
     {
       "id": "2111855566138290293",
@@ -990,7 +2123,8 @@
         "TikHub",
         "垂类数据"
       ],
-      "steps": []
+      "steps": [],
+      "showFlowchart": false
     },
     {
       "id": "2111849057249526236",
@@ -1009,7 +2143,8 @@
         "百科",
         "IT",
         "教程与资讯"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111841037492924709",
@@ -1032,7 +2167,8 @@
         "流星雨",
         "开源",
         "工作流"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111829492343910725",
@@ -1053,7 +2189,8 @@
         "配音脚本",
         "自动化"
       ],
-      "steps": []
+      "steps": [],
+      "showFlowchart": false
     },
     {
       "id": "2111818241681363215",
@@ -1073,7 +2210,8 @@
         "Discord",
         "教程"
       ],
-      "steps": []
+      "steps": [],
+      "showFlowchart": false
     },
     {
       "id": "2111803230632206740",
@@ -1093,7 +2231,8 @@
         "FDE",
         "智能体落地",
         "Codex"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111798398668136528",
@@ -1165,7 +2304,8 @@
         "报价与收款",
         "报价",
         "智能体"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111790144772563384",
@@ -1205,7 +2345,8 @@
         "内容策略",
         "冷启动",
         "增长"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111784781256208525",
@@ -1245,7 +2386,8 @@
           "tech": "商单制作",
           "prep": "准备作品集与报价区间"
         }
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111780581461668166",
@@ -1285,7 +2427,8 @@
           "tech": "养号成本优化",
           "prep": "核对套餐条款与风控"
         }
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111777159551582387",
@@ -1308,7 +2451,8 @@
         "Claude",
         "Opus",
         "Gemini"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111758706815971472",
@@ -1329,7 +2473,8 @@
         "Three.js",
         "游乐场"
       ],
-      "steps": []
+      "steps": [],
+      "showFlowchart": false
     },
     {
       "id": "2111753760326496325",
@@ -1349,7 +2494,8 @@
         "Grok Bot",
         "产品反馈"
       ],
-      "steps": []
+      "steps": [],
+      "showFlowchart": false
     },
     {
       "id": "2111736958599016941",
@@ -1369,7 +2515,8 @@
         "小语种",
         "AI 产品"
       ],
-      "steps": []
+      "steps": [],
+      "showFlowchart": false
     },
     {
       "id": "2111733070202306651",
@@ -1390,7 +2537,8 @@
         "AI",
         "视频工作流",
         "本地部署"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111727984847499287",
@@ -1410,7 +2558,8 @@
         "Discord",
         "变现"
       ],
-      "steps": []
+      "steps": [],
+      "showFlowchart": false
     },
     {
       "id": "2111721243670097969",
@@ -1450,7 +2599,8 @@
         "本地部署",
         "DeepSeek",
         "开源"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111717931545772207",
@@ -1469,7 +2619,8 @@
         "百科",
         "IT",
         "教程与资讯"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111703528712688110",
@@ -1490,7 +2641,8 @@
         "AI",
         "视频工作流",
         "DeepSeek"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111701812231209217",
@@ -1513,7 +2665,8 @@
         "Grok Bot",
         "Codex",
         "Claude"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111699538235036051",
@@ -1534,7 +2687,8 @@
         "订阅与成本",
         "GPT",
         "订阅"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111694810667192732",
@@ -1556,7 +2710,8 @@
         "开发工作流",
         "开源",
         "提示词"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111678493218177157",
@@ -1577,7 +2732,8 @@
         "订阅与成本",
         "GPT",
         "订阅"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111676898027635152",
@@ -1596,7 +2752,8 @@
         "FDE",
         "转型",
         "落地与增长"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111664818675384537",
@@ -1615,7 +2772,8 @@
         "FDE",
         "转型",
         "落地与增长"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111660999497613609",
@@ -1636,7 +2794,8 @@
         "Agent",
         "开发工作流",
         "Codex"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111655903787090219",
@@ -1685,7 +2844,8 @@
         "Claude",
         "本地部署",
         "Cursor"
-      ]
+      ],
+      "showFlowchart": true
     },
     {
       "id": "2111651983878738175",
@@ -1706,7 +2866,8 @@
         "订阅与成本",
         "Claude",
         "订阅"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111650092960936180",
@@ -1727,7 +2888,8 @@
         "Agent",
         "开发工作流",
         "Grok Bot"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111643235982655497",
@@ -1774,7 +2936,8 @@
           "tech": "风控观察",
           "prep": "记录开通时间与环境"
         }
-      ]
+      ],
+      "showFlowchart": true
     },
     {
       "id": "2111642176807731369",
@@ -1796,7 +2959,8 @@
         "开发工作流",
         "Grok Bot",
         "Muse"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111639562720329976",
@@ -1838,7 +3002,8 @@
           "tech": "本地部署压测",
           "prep": "准备测试模型与脚本"
         }
-      ]
+      ],
+      "showFlowchart": true
     },
     {
       "id": "2111635768930443356",
@@ -1879,7 +3044,8 @@
           "tech": "Health 数据读取 · 定时报告",
           "prep": "授权 GPT 访问 Health"
         }
-      ]
+      ],
+      "showFlowchart": true
     },
     {
       "id": "2111630593025028208",
@@ -1898,7 +3064,8 @@
         "FDE",
         "转型",
         "落地与增长"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111626321571037454",
@@ -1929,7 +3096,8 @@
       "tags": [
         "职场沟通",
         "沟通话术"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111625126685114727",
@@ -1953,7 +3121,8 @@
         "·",
         "工具",
         "DeepSeek"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111625056464011649",
@@ -1994,7 +3163,8 @@
         "多平台分发",
         "短视频",
         "完播率"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111491631367217285",
@@ -2013,7 +3183,8 @@
         "加密",
         "财商",
         "金融认知"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111463732299915338",
@@ -2056,7 +3227,8 @@
         "Claude",
         "Opus",
         "DeepSeek"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111457246526030290",
@@ -2078,7 +3250,8 @@
         "视频工作流",
         "Gemini",
         "Google Flow"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111453785373688247",
@@ -2099,7 +3272,8 @@
         "大屏",
         "创造"
       ],
-      "steps": []
+      "steps": [],
+      "showFlowchart": false
     },
     {
       "id": "2111362854813360554",
@@ -2139,7 +3313,8 @@
         "Codex",
         "vibe coding",
         "硬件"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111291358266974305",
@@ -2180,7 +3355,8 @@
         "社群",
         "商单",
         "万粉"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111284801223508401",
@@ -2232,7 +3408,8 @@
         "用户分层",
         "教学",
         "小白"
-      ]
+      ],
+      "showFlowchart": true
     },
     {
       "id": "2111274546611503111",
@@ -2251,7 +3428,8 @@
         "加密",
         "财商",
         "搞钱认知"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111148336954888249",
@@ -2292,7 +3470,8 @@
           "tech": "验收流水线 / 提示词约束",
           "prep": "申请 API 并写好验收 prompt"
         }
-      ]
+      ],
+      "showFlowchart": true
     },
     {
       "id": "2111078005330399726",
@@ -2312,7 +3491,8 @@
         "硬件",
         "本地部署",
         "RTX Spark"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111049272326230229",
@@ -2352,7 +3532,8 @@
           "tech": "论文解读起号",
           "prep": "整理可公开的结论与图表"
         }
-      ]
+      ],
+      "showFlowchart": true
     },
     {
       "id": "2111043031700844656",
@@ -2397,7 +3578,8 @@
         "硬件",
         "本地部署",
         "Agent"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111032563909140565",
@@ -2416,7 +3598,8 @@
         "AI",
         "自媒体",
         "工具测评"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2111009398201983340",
@@ -2475,7 +3658,8 @@
         "网站改版",
         "本地生意",
         "MCP"
-      ]
+      ],
+      "showFlowchart": true
     },
     {
       "id": "2111001255141408882",
@@ -2494,7 +3678,8 @@
         "增长运营",
         "X",
         "增长"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2110979737774379129",
@@ -2566,7 +3751,8 @@
         "FDE",
         "短视频",
         "订阅"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2110967261406339263",
@@ -2631,7 +3817,8 @@
         "开发工作流",
         "Codex",
         "Claude"
-      ]
+      ],
+      "showFlowchart": true
     },
     {
       "id": "2110948050864865514",
@@ -2653,7 +3840,8 @@
         "开源",
         "自媒体"
       ],
-      "steps": []
+      "steps": [],
+      "showFlowchart": false
     },
     {
       "id": "2110930332803575978",
@@ -2694,7 +3882,8 @@
           "tech": "支付与地区一致性",
           "prep": "确认卡与号可用"
         }
-      ]
+      ],
+      "showFlowchart": true
     },
     {
       "id": "2110744607722176611",
@@ -2716,7 +3905,8 @@
         "开发工作流",
         "Codex",
         "提示词"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2110694725640474759",
@@ -2759,7 +3949,8 @@
           "tech": "角色生成、绑骨、动作接入",
           "prep": "准备角色设定与动作关键词列表"
         }
-      ]
+      ],
+      "showFlowchart": true
     },
     {
       "id": "2110587412485443930",
@@ -2800,7 +3991,8 @@
           "tech": "内容日迭代",
           "prep": "选定可公开的项目叙事"
         }
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2110335911992979960",
@@ -2853,7 +4045,8 @@
         "REA",
         "Next.js",
         "AI可见度"
-      ]
+      ],
+      "showFlowchart": true
     },
     {
       "id": "2110333169643999327",
@@ -2893,7 +4086,8 @@
           "tech": "迁移验收与多会话并行",
           "prep": "准备一个熟悉的 Skill 做对照测试"
         }
-      ]
+      ],
+      "showFlowchart": true
     },
     {
       "id": "2110286329993171042",
@@ -2913,7 +4107,8 @@
         "编程",
         "Agent",
         "开发工作流"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2109981777716764763",
@@ -2968,7 +4163,8 @@
         "Codex",
         "Claude",
         "Opus"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2109975883650150426",
@@ -2990,7 +4186,8 @@
         "开发工作流",
         "Codex",
         "Claude"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2109970698303373750",
@@ -3032,7 +4229,8 @@
         "Codex",
         "Claude",
         "GPT"
-      ]
+      ],
+      "showFlowchart": true
     },
     {
       "id": "2109840968614588775",
@@ -3052,7 +4250,8 @@
         "短视频",
         "AI",
         "视频工作流"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2109646787514601541",
@@ -3107,7 +4306,8 @@
         "Cursor",
         "Antigravity",
         "Muse"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2109644222978744682",
@@ -3162,7 +4362,8 @@
         "Claude",
         "开源",
         "剪映"
-      ]
+      ],
+      "showFlowchart": true
     },
     {
       "id": "2109619957109788795",
@@ -3181,7 +4382,8 @@
         "开源分享",
         "开源项目",
         "开源"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2109565234075599258",
@@ -3240,7 +4442,8 @@
         "Codex",
         "普拉提",
         "独立站"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2109328429728534719",
@@ -3263,7 +4466,8 @@
         "Codex",
         "Claude",
         "开源"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2109246672689872921",
@@ -3283,7 +4487,8 @@
         "Prompt",
         "Claude",
         "Opus"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2109116825447309340",
@@ -3354,7 +4559,8 @@
         "可见度",
         "GPT",
         "DeepSeek"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2108850078052188486",
@@ -3373,7 +4579,8 @@
         "AI",
         "自媒体",
         "工具测评"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2108658760759599379",
@@ -3395,7 +4602,8 @@
         "思考",
         "高密度思考",
         "GPT"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2108486067158708347",
@@ -3414,7 +4622,8 @@
         "加密",
         "财商",
         "金融认知"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2108106577408389217",
@@ -3455,7 +4664,8 @@
         "视频工作流",
         "开源",
         "提示词"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2107395576321208577",
@@ -3500,7 +4710,8 @@
         "编程",
         "Agent",
         "开发工作流"
-      ]
+      ],
+      "showFlowchart": true
     },
     {
       "id": "2105472543155245425",
@@ -3522,7 +4733,8 @@
         "开发工作流",
         "Codex",
         "开源"
-      ]
+      ],
+      "showFlowchart": false
     },
     {
       "id": "2104370696423931980",
@@ -3574,7 +4786,8 @@
         "搜索",
         "可见度",
         "Google Flow"
-      ]
+      ],
+      "showFlowchart": false
     }
   ]
 }
