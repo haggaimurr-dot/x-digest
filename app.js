@@ -645,6 +645,48 @@
     });
   }
 
+  const FONT_SIZE_KEY = "x-digest-font-size";
+  const FONT_FAMILY_KEY = "x-digest-font-family";
+  const FONT_STACKS = {
+    system: null,
+    pingfang: '"PingFang SC", "PingFang TC", ',
+    noto: '"Noto Sans SC", "Source Han Sans SC", ',
+    yahei: '"Microsoft YaHei", "Microsoft YaHei UI", ',
+  };
+  const systemFontStack = getComputedStyle(document.documentElement).getPropertyValue("--font").trim();
+
+  function applyFontPreferences() {
+    const savedSize = localStorage.getItem(FONT_SIZE_KEY);
+    const size = ["13", "15", "17", "19"].includes(savedSize) ? savedSize : "15";
+    const savedFamily = localStorage.getItem(FONT_FAMILY_KEY);
+    const family = Object.hasOwn(FONT_STACKS, savedFamily) ? savedFamily : "system";
+    const root = document.documentElement;
+    root.style.setProperty("--font-size-base", `${size}px`);
+    if (family === "system") root.style.removeProperty("--font");
+    else root.style.setProperty("--font", FONT_STACKS[family] + systemFontStack);
+    document.querySelectorAll("[data-font-size]").forEach((button) => {
+      button.setAttribute("aria-pressed", String(button.dataset.fontSize === size));
+    });
+    document.getElementById("fontFamily").value = family;
+  }
+
+  document.querySelectorAll("[data-font-size]").forEach((button) => {
+    button.addEventListener("click", () => {
+      localStorage.setItem(FONT_SIZE_KEY, button.dataset.fontSize);
+      applyFontPreferences();
+    });
+  });
+  document.getElementById("fontFamily").addEventListener("change", (event) => {
+    localStorage.setItem(FONT_FAMILY_KEY, event.target.value);
+    applyFontPreferences();
+  });
+  document.getElementById("resetFont").addEventListener("click", () => {
+    localStorage.removeItem(FONT_SIZE_KEY);
+    localStorage.removeItem(FONT_FAMILY_KEY);
+    applyFontPreferences();
+  });
+  applyFontPreferences();
+
   function loadTheme() {
     // Dark is primary. Only honor explicit "light" from localStorage.
     const saved = localStorage.getItem(THEME_KEY);

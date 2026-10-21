@@ -25,6 +25,7 @@
   --radius-card: 16px;
   --radius-pill: 9999px;
   --feed-width: 600px;
+  --font-size-base: 15px;
   --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
     "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
 }
@@ -63,7 +64,7 @@ html {
 body {
   margin: 0;
   font-family: var(--font);
-  font-size: 15px;
+  font-size: var(--font-size-base);
   line-height: 1.5;
   background: #000000;
   background: var(--bg);
@@ -684,7 +685,7 @@ a.avatar-link:hover {
 .display-name {
   font-weight: 700;
   color: var(--text);
-  font-size: 15px;
+  font-size: inherit;
 }
 
 .display-name:hover {
@@ -696,7 +697,7 @@ a.avatar-link:hover {
 .meta-dot,
 .meta-time {
   color: var(--text-muted);
-  font-size: 15px;
+  font-size: inherit;
   font-weight: 400;
 }
 
@@ -718,7 +719,7 @@ a.avatar-link:hover {
 
 .post-title {
   margin: 4px 0 0;
-  font-size: 15px;
+  font-size: inherit;
   font-weight: 700;
   line-height: 1.4;
   color: var(--text);
@@ -726,7 +727,7 @@ a.avatar-link:hover {
 
 .post-summary {
   margin: 6px 0 0;
-  font-size: 15px;
+  font-size: inherit;
   line-height: 1.5;
   color: var(--text);
   white-space: pre-wrap;
@@ -1813,3 +1814,14 @@ mark.search-hit {
     animation: none;
   }
 }
+
+/* Local reading preferences */
+.font-settings { display: grid; gap: 16px; margin-bottom: 24px; }
+.font-settings .section-title { margin: 0; }
+.font-setting-row { display: grid; gap: 8px; min-width: 0; }
+.font-size-options { display: flex; flex-wrap: wrap; gap: 8px; }
+.font-settings .btn-secondary { min-height: 36px; border-radius: 8px; }
+.font-settings > .btn-secondary { justify-self: start; }
+.font-settings select.field { width: 100%; min-width: 0; font-family: inherit; background: var(--bg); color: var(--text); }
+.font-size-options [aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+.font-settings :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
