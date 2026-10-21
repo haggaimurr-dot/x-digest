@@ -199,7 +199,12 @@
       if (String(t).toLowerCase().includes(ql)) return matchSnippetHtml(t, q);
     }
     for (const s of Array.isArray(p.steps) ? p.steps : []) {
-      const texts = typeof s === "string" ? [s] : [s && s.text, s && s.tools, s && s.tech, s && s.prep].filter(Boolean);
+      const texts =
+        typeof s === "string"
+          ? [s]
+          : [s && s.text, s && s.tools, s && s.tech, s && s.prep]
+              .concat((s && Array.isArray(s.substeps) ? s.substeps : []).map((x) => x && x.text))
+              .filter(Boolean);
       for (const t of texts) {
         if (String(t).toLowerCase().includes(ql)) return matchSnippetHtml(t, q);
       }
@@ -211,10 +216,13 @@
   function revealFirstSearchHit() {
     if (!searchQuery() || !els.timeline) return;
     // Prefer an in-content hit (title / body / tags / steps), not the match-snippet under the title.
+    // Prefer a substep hit when present so nested panels open for step-body matches.
     const hit =
+      els.timeline.querySelector(".substep-text .search-hit") ||
       els.timeline.querySelector(
         ".post-title .search-hit, .post-summary .search-hit, .tags .search-hit, .flow-text .search-hit"
-      ) || els.timeline.querySelector(".search-hit");
+      ) ||
+      els.timeline.querySelector(".search-hit");
     if (!hit) return;
     let node = hit.parentElement;
     while (node && node !== els.timeline) {
@@ -227,8 +235,18 @@
           btn.textContent = "收起";
         }
       }
+      if (node.classList && node.classList.contains("substeps") && !node.classList.contains("is-open")) {
+        openSubsteps(node, true);
+      }
       if (node.tagName === "DETAILS" && !node.open) node.open = true;
       node = node.parentElement;
+    }
+    // Also open every substeps block in this card that contains a hit (parent text may match too).
+    const card = hit.closest(".post-card");
+    if (card) {
+      card.querySelectorAll(".substeps").forEach((wrap) => {
+        if (wrap.querySelector(".search-hit")) openSubsteps(wrap, true);
+      });
     }
     // Wait one frame so expansion has laid out, then scroll if the hit is off-screen.
     requestAnimationFrame(() => {
@@ -273,6 +291,34 @@
         wrap.dataset.collapsed = expanded ? "false" : "true";
         btn.setAttribute("aria-expanded", expanded ? "true" : "false");
         btn.textContent = expanded ? "收起" : "显示更多";
+      });
+    });
+  }
+
+  function openSubsteps(wrap, open) {
+    if (!wrap) return;
+    const btn = wrap.querySelector(":scope > .substeps-toggle");
+    const list = wrap.querySelector(":scope > .substep-list");
+    const n = list ? list.children.length : 0;
+    wrap.classList.toggle("is-open", !!open);
+    if (list) list.hidden = !open;
+    if (btn) {
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+      btn.textContent = open ? "收起子步骤" : `展开子步骤（${n}）`;
+    }
+  }
+
+  function bindSubstepsToggles(root) {
+    if (!root) return;
+    root.querySelectorAll(".substeps-toggle").forEach((btn) => {
+      if (btn.dataset.bound === "1") return;
+      btn.dataset.bound = "1";
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const wrap = btn.closest(".substeps");
+        if (!wrap) return;
+        openSubsteps(wrap, !wrap.classList.contains("is-open"));
       });
     });
   }
@@ -1168,17 +1214,57 @@
     if (!s) return null;
     if (typeof s === "string") {
       const text = s.trim();
-      return text ? { text, tools: "", tech: "", prep: "" } : null;
+      return text ? { text, tools: "", tech: "", prep: "", substeps: [] } : null;
     }
     if (typeof s === "object" && s.text) {
+      const substeps = Array.isArray(s.substeps)
+        ? s.substeps
+            .filter((x) => x && String(x.text || "").trim())
+            .slice(0, 5)
+            .map((x) => ({
+              text: String(x.text).trim().slice(0, 40),
+              source: x.source ? String(x.source) : "",
+            }))
+        : [];
       return {
         text: String(s.text),
         tools: s.tools ? String(s.tools) : "",
         tech: s.tech ? String(s.tech) : "",
         prep: s.prep ? String(s.prep) : "",
+        substeps,
       };
     }
     return null;
+  }
+
+  function substepsHtml(step, stepNum, query) {
+    const subs = Array.isArray(step.substeps) ? step.substeps : [];
+    if (!subs.length) return "";
+    const n = subs.length;
+    const items = subs
+      .map((sub, j) => {
+        const label = `${stepNum}.${j + 1}`;
+        const body = query ? highlightHtml(sub.text, query) : escapeHtml(sub.text);
+        const src = sub.source
+          ? `<div class="substep-source">${escapeHtml(sub.source)}</div>`
+          : "";
+        return `<li class="substep">
+          <div class="substep-rail" aria-hidden="true">
+            <span class="substep-node"></span>
+            ${j < n - 1 ? '<span class="substep-line"></span>' : ""}
+          </div>
+          <div class="substep-body">
+            <div class="substep-text"><span class="substep-num">${escapeHtml(label)}</span> ${body}</div>
+            ${src}
+          </div>
+        </li>`;
+      })
+      .join("");
+    // Default collapsed; search reveal opens via .is-open + aria.
+    return `<div class="substeps" data-substeps>
+      <button type="button" class="substeps-toggle" aria-expanded="false">展开子步骤（${n}）</button>
+      <ol class="substep-list" hidden>${items}</ol>
+    </div>`;
   }
 
   function stepMetaChips(step) {
@@ -1260,6 +1346,7 @@
         <div class="flow-card">
           ${collapsibleHtml(labeled, { className: "flow-text", threshold: STEP_COLLAPSE_CHARS, query: searchQuery() || undefined })}
           ${stepMetaChips(step)}
+          ${substepsHtml(step, n, searchQuery() || undefined)}
         </div>
       </li>`;
       })
@@ -1333,7 +1420,8 @@
         const stepTexts = (Array.isArray(p.steps) ? p.steps : []).flatMap((s) => {
           if (!s) return [];
           if (typeof s === "string") return [s];
-          return [s.text, s.tools, s.tech, s.prep].filter(Boolean);
+          const subs = Array.isArray(s.substeps) ? s.substeps.map((x) => x && x.text) : [];
+          return [s.text, s.tools, s.tech, s.prep, ...subs].filter(Boolean);
         });
         const hay = [
           p.title,
@@ -1438,6 +1526,7 @@
 
     els.timeline.innerHTML = posts.map(renderCard).join("");
     bindCollapseToggles(els.timeline);
+    bindSubstepsToggles(els.timeline);
     revealFirstSearchHit();
     els.timeline.querySelectorAll("img.avatar-img").forEach((img) => {
       img.addEventListener("error", () => {
