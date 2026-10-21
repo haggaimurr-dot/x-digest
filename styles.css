@@ -1825,3 +1825,13 @@ mark.search-hit {
 .font-settings select.field { width: 100%; min-width: 0; font-family: inherit; background: var(--bg); color: var(--text); }
 .font-size-options [aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
 .font-settings :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.user-tag-editor, .user-profile-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.user-tag-editor .chip { font-size: 12px; padding: 3px 8px; }
+.user-tag-picker { max-width: 160px; }
+.user-profile-card { position: fixed; z-index: 90; box-sizing: border-box; width: 290px; max-width: calc(100vw - 16px); padding: 16px; border: 1px solid var(--border); border-radius: 16px; background: var(--bg); color: var(--text); box-shadow: 0 8px 30px #0005; }
+.user-profile-card > a { display: block; margin-top: 4px; color: var(--text-muted); font-size: 13px; }
+.user-profile-card p { white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.5; margin: 12px 0; }
+.avatar-trigger { padding: 0; border: 0; border-radius: 50%; cursor: pointer; }
+.watch-list .meta { min-width: 0; }
+@media (max-width: 600px) { #watchList > li { flex-wrap: wrap; gap: 10px; } #watchList .meta { flex: 1 1 100%; } }

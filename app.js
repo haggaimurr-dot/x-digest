@@ -125,6 +125,10 @@
     updateToast: document.getElementById("updateToast"),
   };
 
+  const USER_TAGS_KEY = "x-digest-user-tags";
+  let userTagVocabulary = [];
+  let userTagOverrides = {};
+  let selectedUserTags = new Set();
   let allPosts = [];
   let watchlist = [];
   // Post categories: { categories: [{id,name}], assignments: { [postId]: [catId] } }
@@ -437,7 +441,7 @@
   }
 
   function countActiveFilters() {
-    let n = 0;
+    let n = selectedUserTags.size ? 1 : 0;
     if (els.keyword && els.keyword.value.trim()) n += 1;
     if (els.dateFrom && els.dateFrom.value) n += 1;
     if (els.dateTo && els.dateTo.value) n += 1;
@@ -518,8 +522,8 @@
     const ini = escapeHtml(initials(displayName, username));
     const color = avatarColor(username);
     const fallback = `<div class="avatar avatar-fallback" style="background:${color}" aria-hidden="true">${ini}</div>`;
-    if (!src) return fallback;
-    return `<a class="avatar-link" href="https://x.com/${escapeHtml(
+    if (!src) return `<button type="button" class="avatar-link avatar-trigger" data-profile="${escapeHtml(username)}" aria-label="查看 ${label} 简介">${fallback}</button>`;
+    return `<a class="avatar-link" data-profile="${escapeHtml(username)}" aria-haspopup="dialog" href="https://x.com/${escapeHtml(
       username
     )}" target="_blank" rel="noopener" title="@${escapeHtml(username)}">
       <img class="avatar-img" src="${escapeHtml(src)}" alt="${label}" width="40" height="40" loading="lazy" decoding="async" data-fallback-initials="${ini}" data-fallback-color="${escapeHtml(color)}" />
@@ -1135,6 +1139,12 @@
       repoWatchlist = DEFAULT_WATCHLIST;
     }
 
+    const vocabulary = await fetchJson("config/user-tags.json");
+    userTagVocabulary = [...new Set(vocabulary.tags.filter(t => typeof t === "string" && t.trim()))];
+    try {
+      const saved = JSON.parse(localStorage.getItem(USER_TAGS_KEY) || "{}");
+      userTagOverrides = saved && typeof saved === "object" && !Array.isArray(saved) ? saved : {};
+    } catch (_) { userTagOverrides = {}; }
     const stored = loadWatchlistFromStorage();
     if (stored && stored.accounts.length) {
       hasGroupInfo = Array.isArray(stored.groups);
@@ -1405,6 +1415,8 @@
     const q = (els.keyword && els.keyword.value ? els.keyword.value : "")
       .trim()
       .toLowerCase();
+    const isUserTagQuery = /^(?:标签[:：]|tag:)/i.test(q);
+    const userTagQuery = isUserTagQuery ? q.replace(/^(?:标签[:：]|tag:)/i, "").trim() : "";
     const userQ = (els.userFilter && els.userFilter.value ? els.userFilter.value : "")
       .trim()
       .replace(/^@/, "")
@@ -1421,6 +1433,7 @@
       // Author chips (OR within selected set). Empty selection = empty feed
       // (not "skip author filter"), so counts/tags/chips stay consistent.
       if (!selectedAuthors.has(p.author)) return false;
+      if (selectedUserTags.size && !userInfo(p.author).tags.some(t => selectedUserTags.has(t))) return false;
 
       // Post categories (OR within selected set, AND with others)
       if (!ignoreCats && !matchesSelectedCats(p)) return false;
@@ -1458,7 +1471,9 @@
       }
 
       // Keyword search
-      if (q) {
+      if (isUserTagQuery) {
+        if (!userInfo(p.author).tags.some(t => t.toLowerCase().includes(userTagQuery))) return false;
+      } else if (q) {
         const stepTexts = (Array.isArray(p.steps) ? p.steps : []).flatMap((s) => {
           if (!s) return [];
           if (typeof s === "string") return [s];
@@ -1472,6 +1487,8 @@
           p.tech,
           p.author,
           p.authorName,
+          userInfo(p.author).bio,
+          ...userInfo(p.author).tags,
           ...tags,
           ...stepTexts,
         ]
@@ -1647,6 +1664,84 @@
     els.addStatus.classList.toggle("is-ok", !!ok);
   }
 
+
+  function userInfo(username) {
+    const key = String(username).toLowerCase();
+    const account = (repoWatchlist || []).find(a => a.username.toLowerCase() === key)
+      || watchlist.find(a => a.username.toLowerCase() === key) || {};
+    const tags = Object.hasOwn(userTagOverrides, key) ? userTagOverrides[key]
+      : Object.hasOwn(account, "tagsManual") ? account.tagsManual : account.tags;
+    return { bio: typeof account.bio === "string" ? account.bio : "", tags: Array.isArray(tags) ? [...new Set(tags.filter(t => userTagVocabulary.includes(t)))] : [] };
+  }
+
+  function renderUserTagChips() {
+    const container = document.getElementById("userTagChips");
+    container.innerHTML = userTagVocabulary.map(t => {
+      const count = watchlist.filter(a => userInfo(a.username).tags.includes(t)).length;
+      return `<button type="button" class="chip ${selectedUserTags.has(t) ? "active" : ""}" data-user-tag-filter="${escapeHtml(t)}" aria-pressed="${selectedUserTags.has(t)}">${escapeHtml(t)} <span>${count} 人</span></button>`;
+    }).join("");
+  }
+
+  document.getElementById("userTagChips").addEventListener("click", e => {
+    const button = e.target.closest("[data-user-tag-filter]");
+    if (!button) return;
+    const tag = button.dataset.userTagFilter;
+    selectedUserTags.has(tag) ? selectedUserTags.delete(tag) : selectedUserTags.add(tag);
+    applyFiltersAndRender();
+  });
+
+  function saveUserTags(row, tags) {
+    userTagOverrides[row.dataset.username.toLowerCase()] = tags;
+    localStorage.setItem(USER_TAGS_KEY, JSON.stringify(userTagOverrides));
+    renderWatchListUI();
+    applyFiltersAndRender();
+  }
+  els.watchList.addEventListener("click", e => {
+    const row = e.target.closest("li[data-username]");
+    if (!row) return;
+    const remove = e.target.closest("[data-user-tag-remove]");
+    if (remove) saveUserTags(row, userInfo(row.dataset.username).tags.filter(t => t !== remove.dataset.userTagRemove));
+    if (e.target.closest("[data-user-tag-add]")) {
+      const picker = row.querySelector(".user-tag-picker");
+      picker.hidden = !picker.hidden;
+      if (!picker.hidden) picker.focus();
+    }
+  });
+  els.watchList.addEventListener("change", e => {
+    if (!e.target.matches(".user-tag-picker") || !userTagVocabulary.includes(e.target.value)) return;
+    const row = e.target.closest("li[data-username]");
+    saveUserTags(row, [...userInfo(row.dataset.username).tags, e.target.value]);
+  });
+
+  const profileCard = document.createElement("div");
+  profileCard.className = "user-profile-card";
+  profileCard.hidden = true;
+  profileCard.setAttribute("role", "dialog");
+  profileCard.setAttribute("aria-label", "用户简介");
+  document.body.append(profileCard);
+  let profileTimer;
+  function showProfile(trigger) {
+    clearTimeout(profileTimer);
+    const username = trigger.dataset.profile;
+    const info = userInfo(username);
+    profileCard.innerHTML = `<strong>${escapeHtml(authorDisplay(username))}</strong><a href="https://x.com/${encodeURIComponent(username)}" target="_blank" rel="noopener">@${escapeHtml(username)} ↗</a>${info.bio ? `<p>${escapeHtml(info.bio)}</p>` : ""}${info.tags.length ? `<div class="user-profile-tags">${info.tags.map(t => `<span class="chip">${escapeHtml(t)}</span>`).join("")}</div>` : ""}`;
+    profileCard.hidden = false;
+    const rect = trigger.getBoundingClientRect();
+    profileCard.style.left = `${Math.max(8, Math.min(rect.left, innerWidth - profileCard.offsetWidth - 8))}px`;
+    profileCard.style.top = `${rect.bottom + profileCard.offsetHeight + 8 > innerHeight ? Math.max(8, rect.top - profileCard.offsetHeight - 8) : rect.bottom + 8}px`;
+  }
+  els.timeline.addEventListener("pointerover", e => { const t = e.target.closest("[data-profile]"); if (t) showProfile(t); });
+  els.timeline.addEventListener("focusin", e => { const t = e.target.closest("[data-profile]"); if (t) showProfile(t); });
+  els.timeline.addEventListener("pointerout", e => { if (e.target.closest("[data-profile]")) profileTimer = setTimeout(() => { profileCard.hidden = true; }, 180); });
+  profileCard.addEventListener("pointerenter", () => clearTimeout(profileTimer));
+  profileCard.addEventListener("pointerleave", () => { profileCard.hidden = true; });
+  document.addEventListener("click", e => {
+    const trigger = e.target.closest("[data-profile]");
+    if (trigger) { e.preventDefault(); showProfile(trigger); }
+    else if (!profileCard.contains(e.target)) profileCard.hidden = true;
+  });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") profileCard.hidden = true; });
+
   function renderWatchListUI() {
     if (!els.watchList) return;
     renderGroupsUI();
@@ -1665,6 +1760,9 @@
         <div class="meta">
           <strong>${escapeHtml(a.name || a.username)}</strong>
           <span>@${escapeHtml(a.username)}</span>
+          <div class="user-tag-editor">${userInfo(a.username).tags.map(t => `<button type="button" class="chip" data-user-tag-remove="${escapeHtml(t)}" aria-label="移除标签 ${escapeHtml(t)}">${escapeHtml(t)} ×</button>`).join("")}
+          <button type="button" class="chip" data-user-tag-add aria-label="添加用户标签">+</button>
+          <select class="field user-tag-picker" aria-label="选择用户标签" hidden><option value="">选择标签…</option>${userTagVocabulary.filter(t => !userInfo(a.username).tags.includes(t)).map(t => `<option>${escapeHtml(t)}</option>`).join("")}</select></div>
         </div>
         <div class="watch-actions">
           <select class="field group-select" data-group-select="${i}" aria-label="关注类别">${opts(a.group)}</select>
@@ -1695,6 +1793,7 @@
   }
 
   function applyFiltersAndRender() {
+    renderUserTagChips();
     renderChips();
     renderCatChips();
     renderTagChips();
@@ -2203,6 +2302,7 @@
       if (els.tagFilter) els.tagFilter.value = "";
       if (els.dateFrom) els.dateFrom.value = "";
       if (els.dateTo) els.dateTo.value = "";
+      selectedUserTags.clear();
       selectedTags = new Set();
       selectedCats = new Set();
       selectedAuthors = specialAuthors();
@@ -2379,6 +2479,9 @@
 
   if (els.resetWatchlist) {
     els.resetWatchlist.addEventListener("click", () => {
+      localStorage.removeItem(USER_TAGS_KEY);
+      userTagOverrides = {};
+      selectedUserTags.clear();
       applyRepoDefault();
       saveWatchlist(watchlist);
       selectedAuthors = specialAuthors();

@@ -16,7 +16,10 @@
       "username": "ai_xiaomu",
       "name": "黄小木",
       "avatar": "avatars/ai_xiaomu.jpg",
-      "group": "special"
+      "group": "special",
+      "tags": [
+        "AI 工具"
+      ]
     },
     {
       "username": "miles_mazy",
@@ -52,7 +55,10 @@
       "username": "Khazix0918",
       "name": "数字生命卡兹克",
       "avatar": "avatars/Khazix0918.jpg",
-      "group": "special"
+      "group": "special",
+      "tags": [
+        "AI 工具"
+      ]
     },
     {
       "username": "ChenshuoAI",
@@ -70,7 +76,10 @@
       "username": "0xlangeai",
       "name": "蓝哥AI",
       "avatar": "avatars/0xlangeai.jpg",
-      "group": "special"
+      "group": "special",
+      "tags": [
+        "AI 工具"
+      ]
     },
     {
       "username": "LiumangtuCrypto",
