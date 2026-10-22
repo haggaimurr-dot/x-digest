@@ -87,6 +87,10 @@
     replicas = replicas.filter(r => r.id !== id);
     saveReplicas();
   }
+  // Keep the picker and validation in sync; archive MIME types are often empty.
+  const attachmentExtensions = "pdf doc docx xls xlsx ppt pptx txt md csv png jpg jpeg gif webp bmp avif svg ico zip rar 7z tar gz tgz".split(" ");
+  const attachmentAccept = ["image/*", ...attachmentExtensions.map(ext => "." + ext)].join(",");
+  const maxAttachmentSize = 10 * 1024 * 1024;
   function replicaStepHtml(r, step, idx) {
     const subs = (step.substeps || []).map((sub, j) => `<li class="replica-substep-row ${status(sub) === "done" ? "is-done" : ""}">${statusButton(r, sub, idx, j)}<span class="replica-substep-text">${escapeHtml(sub.text)}</span></li>`).join("");
     return window.xdigestFlowNode(`
@@ -94,7 +98,7 @@
       ${subs ? `<ol class="replica-substeps">${subs}</ol>` : ""}
       <textarea class="replica-note" rows="1" data-replica-note="${escapeHtml(r.id)}" data-step-idx="${idx}" aria-label="步骤 ${idx + 1} 备注" placeholder="写点备注…">${escapeHtml(step.note || "")}</textarea>
       <section class="step-attachments" data-attachment-section="${escapeHtml(r.id)}" data-step-idx="${idx}">
-        <div class="attachment-heading"><strong>阶段附件</strong><label class="attachment-upload">＋ 上传文件<input type="file" multiple data-upload="${escapeHtml(r.id)}" data-step-idx="${idx}" aria-label="步骤 ${idx + 1} 上传附件" /></label></div>
+        <div class="attachment-heading"><strong>阶段附件</strong><label class="attachment-upload">＋ 上传文件<input type="file" multiple accept="${attachmentAccept}" data-upload="${escapeHtml(r.id)}" data-step-idx="${idx}" aria-label="步骤 ${idx + 1} 上传附件" /></label></div>
         <p class="attachment-help">文档、图片、压缩包 · 单个不超过 10MB · 仅保存在当前浏览器</p>
         <div class="attachment-list">${(step.attachments || []).map(id => `<div class="attachment-item" data-attachment-id="${escapeHtml(id)}">加载附件…</div>`).join("")}</div>
       </section>
@@ -174,7 +178,8 @@
       const r = replicas.find(r => r.id === input.dataset.upload), step = r?.steps[input.dataset.stepIdx];
       if (!step) return;
       for (const file of input.files) {
-        if (file.size > 10 * 1024 * 1024) { alert(`${file.name} 超过 10MB，已拒绝上传。`); continue; }
+        if (!isAllowedAttachment(file)) { alert(`${file.name} 类型不支持，请选择文档、图片或压缩包。`); continue; }
+        if (file.size > maxAttachmentSize) { alert(`${file.name} 超过 10MB，已拒绝上传。`); continue; }
         const id = newReplicaId();
         try {
           await attachmentDB("readwrite", store => store.put({id, replicaId: r.id, name: file.name, type: file.type, blob: file}));
@@ -251,13 +256,17 @@
   const objectURLs = new Set();
   function objectURL(blob) { const url = URL.createObjectURL(blob); objectURLs.add(url); return url; }
   function clearURLs() { objectURLs.forEach(url => URL.revokeObjectURL(url)); objectURLs.clear(); }
+  function isAllowedAttachment(file) {
+    const ext = file.name.includes(".") ? file.name.split(".").pop().toLowerCase() : "";
+    return attachmentExtensions.includes(ext) || /^image\//i.test(file.type || "");
+  }
   function fileKind(file) {
     const ext = file.name.split(".").pop().toLowerCase();
-    if (/^(png|jpg|jpeg|gif|webp|bmp|avif|svg|ico)$/.test(ext) || file.type.startsWith("image/")) return "image";
+    if (/^(png|jpg|jpeg|gif|webp|bmp|avif|svg|ico)$/.test(ext) || (file.type || "").startsWith("image/")) return "image";
     if (ext === "pdf") return "pdf";
-    if (/^(txt|md)$/.test(ext)) return "text";
+    if (/^(txt|md|csv)$/.test(ext)) return "text";
     if (ext === "zip") return "zip";
-    if (/^(rar|7z|tar|gz)$/.test(ext)) return "archive";
+    if (/^(rar|7z|tar|gz|tgz)$/.test(ext)) return "archive";
     return "document";
   }
   async function hydrateAttachments() {
