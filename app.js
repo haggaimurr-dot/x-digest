@@ -1401,17 +1401,10 @@
         const isLast = i === steps.length - 1;
         // Numbers live in the card title (「1. …」); track dots stay unlabeled.
         const labeled = `${n}. ${step.text || ""}`;
-        return `<li class="flow-step${isLast ? " is-last" : ""}" style="--step-i: ${i}">
-        <div class="flow-rail" aria-hidden="true">
-          <span class="flow-node"></span>
-          ${isLast ? "" : '<span class="flow-line"></span>'}
-        </div>
-        <div class="flow-card">
+        return window.xdigestFlowNode(`
           ${collapsibleHtml(labeled, { className: "flow-text", threshold: STEP_COLLAPSE_CHARS, query: searchQuery() || undefined })}
           ${stepMetaChips(step)}
-          ${substepsHtml(step, n, searchQuery() || undefined)}
-        </div>
-      </li>`;
+          ${substepsHtml(step, n, searchQuery() || undefined)}`, i, isLast);
       })
       .join("");
 
@@ -1504,93 +1497,8 @@
     saveReplicas();
   }
 
-  function showPage(page) {
-    const isReplicas = page === "replicas";
-    if (els.feedMain) els.feedMain.hidden = isReplicas;
-    if (els.replicasPage) els.replicasPage.hidden = !isReplicas;
-    if (els.openReplicas) els.openReplicas.setAttribute("aria-pressed", String(isReplicas));
-    if (isReplicas) renderReplicasPage();
-  }
-
-  function goToReplicas() {
-    if (location.hash !== "#/fuke") location.hash = "#/fuke";
-    else showPage("replicas");
-  }
-
-  function routeFromHash() {
-    showPage(location.hash === "#/fuke" ? "replicas" : "feed");
-  }
-
-  function replicaStepHtml(r, step, idx) {
-    const subs = (step.substeps || [])
-      .map((sub, j) => {
-        return `<li class="replica-substep-row ${sub.done ? "is-done" : ""}">
-          <input type="checkbox" class="replica-check" data-replica-sub-check="${escapeHtml(r.id)}" data-step-idx="${idx}" data-sub-idx="${j}" ${sub.done ? "checked" : ""} aria-label="子步骤 ${idx + 1}.${j + 1} 完成" />
-          <span class="replica-substep-text">${escapeHtml(sub.text)}</span>
-        </li>`;
-      })
-      .join("");
-    return `<li class="replica-step ${step.done ? "is-done" : ""}">
-      <div class="replica-step-row">
-        <input type="checkbox" class="replica-check" data-replica-check="${escapeHtml(r.id)}" data-step-idx="${idx}" ${step.done ? "checked" : ""} aria-label="步骤 ${idx + 1} 完成" />
-        <span class="replica-step-text">${idx + 1}. ${escapeHtml(step.text)}</span>
-      </div>
-      ${subs ? `<ol class="replica-substeps">${subs}</ol>` : ""}
-      <textarea class="replica-note" rows="1" data-replica-note="${escapeHtml(r.id)}" data-step-idx="${idx}" placeholder="写点备注…">${escapeHtml(step.note || "")}</textarea>
-    </li>`;
-  }
-
-  function replicaCardHtml(r) {
-    const { done, total } = replicaProgress(r);
-    const pct = total ? Math.round((done / total) * 100) : 0;
-    const stepsListHtml = (r.steps || []).map((s, i) => replicaStepHtml(r, s, i)).join("");
-    return `<article class="replica-card" data-replica-id="${escapeHtml(r.id)}">
-      <div class="replica-head">
-        <div class="replica-source">
-          <h2 class="replica-source-title">${escapeHtml(r.postTitle || "（无标题）")}</h2>
-          <div class="replica-source-meta">
-            <span>${escapeHtml(r.postAuthorName || r.postAuthor || "")}</span>
-            ${r.postAuthor ? `<span>@${escapeHtml(r.postAuthor)}</span>` : ""}
-            ${r.postUrl ? `<a href="${escapeHtml(r.postUrl)}" target="_blank" rel="noopener">查看原帖</a>` : ""}
-          </div>
-          <div class="replica-time">复刻于 ${escapeHtml(formatShanghai(r.createdAt))}</div>
-        </div>
-        <button type="button" class="replica-delete" data-replica-delete="${escapeHtml(r.id)}" aria-label="删除复刻" title="删除复刻">
-          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M9.75 3.75h4.5a.75.75 0 0 1 .75.75v.75h4.5a.75.75 0 0 1 0 1.5h-.564l-.853 12.013A2.25 2.25 0 0 1 15.84 21H8.16a2.25 2.25 0 0 1-2.244-2.237L5.064 6.75H4.5a.75.75 0 0 1 0-1.5H9v-.75a.75.75 0 0 1 .75-.75zm-3.182 3 .84 11.85a.75.75 0 0 0 .748.65h7.688a.75.75 0 0 0 .748-.65l.84-11.85H6.568zM10.5 9a.75.75 0 0 1 .75.75v6a.75.75 0 0 1-1.5 0v-6A.75.75 0 0 1 10.5 9zm3 0a.75.75 0 0 1 .75.75v6a.75.75 0 0 1-1.5 0v-6a.75.75 0 0 1 .75-.75z"/></svg>
-        </button>
-      </div>
-      <div class="replica-progress-row">
-        <div class="replica-progress-bar"><div class="replica-progress-fill ${pct >= 100 ? "is-complete" : ""}" style="width:${pct}%"></div></div>
-        <span class="replica-progress-label">${done}/${total}</span>
-      </div>
-      <ol class="replica-steps">${stepsListHtml}</ol>
-    </article>`;
-  }
-
-  function sortedReplicas() {
-    const list = replicas.slice();
-    if (replicaSortMode === "progress") {
-      list.sort((a, b) => {
-        const pa = replicaProgress(a);
-        const pb = replicaProgress(b);
-        const ra = pa.total ? pa.done / pa.total : 0;
-        const rb = pb.total ? pb.done / pb.total : 0;
-        if (rb !== ra) return rb - ra;
-        return String(b.createdAt).localeCompare(String(a.createdAt));
-      });
-    } else {
-      list.sort((a, b) => String(b.createdAt).localeCompare(String(a.createdAt)));
-    }
-    return list;
-  }
-
-  function renderReplicasPage() {
-    if (!els.replicaList) return;
-    const list = sortedReplicas();
-    if (els.replicaCount) els.replicaCount.textContent = `${list.length} 条复刻`;
-    els.replicaList.innerHTML = list.map(replicaCardHtml).join("");
-    if (els.replicaEmpty) els.replicaEmpty.hidden = list.length > 0;
-  }
+  function goToReplicas() { location.href = asset("fuke.html"); }
+  function routeFromHash() { if (location.hash === "#/fuke") location.replace(asset("fuke.html")); }
 
   function refreshReplicateButtons() {
     if (!els.timeline) return;
@@ -2794,68 +2702,6 @@
 
   window.addEventListener("hashchange", routeFromHash);
 
-  if (els.replicaSort) {
-    els.replicaSort.addEventListener("change", (e) => {
-      replicaSortMode = e.target.value === "progress" ? "progress" : "time";
-      renderReplicasPage();
-    });
-  }
-
-  if (els.replicaList) {
-    els.replicaList.addEventListener("change", (e) => {
-      const stepCb = e.target.closest("[data-replica-check]");
-      if (stepCb) {
-        const r = replicas.find((x) => x.id === stepCb.getAttribute("data-replica-check"));
-        const idx = Number(stepCb.getAttribute("data-step-idx"));
-        if (r && r.steps[idx]) {
-          r.steps[idx].done = stepCb.checked;
-          saveReplicas();
-          renderReplicasPage();
-        }
-        return;
-      }
-      const subCb = e.target.closest("[data-replica-sub-check]");
-      if (subCb) {
-        const r = replicas.find((x) => x.id === subCb.getAttribute("data-replica-sub-check"));
-        const idx = Number(subCb.getAttribute("data-step-idx"));
-        const sidx = Number(subCb.getAttribute("data-sub-idx"));
-        if (r && r.steps[idx] && r.steps[idx].substeps[sidx]) {
-          r.steps[idx].substeps[sidx].done = subCb.checked;
-          saveReplicas();
-          renderReplicasPage();
-        }
-      }
-    });
-
-    // Notes: debounce writes so every keystroke doesn't thrash localStorage or
-    // re-render (which would steal focus from the textarea).
-    let noteSaveTimer = null;
-    els.replicaList.addEventListener("input", (e) => {
-      const ta = e.target.closest("[data-replica-note]");
-      if (!ta) return;
-      const r = replicas.find((x) => x.id === ta.getAttribute("data-replica-note"));
-      const idx = Number(ta.getAttribute("data-step-idx"));
-      if (!r || !r.steps[idx]) return;
-      r.steps[idx].note = ta.value;
-      clearTimeout(noteSaveTimer);
-      noteSaveTimer = setTimeout(saveReplicas, 400);
-    });
-
-    els.replicaList.addEventListener("click", (e) => {
-      const delBtn = e.target.closest("[data-replica-delete]");
-      if (!delBtn) return;
-      e.preventDefault();
-      const id = delBtn.getAttribute("data-replica-delete");
-      const r = replicas.find((x) => x.id === id);
-      if (!r) return;
-      confirmDelete("删除这条复刻？", `「${r.postTitle || "该流程"}」的打卡记录和备注都会被删除`).then((ok) => {
-        if (!ok) return;
-        deleteReplica(id);
-        renderReplicasPage();
-        refreshReplicateButtons();
-      });
-    });
-  }
 
   loadTheme();
   initFilterCollapse();

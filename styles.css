@@ -2172,3 +2172,16 @@ mark.search-hit {
     padding-left: 20px;
   }
 }
+
+/* Independent replica list; details reuse the post flowchart component. */
+.replica-list { gap: 12px; padding: 16px; }
+.replica-card { position: relative; border: 1px solid var(--border); border-radius: 16px; padding: 0; }
+.replica-summary { list-style: none; padding: 16px 56px 16px 16px; cursor: pointer; }
+.replica-summary::-webkit-details-marker { display: none; }
+.replica-summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 16px; }
+.replica-source-title { display: block; }
+.replica-card > .replica-delete { position: absolute; right: 12px; top: 12px; }
+.replica-expand-hint { display: block; margin-top: 10px; font-size: 12px; color: var(--accent); }
+.replica-details > .flow-chart { padding: 4px 16px 16px; }
+.replica-flow-step.is-done .replica-step-text { text-decoration: line-through; color: var(--text-muted); }
+.replica-note { box-sizing: border-box; }
