@@ -1,6 +1,862 @@
 {
-  "updatedAt": "2026-10-21T08:09:15+08:00",
+  "updatedAt": "2026-10-22T08:06:10+08:00",
   "posts": [
+    {
+      "id": "2113050199312531870",
+      "url": "https://x.com/gkxspace/status/2113050199312531870",
+      "author": "gkxspace",
+      "authorName": "余温",
+      "authorAvatar": "avatars/gkxspace.jpg",
+      "title": "Topview T1 自研视频模型上线：画质对标 Seedance 2.5，1080P 成本砍 62%",
+      "industry": "AI 视频 / 模型发布",
+      "tech": "Topview T1、Seedance 2.5",
+      "tags": [
+        "Topview",
+        "AI视频",
+        "Seedance"
+      ],
+      "summary": "余温很意外有新模型能和 Seedance 2.5 打：@TopviewAIhq 刚上线自研 Topview T1，质量与 Seedance 2.5 同档，1080P 成本降低 62%；支持单次 30 秒镜头、50 个参考素材、多语言台词字幕，Ultra 年费会员还可 30 天无限次生成 T1。",
+      "publishedAt": "2026-10-22T07:30:00+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2113049551540216268",
+      "url": "https://x.com/0xlangeai/status/2113049551540216268",
+      "author": "0xlangeai",
+      "authorName": "蓝哥AI",
+      "authorAvatar": "avatars/0xlangeai.jpg",
+      "title": "Grok Bot 新能力：可构建报告、备忘录和仪表盘",
+      "industry": "AI 助手 / Grok Bot",
+      "tech": "Grok Bot、报告页面",
+      "tags": [
+        "Grok Bot",
+        "更新",
+        "报告"
+      ],
+      "summary": "蓝哥转发官方更新：Grok Bot 现在可以构建报告、备忘录和仪表盘——让 Bot 生成一个页面后，可以和它一起编辑，或让 Bot 持续保持页面内容更新。",
+      "publishedAt": "2026-10-22T07:27:26+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112941388170158204",
+      "url": "https://x.com/mjjwiki/status/2112941388170158204",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "authorAvatar": "avatars/mjjwiki.jpg",
+      "title": "粉丝的 Claude 防封玄学：IP、时区、语言全踩了也没被封",
+      "industry": "AI 订阅 / 风控",
+      "tech": "Claude、苹果美区支付",
+      "tags": [
+        "Claude",
+        "封号",
+        "风控"
+      ],
+      "summary": "MJJ百科转述粉丝心得：所谓 IP、时区、语言一致都是扯淡，对方全踩了也没被 Claude 封号。粉丝的“玄学”：机房 IP、时区语言不一致，Claude 正在帮他修 VPS，也知道他用中国移动、YouTube 走香港；“显学”：苹果美区支付、纯日常工作做点小玩意，没有蒸馏逆向行为，token 用量与常人无异，Claude 使用固定 IP。",
+      "publishedAt": "2026-10-22T00:17:38+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112910402506174587",
+      "url": "https://x.com/shengtang135754/status/2112910402506174587",
+      "author": "shengtang135754",
+      "authorName": "麦麦提",
+      "authorAvatar": "avatars/shengtang135754.jpg",
+      "title": "Gemini 4 Flash 要来了：Argon 独立额度或是在等它",
+      "industry": "AI 模型 / 爆料",
+      "tech": "Gemini 4 Flash、Gemini 4 Argon",
+      "tags": [
+        "Gemini",
+        "模型发布",
+        "额度"
+      ],
+      "summary": "麦麦提引用 Lyra 的帖子（她认为 Gemini 4 Flash 才是谷歌真正的回归之作，而不是 Argon），并相信其内幕消息准确率很高。他判断 Gemini 4 Argon 采用独立额度就是在等 4 Flash，3.8 Flash 会逐步退出历史舞台，这样 Pro 的额度才显得有性价比，不再像现在“用半天等一周”，他已经几天没得用了。",
+      "publishedAt": "2026-10-21T22:14:30+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112907119477592366",
+      "url": "https://x.com/0xlangeai/status/2112907119477592366",
+      "author": "0xlangeai",
+      "authorName": "蓝哥AI",
+      "authorAvatar": "avatars/0xlangeai.jpg",
+      "title": "开源 Agent Dock：让 Grok Bot 等机器人顺畅切换语音 Live",
+      "industry": "AI 助手 / 开源工具",
+      "tech": "Agent Dock、Grok Bot Voice Live",
+      "tags": [
+        "Grok Bot",
+        "开源",
+        "语音"
+      ],
+      "summary": "蓝哥推荐 @LiuweijiaVip 开源的 Agent Dock。作者认为 Grok Bot 不玩 Voice Live 就少了一半以上体验；现在一个 Bot 在 Live 时另一个无法 Live，Agent Dock 让多个 Bot 机器人顺畅切换语音聊天。后续计划自定义接入 ChatGPT Dots、Devin 语音，甚至 Muse、Gemini、Claude（Gemini 桌面端暂无 Live），以及 Cursor 对话；不同 Personal Bot 接入 Everos cloud 记忆可组成私人团队。UI 采用液态玻璃效果，项目地址在评论区。",
+      "publishedAt": "2026-10-21T22:01:27+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112901467694887194",
+      "url": "https://x.com/Astronaut_1216/status/2112901467694887194",
+      "author": "Astronaut_1216",
+      "authorName": "叫我阿杭",
+      "authorAvatar": "avatars/Astronaut_1216.jpg",
+      "title": "给 Codex/Claude 配记忆模型：MemOS 开源记忆解决会话失忆",
+      "industry": "AI 编程 / Agent 记忆",
+      "tech": "MemOS、Claude、Codex、CLAUDE.md、Tripo、Blender、Unity",
+      "tags": [
+        "MemOS",
+        "Claude",
+        "Codex",
+        "记忆"
+      ],
+      "summary": "阿杭在做浏览器星球探索小游戏（参考 Sac 小王子流程：Claude 管核心逻辑和场景编排、Tripo 出模型、Blender 精修、Unity 打包）。他早就规定 /assets/core/ 不能动、角色移动只能用指定物理参数、对话只能走规定 JSON，还让 Claude 在 CLAUDE.md 里加了三条硬约束并写了状态文件；但第二天开新会话它又开始翻仓库问项目是做什么的、建议改不该碰的文件、重写已验证的物理参数，会话一压缩就重提被拒方案。结论：规矩写进文件、状态记下来不等于它学会了。直到用了 MemOS 团队（@MemOS_dev）的记忆产品，他称其为“记忆界的 DeepSeek”，新模型又开源了：写入、保持、更新、读取四步让规则跨会话生效。",
+      "publishedAt": "2026-10-21T21:39:00+08:00",
+      "isLong": true,
+      "steps": [
+        {
+          "text": "写入：把关键规则（如“/assets/core/ 不能动”）交给 MemOS 记忆层，让它真正留下来，而不只是写在 CLAUDE.md 里。",
+          "tools": "MemOS、Claude、Codex",
+          "tech": "Agent 长期记忆",
+          "prep": "整理项目硬约束：不可改目录、物理参数、对话 JSON 格式"
+        },
+        {
+          "text": "保持：换新会话或上下文压缩后，记忆依然保留，不再重复做“入职培训”。",
+          "tools": "MemOS",
+          "tech": "跨会话记忆",
+          "prep": "确认记忆已接入 Codex/Claude 工作流"
+        },
+        {
+          "text": "更新：参数换了新版时，记忆跟着更新，不再抱着旧版不放。",
+          "tools": "MemOS",
+          "tech": "记忆更新",
+          "prep": "每次改动物理参数等核心配置后同步记忆"
+        },
+        {
+          "text": "读取：开始做新章节交互前，Agent 先读取这些规则再动手。",
+          "tools": "MemOS、Claude、Codex",
+          "tech": "记忆检索",
+          "prep": "新任务开始前检查 Agent 是否复述了关键约束"
+        }
+      ],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112890324460953689",
+      "url": "https://x.com/0xlangeai/status/2112890324460953689",
+      "author": "0xlangeai",
+      "authorName": "蓝哥AI",
+      "authorAvatar": "avatars/0xlangeai.jpg",
+      "title": "开源金融 Agent harness LangAlpha v2.0：PTC 调用、研究记忆、四档交易权限",
+      "industry": "AI Agent / 金融交易",
+      "tech": "LangAlpha、PTC、MCP、Skills、Claude Code",
+      "tags": [
+        "LangAlpha",
+        "Agentic Trading",
+        "开源",
+        "Agent"
+      ],
+      "summary": "蓝哥研究开源金融 harness LangAlpha v2.0。harness 指模型之外的一层：给 Agent 什么数据、能调什么工具、是否记得之前的研究、权限多大——Claude Code 是写代码那一层，它做投资那一层。三个设计：一是 PTC（Programmatic Tool Calling），Agent 先写 Python 调工具、处理数据、算指标，只把结果交给模型，上下文不被撑爆且过程可追溯；二是持久工作区和研究记忆，靠规划、上下文管理和检查点防止长任务跑偏；三是可接 Robinhood、盈透、Webull，权限分不交易、每单人批、先出计划再执行、全自动四档，订单审批卡在系统层面而非靠提示词。一笔交易拆成提想法、做研究、看风险、下单、盯盘，分给不同 Agent 定时跑，或在价格异动、逻辑被打破时唤醒。模型和 API Key 自带，支持 Skills、MCP 和自部署，覆盖美股、港股、A 股、日韩德印、加密和大宗商品。美股将开 23 小时交易，行业专用 harness 会越来越多。",
+      "publishedAt": "2026-10-21T20:54:43+08:00",
+      "isLong": true,
+      "steps": [
+        {
+          "text": "部署 LangAlpha（开源可自部署），接入自己的模型与 API Key，按需安装 Skills 和 MCP 插件。",
+          "tools": "LangAlpha、MCP、Skills",
+          "tech": "自部署 / 自带 Key",
+          "prep": "准备模型 API Key 与服务器环境"
+        },
+        {
+          "text": "提出投资想法，让 Agent 用 PTC 方式写 Python 调用金融数据工具、清洗表格、计算指标，只把结果交给模型。",
+          "tools": "LangAlpha PTC、Python",
+          "tech": "Programmatic Tool Calling",
+          "prep": "明确研究问题与关注标的"
+        },
+        {
+          "text": "利用持久工作区与研究记忆做长任务，靠规划、上下文管理和检查点沿用上次结论继续研究。",
+          "tools": "LangAlpha 工作区",
+          "tech": "研究记忆 / 检查点",
+          "prep": "保留历史研究项目"
+        },
+        {
+          "text": "连接券商并选择权限档位：不交易、每单人批、先出计划再执行或全自动。",
+          "tools": "Robinhood、盈透、Webull",
+          "tech": "系统级订单审批",
+          "prep": "券商账户与授权；先从低权限档开始"
+        },
+        {
+          "text": "把交易拆成提想法、做研究、看风险、下单、盯盘，分配给不同 Agent，设置定时运行或价格异动/逻辑破坏时唤醒。",
+          "tools": "LangAlpha 多 Agent",
+          "tech": "定时任务 / 事件触发",
+          "prep": "设定风险阈值与触发条件"
+        }
+      ],
+      "showFlowchart": true
+    },
+    {
+      "id": "2112875637321191682",
+      "url": "https://x.com/shengtang135754/status/2112875637321191682",
+      "author": "shengtang135754",
+      "authorName": "麦麦提",
+      "authorAvatar": "avatars/shengtang135754.jpg",
+      "title": "DeepSeek V4.1 Flash 纯代码复刻 Opus 效果，性价比惊人",
+      "industry": "AI 模型 / 实测",
+      "tech": "DeepSeek V4.1 Flash 1017、qdor、Opus",
+      "tags": [
+        "DeepSeek",
+        "实测",
+        "前端效果"
+      ],
+      "summary": "麦麦提借用老刘（@leo_xiaolei）的提示词，老刘用 Opus，他用 DeepSeek V4.1 Flash 1017 在 qdor 中制作，纯代码做出的效果出乎意料；虽然比 Opus 差一点，但性价比很高。",
+      "publishedAt": "2026-10-21T19:56:21+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112858574091378773",
+      "url": "https://x.com/gkxspace/status/2112858574091378773",
+      "author": "gkxspace",
+      "authorName": "余温",
+      "authorAvatar": "avatars/gkxspace.jpg",
+      "title": "用 REA 逆向剪映：200+ 原生命令全可 AI 调用，但收到律师函风险后暂缓开源",
+      "industry": "AI 视频剪辑 / 逆向",
+      "tech": "REA、剪映、Claude、Codex",
+      "tags": [
+        "REA",
+        "剪映",
+        "Codex",
+        "逆向"
+      ],
+      "summary": "余温用 REA 逆向剪映，几乎所有功能都能通过 AI 直接调用，本打算脱敏后发布；但旁边的逸晨（@gengdaJ）说他收到了字节律师函，于是暂时不敢放，先自用（且没有绕过剪映的付费和明确限制的功能）。他认为这些东西没什么壁垒，就算不开放也很容易手搓。引用的早前帖介绍：用 Claude + Codex 多窗口并行、一天烧好几个 200 刀周限额做出来——1）实时编辑刷新：在 Codex 里对话，剪映播放器画面自然刷新，支持剪映自带 Undo/Save，可与人工修改无缝交替；2）200 多条原生编辑命令（变换、裁剪、变速、关键帧、蒙版、调色、音量、切分、文字动画等）走剪映自己的命令通道，加新功能只需写一条规则，不改代码不重启；3）剪映素材库 13 类素材（滤镜、转场、贴纸、特效、花字、字体、文字模板、音乐、音效）一句话搜索并直接下载上轨，云端算法（识别字幕、降噪、AI 配音、对口型、抠像、补帧、超分、防抖）仍在研究，会员功能不绕过；4）字幕按每个字时间强制对齐，切点精确到帧，剪完自动质检黑帧、静音、响度、卡帧、字幕重叠。",
+      "publishedAt": "2026-10-21T18:48:33+08:00",
+      "isLong": true,
+      "steps": [
+        {
+          "text": "在 Codex 里用对话驱动剪映：通过剪映自己的命令通道实时改稿，播放器画面秒级刷新，可与人工修改、Undo/Save 交替。",
+          "tools": "Codex、Claude、剪映、REA",
+          "tech": "命令通道调用",
+          "prep": "安装剪映桌面版；准备 Claude/Codex 额度"
+        },
+        {
+          "text": "调用剪映 200 多条原生编辑命令完成变换、裁剪、变速、关键帧、蒙版、调色、音量、切分、文字动画等；新功能只需新增一条规则。",
+          "tools": "剪映原生命令",
+          "tech": "规则化扩展",
+          "prep": "整理常用剪辑动作清单"
+        },
+        {
+          "text": "一句话搜索剪映素材库 13 类素材（滤镜、转场、贴纸、特效、花字、字体、文字模板、音乐、音效），直接下载上轨。",
+          "tools": "剪映素材库",
+          "tech": "素材检索",
+          "prep": "明确视频风格与所需素材类型"
+        },
+        {
+          "text": "剪完自动质检：字幕逐字时间对齐、切点精确到帧，检查黑帧、静音、响度、卡帧、字幕重叠。",
+          "tools": "剪映、AI 质检",
+          "tech": "逐字对齐 / 帧级切点",
+          "prep": "准备口播原片做测试"
+        },
+        {
+          "text": "注意合规：不绕过剪映付费与会员功能，敏感能力脱敏后再考虑公开（已有人收到律师函）。",
+          "tools": "—",
+          "tech": "合规风险控制",
+          "prep": "评估公开发布的法律风险"
+        }
+      ],
+      "showFlowchart": true
+    },
+    {
+      "id": "2112857633631928502",
+      "url": "https://x.com/shengtang135754/status/2112857633631928502",
+      "author": "shengtang135754",
+      "authorName": "麦麦提",
+      "authorAvatar": "avatars/shengtang135754.jpg",
+      "title": "黄仁勋柏林 GTC：向欧洲投入 100 亿美元，合作 12000 家伙伴",
+      "industry": "科技资讯 / 英伟达",
+      "tech": "NVIDIA GTC",
+      "tags": [
+        "英伟达",
+        "GTC",
+        "科技资讯"
+      ],
+      "summary": "麦麦提速报：英伟达黄仁勋刚在柏林直播 GTC 演讲“AI 的未来”，宣布向欧洲投入 100 亿美元、合作 12000 个合作伙伴。值得注意的是他带着机器鸭一起登场，看来收购后就是“亲儿子”了。",
+      "publishedAt": "2026-10-21T18:44:49+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112838884510048647",
+      "url": "https://x.com/Khazix0918/status/2112838884510048647",
+      "author": "Khazix0918",
+      "authorName": "数字生命卡兹克",
+      "authorAvatar": "avatars/Khazix0918.jpg",
+      "title": "把几十个 Agent 自动化任务做成微缩工厂流水线可视化",
+      "industry": "AI Agent / 可视化",
+      "tech": "Claude Code、Codex、Webhook 中台、飞书",
+      "tags": [
+        "Agent",
+        "自动化",
+        "可视化",
+        "Claude Code"
+      ],
+      "summary": "卡兹克日常有几十个自动化任务在跑：Claude 和 Codex 里的定时任务、自建 Webhook 中台触发的 Agent，他已经数不清有多少。本想做个列表网页，但作为模拟经营和《戴森球计划》玩家，他花 2 天把这些任务做成游戏式流水线可视化，试过苏联重工业、八方旅人像素风、塞尔达风等后选定小清新俯瞰微缩场景。初版：左边每个项目是一座厂区，一条长期任务就是一条产线、一台机器；中间玻璃圆顶分拣大厅就是 Webhook 中台，负责调度和分发状态，与飞书打通，转盘一直在转；右边两个 Agent——Claude Code 是头顶飘着 Claude 火花的像素小螃蟹 Clawd，Codex 是蓝紫色的云；每个真实任务是一个包裹，顺传送带送到它们面前，接活就跳起来开干，做完原地转一圈、箱子码上托盘。场景还与现实时间和天气打通，现实晚上下雨，场景里也是晚上下雨。后续会把所有流水线铺上去。",
+      "publishedAt": "2026-10-21T17:30:19+08:00",
+      "isLong": true,
+      "steps": [
+        {
+          "text": "盘点所有自动化任务：Claude/Codex 里的定时任务，以及自建 Webhook 中台触发的 Agent。",
+          "tools": "Claude、Codex、Webhook 中台",
+          "tech": "任务清单",
+          "prep": "导出各平台的定时任务列表"
+        },
+        {
+          "text": "设计场景映射：每个项目是一座厂区，每条长期任务是一条产线/一台机器。",
+          "tools": "网页可视化",
+          "tech": "微缩场景美术",
+          "prep": "选定美术风格（作者选小清新俯瞰微缩风）"
+        },
+        {
+          "text": "把 Webhook 中台做成中间的分拣大厅，负责调度任务和分发状态，并与飞书打通。",
+          "tools": "Webhook 中台、飞书",
+          "tech": "任务调度 / 状态分发",
+          "prep": "准备飞书机器人或 Webhook"
+        },
+        {
+          "text": "把 Claude Code 与 Codex 做成两个角色，真实任务作为包裹沿传送带送达，接活开干、完成后码上托盘。",
+          "tools": "Claude Code、Codex",
+          "tech": "实时状态动画",
+          "prep": "接入任务开始/完成事件"
+        },
+        {
+          "text": "接入现实时间与天气，让场景昼夜和雨天与现实同步。",
+          "tools": "天气接口",
+          "tech": "环境同步",
+          "prep": "获取所在城市天气数据源"
+        }
+      ],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112834479740117047",
+      "url": "https://x.com/mjjwiki/status/2112834479740117047",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "authorAvatar": "avatars/mjjwiki.jpg",
+      "title": "PHP 核心曝两个严重 RCE 漏洞，5.4 以上全受影响",
+      "industry": "网络安全 / 漏洞预警",
+      "tech": "PHP、CVE-2026-109618/109619",
+      "tags": [
+        "PHP",
+        "安全漏洞",
+        "RCE"
+      ],
+      "summary": "MJJ百科预警：PHP 核心曝出两个严重远程代码执行漏洞（CVE-2026-109618/109619），可直接拿 Shell。PHP 5.4 及以上版本均受影响，但官方只修复 PHP 8.2~8.5。官方于 10 月 21 日 22:00 发布补丁，补丁代码一公开，黑客 15 分钟内就能逆向出攻击脚本，所有未打补丁的机器都会被通杀。后续他补充：PHP 仍是 Web 建站现存占比第一，这次漏洞影响很大，欧洲等地政府网站集体下线紧急应对。",
+      "publishedAt": "2026-10-21T17:12:49+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112830527359332634",
+      "url": "https://x.com/shengtang135754/status/2112830527359332634",
+      "author": "shengtang135754",
+      "authorName": "麦麦提",
+      "authorAvatar": "avatars/shengtang135754.jpg",
+      "title": "幻觉率低不等于更聪明：拆解“全知幻觉率”的计算口径",
+      "industry": "AI 模型 / 评测",
+      "tech": "Gemini 4 Argon、DeepSeek V4.1 Flash 1017",
+      "tags": [
+        "幻觉率",
+        "评测",
+        "Gemini",
+        "DeepSeek"
+      ],
+      "summary": "麦麦提疑惑为何榜单上 Gemini 4 Argon 幻觉率这么低、DeepSeek V4.1 Flash 1017 这么高，自己并没感受到。他解释“全知幻觉率”：分子是错误回答，分母是错误回答＋部分回答＋未回答。因此降低幻觉率的办法就是不回答——不回答或部分回答都能大幅拉低幻觉率，因为分子只统计错误回答。Gemini 4 Argon 幻觉率低，可能正是因为模型被调得保守，不知道的就少答或不答。结论：幻觉率低并不代表模型更聪明。",
+      "publishedAt": "2026-10-21T16:57:06+08:00",
+      "isLong": true,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112827731385655473",
+      "url": "https://x.com/Astronaut_1216/status/2112827731385655473",
+      "author": "Astronaut_1216",
+      "authorName": "叫我阿杭",
+      "authorAvatar": "avatars/Astronaut_1216.jpg",
+      "title": "用 Monid 抓全球数据做出海 AI 博主 MCN：海内外报价差巨大",
+      "industry": "出海 / MCN 数据",
+      "tech": "Monid、Codex、TikHub",
+      "tags": [
+        "Monid",
+        "出海",
+        "MCN",
+        "数据抓取"
+      ],
+      "summary": "阿杭沉迷抓数据：许多 AI SaaS 公司在海外且融资数百万到数千万美金，做 AI 博主不赚钱，但整合海外 AI 博主做 MCN 真赚钱。他调研的报价：海外 7400 粉博主 50 美金、1.3 万粉 100 美金、21.5 万粉 200 美金；同量级在国内向品牌打包收这三人要 5000+ 美金。数据来源就是用 Monid 抓取，再稍作筛选即可，详细流程在视频里。引用的早前帖称 Monid 不卖数据而是卖全球数据接口（TikHub 只是几千个接口之一），覆盖跨境电商和所有社媒；他让 Codex 测试了三个场景：1）跨境电商选品：用亚马逊、YouTube 接口抓 48 个商品记录、291 条评论和 UGC 视频，痛点完全清晰；2）AI 产品 MVP 需求验证：用 Reddit、应用市场评论接口抓 42 个产品描述、561 条评价，发现 AI SaaS 在垂类细分仍有不少市场缺口；3）获取客户联系方式：用抖音、email、LinkedIn、Web Search 接口找到 97 个海内外垂类 MCN 创始人并逐一发邮件，已有 12 个回信。",
+      "publishedAt": "2026-10-21T16:46:00+08:00",
+      "isLong": true,
+      "steps": [
+        {
+          "text": "用 Monid 调用社媒/搜索接口，抓取海外 AI 博主的粉丝量与合作报价。",
+          "tools": "Monid、Codex",
+          "tech": "数据接口抓取",
+          "prep": "确定目标平台与博主粉丝区间"
+        },
+        {
+          "text": "对抓到的数据做筛选，对比海外报价（如 7400 粉 50 美金）与国内同量级打包报价（三人 5000+ 美金），确认利润空间。",
+          "tools": "Monid、表格",
+          "tech": "报价对比",
+          "prep": "整理品牌方预算参考"
+        },
+        {
+          "text": "跨境电商选品：用亚马逊、YouTube 接口抓商品记录、评论和 UGC 视频，提炼用户痛点。",
+          "tools": "Monid 亚马逊/YouTube 接口",
+          "tech": "评论分析",
+          "prep": "确定选品类目"
+        },
+        {
+          "text": "MVP 需求验证：用 Reddit 和应用市场评论接口抓产品描述与评价，寻找垂类细分缺口。",
+          "tools": "Monid Reddit/应用市场接口",
+          "tech": "需求验证",
+          "prep": "列出待验证的产品方向"
+        },
+        {
+          "text": "获客：用抖音、email、LinkedIn、Web Search 接口找到垂类 MCN 创始人联系方式并逐一发邮件。",
+          "tools": "Monid、邮件",
+          "tech": "线索挖掘 / 冷邮件",
+          "prep": "准备合作邀约邮件模板"
+        }
+      ],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112824560752247084",
+      "url": "https://x.com/ai_xiaomu/status/2112824560752247084",
+      "author": "ai_xiaomu",
+      "authorName": "黄小木",
+      "authorAvatar": "avatars/ai_xiaomu.jpg",
+      "title": "用网易邮箱大师的 mail agent 揪出家人邮箱里的隐形扣费订阅",
+      "industry": "AI Agent / 邮箱",
+      "tech": "网易邮箱大师、mail agent",
+      "tags": [
+        "网易邮箱大师",
+        "邮件Agent",
+        "订阅扣费"
+      ],
+      "summary": "黄小木：你或家人很可能有一笔莫名其妙的订阅一直在扣费，过去不知从何查起。现在可以用网易邮箱大师把自己和家人的邮箱账号都添加进去，然后给 mail agent 下指令“帮我找出一直在扣费的账单服务”，它能处理完几千封邮件找出元凶，具体操作见视频。",
+      "publishedAt": "2026-10-21T16:33:24+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112802314121884050",
+      "url": "https://x.com/ai_xiaomu/status/2112802314121884050",
+      "author": "ai_xiaomu",
+      "authorName": "黄小木",
+      "authorAvatar": "avatars/ai_xiaomu.jpg",
+      "title": "幼儿园 FDE 案例引来投资人：给家长做宝宝成长视频可付费",
+      "industry": "AI 落地 / FDE",
+      "tech": "DeepSeek harness、智能体、Skill",
+      "tags": [
+        "FDE",
+        "DeepSeek",
+        "Build in Public"
+      ],
+      "summary": "黄小木没想到自己的幼儿园 FDE 案例影响这么大，连投资人都找上门。案例内容：基于 DeepSeek harness 给幼儿园做智能体，分析孩子日常生活视频，每周为每个孩子出视频集锦；又做了蒙氏教育 Skill，不定期分析孩子成长情况并出报告。他做这个项目只因自己有需求，没考虑商业化；推友建议给每个孩子的家长做宝宝成长视频，他当天询问后家长全都有兴趣、愿意付费。这就是 build in public 的好处，建议大家多发推、多分发。",
+      "publishedAt": "2026-10-21T15:05:00+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112783187667734833",
+      "url": "https://x.com/0xlangeai/status/2112783187667734833",
+      "author": "0xlangeai",
+      "authorName": "蓝哥AI",
+      "authorAvatar": "avatars/0xlangeai.jpg",
+      "title": "找 bug 新玩法：让 Agent 画状态图，再用 TLA+ 形式化验证",
+      "industry": "AI 编程 / 形式化验证",
+      "tech": "pstack、/create-formal-verification-skill、TLA+",
+      "tags": [
+        "形式化验证",
+        "TLA+",
+        "Agent",
+        "Skill"
+      ],
+      "summary": "蓝哥转述 lauren（@poteto）的找 bug 玩法：先让 Agent 把代码画成状态图（用户能从哪一步走到哪一步、每一步什么状态），再用她做的 pstack 里新出的 /create-formal-verification-skill 生成一套形式化验证，比如用 TLA+ 去跑。形式化验证就是用数学证明某些规则必须始终成立（如“没付款就不能发货”），不是靠几个用例碰运气，而是把所有可能路径都检查一遍。以前建模和写证明太难、业务一改模型就对不上，所以没普及；现在交给 Agent 写门槛低了很多，她用这个 Skill 拿 TLA+ 建模已找出好几个 bug。好处是既更懂自己的代码和用户流程，也能在用户撞上之前修掉问题。",
+      "publishedAt": "2026-10-21T13:49:00+08:00",
+      "isLong": true,
+      "steps": [
+        {
+          "text": "让 Agent 把代码画成状态图：用户从哪一步能走到哪一步、每一步处于什么状态。",
+          "tools": "编程 Agent",
+          "tech": "状态图建模",
+          "prep": "选定一个核心业务流程（如下单支付）"
+        },
+        {
+          "text": "用 pstack 里的 /create-formal-verification-skill 生成形式化验证规格。",
+          "tools": "pstack、/create-formal-verification-skill",
+          "tech": "Skill 生成规格",
+          "prep": "安装 pstack"
+        },
+        {
+          "text": "写明必须始终成立的规则（如“没付款就不能发货”），用 TLA+ 跑遍所有可达路径。",
+          "tools": "TLA+",
+          "tech": "形式化验证 / 模型检查",
+          "prep": "列出业务不变量"
+        },
+        {
+          "text": "根据验证发现的反例修复 bug，并在业务变更后让 Agent 同步更新模型。",
+          "tools": "编程 Agent、TLA+",
+          "tech": "持续验证",
+          "prep": "把验证纳入改动流程"
+        }
+      ],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112776951362711866",
+      "url": "https://x.com/0xlangeai/status/2112776951362711866",
+      "author": "0xlangeai",
+      "authorName": "蓝哥AI",
+      "authorAvatar": "avatars/0xlangeai.jpg",
+      "title": "Grok Bot 中文学习站：社区整理的从 0 到 1 学习路径",
+      "industry": "AI 助手 / 学习资源",
+      "tech": "Grok Bot、GitHub",
+      "tags": [
+        "Grok Bot",
+        "学习资源",
+        "开源"
+      ],
+      "summary": "蓝哥推荐：买了 Grok Bot 不知道干嘛的，可以直接看这个中文学习站（社区非官方整理，源码已在 GitHub 开源）。站点把 Grok Bot 从 0 到 1 的学习路径规划好了，小白从头看、高手跳着看。",
+      "publishedAt": "2026-10-21T13:24:13+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112757836233240808",
+      "url": "https://x.com/mjjwiki/status/2112757836233240808",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "authorAvatar": "avatars/mjjwiki.jpg",
+      "title": "防 Claude 封号：订阅 Gemini 在 Antigravity 里用 Claude Opus 5.5",
+      "industry": "AI 订阅 / 额度",
+      "tech": "Gemini Ultra、Antigravity、Claude Opus 5.5",
+      "tags": [
+        "Claude",
+        "Antigravity",
+        "Gemini",
+        "订阅"
+      ],
+      "summary": "MJJ百科认为用 Claude 被封号太玄学，最稳定的用法是付费订阅 Gemini，然后在反重力 Antigravity 里使用 Claude（如 Claude Opus 5.5）。Gemini Pro 赠送的 Claude 额度肯定不够用，但 Gemini Ultra 赠送的 Claude 额度与 Claude Pro 差不多。他后面大概率升级到 Gemini Ultra 5X，ChatGPT Plus 和 ChatGPT Team 各只保留一个，不再订阅 Claude Pro。",
+      "publishedAt": "2026-10-21T12:08:15+08:00",
+      "isLong": true,
+      "steps": [
+        {
+          "text": "付费订阅 Gemini，优先选 Ultra（Pro 赠送的 Claude 额度不够用，Ultra 约等于 Claude Pro 额度）。",
+          "tools": "Gemini Ultra",
+          "tech": "订阅方案",
+          "prep": "可用的支付方式"
+        },
+        {
+          "text": "在 Antigravity 中选择 Claude 模型（如 Claude Opus 5.5）使用，避免直接订阅 Claude 的封号风险。",
+          "tools": "Antigravity、Claude Opus 5.5",
+          "tech": "额度复用",
+          "prep": "登录绑定 Gemini 订阅的谷歌账号"
+        },
+        {
+          "text": "精简其他订阅：ChatGPT Plus 与 Team 各保留一个，不再续 Claude Pro。",
+          "tools": "ChatGPT",
+          "tech": "订阅组合优化",
+          "prep": "盘点现有 AI 订阅"
+        }
+      ],
+      "showFlowchart": true
+    },
+    {
+      "id": "2112756226174120317",
+      "url": "https://x.com/0xlangeai/status/2112756226174120317",
+      "author": "0xlangeai",
+      "authorName": "蓝哥AI",
+      "authorAvatar": "avatars/0xlangeai.jpg",
+      "title": "蓝哥 X 涨粉复盘数据：一个多月 900 万曝光，Muse 教程单条 211 万浏览",
+      "industry": "自媒体 / X 运营",
+      "tech": "X、Muse 教程",
+      "tags": [
+        "X运营",
+        "涨粉",
+        "复盘"
+      ],
+      "summary": "蓝哥转发 Ayi 对自己一个多月复盘的拆解。数据：前三个月才熬到 1000 粉，后面一个多月拿到 900 万曝光、1.92 万收藏，接近万粉；仅 Muse 上手教程一条就有 211 万浏览、4290 收藏。Ayi 认为掌握 X 自媒体增长的第一性原理和朴素方法即可，不需要花钱买 699 元的割韭菜课程。",
+      "publishedAt": "2026-10-21T12:01:52+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112749982063161471",
+      "url": "https://x.com/yaojingang/status/2112749982063161471",
+      "author": "yaojingang",
+      "authorName": "姚金刚",
+      "authorAvatar": "avatars/yaojingang.jpg",
+      "title": "10 月 24 日直播发布新商业 GEO 系统，并开源 GEOInflow 流量统计",
+      "industry": "AI 营销 / GEO",
+      "tech": "GEO、GEOInflow、视频号直播",
+      "tags": [
+        "GEO",
+        "开源",
+        "发布会"
+      ],
+      "summary": "姚金刚宣布 10 月 24 日（周六、世界程序员日）晚 7 点在视频号直播，正式发布全新商业 GEO 产品与一套全新运营 SOP，同时开源全新的 GEO 流量统计系统 GEOInflow，希望分享新思路、新设计、新方法与理念，可通过文章了解并预约直播。",
+      "publishedAt": "2026-10-21T11:37:03+08:00",
+      "isLong": true,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112745187646845344",
+      "url": "https://x.com/Astronaut_1216/status/2112745187646845344",
+      "author": "Astronaut_1216",
+      "authorName": "叫我阿杭",
+      "authorAvatar": "avatars/Astronaut_1216.jpg",
+      "title": "用 Monid 逆向 OpenPrice 为何被豆包推荐：GEO 外链打法拆解",
+      "industry": "AI 建站 / GEO",
+      "tech": "Monid、DataForSEO、豆包、GitHub",
+      "tags": [
+        "GEO",
+        "Monid",
+        "豆包",
+        "SEO"
+      ],
+      "summary": "阿杭认为网站能被豆包推荐才最厉害，他用 Monid 逆向了 OpenPrice 被豆包归因推荐的原因：对方不靠卖产品变现，而是做大流量入口靠赞助商变现。拆解：1）Monid 调用 DataForSEO 识别到 10 个引荐域名、116 条外链（其中 91 条来自同一多语言目录页且全为 nofollow）、61 个独立站内页面，关键在页面问题与用户向豆包提的问题高度匹配，而非找高权重账号代发；2）找到一篇中文教程，在“没有海外支付方式”场景把 OpenPrice 作为比价工具推荐，并直链 ChatGPT Plus 成品号页面；3）与 AI 工具导航站、项目站共同营销：aikenra 把它定义为开源 AI 产品价格比较工具并给 dofollow 外链，Onesvibe 收录其产品视觉与功能描述；4）GitHub 是最主要流量来源，提供 4 条 dofollow 链接，并结构化描述目标用户、技术栈、使用场景和商业模式。他打算用这套方式优化自己的个人网站。",
+      "publishedAt": "2026-10-21T11:18:00+08:00",
+      "isLong": true,
+      "steps": [
+        {
+          "text": "用 Monid 调用 DataForSEO 分析目标站点：引荐域名、外链记录、nofollow/dofollow 比例与站内页面数。",
+          "tools": "Monid、DataForSEO",
+          "tech": "外链分析",
+          "prep": "确定要逆向的竞品网站"
+        },
+        {
+          "text": "让站内页面的问题与用户向豆包等 AI 提问的问题精确匹配，而不是找高权重账号代发。",
+          "tools": "豆包",
+          "tech": "GEO 问题匹配",
+          "prep": "收集目标用户常问的问题"
+        },
+        {
+          "text": "在具体场景的中文教程里推荐自己的产品（如“没有海外支付方式”时的比价工具），并直链产品页。",
+          "tools": "中文教程文章",
+          "tech": "场景化内容",
+          "prep": "写场景化教程"
+        },
+        {
+          "text": "与 AI 工具导航站、项目站共同营销，争取 dofollow 外链与产品实体描述收录。",
+          "tools": "aikenra、Onesvibe 等导航站",
+          "tech": "共同营销",
+          "prep": "准备产品介绍与视觉素材"
+        },
+        {
+          "text": "在 GitHub 开源仓库里结构化描述目标用户、技术栈、使用场景和商业模式，作为主要流量来源。",
+          "tools": "GitHub",
+          "tech": "结构化描述 / dofollow",
+          "prep": "整理项目 README"
+        }
+      ],
+      "showFlowchart": true
+    },
+    {
+      "id": "2112744020485283902",
+      "url": "https://x.com/gkxspace/status/2112744020485283902",
+      "author": "gkxspace",
+      "authorName": "余温",
+      "authorAvatar": "avatars/gkxspace.jpg",
+      "title": "Higgsfield Genjutsu Lite 上线：保留原片动作口型换造型做个人 IP",
+      "industry": "AI 视频 / 个人 IP",
+      "tech": "Higgsfield Genjutsu Lite",
+      "tags": [
+        "Higgsfield",
+        "AI视频",
+        "个人IP",
+        "larpmaxxing"
+      ],
+      "summary": "余温介绍 Higgsfield 新出的 Genjutsu Lite：拿一条自己录的原片，动作、手势、口型全保留，造型、衣服、场景随便换，价格约便宜 5 倍（官方称 720P 便宜 3.5 倍、1080P 便宜 5 倍，可在 Higgsfield 和 API 使用，部分地区可免费试用）。老外管这叫 larpmaxxing——把自己演成任何想当的人，已成为做个人品牌的新玩法。三种玩法：1）同一条口播每天换一个造型（游艇版、古装侠客版、赛博版）做成系列；2）出海电商带货：模特只拍一套基础展示手势，批量替换 20 款产品和场景，省掉昂贵的外模棚拍；3）自媒体起号：零布景成本打造辨识度高的视觉人设。做法：一条原视频（正脸、动作清楚）加一张想变成的造型照丢进去即可。",
+      "publishedAt": "2026-10-21T11:13:22+08:00",
+      "isLong": true,
+      "steps": [
+        {
+          "text": "录一条原视频：正脸、动作清楚，作为口播或展示素材。",
+          "tools": "手机/相机",
+          "tech": "原片拍摄",
+          "prep": "选好光线与背景简单的环境"
+        },
+        {
+          "text": "准备一张想变成的造型照（如游艇版、古装侠客版、赛博版）。",
+          "tools": "造型参考图",
+          "tech": "造型参考",
+          "prep": "按系列规划多个造型"
+        },
+        {
+          "text": "在 Higgsfield 中用 Genjutsu Lite 上传原视频和造型照生成，保留动作、手势和口型。",
+          "tools": "Higgsfield Genjutsu Lite",
+          "tech": "视频换装换景",
+          "prep": "注册 Higgsfield 账号（部分地区可免费试用）"
+        },
+        {
+          "text": "按场景批量产出：每日换造型的系列口播、电商批量替换产品与场景、自媒体视觉人设。",
+          "tools": "Higgsfield、API",
+          "tech": "批量生成",
+          "prep": "列出要替换的产品与场景清单"
+        }
+      ],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112738445810675917",
+      "url": "https://x.com/shengtang135754/status/2112738445810675917",
+      "author": "shengtang135754",
+      "authorName": "麦麦提",
+      "authorAvatar": "avatars/shengtang135754.jpg",
+      "title": "API 用户千万别绑信用卡：90% 的 Key 被盗手段与防范",
+      "industry": "AI 安全 / API Key",
+      "tech": "API Key、GitHub、.env、Shodan/FOFA",
+      "tags": [
+        "API Key",
+        "安全",
+        "防盗刷"
+      ],
+      "summary": "麦麦提提醒 API 用户千万不要绑定信用卡，否则可能一夜被灰产薅秃，并列出 90% 的 API Key 盗用手段：1）代码一键传到 GitHub/Gitee（最常见，超 60%）：黑客用自动化爬虫 24 小时监听 GitHub Push 事件流，匹配到 sk- 等正则 5 秒内收割入库；2）Key 明文放在前端或手机 App 里：按 F12 看网络请求、搜 app.js 或反编译 App 即可抓出；3）自建 AI 转发站/聚合面板用默认弱口令：黑产用 Shodan/FOFA 批量扫描公网端口，默认密码登录后台一键导出上游 Key；4）服务器 .env 配置文件可被公网下载：爬虫直接访问 /.env 或 /.git/HEAD 拖走配置和源码；5）使用来路不明的免费中转代理：恶意代理做中间人，在转发时截留请求头里的 Authorization: Bearer 后面的 sk- 开头密钥批量倒卖。",
+      "publishedAt": "2026-10-21T10:51:12+08:00",
+      "isLong": true,
+      "steps": [
+        {
+          "text": "提交代码前清理密钥：用环境变量或密钥管理，绝不把 sk- 开头的 Key 推到 GitHub/Gitee。",
+          "tools": "Git、GitHub/Gitee",
+          "tech": "密钥管理",
+          "prep": "检查仓库历史是否已泄露 Key"
+        },
+        {
+          "text": "不要把 Key 放在前端或 App 里，改由后端代理调用。",
+          "tools": "后端服务",
+          "tech": "服务端代理",
+          "prep": "梳理前端是否有明文 Key"
+        },
+        {
+          "text": "自建转发站/聚合面板修改默认口令，避免被 Shodan/FOFA 扫描后登录导出上游 Key。",
+          "tools": "中转面板",
+          "tech": "强口令 / 端口收敛",
+          "prep": "列出暴露在公网的服务端口"
+        },
+        {
+          "text": "禁止公网访问 .env 和 .git 目录。",
+          "tools": "Web 服务器配置",
+          "tech": "访问控制",
+          "prep": "检查 /.env、/.git/HEAD 是否可下载"
+        },
+        {
+          "text": "不用来路不明的免费中转代理，并且不给 API 账户绑定信用卡，以防被盗刷。",
+          "tools": "API 平台账单设置",
+          "tech": "中间人防范 / 额度控制",
+          "prep": "改用预付费或设置消费上限"
+        }
+      ],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112721654216544693",
+      "url": "https://x.com/Saccc_c/status/2112721654216544693",
+      "author": "Saccc_c",
+      "authorName": "Sac",
+      "authorAvatar": "avatars/Saccc_c.jpg",
+      "title": "Wan 3.0 登陆 Higgsfield：Larping 换装换景视频成本骤降",
+      "industry": "AI 视频 / 玩法",
+      "tech": "Wan 3.0、Higgsfield、Seedance 2.5",
+      "tags": [
+        "Wan 3.0",
+        "Higgsfield",
+        "Larping",
+        "AI视频"
+      ],
+      "summary": "Sac 介绍国外很火的 Larping 玩法：拿一段实拍让 AI 换装换景。Wan 3.0 已在 Higgsfield 上线，价格比 Seedance 2.5 便宜 4.5 倍，是最适合玩 Larping 的模型；示例视频把实拍的公园长椅一键变成一辆酷炫摩托车，运镜、光线和实拍一模一样，几乎看不出 AI 痕迹。他推荐三种玩法：1）搞笑整活：利用实拍与生成画面的反差，上一秒坐塑料凳、下一秒坐豪宅泳池边；2）角色扮演：随手一个转身变成特工、魔法师或电影主角；3）换景打卡：在家门口走两步，背景换成海边球场、城市天台或雪山公路，不出门拍遍世界。",
+      "publishedAt": "2026-10-21T09:44:29+08:00",
+      "isLong": true,
+      "steps": [
+        {
+          "text": "拍一段实拍素材（如坐在公园长椅、在家门口走两步、转身动作）。",
+          "tools": "手机",
+          "tech": "实拍素材",
+          "prep": "构思实拍与生成画面的反差点"
+        },
+        {
+          "text": "在 Higgsfield 选择 Wan 3.0，上传实拍并描述要替换的物品、造型或场景。",
+          "tools": "Higgsfield、Wan 3.0",
+          "tech": "视频换装换景",
+          "prep": "注册 Higgsfield 账号"
+        },
+        {
+          "text": "按玩法产出：搞笑整活反差、角色扮演变身、换景打卡。",
+          "tools": "Wan 3.0",
+          "tech": "Larping 玩法",
+          "prep": "准备系列化选题"
+        }
+      ],
+      "showFlowchart": false
+    },
+    {
+      "id": "2112718562666438696",
+      "url": "https://x.com/0xlangeai/status/2112718562666438696",
+      "author": "0xlangeai",
+      "authorName": "蓝哥AI",
+      "authorAvatar": "avatars/0xlangeai.jpg",
+      "title": "DeepSeek V4.1 Flash + workbuddy + Anatomy Skill：一句需求做出电动车和火箭原理实验台",
+      "industry": "AI 编程 / 交互网页",
+      "tech": "DeepSeek V4.1 Flash 1017、workbuddy、Anatomy Skill",
+      "tags": [
+        "DeepSeek",
+        "workbuddy",
+        "Skill",
+        "交互实验"
+      ],
+      "summary": "蓝哥转发：用一句需求，借助 DeepSeek V4.1 Flash 新版（10 月 17 日更新的 V4.1-Flash-1017，官方提到从零做完整项目并针对 workbuddy 等平台优化）加 workbuddy，再挂一个名为 Anatomy 的 Skill，做出两套能在浏览器里上手玩的中文原理实验台，均已部署到公网。电动车：一副没车身的底盘、72 个零件，可踩加速、踩刹车、开关能量回收；电池功率加速时为正，刹车回收时变负，电流回流电池。火箭：64 个零件，可点火、调推力，流率和推力同步变化，65% 档位算出 6.5 千牛。",
+      "publishedAt": "2026-10-21T09:32:12+08:00",
+      "isLong": true,
+      "steps": [
+        {
+          "text": "在 workbuddy 中选用 DeepSeek V4.1 Flash 1017 模型。",
+          "tools": "workbuddy、DeepSeek V4.1 Flash 1017",
+          "tech": "模型选择",
+          "prep": "准备 workbuddy 账号"
+        },
+        {
+          "text": "挂载 Anatomy Skill，用一句需求描述要做的原理实验台（如电动车底盘、火箭）。",
+          "tools": "Anatomy Skill",
+          "tech": "Skill 增强生成",
+          "prep": "写清零件、交互与要展示的物理量"
+        },
+        {
+          "text": "在浏览器里试玩生成的交互：加速/刹车/能量回收，或点火/调推力，检查数值变化是否合理。",
+          "tools": "浏览器",
+          "tech": "交互验证",
+          "prep": "核对电池功率正负、推力数值等"
+        },
+        {
+          "text": "将实验台部署到公网分享。",
+          "tools": "workbuddy 部署",
+          "tech": "网页部署",
+          "prep": "准备部署域名或平台"
+        }
+      ],
+      "showFlowchart": true
+    },
     {
       "id": "2112693959848005734",
       "url": "https://x.com/shengtang135754/status/2112693959848005734",
