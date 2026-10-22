@@ -87,9 +87,9 @@
     replicas = replicas.filter(r => r.id !== id);
     saveReplicas();
   }
-  // Keep the picker and validation in sync; archive MIME types are often empty.
+  // Android uses accept/capture to choose the picker; validation remains extension-based.
   const attachmentExtensions = "pdf doc docx xls xlsx ppt pptx txt md csv png jpg jpeg gif webp bmp avif svg ico zip rar 7z tar gz tgz".split(" ");
-  const attachmentAccept = ["image/*", ...attachmentExtensions.map(ext => "." + ext)].join(",");
+  const imageAttachmentAccept = "image/*";
   const maxAttachmentSize = 10 * 1024 * 1024;
   function replicaStepHtml(r, step, idx) {
     const subs = (step.substeps || []).map((sub, j) => `<li class="replica-substep-row ${status(sub) === "done" ? "is-done" : ""}">${statusButton(r, sub, idx, j)}<span class="replica-substep-text">${escapeHtml(sub.text)}</span></li>`).join("");
@@ -98,7 +98,7 @@
       ${subs ? `<ol class="replica-substeps">${subs}</ol>` : ""}
       <textarea class="replica-note" rows="1" data-replica-note="${escapeHtml(r.id)}" data-step-idx="${idx}" aria-label="步骤 ${idx + 1} 备注" placeholder="写点备注…">${escapeHtml(step.note || "")}</textarea>
       <section class="step-attachments" data-attachment-section="${escapeHtml(r.id)}" data-step-idx="${idx}">
-        <div class="attachment-heading"><strong>阶段附件</strong><label class="attachment-upload">＋ 上传文件<input type="file" multiple accept="${attachmentAccept}" data-upload="${escapeHtml(r.id)}" data-step-idx="${idx}" aria-label="步骤 ${idx + 1} 上传附件" /></label></div>
+        <div class="attachment-heading"><strong>阶段附件</strong><div class="attachment-upload-actions"><label class="attachment-upload">＋ 上传图片<input type="file" multiple accept="${imageAttachmentAccept}" data-upload="${escapeHtml(r.id)}" data-step-idx="${idx}" aria-label="步骤 ${idx + 1} 上传图片" /></label><label class="attachment-upload">＋ 上传文档/压缩包<input type="file" multiple data-upload="${escapeHtml(r.id)}" data-step-idx="${idx}" aria-label="步骤 ${idx + 1} 上传文档或压缩包" /></label></div></div>
         <p class="attachment-help">文档、图片、压缩包 · 单个不超过 10MB · 仅保存在当前浏览器</p>
         <div class="attachment-list">${(step.attachments || []).map(id => `<div class="attachment-item" data-attachment-id="${escapeHtml(id)}">加载附件…</div>`).join("")}</div>
       </section>
@@ -187,6 +187,7 @@
           try { saveReplicas(); } catch (error) { step.attachments.pop(); await attachmentDB("readwrite", store => store.delete(id)); throw error; }
         } catch (error) { alert(`附件保存失败：${error.message}`); }
       }
+      input.value = "";
       renderReplicasPage();
     });
 
@@ -258,7 +259,7 @@
   function clearURLs() { objectURLs.forEach(url => URL.revokeObjectURL(url)); objectURLs.clear(); }
   function isAllowedAttachment(file) {
     const ext = file.name.includes(".") ? file.name.split(".").pop().toLowerCase() : "";
-    return attachmentExtensions.includes(ext) || /^image\//i.test(file.type || "");
+    return attachmentExtensions.includes(ext);
   }
   function fileKind(file) {
     const ext = file.name.split(".").pop().toLowerCase();

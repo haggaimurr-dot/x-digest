@@ -2156,6 +2156,7 @@ mark.search-hit {
 @media (prefers-reduced-motion: reduce) { .status-dot.is-active { animation: none; } }
 .step-attachments { margin-top: 12px; border-top: 1px solid var(--border); padding-top: 12px; min-width: 0; }
 .attachment-heading, .attachment-preview-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 13px; }
+.attachment-upload-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 4px; }
 .attachment-upload { position: relative; cursor: pointer; color: var(--accent); padding: 6px; border-radius: 6px; }
 .attachment-upload input { position: absolute; inset: 0; width: 100%; opacity: 0; cursor: pointer; }
 .attachment-upload:focus-within { outline: 2px solid var(--accent); }
