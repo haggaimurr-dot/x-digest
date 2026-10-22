@@ -60,10 +60,10 @@
     let done = 0;
     for (const s of r.steps || []) {
       total += 1;
-      if (s.done) done += 1;
+      if (status(s) === "done") done += 1;
       for (const sub of s.substeps || []) {
         total += 1;
-        if (sub.done) done += 1;
+        if (status(sub) === "done") done += 1;
       }
     }
     return { done, total };
@@ -73,28 +73,32 @@
     return "r" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
   }
 
-  function deleteReplica(id) {
-    replicas = replicas.filter((r) => r.id !== id);
+  const status = step => ["idle", "active", "done"].includes(step.status) ? step.status : step.done ? "done" : "idle";
+  const statusNames = { idle: "未开始", active: "进行中", done: "已完成" };
+  function statusButton(r, step, idx, sub = "") {
+    const state = status(step);
+    return `<button type="button" class="status-dot is-${state}" data-status="${escapeHtml(r.id)}" data-step-idx="${idx}" data-sub-idx="${sub}" aria-label="${sub === "" ? "步骤" : "子步骤"} ${idx + 1}${sub === "" ? "" : "." + (sub + 1)}：${statusNames[state]}，点击切换状态" title="${statusNames[state]}，点击切换状态"></button>`;
+  }
+  async function deleteReplica(id) {
+    await attachmentDB("readwrite", store => {
+      const request = store.openCursor();
+      request.onsuccess = () => { const cursor = request.result; if (cursor) { if (cursor.value.replicaId === id) cursor.delete(); cursor.continue(); } };
+    });
+    replicas = replicas.filter(r => r.id !== id);
     saveReplicas();
   }
-
   function replicaStepHtml(r, step, idx) {
-    const subs = (step.substeps || [])
-      .map((sub, j) => {
-        return `<li class="replica-substep-row ${sub.done ? "is-done" : ""}">
-          <input type="checkbox" class="replica-check" data-replica-sub-check="${escapeHtml(r.id)}" data-step-idx="${idx}" data-sub-idx="${j}" ${sub.done ? "checked" : ""} aria-label="子步骤 ${idx + 1}.${j + 1} 完成" />
-          <span class="replica-substep-text">${escapeHtml(sub.text)}</span>
-        </li>`;
-      })
-      .join("");
+    const subs = (step.substeps || []).map((sub, j) => `<li class="replica-substep-row ${status(sub) === "done" ? "is-done" : ""}">${statusButton(r, sub, idx, j)}<span class="replica-substep-text">${escapeHtml(sub.text)}</span></li>`).join("");
     return window.xdigestFlowNode(`
-      <label class="replica-step-row">
-        <input type="checkbox" class="replica-check" data-replica-check="${escapeHtml(r.id)}" data-step-idx="${idx}" ${step.done ? "checked" : ""} aria-label="步骤 ${idx + 1} 完成" />
-        <span class="replica-step-text">${idx + 1}. ${escapeHtml(step.text)}</span>
-      </label>
+      <div class="replica-step-row">${statusButton(r, step, idx)}<span class="replica-step-text">${idx + 1}. ${escapeHtml(step.text)}</span></div>
       ${subs ? `<ol class="replica-substeps">${subs}</ol>` : ""}
       <textarea class="replica-note" rows="1" data-replica-note="${escapeHtml(r.id)}" data-step-idx="${idx}" aria-label="步骤 ${idx + 1} 备注" placeholder="写点备注…">${escapeHtml(step.note || "")}</textarea>
-    `, idx, idx === r.steps.length - 1, `replica-flow-step ${step.done ? "is-done" : ""}`);
+      <section class="step-attachments" data-attachment-section="${escapeHtml(r.id)}" data-step-idx="${idx}">
+        <div class="attachment-heading"><strong>阶段附件</strong><label class="attachment-upload">＋ 上传文件<input type="file" multiple data-upload="${escapeHtml(r.id)}" data-step-idx="${idx}" aria-label="步骤 ${idx + 1} 上传附件" /></label></div>
+        <p class="attachment-help">文档、图片、压缩包 · 单个不超过 10MB · 仅保存在当前浏览器</p>
+        <div class="attachment-list">${(step.attachments || []).map(id => `<div class="attachment-item" data-attachment-id="${escapeHtml(id)}">加载附件…</div>`).join("")}</div>
+      </section>
+    `, idx, idx === r.steps.length - 1, `replica-flow-step ${status(step) === "done" ? "is-done" : ""}`);
   }
 
   function replicaCardHtml(r) {
@@ -153,6 +157,7 @@
     if (els.replicaCount) els.replicaCount.textContent = `${list.length} 条复刻`;
     els.replicaList.innerHTML = list.map(replicaCardHtml).join("");
     if (els.replicaEmpty) els.replicaEmpty.hidden = list.length > 0;
+    hydrateAttachments();
   }
 
   if (els.replicaSort) {
@@ -163,31 +168,22 @@
   }
 
   if (els.replicaList) {
-    els.replicaList.addEventListener("change", (e) => {
-      const stepCb = e.target.closest("[data-replica-check]");
-      if (stepCb) {
-        const r = replicas.find((x) => x.id === stepCb.getAttribute("data-replica-check"));
-        const idx = Number(stepCb.getAttribute("data-step-idx"));
-        if (r && r.steps[idx]) {
-          r.steps[idx].done = stepCb.checked;
-          saveReplicas();
-          renderReplicasPage();
-        }
-        return;
+    els.replicaList.addEventListener("change", async e => {
+      const input = e.target.closest("[data-upload]");
+      if (!input) return;
+      const r = replicas.find(r => r.id === input.dataset.upload), step = r?.steps[input.dataset.stepIdx];
+      if (!step) return;
+      for (const file of input.files) {
+        if (file.size > 10 * 1024 * 1024) { alert(`${file.name} 超过 10MB，已拒绝上传。`); continue; }
+        const id = newReplicaId();
+        try {
+          await attachmentDB("readwrite", store => store.put({id, replicaId: r.id, name: file.name, type: file.type, blob: file}));
+          (step.attachments ||= []).push(id);
+          try { saveReplicas(); } catch (error) { step.attachments.pop(); await attachmentDB("readwrite", store => store.delete(id)); throw error; }
+        } catch (error) { alert(`附件保存失败：${error.message}`); }
       }
-      const subCb = e.target.closest("[data-replica-sub-check]");
-      if (subCb) {
-        const r = replicas.find((x) => x.id === subCb.getAttribute("data-replica-sub-check"));
-        const idx = Number(subCb.getAttribute("data-step-idx"));
-        const sidx = Number(subCb.getAttribute("data-sub-idx"));
-        if (r && r.steps[idx] && r.steps[idx].substeps[sidx]) {
-          r.steps[idx].substeps[sidx].done = subCb.checked;
-          saveReplicas();
-          renderReplicasPage();
-        }
-      }
+      renderReplicasPage();
     });
-
 
     els.replicaList.addEventListener("input", (e) => {
       const ta = e.target.closest("[data-replica-note]");
@@ -199,19 +195,32 @@
       saveReplicas();
     });
 
-    els.replicaList.addEventListener("click", (e) => {
+    els.replicaList.addEventListener("click", async (e) => {
+      try {
+        const dot = e.target.closest("[data-status]");
+        if (dot) {
+          const r = replicas.find(r => r.id === dot.dataset.status);
+          const step = r.steps[dot.dataset.stepIdx];
+          const target = dot.dataset.subIdx === "" ? step : step.substeps[dot.dataset.subIdx];
+          target.status = {idle: "active", active: "done", done: "idle"}[status(target)];
+          target.done = target.status === "done";
+          saveReplicas(); renderReplicasPage(); return;
+        }
+        const action = e.target.closest("[data-attachment-action]");
+        if (action) { await attachmentAction(action); return; }
+      } catch (error) { alert(`操作失败：${error.message}`); return; }
       const delBtn = e.target.closest("[data-replica-delete]");
       if (!delBtn) return;
       e.preventDefault();
       const id = delBtn.getAttribute("data-replica-delete");
       const r = replicas.find((x) => x.id === id);
       if (!r) return;
-      confirmDelete("删除这条复刻？", `「${r.postTitle || "该流程"}」的打卡记录和备注都会被删除`).then((ok) => {
+      confirmDelete("删除这条复刻？", `「${r.postTitle || "该流程"}」的状态、备注和全部附件都会被删除`).then(async (ok) => {
         if (!ok) return;
-        deleteReplica(id);
+        await deleteReplica(id);
         renderReplicasPage();
 
-      });
+      }).catch(error => alert(`删除失败：${error.message}`));
     });
   }
 
@@ -224,6 +233,101 @@
   window.addEventListener("storage", event => {
     if (event.key === REPLICAS_KEY || event.key === null) { loadReplicas(); renderReplicasPage(); }
   });
+  let dbPromise;
+  function attachmentDB(mode, action) {
+    dbPromise ||= new Promise((resolve, reject) => {
+      const request = indexedDB.open("xdigest.attachments", 1);
+      request.onupgradeneeded = () => request.result.createObjectStore("files", {keyPath: "id"});
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => { dbPromise = null; reject(request.error); };
+    });
+    return dbPromise.then(db => new Promise((resolve, reject) => {
+      const tx = db.transaction("files", mode);
+      const request = action(tx.objectStore("files"));
+      tx.oncomplete = () => resolve(request?.result);
+      tx.onerror = tx.onabort = () => reject(tx.error || new Error("附件存储失败"));
+    }));
+  }
+  const objectURLs = new Set();
+  function objectURL(blob) { const url = URL.createObjectURL(blob); objectURLs.add(url); return url; }
+  function clearURLs() { objectURLs.forEach(url => URL.revokeObjectURL(url)); objectURLs.clear(); }
+  function fileKind(file) {
+    const ext = file.name.split(".").pop().toLowerCase();
+    if (/^(png|jpg|jpeg|gif|webp|bmp|avif|svg|ico)$/.test(ext) || file.type.startsWith("image/")) return "image";
+    if (ext === "pdf") return "pdf";
+    if (/^(txt|md)$/.test(ext)) return "text";
+    if (ext === "zip") return "zip";
+    if (/^(rar|7z|tar|gz)$/.test(ext)) return "archive";
+    return "document";
+  }
+  async function hydrateAttachments() {
+    clearURLs();
+    await Promise.all([...els.replicaList.querySelectorAll("[data-attachment-id]")].map(async node => {
+      try {
+        const file = await attachmentDB("readonly", store => store.get(node.dataset.attachmentId));
+        if (!node.isConnected) return;
+        if (!file) { node.textContent = "附件不存在（可能已清除浏览器数据）"; return; }
+        const kind = fileKind(file);
+        node.innerHTML = `${kind === "image" ? `<img class="attachment-thumb" alt="${escapeHtml(file.name)}" src="${objectURL(file.blob)}" />` : `<span class="attachment-icon" aria-hidden="true">${kind === "archive" || kind === "zip" ? "🗜" : "📄"}</span>`}<span class="attachment-name">${escapeHtml(file.name)}<small>${(file.blob.size / 1024).toFixed(1)} KB</small></span><div class="attachment-actions"><button type="button" data-attachment-action="preview">预览</button><button type="button" data-attachment-action="download">下载</button><button type="button" data-attachment-action="delete">删除</button></div>`;
+        if (kind === "image") node.querySelector("img").onclick = () => node.querySelector("button").click();
+      } catch (error) { if (node.isConnected) node.textContent = `附件读取失败：${error.message}`; }
+    }));
+  }
+  const preview = document.getElementById("attachmentPreview");
+  let previewURL;
+  preview.addEventListener("close", () => { document.getElementById("attachmentPreviewBody").replaceChildren(); if (previewURL) URL.revokeObjectURL(previewURL); previewURL = null; });
+  document.getElementById("attachmentPreviewClose").onclick = () => preview.close();
+  function zipEntries(buffer) {
+    const view = new DataView(buffer), decoder = new TextDecoder();
+    let end = buffer.byteLength - 22;
+    for (; end >= Math.max(0, buffer.byteLength - 65557); end--) {
+      if (view.getUint32(end, true) === 0x06054b50 && end + 22 + view.getUint16(end + 20, true) === buffer.byteLength) break;
+    }
+    if (end < Math.max(0, buffer.byteLength - 65557)) throw new Error("ZIP 目录损坏或不支持此格式");
+    const count = view.getUint16(end + 10, true);
+    let offset = view.getUint32(end + 16, true);
+    const entries = [];
+    for (let i = 0; i < count; i++) {
+      if (offset + 46 > end || view.getUint32(offset, true) !== 0x02014b50) throw new Error("ZIP 目录不完整（不支持 ZIP64 或分卷）");
+      const length = view.getUint16(offset + 28, true), extra = view.getUint16(offset + 30, true), comment = view.getUint16(offset + 32, true);
+      if (offset + 46 + length + extra + comment > end) throw new Error("ZIP 目录损坏");
+      entries.push(`${decoder.decode(new Uint8Array(buffer, offset + 46, length))}  (${view.getUint32(offset + 24, true)} 字节)`);
+      offset += 46 + length + extra + comment;
+    }
+    return entries;
+  }
+  async function attachmentAction(button) {
+    const node = button.closest("[data-attachment-id]"), id = node.dataset.attachmentId;
+    const file = await attachmentDB("readonly", store => store.get(id));
+    if (!file) throw new Error("附件不存在");
+    if (button.dataset.attachmentAction === "delete") {
+      if (!await confirmDelete("删除附件？", `「${file.name}」将从浏览器中永久删除。`)) return;
+      await attachmentDB("readwrite", store => store.delete(id));
+      replicas.forEach(r => r.steps?.forEach(step => { step.attachments = (step.attachments || []).filter(ref => ref !== id); }));
+      saveReplicas(); renderReplicasPage(); return;
+    }
+    if (button.dataset.attachmentAction === "download") {
+      const url = URL.createObjectURL(file.blob), a = document.createElement("a");
+      a.href = url; a.download = file.name; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000); return;
+    }
+    const body = document.getElementById("attachmentPreviewBody");
+    document.getElementById("attachmentPreviewTitle").textContent = file.name;
+    body.replaceChildren();
+    const kind = fileKind(file);
+    if (kind === "image" || kind === "pdf") {
+      const media = document.createElement(kind === "image" ? "img" : "iframe");
+      previewURL = URL.createObjectURL(new Blob([file.blob], {type: kind === "pdf" ? "application/pdf" : file.type || "image/" + file.name.split(".").pop()}));
+      media.src = previewURL; media.setAttribute(kind === "image" ? "alt" : "title", file.name); body.append(media);
+    } else {
+      const content = document.createElement("pre");
+      if (kind === "text") content.textContent = await file.blob.text();
+      else if (kind === "zip") { try { const entries = zipEntries(await file.blob.arrayBuffer()); content.textContent = entries.join("\n") || "空压缩包"; } catch (error) { content.textContent = error.message; } }
+      else content.textContent = `${kind === "archive" ? "🗜" : "📄"} ${file.name}\n${kind === "archive" ? "此压缩格式暂不支持列出目录，请下载后查看。" : "此文档格式请下载后打开。"}\n文件大小：${file.blob.size} 字节`;
+      body.append(content);
+    }
+    preview.showModal();
+  }
+  window.addEventListener("pagehide", clearURLs);
   document.documentElement.dataset.theme = localStorage.getItem("x-digest-theme") || "dark";
   loadReplicas();
   renderReplicasPage();

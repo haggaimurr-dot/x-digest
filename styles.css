@@ -2053,40 +2053,6 @@ mark.search-hit {
   gap: 10px;
 }
 
-.replica-check {
-  appearance: none;
-  -webkit-appearance: none;
-  display: grid;
-  place-content: center;
-  width: 20px;
-  height: 20px;
-  margin: 2px 0 0;
-  flex-shrink: 0;
-  border: 1px solid var(--text-muted);
-  border-radius: 6px;
-  background: transparent;
-  cursor: pointer;
-}
-
-.replica-check:checked {
-  background: var(--accent);
-  border-color: var(--accent);
-}
-
-.replica-check:checked::after {
-  content: "";
-  width: 6px;
-  height: 10px;
-  border: solid #fff;
-  border-width: 0 2px 2px 0;
-  transform: translateY(-1px) rotate(45deg);
-}
-
-.replica-check:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
 .replica-step-text {
   flex: 1;
   min-width: 0;
@@ -2114,11 +2080,6 @@ mark.search-hit {
   display: flex;
   align-items: flex-start;
   gap: 8px;
-}
-
-.replica-substep-row .replica-check {
-  width: 18px;
-  height: 18px;
 }
 
 .replica-substep-text {
@@ -2185,3 +2146,32 @@ mark.search-hit {
 .replica-details > .flow-chart { padding: 4px 16px 16px; }
 .replica-flow-step.is-done .replica-step-text { text-decoration: line-through; color: var(--text-muted); }
 .replica-note { box-sizing: border-box; }
+
+/* Replica status and local attachments. */
+.status-dot { width: 18px; height: 18px; flex: 0 0 18px; border: 3px solid var(--bg); outline: 1px solid #737b85; border-radius: 50%; background: #737b85; margin: 2px 1px; cursor: pointer; padding: 0; }
+.status-dot.is-done { background: #22c55e; outline-color: #22c55e; }
+.status-dot.is-active { background: #f4212e; outline-color: #f4212e; animation: status-breathe 1.6s ease-in-out infinite; }
+.status-dot:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+@keyframes status-breathe { 50% { box-shadow: 0 0 0 5px #f4212e40; opacity: .55; } }
+@media (prefers-reduced-motion: reduce) { .status-dot.is-active { animation: none; } }
+.step-attachments { margin-top: 12px; border-top: 1px solid var(--border); padding-top: 12px; min-width: 0; }
+.attachment-heading, .attachment-preview-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 13px; }
+.attachment-upload { position: relative; cursor: pointer; color: var(--accent); padding: 6px; border-radius: 6px; }
+.attachment-upload input { position: absolute; inset: 0; width: 100%; opacity: 0; cursor: pointer; }
+.attachment-upload:focus-within { outline: 2px solid var(--accent); }
+.attachment-help { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+.attachment-item { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; padding: 10px 0; border-top: 1px solid var(--border); font-size: 13px; }
+.attachment-thumb { width: 52px; height: 52px; object-fit: cover; border-radius: 6px; cursor: zoom-in; }
+.attachment-icon { font-size: 28px; }
+.attachment-name { flex: 1; min-width: 80px; overflow-wrap: anywhere; }
+.attachment-name small { display: block; color: var(--text-muted); margin-top: 4px; }
+.attachment-actions { display: flex; gap: 6px; }
+.attachment-actions button, .attachment-preview button { border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--text); padding: 6px 8px; cursor: pointer; }
+.attachment-preview { width: min(900px, 92vw); max-height: 90vh; box-sizing: border-box; padding: 18px; border: 1px solid var(--border); border-radius: 14px; background: var(--bg); color: var(--text); }
+.attachment-preview::backdrop { background: #000a; }
+.attachment-preview h2 { font-size: 16px; overflow-wrap: anywhere; min-width: 0; }
+#attachmentPreviewBody { overflow: auto; max-height: 72vh; }
+#attachmentPreviewBody img { display: block; max-width: 100%; max-height: 70vh; margin: auto; object-fit: contain; }
+#attachmentPreviewBody iframe { width: 100%; height: 65vh; border: 0; background: white; }
+#attachmentPreviewBody pre { white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; font-size: 14px; line-height: 1.7; }
+.status-legend { margin: 0; padding: 0 16px; color: var(--text-muted); font-size: 12px; line-height: 1.6; }
