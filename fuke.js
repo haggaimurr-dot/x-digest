@@ -93,8 +93,55 @@
   const maxAttachmentSize = 10 * 1024 * 1024;
   function noteEditor(r, step, idx) {
     const tools = [["bold", "加粗"], ["italic", "斜体"], ["heading", "标题"], ["list", "列表"], ["link", "链接"], ["code", "代码"], ["quote", "引用"]];
-    return `<div class="note-editor"><div class="note-controls"><div class="note-modes" role="group" aria-label="备注模式"><button type="button" data-note-mode="edit" aria-pressed="true">编辑</button><button type="button" data-note-mode="preview" aria-pressed="false">预览</button></div><span class="note-save" role="status">Markdown · 自动保存</span></div><div class="note-toolbar" role="toolbar" aria-label="Markdown 工具栏">${tools.map(([action, label]) => `<button type="button" data-note-tool="${action}" title="${label}" aria-label="${label}">${label}</button>`).join("")}</div><textarea class="replica-note" rows="4" data-replica-note="${escapeHtml(r.id)}" data-step-idx="${idx}" aria-label="步骤 ${idx + 1} 备注" placeholder="写点备注… 支持 Markdown">${escapeHtml(step.note || "")}</textarea><div class="note-preview rich-content" aria-label="备注预览" hidden></div></div>`;
+    return `<div class="note-editor"><div class="note-controls"><div class="note-modes" role="group" aria-label="备注模式"><button type="button" data-note-mode="edit" aria-pressed="true">编辑</button><button type="button" data-note-mode="preview" aria-pressed="false">预览</button></div><span class="note-save" role="status">Markdown · 自动保存</span></div><div class="note-menu"><button type="button" data-note-menu aria-label="Markdown 格式菜单" aria-expanded="false">≡</button><div class="note-toolbar" role="group" aria-label="Markdown 格式工具" hidden>${tools.map(([action, label]) => `<button type="button" data-note-tool="${action}" title="${label}" aria-label="${label}">${label}</button>`).join("")}</div></div><textarea class="replica-note" rows="4" data-replica-note="${escapeHtml(r.id)}" data-step-idx="${idx}" aria-label="步骤 ${idx + 1} 备注" placeholder="写点备注… 支持 Markdown">${escapeHtml(step.note || "")}</textarea><div class="note-preview rich-content" aria-label="备注预览" hidden></div></div>`;
   }
+  let editorLibrary;
+  function loadEditor() {
+    if (!editorLibrary) editorLibrary = Promise.all([
+      new Promise((resolve, reject) => {
+        const css = document.createElement("link"); css.rel = "stylesheet"; css.href = "./vendor/easymde/easymde.min.css";
+        css.onload = resolve; css.onerror = () => { css.remove(); reject(new Error("编辑器样式加载失败")); }; document.head.append(css);
+      }),
+      new Promise((resolve, reject) => {
+        const script = document.createElement("script"); script.src = "./vendor/easymde/easymde.min.js";
+        script.onload = resolve; script.onerror = () => { script.remove(); reject(new Error("编辑器加载失败")); }; document.head.append(script);
+      })
+    ]).catch(error => { editorLibrary = null; throw error; });
+    return editorLibrary;
+  }
+  async function ensureEditor(editor) {
+    if (editor.mde) return editor.mde;
+    if (editor.loading) return editor.loading;
+    editor.loading = (async () => {
+      await loadEditor();
+      if (!editor.isConnected) return null;
+      const ta = editor.querySelector("[data-replica-note]");
+      const selection = [ta.selectionStart, ta.selectionEnd], focused = document.activeElement === ta;
+      const mde = new EasyMDE({element: ta, toolbar: false, status: false, spellChecker: false,
+        autoDownloadFontAwesome: false, minHeight: "110px",
+        forceSync: true, autosave: {enabled: false}, shortcuts: {togglePreview: null, toggleSideBySide: null, toggleFullScreen: null}});
+      editor.mde = mde;
+      mde.codemirror.getInputField().setAttribute("aria-label", ta.getAttribute("aria-label"));
+      mde.codemirror.on("change", () => { ta.value = mde.value(); ta.dispatchEvent(new Event("input", {bubbles: true})); });
+      mde.codemirror.setSelection(mde.codemirror.posFromIndex(selection[0]), mde.codemirror.posFromIndex(selection[1]));
+      if (focused) mde.codemirror.focus();
+      return mde;
+    })().finally(() => { editor.loading = null; });
+    return editor.loading;
+  }
+  function closeNoteMenus(except) {
+    document.querySelectorAll("[data-note-menu]").forEach(button => {
+      if (button === except) return;
+      button.setAttribute("aria-expanded", "false"); button.nextElementSibling.hidden = true;
+    });
+  }
+  document.addEventListener("click", e => { if (!e.target.closest(".note-menu")) closeNoteMenus(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") { const button = document.querySelector('[data-note-menu][aria-expanded="true"]'); closeNoteMenus(); button?.focus(); } });
+  document.addEventListener("focusin", e => {
+    const editor = e.target.closest(".note-editor");
+    if (editor && e.target.matches("[data-replica-note]")) ensureEditor(editor).catch(() => { editor.querySelector(".note-save").textContent = "编辑器加载失败，仍可输入；重新聚焦可重试"; });
+    if (!e.target.closest(".note-menu")) closeNoteMenus();
+  });
   function replicaStepHtml(r, step, idx) {
     const subs = (step.substeps || []).map((sub, j) => `<li class="replica-substep-row ${status(sub) === "done" ? "is-done" : ""}">${statusButton(r, sub, idx, j)}<span class="replica-substep-text">${escapeHtml(sub.text)}</span></li>`).join("");
     return window.xdigestFlowNode(`
@@ -163,6 +210,7 @@
     if (!els.replicaList) return;
     const list = sortedReplicas();
     if (els.replicaCount) els.replicaCount.textContent = `${list.length} 条复刻`;
+    els.replicaList.querySelectorAll(".note-editor").forEach(editor => editor.mde?.toTextArea());
     els.replicaList.innerHTML = list.map(replicaCardHtml).join("");
     if (els.replicaEmpty) els.replicaEmpty.hidden = list.length > 0;
     hydrateAttachments();
@@ -207,43 +255,33 @@
       catch (_) { saved.textContent = "保存失败，请复制备注备份（存储空间不足）"; }
     });
 
-    function applyNoteTool(editor, tool) {
-      const ta = editor.querySelector("textarea");
-      const start = ta.selectionStart, end = ta.selectionEnd;
-      const selected = ta.value.slice(start, end);
-      const pairs = {bold: ["**", "**", "加粗文字"], italic: ["*", "*", "斜体文字"], link: ["[", "](https://example.com)", "链接文字"], code: ["`", "`", "代码"]};
-      let replacement, selectionStart, selectionEnd;
-      if (pairs[tool]) {
-        const [before, after, fallback] = pairs[tool];
-        replacement = before + (selected || fallback) + after;
-        selectionStart = start + before.length; selectionEnd = selectionStart + (selected || fallback).length;
-      } else {
-        const prefix = {heading: "## ", list: "- ", quote: "> "}[tool];
-        const lineStart = ta.value.lastIndexOf("\n", start - 1) + 1;
-        const chunk = ta.value.slice(lineStart, end) || "文字";
-        replacement = chunk.split("\n").map(line => prefix + line).join("\n");
-        ta.setSelectionRange(lineStart, end);
-        selectionStart = lineStart; selectionEnd = lineStart + replacement.length;
-      }
-      ta.setRangeText(replacement, ta.selectionStart, ta.selectionEnd, "end");
-      ta.focus(); ta.setSelectionRange(selectionStart, selectionEnd);
-      ta.dispatchEvent(new Event("input", {bubbles: true}));
-    }
-    els.replicaList.addEventListener("keydown", e => {
-      if (e.target.matches("[data-replica-note]") && (e.ctrlKey || e.metaKey) && ["b", "i"].includes(e.key.toLowerCase())) {
-        e.preventDefault(); applyNoteTool(e.target.closest(".note-editor"), e.key.toLowerCase() === "b" ? "bold" : "italic");
-      }
-    });
     els.replicaList.addEventListener("click", async (e) => {
       try {
+        const menu = e.target.closest("[data-note-menu]");
+        if (menu) {
+          const open = menu.getAttribute("aria-expanded") !== "true";
+          closeNoteMenus(menu); menu.setAttribute("aria-expanded", String(open)); menu.nextElementSibling.hidden = !open;
+          if (open) await ensureEditor(menu.closest(".note-editor"));
+          return;
+        }
         const tool = e.target.closest("[data-note-tool]");
-        if (tool) { applyNoteTool(tool.closest(".note-editor"), tool.dataset.noteTool); return; }
+        if (tool) {
+          const mde = await ensureEditor(tool.closest(".note-editor"));
+          if (!mde) return;
+          const commands = {bold: "toggleBold", italic: "toggleItalic", heading: "toggleHeadingSmaller", list: "toggleUnorderedList", link: "drawLink", code: "toggleCodeBlock", quote: "toggleBlockquote"};
+          EasyMDE[commands[tool.dataset.noteTool]](mde); closeNoteMenus(); return;
+        }
         const mode = e.target.closest("[data-note-mode]");
         if (mode) {
           const editor = mode.closest(".note-editor"), show = mode.dataset.noteMode === "preview";
           editor.querySelectorAll("[data-note-mode]").forEach(b => b.setAttribute("aria-pressed", String(b === mode)));
-          editor.querySelector("textarea").hidden = show;
-          editor.querySelector(".note-toolbar").hidden = show;
+          closeNoteMenus();
+          const ta = editor.querySelector("[data-replica-note]");
+          if (editor.loading) await editor.loading;
+          if (editor.mde) editor.querySelector(".EasyMDEContainer").hidden = show;
+          else ta.hidden = show;
+          editor.querySelector(".note-menu").hidden = show;
+          if (!show && editor.mde) { editor.mde.codemirror.refresh(); editor.mde.codemirror.focus(); }
           const target = editor.querySelector(".note-preview"); target.hidden = !show;
           const token = {}; editor.previewToken = token;
           if (show) {

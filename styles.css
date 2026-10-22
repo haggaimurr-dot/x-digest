@@ -2214,3 +2214,15 @@ mark.search-hit {
 .pdf-page-label, .pdf-zoom-label { font-size: 13px; white-space: nowrap; }
 .pdf-stage { width: 100%; overflow: auto; max-height: 52vh; max-height: 52dvh; overscroll-behavior: contain; background: #7773; }
 .pdf-stage canvas { display: block; background: white; margin: 0 auto; }
+
+/* v47: EasyMDE commands in a touch-friendly, dismissible dropdown. */
+.note-menu { position: relative; margin-top: 8px; width: fit-content; }
+.note-menu > button { min-width: 44px; min-height: 44px; font-size: 24px; line-height: 1; }
+.note-menu .note-toolbar { position: absolute; z-index: 20; top: 100%; left: 0; margin-top: 4px; padding: 6px; display: grid; grid-template-columns: repeat(2, minmax(84px, 1fr)); width: 210px; max-width: calc(100vw - 80px); background: var(--bg); border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 5px 18px #0003; }
+.note-menu .note-toolbar[hidden], .note-menu[hidden], .note-editor .EasyMDEContainer[hidden] { display: none; }
+.note-menu .note-toolbar button { min-height: 44px; text-align: left; }
+.note-editor .EasyMDEContainer { margin-top: 8px; }
+.note-editor .CodeMirror { background: var(--bg); color: var(--text); border-color: var(--border); font-size: 16px; border-radius: 8px; }
+.note-editor .CodeMirror-cursor { border-left-color: var(--text); }
+.note-editor .CodeMirror-selected { background: #8885; }
+.note-editor .CodeMirror-scroll { min-height: 110px; max-height: 360px; }
