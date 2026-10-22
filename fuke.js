@@ -61,10 +61,6 @@
     for (const s of r.steps || []) {
       total += 1;
       if (status(s) === "done") done += 1;
-      for (const sub of s.substeps || []) {
-        total += 1;
-        if (status(sub) === "done") done += 1;
-      }
     }
     return { done, total };
   }
@@ -143,9 +139,9 @@
     if (!e.target.closest(".note-menu")) closeNoteMenus();
   });
   function replicaStepHtml(r, step, idx) {
-    const subs = (step.substeps || []).map((sub, j) => `<li class="replica-substep-row ${status(sub) === "done" ? "is-done" : ""}">${statusButton(r, sub, idx, j)}<span class="replica-substep-text">${escapeHtml(sub.text)}</span></li>`).join("");
+    const subs = (step.substeps || []).map((sub) => `<li class="replica-substep-row ${status(sub) === "done" ? "is-done" : ""}"><span class="replica-substep-text">${escapeHtml(sub.text)}</span></li>`).join("");
     return window.xdigestFlowNode(`
-      <div class="replica-step-row">${statusButton(r, step, idx)}<span class="replica-step-text">${idx + 1}. ${escapeHtml(step.text)}</span></div>
+      <div class="replica-step-row"><span class="replica-step-text">${idx + 1}. ${escapeHtml(step.text)}</span></div>
       ${subs ? `<ol class="replica-substeps">${subs}</ol>` : ""}
       ${noteEditor(r, step, idx)}
       <section class="step-attachments" data-attachment-section="${escapeHtml(r.id)}" data-step-idx="${idx}">
@@ -153,7 +149,7 @@
         <p class="attachment-help">文档、图片、压缩包 · 单个不超过 10MB · 仅保存在当前浏览器</p>
         <div class="attachment-list">${(step.attachments || []).map(id => `<div class="attachment-item" data-attachment-id="${escapeHtml(id)}">加载附件…</div>`).join("")}</div>
       </section>
-    `, idx, idx === r.steps.length - 1, `replica-flow-step ${status(step) === "done" ? "is-done" : ""}`);
+    `, idx, idx === r.steps.length - 1, `replica-flow-step is-${status(step)} ${status(step) === "done" ? "is-done" : ""}`, statusButton(r, step, idx));
   }
 
   function replicaCardHtml(r) {

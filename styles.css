@@ -817,7 +817,7 @@ a.avatar-link:hover {
   height: 8px;
   border-radius: 50%;
   border: none;
-  background: var(--accent);
+  background: #737b85;
   color: transparent;
   font-size: 0;
   flex-shrink: 0;
@@ -826,38 +826,12 @@ a.avatar-link:hover {
   box-shadow: none;
 }
 
-/* Breathe only while the flowchart <details> is open; adjacent steps stagger 0.3s */
-.steps[open] .flow-node {
-  animation: flow-breathe 2.4s ease-in-out infinite;
-  animation-delay: calc(var(--step-i, 0) * 0.3s);
-}
-
-@keyframes flow-breathe {
-  0%,
-  100% {
-    opacity: 0.75;
-    box-shadow: 0 0 0 0 transparent;
-  }
-  50% {
-    opacity: 1;
-    box-shadow: 0 0 0 3px var(--accent-soft);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .steps[open] .flow-node {
-    animation: none;
-    opacity: 1;
-    box-shadow: none;
-  }
-}
-
 .flow-line {
   flex: 1;
   width: 2px;
   min-height: 16px;
   margin: 4px 0 0;
-  background: linear-gradient(180deg, var(--accent) 0%, var(--border) 100%);
+  background: linear-gradient(180deg, #737b85 0%, var(--border) 100%);
   border-radius: 1px;
 }
 
@@ -2145,14 +2119,17 @@ mark.search-hit {
 .replica-expand-hint { display: block; margin-top: 10px; font-size: 12px; color: var(--accent); }
 .replica-details > .flow-chart { padding: 4px 16px 16px; }
 .replica-flow-step.is-done .replica-step-text { text-decoration: line-through; color: var(--text-muted); }
+.replica-flow-step.is-active .replica-step-text { color: var(--text); font-weight: 700; }
 .replica-note { box-sizing: border-box; }
 
 /* Replica status and local attachments. */
-.status-dot { width: 18px; height: 18px; flex: 0 0 18px; border: 3px solid var(--bg); outline: 1px solid #737b85; border-radius: 50%; background: #737b85; margin: 2px 1px; cursor: pointer; padding: 0; }
-.status-dot.is-done { background: #22c55e; outline-color: #22c55e; }
-.status-dot.is-active { background: #f4212e; outline-color: #f4212e; animation: status-breathe 1.6s ease-in-out infinite; }
-.status-dot:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
-@keyframes status-breathe { 50% { box-shadow: 0 0 0 5px #f4212e40; opacity: .55; } }
+.replica-flow-step .flow-rail { position: relative; }
+.replica-flow-step .flow-line { margin-top: 4px; }
+.status-dot { position: relative; z-index: 2; display: block; width: 8px; height: 8px; flex: 0 0 8px; border: 0; border-radius: 50%; background: #737b85; margin: 0; cursor: pointer; padding: 0; }
+.status-dot.is-done { background: #22c55e; }
+.status-dot.is-active { background: #ef554f; animation: status-breathe 1.6s ease-in-out infinite; }
+.status-dot:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+@keyframes status-breathe { 50% { box-shadow: 0 0 0 5px #ef554f40; opacity: .62; } }
 @media (prefers-reduced-motion: reduce) { .status-dot.is-active { animation: none; } }
 .step-attachments { margin-top: 12px; border-top: 1px solid var(--border); padding-top: 12px; min-width: 0; }
 .attachment-heading, .attachment-preview-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 13px; }
