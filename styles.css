@@ -2176,3 +2176,41 @@ mark.search-hit {
 #attachmentPreviewBody iframe { width: 100%; height: 65vh; border: 0; background: white; }
 #attachmentPreviewBody pre { white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; font-size: 14px; line-height: 1.7; }
 .status-legend { margin: 0; padding: 0 16px; color: var(--text-muted); font-size: 12px; line-height: 1.6; }
+
+/* Markdown notes and semantic attachment previews. */
+.note-editor { margin-top: 10px; min-width: 0; }
+.note-controls, .note-modes, .note-toolbar, .slide-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.note-controls { justify-content: space-between; }
+.note-editor button { border: 1px solid var(--border); border-radius: 6px; padding: 7px 10px; background: var(--bg); color: var(--text); cursor: pointer; min-height: 36px; }
+.note-modes button[aria-pressed="true"] { color: var(--accent); border-color: var(--accent); }
+.note-toolbar { margin-top: 8px; }
+.note-toolbar[hidden], .replica-note[hidden], .note-preview[hidden] { display: none; }
+.note-save, .preview-hint { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+.note-preview { margin-top: 8px; padding: 12px; border: 1px solid var(--border); border-radius: 8px; min-height: 90px; }
+.rich-content { font-size: 14px; line-height: 1.7; overflow-wrap: anywhere; min-width: 0; }
+.rich-content h1, .rich-content h2, .rich-content h3 { line-height: 1.35; margin: 18px 0 10px; }
+.rich-content ul, .rich-content ol { padding-left: 24px; }
+.rich-content table { border-collapse: collapse; display: block; max-width: 100%; overflow-x: auto; margin: 12px 0; }
+.rich-content td, .rich-content th { border: 1px solid var(--border); padding: 6px 10px; min-width: 50px; }
+.rich-content blockquote { margin: 12px 0; border-left: 3px solid var(--accent); padding-left: 12px; color: var(--text-muted); }
+.rich-content pre { padding: 10px; background: var(--bg-elevated); border-radius: 6px; }
+.rich-content img { max-width: 100%; height: auto; }
+.rich-content a { color: var(--accent); }
+.slide-controls { justify-content: center; margin: 12px 0; }
+.slide-controls button:disabled { opacity: .4; cursor: default; }
+.ppt-slide { padding: 16px; border: 1px solid var(--border); border-radius: 8px; min-height: 180px; }
+@media (max-width: 480px) {
+  .attachment-preview { padding: 12px; width: 96vw; }
+  .note-toolbar button { flex: 1 0 auto; min-height: 40px; }
+  .note-modes button { min-height: 40px; }
+  .replica-note { font-size: 16px; }
+}
+
+/* v46: local PDF canvas viewer, paged to bound mobile memory. */
+.pdf-preview { min-width: 0; margin-top: 10px; }
+.pdf-controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px; position: sticky; top: 0; z-index: 1; background: var(--bg); padding: 8px 0; }
+.attachment-preview .pdf-controls button { min-height: 44px; min-width: 44px; touch-action: manipulation; }
+.pdf-controls button:disabled { opacity: .4; cursor: default; }
+.pdf-page-label, .pdf-zoom-label { font-size: 13px; white-space: nowrap; }
+.pdf-stage { width: 100%; overflow: auto; max-height: 52vh; max-height: 52dvh; overscroll-behavior: contain; background: #7773; }
+.pdf-stage canvas { display: block; background: white; margin: 0 auto; }

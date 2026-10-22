@@ -1,0 +1,2 @@
+readable-stream 2.3.8
+License: MIT

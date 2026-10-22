@@ -91,12 +91,16 @@
   const attachmentExtensions = "pdf doc docx xls xlsx ppt pptx txt md csv png jpg jpeg gif webp bmp avif svg ico zip rar 7z tar gz tgz".split(" ");
   const imageAttachmentAccept = "image/*";
   const maxAttachmentSize = 10 * 1024 * 1024;
+  function noteEditor(r, step, idx) {
+    const tools = [["bold", "加粗"], ["italic", "斜体"], ["heading", "标题"], ["list", "列表"], ["link", "链接"], ["code", "代码"], ["quote", "引用"]];
+    return `<div class="note-editor"><div class="note-controls"><div class="note-modes" role="group" aria-label="备注模式"><button type="button" data-note-mode="edit" aria-pressed="true">编辑</button><button type="button" data-note-mode="preview" aria-pressed="false">预览</button></div><span class="note-save" role="status">Markdown · 自动保存</span></div><div class="note-toolbar" role="toolbar" aria-label="Markdown 工具栏">${tools.map(([action, label]) => `<button type="button" data-note-tool="${action}" title="${label}" aria-label="${label}">${label}</button>`).join("")}</div><textarea class="replica-note" rows="4" data-replica-note="${escapeHtml(r.id)}" data-step-idx="${idx}" aria-label="步骤 ${idx + 1} 备注" placeholder="写点备注… 支持 Markdown">${escapeHtml(step.note || "")}</textarea><div class="note-preview rich-content" aria-label="备注预览" hidden></div></div>`;
+  }
   function replicaStepHtml(r, step, idx) {
     const subs = (step.substeps || []).map((sub, j) => `<li class="replica-substep-row ${status(sub) === "done" ? "is-done" : ""}">${statusButton(r, sub, idx, j)}<span class="replica-substep-text">${escapeHtml(sub.text)}</span></li>`).join("");
     return window.xdigestFlowNode(`
       <div class="replica-step-row">${statusButton(r, step, idx)}<span class="replica-step-text">${idx + 1}. ${escapeHtml(step.text)}</span></div>
       ${subs ? `<ol class="replica-substeps">${subs}</ol>` : ""}
-      <textarea class="replica-note" rows="1" data-replica-note="${escapeHtml(r.id)}" data-step-idx="${idx}" aria-label="步骤 ${idx + 1} 备注" placeholder="写点备注…">${escapeHtml(step.note || "")}</textarea>
+      ${noteEditor(r, step, idx)}
       <section class="step-attachments" data-attachment-section="${escapeHtml(r.id)}" data-step-idx="${idx}">
         <div class="attachment-heading"><strong>阶段附件</strong><div class="attachment-upload-actions"><label class="attachment-upload">＋ 上传图片<input type="file" multiple accept="${imageAttachmentAccept}" data-upload="${escapeHtml(r.id)}" data-step-idx="${idx}" aria-label="步骤 ${idx + 1} 上传图片" /></label><label class="attachment-upload">＋ 上传文档/压缩包<input type="file" multiple data-upload="${escapeHtml(r.id)}" data-step-idx="${idx}" aria-label="步骤 ${idx + 1} 上传文档或压缩包" /></label></div></div>
         <p class="attachment-help">文档、图片、压缩包 · 单个不超过 10MB · 仅保存在当前浏览器</p>
@@ -198,11 +202,57 @@
       const idx = Number(ta.getAttribute("data-step-idx"));
       if (!r || !r.steps[idx]) return;
       r.steps[idx].note = ta.value;
-      saveReplicas();
+      const saved = ta.closest(".note-editor").querySelector(".note-save");
+      try { saveReplicas(); saved.textContent = "已自动保存"; }
+      catch (_) { saved.textContent = "保存失败，请复制备注备份（存储空间不足）"; }
     });
 
+    function applyNoteTool(editor, tool) {
+      const ta = editor.querySelector("textarea");
+      const start = ta.selectionStart, end = ta.selectionEnd;
+      const selected = ta.value.slice(start, end);
+      const pairs = {bold: ["**", "**", "加粗文字"], italic: ["*", "*", "斜体文字"], link: ["[", "](https://example.com)", "链接文字"], code: ["`", "`", "代码"]};
+      let replacement, selectionStart, selectionEnd;
+      if (pairs[tool]) {
+        const [before, after, fallback] = pairs[tool];
+        replacement = before + (selected || fallback) + after;
+        selectionStart = start + before.length; selectionEnd = selectionStart + (selected || fallback).length;
+      } else {
+        const prefix = {heading: "## ", list: "- ", quote: "> "}[tool];
+        const lineStart = ta.value.lastIndexOf("\n", start - 1) + 1;
+        const chunk = ta.value.slice(lineStart, end) || "文字";
+        replacement = chunk.split("\n").map(line => prefix + line).join("\n");
+        ta.setSelectionRange(lineStart, end);
+        selectionStart = lineStart; selectionEnd = lineStart + replacement.length;
+      }
+      ta.setRangeText(replacement, ta.selectionStart, ta.selectionEnd, "end");
+      ta.focus(); ta.setSelectionRange(selectionStart, selectionEnd);
+      ta.dispatchEvent(new Event("input", {bubbles: true}));
+    }
+    els.replicaList.addEventListener("keydown", e => {
+      if (e.target.matches("[data-replica-note]") && (e.ctrlKey || e.metaKey) && ["b", "i"].includes(e.key.toLowerCase())) {
+        e.preventDefault(); applyNoteTool(e.target.closest(".note-editor"), e.key.toLowerCase() === "b" ? "bold" : "italic");
+      }
+    });
     els.replicaList.addEventListener("click", async (e) => {
       try {
+        const tool = e.target.closest("[data-note-tool]");
+        if (tool) { applyNoteTool(tool.closest(".note-editor"), tool.dataset.noteTool); return; }
+        const mode = e.target.closest("[data-note-mode]");
+        if (mode) {
+          const editor = mode.closest(".note-editor"), show = mode.dataset.noteMode === "preview";
+          editor.querySelectorAll("[data-note-mode]").forEach(b => b.setAttribute("aria-pressed", String(b === mode)));
+          editor.querySelector("textarea").hidden = show;
+          editor.querySelector(".note-toolbar").hidden = show;
+          const target = editor.querySelector(".note-preview"); target.hidden = !show;
+          const token = {}; editor.previewToken = token;
+          if (show) {
+            target.textContent = "正在加载预览…";
+            try { const html = await window.fukePreview.markdown(editor.querySelector("textarea").value); if (editor.previewToken === token) target.innerHTML = html || "暂无备注"; }
+            catch (_) { if (editor.previewToken === token) target.textContent = "预览加载失败，请切回编辑后重试。"; }
+          }
+          return;
+        }
         const dot = e.target.closest("[data-status]");
         if (dot) {
           const r = replicas.find(r => r.id === dot.dataset.status);
@@ -284,8 +334,16 @@
     }));
   }
   const preview = document.getElementById("attachmentPreview");
-  let previewURL;
-  preview.addEventListener("close", () => { document.getElementById("attachmentPreviewBody").replaceChildren(); if (previewURL) URL.revokeObjectURL(previewURL); previewURL = null; });
+  let previewToken = 0;
+  let previewURLs = [];
+  let previewCleanup;
+  function resetPreview() {
+    if (previewCleanup) { previewCleanup(); previewCleanup = null; }
+    previewToken++;
+    document.getElementById("attachmentPreviewBody").replaceChildren();
+    previewURLs.forEach(url => URL.revokeObjectURL(url)); previewURLs = [];
+  }
+  preview.addEventListener("close", resetPreview);
   document.getElementById("attachmentPreviewClose").onclick = () => preview.close();
   function zipEntries(buffer) {
     const view = new DataView(buffer), decoder = new TextDecoder();
@@ -322,20 +380,31 @@
     }
     const body = document.getElementById("attachmentPreviewBody");
     document.getElementById("attachmentPreviewTitle").textContent = file.name;
-    body.replaceChildren();
+    resetPreview();
+    const token = previewToken;
+    const current = () => token === previewToken && preview.open;
+    const makeURL = blob => { if (!current()) throw new Error("预览已关闭"); const url = URL.createObjectURL(blob); previewURLs.push(url); return url; };
+    const download = document.createElement("button"); download.type = "button"; download.textContent = "下载原文件";
+    download.onclick = () => attachmentAction(node.querySelector('[data-attachment-action="download"]')).catch(error => alert(error.message));
+    body.append(download);
+    const contentHost = document.createElement("div"); body.append(contentHost);
+    preview.showModal();
     const kind = fileKind(file);
-    if (kind === "image" || kind === "pdf") {
-      const media = document.createElement(kind === "image" ? "img" : "iframe");
-      previewURL = URL.createObjectURL(new Blob([file.blob], {type: kind === "pdf" ? "application/pdf" : file.type || "image/" + file.name.split(".").pop()}));
-      media.src = previewURL; media.setAttribute(kind === "image" ? "alt" : "title", file.name); body.append(media);
+    if (kind === "image") {
+      const media = document.createElement("img");
+      const previewURL = makeURL(new Blob([file.blob], {type: file.type || "image/" + file.name.split(".").pop()}));
+      media.src = previewURL; media.setAttribute("alt", file.name); contentHost.append(media);
+    } else if (/\.(pdf|docx|pptx|md|doc|ppt)$/i.test(file.name)) {
+      contentHost.textContent = "正在解析附件…";
+      try { await window.fukePreview.render(file, contentHost, makeURL, current, cleanup => { if (current()) previewCleanup = cleanup; else cleanup(); }); }
+      catch (error) { if (current()) contentHost.textContent = `无法预览：${error.message}。请下载原文件查看。`; }
     } else {
       const content = document.createElement("pre");
       if (kind === "text") content.textContent = await file.blob.text();
       else if (kind === "zip") { try { const entries = zipEntries(await file.blob.arrayBuffer()); content.textContent = entries.join("\n") || "空压缩包"; } catch (error) { content.textContent = error.message; } }
       else content.textContent = `${kind === "archive" ? "🗜" : "📄"} ${file.name}\n${kind === "archive" ? "此压缩格式暂不支持列出目录，请下载后查看。" : "此文档格式请下载后打开。"}\n文件大小：${file.blob.size} 字节`;
-      body.append(content);
+      if (current()) contentHost.append(content);
     }
-    preview.showModal();
   }
   window.addEventListener("pagehide", clearURLs);
   document.documentElement.dataset.theme = localStorage.getItem("x-digest-theme") || "dark";
