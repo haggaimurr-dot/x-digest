@@ -27,7 +27,7 @@
     }
     .boot-error { color: #f4212e; }
   </style>
-  <link rel="stylesheet" href="./styles.css?v=38" />
+  <link rel="stylesheet" href="./styles.css?v=39" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23e7e9ea' d='M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z'/%3E%3C/svg%3E" />
 </head>
 <body>
@@ -51,6 +51,9 @@
             <svg class="update-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
               <path fill="currentColor" d="M4.755 10.059a7.5 7.5 0 0 1 12.548-3.364l1.903 1.903h-4.5a.75.75 0 0 0 0 1.5h6.75a.75.75 0 0 0 .75-.75V2.5a.75.75 0 0 0-1.5 0v3.318l-1.903-1.903A9 9 0 0 0 3.252 9.339a.75.75 0 1 0 1.503.22zm14.49 3.882a.75.75 0 0 0-1.503-.22 7.5 7.5 0 0 1-12.548 3.364l-1.903-1.903h4.5a.75.75 0 0 0 0-1.5h-6.75a.75.75 0 0 0-.75.75v6.75a.75.75 0 0 0 1.5 0v-3.318l1.903 1.903a9 9 0 0 0 15.051-4.076z"/>
             </svg>
+          </button>
+          <button type="button" class="icon-btn" id="openReplicas" aria-label="复刻" title="我的复刻">
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M9 3.75A2.25 2.25 0 0 0 6.75 6v1.5h-.5A2.25 2.25 0 0 0 4 9.75v8.5A2.25 2.25 0 0 0 6.25 20.5h8.5A2.25 2.25 0 0 0 17 18.25v-1.5h.5A2.25 2.25 0 0 0 19.75 14.5V6A2.25 2.25 0 0 0 17.5 3.75H9zm8.5 1.5a.75.75 0 0 1 .75.75v8.5a.75.75 0 0 1-.75.75H17V9.75A2.25 2.25 0 0 0 14.75 7.5H8.25V6a.75.75 0 0 1 .75-.75h8.5zm-11 4.5a.75.75 0 0 1 .75-.75h8.5a.75.75 0 0 1 .75.75v8.5a.75.75 0 0 1-.75.75h-8.5a.75.75 0 0 1-.75-.75v-8.5zm2.345 3.47a.75.75 0 0 0-1.09 1.03l1.78 1.9a.75.75 0 0 0 1.117-.022l3.5-4.1a.75.75 0 1 0-1.14-.976l-2.97 3.48-1.197-1.312z"/></svg>
           </button>
           <button type="button" class="icon-btn" id="themeToggle" aria-label="切换主题" title="切换深色/浅色">
             <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2.25a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75zm0 15a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5a.75.75 0 0 1 .75-.75zM4.72 4.72a.75.75 0 0 1 1.06 0l1.06 1.06a.75.75 0 1 1-1.06 1.06L4.72 5.78a.75.75 0 0 1 0-1.06zm12.44 12.44a.75.75 0 0 1 1.06 0l1.06 1.06a.75.75 0 1 1-1.06 1.06l-1.06-1.06a.75.75 0 0 1 0-1.06zM2.25 12a.75.75 0 0 1 .75-.75h1.5a.75.75 0 0 1 0 1.5H3a.75.75 0 0 1-.75-.75zm15 0a.75.75 0 0 1 .75-.75h1.5a.75.75 0 0 1 0 1.5H18a.75.75 0 0 1-.75-.75zM4.72 19.28a.75.75 0 0 1 0-1.06l1.06-1.06a.75.75 0 1 1 1.06 1.06L5.78 19.28a.75.75 0 0 1-1.06 0zm12.44-12.44a.75.75 0 0 1 0-1.06l1.06-1.06a.75.75 0 1 1 1.06 1.06l-1.06 1.06a.75.75 0 0 1-1.06 0zM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg>
@@ -131,6 +134,25 @@
 
       <section class="timeline" id="timeline" aria-label="推文时间线"></section>
       <p class="empty" id="emptyState" hidden>没有匹配的推文，试试调整筛选条件。</p>
+    </main>
+
+    <main class="feed-col replicas-col" id="replicasPage" hidden>
+      <div class="page-title">
+        <h1>我的复刻</h1>
+        <p class="updated">把帖子里的流程复刻到这里，逐条打卡</p>
+      </div>
+      <div class="replicas-toolbar">
+        <span id="replicaCount" class="result-count">0 条复刻</span>
+        <label class="replicas-sort">
+          <span class="filter-field-label">排序</span>
+          <select id="replicaSort" class="field replica-sort-select">
+            <option value="time">按复刻时间</option>
+            <option value="progress">按完成进度</option>
+          </select>
+        </label>
+      </div>
+      <section class="replica-list" id="replicaList" aria-label="复刻列表"></section>
+      <p class="empty" id="replicaEmpty" hidden>还没有复刻任何流程，去帖子里找一个带流程图的教程点「复刻」试试。</p>
     </main>
   </div>
 
@@ -236,6 +258,6 @@
     </form>
   </dialog>
 
-  <script src="./app.js?v=35" defer></script>
+  <script src="./app.js?v=36" defer></script>
 </body>
 </html>

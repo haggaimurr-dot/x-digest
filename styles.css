@@ -1835,3 +1835,340 @@ mark.search-hit {
 .avatar-trigger { padding: 0; border: 0; border-radius: 50%; cursor: pointer; }
 .watch-list .meta { min-width: 0; }
 @media (max-width: 600px) { #watchList > li { flex-wrap: wrap; gap: 10px; } #watchList .meta { flex: 1 1 100%; } }
+
+/* —— 复刻 (replicate flows) —— */
+.replicate-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 8px 12px 10px;
+  border-top: 1px solid var(--border);
+}
+
+.replicate-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--accent);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s, color 0.12s;
+}
+
+.replicate-btn:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+.replicate-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.replicate-btn svg path {
+  fill: currentColor;
+}
+
+.replicate-btn.is-done {
+  color: var(--success);
+  border-color: var(--success);
+}
+
+.replicate-btn.is-done:hover {
+  background: rgba(0, 186, 124, 0.1);
+}
+
+/* Replicas page */
+.replicas-col {
+  padding-bottom: 24px;
+}
+
+.replicas-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.replicas-sort {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.replica-sort-select {
+  height: 36px;
+  min-height: 36px;
+  padding: 0 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+}
+
+.replica-sort-select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.replica-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.replica-card {
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-elevated);
+}
+
+.replica-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.replica-source {
+  min-width: 0;
+}
+
+.replica-source-title {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.replica-source-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.replica-source-meta a {
+  color: var(--accent);
+}
+
+.replica-time {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.replica-delete {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.replica-delete:hover {
+  background: rgba(244, 33, 46, 0.1);
+  color: var(--danger-text);
+}
+
+.replica-delete:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.replica-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.replica-progress-bar {
+  flex: 1;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--border);
+  overflow: hidden;
+}
+
+.replica-progress-fill {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  transition: width 0.15s ease;
+}
+
+.replica-progress-fill.is-complete {
+  background: var(--success);
+}
+
+.replica-progress-label {
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  min-width: 42px;
+  text-align: right;
+}
+
+.replica-steps {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.replica-step {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  background: var(--bg);
+}
+
+.replica-step-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.replica-check {
+  appearance: none;
+  -webkit-appearance: none;
+  display: grid;
+  place-content: center;
+  width: 20px;
+  height: 20px;
+  margin: 2px 0 0;
+  flex-shrink: 0;
+  border: 1px solid var(--text-muted);
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.replica-check:checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.replica-check:checked::after {
+  content: "";
+  width: 6px;
+  height: 10px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: translateY(-1px) rotate(45deg);
+}
+
+.replica-check:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.replica-step-text {
+  flex: 1;
+  min-width: 0;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.replica-step.is-done .replica-step-text {
+  color: var(--text-muted);
+  text-decoration: line-through;
+}
+
+.replica-substeps {
+  list-style: none;
+  margin: 8px 0 0;
+  padding-left: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.replica-substep-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.replica-substep-row .replica-check {
+  width: 18px;
+  height: 18px;
+}
+
+.replica-substep-text {
+  flex: 1;
+  min-width: 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.replica-step.is-done .replica-substep-text,
+.replica-substep-row.is-done .replica-substep-text {
+  color: var(--text-muted);
+  text-decoration: line-through;
+}
+
+.replica-note {
+  width: 100%;
+  margin-top: 8px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-elevated);
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.4;
+  resize: vertical;
+  min-height: 36px;
+}
+
+.replica-note:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.replica-note::placeholder {
+  color: var(--text-muted);
+}
+
+@media (max-width: 480px) {
+  .replica-head {
+    flex-wrap: wrap;
+  }
+  .replicas-toolbar {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .replica-substeps {
+    padding-left: 20px;
+  }
+}

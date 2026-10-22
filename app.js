@@ -23,6 +23,7 @@
   const CHIPS_COLLAPSED_MAX_PX = 84;
   const WEBHOOK_URL_KEY = "x-digest-webhook-url";
   const WEBHOOK_KEY_KEY = "x-digest-webhook-key";
+  const REPLICAS_KEY = "xdigest.replicas";
   const UPDATE_DEBOUNCE_MS = 30000;
   const UPDATE_STATUS_MSG =
     "已发送更新请求，一两分钟后刷新页面看结果；完成后我会在聊天里通知你";
@@ -123,6 +124,13 @@
     webhookUrlError: document.getElementById("webhookUrlError"),
     webhookKeyError: document.getElementById("webhookKeyError"),
     updateToast: document.getElementById("updateToast"),
+    openReplicas: document.getElementById("openReplicas"),
+    feedMain: document.querySelector("main.feed-col:not(.replicas-col)"),
+    replicasPage: document.getElementById("replicasPage"),
+    replicaList: document.getElementById("replicaList"),
+    replicaEmpty: document.getElementById("replicaEmpty"),
+    replicaCount: document.getElementById("replicaCount"),
+    replicaSort: document.getElementById("replicaSort"),
   };
 
   const USER_TAGS_KEY = "x-digest-user-tags";
@@ -142,6 +150,9 @@
   let repoWatchlist = null;
   /** @type {Record<string, string>} username -> avatar URL (local or remote) */
   let avatarMap = {};
+  /** @type {Array<Object>} replicated flows, persisted to REPLICAS_KEY */
+  let replicas = [];
+  let replicaSortMode = "time";
 
   function escapeHtml(str) {
     return String(str ?? "")
@@ -1404,10 +1415,199 @@
       })
       .join("");
 
+    const pid = postKey(post);
+    const existing = findReplicaByPost(pid);
+    const btnLabel = existing ? "已复刻" : "复刻";
+    const btnClass = existing ? "replicate-btn is-done" : "replicate-btn";
+    const icon = existing
+      ? '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>'
+      : '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M7.5 3.75a.75.75 0 0 1 .75.75v3h7.5v-3a.75.75 0 0 1 1.5 0v3h.75A2.25 2.25 0 0 1 20.25 9.75v9A2.25 2.25 0 0 1 18 21H6a2.25 2.25 0 0 1-2.25-2.25v-9A2.25 2.25 0 0 1 6 5.5h.75v-3a.75.75 0 0 1 .75-.75zM5.25 10.5v8.25c0 .41.34.75.75.75h12a.75.75 0 0 0 .75-.75V10.5H5.25zm6 2.25a.75.75 0 0 1 .75.75v1.5h1.5a.75.75 0 0 1 0 1.5h-1.5v1.5a.75.75 0 0 1-1.5 0v-1.5h-1.5a.75.75 0 0 1 0-1.5h1.5v-1.5a.75.75 0 0 1 .75-.75z"/></svg>';
+
     return `<details class="steps">
       <summary>实现步骤（${steps.length}）· 流程图</summary>
       <ol class="flow-chart">${nodes}</ol>
+      <div class="replicate-row">
+        <button type="button" class="${btnClass}" data-replicate-post="${escapeHtml(pid)}" aria-pressed="${!!existing}">
+          ${icon}<span>${btnLabel}</span>
+        </button>
+      </div>
     </details>`;
+  }
+
+  // ---- 复刻 (replicate a post's flow into a personal checklist) ----
+
+  function loadReplicas() {
+    try {
+      const raw = JSON.parse(localStorage.getItem(REPLICAS_KEY) || "[]");
+      replicas = Array.isArray(raw) ? raw.filter((r) => r && typeof r === "object") : [];
+    } catch (_) {
+      replicas = [];
+    }
+  }
+
+  function saveReplicas() {
+    localStorage.setItem(REPLICAS_KEY, JSON.stringify(replicas));
+  }
+
+  function findReplicaByPost(pid) {
+    return replicas.find((r) => r.postId === pid) || null;
+  }
+
+  function replicaProgress(r) {
+    let total = 0;
+    let done = 0;
+    for (const s of r.steps || []) {
+      total += 1;
+      if (s.done) done += 1;
+      for (const sub of s.substeps || []) {
+        total += 1;
+        if (sub.done) done += 1;
+      }
+    }
+    return { done, total };
+  }
+
+  function newReplicaId() {
+    return "r" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+  }
+
+  // Build a replica from a post's current steps (snapshot — later edits to the post
+  // don't retroactively change an existing replica).
+  function createReplicaFromPost(post) {
+    const pid = postKey(post);
+    const existing = findReplicaByPost(pid);
+    if (existing) return existing;
+    const raw = Array.isArray(post.steps) ? post.steps : [];
+    const steps = raw.map(normalizeStep).filter(Boolean).map((step) => ({
+      text: step.text,
+      done: false,
+      note: "",
+      substeps: (step.substeps || []).map((sub) => ({ text: sub.text, done: false, note: "" })),
+    }));
+    const replica = {
+      id: newReplicaId(),
+      postId: pid,
+      postUrl: post.url || "",
+      postAuthor: post.author || "",
+      postAuthorName: post.authorName || post.author || "",
+      postTitle: post.title || "",
+      createdAt: new Date().toISOString(),
+      steps,
+    };
+    replicas = [replica, ...replicas];
+    saveReplicas();
+    return replica;
+  }
+
+  function deleteReplica(id) {
+    replicas = replicas.filter((r) => r.id !== id);
+    saveReplicas();
+  }
+
+  function showPage(page) {
+    const isReplicas = page === "replicas";
+    if (els.feedMain) els.feedMain.hidden = isReplicas;
+    if (els.replicasPage) els.replicasPage.hidden = !isReplicas;
+    if (els.openReplicas) els.openReplicas.setAttribute("aria-pressed", String(isReplicas));
+    if (isReplicas) renderReplicasPage();
+  }
+
+  function goToReplicas() {
+    if (location.hash !== "#/fuke") location.hash = "#/fuke";
+    else showPage("replicas");
+  }
+
+  function routeFromHash() {
+    showPage(location.hash === "#/fuke" ? "replicas" : "feed");
+  }
+
+  function replicaStepHtml(r, step, idx) {
+    const subs = (step.substeps || [])
+      .map((sub, j) => {
+        return `<li class="replica-substep-row ${sub.done ? "is-done" : ""}">
+          <input type="checkbox" class="replica-check" data-replica-sub-check="${escapeHtml(r.id)}" data-step-idx="${idx}" data-sub-idx="${j}" ${sub.done ? "checked" : ""} aria-label="子步骤 ${idx + 1}.${j + 1} 完成" />
+          <span class="replica-substep-text">${escapeHtml(sub.text)}</span>
+        </li>`;
+      })
+      .join("");
+    return `<li class="replica-step ${step.done ? "is-done" : ""}">
+      <div class="replica-step-row">
+        <input type="checkbox" class="replica-check" data-replica-check="${escapeHtml(r.id)}" data-step-idx="${idx}" ${step.done ? "checked" : ""} aria-label="步骤 ${idx + 1} 完成" />
+        <span class="replica-step-text">${idx + 1}. ${escapeHtml(step.text)}</span>
+      </div>
+      ${subs ? `<ol class="replica-substeps">${subs}</ol>` : ""}
+      <textarea class="replica-note" rows="1" data-replica-note="${escapeHtml(r.id)}" data-step-idx="${idx}" placeholder="写点备注…">${escapeHtml(step.note || "")}</textarea>
+    </li>`;
+  }
+
+  function replicaCardHtml(r) {
+    const { done, total } = replicaProgress(r);
+    const pct = total ? Math.round((done / total) * 100) : 0;
+    const stepsListHtml = (r.steps || []).map((s, i) => replicaStepHtml(r, s, i)).join("");
+    return `<article class="replica-card" data-replica-id="${escapeHtml(r.id)}">
+      <div class="replica-head">
+        <div class="replica-source">
+          <h2 class="replica-source-title">${escapeHtml(r.postTitle || "（无标题）")}</h2>
+          <div class="replica-source-meta">
+            <span>${escapeHtml(r.postAuthorName || r.postAuthor || "")}</span>
+            ${r.postAuthor ? `<span>@${escapeHtml(r.postAuthor)}</span>` : ""}
+            ${r.postUrl ? `<a href="${escapeHtml(r.postUrl)}" target="_blank" rel="noopener">查看原帖</a>` : ""}
+          </div>
+          <div class="replica-time">复刻于 ${escapeHtml(formatShanghai(r.createdAt))}</div>
+        </div>
+        <button type="button" class="replica-delete" data-replica-delete="${escapeHtml(r.id)}" aria-label="删除复刻" title="删除复刻">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M9.75 3.75h4.5a.75.75 0 0 1 .75.75v.75h4.5a.75.75 0 0 1 0 1.5h-.564l-.853 12.013A2.25 2.25 0 0 1 15.84 21H8.16a2.25 2.25 0 0 1-2.244-2.237L5.064 6.75H4.5a.75.75 0 0 1 0-1.5H9v-.75a.75.75 0 0 1 .75-.75zm-3.182 3 .84 11.85a.75.75 0 0 0 .748.65h7.688a.75.75 0 0 0 .748-.65l.84-11.85H6.568zM10.5 9a.75.75 0 0 1 .75.75v6a.75.75 0 0 1-1.5 0v-6A.75.75 0 0 1 10.5 9zm3 0a.75.75 0 0 1 .75.75v6a.75.75 0 0 1-1.5 0v-6a.75.75 0 0 1 .75-.75z"/></svg>
+        </button>
+      </div>
+      <div class="replica-progress-row">
+        <div class="replica-progress-bar"><div class="replica-progress-fill ${pct >= 100 ? "is-complete" : ""}" style="width:${pct}%"></div></div>
+        <span class="replica-progress-label">${done}/${total}</span>
+      </div>
+      <ol class="replica-steps">${stepsListHtml}</ol>
+    </article>`;
+  }
+
+  function sortedReplicas() {
+    const list = replicas.slice();
+    if (replicaSortMode === "progress") {
+      list.sort((a, b) => {
+        const pa = replicaProgress(a);
+        const pb = replicaProgress(b);
+        const ra = pa.total ? pa.done / pa.total : 0;
+        const rb = pb.total ? pb.done / pb.total : 0;
+        if (rb !== ra) return rb - ra;
+        return String(b.createdAt).localeCompare(String(a.createdAt));
+      });
+    } else {
+      list.sort((a, b) => String(b.createdAt).localeCompare(String(a.createdAt)));
+    }
+    return list;
+  }
+
+  function renderReplicasPage() {
+    if (!els.replicaList) return;
+    const list = sortedReplicas();
+    if (els.replicaCount) els.replicaCount.textContent = `${list.length} 条复刻`;
+    els.replicaList.innerHTML = list.map(replicaCardHtml).join("");
+    if (els.replicaEmpty) els.replicaEmpty.hidden = list.length > 0;
+  }
+
+  function refreshReplicateButtons() {
+    if (!els.timeline) return;
+    els.timeline.querySelectorAll("[data-replicate-post]").forEach((btn) => {
+      const pid = btn.getAttribute("data-replicate-post");
+      const exists = !!findReplicaByPost(pid);
+      btn.classList.toggle("is-done", exists);
+      btn.setAttribute("aria-pressed", String(exists));
+      const label = btn.querySelector("span:last-child");
+      if (label) label.textContent = exists ? "已复刻" : "复刻";
+      const svg = btn.querySelector("svg");
+      if (svg) {
+        svg.innerHTML = exists
+          ? '<path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>'
+          : '<path d="M7.5 3.75a.75.75 0 0 1 .75.75v3h7.5v-3a.75.75 0 0 1 1.5 0v3h.75A2.25 2.25 0 0 1 20.25 9.75v9A2.25 2.25 0 0 1 18 21H6a2.25 2.25 0 0 1-2.25-2.25v-9A2.25 2.25 0 0 1 6 5.5h.75v-3a.75.75 0 0 1 .75-.75zM5.25 10.5v8.25c0 .41.34.75.75.75h12a.75.75 0 0 0 .75-.75V10.5H5.25zm6 2.25a.75.75 0 0 1 .75.75v1.5h1.5a.75.75 0 0 1 0 1.5h-1.5v1.5a.75.75 0 0 1-1.5 0v-1.5h-1.5a.75.75 0 0 1 0-1.5h1.5v-1.5a.75.75 0 0 1 .75-.75z"/>';
+      }
+    });
   }
 
   // All feed filters. `ignoreCats` skips the post-category step (used for chip counts).
@@ -2147,6 +2347,22 @@
     });
   }
 
+  if (els.timeline) {
+    els.timeline.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-replicate-post]");
+      if (!btn) return;
+      e.preventDefault();
+      e.stopPropagation();
+      const pid = btn.getAttribute("data-replicate-post");
+      const post = allPosts.find((p) => postKey(p) === pid);
+      const already = findReplicaByPost(pid);
+      if (!post && !already) return;
+      if (!already) createReplicaFromPost(post);
+      refreshReplicateButtons();
+      goToReplicas();
+    });
+  }
+
   if (els.catChips) {
     els.catChips.addEventListener("click", (e) => {
       const btn = e.target.closest("[data-cat]");
@@ -2568,12 +2784,89 @@
 
   syncUpdateButton();
 
+  // ---- 复刻 page wiring ----
+  if (els.openReplicas) {
+    els.openReplicas.addEventListener("click", (e) => {
+      e.preventDefault();
+      goToReplicas();
+    });
+  }
+
+  window.addEventListener("hashchange", routeFromHash);
+
+  if (els.replicaSort) {
+    els.replicaSort.addEventListener("change", (e) => {
+      replicaSortMode = e.target.value === "progress" ? "progress" : "time";
+      renderReplicasPage();
+    });
+  }
+
+  if (els.replicaList) {
+    els.replicaList.addEventListener("change", (e) => {
+      const stepCb = e.target.closest("[data-replica-check]");
+      if (stepCb) {
+        const r = replicas.find((x) => x.id === stepCb.getAttribute("data-replica-check"));
+        const idx = Number(stepCb.getAttribute("data-step-idx"));
+        if (r && r.steps[idx]) {
+          r.steps[idx].done = stepCb.checked;
+          saveReplicas();
+          renderReplicasPage();
+        }
+        return;
+      }
+      const subCb = e.target.closest("[data-replica-sub-check]");
+      if (subCb) {
+        const r = replicas.find((x) => x.id === subCb.getAttribute("data-replica-sub-check"));
+        const idx = Number(subCb.getAttribute("data-step-idx"));
+        const sidx = Number(subCb.getAttribute("data-sub-idx"));
+        if (r && r.steps[idx] && r.steps[idx].substeps[sidx]) {
+          r.steps[idx].substeps[sidx].done = subCb.checked;
+          saveReplicas();
+          renderReplicasPage();
+        }
+      }
+    });
+
+    // Notes: debounce writes so every keystroke doesn't thrash localStorage or
+    // re-render (which would steal focus from the textarea).
+    let noteSaveTimer = null;
+    els.replicaList.addEventListener("input", (e) => {
+      const ta = e.target.closest("[data-replica-note]");
+      if (!ta) return;
+      const r = replicas.find((x) => x.id === ta.getAttribute("data-replica-note"));
+      const idx = Number(ta.getAttribute("data-step-idx"));
+      if (!r || !r.steps[idx]) return;
+      r.steps[idx].note = ta.value;
+      clearTimeout(noteSaveTimer);
+      noteSaveTimer = setTimeout(saveReplicas, 400);
+    });
+
+    els.replicaList.addEventListener("click", (e) => {
+      const delBtn = e.target.closest("[data-replica-delete]");
+      if (!delBtn) return;
+      e.preventDefault();
+      const id = delBtn.getAttribute("data-replica-delete");
+      const r = replicas.find((x) => x.id === id);
+      if (!r) return;
+      confirmDelete("删除这条复刻？", `「${r.postTitle || "该流程"}」的打卡记录和备注都会被删除`).then((ok) => {
+        if (!ok) return;
+        deleteReplica(id);
+        renderReplicasPage();
+        refreshReplicateButtons();
+      });
+    });
+  }
+
   loadTheme();
   initFilterCollapse();
   initChipSections();
   loadPostCats();
+  loadReplicas();
   selectedCats = loadSelectedCats();
   loadData()
-    .then(() => applyFiltersAndRender())
+    .then(() => {
+      applyFiltersAndRender();
+      routeFromHash();
+    })
     .catch(showFatal);
 })();
