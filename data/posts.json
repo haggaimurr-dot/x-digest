@@ -1,6 +1,450 @@
 {
-  "updatedAt": "2026-10-22T08:06:10+08:00",
+  "updatedAt": "2026-10-23T08:13:58+08:00",
   "posts": [
+    {
+      "id": "2113408906479435820",
+      "url": "https://x.com/0xlangeai/status/2113408906479435820",
+      "author": "0xlangeai",
+      "authorName": "蓝哥AI",
+      "authorAvatar": "avatars/0xlangeai.jpg",
+      "title": "Grok Bot 开放手机系统应用访问：日历、提醒与通讯录",
+      "industry": "AI 助手 / 移动端更新",
+      "tech": "Grok Bot、iOS、Android",
+      "tags": [
+        "Grok Bot",
+        "移动端",
+        "系统权限"
+      ],
+      "summary": "蓝哥转述 Grok Bot 官方消息：iOS 与 Android 正在开放访问手机系统应用。配图中的逐项授权涵盖短信读写、定位、日历行程、Home 灯锁控制、提醒事项及通讯录，展示 Bot 从聊天走向手机事务操作的能力。",
+      "publishedAt": "2026-10-23T07:15:23+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2113280029421666606",
+      "url": "https://x.com/Astronaut_1216/status/2113280029421666606",
+      "author": "Astronaut_1216",
+      "authorName": "叫我阿杭",
+      "authorAvatar": "avatars/Astronaut_1216.jpg",
+      "title": "DeepSeek 中文写作流程：提取逐字稿、润色正文、重做标题",
+      "industry": "AI 写作 / 内容工作流",
+      "tech": "DeepSeek V4.1 Flash、逐字稿、标题",
+      "tags": [
+        "DeepSeek",
+        "中文写作",
+        "内容工作流"
+      ],
+      "summary": "阿杭分享用 DeepSeek V4.1 Flash 制作中文内容的简化流程：先提取短视频逐字稿，再让模型润色正文，最后参考小红书标题风格制作标题，用于公众号内容生产。原帖关于收益的表达属于作者主张，没有提供可核验的运营结果。",
+      "publishedAt": "2026-10-22T22:43:16+08:00",
+      "isLong": false,
+      "steps": [
+        {
+          "text": "提取参考短视频的逐字稿",
+          "tools": "逐字稿提取",
+          "tech": "DeepSeek V4.1 Flash、逐字稿、标题",
+          "prep": ""
+        },
+        {
+          "text": "用 DeepSeek 润色中文正文",
+          "tools": "DeepSeek V4.1 Flash",
+          "tech": "DeepSeek V4.1 Flash、逐字稿、标题",
+          "prep": ""
+        },
+        {
+          "text": "参考小红书标题风格制作标题",
+          "tools": "标题生成",
+          "tech": "DeepSeek V4.1 Flash、逐字稿、标题",
+          "prep": ""
+        }
+      ],
+      "showFlowchart": true
+    },
+    {
+      "id": "2113279270235832515",
+      "url": "https://x.com/Astronaut_1216/status/2113279270235832515",
+      "author": "Astronaut_1216",
+      "authorName": "叫我阿杭",
+      "authorAvatar": "avatars/Astronaut_1216.jpg",
+      "title": "Claude 封号后的数据恢复体验：用 memmy 找回对话资料",
+      "industry": "AI 助手 / 数据备份",
+      "tech": "Claude、memmy",
+      "tags": [
+        "Claude",
+        "memmy",
+        "数据备份"
+      ],
+      "summary": "阿杭称 Claude 账号被封后，借助此前使用的 memmy 恢复了资料；他认为 Claude 自带导出未覆盖部分对话和推理记录。帖子强调长期记忆、数据留存和稳定环境的重要性，未披露具体恢复步骤与覆盖范围。",
+      "publishedAt": "2026-10-22T22:40:15+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2113254796199158111",
+      "url": "https://x.com/Astronaut_1216/status/2113254796199158111",
+      "author": "Astronaut_1216",
+      "authorName": "叫我阿杭",
+      "authorAvatar": "avatars/Astronaut_1216.jpg",
+      "title": "Monid 对比 TikHub：同一抓取任务的数据与费用实测",
+      "industry": "数据工具 / 产品实测",
+      "tech": "Monid、TikHub、Codex",
+      "tags": [
+        "Monid",
+        "TikHub",
+        "数据抓取"
+      ],
+      "summary": "阿杭让 Codex 分别调用 Monid 与其供应商之一 TikHub，完成同一任务并比较数据和实际消费。作者称约 40 分钟测试中返回数据一致、费用打平；此前充值 20 美元在 Monid 抓取超过 10 万条数据。这是个人任务样本，不能据此推定全部接口都不加价。",
+      "publishedAt": "2026-10-22T21:03:00+08:00",
+      "isLong": true,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2113225129862062523",
+      "url": "https://x.com/Saccc_c/status/2113225129862062523",
+      "author": "Saccc_c",
+      "authorName": "Sac",
+      "authorAvatar": "avatars/Saccc_c.jpg",
+      "title": "MiniMax M3.1 Flash 实测：用纯代码制作 3D 动效宣传片",
+      "industry": "AI 视频 / 模型实测",
+      "tech": "MiniMax M3.1 Flash、MiniMax Code、Space Bunny",
+      "tags": [
+        "MiniMax",
+        "模型实测",
+        "AI视频"
+      ],
+      "summary": "Sac 用 MiniMax Code 中的 M3.1 Flash 多轮迭代制作纯代码 3D 宣传片，观察到模型会分配子 Agent 并行制作、独立审查，并通过截图检查画面后继续优化。作者称其此前匿名名为 Space Bunny，视觉效果接近 Opus 5.5；这些效果与成本判断来自该帖实测描述。",
+      "publishedAt": "2026-10-22T19:05:07+08:00",
+      "isLong": true,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2113221679803507087",
+      "url": "https://x.com/shengtang135754/status/2113221679803507087",
+      "author": "shengtang135754",
+      "authorName": "麦麦提",
+      "authorAvatar": "avatars/shengtang135754.jpg",
+      "title": "DeepSeek 推理经济账：从峰谷收入估算毛利与净利",
+      "industry": "AI 商业 / 成本分析",
+      "tech": "DeepSeek、GPU、Token 成本",
+      "tags": [
+        "DeepSeek",
+        "推理成本",
+        "商业分析"
+      ],
+      "summary": "麦麦提根据帖子所述单集群日处理 155 万亿 Token、谷时每 GPU 小时收入 38 美元等数据，假设集群约 6458 张卡、峰时 8 小时与 70% 缓存未命中，并按每百万 Token 推理成本 0.2 美元估算。作者判断谷时亏损、峰时有毛利但净利仍负，明确这是个人推演，不代表官方财务数据。",
+      "publishedAt": "2026-10-22T18:51:24+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2113209405672153535",
+      "url": "https://x.com/0xlangeai/status/2113209405672153535",
+      "author": "0xlangeai",
+      "authorName": "蓝哥AI",
+      "authorAvatar": "avatars/0xlangeai.jpg",
+      "title": "Grok Bot Pages 实测：按系统语言展示中英文复盘页面",
+      "industry": "AI 助手 / 页面生成",
+      "tech": "Grok Bot、Pages、多语言",
+      "tags": [
+        "Grok Bot",
+        "Pages",
+        "多语言"
+      ],
+      "summary": "蓝哥在复盘文章下向 Bot 提出需求：根据读者系统语言切换展示，默认中文，面向英语读者重新写英文版而非逐行翻译。随后由 Grok Bot 执行分析、制作和部署，展示从文章到多语言页面的使用场景。",
+      "publishedAt": "2026-10-22T18:02:38+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2113191457498796453",
+      "url": "https://x.com/shengtang135754/status/2113191457498796453",
+      "author": "shengtang135754",
+      "authorName": "麦麦提",
+      "authorAvatar": "avatars/shengtang135754.jpg",
+      "title": "Claude App Store 支付实测：付款流程后仍触发 KYC",
+      "industry": "AI 订阅 / 身份验证",
+      "tech": "Claude、App Store、KYC",
+      "tags": [
+        "Claude",
+        "App Store",
+        "KYC"
+      ],
+      "summary": "麦麦提跟进朋友的 Claude 订阅体验：App Store 支付流程前段顺畅，但最后弹出 KYC 验证，仍无法使用，随后询问退款方式。这一实际案例提醒用户，能进入付款流程不等于已经满足后续使用条件。",
+      "publishedAt": "2026-10-22T16:51:19+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2113174198118150436",
+      "url": "https://x.com/0xlangeai/status/2113174198118150436",
+      "author": "0xlangeai",
+      "authorName": "蓝哥AI",
+      "authorAvatar": "avatars/0xlangeai.jpg",
+      "title": "动画汇报片提示词示例：用虚构停产事故讲清智能系统价值",
+      "industry": "AI 内容 / 动画演示",
+      "tech": "动画 PPT、提示词、汇报片",
+      "tags": [
+        "提示词",
+        "动画PPT",
+        "内容制作"
+      ],
+      "summary": "蓝哥分享一条动画汇报片演示及提示词思路：制作电影感动画 PPT，以一场没发生的 5000 万美元停产事故为题，讲述虚构汽车厂的智能系统提前修复流水线故障。重点是用具体风险和因果叙事组织汇报，原帖未明确生成工具。",
+      "publishedAt": "2026-10-22T15:42:44+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2113156581668041118",
+      "url": "https://x.com/mjjwiki/status/2113156581668041118",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "authorAvatar": "avatars/mjjwiki.jpg",
+      "title": "X 运营观察：评论互动可能带动其他帖子的曝光",
+      "industry": "自媒体 / 账号运营",
+      "tech": "X、评论互动、推荐算法",
+      "tags": [
+        "X运营",
+        "评论互动",
+        "曝光"
+      ],
+      "summary": "MJJ百科认为，评论互动虽不计入时间线有效流量，但可能向算法传递账号活跃信号，带动其他帖子的推荐与曝光。这是作者的运营经验判断，帖子未提供平台规则出处或对照测试。",
+      "publishedAt": "2026-10-22T14:32:44+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2113154527461515620",
+      "url": "https://x.com/0xlangeai/status/2113154527461515620",
+      "author": "0xlangeai",
+      "authorName": "蓝哥AI",
+      "authorAvatar": "avatars/0xlangeai.jpg",
+      "title": "宇树 H2-X 演示：功夫护卫机器人展示跳跃与连续踢击",
+      "industry": "机器人 / 产品演示",
+      "tech": "宇树 H2-X、人形机器人",
+      "tags": [
+        "宇树",
+        "人形机器人",
+        "H2-X"
+      ],
+      "summary": "蓝哥介绍宇树人形保镖机器人 H2-X，称官方名为功夫护卫、单次充电可守护约 8 小时。演示片展示踢凹车门、后空翻接连踢，以及从 4 米平台跳下后站稳；这些是宣传演示描述，并非日常可靠性测试。",
+      "publishedAt": "2026-10-22T14:24:34+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2113153081924051213",
+      "url": "https://x.com/mjjwiki/status/2113153081924051213",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "authorAvatar": "avatars/mjjwiki.jpg",
+      "title": "eMudhra 证书风险提醒：弱私钥与 Go 吊销检查问题",
+      "industry": "网络安全 / HTTPS",
+      "tech": "eMudhra、Go、HTTPS、CVE-2026-111943",
+      "tags": [
+        "Go",
+        "证书安全",
+        "HTTPS"
+      ],
+      "summary": "MJJ百科转述 eMudhra 中间证书私钥过弱的风险，称涉及 8 张受信任证书，可能被用于伪造域名 HTTPS 证书；并指出旧版 Go 程序默认不检查吊销列表可能增加中间人攻击风险。原帖标注 CVE-2026-111943，未附具体修复版本或公告正文。",
+      "publishedAt": "2026-10-22T14:18:49+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2113149350729634147",
+      "url": "https://x.com/ai_xiaomu/status/2113149350729634147",
+      "author": "ai_xiaomu",
+      "authorName": "黄小木",
+      "authorAvatar": "avatars/ai_xiaomu.jpg",
+      "title": "三台 DGX Spark 改作 ComfyUI 工厂：本地与在线推理取舍",
+      "industry": "AI 基础设施 / 本地部署",
+      "tech": "DGX Spark、ComfyUI、DeepSeek",
+      "tags": [
+        "DGX Spark",
+        "ComfyUI",
+        "本地部署"
+      ],
+      "summary": "黄小木对比个人使用体验：DeepSeek 在线生成约 300 Token/秒，本地约 40 Token/秒，因此把三台 DGX Spark 转为 ComfyUI 生产用途。帖子提供了一种硬件用途调整案例，速度数字是个人环境观察，未给出模型规模与测试条件。",
+      "publishedAt": "2026-10-22T14:04:00+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2113134251046826295",
+      "url": "https://x.com/ai_xiaomu/status/2113134251046826295",
+      "author": "ai_xiaomu",
+      "authorName": "黄小木",
+      "authorAvatar": "avatars/ai_xiaomu.jpg",
+      "title": "企业 AI 交付变现路径：从免费讲座走到落地项目",
+      "industry": "AI 服务 / 企业交付",
+      "tech": "FDE、企业培训、需求诊断",
+      "tags": [
+        "FDE",
+        "企业培训",
+        "商业化"
+      ],
+      "summary": "黄小木整理企业 AI 服务的转化路径：培训从免费讲座、现场转化和一对一跟进走向付费；内训从资源引荐、需求诊断和定制方案推进关键决策人。完整链路是渠道合作带来讲座，付费培训识别真实需求，再延伸到内训和 AI 落地项目。",
+      "publishedAt": "2026-10-22T13:04:00+08:00",
+      "isLong": false,
+      "steps": [
+        {
+          "text": "渠道合作与免费讲座获取企业线索",
+          "tools": "渠道合作、讲座",
+          "tech": "FDE、企业培训、需求诊断",
+          "prep": ""
+        },
+        {
+          "text": "现场转化并一对一跟进，形成付费培训",
+          "tools": "企业 AI 培训",
+          "tech": "FDE、企业培训、需求诊断",
+          "prep": ""
+        },
+        {
+          "text": "识别真实需求，诊断并定制内训方案",
+          "tools": "需求诊断",
+          "tech": "FDE、企业培训、需求诊断",
+          "prep": ""
+        },
+        {
+          "text": "推动关键决策人决策，延伸到 AI 落地项目",
+          "tools": "FDE",
+          "tech": "FDE、企业培训、需求诊断",
+          "prep": ""
+        }
+      ],
+      "showFlowchart": true
+    },
+    {
+      "id": "2113126382016647253",
+      "url": "https://x.com/gkxspace/status/2113126382016647253",
+      "author": "gkxspace",
+      "authorName": "余温",
+      "authorAvatar": "avatars/gkxspace.jpg",
+      "title": "Claude 通过 MCP 调用 Viggle JST 2，制作黑神话风 3D 游戏",
+      "industry": "AI 游戏 / 3D 生成",
+      "tech": "Claude、Viggle JST 2、MCP",
+      "tags": [
+        "Claude",
+        "JST 2",
+        "3D游戏"
+      ],
+      "summary": "余温展示 Claude 与 Viggle JST 2 配合制作的黑神话风 3D 网页游戏：通过 MCP 调用 JST 2 生成场景、角色和动作，Claude 负责镜头、特效与音效。候选原文在介绍高质量模型制作时截断，未提供完整教程。",
+      "publishedAt": "2026-10-22T12:32:44+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2113111935583719525",
+      "url": "https://x.com/0xlangeai/status/2113111935583719525",
+      "author": "0xlangeai",
+      "authorName": "蓝哥AI",
+      "authorAvatar": "avatars/0xlangeai.jpg",
+      "title": "Hermes Agent 接入 Meshy MCP：自然语言生成 3D 模型",
+      "industry": "AI 工具 / 3D 插件",
+      "tech": "Nous Research、Hermes Agent、Meshy MCP",
+      "tags": [
+        "Hermes Agent",
+        "Meshy",
+        "MCP"
+      ],
+      "summary": "蓝哥介绍 Nous Research 的 Hermes Agent 官方 Meshy 插件：通过 Meshy MCP 接入 AI 3D 模型生成，用户可用自然语言发起模型制作需求。候选原文在 Godot 示例处截断，没有完整展示导出与引擎集成流程。",
+      "publishedAt": "2026-10-22T11:35:19+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2113101047254376573",
+      "url": "https://x.com/miles_mazy/status/2113101047254376573",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "authorAvatar": "avatars/miles_mazy.jpg",
+      "title": "FDE 交付选型观察：Pi 被用于底层 Agent",
+      "industry": "AI 开发 / Agent 选型",
+      "tech": "Pi Agent、FDE",
+      "tags": [
+        "Pi Agent",
+        "FDE",
+        "Agent"
+      ],
+      "summary": "Miles 分享身边企业 AI 交付的技术选型观察：不少 FDE 项目把 Pi 用作底层 Agent，建议关注其学习与实践。原帖获得较多收藏，但没有披露项目架构、部署方法或可量化交付效果。",
+      "publishedAt": "2026-10-22T10:52:03+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2113089707554881679",
+      "url": "https://x.com/miles_mazy/status/2113089707554881679",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "authorAvatar": "avatars/miles_mazy.jpg",
+      "title": "PHP2Shell 安全提醒：作者列出受影响版本与升级目标",
+      "industry": "网络安全 / PHP",
+      "tech": "PHP2Shell、PHP、远程代码执行",
+      "tags": [
+        "PHP",
+        "安全漏洞",
+        "PHP2Shell"
+      ],
+      "summary": "Miles 转述 PHP2Shell 漏洞评分为 9.2，称可能导致未登录远程代码执行与内存敏感信息泄露，并涉及 WordPress 等 PHP 网站。原帖列出升级目标 8.5.12、8.4.27、8.3.36、8.2.35，称旧版本需要停用；具体影响范围与处置版本需以对应安全公告为准。",
+      "publishedAt": "2026-10-22T10:07:00+08:00",
+      "isLong": true,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2113085471081345288",
+      "url": "https://x.com/yaojingang/status/2113085471081345288",
+      "author": "yaojingang",
+      "authorName": "姚金刚",
+      "authorAvatar": "avatars/yaojingang.jpg",
+      "title": "腾讯 AnswerBit 的 GEO 产品定位：监测与内容生成双核心",
+      "industry": "AI 营销 / 产品设计",
+      "tech": "AnswerBit、GEO、SaaS",
+      "tags": [
+        "GEO",
+        "AnswerBit",
+        "产品定位"
+      ],
+      "summary": "姚金刚与腾讯 AnswerBit 团队交流后记录：产品定位为 SaaS 平台，核心能力是 GEO 数据监测与 GEO 内容生成，强调工具属性，不承担投放、服务或运营。适合参考 GEO 工具与代运营服务的业务边界。",
+      "publishedAt": "2026-10-22T09:50:10+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
+    {
+      "id": "2113065888090124359",
+      "url": "https://x.com/shengtang135754/status/2113065888090124359",
+      "author": "shengtang135754",
+      "authorName": "麦麦提",
+      "authorAvatar": "avatars/shengtang135754.jpg",
+      "title": "Gemini 4 Argon 周额度或翻倍：用户等待额度重置",
+      "industry": "AI 模型 / 使用额度",
+      "tech": "Gemini 4 Argon、周额度",
+      "tags": [
+        "Gemini",
+        "额度",
+        "用户反馈"
+      ],
+      "summary": "麦麦提反馈 Gemini 周额度耗尽后一直未获重置，并转述独立周额度紧急上调、可能翻倍的消息，询问其他用户是否有感知。原帖没有给出官方说明或实测额度数据，属于待确认的额度动态。",
+      "publishedAt": "2026-10-22T08:32:21+08:00",
+      "isLong": false,
+      "steps": [],
+      "showFlowchart": false
+    },
     {
       "id": "2113050199312531870",
       "url": "https://x.com/gkxspace/status/2113050199312531870",
