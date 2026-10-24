@@ -49,7 +49,7 @@ localStorage，不进服务端）。外部更新器产出新 posts.json 后，�
 
 ## 部署与回滚（上海服务器，公网 http://42.192.114.201:18089/）
 
-- 服务：`xdigest-api`（Go，18090）、`xdigest-web`（Nuxt，18091），均为内网监听 + systemd；
+- 服务：`xdigest-api`（Go，18093）、`xdigest-web`（Nuxt，18091），均为内网监听 + systemd；
   nginx vhost `deploy/xdigest-18089.nginx`。
 - 旧站备份：切换前 `/var/www/x-digest` 备份为 `/var/www/x-digest.bak-YYYYMMDD`，
   旧 vhost 备份为 `/etc/nginx/sites-available/x-digest-18089.static.bak`。
