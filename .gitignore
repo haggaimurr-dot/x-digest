@@ -6,3 +6,7 @@
 uploads/
 node_modules/
 screenshots/
+frontend/.nuxt/
+frontend/.output/
+backend/xdigest-api
+backend/xdigest-import

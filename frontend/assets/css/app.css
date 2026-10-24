@@ -1,0 +1,54 @@
+/* Additions on top of the original styles.css (assets/css/original.css). */
+:root { --font-size-base: 15px; }
+html, body { max-width: 100%; overflow-x: clip; }
+img, video, iframe, embed { max-width: 100%; }
+mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radius: 2px; padding: 0 1px; }
+.filter-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.filter-row .field, .filter-row input[type="date"], .filter-row input[type="text"] { min-width: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { cursor: pointer; }
+.chip .chip-count { opacity: .7; margin-left: 4px; }
+.chip-group-title { font-weight: 700; margin: 14px 0 6px; color: var(--text-muted); font-size: 13px; }
+.post-card { min-width: 0; overflow-wrap: anywhere; }
+.post-card .avatar { flex-shrink: 0; }
+.modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 100; display: flex; align-items: flex-start; justify-content: center; padding: 8vh 12px 12px; overflow-y: auto; }
+.modal-card { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 16px; width: 100%; max-width: 640px; padding: 20px; color: var(--text); }
+.modal-card h2 { margin-top: 0; }
+.modal-card .field, .modal-card textarea, .modal-card select { width: 100%; background: var(--bg); color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; font: inherit; }
+.modal-card label { display: block; margin: 10px 0 4px; color: var(--text-muted); font-size: 13px; }
+.modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 16px; flex-wrap: wrap; }
+.btn { cursor: pointer; border: 1px solid var(--border); background: var(--bg-elevated); color: var(--text); border-radius: 9999px; padding: 7px 14px; font: inherit; }
+.btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn-danger { color: var(--danger-text); border-color: var(--danger); }
+.btn-sm { padding: 4px 10px; font-size: 13px; }
+.status-dot { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--border); cursor: pointer; flex-shrink: 0; background: transparent; }
+.status-dot.is-idle { background: transparent; }
+.status-dot.is-active { background: #f7b500; border-color: #f7b500; }
+.status-dot.is-done { background: var(--success); border-color: var(--success); }
+.replica-step { display: flex; gap: 10px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--border); min-width: 0; }
+.replica-step.is-done .replica-step-text { text-decoration: line-through; color: var(--text-muted); }
+.note-editor textarea { width: 100%; background: var(--bg); color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 8px; font: inherit; }
+.note-toolbar { display: flex; gap: 4px; flex-wrap: wrap; margin: 6px 0; }
+.note-toolbar button { cursor: pointer; border: 1px solid var(--border); background: var(--bg-elevated); color: var(--text); border-radius: 6px; padding: 3px 8px; }
+.progress-bar { height: 8px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 9999px; overflow: hidden; }
+.progress-bar > div { height: 100%; background: var(--accent); }
+.attachment-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; padding: 6px 0; min-width: 0; }
+.attachment-row .attachment-name { flex: 1; min-width: 80px; overflow-wrap: anywhere; }
+.attachment-preview { border: 1px solid var(--border); border-radius: 12px; padding: 12px; margin-top: 8px; min-width: 0; }
+.attachment-preview img { display: block; max-height: 480px; object-fit: contain; }
+.attachment-preview pre { white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; font-size: 14px; line-height: 1.7; }
+.topnav { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.topnav a { color: var(--text); font-weight: 700; }
+.topnav a.router-link-active { color: var(--accent); }
+.settings-section { border-top: 1px solid var(--border); margin-top: 16px; padding-top: 12px; }
+.settings-section h3 { margin: 8px 0; }
+.watch-row { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin: 6px 0; }
+.watch-row input, .watch-row select { background: var(--bg); color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 6px 8px; font: inherit; min-width: 0; }
+@media (max-width: 620px) {
+  .feed-col, .topbar-inner, .modal-card { max-width: 100%; }
+  .filter-row { flex-direction: column; align-items: stretch; }
+  .filter-row .field { width: 100%; }
+  .post-card { border-radius: 0; }
+  .modal-backdrop { padding: 4vh 8px 8px; }
+  .replica-step { flex-wrap: wrap; }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "xdigest-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nuxt dev --port 18091",
+    "build": "nuxt build",
+    "preview": "nuxt preview --port 18091",
+    "start": "node .output/server/index.mjs"
+  },
+  "dependencies": {
+    "jszip": "^3.10.1",
+    "mammoth": "^1.11.0",
+    "marked": "^17.0.1",
+    "nuxt": "^4.6.2",
+    "vue": "^3.5.0"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "^2.0.0"
+  }
+}
