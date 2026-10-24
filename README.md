@@ -20,8 +20,8 @@ cd backend && go run ./cmd/api
 cd frontend && npm install && npm run dev   # dev 端口 18091，/api 代理到 Go（见 nuxt.config.ts）
 ```
 
-生产启动（服务器，见 `deploy/`）：Go 监听 `127.0.0.1:18090`，Nuxt 监听 `127.0.0.1:18091`
-（注意：Nitro 认 `PORT`，`NUXT_PORT` 不生效），nginx 18089 代理 `/` → Nuxt、`/api/` → Go。
+生产启动（服务器，见 `deploy/`）：Go 监听 `127.0.0.1:18093`（18090 已被同期上线的 chiji-dev 占用，部署时核实后改定），Nuxt 监听 `127.0.0.1:18091`
+（注意：Nitro 认 `PORT`，`NUXT_PORT` 不生效），nginx 18089 代理 `/` → Nuxt（18091）、`/api/` → Go（18093）。
 
 ## 接口（摘要）
 

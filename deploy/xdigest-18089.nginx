@@ -1,7 +1,7 @@
 # x-digest NEW stack (Nuxt + Go + MariaDB), public entry on 18089.
 # Replaces the old static vhost (same file name, old content backed up on the
 # server as x-digest-18089.static.bak). / goes to the Nuxt SSR server on
-# 127.0.0.1:18091, /api/ goes to the Go API on 127.0.0.1:18090 (full path
+# 127.0.0.1:18091, /api/ goes to the Go API on 127.0.0.1:18093 (full path
 # preserved: /api/v1/...). No /api rewriting: proxy_pass without a URI part.
 server {
     listen 18089;
@@ -9,7 +9,7 @@ server {
     client_max_body_size 110m;
 
     location /api/ {
-        proxy_pass http://127.0.0.1:18090;
+        proxy_pass http://127.0.0.1:18093;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
