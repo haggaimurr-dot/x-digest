@@ -11,7 +11,7 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
 .chip-group-title { font-weight: 700; margin: 14px 0 6px; color: var(--text-muted); font-size: 13px; }
 .post-card { min-width: 0; overflow-wrap: anywhere; }
 .post-card .avatar { flex-shrink: 0; }
-.modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 100; display: flex; align-items: flex-start; justify-content: center; padding: 8vh 12px 12px; overflow-y: auto; }
+.modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 100; display: flex; align-items: flex-start; justify-content: center; padding: 8vh 12px 12px; overflow-y: auto; overscroll-behavior: contain; }
 .modal-card { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 16px; width: 100%; max-width: 640px; padding: 20px; color: var(--text); }
 .modal-card h2 { margin-top: 0; }
 .modal-card .field, .modal-card textarea, .modal-card select { width: 100%; background: var(--bg); color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; font: inherit; }

@@ -184,6 +184,7 @@
 import type { Repo, RepoGroup, RepoDetail } from '~/composables/types'
 import { ApiError } from '~/composables/types'
 import { relativeTime, shanghaiTime, trunc40 } from '~/composables/useFormat'
+import { useScrollLock } from '~/composables/useScrollLock'
 
 const store = useStore()
 
@@ -210,6 +211,7 @@ const addError = ref('')
 const addForm = ref({ full_name: '', group_id: '', tagsText: '', note: '' })
 
 const editTarget = ref<Repo | null>(null)
+useScrollLock(computed(() => showAdd.value || editTarget.value !== null))
 const editBusy = ref(false)
 const editError = ref('')
 const editForm = ref({ group_id: '', tagsText: '', note: '' })

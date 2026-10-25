@@ -223,6 +223,7 @@
 import type { Post, Watchlist, Categories } from '~/composables/types'
 import { LS, useSettings } from '~/composables/useSettings'
 import { avatarUrl, avatarColor, avatarInitial, relativeTime, shanghaiTime, shanghaiDayBound, highlightHtml, firstHitSnippet, shouldShowFlowchart, trunc40 } from '~/composables/useFormat'
+import { useScrollLock } from '~/composables/useScrollLock'
 
 const store = useStore()
 const settings = useSettings()
@@ -252,6 +253,7 @@ const substepsOpen = ref<Set<string>>(new Set())
 const catMenuPost = ref<string | null>(null)
 const newCatName = ref('')
 const showSettings = ref(false)
+useScrollLock(showSettings)
 const toast = ref('')
 const webhookBusy = ref(false)
 const webhookMsg = ref('')

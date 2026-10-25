@@ -85,6 +85,7 @@
 import type { Replica, ReplicaStep, Attachment } from '~/composables/types'
 import { shanghaiTime, trunc40 } from '~/composables/useFormat'
 import { ATTACHMENT_EXTS, IMAGE_EXTS } from '~/composables/useStore'
+import { useScrollLock } from '~/composables/useScrollLock'
 
 const store = useStore()
 const loading = ref(true)
@@ -92,6 +93,7 @@ const loadError = ref('')
 const replicas = ref<Replica[]>([])
 const sort = ref<'time' | 'progress'>('time')
 const confirmTarget = ref<Replica | null>(null)
+useScrollLock(computed(() => confirmTarget.value !== null))
 const previewAtt = ref<Attachment | null>(null)
 const toast = ref('')
 const statusNames: Record<string, string> = { idle: '未开始', active: '进行中', done: '已完成' }
