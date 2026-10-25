@@ -128,6 +128,7 @@ CREATE TABLE IF NOT EXISTS replica_steps (
   status        ENUM('idle','active','done') NOT NULL DEFAULT 'idle',
   note          TEXT,
   is_custom     TINYINT(1) NOT NULL DEFAULT 0,
+  parent_idx    INT NULL DEFAULT NULL,
   CONSTRAINT fk_replica_steps_replica FOREIGN KEY (replica_id)
     REFERENCES replicas(id) ON DELETE CASCADE ON UPDATE CASCADE,
   INDEX idx_replica_steps_replica (replica_id, idx)

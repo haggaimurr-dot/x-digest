@@ -89,9 +89,9 @@ export function useStore () {
     if (mock.value) { mockStore.patchReplicaSteps(id, steps); return }
     await apiFetch(`replicas/${id}`, { method: 'PATCH', body: JSON.stringify({ steps }) })
   }
-  async function addReplicaStep (id: string, text: string): Promise<ReplicaStep> {
-    if (mock.value) return mockStore.addMockReplicaStep(id, text)
-    return await apiFetch<ReplicaStep>(`replicas/${id}/steps`, { method: 'POST', body: JSON.stringify({ text }) })
+  async function addReplicaStep (id: string, text: string, parentIdx?: number | null): Promise<ReplicaStep> {
+    if (mock.value) return mockStore.addMockReplicaStep(id, text, parentIdx ?? null)
+    return await apiFetch<ReplicaStep>(`replicas/${id}/steps`, { method: 'POST', body: JSON.stringify({ text, parent_idx: parentIdx ?? null }) })
   }
   async function deleteReplicaStep (id: string, idx: number) {
     if (mock.value) { mockStore.deleteMockReplicaStep(id, idx); return }

@@ -77,6 +77,7 @@ type ReplicaStep struct {
 	Status      string       `json:"status"`
 	Note        string       `json:"note"`
 	IsCustom    bool         `json:"is_custom,omitempty"`
+	ParentIdx   *int         `json:"parent_idx,omitempty"`
 	Attachments []Attachment `json:"attachments"`
 }
 

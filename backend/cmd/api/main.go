@@ -575,12 +575,13 @@ func (s *server) handleReplicaSub(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		var body struct {
-			Text string `json:"text"`
+			Text      string `json:"text"`
+			ParentIdx *int   `json:"parent_idx"`
 		}
 		if !decodeBody(w, r, &body) {
 			return
 		}
-		st, err := s.st.AddReplicaStep(id, body.Text)
+		st, err := s.st.AddReplicaStep(id, body.Text, body.ParentIdx)
 		if err != nil {
 			if errors.Is(err, sql.ErrNoRows) {
 				writeErr(w, 404, "NOT_FOUND", "replica not found")
@@ -588,6 +589,10 @@ func (s *server) handleReplicaSub(w http.ResponseWriter, r *http.Request) {
 			}
 			if err.Error() == "empty step text" {
 				writeErr(w, 422, "VALIDATION", "step text is required")
+				return
+			}
+			if strings.HasPrefix(err.Error(), "unknown parent step") || strings.HasPrefix(err.Error(), "sub-nodes support") {
+				writeErr(w, 422, "VALIDATION", err.Error())
 				return
 			}
 			writeErr(w, 500, "DB_ERROR", err.Error())
@@ -607,13 +612,17 @@ func (s *server) handleReplicaSub(w http.ResponseWriter, r *http.Request) {
 			writeErr(w, 422, "VALIDATION", "invalid step idx")
 			return
 		}
-		if err := s.st.DeleteReplicaStep(id, idx); err != nil {
+		paths, err := s.st.DeleteReplicaStep(id, idx)
+		if err != nil {
 			if strings.HasPrefix(err.Error(), "unknown step") {
 				writeErr(w, 422, "VALIDATION", err.Error())
 				return
 			}
 			writeErr(w, 500, "DB_ERROR", err.Error())
 			return
+		}
+		for _, p := range paths {
+			_ = os.Remove(p) // best effort; DB rows are already gone
 		}
 		writeJSON(w, 200, map[string]any{"deleted": true})
 		return

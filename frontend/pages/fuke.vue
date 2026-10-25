@@ -37,70 +37,9 @@
           <button class="btn btn-sm btn-danger" type="button" @click="askDelete(r)">删除复刻</button>
         </div>
         <div class="flow-list" style="margin-top:12px">
-          <p v-if="!r.steps.length" style="color:var(--text-muted)">还没有节点，在下面添加第一个节点吧。</p>
-          <div v-for="(step, si) in r.steps" :key="step.idx" class="flow-step" :class="{ 'is-last': si === r.steps.length - 1, 'is-done': step.status === 'done' }">
-            <div class="flow-rail">
-              <button type="button" class="status-dot" :class="`is-${step.status}`"
-                :title="`${statusNames[step.status]}，点击切换状态`" :aria-label="`步骤 ${si + 1}：${statusNames[step.status]}，点击切换`"
-                @click="cycleStatus(r, step)" />
-              <span class="flow-line" v-if="si < r.steps.length - 1" />
-            </div>
-            <div class="flow-card" style="flex:1;min-width:0">
-              <div class="replica-step-text"><strong>{{ si + 1 }}. {{ step.text }}</strong></div>
-            <div v-if="step.is_custom" style="margin:4px 0;display:flex;gap:6px;align-items:center;flex-wrap:wrap">
-              <span class="chip active">自建节点</span>
-              <button class="btn btn-sm" type="button" @click="startEditText(r, step)">编辑文本</button>
-              <button class="btn btn-sm btn-danger" type="button" @click="removeStep(r, step)">删除节点</button>
-            </div>
-            <div v-if="editingStep && editingStep.rid === r.id && editingStep.idx === step.idx" style="margin:6px 0">
-              <input class="field" style="width:100%" type="text" v-model="editingStep.text" aria-label="编辑节点文本" />
-              <div style="margin-top:6px;display:flex;gap:6px">
-                <button class="btn btn-sm btn-primary" type="button" @click="saveStepText(r, step)">保存文本</button>
-                <button class="btn btn-sm" type="button" @click="editingStep = null">取消</button>
-              </div>
-            </div>
-            <div v-if="step.tools || step.tech || step.prep" style="color:var(--text-muted);font-size:13px">
-              <span v-if="step.tools">工具：{{ step.tools }} </span>
-              <span v-if="step.tech">技术：{{ step.tech }} </span>
-              <span v-if="step.prep">前提：{{ step.prep }}</span>
-            </div>
-            <div v-if="(step.substeps || []).length" style="margin-top:8px">
-              <button class="btn btn-sm" type="button" @click="toggleSubsteps(r, step)">
-                {{ substepsOpen.has(subKey(r, step)) ? '收起子流程 ▾' : `展开子流程（${step.substeps!.length}） ▸` }}
-              </button>
-              <div v-if="substepsOpen.has(subKey(r, step))" class="flow-list" style="margin-top:8px">
-                <div v-for="(sub, j) in step.substeps!.slice(0, 5)" :key="j" class="flow-step" :class="{ 'is-last': j === Math.min(step.substeps!.length, 5) - 1 }">
-                  <div class="flow-rail">
-                    <span class="flow-node" />
-                    <span class="flow-line" v-if="j < Math.min(step.substeps!.length, 5) - 1" />
-                  </div>
-                  <div class="flow-card" style="padding:8px 10px">
-                    <div class="flow-text" style="font-size:13px">{{ trunc40(sub.text) }}</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <NoteEditor :model-value="step.note || ''" @update:model-value="step.note = $event" @save="saveNote(r, step, $event)" />
-            <div style="margin-top:8px">
-              <label class="btn btn-sm" style="cursor:pointer">上传图片
-                <input type="file" accept="image/*" multiple hidden @change="upload(r, step, $event)" />
-              </label>
-              <label class="btn btn-sm" style="cursor:pointer;margin-left:6px">上传文档 / 压缩包
-                <input type="file" multiple hidden :accept="acceptDocs" @change="upload(r, step, $event)" />
-              </label>
-              <span style="color:var(--text-muted);font-size:13px;margin-left:6px">白名单见 README；单个 ≤10MB</span>
-            </div>
-            <div v-if="(step.attachments || []).length">
-              <div v-for="att in step.attachments" :key="att.id" class="attachment-row">
-                <span class="attachment-name">{{ att.name }}（{{ att.size }} 字节）</span>
-                <button class="btn btn-sm" type="button" @click="previewAtt = previewAtt?.id === att.id ? null : att">{{ previewAtt?.id === att.id ? '收起预览' : '预览' }}</button>
-                <a class="btn btn-sm" :href="att.download_url" download>下载</a>
-                <button class="btn btn-sm btn-danger" type="button" @click="removeAttachment(r, step, att)">删除附件</button>
-              </div>
-              <AttachmentPreview v-if="previewAtt && step.attachments!.some(a => a.id === previewAtt!.id)" :key="previewAtt.id" :attachment="previewAtt" />
-            </div>
-            </div>
-          </div>
+          <p v-if="!topSteps(r).length" style="color:var(--text-muted)">还没有节点，在下面添加第一个节点吧。</p>
+          <ReplicaStepNode v-for="(step, si) in topSteps(r)" :key="step.idx" :replica="r" :step="step"
+            :num="String(si + 1)" :is-last="si === topSteps(r).length - 1" />
         </div>
         <div style="margin:12px 0 4px;display:flex;justify-content:space-between;gap:8px">
           <span>进度 {{ progress(r).done }} / {{ progress(r).total }}</span>
@@ -132,9 +71,8 @@
 </template>
 
 <script setup lang="ts">
-import type { Replica, ReplicaStep, Attachment } from '~/composables/types'
-import { shanghaiTime, trunc40 } from '~/composables/useFormat'
-import { ATTACHMENT_EXTS, IMAGE_EXTS } from '~/composables/useStore'
+import type { Replica, ReplicaStep } from '~/composables/types'
+import { shanghaiTime } from '~/composables/useFormat'
 import { useScrollLock } from '~/composables/useScrollLock'
 
 const store = useStore()
@@ -144,13 +82,10 @@ const replicas = ref<Replica[]>([])
 const sort = ref<'time' | 'progress'>('time')
 const confirmTarget = ref<Replica | null>(null)
 useScrollLock(computed(() => confirmTarget.value !== null))
-const previewAtt = ref<Attachment | null>(null)
 const toast = ref('')
-const statusNames: Record<string, string> = { idle: '未开始', active: '进行中', done: '已完成' }
-const NEXT: Record<string, 'idle' | 'active' | 'done'> = { idle: 'active', active: 'done', done: 'idle' }
-const acceptDocs = '.' + ATTACHMENT_EXTS.filter(e => !IMAGE_EXTS.includes(e)).join(',.')
 
 function showToast (m: string) { toast.value = m; setTimeout(() => { toast.value = '' }, 3000) }
+function topSteps (r: Replica): ReplicaStep[] { return r.steps.filter(s => s.parent_idx == null) }
 function progress (r: Replica) {
   const total = r.steps.length
   const done = r.steps.filter(s => s.status === 'done').length
@@ -165,24 +100,7 @@ async function reload () {
   try { replicas.value = await store.loadReplicas(sort.value) } catch (e: any) { loadError.value = e?.message || '加载失败' }
   finally { loading.value = false }
 }
-const substepsOpen = ref<Set<string>>(new Set())
-function subKey (r: Replica, step: ReplicaStep) { return `${r.id}:${step.idx}` }
-function toggleSubsteps (r: Replica, step: ReplicaStep) {
-  const k = subKey(r, step)
-  if (substepsOpen.value.has(k)) substepsOpen.value.delete(k)
-  else substepsOpen.value.add(k)
-  substepsOpen.value = new Set(substepsOpen.value)
-}
-async function cycleStatus (r: Replica, step: ReplicaStep) {
-  const next = NEXT[step.status] || 'idle'
-  step.status = next
-  try { await store.patchReplicaSteps(r.id, [{ idx: step.idx, status: next }]) } catch (e: any) { showToast(e?.message || '状态保存失败') }
-}
-async function saveNote (r: Replica, step: ReplicaStep, note: string) {
-  try { await store.patchReplicaSteps(r.id, [{ idx: step.idx, note }]) } catch (e: any) { showToast(e?.message || '备注保存失败') }
-}
 const newStepText = ref<Record<string, string>>({})
-const editingStep = ref<{ rid: string, idx: number, text: string } | null>(null)
 const newFlowTitle = ref('')
 async function createFlow () {
   const title = newFlowTitle.value.trim()
@@ -203,47 +121,6 @@ async function addStep (r: Replica) {
     newStepText.value[r.id] = ''
     showToast('节点已添加')
   } catch (e: any) { showToast(e?.message || '添加节点失败') }
-}
-function startEditText (r: Replica, step: ReplicaStep) {
-  editingStep.value = { rid: r.id, idx: step.idx, text: step.text }
-}
-async function saveStepText (r: Replica, step: ReplicaStep) {
-  if (!editingStep.value) return
-  const text = editingStep.value.text.trim()
-  if (!text) { showToast('节点文本不能为空'); return }
-  try {
-    await store.patchReplicaSteps(r.id, [{ idx: step.idx, text }])
-    step.text = text
-    editingStep.value = null
-    showToast('节点文本已保存')
-  } catch (e: any) { showToast(e?.message || '保存失败') }
-}
-async function removeStep (r: Replica, step: ReplicaStep) {
-  if (!confirm(`删除自建节点「${step.text.slice(0, 20)}」？节点下的附件会一起删除。`)) return
-  try {
-    await store.deleteReplicaStep(r.id, step.idx)
-    r.steps = r.steps.filter(s => s.idx !== step.idx)
-    showToast('节点已删除')
-  } catch (e: any) { showToast(e?.message || '删除失败') }
-}
-async function upload (r: Replica, step: ReplicaStep, e: Event) {
-  const input = e.target as HTMLInputElement
-  const files = [...(input.files || [])]
-  input.value = ''
-  if (!files.length) return
-  try {
-    const made = await store.uploadAttachments(r.id, step.idx, files)
-    step.attachments = [...(step.attachments || []), ...made]
-    showToast(`已上传 ${made.length} 个附件`)
-  } catch (err: any) { showToast(err?.message || '上传失败') }
-}
-async function removeAttachment (r: Replica, step: ReplicaStep, att: Attachment) {
-  if (!confirm(`删除附件 ${att.name}？`)) return
-  try {
-    await store.deleteAttachment(att.id)
-    step.attachments = (step.attachments || []).filter(a => a.id !== att.id)
-    if (previewAtt.value?.id === att.id) previewAtt.value = null
-  } catch (err: any) { showToast(err?.message || '删除附件失败') }
 }
 function askDelete (r: Replica) { confirmTarget.value = r }
 async function doDelete () {

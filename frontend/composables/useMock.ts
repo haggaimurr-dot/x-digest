@@ -126,11 +126,16 @@ export function useMockStore () {
     }
     persist()
   }
-  function addMockReplicaStep (id: string, text: string): ReplicaStep {
+  function addMockReplicaStep (id: string, text: string, parentIdx?: number | null): ReplicaStep {
     const r = replicas.value.find(x => x.id === id)
     if (!r) throw new Error('复刻不存在')
+    if (parentIdx != null) {
+      const parent = r.steps.find(s => s.idx === parentIdx)
+      if (!parent) throw new Error('父节点不存在')
+      if (parent.parent_idx != null) throw new Error('子节点最多支持两级')
+    }
     const idx = r.steps.reduce((m, s) => Math.max(m, s.idx), -1) + 1
-    const step: ReplicaStep = { text: text.trim(), idx, status: 'idle', note: '', is_custom: true, attachments: [] }
+    const step: ReplicaStep = { text: text.trim(), idx, status: 'idle', note: '', is_custom: true, parent_idx: parentIdx ?? null, attachments: [] }
     r.steps = [...r.steps, step]
     persist()
     return step
@@ -138,7 +143,9 @@ export function useMockStore () {
   function deleteMockReplicaStep (id: string, idx: number) {
     const r = replicas.value.find(x => x.id === id)
     if (!r) return
-    r.steps = r.steps.filter(s => !(s.idx === idx && s.is_custom))
+    const target = r.steps.find(s => s.idx === idx)
+    if (!target || !target.is_custom) return
+    r.steps = r.steps.filter(s => !(s.idx === idx || s.parent_idx === idx))
     persist()
   }
   function deleteReplica (id: string) {

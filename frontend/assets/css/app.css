@@ -37,6 +37,10 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
 /* 复刻页流程图：外层节点竖排，状态圆点 + 竖线连成流程线；子流程默认收起，点开再看。 */
 .flow-list { display: flex; flex-direction: column; }
 .flow-step.is-done .replica-step-text { text-decoration: line-through; color: var(--text-muted); }
+/* 自建节点操作行：徽标在左，编辑/删除收在右侧；删除用轻量红字，不用大红按钮。 */
+.node-actions { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; margin: 4px 0; }
+.btn-quiet { background: transparent; border-color: transparent; color: var(--text-muted); }
+.btn-quiet-danger { background: transparent; border-color: transparent; color: var(--danger-text); }
 .note-editor textarea { width: 100%; background: var(--bg); color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 8px; font: inherit; }
 .note-toolbar { display: flex; gap: 4px; flex-wrap: wrap; margin: 6px 0; }
 .note-toolbar button { cursor: pointer; border: 1px solid var(--border); background: var(--bg-elevated); color: var(--text); border-radius: 6px; padding: 3px 8px; }

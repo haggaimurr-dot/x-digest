@@ -619,18 +619,23 @@ func (s *Store) GetReplica(id string, attachDir string) (*model.Replica, error) 
 }
 
 func (s *Store) replicaSteps(replicaID string) ([]model.ReplicaStep, error) {
-	rows, err := s.DB.Query(`SELECT idx,text,tools,tech,prep,substeps_json,status,note,is_custom FROM replica_steps
+	rows, err := s.DB.Query(`SELECT idx,text,tools,tech,prep,substeps_json,status,note,is_custom,parent_idx FROM replica_steps
 		WHERE replica_id=? ORDER BY idx`, replicaID)
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
-	out := []model.ReplicaStep{}
+	all := []model.ReplicaStep{}
 	for rows.Next() {
 		var st model.ReplicaStep
 		var sub string
-		if err := rows.Scan(&st.Idx, &st.Text, &st.Tools, &st.Tech, &st.Prep, &sub, &st.Status, &st.Note, &st.IsCustom); err != nil {
+		var parent sql.NullInt64
+		if err := rows.Scan(&st.Idx, &st.Text, &st.Tools, &st.Tech, &st.Prep, &sub, &st.Status, &st.Note, &st.IsCustom, &parent); err != nil {
 			return nil, err
+		}
+		if parent.Valid {
+			p := int(parent.Int64)
+			st.ParentIdx = &p
 		}
 		if sub != "" {
 			_ = json.Unmarshal([]byte(sub), &st.Substeps)
@@ -640,9 +645,28 @@ func (s *Store) replicaSteps(replicaID string) ([]model.ReplicaStep, error) {
 			return nil, err
 		}
 		st.Attachments = atts
-		out = append(out, st)
+		all = append(all, st)
 	}
-	return out, rows.Err()
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	// Display order: each top-level node followed immediately by its children
+	// (both in idx order), so a child always sits under its parent.
+	children := map[int][]model.ReplicaStep{}
+	out := []model.ReplicaStep{}
+	for _, st := range all {
+		if st.ParentIdx != nil {
+			children[*st.ParentIdx] = append(children[*st.ParentIdx], st)
+		}
+	}
+	for _, st := range all {
+		if st.ParentIdx != nil {
+			continue
+		}
+		out = append(out, st)
+		out = append(out, children[st.Idx]...)
+	}
+	return out, nil
 }
 
 func (s *Store) replicaStepAttachments(replicaID string, stepIdx int) ([]model.Attachment, error) {
@@ -781,7 +805,9 @@ type StepPatch struct {
 // AddReplicaStep appends a user-created (custom) flow node to a replica.
 // Custom nodes have no tools/tech/prep/substeps; they support status, note,
 // text edits and attachments exactly like post-derived steps.
-func (s *Store) AddReplicaStep(id, text string) (model.ReplicaStep, error) {
+// With parentIdx set, the node becomes a child of that top-level node;
+// at most two levels are supported, so a child cannot have children.
+func (s *Store) AddReplicaStep(id, text string, parentIdx *int) (model.ReplicaStep, error) {
 	text = strings.TrimSpace(text)
 	if text == "" {
 		return model.ReplicaStep{}, fmt.Errorf("empty step text")
@@ -793,6 +819,16 @@ func (s *Store) AddReplicaStep(id, text string) (model.ReplicaStep, error) {
 	if n == 0 {
 		return model.ReplicaStep{}, sql.ErrNoRows
 	}
+	if parentIdx != nil {
+		var parentParent sql.NullInt64
+		err := s.DB.QueryRow("SELECT parent_idx FROM replica_steps WHERE replica_id=? AND idx=?", id, *parentIdx).Scan(&parentParent)
+		if err != nil {
+			return model.ReplicaStep{}, fmt.Errorf("unknown parent step: %d", *parentIdx)
+		}
+		if parentParent.Valid {
+			return model.ReplicaStep{}, fmt.Errorf("sub-nodes support at most two levels")
+		}
+	}
 	var maxIdx sql.NullInt64
 	if err := s.DB.QueryRow("SELECT MAX(idx) FROM replica_steps WHERE replica_id=?", id).Scan(&maxIdx); err != nil {
 		return model.ReplicaStep{}, err
@@ -801,9 +837,13 @@ func (s *Store) AddReplicaStep(id, text string) (model.ReplicaStep, error) {
 	if maxIdx.Valid {
 		idx = int(maxIdx.Int64) + 1
 	}
-	st := model.ReplicaStep{Idx: idx, Text: text, Status: "idle", Note: "", IsCustom: true, Attachments: []model.Attachment{}}
-	_, err := s.DB.Exec(`INSERT INTO replica_steps(replica_id,idx,text,tools,tech,prep,substeps_json,status,note,is_custom)
-		VALUES(?,?,?,'','', '', '[]', 'idle', '', 1)`, id, idx, text)
+	st := model.ReplicaStep{Idx: idx, Text: text, Status: "idle", Note: "", IsCustom: true, ParentIdx: parentIdx, Attachments: []model.Attachment{}}
+	var parentArg any
+	if parentIdx != nil {
+		parentArg = *parentIdx
+	}
+	_, err := s.DB.Exec(`INSERT INTO replica_steps(replica_id,idx,text,tools,tech,prep,substeps_json,status,note,is_custom,parent_idx)
+		VALUES(?,?,?,'','', '', '[]', 'idle', '', 1, ?)`, id, idx, text, parentArg)
 	if err != nil {
 		return model.ReplicaStep{}, err
 	}
@@ -811,17 +851,61 @@ func (s *Store) AddReplicaStep(id, text string) (model.ReplicaStep, error) {
 }
 
 // DeleteReplicaStep removes a custom node only; post-derived steps cannot be
-// deleted through this path (they belong to the post snapshot).
-func (s *Store) DeleteReplicaStep(id string, idx int) error {
-	res, err := s.DB.Exec("DELETE FROM replica_steps WHERE replica_id=? AND idx=? AND is_custom=1", id, idx)
+// deleted through this path (they belong to the post snapshot). Deleting a
+// top-level node also deletes its child nodes. Returns the disk paths of the
+// deleted nodes' attachments so the caller can unlink the files.
+func (s *Store) DeleteReplicaStep(id string, idx int) ([]string, error) {
+	tx, err := s.DB.Begin()
 	if err != nil {
-		return err
+		return nil, err
+	}
+	defer tx.Rollback()
+	res, err := tx.Exec("DELETE FROM replica_steps WHERE replica_id=? AND idx=? AND is_custom=1", id, idx)
+	if err != nil {
+		return nil, err
 	}
 	aff, _ := res.RowsAffected()
 	if aff == 0 {
-		return fmt.Errorf("unknown step idx: %d", idx)
+		return nil, fmt.Errorf("unknown step idx: %d", idx)
 	}
-	return nil
+	var childIdxs []int
+	rows, err := tx.Query("SELECT idx FROM replica_steps WHERE replica_id=? AND parent_idx=?", id, idx)
+	if err != nil {
+		return nil, err
+	}
+	for rows.Next() {
+		var ci int
+		if err := rows.Scan(&ci); err != nil {
+			rows.Close()
+			return nil, err
+		}
+		childIdxs = append(childIdxs, ci)
+	}
+	rows.Close()
+	if _, err := tx.Exec("DELETE FROM replica_steps WHERE replica_id=? AND parent_idx=?", id, idx); err != nil {
+		return nil, err
+	}
+	delIdxs := append([]int{idx}, childIdxs...)
+	var paths []string
+	for _, di := range delIdxs {
+		prows, err := tx.Query("SELECT path FROM attachments WHERE replica_id=? AND step_idx=?", id, di)
+		if err != nil {
+			return nil, err
+		}
+		for prows.Next() {
+			var p string
+			if err := prows.Scan(&p); err != nil {
+				prows.Close()
+				return nil, err
+			}
+			paths = append(paths, p)
+		}
+		prows.Close()
+		if _, err := tx.Exec("DELETE FROM attachments WHERE replica_id=? AND step_idx=?", id, di); err != nil {
+			return nil, err
+		}
+	}
+	return paths, tx.Commit()
 }
 
 func (s *Store) PatchReplicaSteps(id string, patches []StepPatch) error {
