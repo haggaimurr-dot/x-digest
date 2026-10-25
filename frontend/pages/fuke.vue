@@ -36,18 +36,17 @@
           </div>
           <button class="btn btn-sm btn-danger" type="button" @click="askDelete(r)">删除复刻</button>
         </div>
-        <div style="margin:10px 0 4px;display:flex;justify-content:space-between;gap:8px">
-          <span>进度 {{ progress(r).done }} / {{ progress(r).total }}</span>
-          <span>{{ progressPct(r) }}%</span>
-        </div>
-        <div class="progress-bar"><div :style="{ width: progressPct(r) + '%' }" /></div>
-
-        <div v-for="(step, si) in r.steps" :key="step.idx" class="replica-step" :class="{ 'is-done': step.status === 'done' }">
-          <button type="button" class="status-dot" :class="`is-${step.status}`"
-            :title="`${statusNames[step.status]}，点击切换状态`" :aria-label="`步骤 ${si + 1}：${statusNames[step.status]}，点击切换`"
-            @click="cycleStatus(r, step)" />
-          <div style="flex:1;min-width:0">
-            <div class="replica-step-text"><strong>{{ si + 1 }}. {{ step.text }}</strong></div>
+        <div class="flow-list" style="margin-top:12px">
+          <p v-if="!r.steps.length" style="color:var(--text-muted)">还没有节点，在下面添加第一个节点吧。</p>
+          <div v-for="(step, si) in r.steps" :key="step.idx" class="flow-step" :class="{ 'is-last': si === r.steps.length - 1, 'is-done': step.status === 'done' }">
+            <div class="flow-rail">
+              <button type="button" class="status-dot" :class="`is-${step.status}`"
+                :title="`${statusNames[step.status]}，点击切换状态`" :aria-label="`步骤 ${si + 1}：${statusNames[step.status]}，点击切换`"
+                @click="cycleStatus(r, step)" />
+              <span class="flow-line" v-if="si < r.steps.length - 1" />
+            </div>
+            <div class="flow-card" style="flex:1;min-width:0">
+              <div class="replica-step-text"><strong>{{ si + 1 }}. {{ step.text }}</strong></div>
             <div v-if="step.is_custom" style="margin:4px 0;display:flex;gap:6px;align-items:center;flex-wrap:wrap">
               <span class="chip active">自建节点</span>
               <button class="btn btn-sm" type="button" @click="startEditText(r, step)">编辑文本</button>
@@ -65,9 +64,22 @@
               <span v-if="step.tech">技术：{{ step.tech }} </span>
               <span v-if="step.prep">前提：{{ step.prep }}</span>
             </div>
-            <ol v-if="(step.substeps || []).length" style="color:var(--text-muted);font-size:13px">
-              <li v-for="(sub, j) in step.substeps!.slice(0, 5)" :key="j">{{ trunc40(sub.text) }}</li>
-            </ol>
+            <div v-if="(step.substeps || []).length" style="margin-top:8px">
+              <button class="btn btn-sm" type="button" @click="toggleSubsteps(r, step)">
+                {{ substepsOpen.has(subKey(r, step)) ? '收起子流程 ▾' : `展开子流程（${step.substeps!.length}） ▸` }}
+              </button>
+              <div v-if="substepsOpen.has(subKey(r, step))" class="flow-list" style="margin-top:8px">
+                <div v-for="(sub, j) in step.substeps!.slice(0, 5)" :key="j" class="flow-step" :class="{ 'is-last': j === Math.min(step.substeps!.length, 5) - 1 }">
+                  <div class="flow-rail">
+                    <span class="flow-node" />
+                    <span class="flow-line" v-if="j < Math.min(step.substeps!.length, 5) - 1" />
+                  </div>
+                  <div class="flow-card" style="padding:8px 10px">
+                    <div class="flow-text" style="font-size:13px">{{ trunc40(sub.text) }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <NoteEditor :model-value="step.note || ''" @update:model-value="step.note = $event" @save="saveNote(r, step, $event)" />
             <div style="margin-top:8px">
               <label class="btn btn-sm" style="cursor:pointer">上传图片
@@ -87,8 +99,14 @@
               </div>
               <AttachmentPreview v-if="previewAtt && step.attachments!.some(a => a.id === previewAtt!.id)" :key="previewAtt.id" :attachment="previewAtt" />
             </div>
+            </div>
           </div>
         </div>
+        <div style="margin:12px 0 4px;display:flex;justify-content:space-between;gap:8px">
+          <span>进度 {{ progress(r).done }} / {{ progress(r).total }}</span>
+          <span>{{ progressPct(r) }}%</span>
+        </div>
+        <div class="progress-bar"><div :style="{ width: progressPct(r) + '%' }" /></div>
         <div style="margin-top:12px;border-top:1px dashed var(--border);padding-top:10px">
           <div class="chip-group-title" style="margin-top:0">自建流程节点</div>
           <input class="field" style="width:100%" type="text" v-model="newStepText[r.id]" placeholder="节点文字（纯文本），添加后可继续改状态、写备注、上传图片和附件" aria-label="新节点文本" />
@@ -146,6 +164,14 @@ async function reload () {
   loading.value = true
   try { replicas.value = await store.loadReplicas(sort.value) } catch (e: any) { loadError.value = e?.message || '加载失败' }
   finally { loading.value = false }
+}
+const substepsOpen = ref<Set<string>>(new Set())
+function subKey (r: Replica, step: ReplicaStep) { return `${r.id}:${step.idx}` }
+function toggleSubsteps (r: Replica, step: ReplicaStep) {
+  const k = subKey(r, step)
+  if (substepsOpen.value.has(k)) substepsOpen.value.delete(k)
+  else substepsOpen.value.add(k)
+  substepsOpen.value = new Set(substepsOpen.value)
 }
 async function cycleStatus (r: Replica, step: ReplicaStep) {
   const next = NEXT[step.status] || 'idle'
