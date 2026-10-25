@@ -76,6 +76,7 @@ type ReplicaStep struct {
 	Substeps    []Substep    `json:"substeps,omitempty"`
 	Status      string       `json:"status"`
 	Note        string       `json:"note"`
+	IsCustom    bool         `json:"is_custom,omitempty"`
 	Attachments []Attachment `json:"attachments"`
 }
 

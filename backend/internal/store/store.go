@@ -270,7 +270,7 @@ func (s *Store) ListWatchlist() (groups []model.Group, accounts []model.Account,
 	if err := grows.Err(); err != nil {
 		return nil, nil, err
 	}
-	arows, err := s.DB.Query("SELECT username,name,avatar,group_id,bio FROM authors WHERE group_id IS NOT NULL ORDER BY username")
+	arows, err := s.DB.Query("SELECT username,name,avatar,group_id,bio FROM authors ORDER BY username")
 	if err != nil {
 		return nil, nil, err
 	}
@@ -282,7 +282,14 @@ func (s *Store) ListWatchlist() (groups []model.Group, accounts []model.Account,
 		if err := arows.Scan(&a.Username, &a.Name, &a.Avatar, &gid, &a.Bio); err != nil {
 			return nil, nil, err
 		}
-		a.Group = gid.String
+		// Authors with no group (NULL, e.g. imported from posts before any
+		// watchlist assignment, or orphaned by an old group delete) belong
+		// to the default group so they stay visible and manageable.
+		if gid.Valid && gid.String != "" {
+			a.Group = gid.String
+		} else {
+			a.Group = "other"
+		}
 		a.Tags, err = s.authorTags(a.Username)
 		if err != nil {
 			return nil, nil, err
@@ -324,11 +331,24 @@ func (s *Store) DeleteGroup(id string) (code string, err error) {
 	if fixed {
 		return "GROUP_FIXED", fmt.Errorf("fixed group cannot be deleted")
 	}
-	if _, err := s.DB.Exec("UPDATE authors SET group_id='other' WHERE group_id=?", id); err != nil {
+	tx, err := s.DB.Begin()
+	if err != nil {
 		return "", err
 	}
-	_, err = s.DB.Exec("DELETE FROM watchlist_groups WHERE id=?", id)
-	return "", err
+	defer tx.Rollback()
+	// Guarantee the default group exists before reassigning into it; the
+	// reassign and the delete must land together or not at all, otherwise
+	// authors are orphaned (NULL) and vanish from the watchlist response.
+	if _, err := tx.Exec("INSERT IGNORE INTO watchlist_groups(id,name,fixed) VALUES('other','默认',1)"); err != nil {
+		return "", err
+	}
+	if _, err := tx.Exec("UPDATE authors SET group_id='other' WHERE group_id=?", id); err != nil {
+		return "", err
+	}
+	if _, err := tx.Exec("DELETE FROM watchlist_groups WHERE id=?", id); err != nil {
+		return "", err
+	}
+	return "", tx.Commit()
 }
 
 func (s *Store) GroupExists(id string) bool {
@@ -599,7 +619,7 @@ func (s *Store) GetReplica(id string, attachDir string) (*model.Replica, error) 
 }
 
 func (s *Store) replicaSteps(replicaID string) ([]model.ReplicaStep, error) {
-	rows, err := s.DB.Query(`SELECT idx,text,tools,tech,prep,substeps_json,status,note FROM replica_steps
+	rows, err := s.DB.Query(`SELECT idx,text,tools,tech,prep,substeps_json,status,note,is_custom FROM replica_steps
 		WHERE replica_id=? ORDER BY idx`, replicaID)
 	if err != nil {
 		return nil, err
@@ -609,7 +629,7 @@ func (s *Store) replicaSteps(replicaID string) ([]model.ReplicaStep, error) {
 	for rows.Next() {
 		var st model.ReplicaStep
 		var sub string
-		if err := rows.Scan(&st.Idx, &st.Text, &st.Tools, &st.Tech, &st.Prep, &sub, &st.Status, &st.Note); err != nil {
+		if err := rows.Scan(&st.Idx, &st.Text, &st.Tools, &st.Tech, &st.Prep, &sub, &st.Status, &st.Note, &st.IsCustom); err != nil {
 			return nil, err
 		}
 		if sub != "" {
@@ -739,6 +759,53 @@ type StepPatch struct {
 	Idx    int
 	Status *string
 	Note   *string
+	Text   *string
+}
+
+// AddReplicaStep appends a user-created (custom) flow node to a replica.
+// Custom nodes have no tools/tech/prep/substeps; they support status, note,
+// text edits and attachments exactly like post-derived steps.
+func (s *Store) AddReplicaStep(id, text string) (model.ReplicaStep, error) {
+	text = strings.TrimSpace(text)
+	if text == "" {
+		return model.ReplicaStep{}, fmt.Errorf("empty step text")
+	}
+	var n int
+	if err := s.DB.QueryRow("SELECT COUNT(*) FROM replicas WHERE id=?", id).Scan(&n); err != nil {
+		return model.ReplicaStep{}, err
+	}
+	if n == 0 {
+		return model.ReplicaStep{}, sql.ErrNoRows
+	}
+	var maxIdx sql.NullInt64
+	if err := s.DB.QueryRow("SELECT MAX(idx) FROM replica_steps WHERE replica_id=?", id).Scan(&maxIdx); err != nil {
+		return model.ReplicaStep{}, err
+	}
+	idx := 0
+	if maxIdx.Valid {
+		idx = int(maxIdx.Int64) + 1
+	}
+	st := model.ReplicaStep{Idx: idx, Text: text, Status: "idle", Note: "", IsCustom: true, Attachments: []model.Attachment{}}
+	_, err := s.DB.Exec(`INSERT INTO replica_steps(replica_id,idx,text,tools,tech,prep,substeps_json,status,note,is_custom)
+		VALUES(?,?,?,'','', '', '[]', 'idle', '', 1)`, id, idx, text)
+	if err != nil {
+		return model.ReplicaStep{}, err
+	}
+	return st, nil
+}
+
+// DeleteReplicaStep removes a custom node only; post-derived steps cannot be
+// deleted through this path (they belong to the post snapshot).
+func (s *Store) DeleteReplicaStep(id string, idx int) error {
+	res, err := s.DB.Exec("DELETE FROM replica_steps WHERE replica_id=? AND idx=? AND is_custom=1", id, idx)
+	if err != nil {
+		return err
+	}
+	aff, _ := res.RowsAffected()
+	if aff == 0 {
+		return fmt.Errorf("unknown step idx: %d", idx)
+	}
+	return nil
 }
 
 func (s *Store) PatchReplicaSteps(id string, patches []StepPatch) error {
@@ -757,6 +824,19 @@ func (s *Store) PatchReplicaSteps(id string, patches []StepPatch) error {
 	for _, p := range patches {
 		if p.Status != nil && *p.Status != "idle" && *p.Status != "active" && *p.Status != "done" {
 			return fmt.Errorf("invalid status: %s", *p.Status)
+		}
+		if p.Text != nil {
+			// Step text is editable only on user-created nodes; post-derived
+			// steps keep the post snapshot.
+			res, err := tx.Exec("UPDATE replica_steps SET text=? WHERE replica_id=? AND idx=? AND is_custom=1",
+				strings.TrimSpace(*p.Text), id, p.Idx)
+			if err != nil {
+				return err
+			}
+			aff, _ := res.RowsAffected()
+			if aff == 0 {
+				return fmt.Errorf("step text is editable only on custom steps: %d", p.Idx)
+			}
 		}
 		var sets []string
 		var args []any
@@ -1242,11 +1322,21 @@ func (s *Store) DeleteRepoGroup(id string) (code string, err error) {
 	if fixed {
 		return "GROUP_FIXED", fmt.Errorf("fixed group cannot be deleted")
 	}
-	if _, err := s.DB.Exec("UPDATE repos SET group_id='other' WHERE group_id=?", id); err != nil {
+	tx, err := s.DB.Begin()
+	if err != nil {
 		return "", err
 	}
-	_, err = s.DB.Exec("DELETE FROM repo_groups WHERE id=?", id)
-	return "", err
+	defer tx.Rollback()
+	if _, err := tx.Exec("INSERT IGNORE INTO repo_groups(id,name,fixed) VALUES('other','默认',1)"); err != nil {
+		return "", err
+	}
+	if _, err := tx.Exec("UPDATE repos SET group_id='other' WHERE group_id=?", id); err != nil {
+		return "", err
+	}
+	if _, err := tx.Exec("DELETE FROM repo_groups WHERE id=?", id); err != nil {
+		return "", err
+	}
+	return "", tx.Commit()
 }
 
 func (s *Store) RepoGroupExists(id string) bool {

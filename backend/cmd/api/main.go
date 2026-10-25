@@ -554,6 +554,56 @@ func (s *server) handleReplicaSub(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, 200, map[string]any{"attachments": atts})
 		return
 	}
+	if len(parts) == 2 && parts[1] == "steps" {
+		// POST /api/v1/replicas/{id}/steps — add a user-created flow node.
+		if r.Method != http.MethodPost {
+			writeErr(w, 405, "METHOD_NOT_ALLOWED", "only POST")
+			return
+		}
+		var body struct {
+			Text string `json:"text"`
+		}
+		if !decodeBody(w, r, &body) {
+			return
+		}
+		st, err := s.st.AddReplicaStep(id, body.Text)
+		if err != nil {
+			if errors.Is(err, sql.ErrNoRows) {
+				writeErr(w, 404, "NOT_FOUND", "replica not found")
+				return
+			}
+			if err.Error() == "empty step text" {
+				writeErr(w, 422, "VALIDATION", "step text is required")
+				return
+			}
+			writeErr(w, 500, "DB_ERROR", err.Error())
+			return
+		}
+		writeJSON(w, 201, st)
+		return
+	}
+	if len(parts) == 3 && parts[1] == "steps" {
+		// DELETE /api/v1/replicas/{id}/steps/{idx} — delete a custom node only.
+		if r.Method != http.MethodDelete {
+			writeErr(w, 405, "METHOD_NOT_ALLOWED", "only DELETE")
+			return
+		}
+		idx, err := strconv.Atoi(parts[2])
+		if err != nil || idx < 0 {
+			writeErr(w, 422, "VALIDATION", "invalid step idx")
+			return
+		}
+		if err := s.st.DeleteReplicaStep(id, idx); err != nil {
+			if strings.HasPrefix(err.Error(), "unknown step") {
+				writeErr(w, 422, "VALIDATION", err.Error())
+				return
+			}
+			writeErr(w, 500, "DB_ERROR", err.Error())
+			return
+		}
+		writeJSON(w, 200, map[string]any{"deleted": true})
+		return
+	}
 	if len(parts) != 1 {
 		writeErr(w, 404, "NOT_FOUND", "not found")
 		return
@@ -576,6 +626,7 @@ func (s *server) handleReplicaSub(w http.ResponseWriter, r *http.Request) {
 				Idx    int     `json:"idx"`
 				Status *string `json:"status"`
 				Note   *string `json:"note"`
+				Text   *string `json:"text"`
 			} `json:"steps"`
 		}
 		if !decodeBody(w, r, &body) {
@@ -583,7 +634,7 @@ func (s *server) handleReplicaSub(w http.ResponseWriter, r *http.Request) {
 		}
 		var patches []store.StepPatch
 		for _, st := range body.Steps {
-			patches = append(patches, store.StepPatch{Idx: st.Idx, Status: st.Status, Note: st.Note})
+			patches = append(patches, store.StepPatch{Idx: st.Idx, Status: st.Status, Note: st.Note, Text: st.Text})
 		}
 		if err := s.st.PatchReplicaSteps(id, patches); err != nil {
 			if errors.Is(err, sql.ErrNoRows) {
