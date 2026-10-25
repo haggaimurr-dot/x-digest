@@ -65,10 +65,11 @@
 
       <section class="timeline">
         <article v-for="post in filtered" :key="post.id" class="post-card">
-          <div class="post-meta" style="display:flex;gap:10px;align-items:center">
-            <img v-if="avatarUrl(post.author_avatar)" :src="avatarUrl(post.author_avatar)" :alt="post.author_name" class="avatar"
-              style="width:40px;height:40px;border-radius:50%;object-fit:cover" @error="onAvatarError($event, post)" />
-            <span v-else class="avatar" :style="{ background: avatarColor(post.author_name), width: '40px', height: '40px', borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }">{{ avatarInitial(post.author_name) }}</span>
+          <img v-if="avatarUrl(post.author_avatar)" :src="avatarUrl(post.author_avatar)" :alt="post.author_name" class="avatar"
+            style="width:40px;height:40px;border-radius:50%;object-fit:cover" @error="onAvatarError($event, post)" />
+          <span v-else class="avatar" :style="{ background: avatarColor(post.author_name), width: '40px', height: '40px', borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }">{{ avatarInitial(post.author_name) }}</span>
+          <div class="post-body">
+          <div class="post-meta">
             <div style="min-width:0">
               <div><strong>{{ post.author_name }}</strong> <a :href="`https://x.com/${post.author}`" target="_blank" rel="noopener">@{{ post.author }}</a></div>
               <div style="color:var(--text-muted);font-size:13px">{{ relativeTime(post.published_at) }} · {{ shanghaiTime(post.published_at) }}<span v-if="post.industry"> · {{ post.industry }}</span><span v-if="post.tech"> · {{ post.tech }}</span></div>
@@ -103,6 +104,7 @@
             <summary>实现步骤（{{ post.steps!.length }}）· 流程图</summary>
             <div class="flow-chart">
               <div v-for="(step, i) in post.steps" :key="i" class="flow-step" :class="{ 'is-last': i === post.steps!.length - 1 }">
+                <div class="flow-rail" aria-hidden="true"><span class="flow-node" /><span v-if="i !== post.steps!.length - 1" class="flow-line" /></div>
                 <div class="flow-card">
                   <div class="flow-text" v-html="highlightHtml(`${i + 1}. ${step.text}`, plainKeyword)" />
                   <div class="flow-meta" v-if="step.tools || step.tech || step.prep">
@@ -120,6 +122,7 @@
               </div>
             </div>
           </details>
+          </div>
         </article>
         <p v-if="!loading && !filtered.length" class="empty">没有符合条件的帖子。试试清除筛选。</p>
       </section>

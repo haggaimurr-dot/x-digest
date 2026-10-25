@@ -15,7 +15,7 @@
       </div>
       <p v-if="!loading && !replicas.length" class="empty">还没有复刻。去摘要页点帖子卡片上的「复刻」即可生成（同一帖子只生成一次）。</p>
 
-      <article v-for="r in replicas" :key="r.id" class="post-card" style="margin-bottom:16px">
+      <article v-for="r in replicas" :key="r.id" class="post-card" style="margin-bottom:16px;display:block">
         <div style="display:flex;gap:8px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap">
           <div style="min-width:0">
             <h2 class="post-title" style="margin:0"><a :href="r.post_url" target="_blank" rel="noopener">{{ r.post_title }}</a></h2>
