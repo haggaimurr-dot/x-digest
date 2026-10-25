@@ -428,8 +428,13 @@ async function refreshWatchlist () {
   }
 }
 async function doAddGroup () {
-  if (!newGroupName.value.trim()) return
-  await store.addGroup(newGroupName.value.trim()); newGroupName.value = ''; await refreshWatchlist()
+  if (!newGroupName.value.trim()) { showToast('请先输入分组名称'); return }
+  try {
+    await store.addGroup(newGroupName.value.trim()); newGroupName.value = ''; await refreshWatchlist()
+    showToast('分组已新增')
+  } catch (e: any) {
+    showToast(e?.message || '新增分组失败，请重试')
+  }
 }
 async function doDeleteGroup (id: string) {
   if (!confirm('删除该分组？组内作者将归入“默认”。')) return

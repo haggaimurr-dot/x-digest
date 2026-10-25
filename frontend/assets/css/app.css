@@ -13,6 +13,13 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
 .post-card .avatar { flex-shrink: 0; }
 .modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 100; display: flex; align-items: flex-start; justify-content: center; padding: 8vh 12px 12px; overflow-y: auto; overscroll-behavior: contain; }
 .modal-card { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 16px; width: 100%; max-width: 640px; padding: 20px; color: var(--text); }
+/* Settings/add/edit modals put all content directly in .modal-card (no
+   .modal-body). The legacy original.css caps .modal-card at min(80vh,640px)
+   with overflow:hidden, which clips everything below the fold and leaves the
+   backdrop (the real scroller) with nothing to scroll — on a phone the lower
+   sections and the 完成 button become unreachable. Let the card grow to its
+   full height and scroll through the backdrop instead. */
+.modal-card { max-height: none; overflow: visible; }
 .modal-card h2 { margin-top: 0; }
 .modal-card .field, .modal-card textarea, .modal-card select { width: 100%; background: var(--bg); color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; font: inherit; }
 .modal-card label { display: block; margin: 10px 0 4px; color: var(--text-muted); font-size: 13px; }
