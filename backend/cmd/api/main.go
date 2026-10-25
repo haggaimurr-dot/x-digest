@@ -1011,7 +1011,7 @@ func (s *server) handleRepoSub(w http.ResponseWriter, r *http.Request) {
 				writeErr(w, 404, "NOT_FOUND", "repo not found")
 				return
 			}
-			releases, err := s.st.ListRepoReleases(fullName, 20)
+			releases, err := s.st.ListRepoReleases(fullName, 100)
 			if err != nil {
 				writeErr(w, 500, "DB_ERROR", err.Error())
 				return

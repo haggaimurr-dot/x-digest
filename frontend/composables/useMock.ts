@@ -41,14 +41,53 @@ const MOCK_REPO_COMMITS: Record<string, RepoCommit[]> = {
     { sha: 'e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2', message: 'chore: bump deps', author_name: 'Evan You', author_login: 'yyx990803', date: '2026-10-23T02:15:00Z', html_url: 'https://github.com/vuejs/core/commit/e5f6a1b' }
   ]
 }
-const MOCK_REPO_RELEASES: Record<string, RepoRelease | null> = {
-  'nuxt/nuxt': { tag_name: 'v4.6.2', name: 'v4.6.2', published_at: '2026-10-20T10:00:00Z', html_url: 'https://github.com/nuxt/nuxt/releases/tag/v4.6.2' },
-  'vuejs/core': null
+const MOCK_REPO_RELEASES: Record<string, RepoRelease[]> = {
+  'nuxt/nuxt': [
+    {
+      tag_name: 'v4.6.0', name: 'v4.6.0', published_at: '2026-09-15T10:00:00Z',
+      html_url: 'https://github.com/nuxt/nuxt/releases/tag/v4.6.0',
+      body: '## 新功能\n- 新增实验性视图过渡支持\n- 路由规则合并逻辑优化\n\n## 修复\n- 修复开发服务器偶发热更新失效的问题'
+    },
+    {
+      tag_name: 'v4.6.1', name: 'v4.6.1', published_at: '2026-10-05T14:30:00Z',
+      html_url: 'https://github.com/nuxt/nuxt/releases/tag/v4.6.1',
+      body: '## 修复\n- 修复 NuxtLink 在特定路由下的预取异常\n- 修复 useFetch 缓存键冲突\n\n完整变更见提交记录。'
+    },
+    {
+      tag_name: 'v4.6.2', name: 'v4.6.2', published_at: '2026-10-20T10:00:00Z',
+      html_url: 'https://github.com/nuxt/nuxt/releases/tag/v4.6.2',
+      body: '## 修复\n- fix(nuxt): resolve route rules merging\n- 修复构建产物中多余的 sourcemap\n\n## 文档\n- 更新部署指南，增加容器部署示例'
+    },
+    {
+      tag_name: 'v4.7.0-beta.1', name: 'v4.7.0-beta.1', published_at: '2026-10-24T09:00:00Z',
+      html_url: 'https://github.com/nuxt/nuxt/releases/tag/v4.7.0-beta.1', prerelease: true,
+      body: '## 预发布说明\n这是一个测试版本，请勿用于生产环境。\n\n- 试验新的 Islands 渲染管线\n- 已知问题：与旧版模块的兼容性待验证'
+    },
+    {
+      tag_name: 'v4.7.0', name: 'v4.7.0',
+      html_url: 'https://github.com/nuxt/nuxt/releases/tag/v4.7.0', draft: true,
+      body: '（草稿）\n\n- 计划中的大版本更新说明，尚未定稿。'
+    }
+  ],
+  'vuejs/core': []
+}
+export function mockRepoReleases (fullName: string): RepoRelease[] { return MOCK_REPO_RELEASES[fullName] || [] }
+export function mockRepoRelease (fullName: string): RepoRelease | null {
+  const published = mockRepoReleases(fullName).filter(r => !r.draft && r.published_at)
+  if (!published.length) return null
+  return [...published].sort((a, b) => Date.parse(b.published_at!) - Date.parse(a.published_at!))[0]
 }
 export const MOCK_REPOS: Repo[] = [
   {
     full_name: 'nuxt/nuxt', owner: 'nuxt', name: 'nuxt',
     description: 'The Intuitive Vue Framework',
+    readme_intro: 'Nuxt 是基于 Vue 的直观框架，提供开箱即用的服务端渲染、自动路由与强大的模块生态。',
+    tutorial_steps: [
+      { text: '安装 Node.js 18 或更高版本，然后执行 npx nuxi@latest init my-app 创建项目' },
+      { text: '进入项目目录并安装依赖：cd my-app && npm install' },
+      { text: '启动开发服务器：npm run dev，在浏览器打开 http://localhost:3000 预览' },
+      { text: '编辑 app.vue 开始开发，完成后执行 npm run build 构建生产版本' }
+    ],
     language: 'TypeScript', stars: 57800, forks: 6200, open_issues: 412, open_prs: 86,
     pushed_at: '2026-10-24T09:12:00Z', updated_at: '2026-10-24T09:12:00Z',
     html_url: 'https://github.com/nuxt/nuxt', homepage: 'https://nuxt.com',
@@ -66,7 +105,6 @@ export const MOCK_REPOS: Repo[] = [
   }
 ]
 export function mockRepoCommits (fullName: string): RepoCommit[] { return MOCK_REPO_COMMITS[fullName] || [] }
-export function mockRepoRelease (fullName: string): RepoRelease | null { return MOCK_REPO_RELEASES[fullName] ?? null }
 
 let seq = 1
 export function useMockStore () {

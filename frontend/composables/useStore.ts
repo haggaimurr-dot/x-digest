@@ -1,8 +1,8 @@
 // Data layer: real /api/v1 by default, mock fallback when NUXT_PUBLIC_USE_MOCK=1.
 // Pages only ever talk to this layer, never to raw fetch or raw mock data.
-import type { Post, Watchlist, Categories, Replica, ReplicaStep, Attachment, Repo, RepoGroup, RepoDetail } from './types'
+import type { Post, Watchlist, Categories, Replica, ReplicaStep, Attachment, Repo, RepoGroup, RepoDetail, RepoRelease } from './types'
 import { ApiError } from './types'
-import { MOCK_POSTS, MOCK_UPDATED_AT, mockRepoCommits, mockRepoRelease } from './useMock'
+import { MOCK_POSTS, MOCK_UPDATED_AT, mockRepoCommits, mockRepoRelease, mockRepoReleases } from './useMock'
 
 export const ATTACHMENT_EXTS = 'pdf doc docx xls xlsx ppt pptx txt md csv png jpg jpeg gif webp bmp avif svg ico zip rar 7z tar gz tgz'.split(' ')
 export const IMAGE_EXTS = ['png', 'jpg', 'jpeg', 'gif', 'webp', 'bmp', 'avif', 'svg', 'ico']
@@ -212,11 +212,18 @@ export function useStore () {
     if (mock.value) {
       const repo = mockStore.repos.value.find(r => r.full_name.toLowerCase() === fullName.toLowerCase())
       if (!repo) throw new ApiError(404, 'NOT_FOUND', '仓库不存在')
-      return { repo, commits: mockRepoCommits(repo.full_name), latest_release: mockRepoRelease(repo.full_name) }
+      return { repo, commits: mockRepoCommits(repo.full_name), latest_release: mockRepoRelease(repo.full_name), releases: mockRepoReleases(repo.full_name) }
     }
     const data = await apiFetch<any>(`repos/${fullName}`)
     const repo: Repo = data.repo || data
-    return { repo, commits: data.commits || [], latest_release: data.latest_release ?? null }
+    // Full release list: prefer it if the detail endpoint already embeds it,
+    // otherwise fetch the releases endpoint. A releases failure must not
+    // break the whole detail load — fall back to an empty list.
+    let releases: RepoRelease[] | undefined = Array.isArray(data.releases) ? data.releases : undefined
+    if (releases === undefined) {
+      try { releases = await loadRepoReleases(fullName) } catch { releases = [] }
+    }
+    return { repo, commits: data.commits || [], latest_release: data.latest_release ?? null, releases: releases || [] }
   }
   async function loadRepoCommits (fullName: string) {
     if (mock.value) return mockRepoCommits(fullName)
@@ -224,10 +231,7 @@ export function useStore () {
     return Array.isArray(data) ? data : (data.commits || [])
   }
   async function loadRepoReleases (fullName: string) {
-    if (mock.value) {
-      const rel = mockRepoRelease(fullName)
-      return rel ? [rel] : []
-    }
+    if (mock.value) return mockRepoReleases(fullName)
     const data = await apiFetch<any>(`repos/${fullName}/releases`)
     return Array.isArray(data) ? data : (data.releases || [])
   }

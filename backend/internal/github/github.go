@@ -1,13 +1,14 @@
 // Package github syncs public (or, with a token, private) GitHub repository
 // metadata into the x-digest repos tables. Standard library only.
 //
-// Sync flow per repository — about 5 requests, in order:
+// Sync flow per repository — about 6 requests, in order:
 //
 //	GET /repos/{owner}/{repo}
 //	GET /repos/{owner}/{repo}/commits?per_page=10
-//	GET /repos/{owner}/{repo}/releases?per_page=5
+//	GET /repos/{owner}/{repo}/releases?per_page=100&page=1.. (up to 100 releases)
 //	GET /search/issues?q=repo:{o}/{r}+type:issue+state:open (total_count)
 //	GET /search/issues?q=repo:{o}/{r}+type:pr+state:open   (total_count)
+//	GET /repos/{owner}/{repo}/readme (Accept: application/vnd.github.raw)
 //
 // The search calls are needed because the repo payload's open_issues_count
 // counts issues AND pull requests together. If a search call fails or is
@@ -119,6 +120,13 @@ func (rl rateLimit) exhausted() bool { return rl.hasHeader && rl.remaining == 0 
 // status is returned as an error carrying the status code; rate-limit
 // exhaustion is reported separately so callers can preserve old data.
 func (c *Client) do(ctx context.Context, path string, query url.Values) ([]byte, rateLimit, error) {
+	return c.doWithAccept(ctx, path, query, "application/vnd.github+json")
+}
+
+// doWithAccept is do with an overridable Accept header. The README fetch
+// uses "application/vnd.github.raw" to get the markdown text instead of
+// the JSON metadata envelope.
+func (c *Client) doWithAccept(ctx context.Context, path string, query url.Values, accept string) ([]byte, rateLimit, error) {
 	u := strings.TrimSuffix(c.BaseURL, "/") + path
 	if len(query) > 0 {
 		u += "?" + query.Encode()
@@ -128,7 +136,7 @@ func (c *Client) do(ctx context.Context, path string, query url.Values) ([]byte,
 		return nil, rateLimit{}, err
 	}
 	req.Header.Set("User-Agent", userAgent)
-	req.Header.Set("Accept", "application/vnd.github+json")
+	req.Header.Set("Accept", accept)
 	if c.Token != "" {
 		req.Header.Set("Authorization", "Bearer "+c.Token)
 	}
@@ -307,9 +315,8 @@ func (c *Client) Sync(ctx context.Context, owner, repo string) (*SyncResult, err
 		}
 	}
 
-	// 3. Releases (5).
-	body, _, err = c.do(ctx, "/repos/"+url.PathEscape(owner)+"/"+url.PathEscape(repo)+"/releases",
-		url.Values{"per_page": {"5"}})
+	// 3. Releases, paginated (per_page=100, up to 100 total).
+	releases, err := c.fetchAllReleases(ctx, owner, repo)
 	if err != nil {
 		if _, ok := err.(errRateLimited); ok {
 			res.Status = "rate_limited"
@@ -319,12 +326,7 @@ func (c *Client) Sync(ctx context.Context, owner, repo string) (*SyncResult, err
 		}
 		markPartial(res, "releases fetch failed: "+err.Error())
 	} else {
-		releases, perr := parseReleases(body)
-		if perr != nil {
-			markPartial(res, "cannot parse releases response: "+perr.Error())
-		} else {
-			res.Releases = releases
-		}
+		res.Releases = releases
 	}
 
 	// 4+5. Open issue / PR counts via search (total_count only).
@@ -355,7 +357,67 @@ func (c *Client) Sync(ctx context.Context, owner, repo string) (*SyncResult, err
 	} else {
 		res.Repo.OpenPRs = &prs
 	}
+
+	// 6. README (raw markdown). Never fails the whole sync: a missing
+	// README (404) is silently skipped, any other failure only marks the
+	// result partial and keeps everything fetched above.
+	intro, steps, rerr := c.fetchReadme(ctx, owner, repo)
+	if rerr != nil {
+		if _, ok := rerr.(errRateLimited); ok {
+			res.Status = "rate_limited"
+			res.RateLimited = true
+			res.Error = rerr.Error()
+			return res, nil
+		}
+		if se, ok := rerr.(statusError); ok && se.code == http.StatusNotFound {
+			// No README — nothing to parse.
+		} else {
+			markPartial(res, "readme fetch failed: "+rerr.Error())
+		}
+	} else {
+		res.Repo.ReadmeIntro = intro
+		res.Repo.TutorialSteps = steps
+	}
 	return res, nil
+}
+
+// fetchAllReleases pages through /releases (per_page=100) until a page
+// returns fewer than 100 items, capping the total at 100 releases.
+func (c *Client) fetchAllReleases(ctx context.Context, owner, repo string) ([]model.RepoRelease, error) {
+	const perPage = 100
+	const maxReleases = 100
+	out := []model.RepoRelease{}
+	for page := 1; ; page++ {
+		body, _, err := c.do(ctx, "/repos/"+url.PathEscape(owner)+"/"+url.PathEscape(repo)+"/releases",
+			url.Values{"per_page": {strconv.Itoa(perPage)}, "page": {strconv.Itoa(page)}})
+		if err != nil {
+			return nil, err
+		}
+		pageReleases, perr := parseReleases(body)
+		if perr != nil {
+			return nil, fmt.Errorf("cannot parse releases response: %w", perr)
+		}
+		out = append(out, pageReleases...)
+		if len(out) >= maxReleases {
+			return out[:maxReleases], nil
+		}
+		if len(pageReleases) < perPage {
+			return out, nil
+		}
+	}
+}
+
+// fetchReadme fetches the repository README as raw markdown and parses it
+// into an intro paragraph and tutorial steps. A 404 surfaces as a
+// statusError so the caller can silently skip a repo without a README.
+func (c *Client) fetchReadme(ctx context.Context, owner, repo string) (string, []model.TutorialStep, error) {
+	body, _, err := c.doWithAccept(ctx, "/repos/"+url.PathEscape(owner)+"/"+url.PathEscape(repo)+"/readme",
+		nil, "application/vnd.github.raw")
+	if err != nil {
+		return "", nil, err
+	}
+	intro, steps := ParseReadme(string(body))
+	return intro, steps, nil
 }
 
 func markPartial(res *SyncResult, msg string) {
@@ -427,6 +489,7 @@ func parseReleases(body []byte) ([]model.RepoRelease, error) {
 		HTMLURL     string  `json:"html_url"`
 		Draft       bool    `json:"draft"`
 		Prerelease  bool    `json:"prerelease"`
+		Body        string  `json:"body"`
 	}
 	if err := json.Unmarshal(body, &raw); err != nil {
 		return nil, err
@@ -448,6 +511,7 @@ func parseReleases(body []byte) ([]model.RepoRelease, error) {
 			HTMLURL:     r.HTMLURL,
 			Draft:       r.Draft,
 			Prerelease:  r.Prerelease,
+			Body:        r.Body,
 		})
 	}
 	return out, nil

@@ -63,8 +63,8 @@
                 <h2 class="post-title" style="margin:0">
                   <a :href="r.html_url" target="_blank" rel="noopener">{{ r.full_name }}</a>
                 </h2>
-                <p v-if="r.description" class="post-summary" style="margin:6px 0 0">{{ r.description }}</p>
-                <p v-else style="margin:6px 0 0;color:var(--text-muted)">（无描述）</p>
+                <p v-if="repoIntro(r)" class="post-summary" style="margin:6px 0 0">{{ repoIntro(r) }}</p>
+                <p v-else style="margin:6px 0 0;color:var(--text-muted)">暂无简介</p>
               </div>
               <span v-if="isStale(r)" class="stale-badge" title="上次同步未成功或从未同步，展示的可能是旧数据">旧数据</span>
             </div>
@@ -109,6 +109,40 @@
               <p v-if="detailLoading.has(r.full_name)">详情加载中…</p>
               <p v-else-if="detailError[r.full_name]" style="color:var(--danger-text)">{{ detailError[r.full_name] }}</p>
               <template v-else-if="details[r.full_name]">
+                <h3>简介</h3>
+                <p v-if="repoIntro(details[r.full_name].repo)">{{ repoIntro(details[r.full_name].repo) }}</p>
+                <p v-else style="color:var(--text-muted)">暂无简介</p>
+
+                <h3>使用教程</h3>
+                <div v-if="(details[r.full_name].repo.tutorial_steps || []).length" class="flow-list">
+                  <div v-for="(s, i) in details[r.full_name].repo.tutorial_steps!" :key="i" class="flow-step" :class="{ 'is-last': i === details[r.full_name].repo.tutorial_steps!.length - 1 }">
+                    <div class="flow-rail">
+                      <span class="flow-node" />
+                      <span class="flow-line" v-if="i < details[r.full_name].repo.tutorial_steps!.length - 1" />
+                    </div>
+                    <div class="flow-card">
+                      <p class="flow-text"><strong>{{ i + 1 }}. </strong>{{ s.text }}</p>
+                    </div>
+                  </div>
+                </div>
+                <p v-else style="color:var(--text-muted)">未从 README 中提取到使用步骤</p>
+
+                <h3>迭代日志 <span style="color:var(--text-muted);font-size:13px;font-weight:400">共 {{ detailReleases(r).length }} 个版本</span></h3>
+                <div v-if="detailReleases(r).length">
+                  <div v-for="rel in detailReleases(r)" :key="rel.tag_name" class="release-item">
+                    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+                      <button class="btn btn-sm" type="button" @click="toggleRelease(r, rel)">{{ isReleaseOpen(r, rel) ? '收起 ▾' : '展开 ▸' }}</button>
+                      <a :href="rel.html_url" target="_blank" rel="noopener"><strong>{{ rel.tag_name }}</strong></a>
+                      <span v-if="rel.name && rel.name !== rel.tag_name" style="color:var(--text-muted)">{{ rel.name }}</span>
+                      <span v-if="rel.draft" class="chip active">草稿</span>
+                      <span v-if="rel.prerelease" class="chip active">预发布</span>
+                      <span style="color:var(--text-muted)">{{ rel.published_at ? shanghaiTime(rel.published_at) : '未发布' }}</span>
+                    </div>
+                    <pre v-if="isReleaseOpen(r, rel)" class="release-body">{{ (rel.body || '').trim() || '无发布说明' }}</pre>
+                  </div>
+                </div>
+                <p v-else style="color:var(--text-muted)">暂无 Release</p>
+
                 <h3>最近提交</h3>
                 <ul v-if="details[r.full_name].commits.length" class="commit-list">
                   <li v-for="c in details[r.full_name].commits" :key="c.sha">
@@ -117,14 +151,6 @@
                   </li>
                 </ul>
                 <p v-else style="color:var(--text-muted)">暂无提交记录。</p>
-                <h3>最新 Release</h3>
-                <p v-if="details[r.full_name].latest_release">
-                  <a :href="details[r.full_name].latest_release!.html_url" target="_blank" rel="noopener">
-                    {{ details[r.full_name].latest_release!.tag_name }}<span v-if="details[r.full_name].latest_release!.name && details[r.full_name].latest_release!.name !== details[r.full_name].latest_release!.tag_name"> · {{ details[r.full_name].latest_release!.name }}</span>
-                  </a>
-                  <span v-if="details[r.full_name].latest_release!.published_at" style="color:var(--text-muted)"> · {{ shanghaiTime(details[r.full_name].latest_release!.published_at) }}</span>
-                </p>
-                <p v-else style="color:var(--text-muted)">暂无 Release</p>
               </template>
             </div>
           </article>
@@ -181,7 +207,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Repo, RepoGroup, RepoDetail } from '~/composables/types'
+import type { Repo, RepoGroup, RepoDetail, RepoRelease } from '~/composables/types'
 import { ApiError } from '~/composables/types'
 import { relativeTime, shanghaiTime, trunc40 } from '~/composables/useFormat'
 import { useScrollLock } from '~/composables/useScrollLock'
@@ -201,6 +227,7 @@ const expanded = ref<Set<string>>(new Set())
 const details = ref<Record<string, RepoDetail>>({})
 const detailLoading = ref<Set<string>>(new Set())
 const detailError = ref<Record<string, string>>({})
+const openReleases = ref<Set<string>>(new Set())
 const syncing = ref<Set<string>>(new Set())
 const syncAllBusy = ref(false)
 const syncAllMsg = ref('')
@@ -243,6 +270,28 @@ function syncLabel (status: Repo['sync_status']): string {
     case 'partial': return '部分同步 · 可能为旧数据'
     default: return status
   }
+}
+function repoIntro (r: Repo): string {
+  // GitHub description 优先，空时用 README 提取的简介兜底。
+  return (r.description || '').trim() || (r.readme_intro || '').trim()
+}
+function detailReleases (r: Repo): RepoRelease[] {
+  const d = details.value[r.full_name]
+  if (!d) return []
+  // published_at 正序（最旧在上）；未发布的排在最后面。
+  return [...(d.releases || [])].sort((a, b) => {
+    const ta = a.published_at ? Date.parse(a.published_at) : Infinity
+    const tb = b.published_at ? Date.parse(b.published_at) : Infinity
+    return (ta - tb) || a.tag_name.localeCompare(b.tag_name)
+  })
+}
+function releaseKey (r: Repo, rel: RepoRelease): string { return `${r.full_name}@${rel.tag_name}` }
+function isReleaseOpen (r: Repo, rel: RepoRelease): boolean { return openReleases.value.has(releaseKey(r, rel)) }
+function toggleRelease (r: Repo, rel: RepoRelease) {
+  const s = new Set(openReleases.value)
+  const k = releaseKey(r, rel)
+  if (s.has(k)) s.delete(k); else s.add(k)
+  openReleases.value = s
 }
 function parseTags (text: string): string[] {
   return text.split(/[,，]/).map(s => s.trim()).filter(Boolean)
@@ -288,6 +337,10 @@ async function loadDetail (r: Repo) {
   detailLoading.value = new Set([...detailLoading.value, r.full_name])
   try {
     const d = await store.loadRepoDetail(r.full_name)
+    // 详情没带 releases 时回退到 releases 专用接口；失败不影响详情展示。
+    if (d.releases === undefined) {
+      try { d.releases = await store.loadRepoReleases(r.full_name) } catch { d.releases = [] }
+    }
     details.value = { ...details.value, [r.full_name]: d }
     // Keep the card's repo fields in step with the detail response.
     repos.value = repos.value.map(x => x.full_name === r.full_name ? d.repo : x)

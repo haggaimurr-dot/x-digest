@@ -73,6 +73,10 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
 .sync-badge.sync-partial, .sync-badge.sync-never { color: #f7b500; border-color: #f7b500; }
 .repo-detail { margin-top: 12px; border-top: 1px solid var(--border); padding-top: 8px; }
 .repo-detail h3 { margin: 12px 0 6px; font-size: 15px; }
+/* 迭代日志：条目分隔线 + 展开后多行保留换行的发布说明。 */
+.release-item { padding: 8px 0; border-bottom: 1px solid var(--border); }
+.release-item:last-child { border-bottom: none; }
+.release-body { white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; font-size: 14px; line-height: 1.7; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; margin: 8px 0 4px; }
 .commit-list { margin: 0; padding-left: 18px; }
 .commit-list li { margin: 4px 0; overflow-wrap: anywhere; }
 .settings-section { border-top: 1px solid var(--border); margin-top: 16px; padding-top: 12px; }

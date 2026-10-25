@@ -152,7 +152,8 @@ CREATE TABLE IF NOT EXISTS attachments (
 
 -- ---- GitHub repos section (added 2026-10-25) ----
 -- Only additive tables; no existing table is altered and no existing
--- data is touched. All CREATEs are IF NOT EXISTS so re-apply is safe.
+-- data is touched. All CREATEs are IF NOT EXISTS and all ALTERs use
+-- ADD COLUMN IF NOT EXISTS, so re-apply is safe.
 
 CREATE TABLE IF NOT EXISTS repo_groups (
   id    VARCHAR(64)  NOT NULL PRIMARY KEY,
@@ -167,6 +168,8 @@ CREATE TABLE IF NOT EXISTS repos (
   owner          VARCHAR(128) NOT NULL,
   name           VARCHAR(128) NOT NULL,
   description    TEXT,
+  readme_intro   TEXT,
+  tutorial_steps JSON,
   language       VARCHAR(64)  NOT NULL DEFAULT '',
   stars          INT          NOT NULL DEFAULT 0,
   forks          INT          NOT NULL DEFAULT 0,
@@ -186,6 +189,11 @@ CREATE TABLE IF NOT EXISTS repos (
   INDEX idx_repos_group (group_id),
   INDEX idx_repos_pushed (pushed_at DESC)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- New columns for pre-existing installs (fresh CREATE above already
+-- includes them); IF NOT EXISTS keeps re-apply safe.
+ALTER TABLE repos ADD COLUMN IF NOT EXISTS readme_intro TEXT;
+ALTER TABLE repos ADD COLUMN IF NOT EXISTS tutorial_steps JSON;
 
 CREATE TABLE IF NOT EXISTS repo_tags (
   full_name VARCHAR(255) NOT NULL,
@@ -215,6 +223,7 @@ CREATE TABLE IF NOT EXISTS repo_releases (
   full_name    VARCHAR(255) NOT NULL,
   tag_name     VARCHAR(128) NOT NULL,
   name         VARCHAR(256) NOT NULL DEFAULT '',
+  body         MEDIUMTEXT,
   published_at DATETIME     NULL,
   html_url     VARCHAR(1024) NOT NULL DEFAULT '',
   draft        TINYINT(1)   NOT NULL DEFAULT 0,
@@ -224,3 +233,7 @@ CREATE TABLE IF NOT EXISTS repo_releases (
     REFERENCES repos(full_name) ON DELETE CASCADE ON UPDATE CASCADE,
   INDEX idx_repo_releases_full_time (full_name, published_at DESC)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- New column for pre-existing installs (fresh CREATE above already
+-- includes it); IF NOT EXISTS keeps re-apply safe.
+ALTER TABLE repo_releases ADD COLUMN IF NOT EXISTS body MEDIUMTEXT;

@@ -58,16 +58,20 @@ export interface RepoCommit {
   date: string, html_url: string
 }
 export interface RepoRelease {
-  tag_name: string, name?: string, published_at?: string, html_url: string
+  tag_name: string, name?: string, published_at?: string, html_url: string,
+  body?: string, draft?: boolean, prerelease?: boolean
 }
+export interface TutorialStep { text: string }
 export interface Repo {
   full_name: string, owner: string, name: string, description?: string | null,
   language?: string | null, stars: number, forks: number,
   open_issues?: number | null, open_prs?: number | null,
   pushed_at?: string | null, updated_at?: string | null, html_url: string,
   homepage?: string | null, group_id?: string | null, tags?: string[], note?: string | null,
+  readme_intro?: string | null, tutorial_steps?: TutorialStep[],
   last_synced_at?: string | null, sync_status: RepoSyncStatus, sync_error?: string | null
 }
 export interface RepoDetail {
-  repo: Repo, commits: RepoCommit[], latest_release?: RepoRelease | null
+  repo: Repo, commits: RepoCommit[], latest_release?: RepoRelease | null,
+  releases?: RepoRelease[]
 }

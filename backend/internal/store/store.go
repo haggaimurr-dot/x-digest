@@ -737,7 +737,7 @@ func ratio(r model.Replica) float64 {
 
 // CreateStandaloneReplica starts a blank flow from scratch: no X post, no
 // snapshot steps. The user builds it entirely from custom nodes.
-// post_id stays '' (no UNIQUE constraint on it, so many blank flows coexist).
+// post_id stays ” (no UNIQUE constraint on it, so many blank flows coexist).
 func (s *Store) CreateStandaloneReplica(title string) (*model.Replica, error) {
 	title = strings.TrimSpace(title)
 	if title == "" {
@@ -1086,10 +1086,19 @@ func (s *Store) repoTags(fullName string) ([]string, error) {
 	return out, rows.Err()
 }
 
-func (s *Store) scanRepoRow(r *model.Repo, description, language, htmlURL, homepage sql.NullString,
+func (s *Store) scanRepoRow(r *model.Repo, description, readmeIntro, tutorialSteps, language, htmlURL, homepage sql.NullString,
 	openIssues, openPRs sql.NullInt32, pushedAt, repoUpdatedAt, lastSyncedAt sql.NullString,
 	groupID, note, syncError sql.NullString) error {
 	r.Description = description.String
+	r.ReadmeIntro = readmeIntro.String
+	if tutorialSteps.Valid && strings.TrimSpace(tutorialSteps.String) != "" {
+		var steps []model.TutorialStep
+		if err := json.Unmarshal([]byte(tutorialSteps.String), &steps); err == nil {
+			r.TutorialSteps = steps
+		}
+		// A corrupt tutorial_steps value degrades to nil rather than
+		// failing the whole row query.
+	}
 	r.Language = language.String
 	r.HTMLURL = htmlURL.String
 	r.Homepage = homepage.String
@@ -1119,24 +1128,24 @@ func (s *Store) scanRepoRow(r *model.Repo, description, language, htmlURL, homep
 	return nil
 }
 
-const repoColumns = `full_name,owner,name,description,language,stars,forks,open_issues,open_prs,
+const repoColumns = `full_name,owner,name,description,readme_intro,tutorial_steps,language,stars,forks,open_issues,open_prs,
 	html_url,homepage,pushed_at,repo_updated_at,group_id,note,last_synced_at,sync_status,sync_error`
 
 func (s *Store) scanRepos(rows *sql.Rows) ([]model.Repo, error) {
 	out := []model.Repo{}
 	for rows.Next() {
 		var r model.Repo
-		var description, language, htmlURL, homepage sql.NullString
+		var description, readmeIntro, tutorialSteps, language, htmlURL, homepage sql.NullString
 		var openIssues, openPRs sql.NullInt32
 		var pushedAt, repoUpdatedAt, lastSyncedAt sql.NullString
 		var groupID, note, syncError sql.NullString
-		if err := rows.Scan(&r.FullName, &r.Owner, &r.Name, &description, &language,
+		if err := rows.Scan(&r.FullName, &r.Owner, &r.Name, &description, &readmeIntro, &tutorialSteps, &language,
 			&r.Stars, &r.Forks, &openIssues, &openPRs, &htmlURL, &homepage,
 			&pushedAt, &repoUpdatedAt, &groupID, &note, &lastSyncedAt,
 			&r.SyncStatus, &syncError); err != nil {
 			return nil, err
 		}
-		if err := s.scanRepoRow(&r, description, language, htmlURL, homepage, openIssues, openPRs,
+		if err := s.scanRepoRow(&r, description, readmeIntro, tutorialSteps, language, htmlURL, homepage, openIssues, openPRs,
 			pushedAt, repoUpdatedAt, lastSyncedAt, groupID, note, syncError); err != nil {
 			return nil, err
 		}
@@ -1179,19 +1188,19 @@ func (s *Store) ListRepos(f RepoFilter) ([]model.Repo, error) {
 
 func (s *Store) GetRepo(fullName string) (*model.Repo, error) {
 	var r model.Repo
-	var description, language, htmlURL, homepage sql.NullString
+	var description, readmeIntro, tutorialSteps, language, htmlURL, homepage sql.NullString
 	var openIssues, openPRs sql.NullInt32
 	var pushedAt, repoUpdatedAt, lastSyncedAt sql.NullString
 	var groupID, note, syncError sql.NullString
 	err := s.DB.QueryRow("SELECT "+repoColumns+" FROM repos WHERE full_name=?", fullName).Scan(
-		&r.FullName, &r.Owner, &r.Name, &description, &language,
+		&r.FullName, &r.Owner, &r.Name, &description, &readmeIntro, &tutorialSteps, &language,
 		&r.Stars, &r.Forks, &openIssues, &openPRs, &htmlURL, &homepage,
 		&pushedAt, &repoUpdatedAt, &groupID, &note, &lastSyncedAt,
 		&r.SyncStatus, &syncError)
 	if err != nil {
 		return nil, err
 	}
-	if err := s.scanRepoRow(&r, description, language, htmlURL, homepage, openIssues, openPRs,
+	if err := s.scanRepoRow(&r, description, readmeIntro, tutorialSteps, language, htmlURL, homepage, openIssues, openPRs,
 		pushedAt, repoUpdatedAt, lastSyncedAt, groupID, note, syncError); err != nil {
 		return nil, err
 	}
@@ -1293,11 +1302,21 @@ func (s *Store) DeleteRepo(fullName string) error {
 // OpenIssues/OpenPRs write NULL (unknown, e.g. a failed search) rather
 // than inventing a number. Commits/releases are upserted separately by
 // the caller, only when that fetch succeeded (non-nil slices).
+// ReadmeIntro is written as-is ("" when the README has no intro) and
+// TutorialSteps as JSON, or NULL when there are none.
 func (s *Store) UpdateRepoMeta(fullName string, r model.Repo, status, syncErr string) error {
-	_, err := s.DB.Exec(`UPDATE repos SET description=?,language=?,stars=?,forks=?,
+	var tutorialSteps any
+	if len(r.TutorialSteps) > 0 {
+		b, err := json.Marshal(r.TutorialSteps)
+		if err != nil {
+			return err
+		}
+		tutorialSteps = string(b)
+	}
+	_, err := s.DB.Exec(`UPDATE repos SET description=?,readme_intro=?,tutorial_steps=?,language=?,stars=?,forks=?,
 		open_issues=?,open_prs=?,html_url=?,homepage=?,pushed_at=?,repo_updated_at=?,
 		last_synced_at=?,sync_status=?,sync_error=? WHERE full_name=?`,
-		r.Description, r.Language, r.Stars, r.Forks,
+		r.Description, r.ReadmeIntro, tutorialSteps, r.Language, r.Stars, r.Forks,
 		nullInt(r.OpenIssues), nullInt(r.OpenPRs), r.HTMLURL, r.Homepage,
 		nullStr(r.PushedAt), nullStr(r.RepoUpdatedAt), Now(), status, syncErr, fullName)
 	return err
@@ -1336,11 +1355,11 @@ func (s *Store) UpsertRepoReleases(fullName string, releases []model.RepoRelease
 	}
 	defer tx.Rollback()
 	for _, rel := range releases {
-		if _, err := tx.Exec(`INSERT INTO repo_releases(full_name,tag_name,name,published_at,html_url,draft,prerelease)
-			VALUES(?,?,?,?,?,?,?)
-			ON DUPLICATE KEY UPDATE name=VALUES(name),published_at=VALUES(published_at),
+		if _, err := tx.Exec(`INSERT INTO repo_releases(full_name,tag_name,name,body,published_at,html_url,draft,prerelease)
+			VALUES(?,?,?,?,?,?,?,?)
+			ON DUPLICATE KEY UPDATE name=VALUES(name),body=VALUES(body),published_at=VALUES(published_at),
 			html_url=VALUES(html_url),draft=VALUES(draft),prerelease=VALUES(prerelease)`,
-			fullName, rel.TagName, rel.Name, nullStr(rel.PublishedAt), rel.HTMLURL, rel.Draft, rel.Prerelease); err != nil {
+			fullName, rel.TagName, rel.Name, rel.Body, nullStr(rel.PublishedAt), rel.HTMLURL, rel.Draft, rel.Prerelease); err != nil {
 			return err
 		}
 	}
@@ -1366,7 +1385,7 @@ func (s *Store) ListRepoCommits(fullName string, limit int) ([]model.RepoCommit,
 }
 
 func (s *Store) ListRepoReleases(fullName string, limit int) ([]model.RepoRelease, error) {
-	rows, err := s.DB.Query(`SELECT tag_name,name,published_at,html_url,draft,prerelease
+	rows, err := s.DB.Query(`SELECT tag_name,name,body,published_at,html_url,draft,prerelease
 		FROM repo_releases WHERE full_name=? ORDER BY published_at DESC LIMIT ?`, fullName, limit)
 	if err != nil {
 		return nil, err
@@ -1375,10 +1394,11 @@ func (s *Store) ListRepoReleases(fullName string, limit int) ([]model.RepoReleas
 	out := []model.RepoRelease{}
 	for rows.Next() {
 		var rel model.RepoRelease
-		var pub sql.NullString
-		if err := rows.Scan(&rel.TagName, &rel.Name, &pub, &rel.HTMLURL, &rel.Draft, &rel.Prerelease); err != nil {
+		var body, pub sql.NullString
+		if err := rows.Scan(&rel.TagName, &rel.Name, &body, &pub, &rel.HTMLURL, &rel.Draft, &rel.Prerelease); err != nil {
 			return nil, err
 		}
+		rel.Body = body.String
 		if pub.Valid {
 			v := pub.String
 			rel.PublishedAt = &v

@@ -2,6 +2,7 @@ package github
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"strings"
@@ -44,8 +45,29 @@ func TestParseSearchTotal(t *testing.T) {
 	}
 }
 
-// fixtureServer serves canned GitHub responses for the 5 sync requests.
-func fixtureServer(t *testing.T, searchIssuesStatus, searchPRsStatus int) *httptest.Server {
+const readmeMD = `# Demo Repo
+
+[![CI](https://example.com/ci.svg)](https://example.com) [![Go](https://example.com/go.svg)](https://example.com)
+
+A **great** little tool for doing things. See [the docs](https://example.com/docs) for details.
+
+## Installation
+
+- Clone the repo
+- Run ` + "`make build`" + `
+
+` + "```bash" + `
+go install ./...
+` + "```" + `
+
+## Usage
+
+Do stuff.
+`
+
+// fixtureServer serves canned GitHub responses for the sync requests.
+// readmeStatus controls the /readme response (200 serves readmeMD).
+func fixtureServer(t *testing.T, searchIssuesStatus, searchPRsStatus, readmeStatus int) *httptest.Server {
 	t.Helper()
 	mux := http.NewServeMux()
 	mux.HandleFunc("/repos/o/r", func(w http.ResponseWriter, r *http.Request) {
@@ -65,11 +87,29 @@ func fixtureServer(t *testing.T, searchIssuesStatus, searchPRsStatus int) *httpt
 			"author":{"login":"ann"}}]`))
 	})
 	mux.HandleFunc("/repos/o/r/releases", func(w http.ResponseWriter, r *http.Request) {
-		if r.URL.Query().Get("per_page") != "5" {
-			t.Errorf("releases per_page = %q, want 5", r.URL.Query().Get("per_page"))
+		if r.URL.Query().Get("per_page") != "100" {
+			t.Errorf("releases per_page = %q, want 100", r.URL.Query().Get("per_page"))
+		}
+		if r.URL.Query().Get("page") != "1" {
+			// Only one page of data: later pages are empty.
+			_, _ = w.Write([]byte(`[]`))
+			return
 		}
 		_, _ = w.Write([]byte(`[{"tag_name":"v1.0","name":"V1","published_at":"2026-10-20T00:00:00Z",
-			"html_url":"https://github.com/o/r/releases/v1.0","draft":false,"prerelease":false}]`))
+			"html_url":"https://github.com/o/r/releases/v1.0","draft":false,"prerelease":false,
+			"body":"First release notes"}]`))
+	})
+	mux.HandleFunc("/repos/o/r/readme", func(w http.ResponseWriter, r *http.Request) {
+		if got := r.Header.Get("Accept"); got != "application/vnd.github.raw" {
+			t.Errorf("readme Accept = %q, want application/vnd.github.raw", got)
+		}
+		if readmeStatus != 200 {
+			w.WriteHeader(readmeStatus)
+			_, _ = w.Write([]byte(`{"message":"Not Found"}`))
+			return
+		}
+		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+		_, _ = w.Write([]byte(readmeMD))
 	})
 	mux.HandleFunc("/search/issues", func(w http.ResponseWriter, r *http.Request) {
 		q := r.URL.Query().Get("q")
@@ -100,7 +140,7 @@ func checkHeaders(t *testing.T, r *http.Request) {
 }
 
 func TestSyncSuccess(t *testing.T) {
-	srv := fixtureServer(t, 200, 200)
+	srv := fixtureServer(t, 200, 200, 200)
 	defer srv.Close()
 	c := &Client{HTTP: srv.Client(), BaseURL: srv.URL}
 	res, err := c.Sync(context.Background(), "o", "r")
@@ -129,12 +169,27 @@ func TestSyncSuccess(t *testing.T) {
 	if len(res.Releases) != 1 || res.Releases[0].TagName != "v1.0" {
 		t.Errorf("releases = %+v, want 1 release v1.0", res.Releases)
 	}
+	if res.Releases[0].Body != "First release notes" {
+		t.Errorf("release body = %q, want %q", res.Releases[0].Body, "First release notes")
+	}
+	if res.Repo.ReadmeIntro != "A great little tool for doing things. See the docs for details." {
+		t.Errorf("ReadmeIntro = %q", res.Repo.ReadmeIntro)
+	}
+	wantSteps := []string{"Clone the repo", "Run make build", "go install ./..."}
+	if len(res.Repo.TutorialSteps) != len(wantSteps) {
+		t.Fatalf("TutorialSteps = %+v, want %v", res.Repo.TutorialSteps, wantSteps)
+	}
+	for i, want := range wantSteps {
+		if res.Repo.TutorialSteps[i].Text != want {
+			t.Errorf("TutorialSteps[%d] = %q, want %q", i, res.Repo.TutorialSteps[i].Text, want)
+		}
+	}
 }
 
 // A failed search must not invent counts: the affected count stays nil
 // and the result is partial, while the other count survives.
 func TestSyncSearchFailureIsPartialNotInvented(t *testing.T) {
-	srv := fixtureServer(t, 500, 200)
+	srv := fixtureServer(t, 500, 200, 200)
 	defer srv.Close()
 	c := &Client{HTTP: srv.Client(), BaseURL: srv.URL}
 	res, err := c.Sync(context.Background(), "o", "r")
@@ -202,5 +257,107 @@ func TestSyncNotFoundUnauthenticated(t *testing.T) {
 	}
 	if !strings.Contains(res.Error, "私有") || !strings.Contains(res.Error, "token") {
 		t.Errorf("Error = %q, must warn it may be nonexistent OR private needing a token", res.Error)
+	}
+}
+
+// Releases are paged at per_page=100 and capped at 100 total: a first page
+// of 100 plus a second page of 2 must come back as exactly 100 releases.
+func TestSyncReleasesPaginatedAndCapped(t *testing.T) {
+	mux := http.NewServeMux()
+	mux.HandleFunc("/repos/o/r", func(w http.ResponseWriter, r *http.Request) {
+		_, _ = w.Write([]byte(`{"full_name":"o/r","owner":{"login":"o"},"name":"r",
+			"stargazers_count":1,"forks_count":0,"html_url":"https://github.com/o/r"}`))
+	})
+	mux.HandleFunc("/repos/o/r/commits", func(w http.ResponseWriter, r *http.Request) {
+		_, _ = w.Write([]byte(`[]`))
+	})
+	mux.HandleFunc("/repos/o/r/releases", func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Query().Get("per_page") != "100" {
+			t.Errorf("releases per_page = %q, want 100", r.URL.Query().Get("per_page"))
+		}
+		var n int
+		switch r.URL.Query().Get("page") {
+		case "1":
+			n = 100
+		case "2":
+			n = 2
+		default:
+			t.Errorf("unexpected releases page = %q", r.URL.Query().Get("page"))
+		}
+		var sb strings.Builder
+		sb.WriteString("[")
+		for i := 0; i < n; i++ {
+			if i > 0 {
+				sb.WriteString(",")
+			}
+			fmt.Fprintf(&sb, `{"tag_name":"v%d","name":"","html_url":"","draft":false,"prerelease":false}`, i)
+		}
+		sb.WriteString("]")
+		_, _ = w.Write([]byte(sb.String()))
+	})
+	mux.HandleFunc("/search/issues", func(w http.ResponseWriter, r *http.Request) {
+		_, _ = w.Write([]byte(`{"total_count": 0, "items": []}`))
+	})
+	mux.HandleFunc("/repos/o/r/readme", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(404)
+		_, _ = w.Write([]byte(`{"message":"Not Found"}`))
+	})
+	srv := httptest.NewServer(mux)
+	defer srv.Close()
+	c := &Client{HTTP: srv.Client(), BaseURL: srv.URL}
+	res, err := c.Sync(context.Background(), "o", "r")
+	if err != nil {
+		t.Fatalf("Sync error: %v", err)
+	}
+	if res.Status != "synced" {
+		t.Fatalf("Status = %q, want synced (error: %s)", res.Status, res.Error)
+	}
+	if len(res.Releases) != 100 {
+		t.Fatalf("len(Releases) = %d, want 100 (102 fetched, capped)", len(res.Releases))
+	}
+}
+
+// A missing README (404) must not change the sync outcome.
+func TestSyncReadmeNotFoundKeepsSynced(t *testing.T) {
+	srv := fixtureServer(t, 200, 200, 404)
+	defer srv.Close()
+	c := &Client{HTTP: srv.Client(), BaseURL: srv.URL}
+	res, err := c.Sync(context.Background(), "o", "r")
+	if err != nil {
+		t.Fatalf("Sync error: %v", err)
+	}
+	if res.Status != "synced" {
+		t.Fatalf("Status = %q, want synced (error: %s)", res.Status, res.Error)
+	}
+	if res.Repo.ReadmeIntro != "" || len(res.Repo.TutorialSteps) != 0 {
+		t.Errorf("ReadmeIntro/TutorialSteps must be empty without a README, got %q / %+v",
+			res.Repo.ReadmeIntro, res.Repo.TutorialSteps)
+	}
+	if res.Repo.Stars != 42 || len(res.Commits) != 1 || len(res.Releases) != 1 {
+		t.Errorf("other sync data must survive a missing README: %+v", res.Repo)
+	}
+}
+
+// A README fetch failure (non-404, non-rate-limit) marks the sync partial
+// but keeps everything else that was fetched.
+func TestSyncReadmeFailureIsPartial(t *testing.T) {
+	srv := fixtureServer(t, 200, 200, 500)
+	defer srv.Close()
+	c := &Client{HTTP: srv.Client(), BaseURL: srv.URL}
+	res, err := c.Sync(context.Background(), "o", "r")
+	if err != nil {
+		t.Fatalf("Sync error: %v", err)
+	}
+	if res.Status != "partial" {
+		t.Fatalf("Status = %q, want partial", res.Status)
+	}
+	if !strings.Contains(res.Error, "readme") {
+		t.Errorf("Error = %q, must mention the readme failure", res.Error)
+	}
+	if res.Repo.Stars != 42 || len(res.Commits) != 1 || len(res.Releases) != 1 {
+		t.Errorf("other sync data must survive a README failure: %+v", res.Repo)
+	}
+	if res.Repo.OpenIssues == nil || *res.Repo.OpenIssues != 7 {
+		t.Errorf("OpenIssues = %v, want 7", res.Repo.OpenIssues)
 	}
 }
