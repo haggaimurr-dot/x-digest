@@ -159,6 +159,44 @@ func (c *Client) doWithAccept(ctx context.Context, path string, query url.Values
 	return body, rl, nil
 }
 
+// doDecode is do for large JSON payloads: it decodes the response stream
+// instead of buffering the whole body. A /releases page of 100 items can
+// exceed 30MB (mostly release assets we never read), far past the 4MB cap
+// in doWithAccept, so buffering it truncates the JSON and breaks parsing.
+// Streaming decode only materialises the fields we declare.
+func (c *Client) doDecode(ctx context.Context, path string, query url.Values, target any) (rateLimit, error) {
+	u := strings.TrimSuffix(c.BaseURL, "/") + path
+	if len(query) > 0 {
+		u += "?" + query.Encode()
+	}
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, u, nil)
+	if err != nil {
+		return rateLimit{}, err
+	}
+	req.Header.Set("User-Agent", userAgent)
+	req.Header.Set("Accept", "application/vnd.github+json")
+	if c.Token != "" {
+		req.Header.Set("Authorization", "Bearer "+c.Token)
+	}
+	resp, err := c.HTTP.Do(req)
+	if err != nil {
+		return rateLimit{}, err
+	}
+	defer resp.Body.Close()
+	rl := parseRateLimit(resp.Header)
+	if resp.StatusCode == http.StatusForbidden && rl.exhausted() {
+		return rl, errRateLimited{reset: rl.reset}
+	}
+	if resp.StatusCode < 200 || resp.StatusCode >= 300 {
+		body, _ := io.ReadAll(io.LimitReader(resp.Body, 1<<20))
+		return rl, statusError{code: resp.StatusCode, body: strings.TrimSpace(string(body))}
+	}
+	if err := json.NewDecoder(resp.Body).Decode(target); err != nil {
+		return rl, err
+	}
+	return rl, nil
+}
+
 // errRateLimited signals a 403 with X-RateLimit-Remaining: 0.
 type errRateLimited struct{ reset time.Time }
 
@@ -388,12 +426,13 @@ func (c *Client) fetchAllReleases(ctx context.Context, owner, repo string) ([]mo
 	const maxReleases = 100
 	out := []model.RepoRelease{}
 	for page := 1; ; page++ {
-		body, _, err := c.do(ctx, "/repos/"+url.PathEscape(owner)+"/"+url.PathEscape(repo)+"/releases",
-			url.Values{"per_page": {strconv.Itoa(perPage)}, "page": {strconv.Itoa(page)}})
+		var raw []rawRelease
+		_, err := c.doDecode(ctx, "/repos/"+url.PathEscape(owner)+"/"+url.PathEscape(repo)+"/releases",
+			url.Values{"per_page": {strconv.Itoa(perPage)}, "page": {strconv.Itoa(page)}}, &raw)
 		if err != nil {
 			return nil, err
 		}
-		pageReleases, perr := parseReleases(body)
+		pageReleases, perr := toRepoReleases(raw)
 		if perr != nil {
 			return nil, fmt.Errorf("cannot parse releases response: %w", perr)
 		}
@@ -481,19 +520,27 @@ func parseCommits(body []byte) ([]model.RepoCommit, error) {
 	return out, nil
 }
 
+// rawRelease is the GitHub release payload shape we read. Only these
+// fields are decoded; assets and other large sub-objects are skipped.
+type rawRelease struct {
+	TagName     string  `json:"tag_name"`
+	Name        *string `json:"name"`
+	PublishedAt *string `json:"published_at"`
+	HTMLURL     string  `json:"html_url"`
+	Draft       bool    `json:"draft"`
+	Prerelease  bool    `json:"prerelease"`
+	Body        string  `json:"body"`
+}
+
 func parseReleases(body []byte) ([]model.RepoRelease, error) {
-	var raw []struct {
-		TagName     string  `json:"tag_name"`
-		Name        *string `json:"name"`
-		PublishedAt *string `json:"published_at"`
-		HTMLURL     string  `json:"html_url"`
-		Draft       bool    `json:"draft"`
-		Prerelease  bool    `json:"prerelease"`
-		Body        string  `json:"body"`
-	}
+	var raw []rawRelease
 	if err := json.Unmarshal(body, &raw); err != nil {
 		return nil, err
 	}
+	return toRepoReleases(raw)
+}
+
+func toRepoReleases(raw []rawRelease) ([]model.RepoRelease, error) {
 	out := []model.RepoRelease{}
 	for _, r := range raw {
 		pub, err := formatGitHubTime(r.PublishedAt)

@@ -317,6 +317,51 @@ func TestSyncReleasesPaginatedAndCapped(t *testing.T) {
 	}
 }
 
+// Regression: a /releases page bigger than the old 4MB read cap must still
+// parse. Real release payloads carry huge asset lists we never read (a page
+// of 100 codex releases is ~36MB); buffering them truncated the JSON and
+// the sync came back partial with "unexpected end of JSON input".
+func TestSyncReleasesOversizedPage(t *testing.T) {
+	mux := http.NewServeMux()
+	mux.HandleFunc("/repos/o/r", func(w http.ResponseWriter, r *http.Request) {
+		_, _ = w.Write([]byte(`{"full_name":"o/r","owner":{"login":"o"},"name":"r",
+			"stargazers_count":1,"forks_count":0,"html_url":"https://github.com/o/r"}`))
+	})
+	mux.HandleFunc("/repos/o/r/commits", func(w http.ResponseWriter, r *http.Request) {
+		_, _ = w.Write([]byte(`[]`))
+	})
+	mux.HandleFunc("/repos/o/r/releases", func(w http.ResponseWriter, r *http.Request) {
+		// One release whose unread asset list alone exceeds 4MB.
+		pad := strings.Repeat("x", 5<<20)
+		fmt.Fprintf(w, `[{"tag_name":"v9.9","name":"Big","published_at":"2026-10-20T00:00:00Z",`+
+			`"html_url":"https://github.com/o/r/releases/v9.9","draft":false,"prerelease":false,`+
+			`"body":"Release notes here","assets":[{"name":"%s"}]}]`, pad)
+	})
+	mux.HandleFunc("/search/issues", func(w http.ResponseWriter, r *http.Request) {
+		_, _ = w.Write([]byte(`{"total_count": 0, "items": []}`))
+	})
+	mux.HandleFunc("/repos/o/r/readme", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(404)
+		_, _ = w.Write([]byte(`{"message":"Not Found"}`))
+	})
+	srv := httptest.NewServer(mux)
+	defer srv.Close()
+	c := &Client{HTTP: srv.Client(), BaseURL: srv.URL}
+	res, err := c.Sync(context.Background(), "o", "r")
+	if err != nil {
+		t.Fatalf("Sync error: %v", err)
+	}
+	if res.Status != "synced" {
+		t.Fatalf("Status = %q, want synced (error: %s)", res.Status, res.Error)
+	}
+	if len(res.Releases) != 1 || res.Releases[0].TagName != "v9.9" {
+		t.Fatalf("releases = %+v, want 1 release v9.9", res.Releases)
+	}
+	if res.Releases[0].Body != "Release notes here" {
+		t.Errorf("release body = %q, want %q", res.Releases[0].Body, "Release notes here")
+	}
+}
+
 // A missing README (404) must not change the sync outcome.
 func TestSyncReadmeNotFoundKeepsSynced(t *testing.T) {
 	srv := fixtureServer(t, 200, 200, 404)
