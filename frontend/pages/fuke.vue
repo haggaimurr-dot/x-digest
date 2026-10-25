@@ -36,22 +36,22 @@
           </div>
           <button class="btn btn-sm btn-danger" type="button" @click="askDelete(r)">删除复刻</button>
         </div>
-        <div class="flow-list" style="margin-top:12px">
-          <p v-if="!topSteps(r).length" style="color:var(--text-muted)">还没有节点，在下面添加第一个节点吧。</p>
-          <ReplicaStepNode v-for="(step, si) in topSteps(r)" :key="step.idx" :replica="r" :step="step"
-            :num="String(si + 1)" :is-last="si === topSteps(r).length - 1" />
-        </div>
         <div style="margin:12px 0 4px;display:flex;justify-content:space-between;gap:8px">
           <span>进度 {{ progress(r).done }} / {{ progress(r).total }}</span>
           <span>{{ progressPct(r) }}%</span>
         </div>
         <div class="progress-bar"><div :style="{ width: progressPct(r) + '%' }" /></div>
-        <div style="margin-top:12px;border-top:1px dashed var(--border);padding-top:10px">
+        <div style="margin-top:12px;border:1px solid var(--border);border-radius:12px;padding:12px">
           <div class="chip-group-title" style="margin-top:0">自建流程节点</div>
           <input class="field" style="width:100%" type="text" v-model="newStepText[r.id]" placeholder="节点文字（纯文本），添加后可继续改状态、写备注、上传图片和附件" aria-label="新节点文本" />
           <div style="margin-top:6px">
             <button class="btn btn-sm btn-primary" type="button" :disabled="!((newStepText[r.id] || '').trim())" @click="addStep(r)">添加节点</button>
           </div>
+        </div>
+        <div class="flow-list" style="margin-top:12px">
+          <p v-if="!topSteps(r).length" style="color:var(--text-muted)">还没有节点，在上面添加第一个节点吧。</p>
+          <ReplicaStepNode v-for="(step, si) in topSteps(r)" :key="step.idx" :replica="r" :step="step"
+            :num="String(si + 1)" :is-last="si === topSteps(r).length - 1" />
         </div>
       </article>
     </main>
