@@ -501,8 +501,22 @@ func (s *server) handleReplicas(w http.ResponseWriter, r *http.Request) {
 	case http.MethodPost:
 		var body struct {
 			PostID string `json:"post_id"`
+			Title  string `json:"title"`
 		}
 		if !decodeBody(w, r, &body) {
+			return
+		}
+		if body.PostID == "" && body.Title != "" {
+			rep, err := s.st.CreateStandaloneReplica(body.Title)
+			if err != nil {
+				if err.Error() == "empty replica title" {
+					writeErr(w, 422, "VALIDATION", "title is required")
+					return
+				}
+				writeErr(w, 500, "DB_ERROR", err.Error())
+				return
+			}
+			writeJSON(w, 201, rep)
 			return
 		}
 		if body.PostID == "" {

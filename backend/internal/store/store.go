@@ -711,6 +711,22 @@ func ratio(r model.Replica) float64 {
 	return float64(r.Progress.Done) / float64(r.Progress.Total)
 }
 
+// CreateStandaloneReplica starts a blank flow from scratch: no X post, no
+// snapshot steps. The user builds it entirely from custom nodes.
+// post_id stays '' (no UNIQUE constraint on it, so many blank flows coexist).
+func (s *Store) CreateStandaloneReplica(title string) (*model.Replica, error) {
+	title = strings.TrimSpace(title)
+	if title == "" {
+		return nil, fmt.Errorf("empty replica title")
+	}
+	id := NewID("rep_")
+	if _, err := s.DB.Exec(`INSERT INTO replicas(id,post_id,post_url,post_author,post_author_name,post_title,created_at)
+		VALUES(?, '', '', '', '自建', ?, ?)`, id, title, Now()); err != nil {
+		return nil, err
+	}
+	return s.GetReplica(id, "")
+}
+
 // CreateReplicaFromPost snapshots the post's current steps. If a replica for
 // the post already exists it is returned with existing=true and no new row.
 func (s *Store) CreateReplicaFromPost(postID string) (*model.Replica, bool, error) {

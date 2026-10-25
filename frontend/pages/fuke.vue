@@ -13,13 +13,26 @@
         </label>
         <NuxtLink to="/" class="btn btn-sm">回摘要页选帖复刻</NuxtLink>
       </div>
-      <p v-if="!loading && !replicas.length" class="empty">还没有复刻。去摘要页点帖子卡片上的「复刻」即可生成（同一帖子只生成一次）。</p>
+      <div style="margin-bottom:12px;border:1px solid var(--border);border-radius:12px;padding:12px">
+        <div class="chip-group-title" style="margin-top:0">新建空白流程（不依赖 X 贴，从头开始）</div>
+        <div class="filter-row">
+          <input class="field grow" style="flex:1" type="text" v-model="newFlowTitle" placeholder="流程标题，例如：剪映出片流程" aria-label="新流程标题" />
+          <button class="btn btn-sm btn-primary" type="button" :disabled="!newFlowTitle.trim()" @click="createFlow">新建流程</button>
+        </div>
+      </div>
+      <p v-if="!loading && !replicas.length" class="empty">还没有复刻。去摘要页点帖子卡片上的「复刻」即可生成（同一帖子只生成一次），或在上方新建一个空白流程，从头开始加节点。</p>
 
       <article v-for="r in replicas" :key="r.id" class="post-card" style="margin-bottom:16px;display:block">
         <div style="display:flex;gap:8px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap">
           <div style="min-width:0">
-            <h2 class="post-title" style="margin:0"><a :href="r.post_url" target="_blank" rel="noopener">{{ r.post_title }}</a></h2>
-            <div style="color:var(--text-muted);font-size:13px">{{ r.post_author_name }} @{{ r.post_author }} · {{ shanghaiTime(r.created_at) }}</div>
+            <h2 class="post-title" style="margin:0">
+              <a v-if="r.post_url" :href="r.post_url" target="_blank" rel="noopener">{{ r.post_title }}</a>
+              <span v-else>{{ r.post_title }}</span>
+            </h2>
+            <div style="color:var(--text-muted);font-size:13px">
+              <span v-if="r.post_id">{{ r.post_author_name }} @{{ r.post_author }} · </span>
+              <span v-else>自建流程 · </span>{{ shanghaiTime(r.created_at) }}
+            </div>
           </div>
           <button class="btn btn-sm btn-danger" type="button" @click="askDelete(r)">删除复刻</button>
         </div>
@@ -41,7 +54,7 @@
               <button class="btn btn-sm btn-danger" type="button" @click="removeStep(r, step)">删除节点</button>
             </div>
             <div v-if="editingStep && editingStep.rid === r.id && editingStep.idx === step.idx" style="margin:6px 0">
-              <textarea class="field" style="width:100%;min-height:64px" v-model="editingStep.text" aria-label="编辑节点文本" />
+              <input class="field" style="width:100%" type="text" v-model="editingStep.text" aria-label="编辑节点文本" />
               <div style="margin-top:6px;display:flex;gap:6px">
                 <button class="btn btn-sm btn-primary" type="button" @click="saveStepText(r, step)">保存文本</button>
                 <button class="btn btn-sm" type="button" @click="editingStep = null">取消</button>
@@ -78,7 +91,7 @@
         </div>
         <div style="margin-top:12px;border-top:1px dashed var(--border);padding-top:10px">
           <div class="chip-group-title" style="margin-top:0">自建流程节点</div>
-          <textarea class="field" style="width:100%;min-height:64px" v-model="newStepText[r.id]" placeholder="写下这个节点的文字内容，添加后可继续改状态、写备注、上传图片和附件" aria-label="新节点文本" />
+          <input class="field" style="width:100%" type="text" v-model="newStepText[r.id]" placeholder="节点文字（纯文本），添加后可继续改状态、写备注、上传图片和附件" aria-label="新节点文本" />
           <div style="margin-top:6px">
             <button class="btn btn-sm btn-primary" type="button" :disabled="!((newStepText[r.id] || '').trim())" @click="addStep(r)">添加节点</button>
           </div>
@@ -144,6 +157,17 @@ async function saveNote (r: Replica, step: ReplicaStep, note: string) {
 }
 const newStepText = ref<Record<string, string>>({})
 const editingStep = ref<{ rid: string, idx: number, text: string } | null>(null)
+const newFlowTitle = ref('')
+async function createFlow () {
+  const title = newFlowTitle.value.trim()
+  if (!title) return
+  try {
+    const rep = await store.createStandaloneReplica(title)
+    replicas.value = [rep, ...replicas.value]
+    newFlowTitle.value = ''
+    showToast('空白流程已创建，去加节点吧')
+  } catch (e: any) { showToast(e?.message || '创建流程失败') }
+}
 async function addStep (r: Replica) {
   const text = (newStepText.value[r.id] || '').trim()
   if (!text) return

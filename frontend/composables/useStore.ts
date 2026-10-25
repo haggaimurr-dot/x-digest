@@ -81,6 +81,10 @@ export function useStore () {
       throw e
     }
   }
+  async function createStandaloneReplica (title: string): Promise<Replica> {
+    if (mock.value) return mockStore.createMockStandaloneReplica(title).replica
+    return await apiFetch<Replica>('replicas', { method: 'POST', body: JSON.stringify({ title }) })
+  }
   async function patchReplicaSteps (id: string, steps: Array<{ idx: number, status?: string, note?: string, text?: string }>) {
     if (mock.value) { mockStore.patchReplicaSteps(id, steps); return }
     await apiFetch(`replicas/${id}`, { method: 'PATCH', body: JSON.stringify({ steps }) })
@@ -260,7 +264,7 @@ export function useStore () {
   }
   return {
     loading, error, loadPosts, loadWatchlist, loadTags, loadUserTags, loadCategories,
-    loadReplicas, createReplica, patchReplicaSteps, addReplicaStep, deleteReplicaStep, deleteReplica, uploadAttachments,
+    loadReplicas, createReplica, createStandaloneReplica, patchReplicaSteps, addReplicaStep, deleteReplicaStep, deleteReplica, uploadAttachments,
     deleteAttachment, replicaAttachments, addGroup, deleteGroup, addAccount, patchAccount,
     deleteAccount, addCategory, deleteCategory, setPostCategories, setUserTags,
     loadRepos, loadRepoGroups, addRepo, loadRepoDetail, loadRepoCommits, loadRepoReleases,

@@ -145,6 +145,16 @@ export function useMockStore () {
     replicas.value = replicas.value.filter(r => r.id !== id)
     persist()
   }
+  function createMockStandaloneReplica (title: string): { replica: Replica, existing: boolean } {
+    const replica: Replica = {
+      id: `r-mock-${Date.now().toString(36)}${(seq++).toString(36)}`,
+      post_id: '', post_url: '', post_author: '', post_author_name: '自建',
+      post_title: title.trim(), created_at: new Date().toISOString(), steps: []
+    }
+    replicas.value = [replica, ...replicas.value]
+    persist()
+    return { replica, existing: false }
+  }
   function addMockAttachments (replicaId: string, stepIdx: number, files: File[]): Attachment[] {
     const r = replicas.value.find(x => x.id === replicaId)
     if (!r) return []
@@ -229,5 +239,5 @@ export function useMockStore () {
     repos.value = repos.value.map(r => r.group_id === id ? { ...r, group_id: 'default' } : r)
     persistRepos()
   }
-  return { watchlist, categories, userTagOverrides, vocabulary, replicas, persist, createReplica, patchReplicaSteps, deleteReplica, addMockReplicaStep, deleteMockReplicaStep, addMockAttachments, deleteMockAttachment, repoGroups, repos, addMockRepo, patchMockRepo, deleteMockRepo, syncMockRepo, addMockRepoGroup, deleteMockRepoGroup }
+  return { watchlist, categories, userTagOverrides, vocabulary, replicas, persist, createReplica, createMockStandaloneReplica, patchReplicaSteps, deleteReplica, addMockReplicaStep, deleteMockReplicaStep, addMockAttachments, deleteMockAttachment, repoGroups, repos, addMockRepo, patchMockRepo, deleteMockRepo, syncMockRepo, addMockRepoGroup, deleteMockRepoGroup }
 }
