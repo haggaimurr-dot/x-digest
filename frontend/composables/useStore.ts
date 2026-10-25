@@ -1,8 +1,8 @@
 // Data layer: real /api/v1 by default, mock fallback when NUXT_PUBLIC_USE_MOCK=1.
 // Pages only ever talk to this layer, never to raw fetch or raw mock data.
-import type { Post, Watchlist, Categories, Replica, Attachment } from './types'
+import type { Post, Watchlist, Categories, Replica, Attachment, Repo, RepoGroup, RepoDetail } from './types'
 import { ApiError } from './types'
-import { MOCK_POSTS, MOCK_UPDATED_AT } from './useMock'
+import { MOCK_POSTS, MOCK_UPDATED_AT, mockRepoCommits, mockRepoRelease } from './useMock'
 
 export const ATTACHMENT_EXTS = 'pdf doc docx xls xlsx ppt pptx txt md csv png jpg jpeg gif webp bmp avif svg ico zip rar 7z tar gz tgz'.split(' ')
 export const IMAGE_EXTS = ['png', 'jpg', 'jpeg', 'gif', 'webp', 'bmp', 'avif', 'svg', 'ico']
@@ -173,10 +173,89 @@ export function useStore () {
     if (mock.value) { mockStore.userTagOverrides.value = { ...mockStore.userTagOverrides.value, [username]: tags }; return }
     await apiFetch('user-tags', { method: 'PUT', body: JSON.stringify({ username, tags }) })
   }
+  // ---------- GitHub repos (contract 2026-10-25; all data via /api/v1/repos...) ----------
+  const REPO_FULL_NAME_RE = /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/
+  function validateRepoFullName (fullName: string): string | null {
+    return REPO_FULL_NAME_RE.test(fullName.trim()) ? null : '格式应为 owner/repo，例如 nuxt/nuxt'
+  }
+  async function loadRepos (): Promise<Repo[]> {
+    if (mock.value) return [...mockStore.repos.value]
+    const data = await apiFetch<{ repos: Repo[] } | Repo[]>('repos')
+    return Array.isArray(data) ? data : (data.repos || [])
+  }
+  async function loadRepoGroups (): Promise<RepoGroup[]> {
+    if (mock.value) return [...mockStore.repoGroups.value]
+    const data = await apiFetch<{ groups: RepoGroup[] } | RepoGroup[]>('repos/groups')
+    return Array.isArray(data) ? data : (data.groups || [])
+  }
+  async function addRepo (fullName: string, groupId?: string | null, tags?: string[], note?: string): Promise<Repo> {
+    const err = validateRepoFullName(fullName)
+    if (err) throw new ApiError(422, 'INVALID_FULL_NAME', err)
+    const body = { full_name: fullName.trim(), group_id: groupId || undefined, tags: tags || [], note: note || '' }
+    if (mock.value) return mockStore.addMockRepo(body.full_name, body.group_id ?? null, body.tags, body.note)
+    const data = await apiFetch<any>('repos', { method: 'POST', body: JSON.stringify(body) })
+    return data.repo || data
+  }
+  async function loadRepoDetail (fullName: string): Promise<RepoDetail> {
+    if (mock.value) {
+      const repo = mockStore.repos.value.find(r => r.full_name.toLowerCase() === fullName.toLowerCase())
+      if (!repo) throw new ApiError(404, 'NOT_FOUND', '仓库不存在')
+      return { repo, commits: mockRepoCommits(repo.full_name), latest_release: mockRepoRelease(repo.full_name) }
+    }
+    const data = await apiFetch<any>(`repos/${fullName}`)
+    const repo: Repo = data.repo || data
+    return { repo, commits: data.commits || [], latest_release: data.latest_release ?? null }
+  }
+  async function loadRepoCommits (fullName: string) {
+    if (mock.value) return mockRepoCommits(fullName)
+    const data = await apiFetch<any>(`repos/${fullName}/commits`)
+    return Array.isArray(data) ? data : (data.commits || [])
+  }
+  async function loadRepoReleases (fullName: string) {
+    if (mock.value) {
+      const rel = mockRepoRelease(fullName)
+      return rel ? [rel] : []
+    }
+    const data = await apiFetch<any>(`repos/${fullName}/releases`)
+    return Array.isArray(data) ? data : (data.releases || [])
+  }
+  async function patchRepo (fullName: string, patch: { group_id?: string | null, tags?: string[], note?: string }): Promise<Repo | null> {
+    if (mock.value) return mockStore.patchMockRepo(fullName, patch)
+    const data = await apiFetch<any>(`repos/${fullName}`, { method: 'PATCH', body: JSON.stringify(patch) })
+    return data.repo || data
+  }
+  async function deleteRepo (fullName: string) {
+    if (mock.value) { mockStore.deleteMockRepo(fullName); return }
+    await apiFetch(`repos/${fullName}`, { method: 'DELETE' })
+  }
+  async function syncRepo (fullName: string): Promise<Repo | null> {
+    if (mock.value) return mockStore.syncMockRepo(fullName)
+    const data = await apiFetch<any>(`repos/${fullName}/sync`, { method: 'POST' })
+    return data.repo || data || null
+  }
+  async function syncAllRepos (): Promise<{ synced: number, failed: number, rate_limited: number, total: number }> {
+    if (mock.value) {
+      const total = mockStore.repos.value.length
+      for (const r of mockStore.repos.value) mockStore.syncMockRepo(r.full_name)
+      return { synced: total, failed: 0, rate_limited: 0, total }
+    }
+    return apiFetch<{ synced: number, failed: number, rate_limited: number, total: number }>('repos/sync-all', { method: 'POST' })
+  }
+  async function addRepoGroup (name: string): Promise<RepoGroup> {
+    if (mock.value) return mockStore.addMockRepoGroup(name)
+    const data = await apiFetch<any>('repos/groups', { method: 'POST', body: JSON.stringify({ name }) })
+    return data.group || data
+  }
+  async function deleteRepoGroup (id: string) {
+    if (mock.value) { mockStore.deleteMockRepoGroup(id); return }
+    await apiFetch(`repos/groups/${id}`, { method: 'DELETE' })
+  }
   return {
     loading, error, loadPosts, loadWatchlist, loadTags, loadUserTags, loadCategories,
     loadReplicas, createReplica, patchReplicaSteps, deleteReplica, uploadAttachments,
     deleteAttachment, replicaAttachments, addGroup, deleteGroup, addAccount, patchAccount,
-    deleteAccount, addCategory, deleteCategory, setPostCategories, setUserTags
+    deleteAccount, addCategory, deleteCategory, setPostCategories, setUserTags,
+    loadRepos, loadRepoGroups, addRepo, loadRepoDetail, loadRepoCommits, loadRepoReleases,
+    patchRepo, deleteRepo, syncRepo, syncAllRepos, addRepoGroup, deleteRepoGroup, validateRepoFullName
   }
 }

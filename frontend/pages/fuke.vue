@@ -1,18 +1,9 @@
 <template>
   <div>
-    <header class="topbar">
-      <div class="topbar-inner">
-        <div class="topnav">
-          <span class="logo"><span class="logo-x">𝕏</span> x-digest</span>
-          <NuxtLink to="/">摘要</NuxtLink>
-          <NuxtLink to="/fuke">复刻</NuxtLink>
-          <span style="margin-left:auto;color:var(--text-muted)">共 {{ replicas.length }} 个复刻</span>
-        </div>
-      </div>
-    </header>
     <main style="max-width:600px;margin:0 auto;padding:16px;min-width:0">
       <p v-if="loadError" style="color:var(--danger-text)">{{ loadError }}</p>
       <p v-if="loading">加载中…</p>
+      <p v-if="!loading" style="color:var(--text-muted)">共 {{ replicas.length }} 个复刻</p>
       <div class="filter-row" style="margin-bottom:12px">
         <label>排序
           <select class="field" v-model="sort" @change="reload">

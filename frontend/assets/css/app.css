@@ -40,6 +40,22 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
 .topnav { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 .topnav a { color: var(--text); font-weight: 700; }
 .topnav a.router-link-active { color: var(--accent); }
+/* ---------- GitHub repos page ---------- */
+/* .post-card is a 48px-avatar grid for X posts; repo cards are plain blocks. */
+.repo-card { display: block; margin-bottom: 16px; }
+.repo-head { display: flex; gap: 10px; align-items: flex-start; justify-content: space-between; }
+.stale-badge { flex-shrink: 0; font-size: 12px; color: #f7b500; border: 1px solid #f7b500; border-radius: 9999px; padding: 2px 8px; }
+.repo-stats { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; color: var(--text-muted); font-size: 13px; }
+.repo-lang .lang-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); margin-right: 4px; }
+.repo-sync { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 10px; font-size: 13px; }
+.sync-badge { border-radius: 9999px; padding: 2px 8px; font-size: 12px; border: 1px solid var(--border); color: var(--text-muted); }
+.sync-badge.sync-synced { color: var(--success); border-color: var(--success); }
+.sync-badge.sync-rate_limited, .sync-badge.sync-failed { color: var(--danger-text); border-color: var(--danger); }
+.sync-badge.sync-partial, .sync-badge.sync-never { color: #f7b500; border-color: #f7b500; }
+.repo-detail { margin-top: 12px; border-top: 1px solid var(--border); padding-top: 8px; }
+.repo-detail h3 { margin: 12px 0 6px; font-size: 15px; }
+.commit-list { margin: 0; padding-left: 18px; }
+.commit-list li { margin: 4px 0; overflow-wrap: anywhere; }
 .settings-section { border-top: 1px solid var(--border); margin-top: 16px; padding-top: 12px; }
 .settings-section h3 { margin: 8px 0; }
 .watch-row { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin: 6px 0; }

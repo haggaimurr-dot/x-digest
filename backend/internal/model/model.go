@@ -96,3 +96,51 @@ type Replica struct {
 	Progress       ReplicaProgress `json:"progress"`
 	Existing       bool            `json:"existing,omitempty"`
 }
+
+// ---- GitHub repos section ----
+
+type RepoCommit struct {
+	SHA         string `json:"sha"`
+	Message     string `json:"message"`
+	AuthorName  string `json:"author_name"`
+	AuthorLogin string `json:"author_login"`
+	CommittedAt string `json:"committed_at"`
+	HTMLURL     string `json:"html_url"`
+}
+
+type RepoRelease struct {
+	TagName     string  `json:"tag_name"`
+	Name        string  `json:"name"`
+	PublishedAt *string `json:"published_at"`
+	HTMLURL     string  `json:"html_url"`
+	Draft       bool    `json:"draft"`
+	Prerelease  bool    `json:"prerelease"`
+}
+
+// Repo mirrors the repos table. Nullable columns surface as nil pointers so
+// callers can tell "never synced / unknown" (null) apart from zero.
+// PushedAt / RepoUpdatedAt / LastSyncedAt are Shanghai wall time
+// ("2006-01-02 15:04:05"), matching the DATETIME columns.
+type Repo struct {
+	FullName      string       `json:"full_name"`
+	Owner         string       `json:"owner"`
+	Name          string       `json:"name"`
+	Description   string       `json:"description"`
+	Language      string       `json:"language"`
+	Stars         int          `json:"stars"`
+	Forks         int          `json:"forks"`
+	OpenIssues    *int         `json:"open_issues"`
+	OpenPRs       *int         `json:"open_prs"`
+	HTMLURL       string       `json:"html_url"`
+	Homepage      string       `json:"homepage"`
+	PushedAt      *string      `json:"pushed_at"`
+	RepoUpdatedAt *string      `json:"repo_updated_at"`
+	GroupID       string       `json:"group_id"`
+	Note          string       `json:"note"`
+	LastSyncedAt  *string      `json:"last_synced_at"`
+	SyncStatus    string       `json:"sync_status"`
+	SyncError     string       `json:"sync_error"`
+	Tags          []string     `json:"tags"`
+	Commits       []RepoCommit `json:"commits,omitempty"`
+	LatestRelease *RepoRelease `json:"latest_release,omitempty"`
+}

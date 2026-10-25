@@ -49,3 +49,25 @@ export class ApiError extends Error {
     super(message); this.status = status; this.code = code
   }
 }
+
+// ---------- GitHub repos section (contract 2026-10-25; backend in parallel) ----------
+export type RepoSyncStatus = 'never' | 'synced' | 'rate_limited' | 'failed' | 'partial'
+export interface RepoGroup { id: string, name: string, fixed?: boolean }
+export interface RepoCommit {
+  sha: string, message: string, author_name: string, author_login?: string,
+  date: string, html_url: string
+}
+export interface RepoRelease {
+  tag_name: string, name?: string, published_at?: string, html_url: string
+}
+export interface Repo {
+  full_name: string, owner: string, name: string, description?: string | null,
+  language?: string | null, stars: number, forks: number,
+  open_issues?: number | null, open_prs?: number | null,
+  pushed_at?: string | null, updated_at?: string | null, html_url: string,
+  homepage?: string | null, group_id?: string | null, tags?: string[], note?: string | null,
+  last_synced_at?: string | null, sync_status: RepoSyncStatus, sync_error?: string | null
+}
+export interface RepoDetail {
+  repo: Repo, commits: RepoCommit[], latest_release?: RepoRelease | null
+}

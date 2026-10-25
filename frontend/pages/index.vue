@@ -1,19 +1,12 @@
 <template>
   <div>
-    <header class="topbar">
-      <div class="topbar-inner">
-        <div class="topnav">
-          <span class="logo"><span class="logo-x">𝕏</span> x-digest</span>
-          <NuxtLink to="/">摘要</NuxtLink>
-          <NuxtLink to="/fuke">复刻 <span v-if="replicaCount">({{ replicaCount }})</span></NuxtLink>
-          <span class="updated" style="margin-left:auto">{{ updatedAt ? `更新于 ${updatedAt}` : '' }}</span>
-          <button class="btn btn-sm" type="button" @click="triggerWebhook" :disabled="webhookBusy">{{ webhookBusy ? '发送中…' : '立即更新' }}</button>
-          <button class="btn btn-sm" type="button" @click="showSettings = true">设置</button>
-        </div>
-      </div>
-    </header>
-
     <main class="feed-col" style="max-width:600px;margin:0 auto;padding:16px;min-width:0">
+      <div class="filter-row" style="margin-bottom:12px">
+        <span class="updated" style="color:var(--text-muted)">{{ updatedAt ? `更新于 ${updatedAt}` : '' }}</span>
+        <span style="flex:1" />
+        <button class="btn btn-sm" type="button" @click="triggerWebhook" :disabled="webhookBusy">{{ webhookBusy ? '发送中…' : '立即更新' }}</button>
+        <button class="btn btn-sm" type="button" @click="showSettings = true">设置</button>
+      </div>
       <p v-if="loadError" style="color:var(--danger-text)">{{ loadError }}</p>
       <p v-if="loading">加载中…</p>
 

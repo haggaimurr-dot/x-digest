@@ -12,7 +12,13 @@ export function apiBase (): string {
 }
 export function useApi () {
   const cfg = useRuntimeConfig()
-  const mock = computed(() => (cfg.public as any).useMock === true || (cfg.public as any).useMock === '1')
+  // NOTE: Nuxt applies NUXT_PUBLIC_USE_MOCK at runtime via destr(), so the
+  // env value '1' arrives as the NUMBER 1 (not boolean true / string '1').
+  // Accept all three, otherwise mock mode silently never engages.
+  const mock = computed(() => {
+    const v = (cfg.public as any).useMock
+    return v === true || v === '1' || v === 1
+  })
 
   async function apiFetch<T> (path: string, opts: any = {}): Promise<T> {
     const base = apiBase()

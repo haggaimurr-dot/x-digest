@@ -147,3 +147,78 @@ CREATE TABLE IF NOT EXISTS attachments (
     REFERENCES replicas(id) ON DELETE CASCADE ON UPDATE CASCADE,
   INDEX idx_attachments_replica (replica_id, step_idx, created_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---- GitHub repos section (added 2026-10-25) ----
+-- Only additive tables; no existing table is altered and no existing
+-- data is touched. All CREATEs are IF NOT EXISTS so re-apply is safe.
+
+CREATE TABLE IF NOT EXISTS repo_groups (
+  id    VARCHAR(64)  NOT NULL PRIMARY KEY,
+  name  VARCHAR(128) NOT NULL,
+  fixed TINYINT(1)   NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT IGNORE INTO repo_groups (id, name, fixed) VALUES ('other', '默认', 1);
+
+CREATE TABLE IF NOT EXISTS repos (
+  full_name      VARCHAR(255) NOT NULL PRIMARY KEY,
+  owner          VARCHAR(128) NOT NULL,
+  name           VARCHAR(128) NOT NULL,
+  description    TEXT,
+  language       VARCHAR(64)  NOT NULL DEFAULT '',
+  stars          INT          NOT NULL DEFAULT 0,
+  forks          INT          NOT NULL DEFAULT 0,
+  open_issues    INT          NULL,
+  open_prs       INT          NULL,
+  html_url       VARCHAR(1024) NOT NULL DEFAULT '',
+  homepage       VARCHAR(1024) NOT NULL DEFAULT '',
+  pushed_at      DATETIME     NULL,
+  repo_updated_at DATETIME    NULL,
+  group_id       VARCHAR(64)  NULL,
+  note           TEXT,
+  last_synced_at DATETIME     NULL,
+  sync_status    VARCHAR(32)  NOT NULL DEFAULT 'never',
+  sync_error     TEXT,
+  CONSTRAINT fk_repos_group FOREIGN KEY (group_id)
+    REFERENCES repo_groups(id) ON DELETE SET NULL ON UPDATE CASCADE,
+  INDEX idx_repos_group (group_id),
+  INDEX idx_repos_pushed (pushed_at DESC)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS repo_tags (
+  full_name VARCHAR(255) NOT NULL,
+  tag       VARCHAR(128) NOT NULL,
+  PRIMARY KEY (full_name, tag),
+  CONSTRAINT fk_repo_tags_repo FOREIGN KEY (full_name)
+    REFERENCES repos(full_name) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS repo_commits (
+  id            BIGINT AUTO_INCREMENT PRIMARY KEY,
+  full_name     VARCHAR(255) NOT NULL,
+  sha           VARCHAR(64)  NOT NULL,
+  message       TEXT,
+  author_name   VARCHAR(128) NOT NULL DEFAULT '',
+  author_login  VARCHAR(128) NOT NULL DEFAULT '',
+  committed_at  DATETIME     NOT NULL,
+  html_url      VARCHAR(1024) NOT NULL DEFAULT '',
+  UNIQUE KEY uq_repo_commits_full_sha (full_name, sha),
+  CONSTRAINT fk_repo_commits_repo FOREIGN KEY (full_name)
+    REFERENCES repos(full_name) ON DELETE CASCADE ON UPDATE CASCADE,
+  INDEX idx_repo_commits_full_time (full_name, committed_at DESC)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS repo_releases (
+  id           BIGINT AUTO_INCREMENT PRIMARY KEY,
+  full_name    VARCHAR(255) NOT NULL,
+  tag_name     VARCHAR(128) NOT NULL,
+  name         VARCHAR(256) NOT NULL DEFAULT '',
+  published_at DATETIME     NULL,
+  html_url     VARCHAR(1024) NOT NULL DEFAULT '',
+  draft        TINYINT(1)   NOT NULL DEFAULT 0,
+  prerelease   TINYINT(1)   NOT NULL DEFAULT 0,
+  UNIQUE KEY uq_repo_releases_full_tag (full_name, tag_name),
+  CONSTRAINT fk_repo_releases_repo FOREIGN KEY (full_name)
+    REFERENCES repos(full_name) ON DELETE CASCADE ON UPDATE CASCADE,
+  INDEX idx_repo_releases_full_time (full_name, published_at DESC)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

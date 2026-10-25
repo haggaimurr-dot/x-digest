@@ -35,6 +35,13 @@ cd frontend && npm install && npm run dev   # dev 端口 18091，/api 代理到 
 - 附件白名单：pdf doc docx xls xlsx ppt pptx txt md csv png jpg jpeg gif webp bmp avif svg ico
   zip rar 7z tar gz tgz；单个 ≤10MB（服务端校验，超大/非法扩展名返回 422）。
 
+## 仓库版块（GitHub，与 X 日报分开展示、顶栏切换）
+
+- 页面 `/repos`：仓库卡片（描述、语言、星标、Fork、开放 Issue/PR 数、最后更新、链接）+ 最近提交（10 条）+ 最新 Release；添加仓库（`owner/repo`）、分组、标签、备注、删除；单仓刷新与全部同步。X 推文和仓库绝不混在同一个列表里。
+- 接口：`GET/POST /api/v1/repos`、`GET/PATCH/DELETE /api/v1/repos/{owner}/{repo}`、`GET .../commits`、`GET .../releases`、`POST .../sync`、`POST /api/v1/repos/sync-all`、`GET/POST/DELETE /api/v1/repos/groups`。新表：`repo_groups`、`repos`、`repo_tags`、`repo_commits`、`repo_releases`（见 `backend/schema.sql`，幂等追加）。
+- 同步：后端直接调 GitHub REST API（仓库信息、提交、Release、search API 分别计 Issue/PR 数，不用含 PR 的 `open_issues_count`）。数据存 DB，页面只读 DB；同步只在添加仓库和点“刷新”时触发，记 `last_synced_at`/`sync_status`。未登录每小时 60 次，限流时保留旧数据并明确提示；私有仓库未登录会报“可能是不存在或私有仓库需要 token”。
+- Token：后端读环境变量 `GITHUB_TOKEN`（有则用，无则走未登录模式）。多仓库频繁刷新需要一个 GitHub 细粒度 PAT（只读公开仓库即可），通过 Secure Vault 提供后配进服务器 `/etc/xdigest/api.env`，绝不写进仓库。
+
 ## 数据导入（服务器本地，不要暴露成 HTTP 接口）
 
 ```bash
