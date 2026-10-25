@@ -71,7 +71,7 @@
           <a class="btn btn-sm" :href="att.download_url" download>下载</a>
           <button class="btn btn-sm btn-danger" type="button" @click="removeAttachment(att)">删除附件</button>
         </div>
-        <AttachmentPreview v-if="previewAtt && step.attachments!.some(a => a.id === previewAtt!.id)" :key="previewAtt.id" :attachment="previewAtt" />
+        <AttachmentPreview v-if="previewAtt && step.attachments!.some(a => a.id === previewAtt!.id)" :key="previewAtt.id" :attachment="previewAtt" @close="previewAtt = null" />
       </div>
     </div>
   </div>

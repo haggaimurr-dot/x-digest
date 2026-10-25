@@ -1,47 +1,69 @@
 <template>
-  <div class="attachment-preview">
-    <div v-if="loading">加载预览…</div>
-    <div v-else-if="error" style="color:var(--danger-text)">{{ error }}</div>
-    <template v-else>
-      <img v-if="kind === 'image'" :src="previewUrl" :alt="attachment.name" />
-      <div v-else-if="kind === 'pdf'">
-        <p style="color:var(--text-muted);font-size:13px">PDF 预览使用浏览器原生 embed（见 README 已知差异，非原站 pdf.js 画布）。</p>
-        <embed :src="previewUrl" type="application/pdf" width="100%" height="480" />
-      </div>
-      <div v-else-if="kind === 'md'" class="rich-content" v-html="htmlContent" />
-      <pre v-else-if="kind === 'text'">{{ textContent }}</pre>
-      <div v-else-if="kind === 'docx'" class="rich-content" v-html="htmlContent" />
-      <div v-else-if="kind === 'pptx'">
-        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-          <button class="btn btn-sm" type="button" :disabled="slideIdx <= 0" @click="slideIdx--">上一页</button>
-          <span>第 {{ slideIdx + 1 }} / {{ slides.length }} 页</span>
-          <button class="btn btn-sm" type="button" :disabled="slideIdx >= slides.length - 1" @click="slideIdx++">下一页</button>
+  <Teleport to="body">
+    <div class="preview-overlay" @click.self="emit('close')">
+      <div ref="panelRef" class="preview-panel" role="dialog" aria-modal="true" :aria-label="attachment.name">
+        <div class="preview-header">
+          <span class="preview-title">{{ attachment.name }}</span>
+          <button class="btn btn-sm" type="button" @click="toggleFullscreen">{{ isFullscreen ? '退出全屏' : '全屏' }}</button>
+          <button class="btn btn-sm" type="button" aria-label="关闭预览" @click="emit('close')">✕</button>
         </div>
-        <div v-if="slides[slideIdx]" class="rich-content" style="white-space:pre-wrap">{{ slides[slideIdx].text }}</div>
-        <div v-if="slides[slideIdx]?.images?.length" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
-          <img v-for="(im, i) in slides[slideIdx].images" :key="i" :src="im" style="max-width:220px" />
+        <div class="preview-body">
+          <div v-if="loading">加载预览…</div>
+          <div v-else-if="error" style="color:var(--danger-text)">{{ error }}</div>
+          <template v-else>
+            <img v-if="kind === 'image'" class="preview-image" :src="previewUrl" :alt="attachment.name" />
+            <div v-else-if="kind === 'pdf'">
+              <p style="color:var(--text-muted);font-size:13px">PDF 预览使用浏览器原生 embed（见 README 已知差异，非原站 pdf.js 画布）。</p>
+              <embed :src="previewUrl" type="application/pdf" style="width:100%;height:72vh" />
+            </div>
+            <div v-else-if="kind === 'md'" class="rich-content" v-html="htmlContent" />
+            <pre v-else-if="kind === 'text'">{{ textContent }}</pre>
+            <div v-else-if="kind === 'docx'" class="rich-content" v-html="htmlContent" />
+            <div v-else-if="kind === 'xlsx'">
+              <p v-if="xlsxTruncated" style="color:var(--text-muted);font-size:13px">仅显示前 200 行，请下载原文件查看完整内容。</p>
+              <table class="preview-table">
+                <tr v-for="(row, ri) in xlsxRows" :key="ri">
+                  <template v-for="(c, ci) in row" :key="ci">
+                    <th v-if="ri === 0">{{ c }}</th>
+                    <td v-else>{{ c }}</td>
+                  </template>
+                </tr>
+              </table>
+            </div>
+            <div v-else-if="kind === 'pptx'">
+              <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+                <button class="btn btn-sm" type="button" :disabled="slideIdx <= 0" @click="slideIdx--">上一页</button>
+                <span>第 {{ slideIdx + 1 }} / {{ slides.length }} 页</span>
+                <button class="btn btn-sm" type="button" :disabled="slideIdx >= slides.length - 1" @click="slideIdx++">下一页</button>
+              </div>
+              <div v-if="slides[slideIdx]" class="rich-content" style="white-space:pre-wrap">{{ slides[slideIdx].text }}</div>
+              <div v-if="slides[slideIdx]?.images?.length" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+                <img v-for="(im, i) in slides[slideIdx].images" :key="i" :src="im" style="max-width:220px" />
+              </div>
+            </div>
+            <div v-else-if="kind === 'zip'">
+              <p style="color:var(--text-muted);font-size:13px">压缩包条目（点击可下载单个文件）：</p>
+              <ul>
+                <li v-for="e in zipEntries" :key="e.name">
+                  <a v-if="e.url" :href="e.url" :download="e.name">{{ e.name }}</a>
+                  <span v-else>{{ e.name }}（目录）</span>
+                  <span v-if="e.size"> — {{ e.size }} 字节</span>
+                </li>
+              </ul>
+            </div>
+            <div v-else-if="kind === 'legacy'">
+              <p style="color:var(--danger-text);font-size:13px">旧版二进制格式（doc/ppt/xls），仅尽力提取可读文本，请以<a :href="downloadUrl" download>下载原文件</a>核对。</p>
+              <pre>{{ textContent }}</pre>
+            </div>
+            <div v-else>
+              <p>该类型暂不支持浏览器内预览，请<a :href="downloadUrl" download>下载文件</a>查看。</p>
+            </div>
+          </template>
         </div>
+        <div class="preview-footer"><a :href="downloadUrl" download>下载原文件</a></div>
       </div>
-      <div v-else-if="kind === 'zip'">
-        <p style="color:var(--text-muted);font-size:13px">压缩包条目（点击可下载单个文件）：</p>
-        <ul>
-          <li v-for="e in zipEntries" :key="e.name">
-            <a v-if="e.url" :href="e.url" :download="e.name">{{ e.name }}</a>
-            <span v-else>{{ e.name }}（目录）</span>
-            <span v-if="e.size"> — {{ e.size }} 字节</span>
-          </li>
-        </ul>
-      </div>
-      <div v-else-if="kind === 'legacy'">
-        <p style="color:var(--danger-text);font-size:13px">旧版二进制格式（doc/ppt），仅尽力提取可读文本，请以<a :href="downloadUrl" download>下载原文件</a>核对。</p>
-        <pre>{{ textContent }}</pre>
-      </div>
-      <div v-else>
-        <p>该类型暂不支持浏览器内预览，请<a :href="downloadUrl" download>下载文件</a>查看。</p>
-      </div>
-    </template>
-    <p><a :href="downloadUrl" download>下载原文件</a></p>
-  </div>
+    </div>
+  </Teleport>
 </template>
 
 <script setup lang="ts">
@@ -50,8 +72,12 @@ import mammoth from 'mammoth'
 import JSZip from 'jszip'
 import type { Attachment } from '~/composables/types'
 import { IMAGE_EXTS } from '~/composables/useStore'
+import { useScrollLock } from '~/composables/useScrollLock'
 
 const props = defineProps<{ attachment: Attachment }>()
+const emit = defineEmits<{ (e: 'close'): void }>()
+// 预览以居中遮罩打开期间锁住页面滚动（复用 ref 计数锁，关闭即释放）。
+useScrollLock(ref(true))
 const loading = ref(true)
 const error = ref('')
 const kind = ref('')
@@ -60,6 +86,10 @@ const htmlContent = ref('')
 const slideIdx = ref(0)
 const slides = ref<Array<{ text: string, images: string[] }>>([])
 const zipEntries = ref<Array<{ name: string, size?: number, url?: string }>>([])
+const xlsxRows = ref<string[][]>([])
+const xlsxTruncated = ref(false)
+const panelRef = ref<HTMLElement | null>(null)
+const isFullscreen = ref(false)
 
 const ext = computed(() => (props.attachment.ext || props.attachment.name.split('.').pop() || '').toLowerCase())
 // Mock attachments carry a blob; real ones use the API download URL (inline=1 for preview).
@@ -73,6 +103,18 @@ const previewUrl = computed(() => {
   const u = props.attachment.download_url
   return u.includes('?') ? `${u}&inline=1` : `${u}?inline=1`
 })
+async function toggleFullscreen () {
+  if (document.fullscreenElement) {
+    await document.exitFullscreen()
+    return
+  }
+  try { await panelRef.value?.requestFullscreen() } catch { /* 浏览器不支持或被拒绝时留在窗口模式 */ }
+}
+function onFullscreenChange () { isFullscreen.value = !!document.fullscreenElement }
+function onKeydown (e: KeyboardEvent) {
+  // 全屏时 Esc 由浏览器先用来退出全屏，不应同时关掉预览。
+  if (e.key === 'Escape' && !document.fullscreenElement) emit('close')
+}
 async function fetchBytes (): Promise<ArrayBuffer> {
   const a: any = props.attachment
   if (a.__blob) return await a.__blob.arrayBuffer()
@@ -99,13 +141,57 @@ function slideTexts (xml: string): string {
   const matches = [...xml.matchAll(/<a:t>([^<]*)<\/a:t>/g)].map(m => m[1])
   return matches.join(' ')
 }
+// 列标（A/B/AA）转 0 起下标，用于按单元格位置补空缺。
+function colIndex (ref: string): number {
+  const letters = ref.replace(/[^A-Za-z]/g, '').toUpperCase()
+  let n = 0
+  for (const ch of letters) n = n * 26 + (ch.charCodeAt(0) - 64)
+  return n - 1
+}
+// xlsx 是 zip：sharedStrings + 第一个工作表的行列，用现成的 JSZip 解析成表格。
+async function parseXlsx (buf: ArrayBuffer): Promise<{ rows: string[][], truncated: boolean }> {
+  const zip = await JSZip.loadAsync(buf)
+  const shared: string[] = []
+  const ssFile = zip.file('xl/sharedStrings.xml')
+  if (ssFile) {
+    const xml = await ssFile.async('string')
+    for (const m of xml.matchAll(/<si>([\s\S]*?)<\/si>/g)) {
+      shared.push([...m[1].matchAll(/<t[^>]*>([^<]*)<\/t>/g)].map(x => x[1]).join(''))
+    }
+  }
+  const sheetFile = zip.file('xl/worksheets/sheet1.xml')
+  if (!sheetFile) throw new Error('未找到工作表')
+  let xml = await sheetFile.async('string')
+  xml = xml.replace(/<c([^>]*)\/>/g, '<c$1></c>') // 空单元格补成成对标签，统一处理
+  const rows: string[][] = []
+  let truncated = false
+  for (const rm of xml.matchAll(/<row[^>]*>([\s\S]*?)<\/row>/g)) {
+    const cells: string[] = []
+    for (const cm of rm[1].matchAll(/<c([^>]*)>([\s\S]*?)<\/c>/g)) {
+      const attrs = cm[1]
+      const inner = cm[2]
+      const ref = attrs.match(/\br="([A-Za-z]+\d+)"/)?.[1] || ''
+      const t = attrs.match(/\bt="(\w+)"/)?.[1]
+      let v = inner.match(/<v>([^<]*)<\/v>/)?.[1] ?? ''
+      if (!v && inner.includes('<is>')) v = [...inner.matchAll(/<t[^>]*>([^<]*)<\/t>/g)].map(x => x[1]).join('')
+      const idx = ref ? colIndex(ref) : cells.length
+      while (cells.length <= idx) cells.push('')
+      cells[idx] = t === 's' ? (shared[Number(v)] ?? v) : v
+    }
+    rows.push(cells)
+    if (rows.length >= 200) { truncated = true; break }
+  }
+  return { rows, truncated }
+}
 
 onMounted(async () => {
+  document.addEventListener('fullscreenchange', onFullscreenChange)
+  document.addEventListener('keydown', onKeydown)
   try {
     const e = ext.value
     if (IMAGE_EXTS.includes(e)) { kind.value = 'image'; return }
     if (e === 'pdf') { kind.value = 'pdf'; return }
-    if (['rar', '7z', 'tar', 'gz', 'tgz', 'xls', 'xlsx', 'csv'].includes(e) && e !== 'csv') { kind.value = 'download'; return }
+    if (['rar', '7z', 'tar', 'gz', 'tgz'].includes(e)) { kind.value = 'download'; return }
     if (e === 'md') {
       const buf = await fetchBytes()
       htmlContent.value = marked.parse(new TextDecoder().decode(buf)) as string
@@ -121,6 +207,13 @@ onMounted(async () => {
       const r = await mammoth.convertToHtml({ arrayBuffer: buf })
       htmlContent.value = r.value
       kind.value = 'docx'; return
+    }
+    if (e === 'xlsx') {
+      const buf = await fetchBytes()
+      const parsed = await parseXlsx(buf)
+      xlsxRows.value = parsed.rows
+      xlsxTruncated.value = parsed.truncated
+      kind.value = 'xlsx'; return
     }
     if (e === 'pptx') {
       const buf = await fetchBytes()
@@ -153,7 +246,7 @@ onMounted(async () => {
       zipEntries.value = entries
       kind.value = 'zip'; return
     }
-    if (['doc', 'ppt'].includes(e)) {
+    if (['doc', 'ppt', 'xls'].includes(e)) {
       const buf = await fetchBytes()
       textContent.value = extractStrings(buf)
       kind.value = 'legacy'; return
@@ -163,4 +256,24 @@ onMounted(async () => {
     error.value = err?.message || '预览加载失败'
   } finally { loading.value = false }
 })
+onBeforeUnmount(() => {
+  document.removeEventListener('fullscreenchange', onFullscreenChange)
+  document.removeEventListener('keydown', onKeydown)
+})
 </script>
+
+<style scoped>
+/* 预览一律居中遮罩打开：遮罩盖住整页，面板在页面正中心；全屏时面板铺满屏幕。 */
+.preview-overlay { position: fixed; inset: 0; z-index: 300; background: rgba(0, 0, 0, .78); display: flex; align-items: center; justify-content: center; padding: 16px; }
+.preview-panel { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 16px; width: min(960px, 94vw); max-height: 92vh; display: flex; flex-direction: column; overflow: hidden; }
+.preview-panel:fullscreen { width: 100%; height: 100%; max-height: none; border-radius: 0; }
+.preview-header { display: flex; gap: 8px; align-items: center; padding: 12px 14px; border-bottom: 1px solid var(--border); }
+.preview-title { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 700; }
+.preview-body { overflow: auto; padding: 14px; }
+.preview-image { display: block; max-width: 100%; max-height: 76vh; margin: 0 auto; object-fit: contain; }
+.preview-panel:fullscreen .preview-image { max-height: calc(100vh - 130px); }
+.preview-footer { padding: 10px 14px; border-top: 1px solid var(--border); }
+.preview-table { border-collapse: collapse; width: 100%; }
+.preview-table th, .preview-table td { border: 1px solid var(--border); padding: 4px 8px; font-size: 13px; text-align: left; }
+.preview-table th { background: var(--bg); }
+</style>
