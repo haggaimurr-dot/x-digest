@@ -34,6 +34,11 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
 .status-dot.is-done { background: var(--success); border-color: var(--success); }
 .replica-step { display: flex; gap: 10px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--border); min-width: 0; }
 .replica-step.is-done .replica-step-text { text-decoration: line-through; color: var(--text-muted); }
+/* 日报检索区：各条件各自有输入框，但并排收进同一个栏里（关键词 / 作者 / 标签 / 自定义标签 / 类别 / 日期）。 */
+.unified-bar { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+.cond { flex: 1 1 220px; min-width: 180px; }
+.cond-date { flex: 1 1 260px; }
+.cond-label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 4px; font-weight: 700; }
 /* 复刻页流程图：外层节点竖排，状态圆点 + 竖线连成流程线；子流程默认收起，点开再看。 */
 .flow-list { display: flex; flex-direction: column; }
 .flow-step.is-done .replica-step-text { text-decoration: line-through; color: var(--text-muted); }

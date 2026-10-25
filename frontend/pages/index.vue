@@ -13,15 +13,31 @@
       <section class="filter-panel" v-if="!loading">
         <div class="filter-row" style="justify-content:space-between">
           <button class="btn btn-sm" type="button" @click="filtersCollapsed = !filtersCollapsed" :aria-expanded="!filtersCollapsed">{{ filtersCollapsed ? '展开搜索筛选 ▸' : '收起搜索筛选 ▾' }}</button>
-          <span class="result-count">共 {{ filtered.length }} 条</span>
-          <span class="active-count" v-if="filtersCollapsed && keyword.trim()">搜索：{{ keyword.trim() }}</span>
+          <span class="active-count" v-if="filtersCollapsed && activeFilterCount">已选 {{ activeFilterCount }} 项筛选</span>
         </div>
         <div v-show="!filtersCollapsed">
-          <div class="filter-row" style="margin-top:8px">
-            <input class="field grow" style="flex:1" type="search" v-model="keyword" placeholder="联合搜索：标题、作者、标签、类别、日期，例如：AI、@黄小木、10-25" aria-label="联合搜索" />
-            <button class="btn btn-sm" type="button" @click="clearAll">清除</button>
+          <div class="unified-bar">
+            <div class="cond">
+              <label class="cond-label">关键词</label>
+              <input class="field" style="width:100%" type="search" v-model="keyword" placeholder="搜标题、摘要、步骤…（支持 标签:xxx / tag:xxx 只搜用户标签）" aria-label="关键词搜索" />
+            </div>
+            <FilterCombo label="作者" placeholder="输入名字或 @handle 联想…" :options="authorOptions" v-model="selectedAuthorsArr" />
+            <FilterCombo label="帖子标签" placeholder="输入标签联想…" :options="tagOptions" v-model="selectedTagsArr" />
+            <FilterCombo label="自定义标签" placeholder="输入自定义标签联想…" :options="userTagOptions" v-model="selectedUserTagsArr" />
+            <FilterCombo label="帖子类别" placeholder="输入类别联想…" :options="catOptions" v-model="selectedCatsArr" />
+            <div class="cond cond-date">
+              <label class="cond-label">日期</label>
+              <div style="display:flex;gap:6px">
+                <input type="date" class="field" style="flex:1;min-width:0" v-model="dateFrom" aria-label="开始日期" />
+                <input type="date" class="field" style="flex:1;min-width:0" v-model="dateTo" aria-label="结束日期" />
+              </div>
+            </div>
           </div>
-          <p v-if="keyword.trim()" class="hint">正在全库搜索：匹配标题、作者、标签、类别与日期（支持 标签:xxx / tag:xxx 只搜用户标签；清空后回到关注列表）</p>
+          <div class="filter-row" style="margin-top:8px">
+            <button class="btn btn-sm" type="button" @click="clearAll">清除全部</button>
+            <span class="result-count">共 {{ filtered.length }} 条</span>
+            <span class="active-count" v-if="activeFilterCount">已选 {{ activeFilterCount }} 项筛选</span>
+          </div>
           <p v-if="keyword && firstSnippet" class="hint" v-html="`首命中：${firstSnippet}`" />
         </div>
       </section>
@@ -43,7 +59,7 @@
           <button v-if="post.is_long" class="btn btn-sm" type="button" @click="toggleLong(post.id)">{{ expandedLong.has(post.id) ? '收起' : '展开长文' }}</button>
           <div v-if="post.note" style="margin-top:6px"><span class="note-pill">{{ post.note }}</span></div>
           <div class="chips" style="margin-top:8px">
-            <button v-for="t in (post.tags || []).slice(0, 8)" :key="t" type="button" class="chip" @click="searchTag(t)">{{ t }}</button>
+            <button v-for="t in (post.tags || []).slice(0, 8)" :key="t" type="button" class="chip" @click="selectTagOnly(t)">{{ t }}</button>
           </div>
           <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap;align-items:center">
             <span v-for="cid in catsOf(post.id)" :key="cid" class="chip active">{{ categoryName(cid) }}</span>
@@ -188,7 +204,7 @@
 <script setup lang="ts">
 import type { Post, Watchlist, Categories } from '~/composables/types'
 import { LS, useSettings } from '~/composables/useSettings'
-import { avatarUrl, avatarColor, avatarInitial, relativeTime, shanghaiTime, highlightHtml, firstHitSnippet, shouldShowFlowchart, trunc40 } from '~/composables/useFormat'
+import { avatarUrl, avatarColor, avatarInitial, relativeTime, shanghaiTime, shanghaiDayBound, highlightHtml, firstHitSnippet, shouldShowFlowchart, trunc40 } from '~/composables/useFormat'
 import { useScrollLock } from '~/composables/useScrollLock'
 
 const store = useStore()
@@ -207,8 +223,12 @@ const replicaCount = ref(0)
 const replicatedIds = ref<Set<string>>(new Set())
 
 const keyword = ref('')
-// 作者范围只作默认视图（关注列表）用，不再有单独的筛选输入；一旦输入查询即全库联合搜索。
+const dateFrom = ref('')
+const dateTo = ref('')
 const selectedAuthors = ref<Set<string>>(new Set())
+const selectedTags = ref<Set<string>>(new Set())
+const selectedUserTags = ref<Set<string>>(new Set())
+const selectedCats = ref<Set<string>>(new Set())
 const filtersCollapsed = ref(false)
 const expandedLong = ref<Set<string>>(new Set())
 const substepsOpen = ref<Set<string>>(new Set())
@@ -231,16 +251,71 @@ function persistSelection () {
   if (!import.meta.client) return
   try {
     localStorage.setItem(LS.selectedAuthors, JSON.stringify([...selectedAuthors.value]))
+    localStorage.setItem(LS.selectedCats, JSON.stringify([...selectedCats.value]))
   } catch { /* ignore */ }
 }
 function accountOf (username: string) { return watchlist.value.accounts.find(a => a.username === username) }
+function authorName (u: string) { return accountOf(u)?.name || u }
+const unlistedAuthors = computed(() => {
+  const known = new Set(watchlist.value.accounts.map(a => a.username))
+  return [...new Set(posts.value.map(p => p.author))].filter(a => !known.has(a))
+})
 function userTagsOf (username: string): string[] {
   // SPEC: user tags = watchlist account tags, with per-author overrides winning.
   if (userTagOverrides.value[username]) return userTagOverrides.value[username]
   return accountOf(username)?.tags || []
 }
+const userTagOptions = computed(() => {
+  const s = new Set<string>(userTagVocab.value)
+  for (const a of watchlist.value.accounts) for (const t of userTagsOf(a.username)) s.add(t)
+  return [...s]
+})
+const allTags = computed(() => {
+  const counts = new Map<string, number>()
+  for (const p of posts.value) for (const t of p.tags || []) counts.set(t, (counts.get(t) || 0) + 1)
+  return [...counts.entries()].map(([tag, n]) => ({ tag, n })).sort((a, b) => b.n - a.n)
+})
 const catsOf = (postId: string) => categories.value.assignments[postId] || []
 const categoryName = (id: string) => categories.value.categories.find(c => c.id === id)?.name || id
+const catCounts = computed(() => {
+  const counts: Record<string, number> = { __uncat: 0 }
+  for (const p of baseFiltered.value) {
+    const cats = catsOf(p.id)
+    if (!cats.length) counts.__uncat++
+    for (const c of cats) counts[c] = (counts[c] || 0) + 1
+  }
+  return counts
+})
+// Filters other than the author chips (used for author-chip consistency).
+const baseFiltered = computed(() => posts.value.filter(p => passesNonAuthor(p)))
+function passesNonAuthor (p: Post): boolean {
+  if (selectedUserTags.value.size && !userTagsOf(p.author).some(t => selectedUserTags.value.has(t))) return false
+  if (!matchesCats(p)) return false
+  if (!matchesDate(p)) return false
+  if (!matchesTags(p)) return false
+  if (!matchesKeyword(p)) return false
+  return true
+}
+function matchesCats (p: Post): boolean {
+  if (!selectedCats.value.size) return true
+  const cats = catsOf(p.id)
+  if (selectedCats.value.has('__uncat') && !cats.length) return true
+  return cats.some(c => selectedCats.value.has(c))
+}
+function matchesDate (p: Post): boolean {
+  const from = shanghaiDayBound(dateFrom.value, false)
+  const to = shanghaiDayBound(dateTo.value, true)
+  if (from == null && to == null) return true
+  const t = Date.parse(p.published_at || '')
+  if (Number.isNaN(t)) return false
+  if (from != null && t < from) return false
+  if (to != null && t > to) return false
+  return true
+}
+function matchesTags (p: Post): boolean {
+  if (!selectedTags.value.size) return true
+  return (p.tags || []).some(t => selectedTags.value.has(t))
+}
 const isUserTagQuery = computed(() => /^(?:标签[:：]|tag:)/i.test(keyword.value.trim()))
 const plainKeyword = computed(() => isUserTagQuery.value ? keyword.value.trim().replace(/^(?:标签[:：]|tag:)/i, '').trim() : keyword.value.trim())
 function matchesKeyword (p: Post): boolean {
@@ -251,25 +326,50 @@ function matchesKeyword (p: Post): boolean {
     return userTagsOf(p.author).some(t => t.toLowerCase().includes(needle))
   }
   const stepTexts = (p.steps || []).flatMap(s => [s.text, s.tools, s.tech, s.prep, ...(s.substeps || []).map(x => x.text)].filter(Boolean) as string[])
-  // 联合搜索：标题、摘要、行业、技术、作者（名 / @handle / 简介）、用户标签、帖子标签、
-  // 所属类别名、步骤文本、发布日期（上海时间，形如 2026-10-25 16:28，搜 10-25 也能命中）。
   const hay = [p.title, p.summary || '', p.industry || '', p.tech || '', p.author, '@' + p.author, p.author_name, accountOf(p.author)?.bio || '', ...userTagsOf(p.author), ...(p.tags || []), ...catsOf(p.id).map(categoryName), shanghaiTime(p.published_at), ...stepTexts].join('\n').toLowerCase()
   // Tag field: strip leading # before matching (SPEC).
   return hay.includes(q.replace(/^#+/, ''))
 }
 const filtered = computed(() => {
-  const q = keyword.value.trim()
-  // 空查询时按关注列表作者范围看（SPEC: 空作者选择 = 空列表，不是不过滤）；
-  // 一旦输入查询，全库联合搜索，不受作者范围限制。
-  return posts.value.filter(p => (q ? true : selectedAuthors.value.has(p.author)) && matchesKeyword(p))
+  // SPEC: empty author selection = EMPTY list, not "no filter".
+  return posts.value.filter(p => selectedAuthors.value.has(p.author) && passesNonAuthor(p))
 })
+const activeFilterCount = computed(() =>
+  selectedTags.value.size + selectedUserTags.value.size + selectedCats.value.size +
+  (keyword.value.trim() ? 1 : 0) + (dateFrom.value || dateTo.value ? 1 : 0))
 const firstSnippet = computed(() => {
   if (!keyword.value.trim() || !filtered.value.length) return ''
   return firstHitSnippet(filtered.value[0], plainKeyword.value || keyword.value.trim())
 })
-// 点帖子上的标签，把标签填进联合搜索框（替代原来的“只看该标签”筛选）。
-function searchTag (t: string) { keyword.value = t }
-function clearAll () { keyword.value = '' }
+function selectTagOnly (t: string) { selectedTags.value = new Set([t]) }
+// 下拉联想框用数组 v-model，内部筛选状态仍是 Set；桥接读写并保持原有的持久化。
+function setBridge (refSet: Ref<Set<string>>, persist = false) {
+  return computed<string[]>({
+    get: () => [...refSet.value],
+    set: (v) => { refSet.value = new Set(v); if (persist) persistSelection() }
+  })
+}
+const selectedAuthorsArr = setBridge(selectedAuthors, true)
+const selectedTagsArr = setBridge(selectedTags)
+const selectedUserTagsArr = setBridge(selectedUserTags)
+const selectedCatsArr = setBridge(selectedCats, true)
+// 各条件框的下拉选项（值多的字段靠输入联想过滤，见 FilterCombo）。
+const authorOptions = computed(() => {
+  const listed = watchlist.value.accounts.map(a => ({ value: a.username, label: `${a.name} @${a.username}` }))
+  const unlisted = unlistedAuthors.value.map(u => ({ value: u, label: `${authorName(u)} @${u}` }))
+  return [...listed, ...unlisted]
+})
+const tagOptions = computed(() => allTags.value.map(t => ({ value: t.tag, label: t.tag, count: t.n })))
+const catOptions = computed(() => [
+  ...categories.value.categories.map(c => ({ value: c.id, label: c.name, count: catCounts[c.id] || 0 })),
+  { value: '__uncat', label: '未分类', count: catCounts.__uncat || 0 }
+])
+function clearAll () {
+  keyword.value = ''; dateFrom.value = ''; dateTo.value = ''
+  selectedTags.value = new Set(); selectedUserTags.value = new Set(); selectedCats.value = new Set()
+  selectedAuthors.value = new Set(watchlist.value.accounts.filter(a => a.group === 'special').map(a => a.username))
+  persistSelection()
+}
 function toggleLong (id: string) { expandedLong.value.has(id) ? expandedLong.value.delete(id) : expandedLong.value.add(id); expandedLong.value = new Set(expandedLong.value) }
 function summaryShown (p: Post) {
   if (!p.is_long || expandedLong.value.has(p.id)) return p.summary || ''
@@ -318,6 +418,11 @@ async function refreshWatchlist () {
     selectedAuthors.value = stored !== null
       ? new Set(stored)
       : new Set(watchlist.value.accounts.filter(a => a.group === 'special').map(a => a.username))
+    let storedCats: string[] = []
+    if (import.meta.client) {
+      try { storedCats = JSON.parse(localStorage.getItem(LS.selectedCats) || '[]') } catch { storedCats = [] }
+    }
+    selectedCats.value = new Set(storedCats)
   }
 }
 async function doAddGroup () {
