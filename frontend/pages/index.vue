@@ -11,7 +11,12 @@
       <p v-if="loading">加载中…</p>
 
       <section class="filter-panel" v-if="!loading">
-        <div class="filter-row">
+        <div class="filter-row" style="justify-content:space-between">
+          <button class="btn btn-sm" type="button" @click="filtersCollapsed = !filtersCollapsed" :aria-expanded="!filtersCollapsed">{{ filtersCollapsed ? '展开搜索筛选 ▸' : '收起搜索筛选 ▾' }}</button>
+          <span class="active-count" v-if="filtersCollapsed && activeFilterCount">已选 {{ activeFilterCount }} 项筛选</span>
+        </div>
+        <div v-show="!filtersCollapsed">
+        <div class="filter-row" style="margin-top:8px">
           <input class="field grow" style="flex:1" type="search" v-model="keyword" placeholder="关键词搜索（支持 标签:xxx / tag:xxx 只搜用户标签）" aria-label="关键词搜索" />
           <button class="btn btn-sm" type="button" @click="clearAll">清除全部</button>
         </div>
@@ -60,6 +65,7 @@
           <button v-for="c in categories.categories" :key="c.id" type="button" class="chip"
             :class="{ active: selectedCats.has(c.id) }" @click="toggleCat(c.id)">{{ c.name }} <span class="chip-count">{{ catCounts[c.id] || 0 }}</span></button>
           <button type="button" class="chip" :class="{ active: selectedCats.has('__uncat') }" @click="toggleCat('__uncat')">未分类 <span class="chip-count">{{ catCounts.__uncat || 0 }}</span></button>
+        </div>
         </div>
       </section>
 
@@ -251,6 +257,7 @@ const selectedTags = ref<Set<string>>(new Set())
 const selectedUserTags = ref<Set<string>>(new Set())
 const selectedCats = ref<Set<string>>(new Set())
 const tagsExpanded = ref(false)
+const filtersCollapsed = ref(false)
 const expandedLong = ref<Set<string>>(new Set())
 const substepsOpen = ref<Set<string>>(new Set())
 const catMenuPost = ref<string | null>(null)
