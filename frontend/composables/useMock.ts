@@ -5,7 +5,7 @@
 import rawPosts from '~/assets/mock/posts.json'
 import rawWatchlist from '~/assets/mock/watchlist.json'
 import rawUserTags from '~/assets/mock/user-tags.json'
-import type { Post, Watchlist, Categories, Replica, Attachment, Repo, RepoGroup, RepoCommit, RepoRelease } from './types'
+import type { Post, Watchlist, Categories, Replica, ReplicaStep, Attachment, Repo, RepoGroup, RepoCommit, RepoRelease } from './types'
 import { LS } from './useSettings'
 
 function normPost (p: any): Post {
@@ -114,15 +114,31 @@ export function useMockStore () {
     persist()
     return { replica, existing: false }
   }
-  function patchReplicaSteps (id: string, steps: Array<{ idx: number, status?: string, note?: string }>) {
+  function patchReplicaSteps (id: string, steps: Array<{ idx: number, status?: string, note?: string, text?: string }>) {
     const r = replicas.value.find(x => x.id === id)
     if (!r) return
     for (const patch of steps) {
-      const s = r.steps[patch.idx]
+      const s = r.steps.find(x => x.idx === patch.idx)
       if (!s) continue
       if (patch.status && ['idle', 'active', 'done'].includes(patch.status)) s.status = patch.status as any
       if (patch.note !== undefined) s.note = patch.note
+      if (patch.text !== undefined && s.is_custom) s.text = patch.text
     }
+    persist()
+  }
+  function addMockReplicaStep (id: string, text: string): ReplicaStep {
+    const r = replicas.value.find(x => x.id === id)
+    if (!r) throw new Error('复刻不存在')
+    const idx = r.steps.reduce((m, s) => Math.max(m, s.idx), -1) + 1
+    const step: ReplicaStep = { text: text.trim(), idx, status: 'idle', note: '', is_custom: true, attachments: [] }
+    r.steps = [...r.steps, step]
+    persist()
+    return step
+  }
+  function deleteMockReplicaStep (id: string, idx: number) {
+    const r = replicas.value.find(x => x.id === id)
+    if (!r) return
+    r.steps = r.steps.filter(s => !(s.idx === idx && s.is_custom))
     persist()
   }
   function deleteReplica (id: string) {
@@ -132,7 +148,7 @@ export function useMockStore () {
   function addMockAttachments (replicaId: string, stepIdx: number, files: File[]): Attachment[] {
     const r = replicas.value.find(x => x.id === replicaId)
     if (!r) return []
-    const step = r.steps[stepIdx]
+    const step = r.steps.find(s => s.idx === stepIdx)
     if (!step) return []
     const made: Attachment[] = files.map((f) => {
       const ext = f.name.split('.').pop()?.toLowerCase() || ''
@@ -213,5 +229,5 @@ export function useMockStore () {
     repos.value = repos.value.map(r => r.group_id === id ? { ...r, group_id: 'default' } : r)
     persistRepos()
   }
-  return { watchlist, categories, userTagOverrides, vocabulary, replicas, persist, createReplica, patchReplicaSteps, deleteReplica, addMockAttachments, deleteMockAttachment, repoGroups, repos, addMockRepo, patchMockRepo, deleteMockRepo, syncMockRepo, addMockRepoGroup, deleteMockRepoGroup }
+  return { watchlist, categories, userTagOverrides, vocabulary, replicas, persist, createReplica, patchReplicaSteps, deleteReplica, addMockReplicaStep, deleteMockReplicaStep, addMockAttachments, deleteMockAttachment, repoGroups, repos, addMockRepo, patchMockRepo, deleteMockRepo, syncMockRepo, addMockRepoGroup, deleteMockRepoGroup }
 }

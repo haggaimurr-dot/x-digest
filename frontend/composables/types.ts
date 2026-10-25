@@ -36,7 +36,7 @@ export interface Attachment {
   download_url: string
 }
 export interface ReplicaStep extends Step {
-  idx: number, status: 'idle' | 'active' | 'done', note?: string, attachments?: Attachment[]
+  idx: number, status: 'idle' | 'active' | 'done', note?: string, is_custom?: boolean, attachments?: Attachment[]
 }
 export interface Replica {
   id: string, post_id: string, post_url: string, post_author: string,

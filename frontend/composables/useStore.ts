@@ -1,6 +1,6 @@
 // Data layer: real /api/v1 by default, mock fallback when NUXT_PUBLIC_USE_MOCK=1.
 // Pages only ever talk to this layer, never to raw fetch or raw mock data.
-import type { Post, Watchlist, Categories, Replica, Attachment, Repo, RepoGroup, RepoDetail } from './types'
+import type { Post, Watchlist, Categories, Replica, ReplicaStep, Attachment, Repo, RepoGroup, RepoDetail } from './types'
 import { ApiError } from './types'
 import { MOCK_POSTS, MOCK_UPDATED_AT, mockRepoCommits, mockRepoRelease } from './useMock'
 
@@ -81,9 +81,17 @@ export function useStore () {
       throw e
     }
   }
-  async function patchReplicaSteps (id: string, steps: Array<{ idx: number, status?: string, note?: string }>) {
+  async function patchReplicaSteps (id: string, steps: Array<{ idx: number, status?: string, note?: string, text?: string }>) {
     if (mock.value) { mockStore.patchReplicaSteps(id, steps); return }
     await apiFetch(`replicas/${id}`, { method: 'PATCH', body: JSON.stringify({ steps }) })
+  }
+  async function addReplicaStep (id: string, text: string): Promise<ReplicaStep> {
+    if (mock.value) return mockStore.addMockReplicaStep(id, text)
+    return await apiFetch<ReplicaStep>(`replicas/${id}/steps`, { method: 'POST', body: JSON.stringify({ text }) })
+  }
+  async function deleteReplicaStep (id: string, idx: number) {
+    if (mock.value) { mockStore.deleteMockReplicaStep(id, idx); return }
+    await apiFetch(`replicas/${id}/steps/${idx}`, { method: 'DELETE' })
   }
   async function deleteReplica (id: string) {
     if (mock.value) { mockStore.deleteReplica(id); return }
@@ -252,7 +260,7 @@ export function useStore () {
   }
   return {
     loading, error, loadPosts, loadWatchlist, loadTags, loadUserTags, loadCategories,
-    loadReplicas, createReplica, patchReplicaSteps, deleteReplica, uploadAttachments,
+    loadReplicas, createReplica, patchReplicaSteps, addReplicaStep, deleteReplicaStep, deleteReplica, uploadAttachments,
     deleteAttachment, replicaAttachments, addGroup, deleteGroup, addAccount, patchAccount,
     deleteAccount, addCategory, deleteCategory, setPostCategories, setUserTags,
     loadRepos, loadRepoGroups, addRepo, loadRepoDetail, loadRepoCommits, loadRepoReleases,

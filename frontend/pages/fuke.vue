@@ -29,12 +29,24 @@
         </div>
         <div class="progress-bar"><div :style="{ width: progressPct(r) + '%' }" /></div>
 
-        <div v-for="step in r.steps" :key="step.idx" class="replica-step" :class="{ 'is-done': step.status === 'done' }">
+        <div v-for="(step, si) in r.steps" :key="step.idx" class="replica-step" :class="{ 'is-done': step.status === 'done' }">
           <button type="button" class="status-dot" :class="`is-${step.status}`"
-            :title="`${statusNames[step.status]}，点击切换状态`" :aria-label="`步骤 ${step.idx + 1}：${statusNames[step.status]}，点击切换`"
+            :title="`${statusNames[step.status]}，点击切换状态`" :aria-label="`步骤 ${si + 1}：${statusNames[step.status]}，点击切换`"
             @click="cycleStatus(r, step)" />
           <div style="flex:1;min-width:0">
-            <div class="replica-step-text"><strong>{{ step.idx + 1 }}. {{ step.text }}</strong></div>
+            <div class="replica-step-text"><strong>{{ si + 1 }}. {{ step.text }}</strong></div>
+            <div v-if="step.is_custom" style="margin:4px 0;display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+              <span class="chip active">自建节点</span>
+              <button class="btn btn-sm" type="button" @click="startEditText(r, step)">编辑文本</button>
+              <button class="btn btn-sm btn-danger" type="button" @click="removeStep(r, step)">删除节点</button>
+            </div>
+            <div v-if="editingStep && editingStep.rid === r.id && editingStep.idx === step.idx" style="margin:6px 0">
+              <textarea class="field" style="width:100%;min-height:64px" v-model="editingStep.text" aria-label="编辑节点文本" />
+              <div style="margin-top:6px;display:flex;gap:6px">
+                <button class="btn btn-sm btn-primary" type="button" @click="saveStepText(r, step)">保存文本</button>
+                <button class="btn btn-sm" type="button" @click="editingStep = null">取消</button>
+              </div>
+            </div>
             <div v-if="step.tools || step.tech || step.prep" style="color:var(--text-muted);font-size:13px">
               <span v-if="step.tools">工具：{{ step.tools }} </span>
               <span v-if="step.tech">技术：{{ step.tech }} </span>
@@ -62,6 +74,13 @@
               </div>
               <AttachmentPreview v-if="previewAtt && step.attachments!.some(a => a.id === previewAtt!.id)" :key="previewAtt.id" :attachment="previewAtt" />
             </div>
+          </div>
+        </div>
+        <div style="margin-top:12px;border-top:1px dashed var(--border);padding-top:10px">
+          <div class="chip-group-title" style="margin-top:0">自建流程节点</div>
+          <textarea class="field" style="width:100%;min-height:64px" v-model="newStepText[r.id]" placeholder="写下这个节点的文字内容，添加后可继续改状态、写备注、上传图片和附件" aria-label="新节点文本" />
+          <div style="margin-top:6px">
+            <button class="btn btn-sm btn-primary" type="button" :disabled="!((newStepText[r.id] || '').trim())" @click="addStep(r)">添加节点</button>
           </div>
         </div>
       </article>
@@ -122,6 +141,40 @@ async function cycleStatus (r: Replica, step: ReplicaStep) {
 }
 async function saveNote (r: Replica, step: ReplicaStep, note: string) {
   try { await store.patchReplicaSteps(r.id, [{ idx: step.idx, note }]) } catch (e: any) { showToast(e?.message || '备注保存失败') }
+}
+const newStepText = ref<Record<string, string>>({})
+const editingStep = ref<{ rid: string, idx: number, text: string } | null>(null)
+async function addStep (r: Replica) {
+  const text = (newStepText.value[r.id] || '').trim()
+  if (!text) return
+  try {
+    const step = await store.addReplicaStep(r.id, text)
+    r.steps = [...r.steps, step]
+    newStepText.value[r.id] = ''
+    showToast('节点已添加')
+  } catch (e: any) { showToast(e?.message || '添加节点失败') }
+}
+function startEditText (r: Replica, step: ReplicaStep) {
+  editingStep.value = { rid: r.id, idx: step.idx, text: step.text }
+}
+async function saveStepText (r: Replica, step: ReplicaStep) {
+  if (!editingStep.value) return
+  const text = editingStep.value.text.trim()
+  if (!text) { showToast('节点文本不能为空'); return }
+  try {
+    await store.patchReplicaSteps(r.id, [{ idx: step.idx, text }])
+    step.text = text
+    editingStep.value = null
+    showToast('节点文本已保存')
+  } catch (e: any) { showToast(e?.message || '保存失败') }
+}
+async function removeStep (r: Replica, step: ReplicaStep) {
+  if (!confirm(`删除自建节点「${step.text.slice(0, 20)}」？节点下的附件会一起删除。`)) return
+  try {
+    await store.deleteReplicaStep(r.id, step.idx)
+    r.steps = r.steps.filter(s => s.idx !== step.idx)
+    showToast('节点已删除')
+  } catch (e: any) { showToast(e?.message || '删除失败') }
 }
 async function upload (r: Replica, step: ReplicaStep, e: Event) {
   const input = e.target as HTMLInputElement
