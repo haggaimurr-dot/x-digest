@@ -131,7 +131,10 @@
     <!-- Settings modal -->
     <div v-if="showSettings" class="modal-backdrop" @click.self="showSettings = false">
       <div class="modal-card" role="dialog" aria-modal="true" aria-label="设置">
-        <h2>设置</h2>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+          <h2 style="margin:0">设置</h2>
+          <button class="btn btn-sm" type="button" @click="showSettings = false" aria-label="关闭设置">✕</button>
+        </div>
         <label>主题</label>
         <div style="display:flex;gap:8px">
           <button class="btn" :class="{ 'btn-primary': theme === 'dark' }" type="button" @click="setTheme('dark')">深色（默认）</button>
