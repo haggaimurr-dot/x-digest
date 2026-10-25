@@ -9,7 +9,7 @@
     <div class="flow-card" style="flex:1;min-width:0">
       <div class="replica-step-text"><strong>{{ num }}. {{ step.text }}</strong></div>
       <div v-if="step.is_custom" class="node-actions">
-        <span class="chip active">{{ isChild ? '子节点' : '自建节点' }}</span>
+        <button class="chip active" type="button" :title="isChild ? '点击编辑节点文字' : '点击展开 / 收起子流程'" @click="onBadgeClick">{{ isChild ? '子节点' : '自建节点' }}</button>
         <span style="flex:1" />
         <button class="btn btn-sm btn-quiet" type="button" @click="startEditText">编辑</button>
         <button class="btn btn-sm btn-quiet-danger" type="button" @click="removeStep">删除</button>
@@ -126,6 +126,11 @@ async function removeAttachment (att: Attachment) {
   } catch (err: any) { showToast(err?.message || '删除附件失败') }
 }
 function startEditText () { editingText.value = props.step.text }
+// 点徽标要有反应：外层节点展开 / 收起子流程，子节点没有子流程，点徽标改为编辑文字。
+function onBadgeClick () {
+  if (props.isChild) startEditText()
+  else childOpen.value = !childOpen.value
+}
 async function saveStepText () {
   if (editingText.value === null) return
   const text = editingText.value.trim()
