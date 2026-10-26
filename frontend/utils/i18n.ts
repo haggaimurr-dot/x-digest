@@ -247,7 +247,7 @@ export const DICT: Record<string, { zh: string, en: string }> = {
   'repos.invalidFullName': { zh: '格式应为 owner/repo，例如 nuxt/nuxt', en: 'Format should be owner/repo, e.g. nuxt/nuxt' },
   'repos.notFound': { zh: '仓库不存在', en: 'Repo not found' },
 
-  // ---- youtube (油管频道，原型 2026-10-26；RSS 订阅源，无需 API key) ----
+  // ---- youtube (油管频道，2026-10-26；yt-dlp 同步，无需 API key) ----
   'yt.title': { zh: 'YouTube 频道', en: 'YouTube Channels' },
   'yt.total': { zh: '共 {n} 个频道 · {v} 个视频', en: '{n} channels · {v} videos' },
   'yt.syncAll': { zh: '同步全部', en: 'Sync all' },
@@ -282,7 +282,7 @@ export const DICT: Record<string, { zh: string, en: string }> = {
   'yt.addTitle': { zh: '添加频道', en: 'Add channel' },
   'yt.inputLabel': { zh: '频道 ID / 频道链接 / @handle', en: 'Channel ID / channel URL / @handle' },
   'yt.inputPh': { zh: '例如 UC_x5XG1OV2P6uZZ5FSM9Ttw，或 https://www.youtube.com/@handle', en: 'e.g. UC_x5XG1OV2P6uZZ5FSM9Ttw, or https://www.youtube.com/@handle' },
-  'yt.inputHint': { zh: '不需要 API key：视频通过频道的公开 RSS 订阅源同步。', en: 'No API key needed: videos sync from the channel’s public RSS feed.' },
+  'yt.inputHint': { zh: '不需要 API key：通过频道公开内容同步视频、Shorts、直播和播放列表。', en: 'No API key needed: syncs videos, Shorts, live streams and playlists from the channel’s public content.' },
   'yt.groupLabel': { zh: '分组', en: 'Group' },
   'yt.adding': { zh: '添加中…', en: 'Adding…' },
   'yt.add': { zh: '添加', en: 'Add' },
