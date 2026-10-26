@@ -27,6 +27,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"os"
 	"regexp"
 	"strings"
 	"time"
@@ -60,9 +61,20 @@ type Client struct {
 }
 
 // New returns a client with a 15s timeout, pointed at youtube.com.
+// When YT_HTTP_PROXY is set, feed and channel-page fetches go through
+// that proxy. The Shanghai box needs it: YouTube is unreachable from
+// mainland China (the TLS SNI is killed by the GFW), so the server runs
+// a local xray client (xray-yt) whose VLESS tunnel to the LA node hides
+// the SNI; YT_HTTP_PROXY=http://127.0.0.1:18099 points at it.
 func New() *Client {
+	transport := http.DefaultTransport.(*http.Transport).Clone()
+	if proxyURL := strings.TrimSpace(os.Getenv("YT_HTTP_PROXY")); proxyURL != "" {
+		if u, err := url.Parse(proxyURL); err == nil {
+			transport.Proxy = http.ProxyURL(u)
+		}
+	}
 	return &Client{
-		HTTP:    &http.Client{Timeout: requestTimeout},
+		HTTP:    &http.Client{Timeout: requestTimeout, Transport: transport},
 		BaseURL: defaultBaseURL,
 	}
 }

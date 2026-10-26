@@ -241,6 +241,33 @@ func TestFetchFeedAndSync(t *testing.T) {
 	}
 }
 
+// New() honours YT_HTTP_PROXY: the feed request must travel through the
+// proxy (the Shanghai box reaches YouTube only via its local xray client).
+// The test uses an http:// BaseURL so the fake proxy sees a plain GET with
+// the absolute feed URI; production uses https:// (CONNECT), same wiring.
+func TestNewUsesProxyEnv(t *testing.T) {
+	var gotURI string
+	proxy := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		gotURI = r.RequestURI
+		w.Header().Set("Content-Type", "application/atom+xml")
+		_, _ = w.Write([]byte(sampleFeed))
+	}))
+	defer proxy.Close()
+	t.Setenv("YT_HTTP_PROXY", proxy.URL)
+	c := New()
+	c.BaseURL = "http://www.youtube.com"
+	res, err := c.Sync(context.Background(), "UC_x5XG1OV2P6uZZ5FSM9Ttw")
+	if err != nil {
+		t.Fatalf("Sync: %v", err)
+	}
+	if res.Status != "synced" || len(res.Videos) != 3 {
+		t.Fatalf("res = %+v", res)
+	}
+	if !strings.HasPrefix(gotURI, "http://www.youtube.com/feeds/videos.xml?channel_id=") {
+		t.Fatalf("proxy saw RequestURI %q, want the absolute feed URL", gotURI)
+	}
+}
+
 func TestSyncEmptyFeedOK(t *testing.T) {
 	empty := `<?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns:yt="http://www.youtube.com/xml/schemas/2015" xmlns="http://www.w3.org/2005/Atom">
