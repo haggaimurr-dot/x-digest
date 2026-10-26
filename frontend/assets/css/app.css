@@ -129,6 +129,7 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
 .flow-sheet .flow-step { grid-template-columns: 30px 1fr; gap: 14px; }
 .flow-sheet .flow-card.replica-node-card { background: #fff; border: 1px solid #e7e7e7; border-left: 1px solid #e7e7e7; border-radius: 16px; box-shadow: 0 1px 3px rgba(0,0,0,.06); padding: 14px 16px; }
 .flow-sheet .flow-step.st-active .flow-card.replica-node-card { border-color: #111; box-shadow: 0 4px 16px rgba(0,0,0,.12); }
+.flow-sheet .flow-step.st-done .flow-card.replica-node-card { border-left-color: #e7e7e7; }
 .flow-sheet .flow-step.st-idle .flow-card.replica-node-card { border-style: dashed; border-color: #d9d9d9; background: #fcfcfc; }
 .flow-sheet .flow-step.is-done .replica-step-text { text-decoration: none; color: inherit; }
 .flow-sheet .flow-step:hover .flow-card.replica-node-card { border-color: #111; border-left-color: #111; box-shadow: 0 4px 16px rgba(0,0,0,.12); }
