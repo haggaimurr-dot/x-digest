@@ -1,6 +1,6 @@
 // Data layer: real /api/v1 by default, mock fallback when NUXT_PUBLIC_USE_MOCK=1.
 // Pages only ever talk to this layer, never to raw fetch or raw mock data.
-import type { Post, Watchlist, Categories, Replica, ReplicaStep, Attachment, Repo, RepoGroup, RepoDetail, RepoRelease } from './types'
+import type { Post, Watchlist, Categories, Replica, ReplicaStep, Attachment, Repo, RepoGroup, RepoDetail, RepoRelease, YTChannel, YTVideo } from './types'
 import { ApiError } from './types'
 import { t } from '~/utils/i18n'
 import { MOCK_POSTS, MOCK_UPDATED_AT, mockRepoCommits, mockRepoRelease, mockRepoReleases } from './useMock'
@@ -275,12 +275,66 @@ export function useStore () {
     if (mock.value) { mockStore.deleteMockRepoGroup(id); return }
     await apiFetch(`repos/groups/${id}`, { method: 'DELETE' })
   }
+  // ---------- YouTube channels (prototype 2026-10-26; all data via /api/v1/yt/...) ----------
+  async function loadYTChannels (): Promise<YTChannel[]> {
+    if (mock.value) return [...mockStore.ytChannels.value]
+    const data = await apiFetch<{ channels: YTChannel[] } | YTChannel[]>('yt/channels')
+    return Array.isArray(data) ? data : (data.channels || [])
+  }
+  async function loadYTVideos (): Promise<YTVideo[]> {
+    if (mock.value) return [...mockStore.ytVideos.value]
+    // Prototype volume is small: fetch up to 500 newest and filter
+    // client-side (same instant-filter UX as the other pages). The
+    // server also supports q/channel_id/date_from/date_to/limit.
+    const data = await apiFetch<{ videos: YTVideo[] } | YTVideo[]>(`yt/videos?limit=500`)
+    return Array.isArray(data) ? data : (data.videos || [])
+  }
+  async function loadYTGroups (): Promise<RepoGroup[]> {
+    if (mock.value) return [...mockStore.ytGroups.value]
+    const data = await apiFetch<{ groups: RepoGroup[] } | RepoGroup[]>('yt/groups')
+    return Array.isArray(data) ? data : (data.groups || [])
+  }
+  async function addYTChannel (input: string, groupId?: string | null): Promise<YTChannel> {
+    if (!input.trim()) throw new ApiError(422, 'VALIDATION', t('yt.inputLabel'))
+    const body = { channel_id: input.trim(), group_id: groupId || undefined }
+    if (mock.value) return mockStore.addMockYTChannel(body.channel_id, body.group_id ?? null)
+    const data = await apiFetch<any>('yt/channels', { method: 'POST', body: JSON.stringify(body) })
+    return data.channel || data
+  }
+  async function deleteYTChannel (id: string) {
+    if (mock.value) { mockStore.deleteMockYTChannel(id); return }
+    await apiFetch(`yt/channels/${id}`, { method: 'DELETE' })
+  }
+  async function syncYTChannel (id: string): Promise<YTChannel | null> {
+    if (mock.value) return mockStore.syncMockYTChannel(id)
+    const data = await apiFetch<any>(`yt/channels/${id}/sync`, { method: 'POST' })
+    return data.channel || data || null
+  }
+  async function syncAllYTChannels (): Promise<{ synced: number, failed: number, total: number }> {
+    if (mock.value) {
+      const total = mockStore.ytChannels.value.length
+      for (const c of mockStore.ytChannels.value) mockStore.syncMockYTChannel(c.id)
+      return { synced: total, failed: 0, total }
+    }
+    return apiFetch<{ synced: number, failed: number, total: number }>('yt/sync', { method: 'POST' })
+  }
+  async function addYTGroup (name: string): Promise<RepoGroup> {
+    if (mock.value) return mockStore.addMockYTGroup(name)
+    const data = await apiFetch<any>('yt/groups', { method: 'POST', body: JSON.stringify({ name }) })
+    return data.group || data
+  }
+  async function deleteYTGroup (id: string) {
+    if (mock.value) { mockStore.deleteMockYTGroup(id); return }
+    await apiFetch(`yt/groups/${id}`, { method: 'DELETE' })
+  }
   return {
     loading, error, loadPosts, loadWatchlist, loadTags, loadUserTags, loadCategories,
     loadReplicas, createReplica, createStandaloneReplica, patchReplicaSteps, addReplicaStep, deleteReplicaStep, deleteReplica, uploadAttachments,
     deleteAttachment, replicaAttachments, addGroup, deleteGroup, addAccount, patchAccount,
     deleteAccount, addCategory, deleteCategory, setPostCategories, setUserTags, translateTexts,
     loadRepos, loadRepoGroups, addRepo, loadRepoDetail, loadRepoCommits, loadRepoReleases,
-    patchRepo, deleteRepo, syncRepo, syncAllRepos, addRepoGroup, deleteRepoGroup, validateRepoFullName
+    patchRepo, deleteRepo, syncRepo, syncAllRepos, addRepoGroup, deleteRepoGroup, validateRepoFullName,
+    loadYTChannels, loadYTVideos, addYTChannel, deleteYTChannel, syncYTChannel, syncAllYTChannels,
+    loadYTGroups, addYTGroup, deleteYTGroup
   }
 }

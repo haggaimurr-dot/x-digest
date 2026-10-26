@@ -238,6 +238,49 @@ CREATE TABLE IF NOT EXISTS repo_releases (
 -- includes it); IF NOT EXISTS keeps re-apply safe.
 ALTER TABLE repo_releases ADD COLUMN IF NOT EXISTS body MEDIUMTEXT;
 
+-- ---- YouTube channels (prototype 2026-10-26) ----
+-- Mirrors the repos pattern: yt_groups like repo_groups (default group
+-- 'other'), yt_channels like repos, yt_videos like posts. Videos come
+-- from each channel's public RSS feed (no API key); yt_videos.channel_id
+-- is by value, no FK constraint. Upsert on sync: same video_id = update,
+-- never duplicate. A failed feed fetch never deletes existing videos.
+CREATE TABLE IF NOT EXISTS yt_groups (
+  id    VARCHAR(64)  NOT NULL PRIMARY KEY,
+  name  VARCHAR(128) NOT NULL,
+  fixed TINYINT(1)   NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT IGNORE INTO yt_groups (id, name, fixed) VALUES ('other', '默认', 1);
+
+CREATE TABLE IF NOT EXISTS yt_channels (
+  id             VARCHAR(64)  NOT NULL PRIMARY KEY,
+  channel_id     VARCHAR(64)  NOT NULL,
+  handle         VARCHAR(128) NOT NULL DEFAULT '',
+  name           VARCHAR(256) NOT NULL DEFAULT '',
+  group_id       VARCHAR(64)  NULL,
+  created_at     DATETIME     NOT NULL,
+  last_synced_at DATETIME     NULL,
+  sync_status    VARCHAR(32)  NOT NULL DEFAULT 'never',
+  sync_error     TEXT,
+  UNIQUE KEY uq_yt_channels_channel_id (channel_id),
+  CONSTRAINT fk_yt_channels_group FOREIGN KEY (group_id)
+    REFERENCES yt_groups(id) ON DELETE SET NULL ON UPDATE CASCADE,
+  INDEX idx_yt_channels_group (group_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS yt_videos (
+  id            VARCHAR(64)   NOT NULL PRIMARY KEY,
+  channel_id    VARCHAR(64)   NOT NULL,
+  title         TEXT          NOT NULL,
+  description   TEXT,
+  published_at  DATETIME      NOT NULL,
+  thumbnail_url VARCHAR(1024) NOT NULL DEFAULT '',
+  url           VARCHAR(1024) NOT NULL DEFAULT '',
+  created_at    DATETIME      NOT NULL,
+  INDEX idx_yt_videos_channel_time (channel_id, published_at DESC),
+  INDEX idx_yt_videos_published (published_at DESC)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 -- ---- Content translation cache (added 2026-10-26) ----
 -- One row per (source text, target language). source_hash is the SHA-256
 -- of source text + target language (see internal/translate.Hash).

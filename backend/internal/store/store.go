@@ -1466,6 +1466,281 @@ func (s *Store) RepoGroupExists(id string) bool {
 	return n > 0
 }
 
+// ---- YouTube channels / videos (prototype 2026-10-26) ----
+
+// YTVideoFilter filters ListYTVideos. DateFrom/DateTo are "2006-01-02"
+// calendar dates (Shanghai day bounds, like the post date filter).
+// Limit <= 0 means the default 100.
+type YTVideoFilter struct {
+	ChannelID string
+	Q         string
+	DateFrom  string
+	DateTo    string
+	Limit     int
+}
+
+func scanYTChannel(c *model.YTChannel, groupID, lastSyncedAt sql.NullString, videoCount int) {
+	if groupID.Valid {
+		c.GroupID = groupID.String
+	}
+	if lastSyncedAt.Valid {
+		v := lastSyncedAt.String
+		c.LastSyncedAt = &v
+	}
+	c.VideoCount = videoCount
+}
+
+// ListYTChannels returns all followed channels, oldest first, each with
+// its stored video count.
+func (s *Store) ListYTChannels() ([]model.YTChannel, error) {
+	rows, err := s.DB.Query(`SELECT c.id,c.channel_id,c.handle,c.name,c.group_id,
+		c.created_at,c.last_synced_at,c.sync_status,c.sync_error,
+		(SELECT COUNT(*) FROM yt_videos v WHERE v.channel_id=c.channel_id) AS video_count
+		FROM yt_channels c ORDER BY c.created_at`)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	out := []model.YTChannel{}
+	for rows.Next() {
+		var c model.YTChannel
+		var groupID, lastSyncedAt sql.NullString
+		var videoCount int
+		if err := rows.Scan(&c.ID, &c.ChannelID, &c.Handle, &c.Name, &groupID,
+			&c.CreatedAt, &lastSyncedAt, &c.SyncStatus, &c.SyncError, &videoCount); err != nil {
+			return nil, err
+		}
+		scanYTChannel(&c, groupID, lastSyncedAt, videoCount)
+		out = append(out, c)
+	}
+	return out, rows.Err()
+}
+
+func (s *Store) scanYTChannelRow(row *sql.Row) (model.YTChannel, error) {
+	var c model.YTChannel
+	var groupID, lastSyncedAt sql.NullString
+	var videoCount int
+	err := row.Scan(&c.ID, &c.ChannelID, &c.Handle, &c.Name, &groupID,
+		&c.CreatedAt, &lastSyncedAt, &c.SyncStatus, &c.SyncError, &videoCount)
+	if err != nil {
+		return c, err
+	}
+	scanYTChannel(&c, groupID, lastSyncedAt, videoCount)
+	return c, nil
+}
+
+const ytChannelCols = `SELECT c.id,c.channel_id,c.handle,c.name,c.group_id,
+	c.created_at,c.last_synced_at,c.sync_status,c.sync_error,
+	(SELECT COUNT(*) FROM yt_videos v WHERE v.channel_id=c.channel_id) AS video_count
+	FROM yt_channels c `
+
+// GetYTChannel loads one channel by its row id.
+func (s *Store) GetYTChannel(id string) (model.YTChannel, error) {
+	return s.scanYTChannelRow(s.DB.QueryRow(ytChannelCols+"WHERE c.id=?", id))
+}
+
+// GetYTChannelByChannelID loads one channel by its UC... ID.
+func (s *Store) GetYTChannelByChannelID(channelID string) (model.YTChannel, error) {
+	return s.scanYTChannelRow(s.DB.QueryRow(ytChannelCols+"WHERE c.channel_id=?", channelID))
+}
+
+// YTChannelExists reports whether a channel row id exists.
+func (s *Store) YTChannelExists(id string) bool {
+	var n int
+	_ = s.DB.QueryRow("SELECT COUNT(*) FROM yt_channels WHERE id=?", id).Scan(&n)
+	return n > 0
+}
+
+// CreateYTChannel inserts a new channel row (status "never" until the
+// first sync runs). Callers check for duplicates first.
+func (s *Store) CreateYTChannel(c model.YTChannel) error {
+	_, err := s.DB.Exec(`INSERT INTO yt_channels(id,channel_id,handle,name,group_id,
+		created_at,last_synced_at,sync_status,sync_error) VALUES(?,?,?,?,?,?,?,?,?)`,
+		c.ID, c.ChannelID, c.Handle, c.Name, groupIDArg(c.GroupID),
+		c.CreatedAt, nil, c.SyncStatus, c.SyncError)
+	return err
+}
+
+// DeleteYTChannel deletes the channel AND its videos (videos are keyed
+// by channel_id value, no FK, so both deletes run in one transaction).
+func (s *Store) DeleteYTChannel(id string) error {
+	tx, err := s.DB.Begin()
+	if err != nil {
+		return err
+	}
+	defer tx.Rollback()
+	var channelID string
+	if err := tx.QueryRow("SELECT channel_id FROM yt_channels WHERE id=?", id).Scan(&channelID); err != nil {
+		return err
+	}
+	if _, err := tx.Exec("DELETE FROM yt_videos WHERE channel_id=?", channelID); err != nil {
+		return err
+	}
+	if _, err := tx.Exec("DELETE FROM yt_channels WHERE id=?", id); err != nil {
+		return err
+	}
+	return tx.Commit()
+}
+
+// SetYTChannelSyncStatus records a sync outcome (and its time) without
+// touching the channel name or any videos.
+func (s *Store) SetYTChannelSyncStatus(id, status, syncErr string) error {
+	_, err := s.DB.Exec("UPDATE yt_channels SET last_synced_at=?,sync_status=?,sync_error=? WHERE id=?",
+		Now(), status, syncErr, id)
+	return err
+}
+
+// UpdateYTChannelMeta applies one sync's channel name + outcome.
+func (s *Store) UpdateYTChannelMeta(id, name, status, syncErr string) error {
+	_, err := s.DB.Exec("UPDATE yt_channels SET name=?,last_synced_at=?,sync_status=?,sync_error=? WHERE id=?",
+		name, Now(), status, syncErr, id)
+	return err
+}
+
+// UpsertYTVideos inserts new videos and updates re-fetched ones. The
+// PRIMARY KEY on yt_videos.id (the video_id) makes a re-sync of the same
+// video an update, never a duplicate row.
+func (s *Store) UpsertYTVideos(channelID string, videos []model.YTVideo) error {
+	if len(videos) == 0 {
+		return nil
+	}
+	tx, err := s.DB.Begin()
+	if err != nil {
+		return err
+	}
+	defer tx.Rollback()
+	stmt, err := tx.Prepare(`INSERT INTO yt_videos(id,channel_id,title,description,
+		published_at,thumbnail_url,url,created_at) VALUES(?,?,?,?,?,?,?,?)
+		ON DUPLICATE KEY UPDATE title=VALUES(title),description=VALUES(description),
+		published_at=VALUES(published_at),thumbnail_url=VALUES(thumbnail_url),url=VALUES(url)`)
+	if err != nil {
+		return err
+	}
+	defer stmt.Close()
+	for _, v := range videos {
+		if _, err := stmt.Exec(v.ID, channelID, v.Title, v.Description,
+			v.PublishedAt, v.ThumbnailURL, v.URL, v.CreatedAt); err != nil {
+			return err
+		}
+	}
+	return tx.Commit()
+}
+
+// ListYTVideos returns videos newest first, with the channel name joined
+// for display. Keyword matches title/description (LIKE); the filter
+// always runs on the original text.
+func (s *Store) ListYTVideos(f YTVideoFilter) ([]model.YTVideo, error) {
+	limit := f.Limit
+	if limit <= 0 {
+		limit = 100
+	}
+	if limit > 1000 {
+		limit = 1000
+	}
+	var conds []string
+	var args []any
+	if f.ChannelID != "" {
+		conds = append(conds, "v.channel_id=?")
+		args = append(args, f.ChannelID)
+	}
+	if q := strings.TrimSpace(f.Q); q != "" {
+		conds = append(conds, "(v.title LIKE ? OR v.description LIKE ?)")
+		like := "%" + q + "%"
+		args = append(args, like, like)
+	}
+	if f.DateFrom != "" {
+		conds = append(conds, "v.published_at>=?")
+		args = append(args, f.DateFrom)
+	}
+	if f.DateTo != "" {
+		conds = append(conds, "v.published_at<DATE_ADD(?, INTERVAL 1 DAY)")
+		args = append(args, f.DateTo)
+	}
+	where := ""
+	if len(conds) > 0 {
+		where = "WHERE " + strings.Join(conds, " AND ")
+	}
+	q := `SELECT v.id,v.channel_id,COALESCE(c.name,''),v.title,v.description,
+		v.published_at,v.thumbnail_url,v.url,v.created_at
+		FROM yt_videos v LEFT JOIN yt_channels c ON c.channel_id=v.channel_id ` +
+		where + ` ORDER BY v.published_at DESC, v.id DESC LIMIT ?`
+	args = append(args, limit)
+	rows, err := s.DB.Query(q, args...)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	out := []model.YTVideo{}
+	for rows.Next() {
+		var v model.YTVideo
+		if err := rows.Scan(&v.ID, &v.ChannelID, &v.ChannelName, &v.Title,
+			&v.Description, &v.PublishedAt, &v.ThumbnailURL, &v.URL, &v.CreatedAt); err != nil {
+			return nil, err
+		}
+		out = append(out, v)
+	}
+	return out, rows.Err()
+}
+
+// ---- yt groups (same pattern as repo_groups) ----
+
+func (s *Store) ListYTGroups() ([]model.Group, error) {
+	rows, err := s.DB.Query("SELECT id,name,fixed FROM yt_groups ORDER BY id")
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	out := []model.Group{}
+	for rows.Next() {
+		var g model.Group
+		if err := rows.Scan(&g.ID, &g.Name, &g.Fixed); err != nil {
+			return nil, err
+		}
+		out = append(out, g)
+	}
+	return out, rows.Err()
+}
+
+func (s *Store) CreateYTGroup(name string) (model.Group, error) {
+	g := model.Group{ID: NewID("grp_"), Name: name}
+	_, err := s.DB.Exec("INSERT INTO yt_groups(id,name,fixed) VALUES(?,?,0)", g.ID, g.Name)
+	return g, err
+}
+
+// DeleteYTGroup moves the group's channels to the default group first,
+// then deletes the group (mirrors DeleteRepoGroup).
+func (s *Store) DeleteYTGroup(id string) (code string, err error) {
+	var fixed bool
+	err = s.DB.QueryRow("SELECT fixed FROM yt_groups WHERE id=?", id).Scan(&fixed)
+	if err != nil {
+		return "NOT_FOUND", err
+	}
+	if fixed {
+		return "GROUP_FIXED", fmt.Errorf("fixed group cannot be deleted")
+	}
+	tx, err := s.DB.Begin()
+	if err != nil {
+		return "", err
+	}
+	defer tx.Rollback()
+	if _, err := tx.Exec("INSERT IGNORE INTO yt_groups(id,name,fixed) VALUES('other','默认',1)"); err != nil {
+		return "", err
+	}
+	if _, err := tx.Exec("UPDATE yt_channels SET group_id='other' WHERE group_id=?", id); err != nil {
+		return "", err
+	}
+	if _, err := tx.Exec("DELETE FROM yt_groups WHERE id=?", id); err != nil {
+		return "", err
+	}
+	return "", tx.Commit()
+}
+
+func (s *Store) YTGroupExists(id string) bool {
+	var n int
+	_ = s.DB.QueryRow("SELECT COUNT(*) FROM yt_groups WHERE id=?", id).Scan(&n)
+	return n > 0
+}
+
 // ---- translation cache ----
 // Store implements translate.Cache. The key is translate.Hash(source,
 // target); only genuine translations are ever stored (short-circuited

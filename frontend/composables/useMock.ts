@@ -5,7 +5,7 @@
 import rawPosts from '~/assets/mock/posts.json'
 import rawWatchlist from '~/assets/mock/watchlist.json'
 import rawUserTags from '~/assets/mock/user-tags.json'
-import type { Post, Watchlist, Categories, Replica, ReplicaStep, Attachment, Repo, RepoGroup, RepoCommit, RepoRelease } from './types'
+import type { Post, Watchlist, Categories, Replica, ReplicaStep, Attachment, Repo, RepoGroup, RepoCommit, RepoRelease, YTChannel, YTVideo } from './types'
 import { LS } from './useSettings'
 import { t } from '~/utils/i18n'
 
@@ -106,6 +106,50 @@ export const MOCK_REPOS: Repo[] = [
   }
 ]
 export function mockRepoCommits (fullName: string): RepoCommit[] { return MOCK_REPO_COMMITS[fullName] || [] }
+
+// ---------- YouTube channels mock (dev-only; shapes follow the 2026-10-26 contract) ----------
+export const MOCK_YT_GROUPS: RepoGroup[] = [
+  { id: 'default', name: '默认', fixed: true },
+  { id: 'dev', name: '开发' }
+]
+export const MOCK_YT_CHANNELS: YTChannel[] = [
+  {
+    id: 'ytc-mock-1', channel_id: 'UC_x5XG1OV2P6uZZ5FSM9Ttw', handle: '@GoogleDevelopers',
+    name: 'Google for Developers', group_id: 'dev', created_at: '2026-10-25T02:00:00Z',
+    last_synced_at: '2026-10-26T02:00:00Z', sync_status: 'synced', sync_error: null, video_count: 2
+  },
+  {
+    id: 'ytc-mock-2', channel_id: 'UCsBjURrPoezykLs9EqgamOA', handle: '@Fireship',
+    name: 'Fireship', group_id: 'default', created_at: '2026-10-25T02:00:00Z',
+    last_synced_at: '2026-10-26T02:00:00Z', sync_status: 'synced', sync_error: null, video_count: 2
+  }
+]
+export const MOCK_YT_VIDEOS: YTVideo[] = [
+  {
+    id: 'dQw4w9WgXcQ', channel_id: 'UC_x5XG1OV2P6uZZ5FSM9Ttw', channel_name: 'Google for Developers',
+    title: 'First video title', description: 'First video description here.',
+    published_at: '2026-10-24 16:30:00', thumbnail_url: 'https://i4.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg',
+    url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', created_at: '2026-10-24T16:30:00Z'
+  },
+  {
+    id: 'abc123DEF45', channel_id: 'UC_x5XG1OV2P6uZZ5FSM9Ttw', channel_name: 'Google for Developers',
+    title: 'Second video, no description', description: '',
+    published_at: '2026-10-22 20:00:00', thumbnail_url: '',
+    url: 'https://www.youtube.com/watch?v=abc123DEF45', created_at: '2026-10-22T20:00:00Z'
+  },
+  {
+    id: 'mockfire001', channel_id: 'UCsBjURrPoezykLs9EqgamOA', channel_name: 'Fireship',
+    title: '100 JavaScript concepts in 10 minutes', description: 'A fast tour of the JavaScript language, from variables to async iterators.',
+    published_at: '2026-10-23 10:00:00', thumbnail_url: 'https://i4.ytimg.com/vi/mockfire001/hqdefault.jpg',
+    url: 'https://www.youtube.com/watch?v=mockfire001', created_at: '2026-10-23T10:00:00Z'
+  },
+  {
+    id: 'mockfire002', channel_id: 'UCsBjURrPoezykLs9EqgamOA', channel_name: 'Fireship',
+    title: 'CSS in 100 seconds', description: 'Everything you need to know about CSS, in 100 seconds.',
+    published_at: '2026-10-21 09:00:00', thumbnail_url: 'https://i4.ytimg.com/vi/mockfire002/hqdefault.jpg',
+    url: 'https://www.youtube.com/watch?v=mockfire002', created_at: '2026-10-21T09:00:00Z'
+  }
+]
 
 let seq = 1
 export function useMockStore () {
@@ -285,5 +329,59 @@ export function useMockStore () {
     repos.value = repos.value.map(r => r.group_id === id ? { ...r, group_id: 'default' } : r)
     persistRepos()
   }
-  return { watchlist, categories, userTagOverrides, vocabulary, replicas, persist, createReplica, createMockStandaloneReplica, patchReplicaSteps, deleteReplica, addMockReplicaStep, deleteMockReplicaStep, addMockAttachments, deleteMockAttachment, repoGroups, repos, addMockRepo, patchMockRepo, deleteMockRepo, syncMockRepo, addMockRepoGroup, deleteMockRepoGroup }
+  // ---------- YouTube channels mock state ----------
+  const ytGroups = useState<RepoGroup[]>('mock-yt-groups', () => JSON.parse(JSON.stringify(MOCK_YT_GROUPS)))
+  const ytChannels = useState<YTChannel[]>('mock-yt-channels', () => JSON.parse(JSON.stringify(MOCK_YT_CHANNELS)))
+  const ytVideos = useState<YTVideo[]>('mock-yt-videos', () => JSON.parse(JSON.stringify(MOCK_YT_VIDEOS)))
+  function persistYT () {
+    if (!import.meta.client) return
+    try {
+      localStorage.setItem('xd-mock-yt-channels', JSON.stringify(ytChannels.value))
+      localStorage.setItem('xd-mock-yt-groups', JSON.stringify(ytGroups.value))
+    } catch { /* ignore */ }
+  }
+  function addMockYTChannel (input: string, groupId?: string | null): YTChannel {
+    const channelId = input.trim()
+    if (ytChannels.value.some(c => c.channel_id === channelId)) {
+      const e = new Error(t('mock.channelExists')) as any
+      e.status = 409; throw e
+    }
+    const ch: YTChannel = {
+      id: `ytc-mock-${Date.now().toString(36)}${(seq++).toString(36)}`,
+      channel_id: channelId, handle: channelId.startsWith('@') ? channelId : '',
+      name: channelId, group_id: groupId || 'default',
+      created_at: new Date().toISOString(), last_synced_at: new Date().toISOString(),
+      sync_status: 'synced', sync_error: null, video_count: 0
+    }
+    ytChannels.value = [ch, ...ytChannels.value]
+    persistYT()
+    return ch
+  }
+  function deleteMockYTChannel (id: string) {
+    const ch = ytChannels.value.find(c => c.id === id)
+    ytChannels.value = ytChannels.value.filter(c => c.id !== id)
+    if (ch) ytVideos.value = ytVideos.value.filter(v => v.channel_id !== ch.channel_id)
+    persistYT()
+  }
+  function syncMockYTChannel (id: string): YTChannel | null {
+    const ch = ytChannels.value.find(c => c.id === id)
+    if (!ch) return null
+    ch.last_synced_at = new Date().toISOString()
+    ch.sync_status = 'synced'; ch.sync_error = null
+    ytChannels.value = [...ytChannels.value]
+    persistYT()
+    return ch
+  }
+  function addMockYTGroup (name: string): RepoGroup {
+    const g: RepoGroup = { id: `grp-${Date.now().toString(36)}`, name }
+    ytGroups.value = [...ytGroups.value, g]
+    persistYT()
+    return g
+  }
+  function deleteMockYTGroup (id: string) {
+    ytGroups.value = ytGroups.value.filter(g => g.id !== id)
+    ytChannels.value = ytChannels.value.map(c => c.group_id === id ? { ...c, group_id: 'default' } : c)
+    persistYT()
+  }
+  return { watchlist, categories, userTagOverrides, vocabulary, replicas, persist, createReplica, createMockStandaloneReplica, patchReplicaSteps, deleteReplica, addMockReplicaStep, deleteMockReplicaStep, addMockAttachments, deleteMockAttachment, repoGroups, repos, addMockRepo, patchMockRepo, deleteMockRepo, syncMockRepo, addMockRepoGroup, deleteMockRepoGroup, ytGroups, ytChannels, ytVideos, addMockYTChannel, deleteMockYTChannel, syncMockYTChannel, addMockYTGroup, deleteMockYTGroup }
 }

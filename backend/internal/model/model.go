@@ -155,3 +155,34 @@ type Repo struct {
 	Commits       []RepoCommit   `json:"commits,omitempty"`
 	LatestRelease *RepoRelease   `json:"latest_release,omitempty"`
 }
+
+// YTChannel mirrors the yt_channels table (YouTube prototype 2026-10-26).
+// ChannelID is the UC... ID (unique); Handle is the @handle when known.
+// PublishedAt / LastSyncedAt are Shanghai wall time ("2006-01-02 15:04:05").
+// VideoCount is computed at read time, not stored.
+type YTChannel struct {
+	ID           string  `json:"id"`
+	ChannelID    string  `json:"channel_id"`
+	Handle       string  `json:"handle"`
+	Name         string  `json:"name"`
+	GroupID      string  `json:"group_id"`
+	CreatedAt    string  `json:"created_at"`
+	LastSyncedAt *string `json:"last_synced_at"`
+	SyncStatus   string  `json:"sync_status"`
+	SyncError    string  `json:"sync_error"`
+	VideoCount   int     `json:"video_count"`
+}
+
+// YTVideo mirrors the yt_videos table. ID is the YouTube video_id
+// (e.g. dQw4w9WgXcQ). ChannelName is joined at read time for display.
+type YTVideo struct {
+	ID           string `json:"id"`
+	ChannelID    string `json:"channel_id"`
+	ChannelName  string `json:"channel_name"`
+	Title        string `json:"title"`
+	Description  string `json:"description"`
+	PublishedAt  string `json:"published_at"`
+	ThumbnailURL string `json:"thumbnail_url"`
+	URL          string `json:"url"`
+	CreatedAt    string `json:"created_at"`
+}

@@ -41,6 +41,7 @@ import (
 	"xdigest/internal/model"
 	"xdigest/internal/store"
 	"xdigest/internal/translate"
+	"xdigest/internal/youtube"
 )
 
 const maxAttachmentSize = 5 << 20 // 5 MiB per file
@@ -57,6 +58,7 @@ type server struct {
 	attachDir string
 	gh        *github.Client
 	tr        *translate.Service
+	yt        *youtube.Client
 }
 
 func main() {
@@ -70,7 +72,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("db connect: %v", err)
 	}
-	s := &server{st: st, attachDir: attachDir, gh: github.NewFromEnv(), tr: translate.NewService(translate.NewFromEnv(), st)}
+	s := &server{st: st, attachDir: attachDir, gh: github.NewFromEnv(), tr: translate.NewService(translate.NewFromEnv(), st), yt: youtube.New()}
 	mux := http.NewServeMux()
 	mux.HandleFunc("/healthz", s.handleHealth)
 	mux.HandleFunc("/api/v1/healthz", s.handleHealth)
@@ -93,6 +95,12 @@ func main() {
 	mux.HandleFunc("/api/v1/repos/groups", s.handleRepoGroups)
 	mux.HandleFunc("/api/v1/repos/groups/", s.handleRepoGroup)
 	mux.HandleFunc("/api/v1/repos/sync-all", s.handleRepoSyncAll)
+	mux.HandleFunc("/api/v1/yt/channels", s.handleYTChannels)
+	mux.HandleFunc("/api/v1/yt/channels/", s.handleYTChannelSub)
+	mux.HandleFunc("/api/v1/yt/videos", s.handleYTVideos)
+	mux.HandleFunc("/api/v1/yt/sync", s.handleYTSyncAll)
+	mux.HandleFunc("/api/v1/yt/groups", s.handleYTGroups)
+	mux.HandleFunc("/api/v1/yt/groups/", s.handleYTGroup)
 	mux.HandleFunc("/api/v1/translate", s.handleTranslate)
 	mux.HandleFunc("/api/v1/attachments/", s.handleAttachment)
 	log.Printf("xdigest-api listening on %s (attachments: %s)", addr, attachDir)
@@ -1237,4 +1245,281 @@ func (s *server) handleRepoSyncAll(w http.ResponseWriter, r *http.Request) {
 		"synced": synced, "failed": failed,
 		"rate_limited": rateLimited, "total": total,
 	})
+}
+
+// ---- YouTube channels (prototype 2026-10-26; RSS only, no API key) ----
+
+// syncYTChannel syncs one channel's RSS feed into yt_videos. A failed
+// fetch keeps the old videos and only updates the channel's sync status
+// (mirrors syncRepo).
+func (s *server) syncYTChannel(id string) (*model.YTChannel, error) {
+	ch, err := s.st.GetYTChannel(id)
+	if err != nil {
+		return nil, err
+	}
+	res, err := s.yt.Sync(context.Background(), ch.ChannelID)
+	if err != nil {
+		// Defensive: Sync currently folds transport errors into Status.
+		_ = s.st.SetYTChannelSyncStatus(id, "failed", err.Error())
+		ch, err = s.st.GetYTChannel(id)
+		return &ch, err
+	}
+	if res.Status == "failed" {
+		_ = s.st.SetYTChannelSyncStatus(id, "failed", res.Error)
+		ch, err = s.st.GetYTChannel(id)
+		return &ch, err
+	}
+	name := res.ChannelName
+	if name == "" {
+		name = ch.Name
+	}
+	if err := s.st.UpdateYTChannelMeta(id, name, "synced", ""); err != nil {
+		return nil, err
+	}
+	if res.Videos != nil {
+		if err := s.st.UpsertYTVideos(ch.ChannelID, res.Videos); err != nil {
+			return nil, err
+		}
+	}
+	ch, err = s.st.GetYTChannel(id)
+	return &ch, err
+}
+
+func (s *server) handleYTChannels(w http.ResponseWriter, r *http.Request) {
+	switch r.Method {
+	case http.MethodGet:
+		channels, err := s.st.ListYTChannels()
+		if err != nil {
+			writeErr(w, 500, "DB_ERROR", err.Error())
+			return
+		}
+		writeJSON(w, 200, map[string]any{"channels": channels})
+	case http.MethodPost:
+		var body struct {
+			ChannelID string `json:"channel_id"`
+			URL       string `json:"url"`
+			Handle    string `json:"handle"`
+			GroupID   string `json:"group_id"`
+		}
+		if !decodeBody(w, r, &body) {
+			return
+		}
+		input := strings.TrimSpace(body.ChannelID)
+		if input == "" {
+			input = strings.TrimSpace(body.URL)
+		}
+		if input == "" {
+			input = strings.TrimSpace(body.Handle)
+		}
+		channelID, err := s.yt.ResolveChannelID(r.Context(), input)
+		if err != nil {
+			writeErr(w, 422, "VALIDATION", err.Error())
+			return
+		}
+		if body.GroupID != "" && !s.st.YTGroupExists(body.GroupID) {
+			writeErr(w, 422, "VALIDATION", "group does not exist: "+body.GroupID)
+			return
+		}
+		if _, err := s.st.GetYTChannelByChannelID(channelID); err == nil {
+			writeErr(w, 409, "CONFLICT", "channel already exists: "+channelID)
+			return
+		} else if !errors.Is(err, sql.ErrNoRows) {
+			writeErr(w, 500, "DB_ERROR", err.Error())
+			return
+		}
+		// Keep the @handle when the user gave one; the channel name
+		// comes from the feed author on the first sync.
+		handle := strings.TrimSpace(body.Handle)
+		if handle == "" && strings.HasPrefix(input, "@") {
+			handle = input
+		}
+		ch := model.YTChannel{
+			ID: store.NewID("ytc_"), ChannelID: channelID, Handle: handle,
+			Name: "", GroupID: body.GroupID, CreatedAt: store.Now(),
+			SyncStatus: "never",
+		}
+		if err := s.st.CreateYTChannel(ch); err != nil {
+			writeErr(w, 500, "DB_ERROR", err.Error())
+			return
+		}
+		// Sync once immediately so the page shows videos right away; a
+		// sync failure keeps the channel with its error status.
+		synced, err := s.syncYTChannel(ch.ID)
+		if err != nil {
+			writeErr(w, 500, "DB_ERROR", err.Error())
+			return
+		}
+		writeJSON(w, 201, synced)
+	default:
+		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only GET, POST")
+	}
+}
+
+func (s *server) handleYTChannelSub(w http.ResponseWriter, r *http.Request) {
+	rest := strings.TrimPrefix(r.URL.Path, "/api/v1/yt/channels/")
+	parts := strings.Split(rest, "/")
+	if len(parts) < 1 || parts[0] == "" {
+		writeErr(w, 404, "NOT_FOUND", "channel not found")
+		return
+	}
+	id := parts[0]
+	if len(parts) == 2 && parts[1] == "sync" {
+		if r.Method != http.MethodPost {
+			writeErr(w, 405, "METHOD_NOT_ALLOWED", "only POST")
+			return
+		}
+		if !s.st.YTChannelExists(id) {
+			writeErr(w, 404, "NOT_FOUND", "channel not found")
+			return
+		}
+		ch, err := s.syncYTChannel(id)
+		if err != nil {
+			writeErr(w, 500, "DB_ERROR", err.Error())
+			return
+		}
+		writeJSON(w, 200, ch)
+		return
+	}
+	if len(parts) != 1 {
+		writeErr(w, 404, "NOT_FOUND", "not found")
+		return
+	}
+	switch r.Method {
+	case http.MethodGet:
+		ch, err := s.st.GetYTChannel(id)
+		if errors.Is(err, sql.ErrNoRows) {
+			writeErr(w, 404, "NOT_FOUND", "channel not found")
+			return
+		}
+		if err != nil {
+			writeErr(w, 500, "DB_ERROR", err.Error())
+			return
+		}
+		writeJSON(w, 200, ch)
+	case http.MethodDelete:
+		if !s.st.YTChannelExists(id) {
+			writeErr(w, 404, "NOT_FOUND", "channel not found")
+			return
+		}
+		if err := s.st.DeleteYTChannel(id); err != nil {
+			writeErr(w, 500, "DB_ERROR", err.Error())
+			return
+		}
+		writeJSON(w, 200, map[string]bool{"ok": true})
+	default:
+		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only GET, DELETE")
+	}
+}
+
+func (s *server) handleYTVideos(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodGet {
+		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only GET")
+		return
+	}
+	q := r.URL.Query()
+	limit := 100
+	if v := q.Get("limit"); v != "" {
+		if n, err := strconv.Atoi(v); err == nil {
+			limit = n
+		}
+	}
+	videos, err := s.st.ListYTVideos(store.YTVideoFilter{
+		ChannelID: q.Get("channel_id"),
+		Q:         q.Get("q"),
+		DateFrom:  q.Get("date_from"),
+		DateTo:    q.Get("date_to"),
+		Limit:     limit,
+	})
+	if err != nil {
+		writeErr(w, 500, "DB_ERROR", err.Error())
+		return
+	}
+	writeJSON(w, 200, map[string]any{"videos": videos})
+}
+
+func (s *server) handleYTSyncAll(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only POST")
+		return
+	}
+	channels, err := s.st.ListYTChannels()
+	if err != nil {
+		writeErr(w, 500, "DB_ERROR", err.Error())
+		return
+	}
+	total := len(channels)
+	synced, failed := 0, 0
+	for _, ch := range channels {
+		updated, err := s.syncYTChannel(ch.ID)
+		if err != nil {
+			writeErr(w, 500, "DB_ERROR", err.Error())
+			return
+		}
+		switch updated.SyncStatus {
+		case "synced":
+			synced++
+		default: // "failed", "never"
+			failed++
+		}
+	}
+	writeJSON(w, 200, map[string]any{
+		"synced": synced, "failed": failed, "total": total,
+	})
+}
+
+func (s *server) handleYTGroups(w http.ResponseWriter, r *http.Request) {
+	switch r.Method {
+	case http.MethodGet:
+		groups, err := s.st.ListYTGroups()
+		if err != nil {
+			writeErr(w, 500, "DB_ERROR", err.Error())
+			return
+		}
+		writeJSON(w, 200, map[string]any{"groups": groups})
+	case http.MethodPost:
+		var body struct {
+			Name string `json:"name"`
+		}
+		if !decodeBody(w, r, &body) {
+			return
+		}
+		if strings.TrimSpace(body.Name) == "" {
+			writeErr(w, 422, "VALIDATION", "name is required")
+			return
+		}
+		g, err := s.st.CreateYTGroup(body.Name)
+		if err != nil {
+			writeErr(w, 500, "DB_ERROR", err.Error())
+			return
+		}
+		writeJSON(w, 201, g)
+	default:
+		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only GET, POST")
+	}
+}
+
+func (s *server) handleYTGroup(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodDelete {
+		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only DELETE")
+		return
+	}
+	id := strings.TrimPrefix(r.URL.Path, "/api/v1/yt/groups/")
+	if id == "" || strings.Contains(id, "/") {
+		writeErr(w, 404, "NOT_FOUND", "group not found")
+		return
+	}
+	code, err := s.st.DeleteYTGroup(id)
+	if code == "NOT_FOUND" {
+		writeErr(w, 404, "NOT_FOUND", "group not found")
+		return
+	}
+	if code == "GROUP_FIXED" {
+		writeErr(w, 422, "GROUP_FIXED", "fixed groups cannot be deleted")
+		return
+	}
+	if err != nil {
+		writeErr(w, 500, "DB_ERROR", err.Error())
+		return
+	}
+	writeJSON(w, 200, map[string]bool{"ok": true})
 }
