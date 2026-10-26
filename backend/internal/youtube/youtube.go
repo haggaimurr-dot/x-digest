@@ -117,6 +117,13 @@ var channelIDRe = regexp.MustCompile(`^UC[0-9A-Za-z_-]{22}$`)
 // channelIDInPage finds the first "channelId":"UC..." in a channel page's HTML.
 var channelIDInPageRe = regexp.MustCompile(`"channelId":"(UC[0-9A-Za-z_-]{22})"`)
 
+// channelIDCanonical finds the channel ID in the page's canonical link
+// (https://www.youtube.com/channel/UC...). Some channel pages (e.g.
+// @claudecourse) carry the ID only in URLs — canonical, og:url, the RSS
+// feed link — and never as a "channelId" JSON field, so the lookup above
+// misses them. Fall back to this before giving up.
+var channelIDCanonicalRe = regexp.MustCompile(`/channel/(UC[0-9A-Za-z_-]{22})`)
+
 // ytTab is one channel tab: its URL slug and the Kind stored for its items.
 type ytTab struct {
 	slug string
@@ -614,6 +621,11 @@ func (c *Client) resolveFromPage(ctx context.Context, pageURL string) (string, e
 		return "", err
 	}
 	m := channelIDInPageRe.FindSubmatch(body)
+	if m == nil {
+		// Some pages never carry a "channelId" JSON field; the ID is
+		// only in URLs (canonical / og:url / RSS feed link).
+		m = channelIDCanonicalRe.FindSubmatch(body)
+	}
 	if m == nil {
 		return "", fmt.Errorf("页面中未找到 channelId")
 	}

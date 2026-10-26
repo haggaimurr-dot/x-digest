@@ -530,6 +530,21 @@ func TestResolveChannelIDFromURLPage(t *testing.T) {
 	}
 }
 
+// Some channel pages (e.g. @claudecourse) never carry a "channelId" JSON
+// field; the ID only appears in URLs. The canonical link must be enough.
+func TestResolveChannelIDFromCanonicalOnly(t *testing.T) {
+	srv := resolveTestServer(t, `<html><head><link rel="canonical" href="https://www.youtube.com/channel/UC9ppHzA4aS9fi9SXo2YaJVQ"><meta property="og:url" content="https://www.youtube.com/channel/UC9ppHzA4aS9fi9SXo2YaJVQ"></head><body><title>Claude Courses - YouTube</title></body></html>`)
+	defer srv.Close()
+	c := &Client{HTTP: srv.Client(), BaseURL: srv.URL}
+	id, err := c.ResolveChannelID(context.Background(), "@claudecourse")
+	if err != nil {
+		t.Fatalf("resolve @claudecourse: %v", err)
+	}
+	if id != "UC9ppHzA4aS9fi9SXo2YaJVQ" {
+		t.Fatalf("id = %q", id)
+	}
+}
+
 func TestResolveChannelIDNoMatch(t *testing.T) {
 	srv := resolveTestServer(t, `<html><body>no channel id here</body></html>`)
 	defer srv.Close()
