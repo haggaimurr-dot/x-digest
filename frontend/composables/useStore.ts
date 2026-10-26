@@ -1,6 +1,6 @@
 // Data layer: real /api/v1 by default, mock fallback when NUXT_PUBLIC_USE_MOCK=1.
 // Pages only ever talk to this layer, never to raw fetch or raw mock data.
-import type { Post, Watchlist, Categories, Replica, ReplicaStep, Attachment, Repo, RepoGroup, RepoDetail, RepoRelease, YTChannel, YTVideo, YTSummary } from './types'
+import type { Post, Watchlist, Categories, Replica, ReplicaStep, Attachment, Repo, RepoGroup, RepoDetail, RepoRelease, YTChannel, YTVideo, YTSummary, YTComment } from './types'
 import { ApiError } from './types'
 import { t } from '~/utils/i18n'
 import { MOCK_POSTS, MOCK_UPDATED_AT, mockRepoCommits, mockRepoRelease, mockRepoReleases } from './useMock'
@@ -338,6 +338,12 @@ export function useStore () {
     const data = await apiFetch<{ summary: YTSummary }>(`yt/videos/${encodeURIComponent(id)}/summary?lang=${lang}${force ? '&force=1' : ''}`, { method: 'POST' })
     return data.summary
   }
+  // Top comments for up to 60 videos; "pending" IDs are being fetched in
+  // the background, the page asks again until none are left.
+  async function loadYTComments (ids: string[]): Promise<{ comments: Record<string, YTComment[]>, pending: string[] }> {
+    if (mock.value) return { comments: mockStore.mockYTComments(ids), pending: [] }
+    return apiFetch(`yt/comments?ids=${ids.map(encodeURIComponent).join(',')}`)
+  }
   async function addYTGroup (name: string): Promise<RepoGroup> {
     if (mock.value) return mockStore.addMockYTGroup(name)
     const data = await apiFetch<any>('yt/groups', { method: 'POST', body: JSON.stringify({ name }) })
@@ -354,7 +360,7 @@ export function useStore () {
     deleteAccount, addCategory, deleteCategory, setPostCategories, setUserTags, translateTexts,
     loadRepos, loadRepoGroups, addRepo, loadRepoDetail, loadRepoCommits, loadRepoReleases,
     patchRepo, deleteRepo, syncRepo, syncAllRepos, addRepoGroup, deleteRepoGroup, validateRepoFullName,
-    loadYTChannels, loadYTVideos, addYTChannel, updateYTChannel, deleteYTChannel, syncYTChannel, syncAllYTChannels, getYTSummary, startYTSummary,
+    loadYTChannels, loadYTVideos, addYTChannel, updateYTChannel, deleteYTChannel, syncYTChannel, syncAllYTChannels, getYTSummary, startYTSummary, loadYTComments,
     loadYTGroups, addYTGroup, deleteYTGroup
   }
 }

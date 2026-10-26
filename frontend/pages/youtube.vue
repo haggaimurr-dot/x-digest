@@ -55,7 +55,11 @@
 
         <!-- 频道管理 -->
         <section class="settings-section">
-          <h3 style="margin:8px 0">{{ t('yt.channels') }}</h3>
+          <button class="yt-section-toggle" type="button" :aria-expanded="!collapsedSections.channels" @click="toggleSection('channels')">
+            <svg class="yt-chevron" :class="{ 'is-collapsed': collapsedSections.channels }" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
+            <span>{{ t('yt.channels') }}</span><span class="yt-section-count">（{{ channels.length }}）</span>
+          </button>
+          <template v-if="!collapsedSections.channels">
           <div v-for="c in channels" :key="c.id" class="watch-row">
             <strong>{{ c.name || c.channel_id }}</strong>
             <span v-if="c.handle" style="color:var(--text-muted)">{{ c.handle }}</span>
@@ -73,7 +77,12 @@
             </button>
             <button class="btn btn-sm btn-danger" type="button" @click="doDelete(c)">{{ t('common.delete') }}</button>
           </div>
-          <h3 style="margin:14px 0 8px">{{ t('yt.groupManage') }}</h3>
+          </template>
+          <button class="yt-section-toggle" type="button" style="margin-top:10px" :aria-expanded="!collapsedSections.groups" @click="toggleSection('groups')">
+            <svg class="yt-chevron" :class="{ 'is-collapsed': collapsedSections.groups }" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
+            <span>{{ t('yt.groupManage') }}</span><span class="yt-section-count">（{{ groups.length }}）</span>
+          </button>
+          <template v-if="!collapsedSections.groups">
           <div style="display:flex;gap:6px;flex-wrap:wrap">
             <input class="field" v-model="newGroupName" :placeholder="t('yt.newGroupPh')" style="flex:1;min-width:140px" />
             <button class="btn btn-sm btn-primary" type="button" @click="doAddGroup">{{ t('yt.addGroup') }}</button>
@@ -82,6 +91,7 @@
             <strong>{{ g.name }}</strong><span style="color:var(--text-muted)">（{{ channelCountIn(g.id) }}）</span>
             <button v-if="!g.fixed" class="btn btn-sm btn-danger" type="button" @click="doDeleteGroup(g)">{{ t('yt.deleteGroup') }}</button>
           </div>
+          </template>
         </section>
 
         <!-- 四个分类页签 -->
@@ -98,10 +108,22 @@
         <!-- 视频卡片（最新在前） -->
         <section class="repo-list" style="margin-top:16px">
           <article v-for="v in filtered" :key="v.id" class="post-card yt-video-card">
-            <a :href="v.url" target="_blank" rel="noopener" :title="t('yt.watchOnYouTube')" class="yt-thumb">
-              <img v-if="v.thumbnail_url" :src="v.thumbnail_url" :alt="v.title" loading="lazy" />
-              <span v-else class="yt-thumb-ph">▶</span>
-            </a>
+            <div class="yt-left">
+              <a :href="v.url" target="_blank" rel="noopener" :title="t('yt.watchOnYouTube')" class="yt-thumb">
+                <img v-if="v.thumbnail_url" :src="v.thumbnail_url" :alt="v.title" loading="lazy" />
+                <span v-else class="yt-thumb-ph">▶</span>
+              </a>
+              <div v-if="videoKind(v) !== 'playlist'" class="yt-comments" :aria-label="t('yt.topComments')">
+                <template v-if="commentsOf(v.id)?.length">
+                  <div class="yt-comments-title">{{ t('yt.topComments') }}</div>
+                  <div v-for="(c, ci) in commentsOf(v.id)!.slice(0, 3)" :key="ci" class="yt-comment">
+                    <div class="yt-comment-meta"><span class="yt-comment-likes">👍 {{ compactNum(c.likes) }}</span><span class="yt-comment-author">{{ c.author }}</span></div>
+                    <p class="yt-comment-text">{{ c.text }}</p>
+                  </div>
+                </template>
+                <p v-else-if="commentsPending.has(v.id)" class="yt-comments-note">{{ t('yt.commentsLoading') }}</p>
+              </div>
+            </div>
             <div class="yt-info">
               <h2 class="post-title yt-title">
                 <a :href="v.url" target="_blank" rel="noopener">{{ tr(v.title) }}</a>
@@ -217,7 +239,7 @@
 </template>
 
 <script setup lang="ts">
-import type { YTChannel, YTVideo, YTSummary, RepoGroup } from '~/composables/types'
+import type { YTChannel, YTVideo, YTSummary, YTComment, RepoGroup } from '~/composables/types'
 import { ApiError } from '~/composables/types'
 import { relativeTime, shanghaiTime, shanghaiDayBound, trunc40 } from '~/composables/useFormat'
 import { useScrollLock } from '~/composables/useScrollLock'
@@ -361,6 +383,7 @@ const tabCounts = computed(() => {
   return counts
 })
 const filtered = computed(() => filteredExceptKind.value.filter(v => videoKind(v) === activeTab.value))
+watch(filtered, requestVisibleComments)
 watch([filtered, lang], () => {
   enqueue(filtered.value.flatMap(v => [v.title, v.description || '']))
 })
@@ -435,6 +458,58 @@ function clock (secs: number): string {
 function watchAt (v: YTVideo, secs: number): string {
   return `https://www.youtube.com/watch?v=${encodeURIComponent(v.id)}&t=${Math.floor(secs)}s`
 }
+// 频道 / 分组两个管理区块可折叠；折叠状态只存本机浏览器。
+const SECTIONS_KEY = 'x-digest-yt-collapsed-sections'
+const collapsedSections = ref<{ channels: boolean, groups: boolean }>({ channels: false, groups: false })
+function toggleSection (k: 'channels' | 'groups') {
+  collapsedSections.value = { ...collapsedSections.value, [k]: !collapsedSections.value[k] }
+  try { localStorage.setItem(SECTIONS_KEY, JSON.stringify(collapsedSections.value)) } catch { /* private mode */ }
+}
+function loadSections () {
+  try {
+    const v = JSON.parse(localStorage.getItem(SECTIONS_KEY) || '{}')
+    collapsedSections.value = { channels: v.channels === true, groups: v.groups === true }
+  } catch { /* ignore */ }
+}
+// ---- Top comments under the thumbnail ----
+// Asked for the videos on screen (current tab + filters); the server
+// fetches missing ones in the background and the page re-asks every 8s
+// while some are still pending.
+const comments = ref<Record<string, YTComment[]>>({})
+const commentsPending = ref<Set<string>>(new Set())
+let commentsTimer: ReturnType<typeof setTimeout> | null = null
+let commentsPolls = 0
+function commentsOf (id: string): YTComment[] | undefined { return comments.value[id] }
+function compactNum (n: number): string {
+  const trim = (x: number) => x.toFixed(1).replace(/\.0$/, '')
+  if (lang.value !== 'en' && n >= 10000) return trim(n / 10000) + '万'
+  if (n >= 1000000) return trim(n / 1000000) + 'M'
+  if (n >= 1000) return trim(n / 1000) + 'K'
+  return String(n)
+}
+async function fetchComments (ids: string[]) {
+  const pending = new Set(commentsPending.value)
+  for (let i = 0; i < ids.length; i += 60) {
+    const chunk = ids.slice(i, i + 60)
+    try {
+      const res = await store.loadYTComments(chunk)
+      comments.value = { ...comments.value, ...res.comments }
+      for (const id of chunk) pending.delete(id)
+      for (const id of res.pending) pending.add(id)
+    } catch { /* comments are optional; keep the page working */ }
+  }
+  commentsPending.value = pending
+  if (commentsTimer) { clearTimeout(commentsTimer); commentsTimer = null }
+  if (pending.size && commentsPolls < 60) {
+    commentsPolls++
+    commentsTimer = setTimeout(() => fetchComments([...commentsPending.value]), 8000)
+  }
+}
+function requestVisibleComments () {
+  const ids = filtered.value.filter(v => videoKind(v) !== 'playlist' && !(v.id in comments.value)).map(v => v.id)
+  if (ids.length) { commentsPolls = 0; fetchComments(ids) }
+}
+onUnmounted(() => { if (commentsTimer) clearTimeout(commentsTimer) })
 function toggleDesc (id: string) {
   const s = new Set(expandedDesc.value)
   if (s.has(id)) s.delete(id); else s.add(id)
@@ -542,6 +617,7 @@ async function doDeleteGroup (g: RepoGroup) {
 }
 
 onMounted(async () => {
+  loadSections()
   try {
     await reload()
   } catch (err: any) { loadError.value = errText(err, t('common.loadError')) }

@@ -128,3 +128,43 @@ func TestFetchDetailWithoutSubtitles(t *testing.T) {
 		t.Fatalf("calls=%d detail=%+v", calls, d)
 	}
 }
+
+func TestFetchTopCommentsSortsByLikes(t *testing.T) {
+	var args []string
+	c := &Client{Runner: func(ctx context.Context, a []string) ([]byte, error) {
+		args = a
+		return []byte(`{"id":"x","comments":[
+			{"author":"@a","text":"first","like_count":3,"parent":"root","timestamp":1761500000},
+			{"author":"@b","text":"reply","like_count":999,"parent":"Ugx1"},
+			{"author":"@c","text":"  ","like_count":500,"parent":"root"},
+			{"author":"@d","text":"best","like_count":120,"parent":"root"},
+			{"author":"@e","text":"no likes field","parent":"root"},
+			{"author":"@f","text":"mid","like_count":40,"parent":"root"}]}`), nil
+	}}
+	got, err := c.FetchTopComments(context.Background(), "u", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+	var texts []string
+	for _, cm := range got {
+		texts = append(texts, cm.Text)
+	}
+	if strings.Join(texts, ",") != "best,mid,first" {
+		t.Fatalf("got %v", texts)
+	}
+	if got[2].Timestamp != 1761500000 || got[0].Author != "@d" {
+		t.Errorf("fields not kept: %+v", got)
+	}
+	joined := strings.Join(args, " ")
+	if !strings.Contains(joined, "--write-comments") || !strings.Contains(joined, "comment_sort=top") {
+		t.Errorf("unexpected args: %s", joined)
+	}
+}
+
+func TestFetchTopCommentsDisabled(t *testing.T) {
+	c := &Client{Runner: func(ctx context.Context, a []string) ([]byte, error) { return []byte(`{"id":"x"}`), nil }}
+	got, err := c.FetchTopComments(context.Background(), "u", 3)
+	if err != nil || len(got) != 0 {
+		t.Fatalf("got %v, %v", got, err)
+	}
+}

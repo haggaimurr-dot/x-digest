@@ -63,6 +63,7 @@ type server struct {
 	tr        *translate.Service
 	yt        *youtube.Client
 	sum       *summaryJobs
+	comments  *commentQueue
 }
 
 func main() {
@@ -78,6 +79,8 @@ func main() {
 	}
 	s := &server{st: st, attachDir: attachDir, gh: github.NewFromEnv(), tr: translate.NewService(translate.NewFromEnv(), st), yt: youtube.New()}
 	s.sum = newSummaryJobs(s.yt)
+	s.comments = newCommentQueue()
+	go s.runCommentWorker()
 	mux := http.NewServeMux()
 	mux.HandleFunc("/healthz", s.handleHealth)
 	mux.HandleFunc("/api/v1/healthz", s.handleHealth)
@@ -104,6 +107,7 @@ func main() {
 	mux.HandleFunc("/api/v1/yt/channels/", s.handleYTChannelSub)
 	mux.HandleFunc("/api/v1/yt/videos", s.handleYTVideos)
 	mux.HandleFunc("/api/v1/yt/videos/", s.handleYTVideoSub)
+	mux.HandleFunc("/api/v1/yt/comments", s.handleYTComments)
 	mux.HandleFunc("/api/v1/yt/sync", s.handleYTSyncAll)
 	mux.HandleFunc("/api/v1/yt/groups", s.handleYTGroups)
 	mux.HandleFunc("/api/v1/yt/groups/", s.handleYTGroup)

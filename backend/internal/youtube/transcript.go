@@ -258,3 +258,72 @@ func vttSeconds(m []string) float64 {
 var htmlEntities = strings.NewReplacer("&amp;", "&", "&lt;", "<", "&gt;", ">", "&quot;", `"`, "&#39;", "'", "&nbsp;", " ")
 
 func htmlUnescape(s string) string { return htmlEntities.Replace(s) }
+
+// ---- Top comments (2026-10-27) ----
+
+// Comment is one top-level comment.
+type Comment struct {
+	Author    string
+	Text      string
+	Likes     int
+	Timestamp int64 // unix seconds, 0 = unknown
+}
+
+type rawComment struct {
+	Author    string `json:"author"`
+	Text      string `json:"text"`
+	LikeCount *int   `json:"like_count"`
+	Timestamp *int64 `json:"timestamp"`
+	Parent    string `json:"parent"`
+}
+
+// commentPool is how many top-level comments yt-dlp pulls (sorted by
+// YouTube's "top" order) before they are re-ranked by likes here.
+const commentPool = 30
+
+// FetchTopComments returns up to n top-level comments of one video,
+// most liked first. A video with comments turned off returns an empty
+// list, not an error.
+func (c *Client) FetchTopComments(ctx context.Context, videoURL string, n int) ([]Comment, error) {
+	out, err := c.runYtDlp(ctx, "--dump-json", "--no-playlist", "--no-warnings", "--skip-download",
+		"--write-comments", "--extractor-args",
+		fmt.Sprintf("youtube:comment_sort=top;max_comments=%d,%d,0,0", commentPool, commentPool), videoURL)
+	if len(out) == 0 {
+		return nil, fmt.Errorf("yt-dlp 评论失败：%v", err)
+	}
+	var m struct {
+		Comments []rawComment `json:"comments"`
+	}
+	if derr := json.NewDecoder(bytes.NewReader(out)).Decode(&m); derr != nil {
+		return nil, fmt.Errorf("解析 yt-dlp 评论失败：%v", derr)
+	}
+	return topComments(m.Comments, n), nil
+}
+
+// topComments keeps non-empty top-level comments, sorted by likes
+// (ties keep YouTube's order), capped at n.
+func topComments(raw []rawComment, n int) []Comment {
+	out := make([]Comment, 0, len(raw))
+	for _, r := range raw {
+		if r.Parent != "" && r.Parent != "root" {
+			continue
+		}
+		text := strings.TrimSpace(r.Text)
+		if text == "" {
+			continue
+		}
+		cm := Comment{Author: strings.TrimSpace(r.Author), Text: text}
+		if r.LikeCount != nil {
+			cm.Likes = *r.LikeCount
+		}
+		if r.Timestamp != nil {
+			cm.Timestamp = *r.Timestamp
+		}
+		out = append(out, cm)
+	}
+	sort.SliceStable(out, func(i, j int) bool { return out[i].Likes > out[j].Likes })
+	if len(out) > n {
+		out = out[:n]
+	}
+	return out
+}

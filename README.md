@@ -49,6 +49,11 @@ cd frontend && npm install && npm run dev   # dev 端口 18091，/api 代理到 
 - 接口：`GET/POST /api/v1/yt/videos/{id}/summary?lang=zh-CN|en[&force=1]`（POST 返回 202 后页面每 4 秒轮询）；表 `yt_video_summaries`（见 `backend/schema.sql`，幂等追加）。
 - 依赖：服务器上 `TRANSLATE_API_KEY` 必须已配置，否则返回 503；yt-dlp 走 `YT_HTTP_PROXY`，与同步相同。无登录，任何能访问页面的人都能触发 AI 调用（已生成的摘要不会重复调用）。
 
+## 油管热门评论
+
+- 视频缩略图下方显示点赞最多的 3 条一级评论（库里存前 5 条）。页面打开时只请求当前列表里的视频；从未获取或超过 7 天的由后台单线程逐个用 yt-dlp 拉取（每次间隔 1.5 秒），页面每 8 秒刷新一次直到拉完。拉取失败的 30 分钟内不重试。
+- 接口：`GET /api/v1/yt/comments?ids=a,b,c`（最多 60 个）；表 `yt_video_comments` 和 `yt_videos.comments_fetched_at`（见 `backend/schema.sql`）。
+
 ## 数据导入（服务器本地，不要暴露成 HTTP 接口）
 
 ```bash

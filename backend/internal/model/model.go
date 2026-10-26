@@ -223,3 +223,12 @@ type YTSummary struct {
 	CreatedAt      string             `json:"created_at"`
 	UpdatedAt      string             `json:"updated_at"`
 }
+
+// YTComment is one of a video's most-liked top-level comments.
+// PublishedAt is Shanghai wall time, "" when unknown.
+type YTComment struct {
+	Author      string `json:"author"`
+	Text        string `json:"text"`
+	Likes       int    `json:"likes"`
+	PublishedAt string `json:"published_at"`
+}

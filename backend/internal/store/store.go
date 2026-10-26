@@ -1611,6 +1611,10 @@ func (s *Store) DeleteYTChannel(id string) error {
 		WHERE v.channel_id=?`, channelID); err != nil {
 		return err
 	}
+	if _, err := tx.Exec(`DELETE c FROM yt_video_comments c JOIN yt_videos v ON v.id=c.video_id
+		WHERE v.channel_id=?`, channelID); err != nil {
+		return err
+	}
 	if _, err := tx.Exec("DELETE FROM yt_videos WHERE channel_id=?", channelID); err != nil {
 		return err
 	}
@@ -1979,4 +1983,90 @@ func (s *Store) FailYTSummary(videoID, lang, msg string) error {
 	_, err := s.DB.Exec(`UPDATE yt_video_summaries SET status='failed',error=?,updated_at=?
 		WHERE video_id=? AND lang=?`, msg, Now(), videoID, lang)
 	return err
+}
+
+// YTCommentsState is the stored comments of one video plus when they were
+// fetched ("" = never).
+type YTCommentsState struct {
+	Comments  []model.YTComment
+	FetchedAt string
+}
+
+// GetYTComments returns the stored comments and fetch time of each known
+// video in ids (unknown IDs are absent from the map).
+func (s *Store) GetYTComments(ids []string) (map[string]*YTCommentsState, error) {
+	out := map[string]*YTCommentsState{}
+	if len(ids) == 0 {
+		return out, nil
+	}
+	ph := strings.TrimSuffix(strings.Repeat("?,", len(ids)), ",")
+	args := make([]any, len(ids))
+	for i, id := range ids {
+		args[i] = id
+	}
+	rows, err := s.DB.Query(`SELECT id, DATE_FORMAT(comments_fetched_at,'%Y-%m-%d %H:%i:%s')
+		FROM yt_videos WHERE id IN (`+ph+`)`, args...)
+	if err != nil {
+		return nil, err
+	}
+	for rows.Next() {
+		var id string
+		var fetched sql.NullString
+		if err := rows.Scan(&id, &fetched); err != nil {
+			rows.Close()
+			return nil, err
+		}
+		out[id] = &YTCommentsState{Comments: []model.YTComment{}, FetchedAt: fetched.String}
+	}
+	rows.Close()
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	rows, err = s.DB.Query(`SELECT video_id,author,text,like_count,
+		DATE_FORMAT(published_at,'%Y-%m-%d %H:%i:%s') FROM yt_video_comments
+		WHERE video_id IN (`+ph+`) ORDER BY video_id, idx`, args...)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	for rows.Next() {
+		var id string
+		var c model.YTComment
+		var published sql.NullString
+		if err := rows.Scan(&id, &c.Author, &c.Text, &c.Likes, &published); err != nil {
+			return nil, err
+		}
+		c.PublishedAt = published.String
+		if st := out[id]; st != nil {
+			st.Comments = append(st.Comments, c)
+		}
+	}
+	return out, rows.Err()
+}
+
+// ReplaceYTComments stores a video's comments (replacing earlier ones)
+// and stamps comments_fetched_at, in one transaction.
+func (s *Store) ReplaceYTComments(videoID string, comments []model.YTComment) error {
+	tx, err := s.DB.Begin()
+	if err != nil {
+		return err
+	}
+	defer tx.Rollback()
+	if _, err := tx.Exec("DELETE FROM yt_video_comments WHERE video_id=?", videoID); err != nil {
+		return err
+	}
+	for i, c := range comments {
+		var published any
+		if c.PublishedAt != "" {
+			published = c.PublishedAt
+		}
+		if _, err := tx.Exec(`INSERT INTO yt_video_comments(video_id,idx,author,text,like_count,published_at)
+			VALUES(?,?,?,?,?,?)`, videoID, i, c.Author, c.Text, c.Likes, published); err != nil {
+			return err
+		}
+	}
+	if _, err := tx.Exec("UPDATE yt_videos SET comments_fetched_at=? WHERE id=?", Now(), videoID); err != nil {
+		return err
+	}
+	return tx.Commit()
 }

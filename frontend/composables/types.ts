@@ -88,6 +88,7 @@ export interface YTVideo {
   url: string, created_at: string,
   kind?: 'video' | 'short' | 'live' | 'playlist', duration?: number, live_status?: string
 }
+export interface YTComment { author: string, text: string, likes: number, published_at: string }
 // AI summary of one video in one language (GET/POST /api/v1/yt/videos/{id}/summary).
 export interface YTSummaryChapter { start: number, title: string, summary: string }
 export interface YTSummary {

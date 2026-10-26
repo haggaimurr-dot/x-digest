@@ -189,7 +189,17 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
 
 /* ---- YouTube prototype (/youtube, 2026-10-26) ---- */
 .yt-video-card { display: grid; grid-template-columns: 168px 1fr; gap: 12px; align-items: start; margin-bottom: 16px; }
+.yt-left { min-width: 0; }
 .yt-thumb { display: block; flex-shrink: 0; }
+/* 缩略图下方的热门评论（按点赞数），每条最多 4 行。 */
+.yt-comments { margin-top: 8px; display: flex; flex-direction: column; gap: 8px; }
+.yt-comments-title { font-size: 11px; font-weight: 600; color: var(--text-muted); letter-spacing: .04em; }
+.yt-comment { min-width: 0; }
+.yt-comment-meta { display: flex; gap: 6px; align-items: baseline; font-size: 11px; color: var(--text-muted); min-width: 0; }
+.yt-comment-likes { flex-shrink: 0; color: var(--text); font-weight: 600; }
+.yt-comment-author { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.yt-comment-text { margin: 2px 0 0; font-size: 12px; line-height: 1.45; overflow-wrap: anywhere; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+.yt-comments-note { margin: 0; font-size: 11px; color: var(--text-muted); }
 .yt-thumb img, .yt-thumb-ph { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; background: var(--bg); }
 .yt-thumb-ph { display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 22px; }
 .yt-info { min-width: 0; }
@@ -201,6 +211,10 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
 .yt-desc-open { display: block; -webkit-line-clamp: unset; }
 .yt-desc-link { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; word-break: break-all; }
 .yt-desc-empty { margin: 6px 0 0; color: var(--text-muted); font-size: 13px; }
+.yt-section-toggle { display: flex; align-items: center; gap: 6px; width: 100%; background: none; border: 0; padding: 8px 0; margin: 0; color: var(--text); font: inherit; font-size: 17px; font-weight: 700; cursor: pointer; text-align: left; }
+.yt-section-count { color: var(--text-muted); font-weight: 400; font-size: 14px; }
+.yt-chevron { flex-shrink: 0; color: var(--text-muted); transition: transform .15s; }
+.yt-chevron.is-collapsed { transform: rotate(-90deg); }
 .yt-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
 .yt-ai-btn { border-color: var(--accent); color: var(--accent); }
 /* AI 摘要面板：占满卡片整行（缩略图下方也用上），阅读区更宽。 */
@@ -225,5 +239,5 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
 @media (prefers-reduced-motion: reduce) { .yt-spinner { animation: none; } }
 /* 手机上仍然左图右文，只把缩略图缩窄。 */
 @media (max-width: 620px) {
-  .yt-video-card { grid-template-columns: 120px 1fr; gap: 10px; }
+  .yt-video-card { grid-template-columns: 40% 1fr; gap: 10px; }
 }
