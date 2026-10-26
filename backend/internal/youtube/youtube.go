@@ -288,14 +288,10 @@ func (c *Client) SyncTabs(ctx context.Context, channelID, dateFrom, dateTo strin
 				v := it.toVideo(channelID, tab.kind)
 				if backfilled < backfillCap {
 					c.sleepBeforeBackfill(ctx, backfilled)
-					if meta, err := c.fetchMeta(ctx, it.url); err == nil {
+					if meta, err := c.fetchPlaylistMeta(ctx, it.url); err == nil {
+						// Only the description: a playlist has no
+						// meaningful duration / live_status of its own.
 						v.Description = meta.Description
-						if d := meta.durationSecs(); d > 0 {
-							v.Duration = d
-						}
-						if meta.LiveStatus != "" {
-							v.LiveStatus = meta.LiveStatus
-						}
 					}
 					backfilled++
 				}
@@ -373,6 +369,24 @@ func (c *Client) listTab(ctx context.Context, channelID string, tab ytTab) ([]fl
 
 // fetchMeta runs one single-item metadata fetch. Any failure (non-zero
 // exit, timeout, unparsable output) is an error the caller tolerates.
+// fetchPlaylistMeta returns a playlist's own description. A playlist URL
+// fetched with fetchMeta (--dump-json --no-playlist) resolves to the FIRST
+// VIDEO in the playlist, not the playlist — so the description it returns
+// is the video's, and for many playlists the call fails outright, leaving
+// the playlist with no description. --dump-single-json --flat-playlist
+// returns the playlist object itself (with its real description) plus
+// lightweight flat entries.
+func (c *Client) fetchPlaylistMeta(ctx context.Context, playlistURL string) (*metaEntry, error) {
+	ctx, cancel := context.WithTimeout(ctx, metaTimeout)
+	defer cancel()
+	out, err := c.runYtDlp(ctx, "--dump-single-json", "--flat-playlist", "--no-warnings",
+		"--skip-download", playlistURL)
+	if err != nil {
+		return nil, fmt.Errorf("yt-dlp 播放列表元数据失败：%v", err)
+	}
+	return parseMeta(out)
+}
+
 func (c *Client) fetchMeta(ctx context.Context, itemURL string) (*metaEntry, error) {
 	ctx, cancel := context.WithTimeout(ctx, metaTimeout)
 	defer cancel()

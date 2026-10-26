@@ -43,12 +43,19 @@ type fakeYtDlp struct {
 func (f *fakeYtDlp) run(_ context.Context, args []string) ([]byte, error) {
 	last := args[len(args)-1]
 	isFlat := false
+	isSingle := false
 	for _, a := range args {
 		if a == "--flat-playlist" {
 			isFlat = true
 		}
+		if a == "--dump-single-json" {
+			isSingle = true
+		}
 	}
-	if isFlat {
+	// --dump-single-json --flat-playlist is a playlist metadata call
+	// (fetchPlaylistMeta), not a tab listing, even though it carries
+	// --flat-playlist.
+	if isFlat && !isSingle {
 		slug := last[strings.LastIndex(last, "/")+1:]
 		f.flatCalls = append(f.flatCalls, slug)
 		if f.flatFails[slug] {
