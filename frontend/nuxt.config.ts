@@ -24,6 +24,6 @@ export default defineNuxtConfig({
     // (or to nothing when mock mode is on — mock mode never calls /api).
     devProxy: process.env.NUXT_PUBLIC_USE_MOCK === '1'
       ? undefined
-      : { '/api/': { target: process.env.NUXT_SERVER_API_BASE?.replace(/\/api\/v1$/, '') || 'http://127.0.0.1:18090', changeOrigin: true } }
+      : { '/api/': { target: (process.env.NUXT_SERVER_API_BASE?.replace(/\/api\/v1$/, '') || 'http://127.0.0.1:18090') + '/api/', changeOrigin: true } }
   }
 })
