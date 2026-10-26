@@ -20,5 +20,5 @@
 const { applyTheme } = useSettings()
 const { t, lang, toggleLang, loadLang } = useLang()
 onMounted(() => { applyTheme(); loadLang() })
-useHead({ htmlAttrs: { 'data-theme': 'dark' }, title: () => t('app.title') })
+useHead({ htmlAttrs: { 'data-theme': 'dark', lang: () => lang.value }, title: () => t('app.title') })
 </script>
