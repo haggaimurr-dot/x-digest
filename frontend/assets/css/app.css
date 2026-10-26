@@ -49,10 +49,16 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
 .node-menu-wrap { position: relative; }
 .node-menu-btn { font-size: 15px; line-height: 1; padding: 6px 10px; }
 .node-menu { position: absolute; right: 0; top: calc(100% + 4px); min-width: 148px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 10px; padding: 4px; z-index: 60; box-shadow: 0 8px 24px rgba(0,0,0,.35); }
-.node-menu button, .node-menu label { display: block; width: 100%; text-align: left; background: transparent; border: 0; padding: 8px 10px; border-radius: 6px; font: inherit; color: var(--text); cursor: pointer; }
-.node-menu button:hover, .node-menu label:hover { background: var(--bg); }
+.node-menu button, .node-menu label, .node-menu a { display: block; width: 100%; text-align: left; background: transparent; border: 0; padding: 8px 10px; border-radius: 6px; font: inherit; color: var(--text); cursor: pointer; text-decoration: none; }
+.node-menu button:hover, .node-menu label:hover, .node-menu a:hover { background: var(--bg); }
 .node-menu button.danger { color: var(--danger-text); }
 .node-menu.left { left: 0; right: auto; }
+/* 复刻流程节点：正常形态的卡片——阴影 + 状态色左条 + 更大圆角和内边距，不再是扁平盒子。 */
+.flow-card.replica-node-card { border-radius: 16px; padding: 14px 16px; background: linear-gradient(180deg, var(--bg-elevated), var(--bg)); border-left: 4px solid #737b85; box-shadow: 0 4px 16px rgba(0,0,0,.28); transition: border-color .12s, box-shadow .12s; }
+.flow-card.replica-node-card .replica-step-text { font-size: 15px; line-height: 1.5; }
+.flow-step.st-active .flow-card.replica-node-card { border-left-color: #ef554f; }
+.flow-step.st-done .flow-card.replica-node-card { border-left-color: #22c55e; }
+.flow-step:hover .flow-card.replica-node-card { border-color: var(--accent); border-left-color: var(--accent); box-shadow: 0 6px 22px rgba(0,0,0,.36); }
 /* Translated note display (EN mode): read-only line above the editor, which
    always shows/edits the original text. */
 .note-translated { color: var(--text-muted); font-size: 13px; margin: 6px 0; overflow-wrap: anywhere; }

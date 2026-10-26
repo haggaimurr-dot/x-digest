@@ -1,16 +1,16 @@
 <template>
-  <div class="flow-step" :class="{ 'is-last': isLast, 'is-done': step.status === 'done' }">
+  <div class="flow-step" :class="{ 'is-last': isLast, 'is-done': step.status === 'done', ['st-' + step.status]: true }">
     <div class="flow-rail">
       <button type="button" class="status-dot" :class="`is-${step.status}`"
         :title="t('node.statusClick', { status: statusNames[step.status] })" :aria-label="t('node.ariaStatus', { num, status: statusNames[step.status] })"
         @click="cycleStatus" />
       <span class="flow-line" v-if="!isLast" />
     </div>
-    <div class="flow-card" style="flex:1;min-width:0">
+    <div class="flow-card replica-node-card" style="flex:1;min-width:0">
       <div class="replica-step-text"><strong>{{ num }}. {{ tr(step.text) }}</strong></div>
       <div v-if="step.is_custom" class="node-actions">
         <span style="flex:1" />
-        <div class="node-menu-wrap" ref="menuWrapRef">
+        <div class="node-menu-wrap">
           <button class="btn btn-sm btn-quiet node-menu-btn" type="button" @click="toggleMenu('actions')" :aria-label="t('node.menu')" aria-haspopup="menu" :aria-expanded="openMenu === 'actions'">☰</button>
           <div v-if="openMenu === 'actions'" class="node-menu" role="menu">
             <button v-if="!isChild" type="button" role="menuitem" :title="t('node.badgeTitleToggle')" @click="menuBadge">{{ t('node.badgeCustom') }}</button>
@@ -62,7 +62,7 @@
       <p v-if="isEn && (step.note || '').trim()" class="note-translated"><span class="note-translated-label">{{ t('node.noteTranslation') }}</span>{{ tr(step.note || '') }}</p>
       <NoteEditor :model-value="step.note || ''" @update:model-value="step.note = $event" @save="saveNote($event)" />
       <div style="margin-top:8px;display:flex;align-items:center;gap:6px">
-        <div class="node-menu-wrap" ref="uploadMenuWrapRef">
+        <div class="node-menu-wrap">
           <button class="btn btn-sm btn-quiet node-menu-btn" type="button" @click="toggleMenu('upload')" :aria-label="t('node.uploadMenu')" aria-haspopup="menu" :aria-expanded="openMenu === 'upload'">☰</button>
           <div v-if="openMenu === 'upload'" class="node-menu left" role="menu">
             <label role="menuitem">{{ t('node.uploadImage') }}
@@ -77,10 +77,15 @@
       </div>
       <div v-if="(step.attachments || []).length">
         <div v-for="att in step.attachments" :key="att.id" class="attachment-row">
-          <span class="attachment-name">{{ att.name }}（{{ t('node.bytes', { size: att.size }) }}）</span>
-          <button class="btn btn-sm" type="button" @click="previewAtt = previewAtt?.id === att.id ? null : att">{{ previewAtt?.id === att.id ? t('common.collapsePreview') : t('common.preview') }}</button>
-          <a class="btn btn-sm" :href="att.download_url" download>{{ t('common.download') }}</a>
-          <button class="btn btn-sm btn-danger" type="button" @click="removeAttachment(att)">{{ t('node.deleteAtt') }}</button>
+          <span class="attachment-name">{{ att.name }}</span>
+          <div class="node-menu-wrap">
+            <button class="btn btn-sm btn-quiet node-menu-btn" type="button" @click="toggleAttMenu(att.id)" :aria-label="t('node.menu')" aria-haspopup="menu" :aria-expanded="attMenuId === att.id">☰</button>
+            <div v-if="attMenuId === att.id" class="node-menu" role="menu">
+              <button type="button" role="menuitem" @click="menuPreviewAtt(att)">{{ previewAtt?.id === att.id ? t('common.collapsePreview') : t('common.preview') }}</button>
+              <a role="menuitem" :href="att.download_url" download @click="attMenuId = null">{{ t('common.download') }}</a>
+              <button type="button" role="menuitem" class="danger" @click="menuDeleteAtt(att)">{{ t('node.deleteAtt') }}</button>
+            </div>
+          </div>
         </div>
         <AttachmentPreview v-if="previewAtt && step.attachments!.some(a => a.id === previewAtt!.id)" :key="previewAtt.id" :attachment="previewAtt" @close="previewAtt = null" />
       </div>
@@ -109,23 +114,35 @@ const previewAtt = ref<Attachment | null>(null)
 // 汉堡菜单：节点操作（自建节点 / 编辑 / 删除）与上传（图片 / 文档）
 // 各收进一个 ☰ 下拉菜单，同一时间只开一个。
 const openMenu = ref<'actions' | 'upload' | null>(null)
-const menuWrapRef = ref<HTMLElement | null>(null)
-const uploadMenuWrapRef = ref<HTMLElement | null>(null)
+const attMenuId = ref<string | null>(null)
 const menuId = useId()
 function toggleMenu (which: 'actions' | 'upload') {
   if (openMenu.value === which) { openMenu.value = null; return }
   openMenu.value = which
+  attMenuId.value = null
   window.dispatchEvent(new CustomEvent('xd:close-node-menus', { detail: menuId }))
 }
-function closeMenu () { openMenu.value = null }
+function toggleAttMenu (id: string) {
+  if (attMenuId.value === id) { attMenuId.value = null; return }
+  attMenuId.value = id
+  openMenu.value = null
+  window.dispatchEvent(new CustomEvent('xd:close-node-menus', { detail: menuId }))
+}
+function closeMenu () { openMenu.value = null; attMenuId.value = null }
 function menuBadge () { closeMenu(); onBadgeClick() }
 function menuEdit () { closeMenu(); startEditText() }
 function menuDelete () { closeMenu(); removeStep() }
+function menuPreviewAtt (att: Attachment) {
+  previewAtt.value = previewAtt.value?.id === att.id ? null : att
+  attMenuId.value = null
+}
+function menuDeleteAtt (att: Attachment) {
+  attMenuId.value = null
+  removeAttachment(att)
+}
 function onDocClick (e: MouseEvent) {
-  if (!openMenu.value) return
-  const t = e.target as Node
-  const inside = menuWrapRef.value?.contains(t) || uploadMenuWrapRef.value?.contains(t)
-  if (!inside) closeMenu()
+  if (!openMenu.value && !attMenuId.value) return
+  if (!(e.target as HTMLElement).closest('.node-menu-wrap')) closeMenu()
 }
 function onKeyDown (e: KeyboardEvent) { if (e.key === 'Escape') closeMenu() }
 function onCloseOthers (e: Event) { if ((e as CustomEvent).detail !== menuId) closeMenu() }

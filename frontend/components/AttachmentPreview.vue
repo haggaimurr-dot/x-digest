@@ -47,7 +47,6 @@
                 <li v-for="e in zipEntries" :key="e.name">
                   <a v-if="e.url" :href="e.url" :download="e.name">{{ e.name }}</a>
                   <span v-else>{{ e.name }}{{ t('preview.dir') }}</span>
-                  <span v-if="e.size">{{ t('preview.bytes', { size: e.size }) }}</span>
                 </li>
               </ul>
             </div>
