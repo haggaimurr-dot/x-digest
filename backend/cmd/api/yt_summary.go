@@ -23,6 +23,7 @@ import (
 	"errors"
 	"log"
 	"net/http"
+	"os"
 	"strings"
 	"sync"
 	"time"
@@ -53,6 +54,13 @@ type summaryJobs struct {
 func newSummaryJobs(yt *youtube.Client) *summaryJobs {
 	llm := translate.NewFromEnv()
 	llm.HTTP = &http.Client{Timeout: summaryHTTPTimeout}
+	// Video summaries use deepseek-v4-pro (user's choice, 2026-10-27);
+	// translation stays on TRANSLATE_MODEL (deepseek-flash).
+	if m := os.Getenv("YT_SUMMARY_MODEL"); m != "" {
+		llm.Model = m
+	} else {
+		llm.Model = "deepseek-v4-pro"
+	}
 	return &summaryJobs{llm: llm, yt: yt, sem: make(chan struct{}, summaryConcurrency), inflight: map[string]bool{}}
 }
 
