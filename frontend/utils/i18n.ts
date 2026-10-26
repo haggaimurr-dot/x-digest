@@ -281,6 +281,7 @@ export const DICT: Record<string, { zh: string, en: string }> = {
   'node.badgeChild': { zh: '子节点', en: 'Sub-node' },
   'node.badgeTitleEdit': { zh: '点击编辑节点文字', en: 'Click to edit node text' },
   'node.badgeTitleToggle': { zh: '点击展开 / 收起子流程', en: 'Click to expand / collapse sub-flow' },
+  'node.menu': { zh: '更多操作', en: 'More actions' },
   'node.editTextAria': { zh: '编辑节点文本', en: 'Edit node text' },
   'node.saveText': { zh: '保存文本', en: 'Save text' },
   'node.tool': { zh: '工具：', en: 'Tool: ' },

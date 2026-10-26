@@ -9,10 +9,15 @@
     <div class="flow-card" style="flex:1;min-width:0">
       <div class="replica-step-text"><strong>{{ num }}. {{ tr(step.text) }}</strong></div>
       <div v-if="step.is_custom" class="node-actions">
-        <button class="chip active" type="button" :title="isChild ? t('node.badgeTitleEdit') : t('node.badgeTitleToggle')" @click="onBadgeClick">{{ isChild ? t('node.badgeChild') : t('node.badgeCustom') }}</button>
         <span style="flex:1" />
-        <button class="btn btn-sm btn-quiet" type="button" @click="startEditText">{{ t('node.edit') }}</button>
-        <button class="btn btn-sm btn-quiet-danger" type="button" @click="removeStep">{{ t('common.delete') }}</button>
+        <div class="node-menu-wrap" ref="menuWrapRef">
+          <button class="btn btn-sm btn-quiet node-menu-btn" type="button" @click="toggleMenu" :aria-label="t('node.menu')" aria-haspopup="menu" :aria-expanded="menuOpen">☰</button>
+          <div v-if="menuOpen" class="node-menu" role="menu">
+            <button v-if="!isChild" type="button" role="menuitem" :title="t('node.badgeTitleToggle')" @click="menuBadge">{{ t('node.badgeCustom') }}</button>
+            <button type="button" role="menuitem" @click="menuEdit">{{ t('common.edit') }}</button>
+            <button type="button" role="menuitem" class="danger" @click="menuDelete">{{ t('common.delete') }}</button>
+          </div>
+        </div>
       </div>
       <div v-if="editingText !== null" style="margin:6px 0">
         <input class="field" style="width:100%" type="text" v-model="editingText" :aria-label="t('node.editTextAria')" />
@@ -96,6 +101,34 @@ const editingText = ref<string | null>(null)
 const childOpen = ref(false)
 const newChildText = ref('')
 const previewAtt = ref<Attachment | null>(null)
+// 汉堡菜单：自建节点 / 编辑 / 删除收进下拉菜单（原来是行内三个按钮）。
+const menuOpen = ref(false)
+const menuWrapRef = ref<HTMLElement | null>(null)
+const menuId = useId()
+function toggleMenu () {
+  if (menuOpen.value) { menuOpen.value = false; return }
+  menuOpen.value = true
+  window.dispatchEvent(new CustomEvent('xd:close-node-menus', { detail: menuId }))
+}
+function closeMenu () { menuOpen.value = false }
+function menuBadge () { closeMenu(); onBadgeClick() }
+function menuEdit () { closeMenu(); startEditText() }
+function menuDelete () { closeMenu(); removeStep() }
+function onDocClick (e: MouseEvent) {
+  if (menuOpen.value && menuWrapRef.value && !menuWrapRef.value.contains(e.target as Node)) closeMenu()
+}
+function onKeyDown (e: KeyboardEvent) { if (e.key === 'Escape') closeMenu() }
+function onCloseOthers (e: Event) { if ((e as CustomEvent).detail !== menuId) closeMenu() }
+onMounted(() => {
+  document.addEventListener('click', onDocClick)
+  document.addEventListener('keydown', onKeyDown)
+  window.addEventListener('xd:close-node-menus', onCloseOthers)
+})
+onUnmounted(() => {
+  document.removeEventListener('click', onDocClick)
+  document.removeEventListener('keydown', onKeyDown)
+  window.removeEventListener('xd:close-node-menus', onCloseOthers)
+})
 
 const children = computed(() => props.replica.steps.filter(s => s.parent_idx === props.step.idx))
 const subCount = computed(() => children.value.length + (props.step.substeps || []).length)
