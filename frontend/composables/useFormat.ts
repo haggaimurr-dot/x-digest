@@ -1,4 +1,5 @@
 import type { Post } from './types'
+import { getLang, translate, type Lang } from '~/utils/i18n'
 
 // ---------- avatars: SPEC: "avatars/ai_xiaomu.jpg" -> "/avatars/ai_xiaomu.jpg" ----------
 export function avatarUrl (raw?: string): string {
@@ -28,18 +29,18 @@ export function shanghaiTime (iso?: string): string {
   const get = (t: string) => parts.find(p => p.type === t)?.value ?? ''
   return `${get('year')}-${get('month')}-${get('day')} ${get('hour')}:${get('minute')}`
 }
-export function relativeTime (iso?: string): string {
+export function relativeTime (iso?: string, lang: Lang = getLang()): string {
   if (!iso) return ''
   const t = new Date(iso).getTime()
   if (Number.isNaN(t)) return ''
   const diff = Date.now() - t
   const m = Math.floor(diff / 60000)
-  if (m < 1) return '刚刚'
-  if (m < 60) return `${m}分钟前`
+  if (m < 1) return translate('time.justNow', lang)
+  if (m < 60) return translate('time.minAgo', lang, { m })
   const h = Math.floor(m / 60)
-  if (h < 24) return `${h}小时前`
+  if (h < 24) return translate('time.hourAgo', lang, { h })
   const d = Math.floor(h / 24)
-  if (d < 30) return `${d}天前`
+  if (d < 30) return translate('time.dayAgo', lang, { d })
   return shanghaiTime(iso)
 }
 // Shanghai day bounds (SPEC: date range uses Asia/Shanghai day start/end).

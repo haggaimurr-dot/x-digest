@@ -237,3 +237,19 @@ CREATE TABLE IF NOT EXISTS repo_releases (
 -- New column for pre-existing installs (fresh CREATE above already
 -- includes it); IF NOT EXISTS keeps re-apply safe.
 ALTER TABLE repo_releases ADD COLUMN IF NOT EXISTS body MEDIUMTEXT;
+
+-- ---- Content translation cache (added 2026-10-26) ----
+-- One row per (source text, target language). source_hash is the SHA-256
+-- of source text + target language (see internal/translate.Hash).
+-- Only genuine translations are stored; short-circuited originals and
+-- failed items are never cached.
+
+CREATE TABLE IF NOT EXISTS translations (
+  source_hash     CHAR(64)     NOT NULL,
+  target_lang     VARCHAR(10)  NOT NULL,
+  source_text     MEDIUMTEXT   NOT NULL,
+  translated_text MEDIUMTEXT   NOT NULL,
+  created_at      TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (source_hash, target_lang),
+  INDEX idx_translations_created (created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

@@ -4,7 +4,7 @@
     <div class="combo-box" @click="focusInput">
       <span v-for="v in modelValue" :key="v" class="combo-chip">
         {{ labelOf(v) }}
-        <button type="button" @click.stop="remove(v)" :aria-label="`移除 ${labelOf(v)}`">✕</button>
+        <button type="button" @click.stop="remove(v)" :aria-label="t('combo.remove', { label: labelOf(v) })">✕</button>
       </span>
       <input ref="inputRef" v-model="query" type="text" :placeholder="modelValue.length ? '' : placeholder"
         :aria-label="label" @focus="open = true" @input="open = true"
@@ -15,7 +15,7 @@
         {{ opt.label }}<span v-if="opt.count != null" class="chip-count">{{ opt.count }}</span>
       </li>
     </ul>
-    <p v-else-if="open && query.trim() && !suggestions.length" class="combo-empty">无匹配</p>
+    <p v-else-if="open && query.trim() && !suggestions.length" class="combo-empty">{{ t('combo.noMatch') }}</p>
   </div>
 </template>
 
@@ -28,6 +28,7 @@ const props = defineProps<{
   modelValue: string[]
 }>()
 const emit = defineEmits<{ (e: 'update:modelValue', v: string[]): void }>()
+const { t } = useLang()
 const query = ref('')
 const open = ref(false)
 const rootRef = ref<HTMLElement | null>(null)

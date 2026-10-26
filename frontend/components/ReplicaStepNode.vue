@@ -2,33 +2,33 @@
   <div class="flow-step" :class="{ 'is-last': isLast, 'is-done': step.status === 'done' }">
     <div class="flow-rail">
       <button type="button" class="status-dot" :class="`is-${step.status}`"
-        :title="`${statusNames[step.status]}，点击切换状态`" :aria-label="`节点 ${num}：${statusNames[step.status]}，点击切换`"
+        :title="t('node.statusClick', { status: statusNames[step.status] })" :aria-label="t('node.ariaStatus', { num, status: statusNames[step.status] })"
         @click="cycleStatus" />
       <span class="flow-line" v-if="!isLast" />
     </div>
     <div class="flow-card" style="flex:1;min-width:0">
-      <div class="replica-step-text"><strong>{{ num }}. {{ step.text }}</strong></div>
+      <div class="replica-step-text"><strong>{{ num }}. {{ tr(step.text) }}</strong></div>
       <div v-if="step.is_custom" class="node-actions">
-        <button class="chip active" type="button" :title="isChild ? '点击编辑节点文字' : '点击展开 / 收起子流程'" @click="onBadgeClick">{{ isChild ? '子节点' : '自建节点' }}</button>
+        <button class="chip active" type="button" :title="isChild ? t('node.badgeTitleEdit') : t('node.badgeTitleToggle')" @click="onBadgeClick">{{ isChild ? t('node.badgeChild') : t('node.badgeCustom') }}</button>
         <span style="flex:1" />
-        <button class="btn btn-sm btn-quiet" type="button" @click="startEditText">编辑</button>
-        <button class="btn btn-sm btn-quiet-danger" type="button" @click="removeStep">删除</button>
+        <button class="btn btn-sm btn-quiet" type="button" @click="startEditText">{{ t('node.edit') }}</button>
+        <button class="btn btn-sm btn-quiet-danger" type="button" @click="removeStep">{{ t('common.delete') }}</button>
       </div>
       <div v-if="editingText !== null" style="margin:6px 0">
-        <input class="field" style="width:100%" type="text" v-model="editingText" aria-label="编辑节点文本" />
+        <input class="field" style="width:100%" type="text" v-model="editingText" :aria-label="t('node.editTextAria')" />
         <div style="margin-top:6px;display:flex;gap:6px">
-          <button class="btn btn-sm btn-primary" type="button" @click="saveStepText">保存文本</button>
-          <button class="btn btn-sm" type="button" @click="editingText = null">取消</button>
+          <button class="btn btn-sm btn-primary" type="button" @click="saveStepText">{{ t('node.saveText') }}</button>
+          <button class="btn btn-sm" type="button" @click="editingText = null">{{ t('common.cancel') }}</button>
         </div>
       </div>
       <div v-if="step.tools || step.tech || step.prep" style="color:var(--text-muted);font-size:13px">
-        <span v-if="step.tools">工具：{{ step.tools }} </span>
-        <span v-if="step.tech">技术：{{ step.tech }} </span>
-        <span v-if="step.prep">前提：{{ step.prep }}</span>
+        <span v-if="step.tools">{{ t('node.tool') }}{{ step.tools }} </span>
+        <span v-if="step.tech">{{ t('node.tech') }}{{ step.tech }} </span>
+        <span v-if="step.prep">{{ t('node.prep') }}{{ step.prep }}</span>
       </div>
       <div v-if="!isChild" style="margin-top:8px">
         <button class="btn btn-sm" type="button" @click="childOpen = !childOpen">
-          {{ childOpen ? '收起子流程 ▾' : (subCount ? `展开子流程（${subCount}） ▸` : '＋ 添加子节点 ▸') }}
+          {{ childOpen ? t('node.collapseSub') : (subCount ? t('node.expandSub', { n: subCount }) : t('node.addChild')) }}
         </button>
         <div v-if="childOpen">
           <div v-if="children.length" class="flow-list" style="margin-top:8px">
@@ -42,34 +42,35 @@
                 <span class="flow-line" v-if="j < Math.min(step.substeps!.length, 5) - 1" />
               </div>
               <div class="flow-card" style="padding:8px 10px">
-                <div class="flow-text" style="font-size:13px">{{ trunc40(sub.text) }}</div>
+                <div class="flow-text" style="font-size:13px">{{ trunc40(tr(sub.text)) }}</div>
               </div>
             </div>
           </div>
           <div style="margin-top:8px">
-            <input class="field" style="width:100%" type="text" v-model="newChildText" placeholder="子节点文字（纯文本）" aria-label="新子节点文本" />
+            <input class="field" style="width:100%" type="text" v-model="newChildText" :placeholder="t('node.childPh')" :aria-label="t('node.childAria')" />
             <div style="margin-top:6px">
-              <button class="btn btn-sm btn-primary" type="button" :disabled="!newChildText.trim()" @click="addChild">添加子节点</button>
+              <button class="btn btn-sm btn-primary" type="button" :disabled="!newChildText.trim()" @click="addChild">{{ t('node.addChildBtn') }}</button>
             </div>
           </div>
         </div>
       </div>
+      <p v-if="isEn && (step.note || '').trim()" class="note-translated"><span class="note-translated-label">{{ t('node.noteTranslation') }}</span>{{ tr(step.note || '') }}</p>
       <NoteEditor :model-value="step.note || ''" @update:model-value="step.note = $event" @save="saveNote($event)" />
       <div style="margin-top:8px">
-        <label class="btn btn-sm" style="cursor:pointer">上传图片
+        <label class="btn btn-sm" style="cursor:pointer">{{ t('node.uploadImage') }}
           <input type="file" accept="image/*" multiple hidden @change="upload($event)" />
         </label>
-        <label class="btn btn-sm" style="cursor:pointer;margin-left:6px">上传文档 / 压缩包
+        <label class="btn btn-sm" style="cursor:pointer;margin-left:6px">{{ t('node.uploadDocs') }}
           <input type="file" multiple hidden :accept="acceptDocs" @change="upload($event)" />
         </label>
-        <span style="color:var(--text-muted);font-size:13px;margin-left:6px">白名单见 README；单个 ≤10MB</span>
+        <span style="color:var(--text-muted);font-size:13px;margin-left:6px">{{ t('node.uploadHint') }}</span>
       </div>
       <div v-if="(step.attachments || []).length">
         <div v-for="att in step.attachments" :key="att.id" class="attachment-row">
-          <span class="attachment-name">{{ att.name }}（{{ att.size }} 字节）</span>
-          <button class="btn btn-sm" type="button" @click="previewAtt = previewAtt?.id === att.id ? null : att">{{ previewAtt?.id === att.id ? '收起预览' : '预览' }}</button>
-          <a class="btn btn-sm" :href="att.download_url" download>下载</a>
-          <button class="btn btn-sm btn-danger" type="button" @click="removeAttachment(att)">删除附件</button>
+          <span class="attachment-name">{{ att.name }}（{{ t('node.bytes', { size: att.size }) }}）</span>
+          <button class="btn btn-sm" type="button" @click="previewAtt = previewAtt?.id === att.id ? null : att">{{ previewAtt?.id === att.id ? t('common.collapsePreview') : t('common.preview') }}</button>
+          <a class="btn btn-sm" :href="att.download_url" download>{{ t('common.download') }}</a>
+          <button class="btn btn-sm btn-danger" type="button" @click="removeAttachment(att)">{{ t('node.deleteAtt') }}</button>
         </div>
         <AttachmentPreview v-if="previewAtt && step.attachments!.some(a => a.id === previewAtt!.id)" :key="previewAtt.id" :attachment="previewAtt" @close="previewAtt = null" />
       </div>
@@ -85,8 +86,10 @@ import { ATTACHMENT_EXTS, IMAGE_EXTS } from '~/composables/useStore'
 
 const props = defineProps<{ replica: Replica, step: ReplicaStep, num: string, isLast: boolean, isChild?: boolean }>()
 const store = useStore()
+const { t, isEn } = useLang()
+const { tr, enqueue } = useTranslate()
 const toast = ref('')
-const statusNames: Record<string, string> = { idle: '未开始', active: '进行中', done: '已完成' }
+const statusNames = computed<Record<string, string>>(() => ({ idle: t('node.statusIdle'), active: t('node.statusActive'), done: t('node.statusDone') }))
 const NEXT: Record<string, 'idle' | 'active' | 'done'> = { idle: 'active', active: 'done', done: 'idle' }
 const acceptDocs = '.' + ATTACHMENT_EXTS.filter(e => !IMAGE_EXTS.includes(e)).join(',.')
 const editingText = ref<string | null>(null)
@@ -96,15 +99,21 @@ const previewAtt = ref<Attachment | null>(null)
 
 const children = computed(() => props.replica.steps.filter(s => s.parent_idx === props.step.idx))
 const subCount = computed(() => children.value.length + (props.step.substeps || []).length)
+// Enqueue this node's display texts (text, note, substeps) for translation
+// when EN is active. The editor below always shows/edits the original.
+watch([() => props.step.text, () => props.step.note, () => props.step.substeps, isEn], () => {
+  if (!isEn.value) return
+  enqueue([props.step.text, props.step.note || '', ...(props.step.substeps || []).map(s => s.text)])
+}, { immediate: true })
 
 function showToast (m: string) { toast.value = m; setTimeout(() => { toast.value = '' }, 3000) }
 async function cycleStatus () {
   const next = NEXT[props.step.status] || 'idle'
   props.step.status = next
-  try { await store.patchReplicaSteps(props.replica.id, [{ idx: props.step.idx, status: next }]) } catch (e: any) { showToast(e?.message || '状态保存失败') }
+  try { await store.patchReplicaSteps(props.replica.id, [{ idx: props.step.idx, status: next }]) } catch (e: any) { showToast(e?.message || t('node.statusSaveFailed')) }
 }
 async function saveNote (note: string) {
-  try { await store.patchReplicaSteps(props.replica.id, [{ idx: props.step.idx, note }]) } catch (e: any) { showToast(e?.message || '备注保存失败') }
+  try { await store.patchReplicaSteps(props.replica.id, [{ idx: props.step.idx, note }]) } catch (e: any) { showToast(e?.message || t('node.noteSaveFailed')) }
 }
 async function upload (e: Event) {
   const input = e.target as HTMLInputElement
@@ -114,16 +123,16 @@ async function upload (e: Event) {
   try {
     const made = await store.uploadAttachments(props.replica.id, props.step.idx, files)
     props.step.attachments = [...(props.step.attachments || []), ...made]
-    showToast(`已上传 ${made.length} 个附件`)
-  } catch (err: any) { showToast(err?.message || '上传失败') }
+    showToast(t('node.uploaded', { n: made.length }))
+  } catch (err: any) { showToast(err?.message || t('node.uploadFailed')) }
 }
 async function removeAttachment (att: Attachment) {
-  if (!confirm(`删除附件 ${att.name}？`)) return
+  if (!confirm(t('node.deleteAttConfirm', { name: att.name }))) return
   try {
     await store.deleteAttachment(att.id)
     props.step.attachments = (props.step.attachments || []).filter(a => a.id !== att.id)
     if (previewAtt.value?.id === att.id) previewAtt.value = null
-  } catch (err: any) { showToast(err?.message || '删除附件失败') }
+  } catch (err: any) { showToast(err?.message || t('node.deleteAttFailed')) }
 }
 function startEditText () { editingText.value = props.step.text }
 // 点徽标要有反应：外层节点展开 / 收起子流程，子节点没有子流程，点徽标改为编辑文字。
@@ -134,21 +143,21 @@ function onBadgeClick () {
 async function saveStepText () {
   if (editingText.value === null) return
   const text = editingText.value.trim()
-  if (!text) { showToast('节点文本不能为空'); return }
+  if (!text) { showToast(t('node.textEmpty')); return }
   try {
     await store.patchReplicaSteps(props.replica.id, [{ idx: props.step.idx, text }])
     props.step.text = text
     editingText.value = null
-    showToast('节点文本已保存')
-  } catch (e: any) { showToast(e?.message || '保存失败') }
+    showToast(t('node.textSaved'))
+  } catch (e: any) { showToast(e?.message || t('common.saveFailed')) }
 }
 async function removeStep () {
-  if (!confirm(`删除${props.isChild ? '子' : ''}节点「${props.step.text.slice(0, 20)}」？节点下的附件会一起删除。`)) return
+  if (!confirm(t('node.deleteConfirm', { child: props.isChild ? t('node.childWord') : '', text: props.step.text.slice(0, 20) }))) return
   try {
     await store.deleteReplicaStep(props.replica.id, props.step.idx)
     props.replica.steps = props.replica.steps.filter(s => s.idx !== props.step.idx && s.parent_idx !== props.step.idx)
-    showToast('节点已删除')
-  } catch (e: any) { showToast(e?.message || '删除失败') }
+    showToast(t('node.deleted'))
+  } catch (e: any) { showToast(e?.message || t('common.deleteFailed')) }
 }
 async function addChild () {
   const text = newChildText.value.trim()
@@ -157,7 +166,7 @@ async function addChild () {
     const step = await store.addReplicaStep(props.replica.id, text, props.step.idx)
     props.replica.steps = [...props.replica.steps, step]
     newChildText.value = ''
-    showToast('子节点已添加')
-  } catch (e: any) { showToast(e?.message || '添加子节点失败') }
+    showToast(t('node.childAdded'))
+  } catch (e: any) { showToast(e?.message || t('node.addChildFailed')) }
 }
 </script>

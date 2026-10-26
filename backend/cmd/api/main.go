@@ -9,6 +9,12 @@
 //	GITHUB_TOKEN            optional GitHub personal access token for repo
 //	                       sync (higher rate limits, private repos).
 //	                       Unset = unauthenticated mode.
+//	TRANSLATE_API_BASE      translation relay base URL,
+//	                       default https://api.apikey.fan
+//	TRANSLATE_API_KEY       translation relay API key. Unset = POST
+//	                       /api/v1/translate answers 503; the UI language
+//	                       toggle still works (UI strings are local).
+//	TRANSLATE_MODEL         translation chat model, default deepseek-flash.
 //
 // No authentication is implemented (see README.md "Security note").
 package main
@@ -34,6 +40,7 @@ import (
 	"xdigest/internal/github"
 	"xdigest/internal/model"
 	"xdigest/internal/store"
+	"xdigest/internal/translate"
 )
 
 const maxAttachmentSize = 10 << 20 // 10 MiB per file
@@ -50,6 +57,7 @@ type server struct {
 	st        *store.Store
 	attachDir string
 	gh        *github.Client
+	tr        *translate.Service
 }
 
 func main() {
@@ -63,7 +71,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("db connect: %v", err)
 	}
-	s := &server{st: st, attachDir: attachDir, gh: github.NewFromEnv()}
+	s := &server{st: st, attachDir: attachDir, gh: github.NewFromEnv(), tr: translate.NewService(translate.NewFromEnv(), st)}
 	mux := http.NewServeMux()
 	mux.HandleFunc("/healthz", s.handleHealth)
 	mux.HandleFunc("/api/v1/healthz", s.handleHealth)
@@ -86,6 +94,7 @@ func main() {
 	mux.HandleFunc("/api/v1/repos/groups", s.handleRepoGroups)
 	mux.HandleFunc("/api/v1/repos/groups/", s.handleRepoGroup)
 	mux.HandleFunc("/api/v1/repos/sync-all", s.handleRepoSyncAll)
+	mux.HandleFunc("/api/v1/translate", s.handleTranslate)
 	mux.HandleFunc("/api/v1/attachments/", s.handleAttachment)
 	log.Printf("xdigest-api listening on %s (attachments: %s)", addr, attachDir)
 	log.Fatal(http.ListenAndServe(addr, mux))
@@ -131,6 +140,44 @@ func (s *server) handleHealth(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	writeJSON(w, 200, map[string]bool{"ok": true})
+}
+
+// ---- translation ----
+// POST /api/v1/translate {texts: string[], target: "en"|"zh-CN"} ->
+// {translations: string[]} in the same order. Untranslated items come back
+// as the original text; the endpoint never fails the whole request because
+// of one item. Without TRANSLATE_API_KEY it answers 503.
+
+func (s *server) handleTranslate(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only POST")
+		return
+	}
+	var req struct {
+		Texts  []string `json:"texts"`
+		Target string   `json:"target"`
+	}
+	if !decodeBody(w, r, &req) {
+		return
+	}
+	if !translate.ValidTarget(req.Target) {
+		writeErr(w, 400, "INVALID_TARGET", "target must be \"en\" or \"zh-CN\"")
+		return
+	}
+	if len(req.Texts) > 20 {
+		writeErr(w, 400, "TOO_MANY_TEXTS", "at most 20 texts per request")
+		return
+	}
+	out, err := s.tr.Translate(r.Context(), req.Texts, req.Target)
+	if errors.Is(err, translate.ErrNotConfigured) {
+		writeErr(w, 503, "TRANSLATE_UNAVAILABLE", "translation is not configured on this server")
+		return
+	}
+	if err != nil {
+		writeErr(w, 500, "TRANSLATE_ERROR", err.Error())
+		return
+	}
+	writeJSON(w, 200, map[string]any{"translations": out})
 }
 
 // ---- posts ----

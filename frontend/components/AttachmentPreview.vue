@@ -4,23 +4,23 @@
       <div ref="panelRef" class="preview-panel" role="dialog" aria-modal="true" :aria-label="attachment.name">
         <div class="preview-header">
           <span class="preview-title">{{ attachment.name }}</span>
-          <button class="btn btn-sm" type="button" @click="toggleFullscreen">{{ isFullscreen ? '退出全屏' : '全屏' }}</button>
-          <button class="btn btn-sm" type="button" aria-label="关闭预览" @click="emit('close')">✕</button>
+          <button class="btn btn-sm" type="button" @click="toggleFullscreen">{{ isFullscreen ? t('preview.exitFullscreen') : t('preview.fullscreen') }}</button>
+          <button class="btn btn-sm" type="button" :aria-label="t('preview.close')" @click="emit('close')">✕</button>
         </div>
         <div class="preview-body">
-          <div v-if="loading">加载预览…</div>
+          <div v-if="loading">{{ t('preview.loading') }}</div>
           <div v-else-if="error" style="color:var(--danger-text)">{{ error }}</div>
           <template v-else>
             <img v-if="kind === 'image'" class="preview-image" :src="previewUrl" :alt="attachment.name" />
             <div v-else-if="kind === 'pdf'">
-              <p style="color:var(--text-muted);font-size:13px">PDF 预览使用浏览器原生 embed（见 README 已知差异，非原站 pdf.js 画布）。</p>
+              <p style="color:var(--text-muted);font-size:13px">{{ t('preview.pdfNote') }}</p>
               <embed :src="previewUrl" type="application/pdf" style="width:100%;height:72vh" />
             </div>
             <div v-else-if="kind === 'md'" class="rich-content" v-html="htmlContent" />
             <pre v-else-if="kind === 'text'">{{ textContent }}</pre>
             <div v-else-if="kind === 'docx'" class="rich-content" v-html="htmlContent" />
             <div v-else-if="kind === 'xlsx'">
-              <p v-if="xlsxTruncated" style="color:var(--text-muted);font-size:13px">仅显示前 200 行，请下载原文件查看完整内容。</p>
+              <p v-if="xlsxTruncated" style="color:var(--text-muted);font-size:13px">{{ t('preview.xlsxTruncated') }}</p>
               <table class="preview-table">
                 <tr v-for="(row, ri) in xlsxRows" :key="ri">
                   <template v-for="(c, ci) in row" :key="ci">
@@ -32,9 +32,9 @@
             </div>
             <div v-else-if="kind === 'pptx'">
               <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-                <button class="btn btn-sm" type="button" :disabled="slideIdx <= 0" @click="slideIdx--">上一页</button>
-                <span>第 {{ slideIdx + 1 }} / {{ slides.length }} 页</span>
-                <button class="btn btn-sm" type="button" :disabled="slideIdx >= slides.length - 1" @click="slideIdx++">下一页</button>
+                <button class="btn btn-sm" type="button" :disabled="slideIdx <= 0" @click="slideIdx--">{{ t('preview.prevPage') }}</button>
+                <span>{{ t('preview.pageOf', { cur: slideIdx + 1, total: slides.length }) }}</span>
+                <button class="btn btn-sm" type="button" :disabled="slideIdx >= slides.length - 1" @click="slideIdx++">{{ t('preview.nextPage') }}</button>
               </div>
               <div v-if="slides[slideIdx]" class="rich-content" style="white-space:pre-wrap">{{ slides[slideIdx].text }}</div>
               <div v-if="slides[slideIdx]?.images?.length" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
@@ -42,25 +42,25 @@
               </div>
             </div>
             <div v-else-if="kind === 'zip'">
-              <p style="color:var(--text-muted);font-size:13px">压缩包条目（点击可下载单个文件）：</p>
+              <p style="color:var(--text-muted);font-size:13px">{{ t('preview.zipEntries') }}</p>
               <ul>
                 <li v-for="e in zipEntries" :key="e.name">
                   <a v-if="e.url" :href="e.url" :download="e.name">{{ e.name }}</a>
-                  <span v-else>{{ e.name }}（目录）</span>
-                  <span v-if="e.size"> — {{ e.size }} 字节</span>
+                  <span v-else>{{ e.name }}{{ t('preview.dir') }}</span>
+                  <span v-if="e.size">{{ t('preview.bytes', { size: e.size }) }}</span>
                 </li>
               </ul>
             </div>
             <div v-else-if="kind === 'legacy'">
-              <p style="color:var(--danger-text);font-size:13px">旧版二进制格式（doc/ppt/xls），仅尽力提取可读文本，请以<a :href="downloadUrl" download>下载原文件</a>核对。</p>
+              <p style="color:var(--danger-text);font-size:13px">{{ t('preview.legacyNote') }}<a :href="downloadUrl" download>{{ t('preview.downloadOriginal') }}</a>{{ t('preview.legacySuffix') }}</p>
               <pre>{{ textContent }}</pre>
             </div>
             <div v-else>
-              <p>该类型暂不支持浏览器内预览，请<a :href="downloadUrl" download>下载文件</a>查看。</p>
+              <p>{{ t('preview.unsupportedPrefix') }}<a :href="downloadUrl" download>{{ t('common.download') }}</a>{{ t('preview.unsupportedSuffix') }}</p>
             </div>
           </template>
         </div>
-        <div class="preview-footer"><a :href="downloadUrl" download>下载原文件</a></div>
+        <div class="preview-footer"><a :href="downloadUrl" download>{{ t('preview.downloadOriginal') }}</a></div>
       </div>
     </div>
   </Teleport>
@@ -76,6 +76,7 @@ import { useScrollLock } from '~/composables/useScrollLock'
 
 const props = defineProps<{ attachment: Attachment }>()
 const emit = defineEmits<{ (e: 'close'): void }>()
+const { t } = useLang()
 // 预览以居中遮罩打开期间锁住页面滚动（复用 ref 计数锁，关闭即释放）。
 useScrollLock(ref(true))
 const loading = ref(true)
@@ -119,7 +120,7 @@ async function fetchBytes (): Promise<ArrayBuffer> {
   const a: any = props.attachment
   if (a.__blob) return await a.__blob.arrayBuffer()
   const res = await fetch(previewUrl.value)
-  if (!res.ok) throw new Error(`下载失败 (${res.status})`)
+  if (!res.ok) throw new Error(t('preview.downloadFailed', { status: res.status }))
   return await res.arrayBuffer()
 }
 function extractStrings (buf: ArrayBuffer): string {
@@ -160,7 +161,7 @@ async function parseXlsx (buf: ArrayBuffer): Promise<{ rows: string[][], truncat
     }
   }
   const sheetFile = zip.file('xl/worksheets/sheet1.xml')
-  if (!sheetFile) throw new Error('未找到工作表')
+  if (!sheetFile) throw new Error(t('preview.noSheet'))
   let xml = await sheetFile.async('string')
   xml = xml.replace(/<c([^>]*)\/>/g, '<c$1></c>') // 空单元格补成成对标签，统一处理
   const rows: string[][] = []
@@ -231,7 +232,7 @@ onMounted(async () => {
         }
         list.push({ text: slideTexts(xml), images })
       }
-      slides.value = list.length ? list : [{ text: '(未提取到幻灯片文本)', images: [] }]
+      slides.value = list.length ? list : [{ text: t('preview.noSlideText'), images: [] }]
       kind.value = 'pptx'; return
     }
     if (e === 'zip') {
@@ -253,7 +254,7 @@ onMounted(async () => {
     }
     kind.value = 'download'
   } catch (err: any) {
-    error.value = err?.message || '预览加载失败'
+    error.value = err?.message || t('preview.loadFailed')
   } finally { loading.value = false }
 })
 onBeforeUnmount(() => {

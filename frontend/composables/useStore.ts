@@ -2,6 +2,7 @@
 // Pages only ever talk to this layer, never to raw fetch or raw mock data.
 import type { Post, Watchlist, Categories, Replica, ReplicaStep, Attachment, Repo, RepoGroup, RepoDetail, RepoRelease } from './types'
 import { ApiError } from './types'
+import { t } from '~/utils/i18n'
 import { MOCK_POSTS, MOCK_UPDATED_AT, mockRepoCommits, mockRepoRelease, mockRepoReleases } from './useMock'
 
 export const ATTACHMENT_EXTS = 'pdf doc docx xls xlsx ppt pptx txt md csv png jpg jpeg gif webp bmp avif svg ico zip rar 7z tar gz tgz'.split(' ')
@@ -11,8 +12,8 @@ export const MAX_ATTACHMENT_SIZE = 10 * 1024 * 1024
 export function validateAttachmentFiles (files: File[]): string | null {
   for (const f of files) {
     const ext = f.name.split('.').pop()?.toLowerCase() || ''
-    if (!ATTACHMENT_EXTS.includes(ext)) return `不支持的文件类型：${f.name}`
-    if (f.size > MAX_ATTACHMENT_SIZE) return `文件超过 10MB：${f.name}`
+    if (!ATTACHMENT_EXTS.includes(ext)) return t('store.unsupportedFile', { name: f.name })
+    if (f.size > MAX_ATTACHMENT_SIZE) return t('store.fileTooBig', { name: f.name })
   }
   return null
 }
@@ -185,10 +186,18 @@ export function useStore () {
     if (mock.value) { mockStore.userTagOverrides.value = { ...mockStore.userTagOverrides.value, [username]: tags }; return }
     await apiFetch('user-tags', { method: 'PUT', body: JSON.stringify({ username, tags }) })
   }
+  // ---------- Content translation (POST /api/v1/translate) ----------
+  // Mock mode has no backend: return the originals (UI toggle still works).
+  async function translateTexts (texts: string[], target: 'en' | 'zh-CN'): Promise<string[]> {
+    if (mock.value) return texts
+    if (!texts.length) return []
+    const data = await apiFetch<{ translations: string[] }>('translate', { method: 'POST', body: JSON.stringify({ texts, target }) })
+    return Array.isArray(data.translations) && data.translations.length === texts.length ? data.translations : texts
+  }
   // ---------- GitHub repos (contract 2026-10-25; all data via /api/v1/repos...) ----------
   const REPO_FULL_NAME_RE = /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/
   function validateRepoFullName (fullName: string): string | null {
-    return REPO_FULL_NAME_RE.test(fullName.trim()) ? null : '格式应为 owner/repo，例如 nuxt/nuxt'
+    return REPO_FULL_NAME_RE.test(fullName.trim()) ? null : t('repos.invalidFullName')
   }
   async function loadRepos (): Promise<Repo[]> {
     if (mock.value) return [...mockStore.repos.value]
@@ -211,7 +220,7 @@ export function useStore () {
   async function loadRepoDetail (fullName: string): Promise<RepoDetail> {
     if (mock.value) {
       const repo = mockStore.repos.value.find(r => r.full_name.toLowerCase() === fullName.toLowerCase())
-      if (!repo) throw new ApiError(404, 'NOT_FOUND', '仓库不存在')
+      if (!repo) throw new ApiError(404, 'NOT_FOUND', t('repos.notFound'))
       return { repo, commits: mockRepoCommits(repo.full_name), latest_release: mockRepoRelease(repo.full_name), releases: mockRepoReleases(repo.full_name) }
     }
     const data = await apiFetch<any>(`repos/${fullName}`)
@@ -270,7 +279,7 @@ export function useStore () {
     loading, error, loadPosts, loadWatchlist, loadTags, loadUserTags, loadCategories,
     loadReplicas, createReplica, createStandaloneReplica, patchReplicaSteps, addReplicaStep, deleteReplicaStep, deleteReplica, uploadAttachments,
     deleteAttachment, replicaAttachments, addGroup, deleteGroup, addAccount, patchAccount,
-    deleteAccount, addCategory, deleteCategory, setPostCategories, setUserTags,
+    deleteAccount, addCategory, deleteCategory, setPostCategories, setUserTags, translateTexts,
     loadRepos, loadRepoGroups, addRepo, loadRepoDetail, loadRepoCommits, loadRepoReleases,
     patchRepo, deleteRepo, syncRepo, syncAllRepos, addRepoGroup, deleteRepoGroup, validateRepoFullName
   }

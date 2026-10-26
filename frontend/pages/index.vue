@@ -2,43 +2,44 @@
   <div>
     <main class="feed-col" style="max-width:600px;margin:0 auto;padding:16px;min-width:0">
       <div class="filter-row" style="margin-bottom:12px">
-        <span class="updated" style="color:var(--text-muted)">{{ updatedAt ? `更新于 ${updatedAt}` : '' }}</span>
+        <span class="updated" style="color:var(--text-muted)">{{ updatedAt ? t('index.updatedAt', { time: updatedAt }) : '' }}</span>
         <span style="flex:1" />
-        <button class="btn btn-sm" type="button" @click="triggerWebhook" :disabled="webhookBusy">{{ webhookBusy ? '发送中…' : '立即更新' }}</button>
-        <button class="btn btn-sm" type="button" @click="showSettings = true">设置</button>
+        <button class="btn btn-sm" type="button" @click="triggerWebhook" :disabled="webhookBusy">{{ webhookBusy ? t('index.sending') : t('index.updateNow') }}</button>
+        <button class="btn btn-sm" type="button" @click="showSettings = true">{{ t('index.settings') }}</button>
       </div>
       <p v-if="loadError" style="color:var(--danger-text)">{{ loadError }}</p>
-      <p v-if="loading">加载中…</p>
+      <p v-if="loading">{{ t('common.loading') }}</p>
 
       <section class="filter-panel" v-if="!loading">
         <div class="filter-row" style="justify-content:space-between">
-          <button class="btn btn-sm" type="button" @click="filtersCollapsed = !filtersCollapsed" :aria-expanded="!filtersCollapsed">{{ filtersCollapsed ? '展开搜索筛选 ▸' : '收起搜索筛选 ▾' }}</button>
-          <span class="active-count" v-if="filtersCollapsed && activeFilterCount">已选 {{ activeFilterCount }} 项筛选</span>
+          <button class="btn btn-sm" type="button" @click="filtersCollapsed = !filtersCollapsed" :aria-expanded="!filtersCollapsed">{{ filtersCollapsed ? t('index.expandFilters') : t('index.collapseFilters') }}</button>
+          <span class="active-count" v-if="filtersCollapsed && activeFilterCount">{{ t('index.selectedFilters', { n: activeFilterCount }) }}</span>
         </div>
         <div v-show="!filtersCollapsed">
           <div class="unified-bar">
             <div class="cond">
-              <label class="cond-label">关键词</label>
-              <input class="field" style="width:100%" type="search" v-model="keyword" placeholder="搜标题、摘要、步骤…（支持 标签:xxx / tag:xxx 只搜用户标签）" aria-label="关键词搜索" />
+              <label class="cond-label">{{ t('index.keyword') }}</label>
+              <input class="field" style="width:100%" type="search" v-model="keyword" :placeholder="t('index.keywordPh')" :aria-label="t('common.keywordSearch')" />
             </div>
-            <FilterCombo label="作者" placeholder="输入名字或 @handle 联想…" :options="authorOptions" v-model="selectedAuthorsArr" />
-            <FilterCombo label="帖子标签" placeholder="输入标签联想…" :options="tagOptions" v-model="selectedTagsArr" />
-            <FilterCombo label="自定义标签" placeholder="输入自定义标签联想…" :options="userTagOptions" v-model="selectedUserTagsArr" />
-            <FilterCombo label="帖子类别" placeholder="输入类别联想…" :options="catOptions" v-model="selectedCatsArr" />
+            <FilterCombo :label="t('index.author')" :placeholder="t('index.authorPh')" :options="authorOptions" v-model="selectedAuthorsArr" />
+            <FilterCombo :label="t('index.postTags')" :placeholder="t('index.postTagsPh')" :options="tagOptions" v-model="selectedTagsArr" />
+            <FilterCombo :label="t('index.userTags')" :placeholder="t('index.userTagsPh')" :options="userTagOptions" v-model="selectedUserTagsArr" />
+            <FilterCombo :label="t('index.postCats')" :placeholder="t('index.postCatsPh')" :options="catOptions" v-model="selectedCatsArr" />
             <div class="cond cond-date">
-              <label class="cond-label">日期</label>
+              <label class="cond-label">{{ t('index.date') }}</label>
               <div style="display:flex;gap:6px">
-                <input type="date" class="field" style="flex:1;min-width:0" v-model="dateFrom" aria-label="开始日期" />
-                <input type="date" class="field" style="flex:1;min-width:0" v-model="dateTo" aria-label="结束日期" />
+                <input type="date" class="field" style="flex:1;min-width:0" v-model="dateFrom" :aria-label="t('index.dateFromAria')" />
+                <input type="date" class="field" style="flex:1;min-width:0" v-model="dateTo" :aria-label="t('index.dateToAria')" />
               </div>
             </div>
           </div>
           <div class="filter-row" style="margin-top:8px">
-            <button class="btn btn-sm" type="button" @click="clearAll">清除全部</button>
-            <span class="result-count">共 {{ filtered.length }} 条</span>
-            <span class="active-count" v-if="activeFilterCount">已选 {{ activeFilterCount }} 项筛选</span>
+            <button class="btn btn-sm" type="button" @click="clearAll">{{ t('index.clearAll') }}</button>
+            <span class="result-count">{{ t('index.resultCount', { n: filtered.length }) }}</span>
+            <span v-if="translating" class="active-count">{{ t('common.translating') }}</span>
+            <span class="active-count" v-if="activeFilterCount">{{ t('index.selectedFilters', { n: activeFilterCount }) }}</span>
           </div>
-          <p v-if="keyword && firstSnippet" class="hint" v-html="`首命中：${firstSnippet}`" />
+          <p v-if="keyword && firstSnippet" class="hint" v-html="t('index.firstHit') + firstSnippet" />
         </div>
       </section>
 
@@ -51,23 +52,23 @@
           <div class="post-meta">
             <div style="min-width:0">
               <div><strong>{{ post.author_name }}</strong> <a :href="`https://x.com/${post.author}`" target="_blank" rel="noopener">@{{ post.author }}</a></div>
-              <div style="color:var(--text-muted);font-size:13px">{{ relativeTime(post.published_at) }} · {{ shanghaiTime(post.published_at) }}<span v-if="post.industry"> · {{ post.industry }}</span><span v-if="post.tech"> · {{ post.tech }}</span></div>
+              <div style="color:var(--text-muted);font-size:13px">{{ relativeTime(post.published_at, lang.value) }} · {{ shanghaiTime(post.published_at) }}<span v-if="post.industry"> · {{ post.industry }}</span><span v-if="post.tech"> · {{ post.tech }}</span></div>
             </div>
           </div>
-          <h2 class="post-title"><a :href="post.url" target="_blank" rel="noopener" v-html="highlightHtml(post.title, plainKeyword)" /></h2>
+          <h2 class="post-title"><a :href="post.url" target="_blank" rel="noopener" v-html="highlightHtml(tr(post.title), plainKeyword)" /></h2>
           <p class="post-summary" v-html="highlightHtml(summaryShown(post), plainKeyword)" />
-          <button v-if="post.is_long" class="btn btn-sm" type="button" @click="toggleLong(post.id)">{{ expandedLong.has(post.id) ? '收起' : '展开长文' }}</button>
+          <button v-if="post.is_long" class="btn btn-sm" type="button" @click="toggleLong(post.id)">{{ expandedLong.has(post.id) ? t('index.collapseLong') : t('index.expandLong') }}</button>
           <div v-if="post.note" style="margin-top:6px"><span class="note-pill">{{ post.note }}</span></div>
           <div class="chips" style="margin-top:8px">
             <button v-for="t in (post.tags || []).slice(0, 8)" :key="t" type="button" class="chip" @click="selectTagOnly(t)">{{ t }}</button>
           </div>
           <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap;align-items:center">
             <span v-for="cid in catsOf(post.id)" :key="cid" class="chip active">{{ categoryName(cid) }}</span>
-            <button class="btn btn-sm" type="button" @click="catMenuPost = catMenuPost === post.id ? null : post.id">分类</button>
+            <button class="btn btn-sm" type="button" @click="catMenuPost = catMenuPost === post.id ? null : post.id">{{ t('index.category') }}</button>
             <button class="btn btn-sm" :class="{ 'btn-primary': replicatedIds.has(post.id) }" type="button" @click="replicate(post)">
-              {{ replicatedIds.has(post.id) ? '已复刻' : '复刻' }}
+              {{ replicatedIds.has(post.id) ? t('index.replicated') : t('index.replicate') }}
             </button>
-            <NuxtLink v-if="replicatedIds.has(post.id)" to="/fuke" class="btn btn-sm">去复刻页</NuxtLink>
+            <NuxtLink v-if="replicatedIds.has(post.id)" to="/fuke" class="btn btn-sm">{{ t('index.goFuke') }}</NuxtLink>
           </div>
           <div v-if="catMenuPost === post.id" class="cat-menu" style="margin-top:8px">
             <label v-for="c in categories.categories" :key="c.id" class="cat-menu-item" style="display:flex;gap:6px">
@@ -75,26 +76,26 @@
               <span>{{ c.name }}</span>
             </label>
             <div style="display:flex;gap:6px;margin-top:6px">
-              <input class="field" v-model="newCatName" placeholder="新建类别…" maxlength="20" />
-              <button class="btn btn-sm btn-primary" type="button" @click="createCat(post.id)">新建</button>
+              <input class="field" v-model="newCatName" :placeholder="t('index.newCatPh')" maxlength="20" />
+              <button class="btn btn-sm btn-primary" type="button" @click="createCat(post.id)">{{ t('index.newCat') }}</button>
             </div>
           </div>
           <details v-if="shouldShowFlowchart(post) && (post.steps || []).length" class="steps" style="margin-top:10px">
-            <summary>实现步骤（{{ post.steps!.length }}）· 流程图</summary>
+            <summary>{{ t('index.stepsSummary', { n: post.steps!.length }) }}</summary>
             <div class="flow-chart">
               <div v-for="(step, i) in post.steps" :key="i" class="flow-step" :class="{ 'is-last': i === post.steps!.length - 1 }">
                 <div class="flow-rail" aria-hidden="true"><span class="flow-node" /><span v-if="i !== post.steps!.length - 1" class="flow-line" /></div>
                 <div class="flow-card">
-                  <div class="flow-text" v-html="highlightHtml(`${i + 1}. ${step.text}`, plainKeyword)" />
+                  <div class="flow-text" v-html="highlightHtml(`${i + 1}. ${tr(step.text)}`, plainKeyword)" />
                   <div class="flow-meta" v-if="step.tools || step.tech || step.prep">
-                    <span v-if="step.tools" class="flow-chip"><span class="flow-chip-label">工具</span>{{ step.tools }}</span>
-                    <span v-if="step.tech" class="flow-chip"><span class="flow-chip-label">技术</span>{{ step.tech }}</span>
-                    <span v-if="step.prep" class="flow-chip"><span class="flow-chip-label">前提</span>{{ step.prep }}</span>
+                    <span v-if="step.tools" class="flow-chip"><span class="flow-chip-label">{{ t('index.tool') }}</span>{{ step.tools }}</span>
+                    <span v-if="step.tech" class="flow-chip"><span class="flow-chip-label">{{ t('index.tech') }}</span>{{ step.tech }}</span>
+                    <span v-if="step.prep" class="flow-chip"><span class="flow-chip-label">{{ t('index.prep') }}</span>{{ step.prep }}</span>
                   </div>
                   <div v-if="(step.substeps || []).length" style="margin-top:6px">
-                    <button class="btn btn-sm" type="button" @click="toggleSubsteps(post.id, i)">{{ substepsOpen.has(`${post.id}:${i}`) ? '收起子步骤' : `展开子步骤（${step.substeps!.length}）` }}</button>
+                    <button class="btn btn-sm" type="button" @click="toggleSubsteps(post.id, i)">{{ substepsOpen.has(`${post.id}:${i}`) ? t('index.collapseSubsteps') : t('index.expandSubsteps', { n: step.substeps!.length }) }}</button>
                     <ol v-if="substepsOpen.has(`${post.id}:${i}`)">
-                      <li v-for="(sub, j) in step.substeps!.slice(0, 5)" :key="j" :title="sub.text">{{ `${i + 1}.${j + 1} ` }}{{ trunc40(sub.text) }}<span v-if="sub.source" style="color:var(--text-muted)"> — {{ sub.source }}</span></li>
+                      <li v-for="(sub, j) in step.substeps!.slice(0, 5)" :key="j" :title="sub.text">{{ `${i + 1}.${j + 1} ` }}{{ trunc40(tr(sub.text)) }}<span v-if="sub.source" style="color:var(--text-muted)"> — {{ sub.source }}</span></li>
                     </ol>
                   </div>
                 </div>
@@ -103,74 +104,74 @@
           </details>
           </div>
         </article>
-        <p v-if="!loading && !filtered.length" class="empty">没有符合条件的帖子。试试清除筛选。</p>
+        <p v-if="!loading && !filtered.length" class="empty">{{ t('index.noPosts') }}</p>
       </section>
     </main>
 
     <!-- Settings modal -->
     <div v-if="showSettings" class="modal-backdrop" @click.self="showSettings = false">
-      <div class="modal-card" role="dialog" aria-modal="true" aria-label="设置">
+      <div class="modal-card" role="dialog" aria-modal="true" :aria-label="t('settings.title')">
         <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
-          <h2 style="margin:0">设置</h2>
-          <button class="btn btn-sm" type="button" @click="showSettings = false" aria-label="关闭设置">✕</button>
+          <h2 style="margin:0">{{ t('settings.title') }}</h2>
+          <button class="btn btn-sm" type="button" @click="showSettings = false" :aria-label="t('settings.close')">✕</button>
         </div>
-        <label>主题</label>
+        <label>{{ t('settings.theme') }}</label>
         <div style="display:flex;gap:8px">
-          <button class="btn" :class="{ 'btn-primary': theme === 'dark' }" type="button" @click="setTheme('dark')">深色（默认）</button>
-          <button class="btn" :class="{ 'btn-primary': theme === 'light' }" type="button" @click="setTheme('light')">浅色</button>
+          <button class="btn" :class="{ 'btn-primary': theme === 'dark' }" type="button" @click="setTheme('dark')">{{ t('settings.dark') }}</button>
+          <button class="btn" :class="{ 'btn-primary': theme === 'light' }" type="button" @click="setTheme('light')">{{ t('settings.light') }}</button>
         </div>
-        <label>字号</label>
+        <label>{{ t('settings.fontSize') }}</label>
         <div style="display:flex;gap:6px;flex-wrap:wrap">
           <button v-for="s in ['13px', '15px', '17px', '19px']" :key="s" class="btn btn-sm" :class="{ 'btn-primary': fontSize === s }" type="button" @click="setFontSize(s)">{{ s }}</button>
         </div>
-        <label>字体</label>
+        <label>{{ t('settings.font') }}</label>
         <select class="field" :value="fontFamily" @change="setFontFamily(($event.target as HTMLSelectElement).value)">
-          <option value="">系统默认</option>
-          <option value="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif">苹方 / 微软雅黑</option>
-          <option value="Georgia,serif">衬线</option>
-          <option value="ui-monospace,Menlo,monospace">等宽</option>
+          <option value="">{{ t('settings.fontSystem') }}</option>
+          <option value="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif">{{ t('settings.fontPingFang') }}</option>
+          <option value="Georgia,serif">{{ t('settings.fontSerif') }}</option>
+          <option value="ui-monospace,Menlo,monospace">{{ t('settings.fontMono') }}</option>
         </select>
 
         <div class="settings-section">
-          <h3>关注列表管理</h3>
+          <h3>{{ t('settings.watchlist') }}</h3>
           <div style="display:flex;gap:6px;flex-wrap:wrap">
-            <input class="field" v-model="newGroupName" placeholder="新分组名称" style="flex:1;min-width:140px" />
-            <button class="btn btn-sm btn-primary" type="button" @click="doAddGroup">新增分组</button>
+            <input class="field" v-model="newGroupName" :placeholder="t('settings.newGroupPh')" style="flex:1;min-width:140px" />
+            <button class="btn btn-sm btn-primary" type="button" @click="doAddGroup">{{ t('settings.addGroup') }}</button>
           </div>
           <div v-for="g in watchlist.groups" :key="g.id" class="watch-row">
             <strong>{{ g.name }}</strong><span style="color:var(--text-muted)">({{ g.id }})</span>
-            <button v-if="!g.fixed" class="btn btn-sm btn-danger" type="button" @click="doDeleteGroup(g.id)">删除分组（作者归入默认）</button>
+            <button v-if="!g.fixed" class="btn btn-sm btn-danger" type="button" @click="doDeleteGroup(g.id)">{{ t('settings.deleteGroup') }}</button>
           </div>
           <div v-for="a in watchlist.accounts" :key="a.username" class="watch-row">
-            <input :value="a.name" placeholder="显示名" @change="doPatchAccount(a.username, { name: ($event.target as HTMLInputElement).value })" />
+            <input :value="a.name" :placeholder="t('settings.displayNamePh')" @change="doPatchAccount(a.username, { name: ($event.target as HTMLInputElement).value })" />
             <span>@{{ a.username }}</span>
             <select :value="a.group" @change="doPatchAccount(a.username, { group: ($event.target as HTMLSelectElement).value })">
               <option v-for="g in watchlist.groups" :key="g.id" :value="g.id">{{ g.name }}</option>
             </select>
-            <input :value="(a.tags || []).join('，')" placeholder="用户标签（中文逗号分隔）" @change="doPatchAccount(a.username, { tags: ($event.target as HTMLInputElement).value.split(/[,，]/).map(s => s.trim()).filter(Boolean) })" />
-            <button class="btn btn-sm btn-danger" type="button" @click="doDeleteAccount(a.username)">删除作者</button>
+            <input :value="(a.tags || []).join('，')" :placeholder="t('settings.userTagsPh')" @change="doPatchAccount(a.username, { tags: ($event.target as HTMLInputElement).value.split(/[,，]/).map(s => s.trim()).filter(Boolean) })" />
+            <button class="btn btn-sm btn-danger" type="button" @click="doDeleteAccount(a.username)">{{ t('settings.deleteAuthor') }}</button>
           </div>
           <div class="watch-row">
-            <input class="field" v-model="newAccount.username" placeholder="username（不含 @）" />
-            <input class="field" v-model="newAccount.name" placeholder="显示名" />
+            <input class="field" v-model="newAccount.username" :placeholder="t('settings.usernamePh')" />
+            <input class="field" v-model="newAccount.name" :placeholder="t('settings.displayNamePh')" />
             <select v-model="newAccount.group">
               <option v-for="g in watchlist.groups" :key="g.id" :value="g.id">{{ g.name }}</option>
             </select>
-            <button class="btn btn-sm btn-primary" type="button" @click="doAddAccount">新增作者</button>
+            <button class="btn btn-sm btn-primary" type="button" @click="doAddAccount">{{ t('settings.addAuthor') }}</button>
           </div>
         </div>
 
         <div class="settings-section">
-          <h3>用户标签</h3>
-          <p style="color:var(--text-muted)">词汇表（用于自定义标签 chips 与 <code>标签:xxx</code> 搜索）。</p>
+          <h3>{{ t('settings.userTagSection') }}</h3>
+          <p style="color:var(--text-muted)">{{ t('settings.vocabHintPrefix') }}<code>标签:xxx</code>{{ t('settings.vocabHintSuffix') }}</p>
           <div class="chips">
             <button v-for="t in userTagVocab" :key="t" type="button" class="chip" @click="removeVocab(t)">{{ t }} ×</button>
           </div>
           <div style="display:flex;gap:6px;margin-top:8px">
-            <input class="field" v-model="newVocab" placeholder="新增用户标签" style="flex:1" />
-            <button class="btn btn-sm btn-primary" type="button" @click="addVocab">添加</button>
+            <input class="field" v-model="newVocab" :placeholder="t('settings.newUserTagPh')" style="flex:1" />
+            <button class="btn btn-sm btn-primary" type="button" @click="addVocab">{{ t('settings.add') }}</button>
           </div>
-          <label>按作者覆盖自定义标签（保存后即用于该作者的用户标签过滤）</label>
+          <label>{{ t('settings.overrideByAuthor') }}</label>
           <div v-for="a in watchlist.accounts" :key="'ov-' + a.username" class="watch-row">
             <span style="min-width:120px">{{ a.name }} @{{ a.username }}</span>
             <input class="field" :value="(userTagOverrides[a.username] || []).join('，')" style="flex:1"
@@ -179,21 +180,21 @@
         </div>
 
         <div class="settings-section">
-          <h3>Webhook（仅存浏览器 localStorage，不发往服务端）</h3>
-          <label>Webhook URL</label>
+          <h3>{{ t('settings.webhook') }}</h3>
+          <label>{{ t('settings.webhookUrl') }}</label>
           <input class="field" v-model="webhookUrlDraft" placeholder="https://…" />
-          <label>Webhook Key</label>
-          <input class="field" v-model="webhookKeyDraft" placeholder="key（已带 Bearer 时不重复加）" type="password" />
+          <label>{{ t('settings.webhookKey') }}</label>
+          <input class="field" v-model="webhookKeyDraft" :placeholder="t('settings.webhookKeyPh')" type="password" />
           <p v-if="webhookMsg" style="color:var(--text-muted)">{{ webhookMsg }}</p>
           <div class="modal-actions" style="justify-content:flex-start">
-            <button class="btn btn-sm btn-primary" type="button" @click="saveWebhookDraft">保存</button>
-            <button class="btn btn-sm" type="button" @click="clearWebhookDraft">清除</button>
-            <button class="btn btn-sm" type="button" @click="triggerWebhook">触发一次</button>
+            <button class="btn btn-sm btn-primary" type="button" @click="saveWebhookDraft">{{ t('settings.save') }}</button>
+            <button class="btn btn-sm" type="button" @click="clearWebhookDraft">{{ t('settings.clear') }}</button>
+            <button class="btn btn-sm" type="button" @click="triggerWebhook">{{ t('settings.triggerOnce') }}</button>
           </div>
         </div>
 
         <div class="modal-actions">
-          <button class="btn btn-primary" type="button" @click="showSettings = false">完成</button>
+          <button class="btn btn-primary" type="button" @click="showSettings = false">{{ t('settings.done') }}</button>
         </div>
       </div>
     </div>
@@ -209,6 +210,8 @@ import { useScrollLock } from '~/composables/useScrollLock'
 
 const store = useStore()
 const settings = useSettings()
+const { t, lang, isEn } = useLang()
+const { tr, enqueue, translating } = useTranslate()
 const { theme, fontSize, fontFamily, setTheme, setFontSize, setFontFamily, saveWebhook, clearWebhook, postWebhook } = settings
 
 const loading = ref(true)
@@ -306,10 +309,10 @@ function matchesDate (p: Post): boolean {
   const from = shanghaiDayBound(dateFrom.value, false)
   const to = shanghaiDayBound(dateTo.value, true)
   if (from == null && to == null) return true
-  const t = Date.parse(p.published_at || '')
-  if (Number.isNaN(t)) return false
-  if (from != null && t < from) return false
-  if (to != null && t > to) return false
+  const ts = Date.parse(p.published_at || '')
+  if (Number.isNaN(ts)) return false
+  if (from != null && ts < from) return false
+  if (to != null && ts > to) return false
   return true
 }
 function matchesTags (p: Post): boolean {
@@ -362,7 +365,7 @@ const authorOptions = computed(() => {
 const tagOptions = computed(() => allTags.value.map(t => ({ value: t.tag, label: t.tag, count: t.n })))
 const catOptions = computed(() => [
   ...categories.value.categories.map(c => ({ value: c.id, label: c.name, count: catCounts[c.id] || 0 })),
-  { value: '__uncat', label: '未分类', count: catCounts.__uncat || 0 }
+  { value: '__uncat', label: t('index.uncategorized'), count: catCounts.__uncat || 0 }
 ])
 function clearAll () {
   keyword.value = ''; dateFrom.value = ''; dateTo.value = ''
@@ -372,9 +375,32 @@ function clearAll () {
 }
 function toggleLong (id: string) { expandedLong.value.has(id) ? expandedLong.value.delete(id) : expandedLong.value.add(id); expandedLong.value = new Set(expandedLong.value) }
 function summaryShown (p: Post) {
-  if (!p.is_long || expandedLong.value.has(p.id)) return p.summary || ''
-  return (p.summary || '').slice(0, 200) + ((p.summary || '').length > 200 ? '…' : '')
+  // Translate the full summary first, then truncate the translation.
+  const s = tr(p.summary || '')
+  if (!p.is_long || expandedLong.value.has(p.id)) return s
+  return s.slice(0, 200) + (s.length > 200 ? '…' : '')
 }
+// Enqueue the currently filtered posts' display texts for translation when
+// EN is active (debounced; the queue flushes in chunks of 20). Filtering
+// always uses the original text — only display goes through tr().
+let enqueueTimer: any = null
+function enqueueVisible () {
+  if (!isEn.value) return
+  const texts: string[] = []
+  for (const p of filtered.value) {
+    texts.push(p.title)
+    if (p.summary) texts.push(p.summary)
+    for (const s of p.steps || []) {
+      texts.push(s.text)
+      for (const sub of s.substeps || []) texts.push(sub.text)
+    }
+  }
+  enqueue(texts)
+}
+watch([filtered, isEn], () => {
+  clearTimeout(enqueueTimer)
+  enqueueTimer = setTimeout(enqueueVisible, 300)
+})
 function toggleSubsteps (postId: string, i: number) {
   const k = `${postId}:${i}`
   substepsOpen.value.has(k) ? substepsOpen.value.delete(k) : substepsOpen.value.add(k)
@@ -387,8 +413,8 @@ async function replicate (post: Post) {
     const { replica } = await store.createReplica(post)
     replicatedIds.value = new Set([...replicatedIds.value, post.id])
     replicaCount.value++
-    showToast(replica ? '已生成复刻，去复刻页查看' : '已复刻')
-  } catch (err: any) { showToast(err?.message || '生成复刻失败') }
+    showToast(replica ? t('index.replicateDone') : t('index.replicatedAlready'))
+  } catch (err: any) { showToast(err?.message || t('index.replicateFailed')) }
 }
 async function togglePostCat (postId: string, catId: string, checked: boolean) {
   const cur = new Set(catsOf(postId))
@@ -426,26 +452,26 @@ async function refreshWatchlist () {
   }
 }
 async function doAddGroup () {
-  if (!newGroupName.value.trim()) { showToast('请先输入分组名称'); return }
+  if (!newGroupName.value.trim()) { showToast(t('settings.groupNameEmpty')); return }
   try {
     await store.addGroup(newGroupName.value.trim()); newGroupName.value = ''; await refreshWatchlist()
-    showToast('分组已新增')
+    showToast(t('settings.groupAdded'))
   } catch (e: any) {
-    showToast(e?.message || '新增分组失败，请重试')
+    showToast(e?.message || t('settings.groupAddFailed'))
   }
 }
 async function doDeleteGroup (id: string) {
-  if (!confirm('删除该分组？组内作者将归入“默认”。')) return
+  if (!confirm(t('settings.deleteGroupConfirm'))) return
   await store.deleteGroup(id); await refreshWatchlist()
 }
 async function doAddAccount () {
-  if (!newAccount.value.username.trim() || !newAccount.value.name.trim()) { showToast('请填写 username 与显示名'); return }
+  if (!newAccount.value.username.trim() || !newAccount.value.name.trim()) { showToast(t('settings.accountEmpty')); return }
   await store.addAccount({ ...newAccount.value, avatar: '', tags: [], bio: '' })
   newAccount.value = { username: '', name: '', group: 'other' }; await refreshWatchlist()
 }
 async function doPatchAccount (username: string, patch: any) { await store.patchAccount(username, patch); await refreshWatchlist() }
 async function doDeleteAccount (username: string) {
-  if (!confirm(`删除作者 @${username}？`)) return
+  if (!confirm(t('settings.deleteAuthorConfirm', { username }))) return
   await store.deleteAccount(username); await refreshWatchlist()
 }
 async function doSetUserTags (username: string, tags: string[]) { await store.setUserTags(username, tags); await refreshWatchlist() }
@@ -454,16 +480,16 @@ function addVocab () {
   userTagVocab.value = [...userTagVocab.value, newVocab.value.trim()]; newVocab.value = ''
 }
 function removeVocab (t: string) { userTagVocab.value = userTagVocab.value.filter(x => x !== t) }
-function saveWebhookDraft () { saveWebhook(webhookUrlDraft.value.trim(), webhookKeyDraft.value); webhookMsg.value = 'Webhook 已保存到本浏览器 localStorage。' }
-function clearWebhookDraft () { clearWebhook(); webhookUrlDraft.value = ''; webhookKeyDraft.value = ''; webhookMsg.value = 'Webhook 已清除。' }
+function saveWebhookDraft () { saveWebhook(webhookUrlDraft.value.trim(), webhookKeyDraft.value); webhookMsg.value = t('settings.webhookSaved') }
+function clearWebhookDraft () { clearWebhook(); webhookUrlDraft.value = ''; webhookKeyDraft.value = ''; webhookMsg.value = t('settings.webhookCleared') }
 async function triggerWebhook () {
   if (webhookBusy.value) return
   webhookBusy.value = true
   try {
     const r = await postWebhook()
-    showToast(`Webhook 已发送（${r.via}${r.status ? ` · ${r.status}` : ''}）`)
-    webhookMsg.value = `上次发送：${r.via}${r.status ? ` · HTTP ${r.status}` : ''}`
-  } catch (err: any) { showToast(err?.message || 'Webhook 发送失败'); webhookMsg.value = err?.message || '发送失败' }
+    showToast(t('index.webhookSent', { detail: `${r.via}${r.status ? ` · ${r.status}` : ''}` }))
+    webhookMsg.value = t('index.lastSent', { detail: `${r.via}${r.status ? ` · HTTP ${r.status}` : ''}` })
+  } catch (err: any) { showToast(err?.message || t('index.webhookFailed')); webhookMsg.value = err?.message || t('index.sendFailed') }
   finally { webhookBusy.value = false }
 }
 
@@ -482,7 +508,7 @@ onMounted(async () => {
     replicatedIds.value = new Set((reps as any[]).map(r => r.post_id))
     replicaCount.value = (reps as any[]).length
     await refreshWatchlist()
-  } catch (err: any) { loadError.value = err?.message || '数据加载失败' }
+  } catch (err: any) { loadError.value = err?.message || t('common.loadError') }
   finally { loading.value = false }
 })
 </script>

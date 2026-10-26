@@ -1,4 +1,5 @@
 import { ApiError } from './types'
+import { t } from '~/utils/i18n'
 
 // Unified API layer (SPEC):
 //  - browser: relative /api/v1/... (nginx proxies /api/ to Go on :18090)
@@ -27,14 +28,14 @@ export function useApi () {
     try {
       res = await fetch(url, { headers: { 'Content-Type': 'application/json', ...(opts.headers || {}) }, ...opts })
     } catch (e: any) {
-      throw new ApiError(0, 'NETWORK', e?.message || '网络请求失败')
+      throw new ApiError(0, 'NETWORK', e?.message || t('api.networkFailed'))
     }
     const text = await res.text()
     let data: any = null
     try { data = text ? JSON.parse(text) : null } catch { data = text }
     if (!res.ok) {
       const code = data?.error || `HTTP_${res.status}`
-      throw new ApiError(res.status, code, data?.message || `请求失败 (${res.status})`)
+      throw new ApiError(res.status, code, data?.message || t('api.requestFailed', { status: res.status }))
     }
     return data as T
   }
@@ -45,10 +46,10 @@ export function useApi () {
     for (const f of files) fd.append('file', f)
     let res: Response
     try { res = await fetch(url, { method: 'POST', body: fd }) } catch (e: any) {
-      throw new ApiError(0, 'NETWORK', e?.message || '上传失败')
+      throw new ApiError(0, 'NETWORK', e?.message || t('api.uploadFailed'))
     }
     const data = await res.json().catch(() => null)
-    if (!res.ok) throw new ApiError(res.status, data?.error || `HTTP_${res.status}`, data?.message || '上传失败')
+    if (!res.ok) throw new ApiError(res.status, data?.error || `HTTP_${res.status}`, data?.message || t('api.uploadFailed'))
     return data as T
   }
   return { mock, apiFetch, apiUpload }

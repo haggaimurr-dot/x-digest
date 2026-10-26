@@ -1,5 +1,6 @@
 // localStorage keys — kept identical to the original site (SPEC) so old
 // browser data stays readable. Theme/font/webhook stay local even in API mode.
+import { t } from '~/utils/i18n'
 export const LS = {
   watchlist: 'x-digest-watchlist',
   postCategories: 'x-digest-post-categories',
@@ -8,6 +9,7 @@ export const LS = {
   theme: 'x-digest-theme',
   fontFamily: 'x-digest-font-family',
   fontSize: 'x-digest-font-size',
+  lang: 'xd-lang',
   userTags: 'x-digest-user-tags',
   webhookUrl: 'x-digest-webhook-url',
   webhookKey: 'x-digest-webhook-key',
@@ -65,7 +67,7 @@ export function useSettings () {
   async function postWebhook (): Promise<{ ok: boolean, via: string, status?: number }> {
     const url = webhookUrl.value
     const key = webhookKey.value
-    if (!url || !key) throw new Error('请先在设置中配置 Webhook URL 与 key')
+    if (!url || !key) throw new Error(t('settings.webhookNotConfigured'))
     const headers: Record<string, string> = { Authorization: authHeader(key), 'Content-Type': 'application/json' }
     try {
       const res = await fetch(url, { method: 'POST', headers, body: '{}', mode: 'cors', credentials: 'omit' })

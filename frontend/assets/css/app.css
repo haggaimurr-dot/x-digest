@@ -46,6 +46,10 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
 .node-actions { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; margin: 4px 0; }
 .btn-quiet { background: transparent; border-color: transparent; color: var(--text-muted); }
 .btn-quiet-danger { background: transparent; border-color: transparent; color: var(--danger-text); }
+/* Translated note display (EN mode): read-only line above the editor, which
+   always shows/edits the original text. */
+.note-translated { color: var(--text-muted); font-size: 13px; margin: 6px 0; overflow-wrap: anywhere; }
+.note-translated-label { display: inline-block; font-size: 11px; border: 1px solid var(--border); border-radius: 9999px; padding: 0 6px; margin-right: 6px; }
 .note-editor textarea { width: 100%; background: var(--bg); color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 8px; font: inherit; }
 .note-toolbar { display: flex; gap: 4px; flex-wrap: wrap; margin: 6px 0; }
 .note-toolbar button { cursor: pointer; border: 1px solid var(--border); background: var(--bg-elevated); color: var(--text); border-radius: 6px; padding: 3px 8px; }
@@ -57,6 +61,8 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
 .attachment-preview img { display: block; max-height: 480px; object-fit: contain; }
 .attachment-preview pre { white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; font-size: 14px; line-height: 1.7; }
 .topnav { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+/* Language toggle: pushed to the right end of the top nav. */
+.lang-toggle { margin-left: auto; }
 .topnav a { color: var(--text); font-weight: 700; }
 .topnav a.router-link-active { color: var(--accent); }
 /* ---------- GitHub repos page ---------- */

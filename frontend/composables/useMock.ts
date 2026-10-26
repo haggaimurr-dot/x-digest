@@ -7,6 +7,7 @@ import rawWatchlist from '~/assets/mock/watchlist.json'
 import rawUserTags from '~/assets/mock/user-tags.json'
 import type { Post, Watchlist, Categories, Replica, ReplicaStep, Attachment, Repo, RepoGroup, RepoCommit, RepoRelease } from './types'
 import { LS } from './useSettings'
+import { t } from '~/utils/i18n'
 
 function normPost (p: any): Post {
   return {
@@ -166,11 +167,11 @@ export function useMockStore () {
   }
   function addMockReplicaStep (id: string, text: string, parentIdx?: number | null): ReplicaStep {
     const r = replicas.value.find(x => x.id === id)
-    if (!r) throw new Error('复刻不存在')
+    if (!r) throw new Error(t('mock.replicaNotFound'))
     if (parentIdx != null) {
       const parent = r.steps.find(s => s.idx === parentIdx)
-      if (!parent) throw new Error('父节点不存在')
-      if (parent.parent_idx != null) throw new Error('子节点最多支持两级')
+      if (!parent) throw new Error(t('mock.parentNotFound'))
+      if (parent.parent_idx != null) throw new Error(t('mock.maxTwoLevels'))
     }
     const idx = r.steps.reduce((m, s) => Math.max(m, s.idx), -1) + 1
     const step: ReplicaStep = { text: text.trim(), idx, status: 'idle', note: '', is_custom: true, parent_idx: parentIdx ?? null, attachments: [] }
@@ -238,7 +239,7 @@ export function useMockStore () {
   function addMockRepo (fullName: string, groupId?: string | null, tags?: string[], note?: string): Repo {
     const [owner, name] = fullName.split('/')
     if (repos.value.some(r => r.full_name.toLowerCase() === fullName.toLowerCase())) {
-      const e = new Error('该仓库已存在') as any
+      const e = new Error(t('mock.repoExists')) as any
       e.status = 409; throw e
     }
     const repo: Repo = {
