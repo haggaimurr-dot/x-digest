@@ -102,18 +102,20 @@
               <img v-if="v.thumbnail_url" :src="v.thumbnail_url" :alt="v.title" loading="lazy" />
               <span v-else class="yt-thumb-ph">▶</span>
             </a>
-            <div style="min-width:0">
-              <h2 class="post-title" style="margin:0">
+            <div class="yt-info">
+              <h2 class="post-title yt-title">
                 <a :href="v.url" target="_blank" rel="noopener">{{ tr(v.title) }}</a>
               </h2>
-              <p style="margin:6px 0 0;color:var(--text-muted);font-size:13px">
+              <p class="yt-meta">
                 {{ v.channel_name || v.channel_id }}<template v-if="v.published_at"> · {{ shanghaiTime(v.published_at) }}（{{ relativeTime(v.published_at, lang.value) }}）</template>
-                <span v-if="videoKind(v) === 'playlist'" class="chip active" style="margin-left:6px;font-size:12px;padding:1px 8px">{{ t('yt.playlistBadge') }}</span>
-                <span v-if="v.live_status === 'is_live'" class="chip active" style="margin-left:6px;font-size:12px;padding:1px 8px">{{ t('yt.liveNow') }}</span>
-                <span v-else-if="v.live_status === 'was_live'" class="chip" style="margin-left:6px;font-size:12px;padding:1px 8px">{{ t('yt.liveReplay') }}</span>
               </p>
-              <p v-if="v.description" class="yt-desc" :class="{ 'yt-desc-open': expandedDesc.has(v.id) }" style="margin:6px 0 0">{{ tr(v.description) }}</p>
-              <p v-else style="margin:6px 0 0;color:var(--text-muted)">{{ t('yt.noDesc') }}</p>
+              <div class="yt-tags">
+                <span class="chip yt-tag">{{ kindLabel(v) }}</span>
+                <span v-if="v.live_status === 'is_live'" class="chip active yt-tag">{{ t('yt.liveNow') }}</span>
+                <span v-else-if="v.live_status === 'was_live'" class="chip yt-tag">{{ t('yt.liveReplay') }}</span>
+              </div>
+              <p v-if="v.description" class="yt-desc" :class="{ 'yt-desc-open': expandedDesc.has(v.id) }"><template v-for="(part, pi) in linkParts(tr(v.description))" :key="pi"><a v-if="part.href" class="yt-desc-link" :href="part.href" target="_blank" rel="noopener noreferrer">{{ part.text }}</a><template v-else>{{ part.text }}</template></template></p>
+              <p v-else class="yt-desc-empty">{{ t('yt.noDesc') }}</p>
               <button v-if="(v.description || '').length > 140" class="btn btn-sm" type="button" style="margin-top:6px" @click="toggleDesc(v.id)">
                 {{ expandedDesc.has(v.id) ? t('yt.collapseDesc') : t('yt.expandDesc') }}
               </button>
@@ -251,6 +253,32 @@ function syncLabel (status: string): string {
 }
 function videoKind (v: YTVideo): YTKind {
   return v.kind || 'video'
+}
+function kindLabel (v: YTVideo): string {
+  switch (videoKind(v)) {
+    case 'short': return t('yt.tabShort')
+    case 'live': return t('yt.tabLive')
+    case 'playlist': return t('yt.playlistBadge')
+    default: return t('yt.tabVideo')
+  }
+}
+// 简介按纯文本渲染，只把 http(s) 链接切出来做成 <a>（不用 v-html，避免注入）。
+// 链接末尾的中英文标点、括号不算进链接。
+const URL_RE = /https?:\/\/[^\s<>"'，。；！？、）】」]+/g
+function linkParts (text: string): Array<{ text: string, href?: string }> {
+  const parts: Array<{ text: string, href?: string }> = []
+  let last = 0
+  for (const m of text.matchAll(URL_RE)) {
+    let url = m[0]
+    const trail = url.match(/[.,;:!?)\]}'"]+$/)
+    if (trail) url = url.slice(0, -trail[0].length)
+    const start = m.index!
+    if (start > last) parts.push({ text: text.slice(last, start) })
+    parts.push({ text: url, href: url })
+    last = start + url.length
+  }
+  if (last < text.length) parts.push({ text: text.slice(last) })
+  return parts
 }
 function rangeText (c: YTChannel): string {
   if (!c.date_from && !c.date_to) return t('yt.allTime')

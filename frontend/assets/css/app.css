@@ -188,13 +188,20 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
 .flow-collapse-btn svg { transition: transform .15s; }
 
 /* ---- YouTube prototype (/youtube, 2026-10-26) ---- */
-.yt-video-card { display: grid; grid-template-columns: 168px 1fr; gap: 12px; margin-bottom: 16px; }
+.yt-video-card { display: grid; grid-template-columns: 168px 1fr; gap: 12px; align-items: start; margin-bottom: 16px; }
 .yt-thumb { display: block; flex-shrink: 0; }
-.yt-thumb img { display: block; width: 168px; height: 94px; object-fit: cover; border-radius: 8px; background: var(--bg); }
-.yt-thumb-ph { display: flex; width: 168px; height: 94px; align-items: center; justify-content: center; border-radius: 8px; background: var(--bg); color: var(--text-muted); font-size: 22px; }
-.yt-desc { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }
+.yt-thumb img, .yt-thumb-ph { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; background: var(--bg); }
+.yt-thumb-ph { display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 22px; }
+.yt-info { min-width: 0; }
+.yt-title { margin: 0; font-size: 15px; line-height: 1.4; overflow-wrap: anywhere; }
+.yt-meta { margin: 4px 0 0; color: var(--text-muted); font-size: 12px; }
+.yt-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+.yt-tag { font-size: 12px; padding: 1px 8px; }
+.yt-desc { margin: 6px 0 0; font-size: 13px; line-height: 1.5; white-space: pre-line; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }
 .yt-desc-open { display: block; -webkit-line-clamp: unset; }
+.yt-desc-link { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; word-break: break-all; }
+.yt-desc-empty { margin: 6px 0 0; color: var(--text-muted); font-size: 13px; }
+/* 手机上仍然左图右文，只把缩略图缩窄。 */
 @media (max-width: 620px) {
-  .yt-video-card { grid-template-columns: 1fr; }
-  .yt-thumb img, .yt-thumb-ph { width: 100%; height: auto; aspect-ratio: 16 / 9; }
+  .yt-video-card { grid-template-columns: 120px 1fr; gap: 10px; }
 }
