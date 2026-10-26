@@ -79,10 +79,12 @@ export interface YTChannel {
   id: string, channel_id: string, handle?: string | null, name: string,
   group_id?: string | null, created_at: string,
   last_synced_at?: string | null, sync_status: string, sync_error?: string | null,
-  video_count: number
+  video_count: number,
+  date_from?: string | null, date_to?: string | null
 }
 export interface YTVideo {
   id: string, channel_id: string, channel_name?: string | null, title: string,
   description?: string | null, published_at: string, thumbnail_url?: string | null,
-  url: string, created_at: string
+  url: string, created_at: string,
+  kind?: 'video' | 'short' | 'live' | 'playlist', duration?: number, live_status?: string
 }

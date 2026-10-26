@@ -294,11 +294,18 @@ export function useStore () {
     const data = await apiFetch<{ groups: RepoGroup[] } | RepoGroup[]>('yt/groups')
     return Array.isArray(data) ? data : (data.groups || [])
   }
-  async function addYTChannel (input: string, groupId?: string | null): Promise<YTChannel> {
+  async function addYTChannel (input: string, groupId?: string | null, dateFrom?: string | null, dateTo?: string | null): Promise<YTChannel> {
     if (!input.trim()) throw new ApiError(422, 'VALIDATION', t('yt.inputLabel'))
-    const body = { channel_id: input.trim(), group_id: groupId || undefined }
-    if (mock.value) return mockStore.addMockYTChannel(body.channel_id, body.group_id ?? null)
+    const body: Record<string, unknown> = { channel_id: input.trim(), group_id: groupId || undefined }
+    if (dateFrom) body.date_from = dateFrom
+    if (dateTo) body.date_to = dateTo
+    if (mock.value) return mockStore.addMockYTChannel(body.channel_id as string, body.group_id as string | null ?? null, dateFrom || null, dateTo || null)
     const data = await apiFetch<any>('yt/channels', { method: 'POST', body: JSON.stringify(body) })
+    return data.channel || data
+  }
+  async function updateYTChannel (id: string, patch: { group_id?: string | null, date_from?: string | null, date_to?: string | null }): Promise<YTChannel> {
+    if (mock.value) return mockStore.patchMockYTChannel(id, patch)
+    const data = await apiFetch<any>(`yt/channels/${id}`, { method: 'PATCH', body: JSON.stringify(patch) })
     return data.channel || data
   }
   async function deleteYTChannel (id: string) {
@@ -334,7 +341,7 @@ export function useStore () {
     deleteAccount, addCategory, deleteCategory, setPostCategories, setUserTags, translateTexts,
     loadRepos, loadRepoGroups, addRepo, loadRepoDetail, loadRepoCommits, loadRepoReleases,
     patchRepo, deleteRepo, syncRepo, syncAllRepos, addRepoGroup, deleteRepoGroup, validateRepoFullName,
-    loadYTChannels, loadYTVideos, addYTChannel, deleteYTChannel, syncYTChannel, syncAllYTChannels,
+    loadYTChannels, loadYTVideos, addYTChannel, updateYTChannel, deleteYTChannel, syncYTChannel, syncAllYTChannels,
     loadYTGroups, addYTGroup, deleteYTGroup
   }
 }

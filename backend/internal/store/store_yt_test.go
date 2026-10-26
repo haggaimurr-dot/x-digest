@@ -183,6 +183,128 @@ func TestYTChannelDeleteCascadesVideos(t *testing.T) {
 	}
 }
 
+func TestYTChannelDateRangeUpdate(t *testing.T) {
+	st := testYTStore(t)
+	if err := st.CreateYTChannel(testYTChannel()); err != nil {
+		t.Fatalf("CreateYTChannel: %v", err)
+	}
+	ch, err := st.GetYTChannel("ytc_test1")
+	if err != nil {
+		t.Fatalf("GetYTChannel: %v", err)
+	}
+	if ch.DateFrom != nil || ch.DateTo != nil {
+		t.Fatalf("fresh channel range = %v/%v, want nil/nil", ch.DateFrom, ch.DateTo)
+	}
+	from, to := "2026-10-01", "2026-10-31"
+	if err := st.UpdateYTChannel("ytc_test1", "", &from, &to); err != nil {
+		t.Fatalf("UpdateYTChannel: %v", err)
+	}
+	ch, err = st.GetYTChannel("ytc_test1")
+	if err != nil {
+		t.Fatalf("GetYTChannel: %v", err)
+	}
+	if ch.DateFrom == nil || *ch.DateFrom != from || ch.DateTo == nil || *ch.DateTo != to {
+		t.Fatalf("range after update = %v/%v, want %s/%s", ch.DateFrom, ch.DateTo, from, to)
+	}
+	// Nil clears a bound (NULL = no limit).
+	if err := st.UpdateYTChannel("ytc_test1", "", nil, &to); err != nil {
+		t.Fatalf("UpdateYTChannel clear: %v", err)
+	}
+	ch, err = st.GetYTChannel("ytc_test1")
+	if err != nil {
+		t.Fatalf("GetYTChannel: %v", err)
+	}
+	if ch.DateFrom != nil || ch.DateTo == nil || *ch.DateTo != to {
+		t.Fatalf("range after clear = %v/%v, want nil/%s", ch.DateFrom, ch.DateTo, to)
+	}
+}
+
+func TestYTVideoKindFilterAndNullableDate(t *testing.T) {
+	st := testYTStore(t)
+	if err := st.CreateYTChannel(testYTChannel()); err != nil {
+		t.Fatalf("CreateYTChannel: %v", err)
+	}
+	videos := []model.YTVideo{
+		{ID: "vid000000001", ChannelID: testChannelID, Kind: "video", Title: "A video", Description: "about cats", PublishedAt: "2026-10-24 16:30:00", URL: "https://www.youtube.com/watch?v=vid000000001", CreatedAt: Now()},
+		{ID: "short0000001", ChannelID: testChannelID, Kind: "short", Title: "A short", Description: "short desc", PublishedAt: "2026-10-23 10:00:00", URL: "https://www.youtube.com/shorts/short0000001", CreatedAt: Now()},
+		// Playlists have no publish date: PublishedAt "" must store as
+		// NULL and read back as "".
+		{ID: "PL0000000001", ChannelID: testChannelID, Kind: "playlist", Title: "A playlist", Description: "list desc", PublishedAt: "", URL: "https://www.youtube.com/playlist?list=PL0000000001", CreatedAt: Now()},
+	}
+	if err := st.UpsertYTVideos(testChannelID, videos); err != nil {
+		t.Fatalf("upsert: %v", err)
+	}
+	got, err := st.ListYTVideos(YTVideoFilter{Kind: "playlist"})
+	if err != nil || len(got) != 1 || got[0].ID != "PL0000000001" {
+		t.Fatalf("kind=playlist: got %v err %v", got, err)
+	}
+	if got[0].PublishedAt != "" {
+		t.Fatalf("playlist published_at = %q, want empty (NULL)", got[0].PublishedAt)
+	}
+	got, err = st.ListYTVideos(YTVideoFilter{Kind: "short"})
+	if err != nil || len(got) != 1 || got[0].ID != "short0000001" {
+		t.Fatalf("kind=short: got %v err %v", got, err)
+	}
+	got, err = st.ListYTVideos(YTVideoFilter{Kind: "video"})
+	if err != nil || len(got) != 1 || got[0].ID != "vid000000001" {
+		t.Fatalf("kind=video: got %v err %v", got, err)
+	}
+	// A re-upsert with an empty description / date must NOT clobber
+	// what is already known.
+	stale := []model.YTVideo{
+		{ID: "vid000000001", ChannelID: testChannelID, Kind: "video", Title: "A video", Description: "", PublishedAt: "", URL: "https://www.youtube.com/watch?v=vid000000001", CreatedAt: Now()},
+	}
+	if err := st.UpsertYTVideos(testChannelID, stale); err != nil {
+		t.Fatalf("re-upsert: %v", err)
+	}
+	got, err = st.ListYTVideos(YTVideoFilter{Kind: "video"})
+	if err != nil || len(got) != 1 {
+		t.Fatalf("after re-upsert: got %v err %v", got, err)
+	}
+	if got[0].Description != "about cats" || got[0].PublishedAt != "2026-10-24 16:30:00" {
+		t.Fatalf("empty re-upsert clobbered stored values: %+v", got[0])
+	}
+}
+
+func TestYTPruneOutsideRange(t *testing.T) {
+	st := testYTStore(t)
+	if err := st.CreateYTChannel(testYTChannel()); err != nil {
+		t.Fatalf("CreateYTChannel: %v", err)
+	}
+	videos := []model.YTVideo{
+		{ID: "old000000001", ChannelID: testChannelID, Kind: "video", Title: "Old", Description: "d", PublishedAt: "2026-10-20 10:00:00", URL: "https://www.youtube.com/watch?v=old000000001", CreatedAt: Now()},
+		{ID: "mid000000001", ChannelID: testChannelID, Kind: "video", Title: "Mid", Description: "d", PublishedAt: "2026-10-24 10:00:00", URL: "https://www.youtube.com/watch?v=mid000000001", CreatedAt: Now()},
+		{ID: "new000000001", ChannelID: testChannelID, Kind: "short", Title: "New", Description: "d", PublishedAt: "2026-10-28 10:00:00", URL: "https://www.youtube.com/shorts/new000000001", CreatedAt: Now()},
+		{ID: "PL0000000001", ChannelID: testChannelID, Kind: "playlist", Title: "List", Description: "d", PublishedAt: "", URL: "https://www.youtube.com/playlist?list=PL0000000001", CreatedAt: Now()},
+	}
+	if err := st.UpsertYTVideos(testChannelID, videos); err != nil {
+		t.Fatalf("upsert: %v", err)
+	}
+	// No bounds = no-op.
+	if err := st.PruneYTVideosOutsideRange(testChannelID, "", ""); err != nil {
+		t.Fatalf("prune no-op: %v", err)
+	}
+	if got, _ := st.ListYTVideos(YTVideoFilter{}); len(got) != 4 {
+		t.Fatalf("no-op prune removed rows: got %d", len(got))
+	}
+	// Range 10-23..10-25 drops the 10-20 video and the 10-28 short;
+	// the in-range video and the (dateless) playlist stay.
+	if err := st.PruneYTVideosOutsideRange(testChannelID, "2026-10-23", "2026-10-25"); err != nil {
+		t.Fatalf("prune: %v", err)
+	}
+	got, err := st.ListYTVideos(YTVideoFilter{})
+	if err != nil {
+		t.Fatalf("list: %v", err)
+	}
+	ids := map[string]bool{}
+	for _, v := range got {
+		ids[v.ID] = true
+	}
+	if len(got) != 2 || !ids["mid000000001"] || !ids["PL0000000001"] {
+		t.Fatalf("after prune: got %v, want mid000000001 + PL0000000001", got)
+	}
+}
+
 func TestYTGroupDeleteMovesChannels(t *testing.T) {
 	st := testYTStore(t)
 	g, err := st.CreateYTGroup("测试分组")

@@ -34,6 +34,7 @@ import (
 	"path/filepath"
 	"strconv"
 	"strings"
+	"time"
 
 	_ "github.com/go-sql-driver/mysql"
 
@@ -1247,19 +1248,71 @@ func (s *server) handleRepoSyncAll(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
-// ---- YouTube channels (prototype 2026-10-26; RSS only, no API key) ----
+// ---- YouTube channels (yt-dlp sync, no API key) ----
 
-// syncYTChannel syncs one channel's RSS feed into yt_videos. A failed
-// fetch keeps the old videos and only updates the channel's sync status
-// (mirrors syncRepo).
+// validYTDate reports whether s is a "2006-01-02" calendar date.
+func validYTDate(s string) bool {
+	_, err := time.Parse("2006-01-02", s)
+	return err == nil
+}
+
+// optString is a JSON request field that distinguishes "absent" from
+// "present as null" from "present as a string": absent → Set=false;
+// null → Set=true, Val=nil; "x" → Set=true, Val=&"x". PATCH uses it so
+// a date sent as null or "" clears the field while an absent field
+// leaves it unchanged.
+type optString struct {
+	Set bool
+	Val *string
+}
+
+func (o *optString) UnmarshalJSON(b []byte) error {
+	o.Set = true
+	if string(b) == "null" {
+		o.Val = nil
+		return nil
+	}
+	var s string
+	if err := json.Unmarshal(b, &s); err != nil {
+		return err
+	}
+	o.Val = &s
+	return nil
+}
+
+// syncYTChannel syncs one channel's four tabs into yt_videos. A failed
+// sync keeps the old videos and only updates the channel's sync status
+// (mirrors syncRepo). After a successful sync, rows outside the
+// channel's date range are pruned.
 func (s *server) syncYTChannel(id string) (*model.YTChannel, error) {
 	ch, err := s.st.GetYTChannel(id)
 	if err != nil {
 		return nil, err
 	}
-	res, err := s.yt.Sync(context.Background(), ch.ChannelID)
+	// IDs already stored with a complete row (description, and for
+	// non-playlists a publish date) skip the backfill this sync; the
+	// sync re-checks everything else. Playlists count as complete
+	// once they have a description — they never get a publish date.
+	knownIDs := map[string]bool{}
+	existing, err := s.st.ListYTVideos(store.YTVideoFilter{ChannelID: ch.ChannelID, Limit: 1000})
 	if err != nil {
-		// Defensive: Sync currently folds transport errors into Status.
+		return nil, err
+	}
+	for _, v := range existing {
+		if v.Description != "" && (v.Kind == "playlist" || v.PublishedAt != "") {
+			knownIDs[v.ID] = true
+		}
+	}
+	dateFrom, dateTo := "", ""
+	if ch.DateFrom != nil {
+		dateFrom = *ch.DateFrom
+	}
+	if ch.DateTo != nil {
+		dateTo = *ch.DateTo
+	}
+	res, err := s.yt.SyncTabs(context.Background(), ch.ChannelID, dateFrom, dateTo, knownIDs)
+	if err != nil {
+		// Defensive: SyncTabs currently folds tab failures into Status.
 		_ = s.st.SetYTChannelSyncStatus(id, "failed", err.Error())
 		ch, err = s.st.GetYTChannel(id)
 		return &ch, err
@@ -1278,6 +1331,12 @@ func (s *server) syncYTChannel(id string) (*model.YTChannel, error) {
 	}
 	if res.Videos != nil {
 		if err := s.st.UpsertYTVideos(ch.ChannelID, res.Videos); err != nil {
+			return nil, err
+		}
+	}
+	// A narrowed range (or a re-sync) can leave rows outside it behind.
+	if dateFrom != "" || dateTo != "" {
+		if err := s.st.PruneYTVideosOutsideRange(ch.ChannelID, dateFrom, dateTo); err != nil {
 			return nil, err
 		}
 	}
@@ -1300,8 +1359,24 @@ func (s *server) handleYTChannels(w http.ResponseWriter, r *http.Request) {
 			URL       string `json:"url"`
 			Handle    string `json:"handle"`
 			GroupID   string `json:"group_id"`
+			DateFrom  string `json:"date_from"`
+			DateTo    string `json:"date_to"`
 		}
 		if !decodeBody(w, r, &body) {
+			return
+		}
+		dateFrom := strings.TrimSpace(body.DateFrom)
+		dateTo := strings.TrimSpace(body.DateTo)
+		if dateFrom != "" && !validYTDate(dateFrom) {
+			writeErr(w, 422, "VALIDATION", "date_from must be YYYY-MM-DD")
+			return
+		}
+		if dateTo != "" && !validYTDate(dateTo) {
+			writeErr(w, 422, "VALIDATION", "date_to must be YYYY-MM-DD")
+			return
+		}
+		if dateFrom != "" && dateTo != "" && dateFrom > dateTo {
+			writeErr(w, 422, "VALIDATION", "date_from must not be after date_to")
 			return
 		}
 		input := strings.TrimSpace(body.ChannelID)
@@ -1328,7 +1403,7 @@ func (s *server) handleYTChannels(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		// Keep the @handle when the user gave one; the channel name
-		// comes from the feed author on the first sync.
+		// comes from the tab listing's playlist_title on the first sync.
 		handle := strings.TrimSpace(body.Handle)
 		if handle == "" && strings.HasPrefix(input, "@") {
 			handle = input
@@ -1337,6 +1412,12 @@ func (s *server) handleYTChannels(w http.ResponseWriter, r *http.Request) {
 			ID: store.NewID("ytc_"), ChannelID: channelID, Handle: handle,
 			Name: "", GroupID: body.GroupID, CreatedAt: store.Now(),
 			SyncStatus: "never",
+		}
+		if dateFrom != "" {
+			ch.DateFrom = &dateFrom
+		}
+		if dateTo != "" {
+			ch.DateTo = &dateTo
 		}
 		if err := s.st.CreateYTChannel(ch); err != nil {
 			writeErr(w, 500, "DB_ERROR", err.Error())
@@ -1396,6 +1477,78 @@ func (s *server) handleYTChannelSub(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		writeJSON(w, 200, ch)
+	case http.MethodPatch:
+		// PATCH {group_id?, date_from?, date_to?}: a field present as
+		// null or "" clears it; an absent field leaves it unchanged.
+		// Returns the updated channel.
+		ch, err := s.st.GetYTChannel(id)
+		if errors.Is(err, sql.ErrNoRows) {
+			writeErr(w, 404, "NOT_FOUND", "channel not found")
+			return
+		}
+		if err != nil {
+			writeErr(w, 500, "DB_ERROR", err.Error())
+			return
+		}
+		var body struct {
+			GroupID  optString `json:"group_id"`
+			DateFrom optString `json:"date_from"`
+			DateTo   optString `json:"date_to"`
+		}
+		if !decodeBody(w, r, &body) {
+			return
+		}
+		groupID := ch.GroupID
+		if body.GroupID.Set {
+			if body.GroupID.Val == nil || strings.TrimSpace(*body.GroupID.Val) == "" {
+				groupID = ""
+			} else {
+				groupID = strings.TrimSpace(*body.GroupID.Val)
+			}
+			if groupID != "" && !s.st.YTGroupExists(groupID) {
+				writeErr(w, 422, "VALIDATION", "group does not exist: "+groupID)
+				return
+			}
+		}
+		dateFrom, dateTo := ch.DateFrom, ch.DateTo
+		if body.DateFrom.Set {
+			if body.DateFrom.Val == nil || strings.TrimSpace(*body.DateFrom.Val) == "" {
+				dateFrom = nil
+			} else {
+				v := strings.TrimSpace(*body.DateFrom.Val)
+				if !validYTDate(v) {
+					writeErr(w, 422, "VALIDATION", "date_from must be YYYY-MM-DD")
+					return
+				}
+				dateFrom = &v
+			}
+		}
+		if body.DateTo.Set {
+			if body.DateTo.Val == nil || strings.TrimSpace(*body.DateTo.Val) == "" {
+				dateTo = nil
+			} else {
+				v := strings.TrimSpace(*body.DateTo.Val)
+				if !validYTDate(v) {
+					writeErr(w, 422, "VALIDATION", "date_to must be YYYY-MM-DD")
+					return
+				}
+				dateTo = &v
+			}
+		}
+		if dateFrom != nil && dateTo != nil && *dateFrom > *dateTo {
+			writeErr(w, 422, "VALIDATION", "date_from must not be after date_to")
+			return
+		}
+		if err := s.st.UpdateYTChannel(id, groupID, dateFrom, dateTo); err != nil {
+			writeErr(w, 500, "DB_ERROR", err.Error())
+			return
+		}
+		ch, err = s.st.GetYTChannel(id)
+		if err != nil {
+			writeErr(w, 500, "DB_ERROR", err.Error())
+			return
+		}
+		writeJSON(w, 200, ch)
 	case http.MethodDelete:
 		if !s.st.YTChannelExists(id) {
 			writeErr(w, 404, "NOT_FOUND", "channel not found")
@@ -1407,7 +1560,7 @@ func (s *server) handleYTChannelSub(w http.ResponseWriter, r *http.Request) {
 		}
 		writeJSON(w, 200, map[string]bool{"ok": true})
 	default:
-		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only GET, DELETE")
+		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only GET, PATCH, DELETE")
 	}
 }
 
@@ -1423,11 +1576,19 @@ func (s *server) handleYTVideos(w http.ResponseWriter, r *http.Request) {
 			limit = n
 		}
 	}
+	kind := q.Get("kind")
+	switch kind {
+	case "", "video", "short", "live", "playlist":
+	default:
+		writeErr(w, 422, "VALIDATION", "kind must be video, short, live or playlist")
+		return
+	}
 	videos, err := s.st.ListYTVideos(store.YTVideoFilter{
 		ChannelID: q.Get("channel_id"),
 		Q:         q.Get("q"),
 		DateFrom:  q.Get("date_from"),
 		DateTo:    q.Get("date_to"),
+		Kind:      kind,
 		Limit:     limit,
 	})
 	if err != nil {

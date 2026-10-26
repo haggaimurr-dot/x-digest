@@ -61,11 +61,13 @@
             <span v-if="c.handle" style="color:var(--text-muted)">{{ c.handle }}</span>
             <span v-if="groupName(c.group_id)" class="chip active">{{ groupName(c.group_id) }}</span>
             <span style="color:var(--text-muted)">{{ t('yt.videosCount', { n: c.video_count }) }}</span>
+            <span style="color:var(--text-muted)">{{ rangeText(c) }}</span>
             <span :class="['sync-badge', `sync-${c.sync_status}`]">{{ syncLabel(c.sync_status) }}</span>
             <span style="color:var(--text-muted)">
               {{ c.last_synced_at ? t('yt.lastSynced', { time: shanghaiTime(c.last_synced_at) }) : t('yt.neverSyncedShort') }}
             </span>
             <span v-if="c.sync_error" style="color:var(--danger-text)" :title="c.sync_error">{{ trunc40(c.sync_error) }}</span>
+            <button class="btn btn-sm" type="button" @click="openEdit(c)">{{ t('yt.editRange') }}</button>
             <button class="btn btn-sm" type="button" @click="doSync(c)" :disabled="syncing.has(c.id)">
               {{ syncing.has(c.id) ? t('yt.refreshing') : t('yt.sync') }}
             </button>
@@ -81,6 +83,13 @@
             <button v-if="!g.fixed" class="btn btn-sm btn-danger" type="button" @click="doDeleteGroup(g)">{{ t('yt.deleteGroup') }}</button>
           </div>
         </section>
+
+        <!-- 四个分类页签 -->
+        <div class="chips" style="margin-top:16px" role="tablist" :aria-label="t('yt.title')">
+          <button v-for="tab in tabs" :key="tab.key" type="button" class="chip"
+            :class="{ active: activeTab === tab.key }" role="tab" :aria-selected="activeTab === tab.key"
+            @click="activeTab = tab.key">{{ t(tab.label) }}（{{ tabCounts[tab.key] }}）</button>
+        </div>
 
         <!-- 空状态 -->
         <p v-if="!channels.length" class="empty" style="margin-top:16px">{{ t('yt.empty') }}</p>
@@ -98,7 +107,10 @@
                 <a :href="v.url" target="_blank" rel="noopener">{{ tr(v.title) }}</a>
               </h2>
               <p style="margin:6px 0 0;color:var(--text-muted);font-size:13px">
-                {{ v.channel_name || v.channel_id }} · {{ shanghaiTime(v.published_at) }}（{{ relativeTime(v.published_at, lang.value) }}）
+                {{ v.channel_name || v.channel_id }}<template v-if="v.published_at"> · {{ shanghaiTime(v.published_at) }}（{{ relativeTime(v.published_at, lang.value) }}）</template>
+                <span v-if="videoKind(v) === 'playlist'" class="chip active" style="margin-left:6px;font-size:12px;padding:1px 8px">{{ t('yt.playlistBadge') }}</span>
+                <span v-if="v.live_status === 'is_live'" class="chip active" style="margin-left:6px;font-size:12px;padding:1px 8px">{{ t('yt.liveNow') }}</span>
+                <span v-else-if="v.live_status === 'was_live'" class="chip" style="margin-left:6px;font-size:12px;padding:1px 8px">{{ t('yt.liveReplay') }}</span>
               </p>
               <p v-if="v.description" class="yt-desc" :class="{ 'yt-desc-open': expandedDesc.has(v.id) }" style="margin:6px 0 0">{{ tr(v.description) }}</p>
               <p v-else style="margin:6px 0 0;color:var(--text-muted)">{{ t('yt.noDesc') }}</p>
@@ -123,10 +135,39 @@
           <option value="">{{ t('yt.ungrouped') }}</option>
           <option v-for="g in groups" :key="g.id" :value="g.id">{{ g.name }}</option>
         </select>
+        <label>{{ t('yt.rangeLabel') }}</label>
+        <div style="display:flex;gap:6px">
+          <input type="date" class="field" style="flex:1;min-width:0" v-model="addForm.date_from" :aria-label="t('yt.rangeFrom')" />
+          <input type="date" class="field" style="flex:1;min-width:0" v-model="addForm.date_to" :aria-label="t('yt.rangeTo')" />
+        </div>
+        <p style="color:var(--text-muted);font-size:13px">{{ t('yt.rangeHint') }}</p>
         <p v-if="addError" style="color:var(--danger-text)">{{ addError }}</p>
         <div class="modal-actions">
           <button class="btn" type="button" @click="showAdd = false">{{ t('common.cancel') }}</button>
           <button class="btn btn-primary" type="button" @click="doAdd" :disabled="addBusy">{{ addBusy ? t('yt.adding') : t('yt.add') }}</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 编辑拉取范围 -->
+    <div v-if="showEdit" class="modal-backdrop" @click.self="showEdit = false">
+      <div class="modal-card" role="dialog" aria-modal="true" :aria-label="t('yt.editRangeTitle')">
+        <h2>{{ t('yt.editRangeTitle') }} · {{ editChannel?.name || editChannel?.channel_id }}</h2>
+        <label>{{ t('yt.groupLabel') }}</label>
+        <select class="field" v-model="editForm.group_id">
+          <option value="">{{ t('yt.ungrouped') }}</option>
+          <option v-for="g in groups" :key="g.id" :value="g.id">{{ g.name }}</option>
+        </select>
+        <label>{{ t('yt.rangeLabel') }}</label>
+        <div style="display:flex;gap:6px">
+          <input type="date" class="field" style="flex:1;min-width:0" v-model="editForm.date_from" :aria-label="t('yt.rangeFrom')" />
+          <input type="date" class="field" style="flex:1;min-width:0" v-model="editForm.date_to" :aria-label="t('yt.rangeTo')" />
+        </div>
+        <p style="color:var(--text-muted);font-size:13px">{{ t('yt.rangeHint') }}</p>
+        <p v-if="editError" style="color:var(--danger-text)">{{ editError }}</p>
+        <div class="modal-actions">
+          <button class="btn" type="button" @click="showEdit = false">{{ t('common.cancel') }}</button>
+          <button class="btn btn-primary" type="button" @click="doEdit" :disabled="editBusy">{{ t('common.save') }}</button>
         </div>
       </div>
     </div>
@@ -155,6 +196,14 @@ const channelFilter = ref('')
 const groupFilter = ref('')
 const dateFrom = ref('')
 const dateTo = ref('')
+type YTKind = 'video' | 'short' | 'live' | 'playlist'
+const tabs: Array<{ key: YTKind, label: string }> = [
+  { key: 'video', label: 'yt.tabVideo' },
+  { key: 'short', label: 'yt.tabShort' },
+  { key: 'live', label: 'yt.tabLive' },
+  { key: 'playlist', label: 'yt.tabPlaylist' }
+]
+const activeTab = ref<YTKind>('video')
 const filtersCollapsed = ref(false)
 const activeFilterCount = computed(() =>
   (keyword.value.trim() ? 1 : 0) + (channelFilter.value ? 1 : 0) + (groupFilter.value ? 1 : 0) +
@@ -168,8 +217,13 @@ const syncAllMsg = ref('')
 const showAdd = ref(false)
 const addBusy = ref(false)
 const addError = ref('')
-const addForm = ref({ input: '', group_id: '' })
-useScrollLock(computed(() => showAdd.value))
+const addForm = ref({ input: '', group_id: '', date_from: '', date_to: '' })
+const showEdit = ref(false)
+const editBusy = ref(false)
+const editError = ref('')
+const editChannel = ref<YTChannel | null>(null)
+const editForm = ref({ group_id: '', date_from: '', date_to: '' })
+useScrollLock(computed(() => showAdd.value || showEdit.value))
 
 const newGroupName = ref('')
 const toast = ref('')
@@ -195,12 +249,21 @@ function syncLabel (status: string): string {
     default: return t('yt.neverSynced')
   }
 }
+function videoKind (v: YTVideo): YTKind {
+  return v.kind || 'video'
+}
+function rangeText (c: YTChannel): string {
+  if (!c.date_from && !c.date_to) return t('yt.allTime')
+  return `${c.date_from || '…'} ~ ${c.date_to || '…'}`
+}
 function matchesDate (v: YTVideo): boolean {
   const from = shanghaiDayBound(dateFrom.value, false)
   const to = shanghaiDayBound(dateTo.value, true)
   if (from == null && to == null) return true
+  // Unknown date (playlists, metadata not fetched yet) cannot be
+  // excluded by a date filter — keep it visible.
   const ts = Date.parse(v.published_at || '')
-  if (Number.isNaN(ts)) return false
+  if (Number.isNaN(ts)) return true
   if (from != null && ts < from) return false
   if (to != null && ts > to) return false
   return true
@@ -211,7 +274,7 @@ const channelById = computed(() => {
   for (const c of channels.value) m.set(c.channel_id, c)
   return m
 })
-const filtered = computed(() => {
+const filteredExceptKind = computed(() => {
   const q = keyword.value.trim().toLowerCase()
   return videos.value.filter((v) => {
     // Filtering always uses the original text, never the translation.
@@ -225,6 +288,13 @@ const filtered = computed(() => {
     return true
   })
 })
+// Tab counts respect every filter except the tab itself.
+const tabCounts = computed(() => {
+  const counts: Record<YTKind, number> = { video: 0, short: 0, live: 0, playlist: 0 }
+  for (const v of filteredExceptKind.value) counts[videoKind(v)]++
+  return counts
+})
+const filtered = computed(() => filteredExceptKind.value.filter(v => videoKind(v) === activeTab.value))
 watch([filtered, lang], () => {
   enqueue(filtered.value.flatMap(v => [v.title, v.description || '']))
 })
@@ -232,6 +302,7 @@ watch([filtered, lang], () => {
 function clearAll () {
   keyword.value = ''; channelFilter.value = ''; groupFilter.value = ''
   dateFrom.value = ''; dateTo.value = ''
+  activeTab.value = 'video'
 }
 function toggleDesc (id: string) {
   const s = new Set(expandedDesc.value)
@@ -245,7 +316,7 @@ async function reload () {
   groups.value = gs
 }
 function openAdd () {
-  addForm.value = { input: '', group_id: '' }
+  addForm.value = { input: '', group_id: '', date_from: '', date_to: '' }
   addError.value = ''
   showAdd.value = true
 }
@@ -255,13 +326,36 @@ async function doAdd () {
   addBusy.value = true
   addError.value = ''
   try {
-    const ch = await store.addYTChannel(input, addForm.value.group_id || null)
+    const ch = await store.addYTChannel(input, addForm.value.group_id || null, addForm.value.date_from || null, addForm.value.date_to || null)
     await reload()
     showAdd.value = false
     showToast(t('yt.added', { name: ch.name || ch.channel_id }))
   } catch (err: any) {
     addError.value = errText(err, t('yt.addFailed'))
   } finally { addBusy.value = false }
+}
+function openEdit (c: YTChannel) {
+  editChannel.value = c
+  editForm.value = { group_id: c.group_id || '', date_from: c.date_from || '', date_to: c.date_to || '' }
+  editError.value = ''
+  showEdit.value = true
+}
+async function doEdit () {
+  if (!editChannel.value) return
+  editBusy.value = true
+  editError.value = ''
+  try {
+    const updated = await store.updateYTChannel(editChannel.value.id, {
+      group_id: editForm.value.group_id || null,
+      date_from: editForm.value.date_from || null,
+      date_to: editForm.value.date_to || null
+    })
+    channels.value = channels.value.map(x => x.id === updated.id ? updated : x)
+    showEdit.value = false
+    showToast(t('yt.rangeUpdated'))
+  } catch (err: any) {
+    editError.value = errText(err, t('yt.rangeUpdateFailed'))
+  } finally { editBusy.value = false }
 }
 async function doDelete (c: YTChannel) {
   if (!confirm(t('yt.deleteConfirm', { name: c.name || c.channel_id }))) return

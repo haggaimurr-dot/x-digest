@@ -1,8 +1,9 @@
 package main
 
 // YouTube handler tests run against a scratch MariaDB database (same
-// XDIGEST_TEST_DSN convention as internal/store). Feed fetches and
-// channel-page resolves run against httptest servers, never real YouTube.
+// XDIGEST_TEST_DSN convention as internal/store). Channel-page resolves
+// run against httptest servers and yt-dlp runs against a fake binary
+// (YT_DLP_BIN), never real YouTube.
 
 import (
 	"bytes"
@@ -11,6 +12,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"os"
+	"path/filepath"
 	"strings"
 	"testing"
 
@@ -20,24 +22,38 @@ import (
 	"xdigest/internal/youtube"
 )
 
-const ytTestFeed = `<?xml version="1.0" encoding="UTF-8"?>
-<feed xmlns:yt="http://www.youtube.com/xml/schemas/2015" xmlns:media="http://search.yahoo.com/mrss/" xmlns="http://www.w3.org/2005/Atom">
-  <title>Handler Test Channel</title>
-  <author><name>Handler Test Channel</name></author>
-  <entry>
-    <id>yt:video:vid000000001</id>
-    <yt:videoId>vid000000001</yt:videoId>
-    <yt:channelId>UCtesttesttesttesttest00</yt:channelId>
-    <title>Handler test video</title>
-    <link rel="alternate" href="https://www.youtube.com/watch?v=vid000000001"/>
-    <published>2026-10-24T08:30:00+00:00</published>
-    <media:group>
-      <media:title>Handler test video</media:title>
-      <media:description>A video for handler tests.</media:description>
-    </media:group>
-  </entry>
-</feed>
+// fakeYtDlpScript writes a shell script that emulates yt-dlp for the
+// handler tests and returns its path. The videos tab lists one video
+// (vid000000001, "Handler Test Channel - Videos"); the other tabs are
+// empty. A metadata call for that video returns a description and an
+// upload_date of 20261024; any other metadata call fails (exit 1).
+func fakeYtDlpScript(t *testing.T) string {
+	t.Helper()
+	script := filepath.Join(t.TempDir(), "yt-dlp")
+	body := `#!/bin/sh
+flat=0
+url=""
+for a in "$@"; do
+  [ "$a" = "--flat-playlist" ] && flat=1
+  url="$a"
+done
+if [ "$flat" = 1 ]; then
+  case "$url" in
+    */videos) printf '%s\n' '{"id":"vid000000001","title":"Handler test video","duration":60,"live_status":"not_live","playlist_title":"Handler Test Channel - Videos","webpage_url":"https://www.youtube.com/watch?v=vid000000001","thumbnails":[{"url":"https://i.ytimg.com/vi/vid000000001/hqdefault.jpg"}]}' ;;
+    *) : ;;
+  esac
+  exit 0
+fi
+case "$url" in
+  *vid000000001*) printf '%s\n' '{"id":"vid000000001","title":"Handler test video","description":"A video for handler tests.","upload_date":"20261024","duration":60,"live_status":"not_live"}' ;;
+  *) exit 1 ;;
+esac
 `
+	if err := os.WriteFile(script, []byte(body), 0o755); err != nil {
+		t.Fatalf("write fake yt-dlp: %v", err)
+	}
+	return script
+}
 
 func testYTServer(t *testing.T, yt *youtube.Client) *server {
 	t.Helper()
@@ -84,6 +100,15 @@ func testYTServer(t *testing.T, yt *youtube.Client) *server {
 		t.Fatalf("apply schema.sql: %v", err)
 	}
 	return &server{st: st, yt: yt}
+}
+
+// testYTServerWithFakeBin is testYTServer with syncs driven by the fake
+// yt-dlp binary (YT_DLP_BIN). The client reads the binary path from the
+// environment on every call, so t.Setenv is enough.
+func testYTServerWithFakeBin(t *testing.T) *server {
+	t.Helper()
+	t.Setenv("YT_DLP_BIN", fakeYtDlpScript(t))
+	return testYTServer(t, &youtube.Client{HTTP: http.DefaultClient, BaseURL: "https://www.youtube.com"})
 }
 
 // call invokes one handler directly and decodes the JSON body.
@@ -135,19 +160,20 @@ func TestYTAddChannelValidation422(t *testing.T) {
 	if code != 422 {
 		t.Fatalf("unknown group: code=%d body=%v, want 422", code, body)
 	}
+	// Bad date_from format is a 422.
+	code, body = ytCall(t, s.handleYTChannels, http.MethodPost, "/api/v1/yt/channels", map[string]any{"channel_id": "UCtesttesttesttesttest00", "date_from": "24/10/2026"})
+	if code != 422 {
+		t.Fatalf("bad date_from: code=%d body=%v, want 422", code, body)
+	}
+	// date_from after date_to is a 422.
+	code, body = ytCall(t, s.handleYTChannels, http.MethodPost, "/api/v1/yt/channels", map[string]any{"channel_id": "UCtesttesttesttesttest00", "date_from": "2026-10-25", "date_to": "2026-10-24"})
+	if code != 422 {
+		t.Fatalf("from>to: code=%d body=%v, want 422", code, body)
+	}
 }
 
 func TestYTAddChannelSyncsOnceThenDuplicate409(t *testing.T) {
-	feed := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if r.URL.Path != "/feeds/videos.xml" {
-			w.WriteHeader(http.StatusNotFound)
-			return
-		}
-		w.Header().Set("Content-Type", "application/atom+xml")
-		_, _ = w.Write([]byte(ytTestFeed))
-	}))
-	defer feed.Close()
-	s := testYTServer(t, &youtube.Client{HTTP: feed.Client(), BaseURL: feed.URL})
+	s := testYTServerWithFakeBin(t)
 
 	code, body := ytCall(t, s.handleYTChannels, http.MethodPost, "/api/v1/yt/channels",
 		map[string]any{"channel_id": "UCtesttesttesttesttest00", "handle": "@handlertest"})
@@ -155,7 +181,7 @@ func TestYTAddChannelSyncsOnceThenDuplicate409(t *testing.T) {
 		t.Fatalf("add: code=%d body=%v, want 201", code, body)
 	}
 	if body["name"] != "Handler Test Channel" {
-		t.Fatalf("name = %v, want feed author name", body["name"])
+		t.Fatalf("name = %v, want tab playlist_title channel name", body["name"])
 	}
 	if body["sync_status"] != "synced" {
 		t.Fatalf("sync_status = %v, want synced", body["sync_status"])
@@ -163,7 +189,8 @@ func TestYTAddChannelSyncsOnceThenDuplicate409(t *testing.T) {
 	if body["handle"] != "@handlertest" {
 		t.Fatalf("handle = %v", body["handle"])
 	}
-	// The sync ran once at add time: the video is already listed.
+	// The sync ran once at add time: the video is already listed, with
+	// its backfilled description and date.
 	code, body = ytCall(t, s.handleYTVideos, http.MethodGet, "/api/v1/yt/videos", nil)
 	if code != 200 {
 		t.Fatalf("videos: code=%d body=%v", code, body)
@@ -171,6 +198,10 @@ func TestYTAddChannelSyncsOnceThenDuplicate409(t *testing.T) {
 	videos, _ := body["videos"].([]any)
 	if len(videos) != 1 {
 		t.Fatalf("videos = %v, want 1 video after add", body["videos"])
+	}
+	v0, _ := videos[0].(map[string]any)
+	if v0["kind"] != "video" || v0["description"] != "A video for handler tests." || v0["published_at"] != "2026-10-24 00:00:00" {
+		t.Fatalf("video = %v, want kind video + backfilled description/date", v0)
 	}
 	// Adding the same channel again is a 409.
 	code, body = ytCall(t, s.handleYTChannels, http.MethodPost, "/api/v1/yt/channels",
@@ -180,13 +211,26 @@ func TestYTAddChannelSyncsOnceThenDuplicate409(t *testing.T) {
 	}
 }
 
+func TestYTAddChannelWithDateRange(t *testing.T) {
+	s := testYTServerWithFakeBin(t)
+
+	code, body := ytCall(t, s.handleYTChannels, http.MethodPost, "/api/v1/yt/channels",
+		map[string]any{"channel_id": "UCtesttesttesttesttest00", "date_from": "2026-10-01", "date_to": "2026-10-31"})
+	if code != 201 {
+		t.Fatalf("add: code=%d body=%v, want 201", code, body)
+	}
+	if body["date_from"] != "2026-10-01" || body["date_to"] != "2026-10-31" {
+		t.Fatalf("range = %v/%v, want 2026-10-01/2026-10-31", body["date_from"], body["date_to"])
+	}
+	// The fake video's upload date (2026-10-24) is inside the range.
+	code, body = ytCall(t, s.handleYTVideos, http.MethodGet, "/api/v1/yt/videos", nil)
+	if videos, _ := body["videos"].([]any); len(videos) != 1 {
+		t.Fatalf("videos in range: code=%d body=%v, want 1", code, body)
+	}
+}
+
 func TestYTChannelSubHandlers(t *testing.T) {
-	feed := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/atom+xml")
-		_, _ = w.Write([]byte(ytTestFeed))
-	}))
-	defer feed.Close()
-	s := testYTServer(t, &youtube.Client{HTTP: feed.Client(), BaseURL: feed.URL})
+	s := testYTServerWithFakeBin(t)
 
 	_, body := ytCall(t, s.handleYTChannels, http.MethodPost, "/api/v1/yt/channels",
 		map[string]any{"channel_id": "UCtesttesttesttesttest00"})
@@ -223,13 +267,99 @@ func TestYTChannelSubHandlers(t *testing.T) {
 	}
 }
 
+func TestYTPatchChannel(t *testing.T) {
+	s := testYTServerWithFakeBin(t)
+
+	_, body := ytCall(t, s.handleYTChannels, http.MethodPost, "/api/v1/yt/channels",
+		map[string]any{"channel_id": "UCtesttesttesttesttest00"})
+	id, _ := body["id"].(string)
+	if id == "" {
+		t.Fatalf("add did not return an id: %v", body)
+	}
+	// Set a range.
+	code, got := ytCall(t, s.handleYTChannelSub, http.MethodPatch, "/api/v1/yt/channels/"+id,
+		map[string]any{"date_from": "2026-10-01", "date_to": "2026-10-31"})
+	if code != 200 {
+		t.Fatalf("patch set range: code=%d body=%v, want 200", code, got)
+	}
+	if got["date_from"] != "2026-10-01" || got["date_to"] != "2026-10-31" {
+		t.Fatalf("range after patch = %v/%v", got["date_from"], got["date_to"])
+	}
+	// Null clears one bound; the other is untouched.
+	code, got = ytCall(t, s.handleYTChannelSub, http.MethodPatch, "/api/v1/yt/channels/"+id,
+		map[string]any{"date_from": nil})
+	if code != 200 {
+		t.Fatalf("patch clear from: code=%d body=%v, want 200", code, got)
+	}
+	if _, present := got["date_from"]; present && got["date_from"] != nil {
+		t.Fatalf("date_from should be null after clear, got %v", got["date_from"])
+	}
+	if got["date_to"] != "2026-10-31" {
+		t.Fatalf("date_to should be untouched, got %v", got["date_to"])
+	}
+	// Empty string also clears.
+	code, got = ytCall(t, s.handleYTChannelSub, http.MethodPatch, "/api/v1/yt/channels/"+id,
+		map[string]any{"date_to": ""})
+	if code != 200 {
+		t.Fatalf("patch clear to: code=%d body=%v, want 200", code, got)
+	}
+	if _, present := got["date_to"]; present && got["date_to"] != nil {
+		t.Fatalf("date_to should be null after clear, got %v", got["date_to"])
+	}
+	// Bad date / from>to / unknown group are 422s.
+	code, _ = ytCall(t, s.handleYTChannelSub, http.MethodPatch, "/api/v1/yt/channels/"+id,
+		map[string]any{"date_from": "not-a-date"})
+	if code != 422 {
+		t.Fatalf("bad date: code=%d, want 422", code)
+	}
+	code, _ = ytCall(t, s.handleYTChannelSub, http.MethodPatch, "/api/v1/yt/channels/"+id,
+		map[string]any{"date_from": "2026-10-25", "date_to": "2026-10-24"})
+	if code != 422 {
+		t.Fatalf("from>to: code=%d, want 422", code)
+	}
+	code, _ = ytCall(t, s.handleYTChannelSub, http.MethodPatch, "/api/v1/yt/channels/"+id,
+		map[string]any{"group_id": "no-such-group"})
+	if code != 422 {
+		t.Fatalf("unknown group: code=%d, want 422", code)
+	}
+	// PATCH on a missing channel is a 404.
+	code, _ = ytCall(t, s.handleYTChannelSub, http.MethodPatch, "/api/v1/yt/channels/ytc_nope",
+		map[string]any{"date_from": "2026-10-01"})
+	if code != 404 {
+		t.Fatalf("patch missing: code=%d, want 404", code)
+	}
+}
+
+func TestYTVideosKindFilter(t *testing.T) {
+	s := testYTServerWithFakeBin(t)
+
+	_, body := ytCall(t, s.handleYTChannels, http.MethodPost, "/api/v1/yt/channels",
+		map[string]any{"channel_id": "UCtesttesttesttesttest00"})
+	if body["id"] == nil {
+		t.Fatalf("add failed: %v", body)
+	}
+	code, body := ytCall(t, s.handleYTVideos, http.MethodGet, "/api/v1/yt/videos?kind=video", nil)
+	if code != 200 {
+		t.Fatalf("kind=video: code=%d body=%v", code, body)
+	}
+	if videos, _ := body["videos"].([]any); len(videos) != 1 {
+		t.Fatalf("kind=video: got %v, want 1", body["videos"])
+	}
+	code, body = ytCall(t, s.handleYTVideos, http.MethodGet, "/api/v1/yt/videos?kind=short", nil)
+	if code != 200 {
+		t.Fatalf("kind=short: code=%d body=%v", code, body)
+	}
+	if videos, _ := body["videos"].([]any); len(videos) != 0 {
+		t.Fatalf("kind=short: got %v, want 0", body["videos"])
+	}
+	code, body = ytCall(t, s.handleYTVideos, http.MethodGet, "/api/v1/yt/videos?kind=bogus", nil)
+	if code != 422 {
+		t.Fatalf("kind=bogus: code=%d body=%v, want 422", code, body)
+	}
+}
+
 func TestYTSyncAll(t *testing.T) {
-	feed := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/atom+xml")
-		_, _ = w.Write([]byte(ytTestFeed))
-	}))
-	defer feed.Close()
-	s := testYTServer(t, &youtube.Client{HTTP: feed.Client(), BaseURL: feed.URL})
+	s := testYTServerWithFakeBin(t)
 
 	_, body := ytCall(t, s.handleYTChannels, http.MethodPost, "/api/v1/yt/channels",
 		map[string]any{"channel_id": "UCtesttesttesttesttest00"})

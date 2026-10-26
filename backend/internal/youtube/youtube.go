@@ -1,34 +1,88 @@
 // Package youtube syncs YouTube channel videos into the x-digest yt_*
-// tables (prototype 2026-10-26). No API key, no paid service: each
-// channel's public RSS feed is the only data source.
+// tables, driven by the yt-dlp binary (no API key, no paid service).
 //
-// Per channel, one request:
+// Why yt-dlp, why RSS was dropped: the prototype (2026-10-26) read each
+// channel's public RSS feed, but a feed only carries the ~15 latest
+// videos — no tab split (videos / Shorts / lives / playlists), no
+// playlists at all, and no community posts. The v2 page needs four
+// separate tabs plus a per-channel time range plus a description per
+// item, none of which RSS can supply, so the feed code was deleted and
+// sync now shells out to yt-dlp.
 //
-//	GET https://www.youtube.com/feeds/videos.xml?channel_id=UC...
+// How a sync works (Client.SyncTabs, one channel):
 //
-// The Atom feed gives, per entry: yt:videoId, title, link href,
-// published, media:thumbnail url, media:description (may be absent).
-// Only what the feed gives is kept; video pages are never scraped.
+//  1. Tab listing. For each tab in {videos, shorts, streams, playlists}
+//     run `yt-dlp --flat-playlist --dump-json --no-warnings
+//     --playlist-end 30 https://www.youtube.com/channel/<UC ID>/<tab>`
+//     and parse stdout as one JSON object per line. Kind mapping:
+//     videos→video, shorts→short, streams→live, playlists→playlist.
+//     Cap 30 items per tab. Flat entries carry id, title, duration,
+//     live_status, webpage_url (canonical URL — watch?v=, /shorts/ or
+//     playlist?list= — used as the row URL), thumbnails (the FIRST
+//     entry's url is used) and playlist_title (e.g. "Google for
+//     Developers - Videos"; the prefix before " - <Tab>" is the channel
+//     name, used when the stored name is empty). Flat entries carry NO
+//     upload_date and NO description — that is what step 2 is for.
+//     --dateafter/--datebefore are NOT passed: verified, in flat mode
+//     yt-dlp ignores them (flat entries have no upload_date), so they
+//     would silently do nothing. The range is enforced in step 3.
+//
+//  2. Description + date backfill. For items that are NEW (not in the
+//     knownIDs set the caller passes) or are missing a description /
+//     publish date, run one metadata fetch per item:
+//     `yt-dlp --dump-json --no-playlist --no-warnings --skip-download
+//     <item webpage_url>`, which returns description + upload_date
+//     (YYYYMMDD) + duration + live_status. Cap 10 items per tab per
+//     sync, newest first (the flat listing is newest-first), 800ms
+//     between calls, 30s timeout each. Backfill failure is tolerated
+//     completely: a 429, a timeout or a bad response just leaves that
+//     item unfilled and the sync continues; it is retried on the next
+//     sync. A sync never fails because of the backfill.
+//
+//  3. Date-range enforcement. A video/short/live item is only stored
+//     once its backfill has supplied an upload_date. If the channel has
+//     date_from/date_to set and the date falls outside [from, to]
+//     (date_to inclusive of the whole day) the item is SKIPPED, never
+//     stored. If the backfill failed (no upload_date) the item is NOT
+//     stored yet — it stays a candidate for the next sync. Playlists
+//     are always stored (no date to check; the range does not apply).
+//     Consequence: a newly added channel fills in gradually, up to 10
+//     backfilled items per tab per sync.
+//
+// Failure style mirrors the github client: a failed tab fetch never
+// deletes existing videos. Status is "failed" only if ALL FOUR tabs
+// failed; if at least one tab succeeded the sync is "synced" and the
+// failed tab names are listed in FailedTabs (Error stays empty on
+// partial success). A non-zero yt-dlp exit with partial stdout is OK —
+// the lines that parsed are kept.
+//
+// Proxy: when YT_HTTP_PROXY is set, every yt-dlp call gets
+// `--proxy <url>` and the channel-page fetches below go through the
+// same proxy. The Shanghai box needs it: YouTube is unreachable from
+// mainland China (the TLS SNI is killed by the GFW), so the server runs
+// a local xray client (xray-yt) whose VLESS tunnel to the LA node hides
+// the SNI; YT_HTTP_PROXY=http://127.0.0.1:18099 points at it. On a
+// machine with direct YouTube access the variable is simply unset.
 //
 // Channel resolve: the add endpoint accepts a UC... ID, a channel URL,
 // or an @handle. A non-ID input is resolved by GET-ing the URL (or
 // https://www.youtube.com/@handle) with a browser User-Agent and
 // extracting "channelId":"(UC...)" from the HTML (first match).
-//
-// Failure style mirrors the github client: a failed feed fetch never
-// deletes existing videos — Sync folds the failure into Status and the
-// caller keeps the old rows untouched.
 package youtube
 
 import (
+	"bufio"
+	"bytes"
 	"context"
-	"encoding/xml"
+	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
 	"net/url"
 	"os"
+	"os/exec"
 	"regexp"
+	"strconv"
 	"strings"
 	"time"
 
@@ -37,11 +91,22 @@ import (
 
 const (
 	defaultBaseURL = "https://www.youtube.com"
-	// RSS feeds sometimes serve a consent/redirect page to bare clients;
-	// a browser User-Agent keeps the real feed. Same reason as the
-	// channel-page resolve below.
+	// The channel-page resolve sometimes serves a consent/redirect page
+	// to bare clients; a browser User-Agent keeps the real page.
 	browserUA      = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
 	requestTimeout = 15 * time.Second
+
+	// tabListCap is the --playlist-end for each tab listing.
+	tabListCap = 30
+	// backfillCap is the max metadata fetches per tab per sync.
+	backfillCap = 10
+	// backfillDelay is the pause between metadata fetches, to stay
+	// gentle with YouTube (it 429s aggressive clients).
+	backfillDelay = 800 * time.Millisecond
+	// tabListTimeout bounds one tab listing; metaTimeout bounds one
+	// single-item metadata fetch.
+	tabListTimeout = 120 * time.Second
+	metaTimeout    = 30 * time.Second
 )
 
 var shanghai = time.FixedZone("CST", 8*3600)
@@ -52,20 +117,51 @@ var channelIDRe = regexp.MustCompile(`^UC[0-9A-Za-z_-]{22}$`)
 // channelIDInPage finds the first "channelId":"UC..." in a channel page's HTML.
 var channelIDInPageRe = regexp.MustCompile(`"channelId":"(UC[0-9A-Za-z_-]{22})"`)
 
-// Client fetches YouTube RSS feeds and channel pages. BaseURL is
-// overridable so tests can point it at httptest servers; production
-// always uses https://www.youtube.com.
-type Client struct {
-	HTTP    *http.Client
-	BaseURL string
+// ytTab is one channel tab: its URL slug and the Kind stored for its items.
+type ytTab struct {
+	slug string
+	kind string
 }
 
-// New returns a client with a 15s timeout, pointed at youtube.com.
-// When YT_HTTP_PROXY is set, feed and channel-page fetches go through
-// that proxy. The Shanghai box needs it: YouTube is unreachable from
-// mainland China (the TLS SNI is killed by the GFW), so the server runs
-// a local xray client (xray-yt) whose VLESS tunnel to the LA node hides
-// the SNI; YT_HTTP_PROXY=http://127.0.0.1:18099 points at it.
+var ytTabs = []ytTab{
+	{slug: "videos", kind: "video"},
+	{slug: "shorts", kind: "short"},
+	{slug: "streams", kind: "live"},
+	{slug: "playlists", kind: "playlist"},
+}
+
+// tabTitleSuffix is stripped from a flat entry's playlist_title to get
+// the channel name, e.g. "Google for Developers - Videos" → "Google
+// for Developers".
+var tabTitleSuffix = map[string]string{
+	"videos":    " - Videos",
+	"shorts":    " - Shorts",
+	"streams":   " - Live",
+	"playlists": " - Playlists",
+}
+
+// Client runs yt-dlp and fetches channel pages. BaseURL is overridable
+// so tests can point resolve at httptest servers; production always
+// uses https://www.youtube.com.
+//
+// Bin / Proxy default to the YT_DLP_BIN / YT_HTTP_PROXY environment
+// when left empty, so tests can point the runner at a fake binary with
+// t.Setenv without constructing the client through New. Runner, when
+// set, replaces the real exec call entirely (unit tests inject canned
+// yt-dlp output through it). BackfillDelay overrides the 800ms pause
+// between metadata fetches (tests set it to 0).
+type Client struct {
+	HTTP          *http.Client
+	BaseURL       string
+	Bin           string
+	Proxy         string
+	Runner        func(ctx context.Context, args []string) ([]byte, error)
+	BackfillDelay time.Duration
+}
+
+// New returns a client with a 15s HTTP timeout, pointed at youtube.com.
+// The yt-dlp binary path comes from YT_DLP_BIN (default "yt-dlp") and
+// the proxy from YT_HTTP_PROXY (see the package comment).
 func New() *Client {
 	transport := http.DefaultTransport.(*http.Transport).Clone()
 	if proxyURL := strings.TrimSpace(os.Getenv("YT_HTTP_PROXY")); proxyURL != "" {
@@ -76,40 +172,390 @@ func New() *Client {
 	return &Client{
 		HTTP:    &http.Client{Timeout: requestTimeout, Transport: transport},
 		BaseURL: defaultBaseURL,
+		Bin:     strings.TrimSpace(os.Getenv("YT_DLP_BIN")),
+		Proxy:   strings.TrimSpace(os.Getenv("YT_HTTP_PROXY")),
 	}
 }
 
 // IsChannelID reports whether s is already a UC... channel ID.
 func IsChannelID(s string) bool { return channelIDRe.MatchString(strings.TrimSpace(s)) }
 
-// FeedURL returns the public RSS feed URL for a channel ID.
-func (c *Client) FeedURL(channelID string) string {
-	return strings.TrimSuffix(c.BaseURL, "/") + "/feeds/videos.xml?channel_id=" + url.QueryEscape(channelID)
+func (c *Client) binPath() string {
+	if strings.TrimSpace(c.Bin) != "" {
+		return strings.TrimSpace(c.Bin)
+	}
+	if v := strings.TrimSpace(os.Getenv("YT_DLP_BIN")); v != "" {
+		return v
+	}
+	return "yt-dlp"
 }
 
-// SyncResult is one channel sync. Videos is nil when the fetch failed;
-// Status is "synced" or "failed" and Error carries the reason.
+func (c *Client) proxyURL() string {
+	if strings.TrimSpace(c.Proxy) != "" {
+		return strings.TrimSpace(c.Proxy)
+	}
+	return strings.TrimSpace(os.Getenv("YT_HTTP_PROXY"))
+}
+
+func (c *Client) backfillDelay() time.Duration {
+	if c.BackfillDelay != 0 {
+		return c.BackfillDelay
+	}
+	return backfillDelay
+}
+
+// runYtDlp executes the yt-dlp binary with args (plus --proxy when a
+// proxy is configured) and returns its stdout. A non-zero exit with
+// partial stdout is NOT an error here — the caller parses whatever
+// lines survived; runErr is returned alongside so the caller can tell
+// a clean run from a partial one. With no stdout at all, a non-zero
+// exit is an error.
+func (c *Client) runYtDlp(ctx context.Context, args ...string) ([]byte, error) {
+	if c.Runner != nil {
+		return c.Runner(ctx, args)
+	}
+	full := []string{}
+	if proxy := c.proxyURL(); proxy != "" {
+		full = append(full, "--proxy", proxy)
+	}
+	full = append(full, args...)
+	cmd := exec.CommandContext(ctx, c.binPath(), full...)
+	var stdout, stderr bytes.Buffer
+	cmd.Stdout = &stdout
+	cmd.Stderr = &stderr
+	err := cmd.Run()
+	if err != nil && stdout.Len() == 0 {
+		return nil, fmt.Errorf("yt-dlp: %v: %s", err, strings.TrimSpace(stderr.String()))
+	}
+	return stdout.Bytes(), err
+}
+
+// SyncResult is one channel sync. Videos is nil when every tab failed;
+// Status is "synced" or "failed" and Error carries the reason (empty on
+// partial success — see FailedTabs). SyncedTabs counts the tabs that
+// listed OK; FailedTabs names the ones that did not.
 type SyncResult struct {
 	ChannelName string
 	Videos      []model.YTVideo
 	Status      string
 	Error       string
+	SyncedTabs  int
+	FailedTabs  []string
 }
 
-// Sync fetches one channel's RSS feed and returns its videos, newest
-// first (the feed already lists them that way). A feed with zero entries
-// is OK — a brand-new channel — and syncs with an empty list.
-func (c *Client) Sync(ctx context.Context, channelID string) (*SyncResult, error) {
-	res := &SyncResult{Status: "synced"}
-	feed, err := c.FetchFeed(ctx, channelID)
-	if err != nil {
-		res.Status = "failed"
-		res.Error = err.Error()
-		return res, nil
+// SyncTabs syncs one channel's four tabs into model rows, newest first
+// within each tab. dateFrom/dateTo are "2006-01-02" ("" = no limit);
+// knownIDs holds the video/playlist IDs already stored with a complete
+// row (description, and for non-playlists a publish date) — those are
+// skipped, everything else gets a metadata backfill attempt (cap 10 per
+// tab). See the package comment for the full design.
+func (c *Client) SyncTabs(ctx context.Context, channelID, dateFrom, dateTo string, knownIDs map[string]bool) (*SyncResult, error) {
+	if strings.TrimSpace(channelID) == "" {
+		return nil, fmt.Errorf("channel ID 为空")
 	}
-	res.ChannelName = feed.Author.Name
-	res.Videos = feed.Videos(channelID)
+	res := &SyncResult{Status: "synced", Videos: []model.YTVideo{}}
+	seen := map[string]bool{}
+	for _, tab := range ytTabs {
+		items, name, err := c.listTab(ctx, channelID, tab)
+		if err != nil {
+			res.FailedTabs = append(res.FailedTabs, tab.slug)
+			continue
+		}
+		res.SyncedTabs++
+		if res.ChannelName == "" && name != "" {
+			res.ChannelName = name
+		}
+		backfilled := 0
+		for _, it := range items {
+			if seen[it.id] {
+				continue
+			}
+			seen[it.id] = true
+			if knownIDs != nil && knownIDs[it.id] {
+				continue
+			}
+			// Playlists have no date to wait for: store them from the
+			// flat listing even when the backfill fails; a successful
+			// backfill just adds the description.
+			if tab.kind == "playlist" {
+				v := it.toVideo(channelID, tab.kind)
+				if backfilled < backfillCap {
+					c.sleepBeforeBackfill(ctx, backfilled)
+					if meta, err := c.fetchMeta(ctx, it.url); err == nil {
+						v.Description = meta.Description
+						if d := meta.durationSecs(); d > 0 {
+							v.Duration = d
+						}
+						if meta.LiveStatus != "" {
+							v.LiveStatus = meta.LiveStatus
+						}
+					}
+					backfilled++
+				}
+				res.Videos = append(res.Videos, v)
+				continue
+			}
+			// Video / short / live: only stored once the backfill has
+			// supplied an upload_date. No date yet → not stored, the
+			// next sync retries it.
+			if backfilled >= backfillCap {
+				continue
+			}
+			c.sleepBeforeBackfill(ctx, backfilled)
+			meta, err := c.fetchMeta(ctx, it.url)
+			backfilled++
+			if err != nil {
+				continue
+			}
+			if !inDateRange(meta.uploadDate(), dateFrom, dateTo) {
+				continue
+			}
+			v := it.toVideo(channelID, tab.kind)
+			v.Description = meta.Description
+			v.PublishedAt = meta.publishedAt()
+			if d := meta.durationSecs(); d > 0 {
+				v.Duration = d
+			}
+			if meta.LiveStatus != "" {
+				v.LiveStatus = meta.LiveStatus
+			}
+			res.Videos = append(res.Videos, v)
+		}
+	}
+	if res.SyncedTabs == 0 {
+		res.Status = "failed"
+		res.Error = "全部 4 个标签页同步失败（" + strings.Join(res.FailedTabs, "、") + "）"
+		res.Videos = nil
+	}
 	return res, nil
+}
+
+// sleepBeforeBackfill pauses before a metadata fetch when it is not
+// the first one of this tab, to stay gentle with YouTube (it 429s
+// aggressive clients). It respects ctx cancellation.
+func (c *Client) sleepBeforeBackfill(ctx context.Context, alreadyFetched int) {
+	if alreadyFetched <= 0 {
+		return
+	}
+	d := c.backfillDelay()
+	if d <= 0 {
+		return
+	}
+	t := time.NewTimer(d)
+	defer t.Stop()
+	select {
+	case <-ctx.Done():
+	case <-t.C:
+	}
+}
+
+// listTab runs one tab listing and parses its flat entries. The channel
+// name comes from the first entry's playlist_title prefix.
+func (c *Client) listTab(ctx context.Context, channelID string, tab ytTab) ([]flatEntry, string, error) {
+	ctx, cancel := context.WithTimeout(ctx, tabListTimeout)
+	defer cancel()
+	tabURL := strings.TrimSuffix(c.BaseURL, "/") + "/channel/" + channelID + "/" + tab.slug
+	out, runErr := c.runYtDlp(ctx, "--flat-playlist", "--dump-json", "--no-warnings",
+		"--playlist-end", strconv.Itoa(tabListCap), tabURL)
+	entries, name := parseFlatOutput(out, tab.slug)
+	if len(entries) == 0 && runErr != nil {
+		return nil, "", fmt.Errorf("标签页 %s 同步失败：%v", tab.slug, runErr)
+	}
+	return entries, name, nil
+}
+
+// fetchMeta runs one single-item metadata fetch. Any failure (non-zero
+// exit, timeout, unparsable output) is an error the caller tolerates.
+func (c *Client) fetchMeta(ctx context.Context, itemURL string) (*metaEntry, error) {
+	ctx, cancel := context.WithTimeout(ctx, metaTimeout)
+	defer cancel()
+	out, err := c.runYtDlp(ctx, "--dump-json", "--no-playlist", "--no-warnings",
+		"--skip-download", itemURL)
+	if err != nil {
+		return nil, fmt.Errorf("yt-dlp 元数据失败：%v", err)
+	}
+	return parseMeta(out)
+}
+
+// ---- yt-dlp JSON parsing ----
+
+// flatEntry is one --flat-playlist --dump-json line. Only the fields
+// the sync uses are decoded; upload_date and description are absent in
+// flat mode by design (see the package comment).
+type flatEntry struct {
+	id            string
+	title         string
+	duration      int
+	liveStatus    string
+	url           string
+	thumbnailURL  string
+	playlistTitle string
+}
+
+type flatEntryJSON struct {
+	ID            string   `json:"id"`
+	Title         string   `json:"title"`
+	Duration      *float64 `json:"duration"`
+	LiveStatus    string   `json:"live_status"`
+	WebpageURL    string   `json:"webpage_url"`
+	PlaylistTitle string   `json:"playlist_title"`
+	Thumbnails    []struct {
+		URL string `json:"url"`
+	} `json:"thumbnails"`
+}
+
+func parseFlatEntry(line []byte) (*flatEntry, error) {
+	var raw flatEntryJSON
+	if err := json.Unmarshal(line, &raw); err != nil {
+		return nil, err
+	}
+	if strings.TrimSpace(raw.ID) == "" {
+		return nil, fmt.Errorf("flat entry 缺少 id")
+	}
+	e := &flatEntry{
+		id:            strings.TrimSpace(raw.ID),
+		title:         strings.TrimSpace(raw.Title),
+		liveStatus:    strings.TrimSpace(raw.LiveStatus),
+		url:           strings.TrimSpace(raw.WebpageURL),
+		playlistTitle: strings.TrimSpace(raw.PlaylistTitle),
+	}
+	if raw.Duration != nil {
+		e.duration = int(*raw.Duration)
+	}
+	// First thumbnail wins (usually the smallest/default; good enough
+	// for a list card and stable across runs).
+	if len(raw.Thumbnails) > 0 {
+		e.thumbnailURL = strings.TrimSpace(raw.Thumbnails[0].URL)
+	}
+	if e.url == "" {
+		e.url = "https://www.youtube.com/watch?v=" + e.id
+	}
+	return e, nil
+}
+
+// parseFlatOutput decodes one JSON object per line, skipping lines that
+// do not parse (a partial yt-dlp run still yields its good lines). It
+// also extracts the channel name from the first playlist_title.
+func parseFlatOutput(out []byte, tabSlug string) ([]flatEntry, string) {
+	entries := []flatEntry{}
+	name := ""
+	sc := bufio.NewScanner(bytes.NewReader(out))
+	sc.Buffer(make([]byte, 1024*1024), 1024*1024)
+	for sc.Scan() {
+		line := bytes.TrimSpace(sc.Bytes())
+		if len(line) == 0 {
+			continue
+		}
+		e, err := parseFlatEntry(line)
+		if err != nil {
+			continue
+		}
+		if name == "" {
+			name = channelNameFromPlaylistTitle(e.playlistTitle, tabSlug)
+		}
+		entries = append(entries, *e)
+	}
+	return entries, name
+}
+
+// channelNameFromPlaylistTitle strips the " - <Tab>" suffix from a flat
+// entry's playlist_title, e.g. "Google for Developers - Videos".
+func channelNameFromPlaylistTitle(playlistTitle, tabSlug string) string {
+	if playlistTitle == "" {
+		return ""
+	}
+	if suffix, ok := tabTitleSuffix[tabSlug]; ok {
+		return strings.TrimSpace(strings.TrimSuffix(playlistTitle, suffix))
+	}
+	return playlistTitle
+}
+
+// toVideo converts a flat entry to a model row. PublishedAt stays ""
+// until the backfill supplies it (playlists keep "").
+func (e *flatEntry) toVideo(channelID, kind string) model.YTVideo {
+	return model.YTVideo{
+		ID:           e.id,
+		ChannelID:    channelID,
+		Kind:         kind,
+		Title:        e.title,
+		Duration:     e.duration,
+		LiveStatus:   e.liveStatus,
+		ThumbnailURL: e.thumbnailURL,
+		URL:          e.url,
+		CreatedAt:    time.Now().In(shanghai).Format("2006-01-02 15:04:05"),
+	}
+}
+
+// metaEntry is one --dump-json single-item result.
+type metaEntry struct {
+	Description string   `json:"description"`
+	UploadDate  string   `json:"upload_date"`
+	Duration    *float64 `json:"duration"`
+	LiveStatus  string   `json:"live_status"`
+}
+
+// parseMeta decodes a single-item metadata JSON object. yt-dlp prints
+// exactly one object; a trailing newline or extra blank lines are
+// tolerated by decoding the first object in the stream.
+func parseMeta(out []byte) (*metaEntry, error) {
+	dec := json.NewDecoder(bytes.NewReader(out))
+	var m metaEntry
+	if err := dec.Decode(&m); err != nil {
+		return nil, fmt.Errorf("解析 yt-dlp 元数据失败：%v", err)
+	}
+	m.Description = strings.TrimSpace(m.Description)
+	m.UploadDate = strings.TrimSpace(m.UploadDate)
+	m.LiveStatus = strings.TrimSpace(m.LiveStatus)
+	return &m, nil
+}
+
+// durationSecs returns the metadata duration in whole seconds (0 when
+// absent).
+func (m *metaEntry) durationSecs() int {
+	if m.Duration == nil {
+		return 0
+	}
+	return int(*m.Duration)
+}
+
+// uploadDate returns the metadata upload_date as "2006-01-02"
+// (upload_date arrives as YYYYMMDD). "" when absent or malformed.
+func (m *metaEntry) uploadDate() string {
+	if len(m.UploadDate) != 8 {
+		return ""
+	}
+	t, err := time.Parse("20060102", m.UploadDate)
+	if err != nil {
+		return ""
+	}
+	return t.Format("2006-01-02")
+}
+
+// publishedAt converts the upload_date to Shanghai wall time at
+// midnight ("2006-01-02 15:04:05"). "" when the date is unknown.
+func (m *metaEntry) publishedAt() string {
+	d := m.uploadDate()
+	if d == "" {
+		return ""
+	}
+	return d + " 00:00:00"
+}
+
+// inDateRange reports whether date ("2006-01-02") falls inside
+// [from, to]; an empty bound means no limit, and to is inclusive of
+// the whole day. An empty date (backfill supplied none) is never in
+// range — the item is not stored yet.
+func inDateRange(date, from, to string) bool {
+	if date == "" {
+		return false
+	}
+	if from != "" && date < from {
+		return false
+	}
+	if to != "" && date > to {
+		return false
+	}
+	return true
 }
 
 // ResolveChannelID turns user input into a UC... channel ID. It accepts:
@@ -172,118 +618,4 @@ func (c *Client) resolveFromPage(ctx context.Context, pageURL string) (string, e
 		return "", fmt.Errorf("页面中未找到 channelId")
 	}
 	return string(m[1]), nil
-}
-
-// FetchFeed GETs the channel's public RSS feed and parses it.
-func (c *Client) FetchFeed(ctx context.Context, channelID string) (*Feed, error) {
-	req, err := http.NewRequestWithContext(ctx, http.MethodGet, c.FeedURL(channelID), nil)
-	if err != nil {
-		return nil, err
-	}
-	req.Header.Set("User-Agent", browserUA)
-	resp, err := c.HTTP.Do(req)
-	if err != nil {
-		return nil, err
-	}
-	defer resp.Body.Close()
-	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("YouTube RSS 返回 %d", resp.StatusCode)
-	}
-	return ParseFeed(resp.Body)
-}
-
-// ---- Atom feed parsing (encoding/xml, streaming) ----
-
-const (
-	atomNS  = "http://www.w3.org/2005/Atom"
-	ytNS    = "http://www.youtube.com/xml/schemas/2015"
-	mediaNS = "http://search.yahoo.com/mrss/"
-)
-
-// Feed is a parsed YouTube channel RSS feed.
-type Feed struct {
-	Title   string      `xml:"http://www.w3.org/2005/Atom title"`
-	Author  feedAuthor  `xml:"http://www.w3.org/2005/Atom author"`
-	Entries []feedEntry `xml:"http://www.w3.org/2005/Atom entry"`
-}
-
-type feedAuthor struct {
-	Name string `xml:"http://www.w3.org/2005/Atom name"`
-	URI  string `xml:"http://www.w3.org/2005/Atom uri"`
-}
-
-type feedEntry struct {
-	VideoID   string     `xml:"http://www.youtube.com/xml/schemas/2015 videoId"`
-	ChannelID string     `xml:"http://www.youtube.com/xml/schemas/2015 channelId"`
-	Title     string     `xml:"http://www.w3.org/2005/Atom title"`
-	Link      feedLink   `xml:"http://www.w3.org/2005/Atom link"`
-	Published string     `xml:"http://www.w3.org/2005/Atom published"`
-	Group     mediaGroup `xml:"http://search.yahoo.com/mrss/ group"`
-}
-
-type feedLink struct {
-	Href string `xml:"href,attr"`
-}
-
-type mediaGroup struct {
-	Title       string         `xml:"http://search.yahoo.com/mrss/ title"`
-	Description string         `xml:"http://search.yahoo.com/mrss/ description"`
-	Thumbnail   mediaThumbnail `xml:"http://search.yahoo.com/mrss/ thumbnail"`
-}
-
-type mediaThumbnail struct {
-	URL string `xml:"url,attr"`
-}
-
-// ParseFeed decodes an Atom feed from r (streaming; no full-body buffer).
-func ParseFeed(r io.Reader) (*Feed, error) {
-	var f Feed
-	dec := xml.NewDecoder(r)
-	if err := dec.Decode(&f); err != nil {
-		return nil, fmt.Errorf("解析 RSS 失败：%v", err)
-	}
-	return &f, nil
-}
-
-// Videos converts feed entries to model rows. Entries without a video ID
-// are skipped; a missing yt:videoId falls back to the v= query param of
-// the entry link. Missing description/thumbnail stay empty — the feed
-// simply does not provide them.
-func (f *Feed) Videos(channelID string) []model.YTVideo {
-	out := []model.YTVideo{}
-	now := time.Now().In(shanghai).Format("2006-01-02 15:04:05")
-	for _, e := range f.Entries {
-		id := strings.TrimSpace(e.VideoID)
-		if id == "" {
-			if u, err := url.Parse(e.Link.Href); err == nil {
-				id = u.Query().Get("v")
-			}
-		}
-		if id == "" {
-			continue
-		}
-		vid := model.YTVideo{
-			ID:           id,
-			ChannelID:    channelID,
-			Title:        strings.TrimSpace(e.Title),
-			Description:  strings.TrimSpace(e.Group.Description),
-			PublishedAt:  parsePublished(e.Published),
-			ThumbnailURL: strings.TrimSpace(e.Group.Thumbnail.URL),
-			URL:          "https://www.youtube.com/watch?v=" + id,
-			CreatedAt:    now,
-		}
-		out = append(out, vid)
-	}
-	return out
-}
-
-// parsePublished converts the feed's RFC3339 timestamp to Shanghai wall
-// time ("2006-01-02 15:04:05"). Unparsable values are kept as-is so the
-// row still upserts instead of failing the whole sync.
-func parsePublished(s string) string {
-	t, err := time.Parse(time.RFC3339, strings.TrimSpace(s))
-	if err != nil {
-		return strings.TrimSpace(s)
-	}
-	return t.In(shanghai).Format("2006-01-02 15:04:05")
 }

@@ -238,12 +238,16 @@ CREATE TABLE IF NOT EXISTS repo_releases (
 -- includes it); IF NOT EXISTS keeps re-apply safe.
 ALTER TABLE repo_releases ADD COLUMN IF NOT EXISTS body MEDIUMTEXT;
 
--- ---- YouTube channels (prototype 2026-10-26) ----
+-- ---- YouTube channels (prototype 2026-10-26; yt-dlp sync since 2026-10-26 v2) ----
 -- Mirrors the repos pattern: yt_groups like repo_groups (default group
 -- 'other'), yt_channels like repos, yt_videos like posts. Videos come
--- from each channel's public RSS feed (no API key); yt_videos.channel_id
--- is by value, no FK constraint. Upsert on sync: same video_id = update,
--- never duplicate. A failed feed fetch never deletes existing videos.
+-- from yt-dlp tab listings (videos/shorts/streams/playlists) plus a
+-- per-item metadata backfill for descriptions and upload dates — the
+-- RSS feed prototype could only fetch ~15 latest videos with no tab
+-- split, no playlists and no posts, so it was replaced (see
+-- internal/youtube). yt_videos.channel_id is by value, no FK
+-- constraint. Upsert on sync: same video_id = update, never duplicate.
+-- A failed tab fetch never deletes existing videos.
 CREATE TABLE IF NOT EXISTS yt_groups (
   id    VARCHAR(64)  NOT NULL PRIMARY KEY,
   name  VARCHAR(128) NOT NULL,
@@ -258,6 +262,8 @@ CREATE TABLE IF NOT EXISTS yt_channels (
   handle         VARCHAR(128) NOT NULL DEFAULT '',
   name           VARCHAR(256) NOT NULL DEFAULT '',
   group_id       VARCHAR(64)  NULL,
+  date_from      DATE          NULL,
+  date_to        DATE          NULL,
   created_at     DATETIME     NOT NULL,
   last_synced_at DATETIME     NULL,
   sync_status    VARCHAR(32)  NOT NULL DEFAULT 'never',
@@ -271,15 +277,31 @@ CREATE TABLE IF NOT EXISTS yt_channels (
 CREATE TABLE IF NOT EXISTS yt_videos (
   id            VARCHAR(64)   NOT NULL PRIMARY KEY,
   channel_id    VARCHAR(64)   NOT NULL,
+  kind          VARCHAR(16)   NOT NULL DEFAULT 'video',
   title         TEXT          NOT NULL,
   description   TEXT,
-  published_at  DATETIME      NOT NULL,
+  published_at  DATETIME      NULL,
+  duration      INT           NULL,
+  live_status   VARCHAR(16)   NOT NULL DEFAULT '',
   thumbnail_url VARCHAR(1024) NOT NULL DEFAULT '',
   url           VARCHAR(1024) NOT NULL DEFAULT '',
   created_at    DATETIME      NOT NULL,
   INDEX idx_yt_videos_channel_time (channel_id, published_at DESC),
-  INDEX idx_yt_videos_published (published_at DESC)
+  INDEX idx_yt_videos_published (published_at DESC),
+  INDEX idx_yt_videos_channel_kind (channel_id, kind, published_at DESC)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- v2 columns for pre-existing installs (fresh CREATE above already
+-- includes them); IF NOT EXISTS keeps re-apply safe. published_at is
+-- nullable now: playlists have no publish date, and videos only get a
+-- date once the yt-dlp metadata backfill supplies one.
+ALTER TABLE yt_channels ADD COLUMN IF NOT EXISTS date_from DATE NULL;
+ALTER TABLE yt_channels ADD COLUMN IF NOT EXISTS date_to DATE NULL;
+ALTER TABLE yt_videos ADD COLUMN IF NOT EXISTS kind VARCHAR(16) NOT NULL DEFAULT 'video';
+ALTER TABLE yt_videos ADD COLUMN IF NOT EXISTS duration INT NULL;
+ALTER TABLE yt_videos ADD COLUMN IF NOT EXISTS live_status VARCHAR(16) NOT NULL DEFAULT '';
+ALTER TABLE yt_videos MODIFY published_at DATETIME NULL;
+ALTER TABLE yt_videos ADD INDEX IF NOT EXISTS idx_yt_videos_channel_kind (channel_id, kind, published_at DESC);
 
 -- ---- Content translation cache (added 2026-10-26) ----
 -- One row per (source text, target language). source_hash is the SHA-256

@@ -64,6 +64,7 @@ export const DICT: Record<string, { zh: string, en: string }> = {
   'mock.maxTwoLevels': { zh: '子节点最多支持两级', en: 'Sub-nodes support at most two levels' },
   'mock.repoExists': { zh: '该仓库已存在', en: 'Repo already exists' },
   'mock.channelExists': { zh: '该频道已存在', en: 'Channel already exists' },
+  'mock.channelNotFound': { zh: '找不到该频道', en: 'Channel not found' },
 
   // ---- index (X日报) ----
   'index.updatedAt': { zh: '更新于 {time}', en: 'Updated {time}' },
@@ -304,6 +305,22 @@ export const DICT: Record<string, { zh: string, en: string }> = {
   'yt.watchOnYouTube': { zh: '在 YouTube 上观看', en: 'Watch on YouTube' },
   'yt.stale': { zh: '旧数据', en: 'Stale data' },
   'yt.staleTitle': { zh: '上次同步未成功或从未同步，展示的可能是旧数据', en: 'Last sync failed or never synced; data may be outdated' },
+  'yt.tabVideo': { zh: '视频', en: 'Videos' },
+  'yt.tabShort': { zh: 'Shorts', en: 'Shorts' },
+  'yt.tabLive': { zh: '直播', en: 'Live' },
+  'yt.tabPlaylist': { zh: '播放列表', en: 'Playlists' },
+  'yt.rangeLabel': { zh: '拉取时间范围', en: 'Pull time range' },
+  'yt.rangeHint': { zh: '只拉取该时间范围内的内容；留空为全部时间。', en: 'Only items in this range are pulled; leave empty for all time.' },
+  'yt.allTime': { zh: '全部时间', en: 'All time' },
+  'yt.editRange': { zh: '编辑范围', en: 'Edit range' },
+  'yt.editRangeTitle': { zh: '编辑拉取范围', en: 'Edit pull range' },
+  'yt.rangeFrom': { zh: '开始日期', en: 'Start date' },
+  'yt.rangeTo': { zh: '结束日期', en: 'End date' },
+  'yt.rangeUpdated': { zh: '已更新拉取范围', en: 'Pull range updated' },
+  'yt.rangeUpdateFailed': { zh: '更新失败', en: 'Update failed' },
+  'yt.playlistBadge': { zh: '播放列表', en: 'Playlist' },
+  'yt.liveNow': { zh: '直播中', en: 'Live now' },
+  'yt.liveReplay': { zh: '直播回放', en: 'Live replay' },
 
   // ---- fuke (复刻) ----
   'fuke.total': { zh: '共 {n} 个复刻', en: '{n} replicas' },

@@ -159,6 +159,9 @@ type Repo struct {
 // YTChannel mirrors the yt_channels table (YouTube prototype 2026-10-26).
 // ChannelID is the UC... ID (unique); Handle is the @handle when known.
 // PublishedAt / LastSyncedAt are Shanghai wall time ("2006-01-02 15:04:05").
+// DateFrom/DateTo are the per-channel pull range ("2006-01-02", null =
+// no limit); the sync only stores videos/shorts/lives whose upload date
+// falls inside it — playlists are never range-filtered.
 // VideoCount is computed at read time, not stored.
 type YTChannel struct {
 	ID           string  `json:"id"`
@@ -166,6 +169,8 @@ type YTChannel struct {
 	Handle       string  `json:"handle"`
 	Name         string  `json:"name"`
 	GroupID      string  `json:"group_id"`
+	DateFrom     *string `json:"date_from"`
+	DateTo       *string `json:"date_to"`
 	CreatedAt    string  `json:"created_at"`
 	LastSyncedAt *string `json:"last_synced_at"`
 	SyncStatus   string  `json:"sync_status"`
@@ -174,14 +179,21 @@ type YTChannel struct {
 }
 
 // YTVideo mirrors the yt_videos table. ID is the YouTube video_id
-// (e.g. dQw4w9WgXcQ). ChannelName is joined at read time for display.
+// (e.g. dQw4w9WgXcQ) or, for playlists, the playlist ID (PL...).
+// ChannelName is joined at read time for display. Kind is one of
+// video/short/live/playlist. Duration is seconds (0 = unknown).
+// PublishedAt is "" when unknown (playlists never have one; a video
+// only gets one once the yt-dlp metadata backfill supplies it).
 type YTVideo struct {
 	ID           string `json:"id"`
 	ChannelID    string `json:"channel_id"`
 	ChannelName  string `json:"channel_name"`
+	Kind         string `json:"kind"`
 	Title        string `json:"title"`
 	Description  string `json:"description"`
 	PublishedAt  string `json:"published_at"`
+	Duration     int    `json:"duration"`
+	LiveStatus   string `json:"live_status"`
 	ThumbnailURL string `json:"thumbnail_url"`
 	URL          string `json:"url"`
 	CreatedAt    string `json:"created_at"`

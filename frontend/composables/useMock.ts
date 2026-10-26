@@ -116,12 +116,14 @@ export const MOCK_YT_CHANNELS: YTChannel[] = [
   {
     id: 'ytc-mock-1', channel_id: 'UC_x5XG1OV2P6uZZ5FSM9Ttw', handle: '@GoogleDevelopers',
     name: 'Google for Developers', group_id: 'dev', created_at: '2026-10-25T02:00:00Z',
-    last_synced_at: '2026-10-26T02:00:00Z', sync_status: 'synced', sync_error: null, video_count: 2
+    last_synced_at: '2026-10-26T02:00:00Z', sync_status: 'synced', sync_error: null, video_count: 3,
+    date_from: '2026-10-01', date_to: '2026-10-26'
   },
   {
     id: 'ytc-mock-2', channel_id: 'UCsBjURrPoezykLs9EqgamOA', handle: '@Fireship',
     name: 'Fireship', group_id: 'default', created_at: '2026-10-25T02:00:00Z',
-    last_synced_at: '2026-10-26T02:00:00Z', sync_status: 'synced', sync_error: null, video_count: 2
+    last_synced_at: '2026-10-26T02:00:00Z', sync_status: 'synced', sync_error: null, video_count: 2,
+    date_from: null, date_to: null
   }
 ]
 export const MOCK_YT_VIDEOS: YTVideo[] = [
@@ -129,25 +131,43 @@ export const MOCK_YT_VIDEOS: YTVideo[] = [
     id: 'dQw4w9WgXcQ', channel_id: 'UC_x5XG1OV2P6uZZ5FSM9Ttw', channel_name: 'Google for Developers',
     title: 'First video title', description: 'First video description here.',
     published_at: '2026-10-24 16:30:00', thumbnail_url: 'https://i4.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg',
-    url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', created_at: '2026-10-24T16:30:00Z'
+    url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', created_at: '2026-10-24T16:30:00Z',
+    kind: 'video', duration: 612, live_status: ''
   },
   {
     id: 'abc123DEF45', channel_id: 'UC_x5XG1OV2P6uZZ5FSM9Ttw', channel_name: 'Google for Developers',
     title: 'Second video, no description', description: '',
     published_at: '2026-10-22 20:00:00', thumbnail_url: '',
-    url: 'https://www.youtube.com/watch?v=abc123DEF45', created_at: '2026-10-22T20:00:00Z'
+    url: 'https://www.youtube.com/watch?v=abc123DEF45', created_at: '2026-10-22T20:00:00Z',
+    kind: 'short', duration: 45, live_status: ''
+  },
+  {
+    id: 'PLmocklist01', channel_id: 'UC_x5XG1OV2P6uZZ5FSM9Ttw', channel_name: 'Google for Developers',
+    title: 'Android Development Playlist', description: 'A curated playlist of Android development talks and tutorials.',
+    published_at: '', thumbnail_url: '',
+    url: 'https://www.youtube.com/playlist?list=PLmocklist01', created_at: '2026-10-24T16:30:00Z',
+    kind: 'playlist', duration: 0, live_status: ''
   },
   {
     id: 'mockfire001', channel_id: 'UCsBjURrPoezykLs9EqgamOA', channel_name: 'Fireship',
     title: '100 JavaScript concepts in 10 minutes', description: 'A fast tour of the JavaScript language, from variables to async iterators.',
     published_at: '2026-10-23 10:00:00', thumbnail_url: 'https://i4.ytimg.com/vi/mockfire001/hqdefault.jpg',
-    url: 'https://www.youtube.com/watch?v=mockfire001', created_at: '2026-10-23T10:00:00Z'
+    url: 'https://www.youtube.com/watch?v=mockfire001', created_at: '2026-10-23T10:00:00Z',
+    kind: 'video', duration: 600, live_status: ''
   },
   {
     id: 'mockfire002', channel_id: 'UCsBjURrPoezykLs9EqgamOA', channel_name: 'Fireship',
     title: 'CSS in 100 seconds', description: 'Everything you need to know about CSS, in 100 seconds.',
     published_at: '2026-10-21 09:00:00', thumbnail_url: 'https://i4.ytimg.com/vi/mockfire002/hqdefault.jpg',
-    url: 'https://www.youtube.com/watch?v=mockfire002', created_at: '2026-10-21T09:00:00Z'
+    url: 'https://www.youtube.com/watch?v=mockfire002', created_at: '2026-10-21T09:00:00Z',
+    kind: 'video', duration: 100, live_status: ''
+  },
+  {
+    id: 'mockfirelive1', channel_id: 'UCsBjURrPoezykLs9EqgamOA', channel_name: 'Fireship',
+    title: 'Live Q&A: ask us anything', description: 'Monthly live Q&A stream recording.',
+    published_at: '', thumbnail_url: 'https://i4.ytimg.com/vi/mockfirelive1/hqdefault.jpg',
+    url: 'https://www.youtube.com/watch?v=mockfirelive1', created_at: '2026-10-25T09:00:00Z',
+    kind: 'live', duration: 0, live_status: 'was_live'
   }
 ]
 
@@ -340,7 +360,7 @@ export function useMockStore () {
       localStorage.setItem('xd-mock-yt-groups', JSON.stringify(ytGroups.value))
     } catch { /* ignore */ }
   }
-  function addMockYTChannel (input: string, groupId?: string | null): YTChannel {
+  function addMockYTChannel (input: string, groupId?: string | null, dateFrom?: string | null, dateTo?: string | null): YTChannel {
     const channelId = input.trim()
     if (ytChannels.value.some(c => c.channel_id === channelId)) {
       const e = new Error(t('mock.channelExists')) as any
@@ -351,11 +371,25 @@ export function useMockStore () {
       channel_id: channelId, handle: channelId.startsWith('@') ? channelId : '',
       name: channelId, group_id: groupId || 'default',
       created_at: new Date().toISOString(), last_synced_at: new Date().toISOString(),
-      sync_status: 'synced', sync_error: null, video_count: 0
+      sync_status: 'synced', sync_error: null, video_count: 0,
+      date_from: dateFrom || null, date_to: dateTo || null
     }
     ytChannels.value = [ch, ...ytChannels.value]
     persistYT()
     return ch
+  }
+  function patchMockYTChannel (id: string, patch: { group_id?: string | null, date_from?: string | null, date_to?: string | null }): YTChannel {
+    const ch = ytChannels.value.find(c => c.id === id)
+    if (!ch) throw new Error(t('mock.channelNotFound'))
+    const updated: YTChannel = {
+      ...ch,
+      group_id: patch.group_id !== undefined ? patch.group_id : ch.group_id,
+      date_from: patch.date_from !== undefined ? (patch.date_from || null) : ch.date_from,
+      date_to: patch.date_to !== undefined ? (patch.date_to || null) : ch.date_to
+    }
+    ytChannels.value = ytChannels.value.map(c => c.id === id ? updated : c)
+    persistYT()
+    return updated
   }
   function deleteMockYTChannel (id: string) {
     const ch = ytChannels.value.find(c => c.id === id)
@@ -383,5 +417,5 @@ export function useMockStore () {
     ytChannels.value = ytChannels.value.map(c => c.group_id === id ? { ...c, group_id: 'default' } : c)
     persistYT()
   }
-  return { watchlist, categories, userTagOverrides, vocabulary, replicas, persist, createReplica, createMockStandaloneReplica, patchReplicaSteps, deleteReplica, addMockReplicaStep, deleteMockReplicaStep, addMockAttachments, deleteMockAttachment, repoGroups, repos, addMockRepo, patchMockRepo, deleteMockRepo, syncMockRepo, addMockRepoGroup, deleteMockRepoGroup, ytGroups, ytChannels, ytVideos, addMockYTChannel, deleteMockYTChannel, syncMockYTChannel, addMockYTGroup, deleteMockYTGroup }
+  return { watchlist, categories, userTagOverrides, vocabulary, replicas, persist, createReplica, createMockStandaloneReplica, patchReplicaSteps, deleteReplica, addMockReplicaStep, deleteMockReplicaStep, addMockAttachments, deleteMockAttachment, repoGroups, repos, addMockRepo, patchMockRepo, deleteMockRepo, syncMockRepo, addMockRepoGroup, deleteMockRepoGroup, ytGroups, ytChannels, ytVideos, addMockYTChannel, patchMockYTChannel, deleteMockYTChannel, syncMockYTChannel, addMockYTGroup, deleteMockYTGroup }
 }

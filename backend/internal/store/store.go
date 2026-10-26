@@ -1470,22 +1470,32 @@ func (s *Store) RepoGroupExists(id string) bool {
 
 // YTVideoFilter filters ListYTVideos. DateFrom/DateTo are "2006-01-02"
 // calendar dates (Shanghai day bounds, like the post date filter).
+// Kind is video|short|live|playlist; "" means all kinds.
 // Limit <= 0 means the default 100.
 type YTVideoFilter struct {
 	ChannelID string
 	Q         string
 	DateFrom  string
 	DateTo    string
+	Kind      string
 	Limit     int
 }
 
-func scanYTChannel(c *model.YTChannel, groupID, lastSyncedAt sql.NullString, videoCount int) {
+func scanYTChannel(c *model.YTChannel, groupID, lastSyncedAt, dateFrom, dateTo sql.NullString, videoCount int) {
 	if groupID.Valid {
 		c.GroupID = groupID.String
 	}
 	if lastSyncedAt.Valid {
 		v := lastSyncedAt.String
 		c.LastSyncedAt = &v
+	}
+	if dateFrom.Valid {
+		v := dateFrom.String
+		c.DateFrom = &v
+	}
+	if dateTo.Valid {
+		v := dateTo.String
+		c.DateTo = &v
 	}
 	c.VideoCount = videoCount
 }
@@ -1494,6 +1504,7 @@ func scanYTChannel(c *model.YTChannel, groupID, lastSyncedAt sql.NullString, vid
 // its stored video count.
 func (s *Store) ListYTChannels() ([]model.YTChannel, error) {
 	rows, err := s.DB.Query(`SELECT c.id,c.channel_id,c.handle,c.name,c.group_id,
+		DATE_FORMAT(c.date_from,'%Y-%m-%d'),DATE_FORMAT(c.date_to,'%Y-%m-%d'),
 		c.created_at,c.last_synced_at,c.sync_status,c.sync_error,
 		(SELECT COUNT(*) FROM yt_videos v WHERE v.channel_id=c.channel_id) AS video_count
 		FROM yt_channels c ORDER BY c.created_at`)
@@ -1504,13 +1515,14 @@ func (s *Store) ListYTChannels() ([]model.YTChannel, error) {
 	out := []model.YTChannel{}
 	for rows.Next() {
 		var c model.YTChannel
-		var groupID, lastSyncedAt sql.NullString
+		var groupID, lastSyncedAt, dateFrom, dateTo sql.NullString
 		var videoCount int
 		if err := rows.Scan(&c.ID, &c.ChannelID, &c.Handle, &c.Name, &groupID,
+			&dateFrom, &dateTo,
 			&c.CreatedAt, &lastSyncedAt, &c.SyncStatus, &c.SyncError, &videoCount); err != nil {
 			return nil, err
 		}
-		scanYTChannel(&c, groupID, lastSyncedAt, videoCount)
+		scanYTChannel(&c, groupID, lastSyncedAt, dateFrom, dateTo, videoCount)
 		out = append(out, c)
 	}
 	return out, rows.Err()
@@ -1518,18 +1530,20 @@ func (s *Store) ListYTChannels() ([]model.YTChannel, error) {
 
 func (s *Store) scanYTChannelRow(row *sql.Row) (model.YTChannel, error) {
 	var c model.YTChannel
-	var groupID, lastSyncedAt sql.NullString
+	var groupID, lastSyncedAt, dateFrom, dateTo sql.NullString
 	var videoCount int
 	err := row.Scan(&c.ID, &c.ChannelID, &c.Handle, &c.Name, &groupID,
+		&dateFrom, &dateTo,
 		&c.CreatedAt, &lastSyncedAt, &c.SyncStatus, &c.SyncError, &videoCount)
 	if err != nil {
 		return c, err
 	}
-	scanYTChannel(&c, groupID, lastSyncedAt, videoCount)
+	scanYTChannel(&c, groupID, lastSyncedAt, dateFrom, dateTo, videoCount)
 	return c, nil
 }
 
 const ytChannelCols = `SELECT c.id,c.channel_id,c.handle,c.name,c.group_id,
+	DATE_FORMAT(c.date_from,'%Y-%m-%d'),DATE_FORMAT(c.date_to,'%Y-%m-%d'),
 	c.created_at,c.last_synced_at,c.sync_status,c.sync_error,
 	(SELECT COUNT(*) FROM yt_videos v WHERE v.channel_id=c.channel_id) AS video_count
 	FROM yt_channels c `
@@ -1555,9 +1569,28 @@ func (s *Store) YTChannelExists(id string) bool {
 // first sync runs). Callers check for duplicates first.
 func (s *Store) CreateYTChannel(c model.YTChannel) error {
 	_, err := s.DB.Exec(`INSERT INTO yt_channels(id,channel_id,handle,name,group_id,
-		created_at,last_synced_at,sync_status,sync_error) VALUES(?,?,?,?,?,?,?,?,?)`,
+		date_from,date_to,
+		created_at,last_synced_at,sync_status,sync_error) VALUES(?,?,?,?,?,?,?,?,?,?,?)`,
 		c.ID, c.ChannelID, c.Handle, c.Name, groupIDArg(c.GroupID),
+		dateArg(c.DateFrom), dateArg(c.DateTo),
 		c.CreatedAt, nil, c.SyncStatus, c.SyncError)
+	return err
+}
+
+// dateArg maps a nil *string to NULL so an unset date means "no limit".
+func dateArg(d *string) any {
+	if d == nil {
+		return nil
+	}
+	return *d
+}
+
+// UpdateYTChannel updates a channel's group and pull range. A nil
+// dateFrom/dateTo clears that bound (NULL = no limit); groupID "" clears
+// the group. Callers validate the dates; nothing is validated here.
+func (s *Store) UpdateYTChannel(id string, groupID string, dateFrom, dateTo *string) error {
+	_, err := s.DB.Exec(`UPDATE yt_channels SET group_id=?,date_from=?,date_to=? WHERE id=?`,
+		groupIDArg(groupID), dateArg(dateFrom), dateArg(dateTo), id)
 	return err
 }
 
@@ -1598,8 +1631,16 @@ func (s *Store) UpdateYTChannelMeta(id, name, status, syncErr string) error {
 }
 
 // UpsertYTVideos inserts new videos and updates re-fetched ones. The
-// PRIMARY KEY on yt_videos.id (the video_id) makes a re-sync of the same
-// video an update, never a duplicate row.
+// PRIMARY KEY on yt_videos.id (the video_id / playlist ID) makes a
+// re-sync of the same item an update, never a duplicate row.
+//
+// A re-fetch must never clobber what is already known with an empty
+// value: description and published_at are only overwritten when the
+// incoming value is non-empty / non-NULL, and the same guard applies to
+// duration and live_status (0 / "" mean "unknown" on the way in). Title,
+// thumbnail, URL and kind are always overwritten — they always come
+// from the flat listing. An empty PublishedAt becomes NULL (never a
+// zero date); an empty Kind defaults to "video".
 func (s *Store) UpsertYTVideos(channelID string, videos []model.YTVideo) error {
 	if len(videos) == 0 {
 		return nil
@@ -1609,21 +1650,67 @@ func (s *Store) UpsertYTVideos(channelID string, videos []model.YTVideo) error {
 		return err
 	}
 	defer tx.Rollback()
-	stmt, err := tx.Prepare(`INSERT INTO yt_videos(id,channel_id,title,description,
-		published_at,thumbnail_url,url,created_at) VALUES(?,?,?,?,?,?,?,?)
-		ON DUPLICATE KEY UPDATE title=VALUES(title),description=VALUES(description),
-		published_at=VALUES(published_at),thumbnail_url=VALUES(thumbnail_url),url=VALUES(url)`)
+	stmt, err := tx.Prepare(`INSERT INTO yt_videos(id,channel_id,kind,title,description,
+		published_at,duration,live_status,thumbnail_url,url,created_at)
+		VALUES(?,?,?,?,?,?,?,?,?,?,?)
+		ON DUPLICATE KEY UPDATE kind=VALUES(kind),title=VALUES(title),
+		description=IF(VALUES(description)<>'',VALUES(description),description),
+		published_at=IF(VALUES(published_at) IS NOT NULL,VALUES(published_at),published_at),
+		duration=IF(VALUES(duration) IS NOT NULL,VALUES(duration),duration),
+		live_status=IF(VALUES(live_status)<>'',VALUES(live_status),live_status),
+		thumbnail_url=VALUES(thumbnail_url),url=VALUES(url)`)
 	if err != nil {
 		return err
 	}
 	defer stmt.Close()
 	for _, v := range videos {
-		if _, err := stmt.Exec(v.ID, channelID, v.Title, v.Description,
-			v.PublishedAt, v.ThumbnailURL, v.URL, v.CreatedAt); err != nil {
+		kind := v.Kind
+		if kind == "" {
+			kind = "video"
+		}
+		var publishedAt, duration any
+		if v.PublishedAt != "" {
+			publishedAt = v.PublishedAt
+		}
+		if v.Duration > 0 {
+			duration = v.Duration
+		}
+		if _, err := stmt.Exec(v.ID, channelID, kind, v.Title, v.Description,
+			publishedAt, duration, v.LiveStatus, v.ThumbnailURL, v.URL, v.CreatedAt); err != nil {
 			return err
 		}
 	}
 	return tx.Commit()
+}
+
+// PruneYTVideosOutsideRange deletes a channel's video/short/live rows
+// whose published_at falls outside [from, to] (date_to is inclusive of
+// the whole day). A bound that is "" is not applied; with neither bound
+// set this is a no-op. Playlists are never pruned — they have no date
+// and the range does not apply to them. Rows with a NULL published_at
+// are kept: they are candidates for the next sync's backfill, not stale
+// data.
+func (s *Store) PruneYTVideosOutsideRange(channelID, from, to string) error {
+	if from == "" && to == "" {
+		return nil
+	}
+	// Delete the complement of the range: before from, or on/after the
+	// day after to. Only one side is tested when only one bound is set.
+	var outside []string
+	var args []any
+	args = append(args, channelID)
+	if from != "" {
+		outside = append(outside, "published_at<?")
+		args = append(args, from)
+	}
+	if to != "" {
+		outside = append(outside, "published_at>=DATE_ADD(?, INTERVAL 1 DAY)")
+		args = append(args, to)
+	}
+	q := `DELETE FROM yt_videos WHERE channel_id=? AND kind IN ('video','short','live')
+		AND published_at IS NOT NULL AND (` + strings.Join(outside, " OR ") + ")"
+	_, err := s.DB.Exec(q, args...)
+	return err
 }
 
 // ListYTVideos returns videos newest first, with the channel name joined
@@ -1648,6 +1735,10 @@ func (s *Store) ListYTVideos(f YTVideoFilter) ([]model.YTVideo, error) {
 		like := "%" + q + "%"
 		args = append(args, like, like)
 	}
+	if f.Kind != "" {
+		conds = append(conds, "v.kind=?")
+		args = append(args, f.Kind)
+	}
 	if f.DateFrom != "" {
 		conds = append(conds, "v.published_at>=?")
 		args = append(args, f.DateFrom)
@@ -1660,8 +1751,8 @@ func (s *Store) ListYTVideos(f YTVideoFilter) ([]model.YTVideo, error) {
 	if len(conds) > 0 {
 		where = "WHERE " + strings.Join(conds, " AND ")
 	}
-	q := `SELECT v.id,v.channel_id,COALESCE(c.name,''),v.title,v.description,
-		v.published_at,v.thumbnail_url,v.url,v.created_at
+	q := `SELECT v.id,v.channel_id,COALESCE(c.name,''),v.kind,v.title,v.description,
+		DATE_FORMAT(v.published_at,'%Y-%m-%d %H:%i:%s'),v.duration,v.live_status,v.thumbnail_url,v.url,v.created_at
 		FROM yt_videos v LEFT JOIN yt_channels c ON c.channel_id=v.channel_id ` +
 		where + ` ORDER BY v.published_at DESC, v.id DESC LIMIT ?`
 	args = append(args, limit)
@@ -1673,9 +1764,22 @@ func (s *Store) ListYTVideos(f YTVideoFilter) ([]model.YTVideo, error) {
 	out := []model.YTVideo{}
 	for rows.Next() {
 		var v model.YTVideo
-		if err := rows.Scan(&v.ID, &v.ChannelID, &v.ChannelName, &v.Title,
-			&v.Description, &v.PublishedAt, &v.ThumbnailURL, &v.URL, &v.CreatedAt); err != nil {
+		var publishedAt sql.NullString
+		var duration sql.NullInt64
+		if err := rows.Scan(&v.ID, &v.ChannelID, &v.ChannelName, &v.Kind, &v.Title,
+			&v.Description, &publishedAt, &duration, &v.LiveStatus, &v.ThumbnailURL, &v.URL, &v.CreatedAt); err != nil {
 			return nil, err
+		}
+		// NULL published_at (playlists, or a video whose backfill has
+		// not supplied a date yet) reads back as "". DATE_FORMAT keeps
+		// the "2006-01-02 15:04:05" wall-time format whether or not
+		// the DSN sets parseTime=true (a plain column scan would
+		// yield RFC3339 under parseTime).
+		if publishedAt.Valid {
+			v.PublishedAt = publishedAt.String
+		}
+		if duration.Valid {
+			v.Duration = int(duration.Int64)
 		}
 		out = append(out, v)
 	}
