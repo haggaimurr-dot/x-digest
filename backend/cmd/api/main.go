@@ -14,6 +14,9 @@
 //	TRANSLATE_API_KEY       translation relay API key. Unset = POST
 //	                       /api/v1/translate answers 503; the UI language
 //	                       toggle still works (UI strings are local).
+//	BILIBILI_SESSDATA       optional logged-in Bilibili cookie (AI subtitles
+//	                       for summaries, fewer risk-control blocks).
+//	BILI_HTTP_PROXY         optional proxy for Bilibili requests.
 //	TRANSLATE_MODEL         translation chat model, default deepseek-flash.
 //	                       The same relay/key/model also write the
 //	                       YouTube AI summaries (see yt_summary.go).
@@ -40,6 +43,7 @@ import (
 
 	_ "github.com/go-sql-driver/mysql"
 
+	"xdigest/internal/bilibili"
 	"xdigest/internal/github"
 	"xdigest/internal/model"
 	"xdigest/internal/store"
@@ -108,6 +112,9 @@ func main() {
 	mux.HandleFunc("/api/v1/yt/videos", s.handleYTVideos)
 	mux.HandleFunc("/api/v1/yt/videos/", s.handleYTVideoSub)
 	mux.HandleFunc("/api/v1/yt/comments", s.handleYTComments)
+	// Bilibili uploaders: same routes/JSON as /api/v1/yt (see hub.go).
+	(&videoHub{prefix: "bili", idPrefix: "bic_", kinds: map[string]bool{"video": true, "playlist": true},
+		st: st.Hub("bili"), pf: bilibili.New(), sum: s.sum, comments: newCommentQueue()}).register(mux)
 	mux.HandleFunc("/api/v1/yt/sync", s.handleYTSyncAll)
 	mux.HandleFunc("/api/v1/yt/groups", s.handleYTGroups)
 	mux.HandleFunc("/api/v1/yt/groups/", s.handleYTGroup)

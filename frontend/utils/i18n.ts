@@ -20,6 +20,7 @@ export const DICT: Record<string, { zh: string, en: string }> = {
   'nav.repos': { zh: '仓库', en: 'Repos' },
   'nav.fuke': { zh: '复刻', en: 'Replicas' },
   'nav.youtube': { zh: '油管', en: 'YouTube' },
+  'nav.bilibili': { zh: 'B站', en: 'Bilibili' },
   'lang.switchToEn': { zh: '切换到英文', en: 'Switch to English' },
   'lang.switchToZh': { zh: '切换到中文', en: 'Switch to Chinese' },
 
@@ -248,6 +249,24 @@ export const DICT: Record<string, { zh: string, en: string }> = {
   'repos.notFound': { zh: '仓库不存在', en: 'Repo not found' },
 
   // ---- youtube (油管频道，2026-10-26；yt-dlp 同步，无需 API key) ----
+  // ---- Bilibili (same page as YouTube; these override the yt.* text) ----
+  'bili.title': { zh: 'B站 UP 主', en: 'Bilibili Uploaders' },
+  'bili.total': { zh: '共 {n} 个 UP 主 · {v} 个视频', en: '{n} uploaders · {v} videos' },
+  'bili.addChannel': { zh: '添加 UP 主', en: 'Add uploader' },
+  'bili.addTitle': { zh: '添加 UP 主', en: 'Add uploader' },
+  'bili.channel': { zh: 'UP 主', en: 'Uploader' },
+  'bili.allChannels': { zh: '全部 UP 主', en: 'All uploaders' },
+  'bili.channels': { zh: '关注的 UP 主', en: 'Followed uploaders' },
+  'bili.empty': { zh: '还没有添加 UP 主，点「添加 UP 主」，输入 UID 或个人空间链接就可以开始关注了。', en: 'No uploaders yet. Click “Add uploader” and enter a UID or space URL.' },
+  'bili.inputLabel': { zh: 'UID / 个人空间链接', en: 'UID / space URL' },
+  'bili.inputPh': { zh: '例如 946974，或 https://space.bilibili.com/946974', en: 'e.g. 946974, or https://space.bilibili.com/946974' },
+  'bili.inputHint': { zh: '通过 B站公开接口同步投稿视频和合集·系列。', en: 'Syncs uploads and collections through Bilibili’s public web API.' },
+  'bili.deleteConfirm': { zh: '删除 UP 主 {name}？其下的全部视频也会一起删除，该操作不可恢复。', en: 'Delete uploader {name}? All their videos will be removed too. This cannot be undone.' },
+  'bili.watchOnYouTube': { zh: '在 B站观看', en: 'Watch on Bilibili' },
+  'bili.tabPlaylist': { zh: '合集·系列', en: 'Collections' },
+  'bili.playlistBadge': { zh: '合集', en: 'Collection' },
+  'bili.keywordPh': { zh: '关键词搜索（标题 / 简介）', en: 'Search keywords (title / description)' },
+
   'yt.title': { zh: 'YouTube 频道', en: 'YouTube Channels' },
   'yt.total': { zh: '共 {n} 个频道 · {v} 个视频', en: '{n} channels · {v} videos' },
   'yt.syncAll': { zh: '同步全部', en: 'Sync all' },

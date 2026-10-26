@@ -345,6 +345,79 @@ CREATE TABLE IF NOT EXISTS yt_video_comments (
 
 ALTER TABLE yt_videos ADD COLUMN IF NOT EXISTS comments_fetched_at DATETIME NULL;
 
+-- ---- Bilibili uploaders (added 2026-10-27) ----
+-- Same shape as the yt_* tables (the /bilibili page reuses the YouTube
+-- page): channel_id is the uploader's numeric mid; video id is the BV
+-- id, or season-<id> / series-<id> for 合集 / 系列 (kind playlist).
+-- Synced from Bilibili's web API (internal/bilibili), not yt-dlp.
+CREATE TABLE IF NOT EXISTS bili_groups (
+  id    VARCHAR(64)  NOT NULL PRIMARY KEY,
+  name  VARCHAR(128) NOT NULL,
+  fixed TINYINT(1)   NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT IGNORE INTO bili_groups (id, name, fixed) VALUES ('other', '默认', 1);
+
+CREATE TABLE IF NOT EXISTS bili_channels (
+  id             VARCHAR(64)  NOT NULL PRIMARY KEY,
+  channel_id     VARCHAR(64)  NOT NULL,
+  handle         VARCHAR(128) NOT NULL DEFAULT '',
+  name           VARCHAR(256) NOT NULL DEFAULT '',
+  group_id       VARCHAR(64)  NULL,
+  date_from      DATE         NULL,
+  date_to        DATE         NULL,
+  created_at     DATETIME     NOT NULL,
+  last_synced_at DATETIME     NULL,
+  sync_status    VARCHAR(32)  NOT NULL DEFAULT 'never',
+  sync_error     TEXT,
+  UNIQUE KEY uq_bili_channels_channel_id (channel_id),
+  CONSTRAINT fk_bili_channels_group FOREIGN KEY (group_id)
+    REFERENCES bili_groups(id) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS bili_videos (
+  id                  VARCHAR(64)   NOT NULL PRIMARY KEY,
+  channel_id          VARCHAR(64)   NOT NULL,
+  kind                VARCHAR(16)   NOT NULL DEFAULT 'video',
+  title               TEXT          NOT NULL,
+  description         TEXT,
+  published_at        DATETIME      NULL,
+  duration            INT           NULL,
+  live_status         VARCHAR(16)   NOT NULL DEFAULT '',
+  thumbnail_url       VARCHAR(1024) NOT NULL DEFAULT '',
+  url                 VARCHAR(1024) NOT NULL DEFAULT '',
+  created_at          DATETIME      NOT NULL,
+  comments_fetched_at DATETIME      NULL,
+  INDEX idx_bili_videos_channel_kind (channel_id, kind, published_at DESC),
+  INDEX idx_bili_videos_published (published_at DESC)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS bili_video_summaries (
+  video_id        VARCHAR(64)  NOT NULL,
+  lang            VARCHAR(10)  NOT NULL,
+  status          VARCHAR(16)  NOT NULL DEFAULT 'pending',
+  summary         MEDIUMTEXT,
+  key_points      MEDIUMTEXT,
+  chapters        MEDIUMTEXT,
+  source          VARCHAR(16)  NOT NULL DEFAULT '',
+  transcript_lang VARCHAR(16)  NOT NULL DEFAULT '',
+  model           VARCHAR(64)  NOT NULL DEFAULT '',
+  error           TEXT,
+  created_at      DATETIME     NOT NULL,
+  updated_at      DATETIME     NOT NULL,
+  PRIMARY KEY (video_id, lang)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS bili_video_comments (
+  video_id     VARCHAR(64)  NOT NULL,
+  idx          INT          NOT NULL,
+  author       VARCHAR(256) NOT NULL DEFAULT '',
+  text         TEXT         NOT NULL,
+  like_count   INT          NOT NULL DEFAULT 0,
+  published_at DATETIME     NULL,
+  PRIMARY KEY (video_id, idx)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 -- ---- Content translation cache (added 2026-10-26) ----
 -- One row per (source text, target language). source_hash is the SHA-256
 -- of source text + target language (see internal/translate.Hash).

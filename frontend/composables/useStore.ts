@@ -2,6 +2,8 @@
 // Pages only ever talk to this layer, never to raw fetch or raw mock data.
 import type { Post, Watchlist, Categories, Replica, ReplicaStep, Attachment, Repo, RepoGroup, RepoDetail, RepoRelease, YTChannel, YTVideo, YTSummary, YTComment } from './types'
 import { ApiError } from './types'
+// Video platforms sharing the /api/v1/<p>/ routes and the VideoHub page.
+export type VideoPlatform = 'yt' | 'bili'
 import { t } from '~/utils/i18n'
 import { MOCK_POSTS, MOCK_UPDATED_AT, mockRepoCommits, mockRepoRelease, mockRepoReleases } from './useMock'
 
@@ -276,82 +278,82 @@ export function useStore () {
     await apiFetch(`repos/groups/${id}`, { method: 'DELETE' })
   }
   // ---------- YouTube channels (prototype 2026-10-26; all data via /api/v1/yt/...) ----------
-  async function loadYTChannels (): Promise<YTChannel[]> {
+  async function loadYTChannels (p: VideoPlatform = 'yt'): Promise<YTChannel[]> {
     if (mock.value) return [...mockStore.ytChannels.value]
-    const data = await apiFetch<{ channels: YTChannel[] } | YTChannel[]>('yt/channels')
+    const data = await apiFetch<{ channels: YTChannel[] } | YTChannel[]>(`${p}/channels`)
     return Array.isArray(data) ? data : (data.channels || [])
   }
-  async function loadYTVideos (): Promise<YTVideo[]> {
+  async function loadYTVideos (p: VideoPlatform = 'yt'): Promise<YTVideo[]> {
     if (mock.value) return [...mockStore.ytVideos.value]
     // Prototype volume is small: fetch up to 500 newest and filter
     // client-side (same instant-filter UX as the other pages). The
     // server also supports q/channel_id/date_from/date_to/limit.
-    const data = await apiFetch<{ videos: YTVideo[] } | YTVideo[]>(`yt/videos?limit=500`)
+    const data = await apiFetch<{ videos: YTVideo[] } | YTVideo[]>(`${p}/videos?limit=500`)
     return Array.isArray(data) ? data : (data.videos || [])
   }
-  async function loadYTGroups (): Promise<RepoGroup[]> {
+  async function loadYTGroups (p: VideoPlatform = 'yt'): Promise<RepoGroup[]> {
     if (mock.value) return [...mockStore.ytGroups.value]
-    const data = await apiFetch<{ groups: RepoGroup[] } | RepoGroup[]>('yt/groups')
+    const data = await apiFetch<{ groups: RepoGroup[] } | RepoGroup[]>(`${p}/groups`)
     return Array.isArray(data) ? data : (data.groups || [])
   }
-  async function addYTChannel (input: string, groupId?: string | null, dateFrom?: string | null, dateTo?: string | null): Promise<YTChannel> {
+  async function addYTChannel (input: string, groupId?: string | null, dateFrom?: string | null, dateTo?: string | null, p: VideoPlatform = 'yt'): Promise<YTChannel> {
     if (!input.trim()) throw new ApiError(422, 'VALIDATION', t('yt.inputLabel'))
     const body: Record<string, unknown> = { channel_id: input.trim(), group_id: groupId || undefined }
     if (dateFrom) body.date_from = dateFrom
     if (dateTo) body.date_to = dateTo
     if (mock.value) return mockStore.addMockYTChannel(body.channel_id as string, body.group_id as string | null ?? null, dateFrom || null, dateTo || null)
-    const data = await apiFetch<any>('yt/channels', { method: 'POST', body: JSON.stringify(body) })
+    const data = await apiFetch<any>(`${p}/channels`, { method: 'POST', body: JSON.stringify(body) })
     return data.channel || data
   }
-  async function updateYTChannel (id: string, patch: { group_id?: string | null, date_from?: string | null, date_to?: string | null }): Promise<YTChannel> {
+  async function updateYTChannel (id: string, patch: { group_id?: string | null, date_from?: string | null, date_to?: string | null }, p: VideoPlatform = 'yt'): Promise<YTChannel> {
     if (mock.value) return mockStore.patchMockYTChannel(id, patch)
-    const data = await apiFetch<any>(`yt/channels/${id}`, { method: 'PATCH', body: JSON.stringify(patch) })
+    const data = await apiFetch<any>(`${p}/channels/${id}`, { method: 'PATCH', body: JSON.stringify(patch) })
     return data.channel || data
   }
-  async function deleteYTChannel (id: string) {
+  async function deleteYTChannel (id: string, p: VideoPlatform = 'yt') {
     if (mock.value) { mockStore.deleteMockYTChannel(id); return }
-    await apiFetch(`yt/channels/${id}`, { method: 'DELETE' })
+    await apiFetch(`${p}/channels/${id}`, { method: 'DELETE' })
   }
-  async function syncYTChannel (id: string): Promise<YTChannel | null> {
+  async function syncYTChannel (id: string, p: VideoPlatform = 'yt'): Promise<YTChannel | null> {
     if (mock.value) return mockStore.syncMockYTChannel(id)
-    const data = await apiFetch<any>(`yt/channels/${id}/sync`, { method: 'POST' })
+    const data = await apiFetch<any>(`${p}/channels/${id}/sync`, { method: 'POST' })
     return data.channel || data || null
   }
-  async function syncAllYTChannels (): Promise<{ synced: number, failed: number, total: number }> {
+  async function syncAllYTChannels (p: VideoPlatform = 'yt'): Promise<{ synced: number, failed: number, total: number }> {
     if (mock.value) {
       const total = mockStore.ytChannels.value.length
       for (const c of mockStore.ytChannels.value) mockStore.syncMockYTChannel(c.id)
       return { synced: total, failed: 0, total }
     }
-    return apiFetch<{ synced: number, failed: number, total: number }>('yt/sync', { method: 'POST' })
+    return apiFetch<{ synced: number, failed: number, total: number }>(`${p}/sync`, { method: 'POST' })
   }
   // AI summary: GET reads the stored one (status 'none' when never
   // generated); POST starts a background job (or returns the finished
   // one unless force) — the page polls GET while status is 'pending'.
-  async function getYTSummary (id: string, lang: string): Promise<YTSummary> {
+  async function getYTSummary (id: string, lang: string, p: VideoPlatform = 'yt'): Promise<YTSummary> {
     if (mock.value) return mockStore.mockYTSummary(id, lang)
-    const data = await apiFetch<{ summary: YTSummary }>(`yt/videos/${encodeURIComponent(id)}/summary?lang=${lang}`)
+    const data = await apiFetch<{ summary: YTSummary }>(`${p}/videos/${encodeURIComponent(id)}/summary?lang=${lang}`)
     return data.summary
   }
-  async function startYTSummary (id: string, lang: string, force = false): Promise<YTSummary> {
+  async function startYTSummary (id: string, lang: string, force = false, p: VideoPlatform = 'yt'): Promise<YTSummary> {
     if (mock.value) return mockStore.mockYTSummary(id, lang)
-    const data = await apiFetch<{ summary: YTSummary }>(`yt/videos/${encodeURIComponent(id)}/summary?lang=${lang}${force ? '&force=1' : ''}`, { method: 'POST' })
+    const data = await apiFetch<{ summary: YTSummary }>(`${p}/videos/${encodeURIComponent(id)}/summary?lang=${lang}${force ? '&force=1' : ''}`, { method: 'POST' })
     return data.summary
   }
   // Top comments for up to 60 videos; "pending" IDs are being fetched in
   // the background, the page asks again until none are left.
-  async function loadYTComments (ids: string[]): Promise<{ comments: Record<string, YTComment[]>, pending: string[] }> {
+  async function loadYTComments (ids: string[], p: VideoPlatform = 'yt'): Promise<{ comments: Record<string, YTComment[]>, pending: string[] }> {
     if (mock.value) return { comments: mockStore.mockYTComments(ids), pending: [] }
-    return apiFetch(`yt/comments?ids=${ids.map(encodeURIComponent).join(',')}`)
+    return apiFetch(`${p}/comments?ids=${ids.map(encodeURIComponent).join(',')}`)
   }
-  async function addYTGroup (name: string): Promise<RepoGroup> {
+  async function addYTGroup (name: string, p: VideoPlatform = 'yt'): Promise<RepoGroup> {
     if (mock.value) return mockStore.addMockYTGroup(name)
-    const data = await apiFetch<any>('yt/groups', { method: 'POST', body: JSON.stringify({ name }) })
+    const data = await apiFetch<any>(`${p}/groups`, { method: 'POST', body: JSON.stringify({ name }) })
     return data.group || data
   }
-  async function deleteYTGroup (id: string) {
+  async function deleteYTGroup (id: string, p: VideoPlatform = 'yt') {
     if (mock.value) { mockStore.deleteMockYTGroup(id); return }
-    await apiFetch(`yt/groups/${id}`, { method: 'DELETE' })
+    await apiFetch(`${p}/groups/${id}`, { method: 'DELETE' })
   }
   return {
     loading, error, loadPosts, loadWatchlist, loadTags, loadUserTags, loadCategories,

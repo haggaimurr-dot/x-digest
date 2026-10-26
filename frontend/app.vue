@@ -8,6 +8,7 @@
           <NuxtLink to="/repos">{{ t('nav.repos') }}</NuxtLink>
           <NuxtLink to="/fuke">{{ t('nav.fuke') }}</NuxtLink>
           <NuxtLink to="/youtube">{{ t('nav.youtube') }}</NuxtLink>
+          <NuxtLink to="/bilibili">{{ t('nav.bilibili') }}</NuxtLink>
           <button class="btn btn-sm lang-toggle" type="button" @click="toggleLang"
             :aria-label="lang === 'en' ? t('lang.switchToZh') : t('lang.switchToEn')">{{ lang === 'en' ? '中文' : 'EN' }}</button>
         </nav>
