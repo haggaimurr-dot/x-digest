@@ -61,7 +61,7 @@ XDIGEST_ATTACHMENT_DIR=/var/lib/xdigest/attachments \
   `GET /api/v1/attachments/{id}/download`（`?inline=1` 时 inline，否则 attachment）。
 
 附件规则：扩展名白名单 pdf doc docx xls xlsx ppt pptx txt md csv png jpg jpeg gif
-webp bmp avif svg ico zip rar 7z tar gz tgz；单个 ≤10MB；先全量校验再落盘，
+webp bmp avif svg ico；单个 ≤5MB；先全量校验再落盘，
 非法/超大返回 422 并说明是哪个文件；磁盘文件名用内部 id（防路径穿越），
 原文件名只存元数据。
 

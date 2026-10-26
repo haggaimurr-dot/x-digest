@@ -55,7 +55,7 @@ export const DICT: Record<string, { zh: string, en: string }> = {
 
   // ---- store validators (useStore) ----
   'store.unsupportedFile': { zh: '不支持的文件类型：{name}', en: 'Unsupported file type: {name}' },
-  'store.fileTooBig': { zh: '文件超过 10MB：{name}', en: 'File exceeds 10 MB: {name}' },
+  'store.fileTooBig': { zh: '文件超过 5MB：{name}', en: 'File exceeds 5 MB: {name}' },
 
   // ---- mock-mode errors (useMock) ----
   'mock.replicaNotFound': { zh: '复刻不存在', en: 'Replica not found' },
@@ -295,8 +295,9 @@ export const DICT: Record<string, { zh: string, en: string }> = {
   'node.addChildBtn': { zh: '添加子节点', en: 'Add sub-node' },
   'node.noteTranslation': { zh: '翻译', en: 'Translation' },
   'node.uploadImage': { zh: '上传图片', en: 'Upload images' },
-  'node.uploadDocs': { zh: '上传文档 / 压缩包', en: 'Upload docs / archives' },
-  'node.uploadHint': { zh: '白名单见 README；单个 ≤10MB', en: 'Allowed types: see README; each ≤ 10 MB' },
+  'node.uploadDocs': { zh: '上传文档', en: 'Upload docs' },
+  'node.uploadMenu': { zh: '上传', en: 'Upload' },
+  'node.uploadHint': { zh: '白名单见 README；单个 ≤5MB', en: 'Allowed types: see README; each ≤ 5 MB' },
   'node.bytes': { zh: '{size} 字节', en: '{size} bytes' },
   'node.deleteAtt': { zh: '删除附件', en: 'Delete attachment' },
   'node.statusSaveFailed': { zh: '状态保存失败', en: 'Failed to save status' },

@@ -45,7 +45,7 @@ localStorage（复刻键沿用原站 `xdigest.replicas`），不写任何后端�
 | 路由 | 内容 |
 |---|---|
 | `/` 摘要页 | 帖子卡片时间线（published_at 倒序；头像/无头像首字母+颜色、显示名、@handle 链 x.com、相对时间+上海时间、行业/技术、标题、简介、标签最多 8 个可点、备注 pill、分类徽章、复刻/已复刻按钮、长文展开、实现步骤流程图竖向时间轴：步骤工具/技术/前提 chips、子步骤最多 5 条、每条截断 40 字、仅 `show_flowchart` 为 true 时显示、缺失时按原站启发式 `deriveShowFlowchart` 推导）；作者分组 chips（默认选中特别关注作者；**空选中 = 空列表**，与原站一致）；帖子标签 chips；自定义标签 chips；分类 chips（含“未分类”）；关键词搜索（含高亮、首命中片段，支持 `标签:xxx` / `tag:xxx` 只搜用户标签，标签字段去开头 `#` 再匹配）；日期范围（Asia/Shanghai 当天起止）；结果计数、已选筛选计数、清除全部；帖子卡片上的分类勾选/新建；设置弹窗；Webhook 触发按钮。 |
-| `/fuke` 复刻页 | 从摘要页一键生成复刻（同一帖子不重复建，已存在返回已有）；步骤状态圆点三态循环 未开始→进行中→已完成（进度只按步骤计，不含子步骤）；Markdown 备注编辑+预览+工具栏（自研 textarea+工具栏+marked 预览，见差异）；附件上传（图片与文档/压缩包两入口，白名单见下，单个 ≤10MB，前端校验、服务端须再校验）；附件在线预览；排序（时间/进度）；删除确认弹窗；复刻计数。 |
+| `/fuke` 复刻页 | 从摘要页一键生成复刻（同一帖子不重复建，已存在返回已有）；步骤状态圆点三态循环 未开始→进行中→已完成（进度只按步骤计，不含子步骤）；Markdown 备注编辑+预览+工具栏（自研 textarea+工具栏+marked 预览，见差异）；附件上传（图片与文档两入口，白名单见下，单个 ≤5MB，前端校验、服务端须再校验）；附件在线预览；排序（时间/进度）；删除确认弹窗；复刻计数。 |
 
 设置弹窗内容：主题深/浅（默认深色）、字号（13/15/17/19px）、字体、关注列表管理
 （分组增删、作者增删改、作者归属分组）、用户标签词汇与按作者覆盖、Webhook 设置与触发。
@@ -60,7 +60,7 @@ localStorage 键（与原站一致）：`x-digest-watchlist`、`x-digest-post-ca
 `x-digest-chips-*-expanded`、`x-digest-filters-collapsed`。
 
 附件白名单（与原站 `fuke.js` 一致）：
-`pdf doc docx xls xlsx ppt pptx txt md csv png jpg jpeg gif webp bmp avif svg ico zip rar 7z tar gz tgz`。
+`pdf doc docx xls xlsx ppt pptx txt md csv png jpg jpeg gif webp bmp avif svg ico`。
 
 头像：API 字段如 `avatars/ai_xiaomu.jpg`，前端按 `/avatars/ai_xiaomu.jpg` 解析。
 `public/avatars/` 现为从原站拷来的 13 张占位图（联调占位，不计入交付问题）；

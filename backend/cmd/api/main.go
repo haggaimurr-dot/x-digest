@@ -43,14 +43,13 @@ import (
 	"xdigest/internal/translate"
 )
 
-const maxAttachmentSize = 10 << 20 // 10 MiB per file
+const maxAttachmentSize = 5 << 20 // 5 MiB per file
 
 var allowedExts = map[string]bool{
 	"pdf": true, "doc": true, "docx": true, "xls": true, "xlsx": true,
 	"ppt": true, "pptx": true, "txt": true, "md": true, "csv": true,
 	"png": true, "jpg": true, "jpeg": true, "gif": true, "webp": true,
 	"bmp": true, "avif": true, "svg": true, "ico": true,
-	"zip": true, "rar": true, "7z": true, "tar": true, "gz": true, "tgz": true,
 }
 
 type server struct {
@@ -773,7 +772,7 @@ func (s *server) handleUpload(w http.ResponseWriter, r *http.Request, replicaID 
 			return
 		}
 		if fh.Size > maxAttachmentSize {
-			writeErr(w, 422, "FILE_TOO_LARGE", fmt.Sprintf("file %q: size %d exceeds 10MB limit", fh.Filename, fh.Size))
+			writeErr(w, 422, "FILE_TOO_LARGE", fmt.Sprintf("file %q: size %d exceeds 5MB limit", fh.Filename, fh.Size))
 			return
 		}
 	}
@@ -802,7 +801,7 @@ func (s *server) handleUpload(w http.ResponseWriter, r *http.Request, replicaID 
 			for _, p := range savedPaths {
 				_ = os.Remove(p)
 			}
-			writeErr(w, 422, "FILE_TOO_LARGE", fmt.Sprintf("file %q: size exceeds 10MB limit", fh.Filename))
+			writeErr(w, 422, "FILE_TOO_LARGE", fmt.Sprintf("file %q: size exceeds 5MB limit", fh.Filename))
 			return
 		}
 		ct := fh.Header.Get("Content-Type")

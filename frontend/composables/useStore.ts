@@ -5,9 +5,9 @@ import { ApiError } from './types'
 import { t } from '~/utils/i18n'
 import { MOCK_POSTS, MOCK_UPDATED_AT, mockRepoCommits, mockRepoRelease, mockRepoReleases } from './useMock'
 
-export const ATTACHMENT_EXTS = 'pdf doc docx xls xlsx ppt pptx txt md csv png jpg jpeg gif webp bmp avif svg ico zip rar 7z tar gz tgz'.split(' ')
+export const ATTACHMENT_EXTS = 'pdf doc docx xls xlsx ppt pptx txt md csv png jpg jpeg gif webp bmp avif svg ico'.split(' ')
 export const IMAGE_EXTS = ['png', 'jpg', 'jpeg', 'gif', 'webp', 'bmp', 'avif', 'svg', 'ico']
-export const MAX_ATTACHMENT_SIZE = 10 * 1024 * 1024
+export const MAX_ATTACHMENT_SIZE = 5 * 1024 * 1024
 
 export function validateAttachmentFiles (files: File[]): string | null {
   for (const f of files) {

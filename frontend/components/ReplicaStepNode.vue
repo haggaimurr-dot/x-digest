@@ -11,8 +11,8 @@
       <div v-if="step.is_custom" class="node-actions">
         <span style="flex:1" />
         <div class="node-menu-wrap" ref="menuWrapRef">
-          <button class="btn btn-sm btn-quiet node-menu-btn" type="button" @click="toggleMenu" :aria-label="t('node.menu')" aria-haspopup="menu" :aria-expanded="menuOpen">☰</button>
-          <div v-if="menuOpen" class="node-menu" role="menu">
+          <button class="btn btn-sm btn-quiet node-menu-btn" type="button" @click="toggleMenu('actions')" :aria-label="t('node.menu')" aria-haspopup="menu" :aria-expanded="openMenu === 'actions'">☰</button>
+          <div v-if="openMenu === 'actions'" class="node-menu" role="menu">
             <button v-if="!isChild" type="button" role="menuitem" :title="t('node.badgeTitleToggle')" @click="menuBadge">{{ t('node.badgeCustom') }}</button>
             <button type="button" role="menuitem" @click="menuEdit">{{ t('common.edit') }}</button>
             <button type="button" role="menuitem" class="danger" @click="menuDelete">{{ t('common.delete') }}</button>
@@ -61,14 +61,19 @@
       </div>
       <p v-if="isEn && (step.note || '').trim()" class="note-translated"><span class="note-translated-label">{{ t('node.noteTranslation') }}</span>{{ tr(step.note || '') }}</p>
       <NoteEditor :model-value="step.note || ''" @update:model-value="step.note = $event" @save="saveNote($event)" />
-      <div style="margin-top:8px">
-        <label class="btn btn-sm" style="cursor:pointer">{{ t('node.uploadImage') }}
-          <input type="file" accept="image/*" multiple hidden @change="upload($event)" />
-        </label>
-        <label class="btn btn-sm" style="cursor:pointer;margin-left:6px">{{ t('node.uploadDocs') }}
-          <input type="file" multiple hidden :accept="acceptDocs" @change="upload($event)" />
-        </label>
-        <span style="color:var(--text-muted);font-size:13px;margin-left:6px">{{ t('node.uploadHint') }}</span>
+      <div style="margin-top:8px;display:flex;align-items:center;gap:6px">
+        <div class="node-menu-wrap" ref="uploadMenuWrapRef">
+          <button class="btn btn-sm btn-quiet node-menu-btn" type="button" @click="toggleMenu('upload')" :aria-label="t('node.uploadMenu')" aria-haspopup="menu" :aria-expanded="openMenu === 'upload'">☰</button>
+          <div v-if="openMenu === 'upload'" class="node-menu left" role="menu">
+            <label role="menuitem">{{ t('node.uploadImage') }}
+              <input type="file" accept="image/*" multiple hidden @change="upload($event)" />
+            </label>
+            <label role="menuitem">{{ t('node.uploadDocs') }}
+              <input type="file" multiple hidden :accept="acceptDocs" @change="upload($event)" />
+            </label>
+          </div>
+        </div>
+        <span style="color:var(--text-muted);font-size:13px">{{ t('node.uploadHint') }}</span>
       </div>
       <div v-if="(step.attachments || []).length">
         <div v-for="att in step.attachments" :key="att.id" class="attachment-row">
@@ -101,21 +106,26 @@ const editingText = ref<string | null>(null)
 const childOpen = ref(false)
 const newChildText = ref('')
 const previewAtt = ref<Attachment | null>(null)
-// 汉堡菜单：自建节点 / 编辑 / 删除收进下拉菜单（原来是行内三个按钮）。
-const menuOpen = ref(false)
+// 汉堡菜单：节点操作（自建节点 / 编辑 / 删除）与上传（图片 / 文档）
+// 各收进一个 ☰ 下拉菜单，同一时间只开一个。
+const openMenu = ref<'actions' | 'upload' | null>(null)
 const menuWrapRef = ref<HTMLElement | null>(null)
+const uploadMenuWrapRef = ref<HTMLElement | null>(null)
 const menuId = useId()
-function toggleMenu () {
-  if (menuOpen.value) { menuOpen.value = false; return }
-  menuOpen.value = true
+function toggleMenu (which: 'actions' | 'upload') {
+  if (openMenu.value === which) { openMenu.value = null; return }
+  openMenu.value = which
   window.dispatchEvent(new CustomEvent('xd:close-node-menus', { detail: menuId }))
 }
-function closeMenu () { menuOpen.value = false }
+function closeMenu () { openMenu.value = null }
 function menuBadge () { closeMenu(); onBadgeClick() }
 function menuEdit () { closeMenu(); startEditText() }
 function menuDelete () { closeMenu(); removeStep() }
 function onDocClick (e: MouseEvent) {
-  if (menuOpen.value && menuWrapRef.value && !menuWrapRef.value.contains(e.target as Node)) closeMenu()
+  if (!openMenu.value) return
+  const t = e.target as Node
+  const inside = menuWrapRef.value?.contains(t) || uploadMenuWrapRef.value?.contains(t)
+  if (!inside) closeMenu()
 }
 function onKeyDown (e: KeyboardEvent) { if (e.key === 'Escape') closeMenu() }
 function onCloseOthers (e: Event) { if ((e as CustomEvent).detail !== menuId) closeMenu() }
@@ -153,6 +163,7 @@ async function upload (e: Event) {
   const files = [...(input.files || [])]
   input.value = ''
   if (!files.length) return
+  closeMenu()
   try {
     const made = await store.uploadAttachments(props.replica.id, props.step.idx, files)
     props.step.attachments = [...(props.step.attachments || []), ...made]
