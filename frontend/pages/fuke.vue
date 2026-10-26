@@ -23,26 +23,30 @@
       </div>
       <p v-if="!loading && !replicas.length" class="empty">{{ t('fuke.empty') }}</p>
 
-      <article v-for="r in replicas" :key="r.id" class="post-card" style="margin-bottom:16px;display:block">
-        <div style="display:flex;gap:8px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap">
-          <div style="min-width:0">
-            <h2 class="post-title" style="margin:0">
-              <a v-if="r.post_url" :href="r.post_url" target="_blank" rel="noopener">{{ tr(r.post_title) }}</a>
-              <span v-else>{{ tr(r.post_title) }}</span>
-            </h2>
-            <div style="color:var(--text-muted);font-size:13px">
-              <span v-if="r.post_id">{{ r.post_author_name }} @{{ r.post_author }} · </span>
-              <span v-else>{{ t('fuke.customFlow') }}</span>{{ shanghaiTime(r.created_at) }}
+      <article v-for="r in replicas" :key="r.id" class="post-card flow-sheet" data-theme="light" style="margin-bottom:16px;display:block">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px">
+          <div class="flow-eyebrow">FLOW · {{ topSteps(r).length }} NODES</div>
+          <div class="node-menu-wrap flow-menu-wrap">
+            <button class="btn btn-sm btn-quiet node-menu-btn" type="button" @click="toggleFlowMenu(r.id)" :aria-label="t('fuke.flowMenu')" aria-haspopup="menu" :aria-expanded="openFlowMenu === r.id">⋯</button>
+            <div v-if="openFlowMenu === r.id" class="node-menu" role="menu">
+              <button type="button" role="menuitem" class="danger" @click="menuDeleteFlow(r)">{{ t('fuke.deleteReplica') }}</button>
             </div>
           </div>
-          <button class="btn btn-sm btn-danger" type="button" @click="askDelete(r)">{{ t('fuke.deleteReplica') }}</button>
         </div>
-        <div style="margin:12px 0 4px;display:flex;justify-content:space-between;gap:8px">
-          <span>{{ t('fuke.progress', { done: progress(r).done, total: progress(r).total }) }}</span>
+        <h2 class="flow-title">
+          <a v-if="r.post_url" :href="r.post_url" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">{{ tr(r.post_title) }}</a>
+          <span v-else>{{ tr(r.post_title) }}</span>
+        </h2>
+        <div class="flow-meta">
+          <span v-if="r.post_id">{{ r.post_author_name }} @{{ r.post_author }} · </span>
+          <span v-else>{{ t('fuke.customFlow') }}</span>{{ shanghaiTime(r.created_at) }}
+        </div>
+        <div class="flow-progress-row">
+          <span>{{ t('fuke.flowProgress', { done: progress(r).done, total: progress(r).total }) }}</span>
           <span>{{ progressPct(r) }}%</span>
         </div>
         <div class="progress-bar"><div :style="{ width: progressPct(r) + '%' }" /></div>
-        <div style="margin-top:12px;border:1px solid var(--border);border-radius:12px;padding:12px">
+        <div style="margin:12px 0 4px">
           <div class="chip-group-title" style="margin-top:0">{{ t('fuke.customNodes') }}</div>
           <input class="field" style="width:100%" type="text" v-model="newStepText[r.id]" :placeholder="t('fuke.newStepPh')" :aria-label="t('fuke.newStepAria')" />
           <div style="margin-top:6px">
@@ -53,6 +57,11 @@
           <p v-if="!topSteps(r).length" style="color:var(--text-muted)">{{ t('fuke.noSteps') }}</p>
           <ReplicaStepNode v-for="(step, si) in topSteps(r)" :key="step.idx" :replica="r" :step="step"
             :num="String(si + 1)" :is-last="si === topSteps(r).length - 1" />
+        </div>
+        <div v-if="topSteps(r).length" class="flow-action">
+          <div class="flow-current">{{ currentNode(r) ? t('fuke.currentNode', { num: currentNum(r), title: tr(currentNode(r)!.text) }) : t('fuke.allDone') }}</div>
+          <button v-if="currentNode(r)" class="flow-complete-btn" type="button" @click="completeCurrent(r)">{{ currentActionLabel(r) }}</button>
+          <button v-else class="flow-complete-btn" type="button" disabled>{{ t('fuke.allDone') }}</button>
         </div>
       </article>
     </main>
@@ -86,18 +95,67 @@ const sort = ref<'time' | 'progress'>('time')
 const confirmTarget = ref<Replica | null>(null)
 useScrollLock(computed(() => confirmTarget.value !== null))
 const toast = ref('')
+const openFlowMenu = ref<string | null>(null)
 
 function showToast (m: string) { toast.value = m; setTimeout(() => { toast.value = '' }, 3000) }
 function topSteps (r: Replica): ReplicaStep[] { return r.steps.filter(s => s.parent_idx == null) }
+// 进度按顶层节点算（图片里的 FLOW · N NODES / 已完成 x / y 个节点）。
 function progress (r: Replica) {
-  const total = r.steps.length
-  const done = r.steps.filter(s => s.status === 'done').length
+  const tops = topSteps(r)
+  const total = tops.length
+  const done = tops.filter(s => s.status === 'done').length
   return { done, total }
 }
 function progressPct (r: Replica) {
   const { done, total } = progress(r)
   return total ? Math.round(done / total * 100) : 0
 }
+// 当前节点：第一个进行中的顶层节点，否则第一个未开始的；全完成时为 null。
+function currentNode (r: Replica): ReplicaStep | null {
+  const tops = topSteps(r)
+  return tops.find(s => s.status === 'active') || tops.find(s => s.status === 'idle') || null
+}
+function currentNum (r: Replica): string {
+  const cur = currentNode(r)
+  if (!cur) return ''
+  return String(topSteps(r).indexOf(cur) + 1).padStart(2, '0')
+}
+function currentActionLabel (r: Replica): string {
+  const cur = currentNode(r)
+  if (!cur) return t('fuke.allDone')
+  return cur.status === 'active' ? t('fuke.completeNode', { title: tr(cur.text) }) : t('fuke.startNode', { title: tr(cur.text) })
+}
+// 底部大按钮：进行中的节点标为完成并激活下一个未开始的；未开始的则直接开始。
+async function completeCurrent (r: Replica) {
+  const cur = currentNode(r)
+  if (!cur) return
+  const tops = topSteps(r)
+  const patches: Array<{ idx: number, status: 'idle' | 'active' | 'done' }> = []
+  if (cur.status === 'active') {
+    patches.push({ idx: cur.idx, status: 'done' })
+    const next = tops.slice(tops.indexOf(cur) + 1).find(s => s.status === 'idle')
+      || tops.find(s => s.status === 'idle' && s.idx !== cur.idx)
+    if (next) patches.push({ idx: next.idx, status: 'active' })
+  } else {
+    patches.push({ idx: cur.idx, status: 'active' })
+  }
+  const wasActive = cur.status === 'active'
+  try {
+    await store.patchReplicaSteps(r.id, patches)
+    for (const p of patches) {
+      const s = r.steps.find(x => x.idx === p.idx)
+      if (s) s.status = p.status
+    }
+    showToast(wasActive ? t('fuke.nodeCompleted', { title: tr(cur.text) }) : t('fuke.nodeStarted', { title: tr(cur.text) }))
+  } catch (e: any) { showToast(e?.message || t('node.statusSaveFailed')) }
+}
+function toggleFlowMenu (id: string) { openFlowMenu.value = openFlowMenu.value === id ? null : id }
+function menuDeleteFlow (r: Replica) { openFlowMenu.value = null; askDelete(r) }
+function onDocClick (e: MouseEvent) {
+  if (!openFlowMenu.value) return
+  if (!(e.target as HTMLElement).closest('.flow-menu-wrap')) openFlowMenu.value = null
+}
+function onKeyDown (e: KeyboardEvent) { if (e.key === 'Escape') openFlowMenu.value = null }
 async function reload () {
   loading.value = true
   try { replicas.value = await store.loadReplicas(sort.value) } catch (e: any) { loadError.value = e?.message || t('fuke.loadFailed') }
@@ -142,6 +200,12 @@ async function doDelete () {
 }
 onMounted(async () => {
   useSettings().load()
+  document.addEventListener('click', onDocClick)
+  document.addEventListener('keydown', onKeyDown)
   await reload()
+})
+onUnmounted(() => {
+  document.removeEventListener('click', onDocClick)
+  document.removeEventListener('keydown', onKeyDown)
 })
 </script>
