@@ -23,14 +23,17 @@
       </div>
       <p v-if="!loading && !replicas.length" class="empty">{{ t('fuke.empty') }}</p>
 
-      <article v-for="r in replicas" :key="r.id" class="post-card flow-sheet" data-theme="light" style="margin-bottom:16px;display:block">
+      <article v-for="r in replicas" :key="r.id" class="post-card flow-sheet" :class="{ 'is-collapsed': isCollapsed(r.id) }" style="margin-bottom:16px;display:block">
         <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px">
           <div class="flow-eyebrow">FLOW · {{ topSteps(r).length }} NODES</div>
+          <div class="flow-head-side">
+          <button class="btn btn-sm btn-quiet flow-collapse-btn" type="button" @click="toggleCollapsed(r.id)" :aria-expanded="!isCollapsed(r.id)" :aria-label="isCollapsed(r.id) ? t('fuke.expandFlow') : t('fuke.collapseFlow')" :title="isCollapsed(r.id) ? t('fuke.expandFlow') : t('fuke.collapseFlow')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" :style="{ transform: isCollapsed(r.id) ? 'rotate(-90deg)' : 'none' }"><path d="M6 9l6 6 6-6" /></svg></button>
           <div class="node-menu-wrap flow-menu-wrap">
             <button class="btn btn-sm btn-quiet node-menu-btn" type="button" @click="toggleFlowMenu(r.id)" :aria-label="t('fuke.flowMenu')" aria-haspopup="menu" :aria-expanded="openFlowMenu === r.id">⋯</button>
             <div v-if="openFlowMenu === r.id" class="node-menu" role="menu">
               <button type="button" role="menuitem" class="danger" @click="menuDeleteFlow(r)">{{ t('fuke.deleteReplica') }}</button>
             </div>
+          </div>
           </div>
         </div>
         <h2 class="flow-title">
@@ -46,6 +49,7 @@
           <span>{{ progressPct(r) }}%</span>
         </div>
         <div class="progress-bar"><div :style="{ width: progressPct(r) + '%' }" /></div>
+        <template v-if="!isCollapsed(r.id)">
         <div style="margin:12px 0 4px">
           <div class="chip-group-title" style="margin-top:0">{{ t('fuke.customNodes') }}</div>
           <input class="field" style="width:100%" type="text" v-model="newStepText[r.id]" :placeholder="t('fuke.newStepPh')" :aria-label="t('fuke.newStepAria')" />
@@ -63,6 +67,7 @@
           <button v-if="currentNode(r)" class="flow-complete-btn" type="button" @click="completeCurrent(r)">{{ currentActionLabel(r) }}</button>
           <button v-else class="flow-complete-btn" type="button" disabled>{{ t('fuke.allDone') }}</button>
         </div>
+        </template>
       </article>
     </main>
 
@@ -149,6 +154,20 @@ async function completeCurrent (r: Replica) {
     showToast(wasActive ? t('fuke.nodeCompleted', { title: tr(cur.text) }) : t('fuke.nodeStarted', { title: tr(cur.text) }))
   } catch (e: any) { showToast(e?.message || t('node.statusSaveFailed')) }
 }
+// 卡片折叠状态只存本机浏览器（与原站 localStorage 设置同类），折叠后只留标题和进度。
+const COLLAPSED_KEY = 'x-digest-fuke-collapsed'
+const collapsed = ref<string[]>([])
+function isCollapsed (id: string) { return collapsed.value.includes(id) }
+function toggleCollapsed (id: string) {
+  collapsed.value = isCollapsed(id) ? collapsed.value.filter(x => x !== id) : [...collapsed.value, id]
+  try { localStorage.setItem(COLLAPSED_KEY, JSON.stringify(collapsed.value)) } catch { /* private mode */ }
+}
+function loadCollapsed () {
+  try {
+    const v = JSON.parse(localStorage.getItem(COLLAPSED_KEY) || '[]')
+    if (Array.isArray(v)) collapsed.value = v.filter(x => typeof x === 'string')
+  } catch { /* ignore */ }
+}
 function toggleFlowMenu (id: string) { openFlowMenu.value = openFlowMenu.value === id ? null : id }
 function menuDeleteFlow (r: Replica) { openFlowMenu.value = null; askDelete(r) }
 function onDocClick (e: MouseEvent) {
@@ -200,6 +219,7 @@ async function doDelete () {
 }
 onMounted(async () => {
   useSettings().load()
+  loadCollapsed()
   document.addEventListener('click', onDocClick)
   document.addEventListener('keydown', onKeyDown)
   await reload()

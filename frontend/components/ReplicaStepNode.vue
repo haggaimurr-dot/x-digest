@@ -102,7 +102,7 @@
               :num="`${num}.${ci + 1}`" :is-last="true" :is-child="true" />
           </div>
           <div v-if="(step.substeps || []).length" style="margin-top:10px">
-            <div v-for="(sub, j) in step.substeps!.slice(0, 5)" :key="j" class="flow-text" style="font-size:13px;color:#525252">
+            <div v-for="(sub, j) in step.substeps!.slice(0, 5)" :key="j" class="flow-text" style="font-size:13px;color:var(--flow-soft)">
               {{ `${num}.${j + 1} ` }}{{ trunc40(tr(sub.text)) }}
             </div>
           </div>

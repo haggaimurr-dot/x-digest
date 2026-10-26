@@ -111,60 +111,81 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
   .replica-step { flex-wrap: wrap; }
 }
 
-/* ---- 流程图页（fuke）：按图片样式的浅色流程卡片 ----
-   整张卡片用 data-theme="light" 挂载浅色变量，所以卡片里的 .field/.btn/
-   .node-menu/.note-editor 等沿用浅色主题；下面的规则只做图片样式的
-   专属造型（时间线、状态徽标、红色进度、黑色完成按钮）。
+/* ---- 流程图页（fuke）：流程卡片 ----
+   颜色全部走 --flow-* 变量，跟随 html[data-theme] 深/浅主题切换；
+   下面的规则只做专属造型（时间线、状态徽标、红色进度、完成按钮）。
    全部以 .flow-sheet 为作用域，日报名单里的帖子流程图不受影响。 */
-.flow-sheet { background: #fff; color: #0f1419; border: 0; border-radius: 24px; padding: 22px 20px; box-shadow: 0 12px 40px rgba(0,0,0,.35); --accent: #ef4444; }
-.flow-sheet:hover { background: #fff; }
-.flow-eyebrow { font-size: 12px; letter-spacing: .14em; color: #737373; font-weight: 600; }
-.flow-title { font-size: 26px; line-height: 1.25; font-weight: 800; color: #111; margin: 8px 0 4px; overflow-wrap: anywhere; }
-.flow-meta { color: #737373; font-size: 13px; }
-.flow-meta a { color: #525252; }
-.flow-progress-row { display: flex; justify-content: space-between; gap: 8px; color: #525252; font-size: 13px; margin: 16px 0 6px; }
-.flow-sheet .progress-bar { height: 6px; background: #f0f0f0; border: 0; }
-.flow-sheet .progress-bar > div { background: #ef4444; }
+:root, [data-theme="dark"] {
+  --flow-surface: #16181c; --flow-node: #000; --flow-node-idle: #0b0c0e;
+  --flow-text: #e7e9ea; --flow-muted: #71767b; --flow-soft: #a0a6ab;
+  --flow-border: #2f3336; --flow-border-idle: #3a3f44; --flow-track: #2f3336;
+  --flow-ink: #e7e9ea; --flow-ink-text: #0f1419;
+  --flow-pill: #2f3336; --flow-pill-text: #a0a6ab;
+  --flow-shadow: 0 12px 40px rgba(0,0,0,.5); --flow-node-shadow: 0 4px 16px rgba(0,0,0,.5);
+  --flow-red: #ef4444;
+}
+[data-theme="light"] {
+  --flow-surface: #fff; --flow-node: #fff; --flow-node-idle: #fcfcfc;
+  --flow-text: #111; --flow-muted: #737373; --flow-soft: #525252;
+  --flow-border: #e7e7e7; --flow-border-idle: #d9d9d9; --flow-track: #f0f0f0;
+  --flow-ink: #111; --flow-ink-text: #fff;
+  --flow-pill: #f0f0f0; --flow-pill-text: #666;
+  --flow-shadow: 0 12px 40px rgba(0,0,0,.12); --flow-node-shadow: 0 4px 16px rgba(0,0,0,.12);
+}
+.flow-sheet { background: var(--flow-surface); color: var(--flow-text); border: 1px solid var(--flow-border); border-radius: 24px; padding: 22px 20px; box-shadow: var(--flow-shadow); --accent: var(--flow-red); }
+.flow-sheet:hover { background: var(--flow-surface); }
+.flow-eyebrow { font-size: 12px; letter-spacing: .14em; color: var(--flow-muted); font-weight: 600; }
+.flow-title { font-size: 26px; line-height: 1.25; font-weight: 800; color: var(--flow-text); margin: 8px 0 4px; overflow-wrap: anywhere; }
+.flow-meta { color: var(--flow-muted); font-size: 13px; }
+.flow-meta a { color: var(--flow-soft); }
+.flow-progress-row { display: flex; justify-content: space-between; gap: 8px; color: var(--flow-soft); font-size: 13px; margin: 16px 0 6px; }
+.flow-sheet .progress-bar { height: 6px; background: var(--flow-track); border: 0; }
+.flow-sheet .progress-bar > div { background: var(--flow-red); }
 /* 节点卡片：白底细边；进行中深色边框；未开始虚线边框；已完成不再删除线。 */
 .flow-sheet .flow-step { grid-template-columns: 30px 1fr; gap: 14px; }
-.flow-sheet .flow-card.replica-node-card { background: #fff; border: 1px solid #e7e7e7; border-left: 1px solid #e7e7e7; border-radius: 16px; box-shadow: 0 1px 3px rgba(0,0,0,.06); padding: 14px 16px; }
-.flow-sheet .flow-step.st-active .flow-card.replica-node-card { border-color: #111; box-shadow: 0 4px 16px rgba(0,0,0,.12); }
-.flow-sheet .flow-step.st-done .flow-card.replica-node-card { border-left-color: #e7e7e7; }
-.flow-sheet .flow-step.st-idle .flow-card.replica-node-card { border-style: dashed; border-color: #d9d9d9; background: #fcfcfc; }
+.flow-sheet .flow-card.replica-node-card { background: var(--flow-node); border: 1px solid var(--flow-border); border-left: 1px solid var(--flow-border); border-radius: 16px; box-shadow: 0 1px 3px var(--flow-border); padding: 14px 16px; }
+.flow-sheet .flow-step.st-active .flow-card.replica-node-card { border-color: var(--flow-text); box-shadow: var(--flow-node-shadow); }
+.flow-sheet .flow-step.st-done .flow-card.replica-node-card { border-left-color: var(--flow-border); }
+.flow-sheet .flow-step.st-idle .flow-card.replica-node-card { border-style: dashed; border-color: var(--flow-border-idle); background: var(--flow-node-idle); }
 .flow-sheet .flow-step.is-done .replica-step-text { text-decoration: none; color: inherit; }
-.flow-sheet .flow-step:hover .flow-card.replica-node-card { border-color: #111; border-left-color: #111; box-shadow: 0 4px 16px rgba(0,0,0,.12); }
+.flow-sheet .flow-step:hover .flow-card.replica-node-card { border-color: var(--flow-text); border-left-color: var(--flow-text); box-shadow: var(--flow-node-shadow); }
 /* 时间线：30px 圆标（完成黑底✓ / 进行中红底数字 / 未开始白底灰字），
    已完成节点下方的连线实线，其余虚线。 */
 .flow-sheet .flow-rail { padding-top: 2px; }
-.flow-sheet .status-dot { width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid #d4d4d4; background: #fff; color: #a3a3a3; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; padding: 0; }
-.flow-sheet .status-dot.is-done { background: #111; border-color: #111; color: #fff; }
-.flow-sheet .status-dot.is-active { background: #ef4444; border-color: #ef4444; color: #fff; }
-.flow-sheet .status-dot.is-idle { background: #fff; }
-.flow-sheet .flow-line { background: repeating-linear-gradient(180deg, #d4d4d4 0 4px, transparent 4px 8px); border-radius: 0; }
-.flow-sheet .flow-step.st-done .flow-line { background: #111; }
+.flow-sheet .status-dot { width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid var(--flow-border-idle); background: var(--flow-node); color: var(--flow-muted); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; padding: 0; }
+.flow-sheet .status-dot.is-done { background: var(--flow-ink); border-color: var(--flow-ink); color: var(--flow-ink-text); }
+.flow-sheet .status-dot.is-active { background: var(--flow-red); border-color: var(--flow-red); color: #fff; }
+.flow-sheet .status-dot.is-idle { background: var(--flow-node); }
+.flow-sheet .flow-line { background: repeating-linear-gradient(180deg, var(--flow-border-idle) 0 4px, transparent 4px 8px); border-radius: 0; }
+.flow-sheet .flow-step.st-done .flow-line { background: var(--flow-text); }
 /* 节点头：标题 + 子项进度，右侧状态徽标 + 汉堡菜单。 */
 .node-head { display: flex; gap: 8px; align-items: flex-start; justify-content: space-between; }
 .node-head-main { flex: 1; min-width: 0; }
 .node-head-side { display: flex; gap: 6px; align-items: center; flex-shrink: 0; }
-.flow-sheet .replica-step-text { font-size: 15px; line-height: 1.5; color: #111; }
-.node-sub { color: #737373; font-size: 13px; margin-top: 2px; }
+.flow-sheet .replica-step-text { font-size: 15px; line-height: 1.5; color: var(--flow-text); }
+.node-sub { color: var(--flow-muted); font-size: 13px; margin-top: 2px; }
 .node-pill { border-radius: 9999px; padding: 3px 10px; font-size: 12px; white-space: nowrap; }
-.node-pill.pill-done { background: #f0f0f0; color: #666; }
-.node-pill.pill-active { background: #ef4444; color: #fff; }
-.node-pill.pill-idle { background: transparent; color: #737373; padding: 3px 2px; }
+.node-pill.pill-done { background: var(--flow-pill); color: var(--flow-pill-text); }
+.node-pill.pill-active { background: var(--flow-red); color: #fff; }
+.node-pill.pill-idle { background: transparent; color: var(--flow-muted); padding: 3px 2px; }
 /* 子节点清单：红色复选框 + 文字，点击文字展开子节点详情。 */
 .check-list { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
 .check-row { display: flex; gap: 10px; align-items: flex-start; }
-.check-box { width: 20px; height: 20px; flex-shrink: 0; border-radius: 5px; border: 1.5px solid #d4d4d4; background: #fff; color: #fff; font-size: 13px; line-height: 1; cursor: pointer; padding: 0; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
-.check-box.checked { background: #ef4444; border-color: #ef4444; }
-.check-text { flex: 1; min-width: 0; overflow-wrap: anywhere; font-size: 14px; line-height: 1.5; cursor: pointer; color: #111; }
-.check-text.is-done { color: #737373; }
+.check-box { width: 20px; height: 20px; flex-shrink: 0; border-radius: 5px; border: 1.5px solid var(--flow-border-idle); background: var(--flow-node); color: #fff; font-size: 13px; line-height: 1; cursor: pointer; padding: 0; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+.check-box.checked { background: var(--flow-red); border-color: var(--flow-red); }
+.check-text { flex: 1; min-width: 0; overflow-wrap: anywhere; font-size: 14px; line-height: 1.5; cursor: pointer; color: var(--flow-text); }
+.check-text.is-done { color: var(--flow-muted); }
 .check-detail { margin: 2px 0 2px 30px; }
 /* 底部操作：当前节点 + 黑色大按钮。 */
-.flow-action { margin-top: 16px; border-top: 1px solid #f0f0f0; padding-top: 14px; }
-.flow-current { color: #737373; font-size: 13px; margin-bottom: 10px; }
-.flow-complete-btn { width: 100%; background: #111; color: #fff; border: 0; border-radius: 12px; padding: 14px 16px; font: inherit; font-size: 15px; font-weight: 700; cursor: pointer; }
-.flow-complete-btn:disabled { background: #e5e5e5; color: #a3a3a3; cursor: default; }
+.flow-action { margin-top: 16px; border-top: 1px solid var(--flow-track); padding-top: 14px; }
+.flow-current { color: var(--flow-muted); font-size: 13px; margin-bottom: 10px; }
+.flow-complete-btn { width: 100%; background: var(--flow-ink); color: var(--flow-ink-text); border: 0; border-radius: 12px; padding: 14px 16px; font: inherit; font-size: 15px; font-weight: 700; cursor: pointer; }
+.flow-complete-btn:disabled { background: var(--flow-track); color: var(--flow-muted); cursor: default; }
+
+/* 卡片头部右侧：折叠按钮 + 流程菜单。 */
+.flow-head-side { display: flex; gap: 4px; align-items: center; flex-shrink: 0; }
+.flow-collapse-btn { min-width: 36px; display: inline-flex; align-items: center; justify-content: center; color: var(--flow-soft); }
+.flow-collapse-btn svg { transition: transform .15s; }
 
 /* ---- YouTube prototype (/youtube, 2026-10-26) ---- */
 .yt-video-card { display: grid; grid-template-columns: 168px 1fr; gap: 12px; margin-bottom: 16px; }

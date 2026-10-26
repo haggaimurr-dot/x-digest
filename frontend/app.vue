@@ -18,8 +18,8 @@
 </template>
 
 <script setup lang="ts">
-const { applyTheme } = useSettings()
+const { applyTheme, theme } = useSettings()
 const { t, lang, toggleLang, loadLang } = useLang()
 onMounted(() => { applyTheme(); loadLang() })
-useHead({ htmlAttrs: { 'data-theme': 'dark', lang: () => lang.value }, title: () => t('app.title') })
+useHead({ htmlAttrs: { 'data-theme': () => theme.value, lang: () => lang.value }, title: () => t('app.title') })
 </script>

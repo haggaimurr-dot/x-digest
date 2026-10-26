@@ -327,6 +327,8 @@ export const DICT: Record<string, { zh: string, en: string }> = {
   'fuke.nodeCompleted': { zh: '已完成「{title}」', en: 'Completed "{title}"' },
   'fuke.nodeStarted': { zh: '已开始「{title}」', en: 'Started "{title}"' },
   'fuke.flowMenu': { zh: '流程操作', en: 'Flow actions' },
+  'fuke.collapseFlow': { zh: '折叠流程', en: 'Collapse flow' },
+  'fuke.expandFlow': { zh: '展开流程', en: 'Expand flow' },
   'fuke.customNodes': { zh: '自建流程节点', en: 'Custom flow nodes' },
   'fuke.newStepPh': { zh: '节点文字（纯文本），添加后可继续改状态、写备注、上传图片和附件', en: 'Node text (plain text); after adding you can change its status, add notes, and upload images and files' },
   'fuke.newStepAria': { zh: '新节点文本', en: 'New node text' },
