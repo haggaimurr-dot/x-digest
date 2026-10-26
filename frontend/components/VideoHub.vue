@@ -138,15 +138,17 @@
               </div>
               <p v-if="v.description" class="yt-desc" :class="{ 'yt-desc-open': expandedDesc.has(v.id) }"><template v-for="(part, pi) in linkParts(tr(v.description))" :key="pi"><a v-if="part.href" class="yt-desc-link" :href="part.href" target="_blank" rel="noopener noreferrer">{{ part.text }}</a><template v-else>{{ part.text }}</template></template></p>
               <p v-else class="yt-desc-empty">{{ t('yt.noDesc') }}</p>
-              <div class="yt-actions">
-                <button v-if="(v.description || '').length > 140" class="btn btn-sm" type="button" @click="toggleDesc(v.id)">
+              <div v-if="(v.description || '').length > 140" class="yt-actions">
+                <button class="btn btn-sm" type="button" @click="toggleDesc(v.id)">
                   {{ expandedDesc.has(v.id) ? t('yt.collapseDesc') : t('yt.expandDesc') }}
-                </button>
-                <button v-if="videoKind(v) !== 'playlist'" class="btn btn-sm yt-ai-btn" type="button" :aria-expanded="openSummary.has(v.id)" @click="toggleSummary(v)">
-                  ✨ {{ openSummary.has(v.id) ? t('yt.aiSummaryHide') : t('yt.aiSummary') }}
                 </button>
               </div>
             </div>
+            <!-- AI 摘要：整行放在卡片模块下方（不在右侧栏内），点按展开/收起，默认收起。 -->
+            <button v-if="videoKind(v) !== 'playlist'" class="yt-summary-toggle" type="button" :aria-expanded="openSummary.has(v.id)" @click="toggleSummary(v)">
+              <span>✨ {{ openSummary.has(v.id) ? t('yt.aiSummaryHide') : t('yt.aiSummary') }}</span>
+              <svg class="yt-chevron" :class="{ 'is-collapsed': !openSummary.has(v.id) }" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
+            </button>
             <section v-if="openSummary.has(v.id)" class="yt-summary" :aria-label="t('yt.aiSummary')">
               <template v-for="sum in [summaryOf(v.id)]" :key="'s' + v.id">
                 <p v-if="!sum" class="yt-sum-note">{{ t('common.loading') }}</p>

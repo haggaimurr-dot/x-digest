@@ -188,11 +188,12 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
 .flow-collapse-btn svg { transition: transform .15s; }
 
 /* ---- YouTube prototype (/youtube, 2026-10-26) ---- */
-.yt-video-card { display: grid; grid-template-columns: 168px 1fr; gap: 12px; align-items: start; margin-bottom: 16px; }
-.yt-left { min-width: 0; }
-.yt-thumb { display: block; flex-shrink: 0; }
+/* 两栏顶端对齐、等高：缩略图纵向拉伸以贴合右侧标题+简介的高度（有上限，避免长简介时过度裁切）。 */
+.yt-video-card { display: grid; grid-template-columns: 168px 1fr; gap: 12px; align-items: stretch; margin-bottom: 16px; }
+.yt-left { min-width: 0; display: flex; flex-direction: column; }
+.yt-thumb { display: block; flex: 1 1 auto; min-height: 0; max-height: 200px; }
 /* 缩略图下方的热门评论（按点赞数），每条最多 4 行。 */
-.yt-comments { margin-top: 8px; display: flex; flex-direction: column; gap: 8px; }
+.yt-comments { margin-top: 8px; flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; }
 .yt-comments-title { font-size: 11px; font-weight: 600; color: var(--text-muted); letter-spacing: .04em; }
 .yt-comment { min-width: 0; }
 .yt-comment-meta { display: flex; gap: 6px; align-items: baseline; font-size: 11px; color: var(--text-muted); min-width: 0; }
@@ -200,7 +201,7 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
 .yt-comment-author { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
 .yt-comment-text { margin: 2px 0 0; font-size: 12px; line-height: 1.45; overflow-wrap: anywhere; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
 .yt-comments-note { margin: 0; font-size: 11px; color: var(--text-muted); }
-.yt-thumb img, .yt-thumb-ph { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; background: var(--bg); }
+.yt-thumb img, .yt-thumb-ph { display: block; width: 100%; height: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; background: var(--bg); }
 .yt-thumb-ph { display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 22px; }
 .yt-info { min-width: 0; }
 .yt-title { margin: 0; font-size: 15px; line-height: 1.4; overflow-wrap: anywhere; }
@@ -217,6 +218,9 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
 .yt-chevron.is-collapsed { transform: rotate(-90deg); }
 .yt-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
 .yt-ai-btn { border-color: var(--accent); color: var(--accent); }
+/* AI 摘要开关：整行放在卡片模块下方（不在右侧栏内），点按展开/收起摘要面板。 */
+.yt-summary-toggle { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; padding: 8px 12px; background: none; border: 1px solid var(--border); border-radius: 10px; color: var(--accent); font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; text-align: left; }
+.yt-summary-toggle:hover { background: var(--bg-elevated); }
 /* AI 摘要面板：占满卡片整行（缩略图下方也用上），阅读区更宽。 */
 .yt-summary { grid-column: 1 / -1; border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; background: var(--bg-elevated); min-width: 0; }
 .yt-sum-h { font-size: 14px; margin: 14px 0 6px; color: var(--text); }
@@ -240,4 +244,5 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
 /* 手机上仍然左图右文，只把缩略图缩窄。 */
 @media (max-width: 620px) {
   .yt-video-card { grid-template-columns: 40% 1fr; gap: 10px; }
+  .yt-thumb { max-height: 160px; }
 }
