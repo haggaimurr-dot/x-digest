@@ -59,7 +59,7 @@
           </div>
         </div>
       </div>
-      <p v-if="isEn && (step.note || '').trim()" class="note-translated"><span class="note-translated-label">{{ t('node.noteTranslation') }}</span>{{ tr(step.note || '') }}</p>
+      <p v-if="(step.note || '').trim() && tr(step.note || '') !== (step.note || '')" class="note-translated"><span class="note-translated-label">{{ t('node.noteTranslation') }}</span>{{ tr(step.note || '') }}</p>
       <NoteEditor :model-value="step.note || ''" @update:model-value="step.note = $event" @save="saveNote($event)" />
       <div style="margin-top:8px;display:flex;align-items:center;gap:6px">
         <div class="node-menu-wrap">
@@ -101,7 +101,7 @@ import { ATTACHMENT_EXTS, IMAGE_EXTS } from '~/composables/useStore'
 
 const props = defineProps<{ replica: Replica, step: ReplicaStep, num: string, isLast: boolean, isChild?: boolean }>()
 const store = useStore()
-const { t, isEn } = useLang()
+const { t, lang } = useLang()
 const { tr, enqueue } = useTranslate()
 const toast = ref('')
 const statusNames = computed<Record<string, string>>(() => ({ idle: t('node.statusIdle'), active: t('node.statusActive'), done: t('node.statusDone') }))
@@ -161,8 +161,7 @@ const children = computed(() => props.replica.steps.filter(s => s.parent_idx ===
 const subCount = computed(() => children.value.length + (props.step.substeps || []).length)
 // Enqueue this node's display texts (text, note, substeps) for translation
 // when EN is active. The editor below always shows/edits the original.
-watch([() => props.step.text, () => props.step.note, () => props.step.substeps, isEn], () => {
-  if (!isEn.value) return
+watch([() => props.step.text, () => props.step.note, () => props.step.substeps, lang], () => {
   enqueue([props.step.text, props.step.note || '', ...(props.step.substeps || []).map(s => s.text)])
 }, { immediate: true })
 

@@ -210,7 +210,7 @@ import { useScrollLock } from '~/composables/useScrollLock'
 
 const store = useStore()
 const settings = useSettings()
-const { t, lang, isEn } = useLang()
+const { t, lang } = useLang()
 const { tr, enqueue, translating } = useTranslate()
 const { theme, fontSize, fontFamily, setTheme, setFontSize, setFontFamily, saveWebhook, clearWebhook, postWebhook } = settings
 
@@ -380,12 +380,12 @@ function summaryShown (p: Post) {
   if (!p.is_long || expandedLong.value.has(p.id)) return s
   return s.slice(0, 200) + (s.length > 200 ? '…' : '')
 }
-// Enqueue the currently filtered posts' display texts for translation when
-// EN is active (debounced; the queue flushes in chunks of 20). Filtering
-// always uses the original text — only display goes through tr().
+// Enqueue the currently filtered posts' display texts for translation
+// (debounced; the queue flushes in chunks of 20). Translation runs toward
+// the current UI language; filtering always uses the original text —
+// only display goes through tr().
 let enqueueTimer: any = null
 function enqueueVisible () {
-  if (!isEn.value) return
   const texts: string[] = []
   for (const p of filtered.value) {
     texts.push(p.title)
@@ -397,7 +397,7 @@ function enqueueVisible () {
   }
   enqueue(texts)
 }
-watch([filtered, isEn], () => {
+watch([filtered, lang], () => {
   clearTimeout(enqueueTimer)
   enqueueTimer = setTimeout(enqueueVisible, 300)
 })

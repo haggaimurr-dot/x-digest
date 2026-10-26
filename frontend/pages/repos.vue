@@ -13,6 +13,11 @@
           <button class="btn btn-sm" type="button" @click="syncAll" :disabled="syncAllBusy">{{ syncAllBusy ? t('repos.syncing') : t('repos.syncAll') }}</button>
           <button class="btn btn-sm btn-primary" type="button" @click="openAdd">{{ t('repos.addRepo') }}</button>
         </div>
+        <div class="filter-row" style="justify-content:space-between;margin-top:8px">
+          <button class="btn btn-sm" type="button" @click="filtersCollapsed = !filtersCollapsed" :aria-expanded="!filtersCollapsed">{{ filtersCollapsed ? t('repos.expandFilters') : t('repos.collapseFilters') }}</button>
+          <span class="active-count" v-if="filtersCollapsed && activeFilterCount">{{ t('index.selectedFilters', { n: activeFilterCount }) }}</span>
+        </div>
+        <div v-show="!filtersCollapsed">
         <div class="filter-row" style="margin-top:8px">
           <input class="field grow" style="flex:1" type="search" v-model="keyword" :placeholder="t('repos.keywordPh')" :aria-label="t('common.keywordSearch')" />
           <label>{{ t('repos.group') }}
@@ -35,6 +40,7 @@
             <button v-for="t in allTags" :key="t" type="button" class="chip"
               :class="{ active: tagFilter === t }" @click="tagFilter = tagFilter === t ? '' : t">{{ t }}</button>
           </div>
+        </div>
         </div>
         <p v-if="syncAllMsg" style="color:var(--text-muted)">{{ syncAllMsg }}</p>
         <p v-if="translating" style="color:var(--text-muted)">{{ t('common.translating') }}</p>
@@ -214,7 +220,7 @@ import { relativeTime, shanghaiTime, trunc40 } from '~/composables/useFormat'
 import { useScrollLock } from '~/composables/useScrollLock'
 
 const store = useStore()
-const { t, lang, isEn } = useLang()
+const { t, lang } = useLang()
 const { tr, enqueue, translating } = useTranslate()
 
 const loading = ref(true)
@@ -225,6 +231,9 @@ const keyword = ref('')
 const groupFilter = ref('')
 const tagFilter = ref('')
 const sort = ref<'stars' | 'updated'>('stars')
+const filtersCollapsed = ref(false)
+const activeFilterCount = computed(() =>
+  (keyword.value.trim() ? 1 : 0) + (groupFilter.value ? 1 : 0) + (tagFilter.value ? 1 : 0))
 
 const expanded = ref<Set<string>>(new Set())
 const details = ref<Record<string, RepoDetail>>({})
@@ -298,7 +307,7 @@ function toggleRelease (r: Repo, rel: RepoRelease) {
   if (s.has(k)) s.delete(k); else s.add(k)
   openReleases.value = s
   // A release body is only translated once its release is expanded.
-  if (s.has(k) && isEn.value && rel.body) enqueue([rel.body])
+  if (s.has(k) && rel.body) enqueue([rel.body])
 }
 function parseTags (text: string): string[] {
   return text.split(/[,，]/).map(s => s.trim()).filter(Boolean)
@@ -335,8 +344,7 @@ const filtered = computed(() => {
 })
 
 // Enqueue the listed repos' intros when EN is active (deduped by the queue).
-watch([filtered, isEn], () => {
-  if (!isEn.value) return
+watch([filtered, lang], () => {
   enqueue(filtered.value.map(r => repoIntroSource(r)).filter(Boolean))
 })
 
@@ -358,8 +366,8 @@ async function loadDetail (r: Repo) {
     // Keep the card's repo fields in step with the detail response.
     repos.value = repos.value.map(x => x.full_name === r.full_name ? d.repo : x)
     delete detailError.value[r.full_name]
-    // Enqueue the detail's translatable texts when EN is active.
-    if (isEn.value) enqueue([repoIntroSource(d.repo), ...(d.repo.tutorial_steps || []).map(s => s.text)])
+    // Enqueue the detail's translatable texts.
+    enqueue([repoIntroSource(d.repo), ...(d.repo.tutorial_steps || []).map(s => s.text)])
   } catch (err: any) {
     detailError.value = { ...detailError.value, [r.full_name]: errText(err, t('repos.detailFailed')) }
   } finally {

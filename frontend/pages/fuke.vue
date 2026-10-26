@@ -77,7 +77,7 @@ import { shanghaiTime } from '~/composables/useFormat'
 import { useScrollLock } from '~/composables/useScrollLock'
 
 const store = useStore()
-const { t, isEn } = useLang()
+const { t, lang } = useLang()
 const { tr, enqueue, translating } = useTranslate()
 const loading = ref(true)
 const loadError = ref('')
@@ -126,9 +126,8 @@ async function addStep (r: Replica) {
   } catch (e: any) { showToast(e?.message || t('fuke.addStepFailed')) }
 }
 function askDelete (r: Replica) { confirmTarget.value = r }
-// Enqueue replica titles for translation when EN is active.
-watch([replicas, isEn], () => {
-  if (!isEn.value) return
+// Enqueue replica titles for translation (toward the current UI language).
+watch([replicas, lang], () => {
   enqueue(replicas.value.map(r => r.post_title).filter(Boolean))
 })
 async function doDelete () {

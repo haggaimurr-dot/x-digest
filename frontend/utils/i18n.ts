@@ -168,6 +168,8 @@ export const DICT: Record<string, { zh: string, en: string }> = {
   'repos.sort': { zh: '排序', en: 'Sort' },
   'repos.sortStars': { zh: '按星标', en: 'By stars' },
   'repos.sortUpdated': { zh: '按最近更新', en: 'By recently updated' },
+  'repos.collapseFilters': { zh: '收起检索条件 ▾', en: 'Collapse search filters ▾' },
+  'repos.expandFilters': { zh: '展开检索条件 ▸', en: 'Expand search filters ▸' },
   'repos.tagFilter': { zh: '标签筛选', en: 'Filter by tag' },
   'repos.groupManage': { zh: '分组管理', en: 'Group management' },
   'repos.newGroupPh': { zh: '新分组名称', en: 'New group name' },
