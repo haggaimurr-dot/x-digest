@@ -201,6 +201,28 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
 .yt-desc-open { display: block; -webkit-line-clamp: unset; }
 .yt-desc-link { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; word-break: break-all; }
 .yt-desc-empty { margin: 6px 0 0; color: var(--text-muted); font-size: 13px; }
+.yt-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.yt-ai-btn { border-color: var(--accent); color: var(--accent); }
+/* AI 摘要面板：占满卡片整行（缩略图下方也用上），阅读区更宽。 */
+.yt-summary { grid-column: 1 / -1; border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; background: var(--bg-elevated); min-width: 0; }
+.yt-sum-h { font-size: 14px; margin: 14px 0 6px; color: var(--text); }
+.yt-sum-h:first-of-type { margin-top: 0; }
+.yt-sum-para { margin: 0 0 8px; font-size: 14px; line-height: 1.7; overflow-wrap: anywhere; }
+.yt-sum-points { margin: 0; padding-left: 20px; font-size: 14px; line-height: 1.6; }
+.yt-sum-points li + li { margin-top: 4px; }
+.yt-chapters { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.yt-chapter { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: start; }
+.yt-ch-time { font-variant-numeric: tabular-nums; font-size: 12px; font-weight: 600; color: var(--accent); background: var(--accent-soft); border-radius: 6px; padding: 2px 6px; text-decoration: none; white-space: nowrap; margin-top: 1px; }
+.yt-ch-time:hover { text-decoration: underline; }
+.yt-ch-body { min-width: 0; }
+.yt-ch-title { font-weight: 600; font-size: 14px; overflow-wrap: anywhere; }
+.yt-ch-sum { margin: 2px 0 0; font-size: 13px; color: var(--text-muted); line-height: 1.6; overflow-wrap: anywhere; }
+.yt-sum-note { margin: 0; font-size: 13px; color: var(--text-muted); }
+.yt-sum-error { margin: 0 0 8px; color: var(--danger-text); overflow-wrap: anywhere; }
+.yt-sum-foot { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-muted); }
+.yt-spinner { display: inline-block; width: 12px; height: 12px; margin-right: 6px; vertical-align: -1px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: yt-spin .8s linear infinite; }
+@keyframes yt-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .yt-spinner { animation: none; } }
 /* 手机上仍然左图右文，只把缩略图缩窄。 */
 @media (max-width: 620px) {
   .yt-video-card { grid-template-columns: 120px 1fr; gap: 10px; }

@@ -187,6 +187,23 @@ func (c *Client) chat(ctx context.Context, messages []chatMessage) (string, erro
 	return out.Choices[0].Message.Content, nil
 }
 
+// Complete runs one system + user chat completion and returns the
+// trimmed content. It reuses the relay, key and model configured for
+// translation (the YouTube AI summary calls it).
+func (c *Client) Complete(ctx context.Context, system, user string) (string, error) {
+	if !c.Configured() {
+		return "", ErrNotConfigured
+	}
+	content, err := c.chat(ctx, []chatMessage{
+		{Role: "system", Content: system},
+		{Role: "user", Content: user},
+	})
+	if err != nil {
+		return "", err
+	}
+	return strings.TrimSpace(content), nil
+}
+
 // translateOne translates a single text with one chat call.
 func (c *Client) translateOne(ctx context.Context, text, target string) (string, error) {
 	content, err := c.chat(ctx, []chatMessage{

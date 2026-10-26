@@ -116,10 +116,48 @@
               </div>
               <p v-if="v.description" class="yt-desc" :class="{ 'yt-desc-open': expandedDesc.has(v.id) }"><template v-for="(part, pi) in linkParts(tr(v.description))" :key="pi"><a v-if="part.href" class="yt-desc-link" :href="part.href" target="_blank" rel="noopener noreferrer">{{ part.text }}</a><template v-else>{{ part.text }}</template></template></p>
               <p v-else class="yt-desc-empty">{{ t('yt.noDesc') }}</p>
-              <button v-if="(v.description || '').length > 140" class="btn btn-sm" type="button" style="margin-top:6px" @click="toggleDesc(v.id)">
-                {{ expandedDesc.has(v.id) ? t('yt.collapseDesc') : t('yt.expandDesc') }}
-              </button>
+              <div class="yt-actions">
+                <button v-if="(v.description || '').length > 140" class="btn btn-sm" type="button" @click="toggleDesc(v.id)">
+                  {{ expandedDesc.has(v.id) ? t('yt.collapseDesc') : t('yt.expandDesc') }}
+                </button>
+                <button v-if="videoKind(v) !== 'playlist'" class="btn btn-sm yt-ai-btn" type="button" :aria-expanded="openSummary.has(v.id)" @click="toggleSummary(v)">
+                  ✨ {{ openSummary.has(v.id) ? t('yt.aiSummaryHide') : t('yt.aiSummary') }}
+                </button>
+              </div>
             </div>
+            <section v-if="openSummary.has(v.id)" class="yt-summary" :aria-label="t('yt.aiSummary')">
+              <template v-for="sum in [summaryOf(v.id)]" :key="'s' + v.id">
+                <p v-if="!sum" class="yt-sum-note">{{ t('common.loading') }}</p>
+                <p v-else-if="sum.status === 'pending' || sum.status === 'none'" class="yt-sum-note"><span class="yt-spinner" aria-hidden="true" />{{ t('yt.aiPending') }}</p>
+                <div v-else-if="sum.status === 'failed'" class="yt-sum-note">
+                  <p class="yt-sum-error">{{ t('yt.aiFailed', { msg: sum.error || '' }) }}</p>
+                  <button class="btn btn-sm" type="button" @click="generateSummary(v, true)">{{ t('yt.aiRetry') }}</button>
+                </div>
+                <template v-if="sum && sum.summary && sum.status !== 'pending'">
+                  <h3 class="yt-sum-h">{{ t('yt.aiFullSummary') }}</h3>
+                  <p v-for="(para, pi) in paragraphs(sum.summary)" :key="'p' + pi" class="yt-sum-para">{{ para }}</p>
+                  <template v-if="sum.key_points.length">
+                    <h3 class="yt-sum-h">{{ t('yt.aiKeyPoints') }}</h3>
+                    <ul class="yt-sum-points"><li v-for="(k, ki) in sum.key_points" :key="'k' + ki">{{ k }}</li></ul>
+                  </template>
+                  <h3 class="yt-sum-h">{{ t('yt.aiChapters') }}</h3>
+                  <ol v-if="sum.chapters.length" class="yt-chapters">
+                    <li v-for="c in sum.chapters" :key="'c' + c.start" class="yt-chapter">
+                      <a class="yt-ch-time" :href="watchAt(v, c.start)" target="_blank" rel="noopener" :title="t('yt.aiJumpTo', { time: clock(c.start) })">{{ clock(c.start) }}</a>
+                      <div class="yt-ch-body">
+                        <div class="yt-ch-title">{{ c.title }}</div>
+                        <p v-if="c.summary" class="yt-ch-sum">{{ c.summary }}</p>
+                      </div>
+                    </li>
+                  </ol>
+                  <p v-else class="yt-sum-note">{{ t('yt.aiNoChapters') }}</p>
+                  <div class="yt-sum-foot">
+                    <span>{{ sum.source === 'description' ? t('yt.aiSourceDescription') : t('yt.aiSourceTranscript', { lang: sum.transcript_lang || '—' }) }}<template v-if="sum.updated_at"> · {{ t('yt.aiGeneratedAt', { time: sum.updated_at }) }}</template></span>
+                    <button v-if="sum.status === 'done'" class="btn btn-sm" type="button" @click="generateSummary(v, true)">{{ t('yt.aiRegenerate') }}</button>
+                  </div>
+                </template>
+              </template>
+            </section>
           </article>
         </section>
       </template>
@@ -179,7 +217,7 @@
 </template>
 
 <script setup lang="ts">
-import type { YTChannel, YTVideo, RepoGroup } from '~/composables/types'
+import type { YTChannel, YTVideo, YTSummary, RepoGroup } from '~/composables/types'
 import { ApiError } from '~/composables/types'
 import { relativeTime, shanghaiTime, shanghaiDayBound, trunc40 } from '~/composables/useFormat'
 import { useScrollLock } from '~/composables/useScrollLock'
@@ -331,6 +369,71 @@ function clearAll () {
   keyword.value = ''; channelFilter.value = ''; groupFilter.value = ''
   dateFrom.value = ''; dateTo.value = ''
   activeTab.value = 'video'
+}
+// ---- AI summary (per video, in the current UI language) ----
+// Cached per "id|lang"; while a job is pending the panel polls GET every
+// 4s. Generating starts on the first open when none exists yet.
+const summaries = ref<Record<string, YTSummary>>({})
+const openSummary = ref<Set<string>>(new Set())
+const pollTimers = new Map<string, ReturnType<typeof setTimeout>>()
+function sumKey (id: string) { return `${id}|${lang.value}` }
+function summaryOf (id: string): YTSummary | undefined { return summaries.value[sumKey(id)] }
+function setSummary (sum: YTSummary) { summaries.value = { ...summaries.value, [`${sum.video_id}|${sum.lang}`]: sum } }
+function failSummary (v: YTVideo, msg: string) {
+  setSummary({ video_id: v.id, lang: lang.value, status: 'failed', summary: summaryOf(v.id)?.summary || '', key_points: summaryOf(v.id)?.key_points || [], chapters: summaryOf(v.id)?.chapters || [], source: summaryOf(v.id)?.source || '', transcript_lang: summaryOf(v.id)?.transcript_lang || '', model: '', error: msg })
+}
+function schedulePoll (v: YTVideo) {
+  const key = sumKey(v.id)
+  if (pollTimers.has(key)) return
+  const l = lang.value
+  pollTimers.set(key, setTimeout(async () => {
+    pollTimers.delete(key)
+    try {
+      const sum = await store.getYTSummary(v.id, l)
+      setSummary(sum)
+      if (sum.status === 'pending' && l === lang.value) schedulePoll(v)
+    } catch (err: any) {
+      if (l === lang.value) schedulePoll(v)
+    }
+  }, 4000))
+}
+async function generateSummary (v: YTVideo, force = false) {
+  const prev = summaryOf(v.id)
+  setSummary({ ...(prev || { video_id: v.id, lang: lang.value, summary: '', key_points: [], chapters: [], source: '', transcript_lang: '', model: '', error: '' }), status: 'pending', error: '' })
+  try {
+    const sum = await store.startYTSummary(v.id, lang.value, force)
+    setSummary(sum)
+    if (sum.status === 'pending') schedulePoll(v)
+  } catch (err: any) { failSummary(v, errText(err, t('yt.aiLoadFailed'))) }
+}
+async function loadSummary (v: YTVideo) {
+  try {
+    const sum = await store.getYTSummary(v.id, lang.value)
+    if (sum.status === 'none') return generateSummary(v)
+    setSummary(sum)
+    if (sum.status === 'pending') schedulePoll(v)
+  } catch (err: any) { failSummary(v, errText(err, t('yt.aiLoadFailed'))) }
+}
+function toggleSummary (v: YTVideo) {
+  const s = new Set(openSummary.value)
+  if (s.has(v.id)) { s.delete(v.id); openSummary.value = s; return }
+  s.add(v.id); openSummary.value = s
+  const cur = summaryOf(v.id)
+  if (!cur || cur.status === 'none') loadSummary(v)
+}
+// Switching the UI language shows (or generates) the summary in the new language.
+watch(lang, () => {
+  for (const v of videos.value) if (openSummary.value.has(v.id) && !summaryOf(v.id)) loadSummary(v)
+})
+onUnmounted(() => { for (const tm of pollTimers.values()) clearTimeout(tm); pollTimers.clear() })
+function paragraphs (text: string): string[] { return text.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean) }
+function clock (secs: number): string {
+  const h = Math.floor(secs / 3600); const m = Math.floor(secs % 3600 / 60); const sec = Math.floor(secs % 60)
+  const pad = (n: number) => String(n).padStart(2, '0')
+  return h > 0 ? `${h}:${pad(m)}:${pad(sec)}` : `${pad(m)}:${pad(sec)}`
+}
+function watchAt (v: YTVideo, secs: number): string {
+  return `https://www.youtube.com/watch?v=${encodeURIComponent(v.id)}&t=${Math.floor(secs)}s`
 }
 function toggleDesc (id: string) {
   const s = new Set(expandedDesc.value)

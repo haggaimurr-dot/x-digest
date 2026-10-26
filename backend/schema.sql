@@ -303,6 +303,30 @@ ALTER TABLE yt_videos ADD COLUMN IF NOT EXISTS live_status VARCHAR(16) NOT NULL 
 ALTER TABLE yt_videos MODIFY published_at DATETIME NULL;
 ALTER TABLE yt_videos ADD INDEX IF NOT EXISTS idx_yt_videos_channel_kind (channel_id, kind, published_at DESC);
 
+-- ---- YouTube AI summaries (added 2026-10-27) ----
+-- One row per (video, summary language). Generated on demand (POST
+-- /api/v1/yt/videos/{id}/summary) from the video's subtitles via yt-dlp
+-- plus the TRANSLATE_* chat relay; status pending -> done | failed.
+-- key_points / chapters are JSON arrays (chapters: start seconds, title,
+-- summary). source: transcript | description (no subtitles found).
+-- video_id is by value, no FK (same as yt_videos.channel_id); rows are
+-- removed with their channel.
+CREATE TABLE IF NOT EXISTS yt_video_summaries (
+  video_id        VARCHAR(64)  NOT NULL,
+  lang            VARCHAR(10)  NOT NULL,
+  status          VARCHAR(16)  NOT NULL DEFAULT 'pending',
+  summary         MEDIUMTEXT,
+  key_points      MEDIUMTEXT,
+  chapters        MEDIUMTEXT,
+  source          VARCHAR(16)  NOT NULL DEFAULT '',
+  transcript_lang VARCHAR(16)  NOT NULL DEFAULT '',
+  model           VARCHAR(64)  NOT NULL DEFAULT '',
+  error           TEXT,
+  created_at      DATETIME     NOT NULL,
+  updated_at      DATETIME     NOT NULL,
+  PRIMARY KEY (video_id, lang)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 -- ---- Content translation cache (added 2026-10-26) ----
 -- One row per (source text, target language). source_hash is the SHA-256
 -- of source text + target language (see internal/translate.Hash).

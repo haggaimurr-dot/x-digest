@@ -6,6 +6,7 @@ import (
 	"database/sql"
 	"encoding/hex"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"strings"
 	"time"
@@ -1606,6 +1607,10 @@ func (s *Store) DeleteYTChannel(id string) error {
 	if err := tx.QueryRow("SELECT channel_id FROM yt_channels WHERE id=?", id).Scan(&channelID); err != nil {
 		return err
 	}
+	if _, err := tx.Exec(`DELETE s FROM yt_video_summaries s JOIN yt_videos v ON v.id=s.video_id
+		WHERE v.channel_id=?`, channelID); err != nil {
+		return err
+	}
 	if _, err := tx.Exec("DELETE FROM yt_videos WHERE channel_id=?", channelID); err != nil {
 		return err
 	}
@@ -1895,5 +1900,83 @@ func (s *Store) PutTranslations(target string, items map[string]string) error {
 	}
 	sb.WriteString(" ON DUPLICATE KEY UPDATE source_text=VALUES(source_text), translated_text=VALUES(translated_text)")
 	_, err := s.DB.Exec(sb.String(), args...)
+	return err
+}
+
+// GetYTVideo returns one video by its YouTube ID (sql.ErrNoRows when
+// unknown).
+func (s *Store) GetYTVideo(id string) (model.YTVideo, error) {
+	var v model.YTVideo
+	var desc, published sql.NullString
+	var duration sql.NullInt64
+	err := s.DB.QueryRow(`SELECT id,channel_id,kind,title,description,
+		DATE_FORMAT(published_at,'%Y-%m-%d %H:%i:%s'),duration,
+		live_status,thumbnail_url,url FROM yt_videos WHERE id=?`, id).Scan(&v.ID, &v.ChannelID, &v.Kind,
+		&v.Title, &desc, &published, &duration, &v.LiveStatus, &v.ThumbnailURL, &v.URL)
+	if err != nil {
+		return v, err
+	}
+	v.Description = desc.String
+	v.PublishedAt = published.String
+	v.Duration = int(duration.Int64)
+	return v, nil
+}
+
+// GetYTSummary returns the summary row of (video, lang); ok=false when
+// there is none.
+func (s *Store) GetYTSummary(videoID, lang string) (sum model.YTSummary, ok bool, err error) {
+	var summary, keyPoints, chapters, errText sql.NullString
+	err = s.DB.QueryRow(`SELECT video_id,lang,status,summary,key_points,chapters,source,transcript_lang,
+		model,error,DATE_FORMAT(created_at,'%Y-%m-%d %H:%i:%s'),DATE_FORMAT(updated_at,'%Y-%m-%d %H:%i:%s') FROM yt_video_summaries WHERE video_id=? AND lang=?`, videoID, lang).
+		Scan(&sum.VideoID, &sum.Lang, &sum.Status, &summary, &keyPoints, &chapters, &sum.Source,
+			&sum.TranscriptLang, &sum.Model, &errText, &sum.CreatedAt, &sum.UpdatedAt)
+	if errors.Is(err, sql.ErrNoRows) {
+		return sum, false, nil
+	}
+	if err != nil {
+		return sum, false, err
+	}
+	sum.Summary, sum.Error = summary.String, errText.String
+	sum.KeyPoints, sum.Chapters = []string{}, []model.YTSummaryChapter{}
+	if keyPoints.String != "" {
+		_ = json.Unmarshal([]byte(keyPoints.String), &sum.KeyPoints)
+	}
+	if chapters.String != "" {
+		_ = json.Unmarshal([]byte(chapters.String), &sum.Chapters)
+	}
+	return sum, true, nil
+}
+
+// StartYTSummary marks (video, lang) pending, clearing any earlier
+// result or error (a regenerate starts from scratch).
+func (s *Store) StartYTSummary(videoID, lang string) error {
+	now := Now()
+	_, err := s.DB.Exec(`INSERT INTO yt_video_summaries(video_id,lang,status,summary,key_points,chapters,
+		source,transcript_lang,model,error,created_at,updated_at) VALUES(?,?,'pending','','[]','[]','','','','',?,?)
+		ON DUPLICATE KEY UPDATE status='pending',error='',updated_at=VALUES(updated_at)`, videoID, lang, now, now)
+	return err
+}
+
+// FinishYTSummary stores a finished summary.
+func (s *Store) FinishYTSummary(sum model.YTSummary) error {
+	kp, err := json.Marshal(sum.KeyPoints)
+	if err != nil {
+		return err
+	}
+	ch, err := json.Marshal(sum.Chapters)
+	if err != nil {
+		return err
+	}
+	_, err = s.DB.Exec(`UPDATE yt_video_summaries SET status='done',summary=?,key_points=?,chapters=?,
+		source=?,transcript_lang=?,model=?,error='',updated_at=? WHERE video_id=? AND lang=?`,
+		sum.Summary, string(kp), string(ch), sum.Source, sum.TranscriptLang, sum.Model, Now(), sum.VideoID, sum.Lang)
+	return err
+}
+
+// FailYTSummary records a failed run. An earlier finished summary (a
+// failed regenerate) is kept; only the status and error change.
+func (s *Store) FailYTSummary(videoID, lang, msg string) error {
+	_, err := s.DB.Exec(`UPDATE yt_video_summaries SET status='failed',error=?,updated_at=?
+		WHERE video_id=? AND lang=?`, msg, Now(), videoID, lang)
 	return err
 }

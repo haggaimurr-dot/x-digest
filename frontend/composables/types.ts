@@ -88,3 +88,11 @@ export interface YTVideo {
   url: string, created_at: string,
   kind?: 'video' | 'short' | 'live' | 'playlist', duration?: number, live_status?: string
 }
+// AI summary of one video in one language (GET/POST /api/v1/yt/videos/{id}/summary).
+export interface YTSummaryChapter { start: number, title: string, summary: string }
+export interface YTSummary {
+  video_id: string, lang: string, status: 'none' | 'pending' | 'done' | 'failed',
+  summary: string, key_points: string[], chapters: YTSummaryChapter[],
+  source: '' | 'transcript' | 'description', transcript_lang: string, model: string,
+  error: string, created_at?: string, updated_at?: string
+}

@@ -5,7 +5,7 @@
 import rawPosts from '~/assets/mock/posts.json'
 import rawWatchlist from '~/assets/mock/watchlist.json'
 import rawUserTags from '~/assets/mock/user-tags.json'
-import type { Post, Watchlist, Categories, Replica, ReplicaStep, Attachment, Repo, RepoGroup, RepoCommit, RepoRelease, YTChannel, YTVideo } from './types'
+import type { Post, Watchlist, Categories, Replica, ReplicaStep, Attachment, Repo, RepoGroup, RepoCommit, RepoRelease, YTChannel, YTVideo, YTSummary } from './types'
 import { LS } from './useSettings'
 import { t } from '~/utils/i18n'
 
@@ -417,5 +417,22 @@ export function useMockStore () {
     ytChannels.value = ytChannels.value.map(c => c.group_id === id ? { ...c, group_id: 'default' } : c)
     persistYT()
   }
-  return { watchlist, categories, userTagOverrides, vocabulary, replicas, persist, createReplica, createMockStandaloneReplica, patchReplicaSteps, deleteReplica, addMockReplicaStep, deleteMockReplicaStep, addMockAttachments, deleteMockAttachment, repoGroups, repos, addMockRepo, patchMockRepo, deleteMockRepo, syncMockRepo, addMockRepoGroup, deleteMockRepoGroup, ytGroups, ytChannels, ytVideos, addMockYTChannel, patchMockYTChannel, deleteMockYTChannel, syncMockYTChannel, addMockYTGroup, deleteMockYTGroup }
+  // Mock mode never calls the model: a canned summary shows the layout.
+  function mockYTSummary (id: string, lang: string): YTSummary {
+    const v = ytVideos.value.find(x => x.id === id)
+    const zh = lang !== 'en'
+    return {
+      video_id: id, lang, status: 'done', source: 'transcript', transcript_lang: 'en', model: 'mock', error: '',
+      summary: zh
+        ? `（演示数据）「${v?.title || id}」的全文摘要会显示在这里。\n\n第二段：主要论点、步骤与结论。`
+        : `(Demo data) The full summary of "${v?.title || id}" appears here.\n\nSecond paragraph: main points, steps and conclusion.`,
+      key_points: zh ? ['要点一', '要点二', '要点三'] : ['Point one', 'Point two', 'Point three'],
+      chapters: [
+        { start: 0, title: zh ? '开场' : 'Intro', summary: zh ? '介绍本期内容。' : 'What this video covers.' },
+        { start: 95, title: zh ? '正文' : 'Main part', summary: zh ? '核心演示。' : 'The core demo.' },
+        { start: 300, title: zh ? '总结' : 'Wrap-up', summary: zh ? '结论与下一步。' : 'Conclusion and next steps.' }
+      ]
+    }
+  }
+  return { watchlist, categories, userTagOverrides, vocabulary, replicas, persist, mockYTSummary, createReplica, createMockStandaloneReplica, patchReplicaSteps, deleteReplica, addMockReplicaStep, deleteMockReplicaStep, addMockAttachments, deleteMockAttachment, repoGroups, repos, addMockRepo, patchMockRepo, deleteMockRepo, syncMockRepo, addMockRepoGroup, deleteMockRepoGroup, ytGroups, ytChannels, ytVideos, addMockYTChannel, patchMockYTChannel, deleteMockYTChannel, syncMockYTChannel, addMockYTGroup, deleteMockYTGroup }
 }

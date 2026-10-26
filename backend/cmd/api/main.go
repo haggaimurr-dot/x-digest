@@ -15,6 +15,8 @@
 //	                       /api/v1/translate answers 503; the UI language
 //	                       toggle still works (UI strings are local).
 //	TRANSLATE_MODEL         translation chat model, default deepseek-flash.
+//	                       The same relay/key/model also write the
+//	                       YouTube AI summaries (see yt_summary.go).
 //
 // No authentication is implemented (see README.md "Security note").
 package main
@@ -60,6 +62,7 @@ type server struct {
 	gh        *github.Client
 	tr        *translate.Service
 	yt        *youtube.Client
+	sum       *summaryJobs
 }
 
 func main() {
@@ -74,6 +77,7 @@ func main() {
 		log.Fatalf("db connect: %v", err)
 	}
 	s := &server{st: st, attachDir: attachDir, gh: github.NewFromEnv(), tr: translate.NewService(translate.NewFromEnv(), st), yt: youtube.New()}
+	s.sum = newSummaryJobs(s.yt)
 	mux := http.NewServeMux()
 	mux.HandleFunc("/healthz", s.handleHealth)
 	mux.HandleFunc("/api/v1/healthz", s.handleHealth)
@@ -99,6 +103,7 @@ func main() {
 	mux.HandleFunc("/api/v1/yt/channels", s.handleYTChannels)
 	mux.HandleFunc("/api/v1/yt/channels/", s.handleYTChannelSub)
 	mux.HandleFunc("/api/v1/yt/videos", s.handleYTVideos)
+	mux.HandleFunc("/api/v1/yt/videos/", s.handleYTVideoSub)
 	mux.HandleFunc("/api/v1/yt/sync", s.handleYTSyncAll)
 	mux.HandleFunc("/api/v1/yt/groups", s.handleYTGroups)
 	mux.HandleFunc("/api/v1/yt/groups/", s.handleYTGroup)

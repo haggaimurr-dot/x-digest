@@ -1,6 +1,6 @@
 // Data layer: real /api/v1 by default, mock fallback when NUXT_PUBLIC_USE_MOCK=1.
 // Pages only ever talk to this layer, never to raw fetch or raw mock data.
-import type { Post, Watchlist, Categories, Replica, ReplicaStep, Attachment, Repo, RepoGroup, RepoDetail, RepoRelease, YTChannel, YTVideo } from './types'
+import type { Post, Watchlist, Categories, Replica, ReplicaStep, Attachment, Repo, RepoGroup, RepoDetail, RepoRelease, YTChannel, YTVideo, YTSummary } from './types'
 import { ApiError } from './types'
 import { t } from '~/utils/i18n'
 import { MOCK_POSTS, MOCK_UPDATED_AT, mockRepoCommits, mockRepoRelease, mockRepoReleases } from './useMock'
@@ -325,6 +325,19 @@ export function useStore () {
     }
     return apiFetch<{ synced: number, failed: number, total: number }>('yt/sync', { method: 'POST' })
   }
+  // AI summary: GET reads the stored one (status 'none' when never
+  // generated); POST starts a background job (or returns the finished
+  // one unless force) — the page polls GET while status is 'pending'.
+  async function getYTSummary (id: string, lang: string): Promise<YTSummary> {
+    if (mock.value) return mockStore.mockYTSummary(id, lang)
+    const data = await apiFetch<{ summary: YTSummary }>(`yt/videos/${encodeURIComponent(id)}/summary?lang=${lang}`)
+    return data.summary
+  }
+  async function startYTSummary (id: string, lang: string, force = false): Promise<YTSummary> {
+    if (mock.value) return mockStore.mockYTSummary(id, lang)
+    const data = await apiFetch<{ summary: YTSummary }>(`yt/videos/${encodeURIComponent(id)}/summary?lang=${lang}${force ? '&force=1' : ''}`, { method: 'POST' })
+    return data.summary
+  }
   async function addYTGroup (name: string): Promise<RepoGroup> {
     if (mock.value) return mockStore.addMockYTGroup(name)
     const data = await apiFetch<any>('yt/groups', { method: 'POST', body: JSON.stringify({ name }) })
@@ -341,7 +354,7 @@ export function useStore () {
     deleteAccount, addCategory, deleteCategory, setPostCategories, setUserTags, translateTexts,
     loadRepos, loadRepoGroups, addRepo, loadRepoDetail, loadRepoCommits, loadRepoReleases,
     patchRepo, deleteRepo, syncRepo, syncAllRepos, addRepoGroup, deleteRepoGroup, validateRepoFullName,
-    loadYTChannels, loadYTVideos, addYTChannel, updateYTChannel, deleteYTChannel, syncYTChannel, syncAllYTChannels,
+    loadYTChannels, loadYTVideos, addYTChannel, updateYTChannel, deleteYTChannel, syncYTChannel, syncAllYTChannels, getYTSummary, startYTSummary,
     loadYTGroups, addYTGroup, deleteYTGroup
   }
 }

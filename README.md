@@ -42,6 +42,13 @@ cd frontend && npm install && npm run dev   # dev 端口 18091，/api 代理到 
 - 同步：后端直接调 GitHub REST API（仓库信息、提交、Release、search API 分别计 Issue/PR 数，不用含 PR 的 `open_issues_count`）。数据存 DB，页面只读 DB；同步只在添加仓库和点“刷新”时触发，记 `last_synced_at`/`sync_status`。未登录每小时 60 次，限流时保留旧数据并明确提示；私有仓库未登录会报“可能是不存在或私有仓库需要 token”。
 - Token：后端读环境变量 `GITHUB_TOKEN`（有则用，无则走未登录模式）。多仓库频繁刷新需要一个 GitHub 细粒度 PAT（只读公开仓库即可），通过 Secure Vault 提供后配进服务器 `/etc/xdigest/api.env`，绝不写进仓库。
 
+## 油管 AI 摘要（章节 + 全文）
+
+- 油管页每个视频（播放列表除外）有「✨ AI 摘要」按钮：首次点击在后台生成，之后直接读库；「重新生成」会覆盖旧结果。
+- 流程：yt-dlp 读元数据（标题、简介、作者章节、可用字幕）→ 只下载一条字幕（优先人工字幕，其次视频原语言的自动字幕）→ 调 `TRANSLATE_*` 配置的同一个 AI 中转生成全文摘要、要点和带时间点的章节。视频自带章节时保留作者的时间点；没有字幕时只根据标题和简介生成，并在页面上注明。
+- 接口：`GET/POST /api/v1/yt/videos/{id}/summary?lang=zh-CN|en[&force=1]`（POST 返回 202 后页面每 4 秒轮询）；表 `yt_video_summaries`（见 `backend/schema.sql`，幂等追加）。
+- 依赖：服务器上 `TRANSLATE_API_KEY` 必须已配置，否则返回 503；yt-dlp 走 `YT_HTTP_PROXY`，与同步相同。无登录，任何能访问页面的人都能触发 AI 调用（已生成的摘要不会重复调用）。
+
 ## 数据导入（服务器本地，不要暴露成 HTTP 接口）
 
 ```bash
