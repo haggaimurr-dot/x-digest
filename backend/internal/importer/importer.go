@@ -366,9 +366,89 @@ func loadRaw(path string) (map[string]rawPost, error) {
 	}
 	for _, p := range posts {
 		if id, ok := p["id"].(string); ok {
-			text := textFromRaw(p)
-			result[id] = rawPost{Avatar: avatarFromRaw(p), Text: text, Links: extractLinks(text)}
+			text := expandShortLinks(textFromRaw(p), urlEntities(p))
+			text += referencedText(p)
+			result[id] = rawPost{Avatar: avatarFromRaw(p), Text: text, Links: resourceLinks(extractLinks(text))}
 		}
 	}
 	return result, nil
+}
+
+// urlEntities maps each t.co short link to its expanded_url, from the X
+// API v2 shape entities.urls[] (or a flat urls[]). Optional: older raw
+// files have neither and keep their t.co links.
+func urlEntities(p map[string]any) map[string]string {
+	out := map[string]string{}
+	var lists []any
+	if ent, ok := p["entities"].(map[string]any); ok {
+		if l, ok := ent["urls"].([]any); ok {
+			lists = append(lists, l...)
+		}
+	}
+	if l, ok := p["urls"].([]any); ok {
+		lists = append(lists, l...)
+	}
+	for _, it := range lists {
+		u, ok := it.(map[string]any)
+		if !ok {
+			continue
+		}
+		short, _ := u["url"].(string)
+		long, _ := u["expanded_url"].(string)
+		if short != "" && strings.HasPrefix(long, "http") {
+			out[short] = long
+		}
+	}
+	return out
+}
+
+// expandShortLinks swaps t.co links in text for their expanded URLs.
+func expandShortLinks(text string, m map[string]string) string {
+	for short, long := range m {
+		text = strings.ReplaceAll(text, short, long)
+	}
+	return text
+}
+
+// mediaLinkRe matches the expanded form of a photo/video attachment
+// (x.com/<user>/status/<id>/photo/1): the tweet's own media, not a resource.
+var mediaLinkRe = regexp.MustCompile(`^https?://(x|twitter)\.com/[^/]+/status/\d+/(photo|video)/\d+`)
+
+// resourceLinks drops media-attachment links from the resource list.
+func resourceLinks(links []string) []string {
+	var out []string
+	for _, l := range links {
+		if !mediaLinkRe.MatchString(l) {
+			out = append(out, l)
+		}
+	}
+	return out
+}
+
+// referencedText appends the text of quoted / replied-to tweets when the
+// raw item carries it (referenced_tweets[].text), so the page and the AI
+// summary see what the post responds to. Missing text adds nothing.
+func referencedText(p map[string]any) string {
+	refs, _ := p["referenced_tweets"].([]any)
+	var b strings.Builder
+	for _, r := range refs {
+		ref, ok := r.(map[string]any)
+		if !ok {
+			continue
+		}
+		text, _ := ref["text"].(string)
+		if strings.TrimSpace(text) == "" {
+			continue
+		}
+		label := "引用"
+		if t, _ := ref["type"].(string); t == "replied_to" {
+			label = "回复"
+		}
+		who, _ := ref["author_username"].(string)
+		if who != "" {
+			label += " @" + who
+		}
+		fmt.Fprintf(&b, "\n\n【%s】%s", label, expandShortLinks(strings.TrimSpace(text), urlEntities(ref)))
+	}
+	return b.String()
 }
