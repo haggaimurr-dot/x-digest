@@ -69,7 +69,10 @@ python3 -m http.server 8080
 }
 ```
 
-`author_id`、`author_username`、`author_name` 必填且不得为空。`note_tweet` 或 `long_text` 有值时保存完整长文；无长文时可为 `null`。`referenced_tweets` 保存引用或转帖的原作者信息，至少包含 `author_id` 和 `author_username`，有名称时也保存 `author_name`。`media` 中每项包含 `type`、`url`；`public_metrics` 使用 `like`、`reply`、`repost`、`quote`、`impression` 五项。`source` 为 `builtin-x` 或 `plugin`。
+`author_id`、`author_username`、`author_name` 必填且不得为空。
+
+**写入去重（硬规则）**：向 `data/raw_posts.json` 追加前必须先读出已有全部 `id`；新帖 `id` 已存在则跳过，不得再 append。保证零重复。入库请用 `scripts/append_raw_posts.py`（或同等逻辑）。验证：`python3 tests/test_raw_posts_dedup.py`。
+`note_tweet` 或 `long_text` 有值时保存完整长文；无长文时可为 `null`。`referenced_tweets` 保存引用或转帖的原作者信息，至少包含 `author_id` 和 `author_username`，有名称时也保存 `author_name`。`media` 中每项包含 `type`、`url`；`public_metrics` 使用 `like`、`reply`、`repost`、`quote`、`impression` 五项。`source` 为 `builtin-x` 或 `plugin`。
 
 ### posts.json 字段
 
