@@ -366,12 +366,27 @@ func loadRaw(path string) (map[string]rawPost, error) {
 	}
 	for _, p := range posts {
 		if id, ok := p["id"].(string); ok {
-			text := expandShortLinks(textFromRaw(p), urlEntities(p))
-			text += referencedText(p)
-			result[id] = rawPost{Avatar: avatarFromRaw(p), Text: text, Links: resourceLinks(extractLinks(text))}
+			text, links := RawContent(p)
+			result[id] = rawPost{Avatar: avatarFromRaw(p), Text: text, Links: links}
 		}
 	}
 	return result, nil
+}
+
+// RawContent returns the display text of one raw_posts.json item (fullest
+// text, t.co links expanded, quoted/replied-to text appended) and its
+// resource links. The importer and cmd/digest share it.
+func RawContent(p map[string]any) (text string, links []string) {
+	text = expandShortLinks(textFromRaw(p), urlEntities(p)) + referencedText(p)
+	return text, resourceLinks(extractLinks(text))
+}
+
+var substanceStripRe = regexp.MustCompile(`https?://\S+|@\w+`)
+
+// SubstantiveChars counts what is left of the post's own text after
+// removing links and @mentions — the short-reply filter (< 15 = skip).
+func SubstantiveChars(p map[string]any) int {
+	return len([]rune(strings.TrimSpace(substanceStripRe.ReplaceAllString(textFromRaw(p), ""))))
 }
 
 // urlEntities maps each t.co short link to its expanded_url, from the X
