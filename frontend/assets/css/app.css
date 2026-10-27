@@ -249,3 +249,11 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
 @media (max-width: 620px) {
   .yt-video-card { grid-template-columns: 40% 1fr; gap: 10px; }
 }
+
+/* Original text and resources precede the existing AI digest. */
+.post-original .post-summary { white-space: pre-wrap; overflow-wrap: anywhere; }
+.original-missing { color: var(--text-muted); font-size: 13px; }
+.post-resources, .post-ai-summary { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); }
+.post-resources h3, .post-ai-summary h3 { margin: 0 0 6px; font-size: 13px; color: var(--text-muted); }
+.post-resources ul { margin: 0; padding-left: 18px; }
+.post-resources a { overflow-wrap: anywhere; }

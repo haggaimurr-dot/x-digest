@@ -7,7 +7,9 @@
     "dev": "nuxt dev --port 18091",
     "build": "nuxt build",
     "preview": "nuxt preview --port 18091",
-    "start": "node .output/server/index.mjs"
+    "start": "node .output/server/index.mjs",
+    "prebuild": "node scripts/sync-x-content.mjs",
+    "predev": "node scripts/sync-x-content.mjs"
   },
   "dependencies": {
     "jszip": "^3.10.1",

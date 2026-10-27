@@ -56,8 +56,11 @@
             </div>
           </div>
           <h2 class="post-title"><a :href="post.url" target="_blank" rel="noopener" v-html="highlightHtml(tr(post.title), plainKeyword)" /></h2>
-          <p class="post-summary" v-html="highlightHtml(summaryShown(post), plainKeyword)" />
-          <button v-if="post.is_long" class="btn btn-sm" type="button" @click="toggleLong(post.id)">{{ expandedLong.has(post.id) ? t('index.collapseLong') : t('index.expandLong') }}</button>
+          <div v-if="post.text" class="post-original">
+            <p class="post-summary" :id="`original-${post.id}`" v-html="highlightHtml(originalShown(post), plainKeyword)" />
+            <button v-if="post.text.length > 280" class="btn btn-sm" type="button" :aria-expanded="expandedOriginal.has(post.id)" :aria-controls="`original-${post.id}`" @click="toggleOriginal(post.id)">{{ expandedOriginal.has(post.id) ? '收起原文' : '展开原文' }}</button>
+          </div>
+          <p v-else class="original-missing">原文暂未收录，可点击标题查看原推文。</p>
           <div v-if="post.note" style="margin-top:6px"><span class="note-pill">{{ post.note }}</span></div>
           <div class="chips" style="margin-top:8px">
             <button v-for="t in (post.tags || []).slice(0, 8)" :key="t" type="button" class="chip" @click="selectTagOnly(t)">{{ t }}</button>
@@ -80,6 +83,15 @@
               <button class="btn btn-sm btn-primary" type="button" @click="createCat(post.id)">{{ t('index.newCat') }}</button>
             </div>
           </div>
+          <section v-if="post.links?.length" class="post-resources" aria-label="资源链接">
+            <h3>资源</h3>
+            <ul><li v-for="url in post.links" :key="url"><a :href="url" target="_blank" rel="noopener noreferrer">{{ url }}</a></li></ul>
+          </section>
+          <section v-if="post.summary" class="post-ai-summary" aria-label="AI 摘要">
+            <h3>AI 摘要</h3>
+          <p class="post-summary" v-html="highlightHtml(summaryShown(post), plainKeyword)" />
+          <button v-if="post.is_long" class="btn btn-sm" type="button" @click="toggleLong(post.id)">{{ expandedLong.has(post.id) ? t('index.collapseLong') : t('index.expandLong') }}</button>
+          </section>
           <details v-if="shouldShowFlowchart(post) && (post.steps || []).length" class="steps" style="margin-top:10px">
             <summary>{{ t('index.stepsSummary', { n: post.steps!.length }) }}</summary>
             <div class="flow-chart">
@@ -233,6 +245,7 @@ const selectedTags = ref<Set<string>>(new Set())
 const selectedUserTags = ref<Set<string>>(new Set())
 const selectedCats = ref<Set<string>>(new Set())
 const filtersCollapsed = ref(false)
+const expandedOriginal = ref<Set<string>>(new Set())
 const expandedLong = ref<Set<string>>(new Set())
 const substepsOpen = ref<Set<string>>(new Set())
 const catMenuPost = ref<string | null>(null)
@@ -329,7 +342,7 @@ function matchesKeyword (p: Post): boolean {
     return userTagsOf(p.author).some(t => t.toLowerCase().includes(needle))
   }
   const stepTexts = (p.steps || []).flatMap(s => [s.text, s.tools, s.tech, s.prep, ...(s.substeps || []).map(x => x.text)].filter(Boolean) as string[])
-  const hay = [p.title, p.summary || '', p.industry || '', p.tech || '', p.author, '@' + p.author, p.author_name, accountOf(p.author)?.bio || '', ...userTagsOf(p.author), ...(p.tags || []), ...catsOf(p.id).map(categoryName), shanghaiTime(p.published_at), ...stepTexts].join('\n').toLowerCase()
+  const hay = [p.title, p.text || '', ...(p.links || []), p.summary || '', p.industry || '', p.tech || '', p.author, '@' + p.author, p.author_name, accountOf(p.author)?.bio || '', ...userTagsOf(p.author), ...(p.tags || []), ...catsOf(p.id).map(categoryName), shanghaiTime(p.published_at), ...stepTexts].join('\n').toLowerCase()
   // Tag field: strip leading # before matching (SPEC).
   return hay.includes(q.replace(/^#+/, ''))
 }
@@ -372,6 +385,15 @@ function clearAll () {
   selectedTags.value = new Set(); selectedUserTags.value = new Set(); selectedCats.value = new Set()
   selectedAuthors.value = new Set(watchlist.value.accounts.filter(a => a.group === 'special').map(a => a.username))
   persistSelection()
+}
+function toggleOriginal (id: string) {
+  const next = new Set(expandedOriginal.value)
+  next.has(id) ? next.delete(id) : next.add(id)
+  expandedOriginal.value = next
+}
+function originalShown (p: Post) {
+  const text = p.text || ''
+  return text.length > 280 && !expandedOriginal.value.has(p.id) ? text.slice(0, 280) + '…' : text
 }
 function toggleLong (id: string) { expandedLong.value.has(id) ? expandedLong.value.delete(id) : expandedLong.value.add(id); expandedLong.value = new Set(expandedLong.value) }
 function summaryShown (p: Post) {

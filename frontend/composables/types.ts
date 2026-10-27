@@ -15,6 +15,8 @@ export interface Post {
   industry?: string
   tech?: string
   title: string
+  text?: string
+  links?: string[]
   summary?: string
   note?: string
   published_at: string

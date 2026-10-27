@@ -1,3 +1,4 @@
+import xContent from '~/assets/mock/x-content.json'
 // Data layer: real /api/v1 by default, mock fallback when NUXT_PUBLIC_USE_MOCK=1.
 // Pages only ever talk to this layer, never to raw fetch or raw mock data.
 import type { Post, Watchlist, Categories, Replica, ReplicaStep, Attachment, Repo, RepoGroup, RepoDetail, RepoRelease, YTChannel, YTVideo, YTSummary } from './types'
@@ -20,6 +21,14 @@ export function validateAttachmentFiles (files: File[]): string | null {
   return null
 }
 
+function withXContent (post: Post): Post {
+  const raw = (xContent as Record<string, { text: string, links: string[] }>)[post.id]
+  const text = post.text || raw?.text || ''
+  const links = [...new Set([...(post.links || []), ...(raw?.links || []), ...(text.match(/https?:\/\/[^\s<>"“”]+/gu) || [])])]
+    .filter(url => { try { return ['https:', 'http:'].includes(new URL(url).protocol) } catch { return false } })
+  return { ...post, text, links }
+}
+
 export function useStore () {
   const { mock, apiFetch, apiUpload } = useApi()
   const mockStore = useMockStore()
@@ -32,11 +41,12 @@ export function useStore () {
         const d = Date.parse(b.published_at) - Date.parse(a.published_at)
         return d !== 0 ? d : a.id.localeCompare(b.id)
       })
-      return { updated_at: MOCK_UPDATED_AT, total: posts.length, posts }
+      return { updated_at: MOCK_UPDATED_AT, total: posts.length, posts: posts.map(withXContent) }
     }
     const data = await apiFetch<{ updated_at: string, total: number, posts: Post[] }>('posts?page=1&page_size=1000')
     // Client-side filtering (SPEC semantics) is applied in the page; the server
     // list is already published_at DESC, id ASC per SPEC.
+    data.posts = data.posts.map(withXContent)
     return data
   }
   async function loadWatchlist (): Promise<Watchlist> {

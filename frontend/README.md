@@ -120,3 +120,13 @@ public/avatars/           # 联调占位头像 13 张（集成时由协调人替
   附件上传的 422 逐文件说明依赖后端返回 `message`，前端原样展示。
 - 类别改名输入框、撤销删除、筛选区折叠等次要交互未复刻（见差异 8、9）。
 - 未做任何 git 操作、未访问上海服务器、未改 `~/workspace/x-digest` 与其他项目（按任务要求）。
+
+### X 卡片原文与资源
+
+卡片顺序为头像 / 标题、原文、标签 / 资源 / 原有 AI 摘要与步骤。
+原文按 ID 关联仓库 `data/raw_posts.json`，优先 `long_text`、`note_tweet.text`、`text`，
+不使用摘要冒充原文；超过 280 字可展开、收起，保留换行。
+`npm run dev` / `npm run build` 会先运行 `scripts/sync-x-content.mjs`，
+为 `data/posts.json` 和演示帖子生成精简的 `assets/mock/x-content.json`（含 `text`、去重 `links`）。
+更新原文或摘要数据后需重新构建前端，API 若直接提供 `text` / `links` 也会采用。
+未关联到原文时显示未收录提示；没有链接时不显示资源区。资源仅允许 HTTP(S)。
