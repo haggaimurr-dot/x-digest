@@ -25,7 +25,9 @@ export function validateAttachmentFiles (files: File[]): string | null {
 function withXContent (post: Post): Post {
   const raw = (xContent as Record<string, { text: string, links: string[], avatar?: string }>)[post.id]
   const text = post.text || raw?.text || ''
-  const links = [...new Set([...(post.links || []), ...(raw?.links || []), ...(text.match(/https?:\/\/[^\s<>"“”]+/gu) || [])])]
+  // Rows imported with posts.text carry their own expanded links; the
+  // bundled x-content.json copy (t.co links) only fills in for older rows.
+  const links = [...new Set([...(post.links || []), ...(post.text ? [] : [...(raw?.links || []), ...(text.match(/https?:\/\/[^\s<>"“”]+/gu) || [])])])]
     .filter(url => { try { return ['https:', 'http:'].includes(new URL(url).protocol) } catch { return false } })
   return { ...post, text, links, author_avatar: rawAvatar(post) || raw?.avatar || '' }
 }

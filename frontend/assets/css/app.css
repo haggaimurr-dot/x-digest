@@ -224,7 +224,15 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
 /* 右栏「内容简介：…」用正文样式，不做标题强调。 */
 .x-brief { margin: 0 0 4px; font-size: 14px; line-height: 1.55; color: var(--text); overflow-wrap: anywhere; }
 .x-brief-label { color: var(--text-muted); }
-.x-orig-label { font-size: 11px; font-weight: 600; color: var(--text-muted); margin-bottom: 4px; }
+.x-orig-label { font-size: 11px; font-weight: 600; color: var(--text-muted); margin-bottom: 4px; display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+.x-orig-link { font-weight: 400; color: var(--accent); text-decoration: none; white-space: nowrap; }
+.x-orig-link:hover { text-decoration: underline; }
+.x-kind-on { outline: 2px solid var(--accent); }
+.x-pager { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; justify-content: center; margin: 16px 0 8px; }
+.x-pager-gap { color: var(--text-muted); padding: 0 2px; }
+.x-pager-size { display: inline-flex; align-items: center; gap: 4px; font-size: 13px; color: var(--text-muted); margin-left: 6px; }
+.x-pager-size .field { width: auto; padding: 4px 6px; }
+.x-pager-info { font-size: 13px; color: var(--text-muted); }
 .x-orig-text { margin: 0; font-size: 13px; line-height: 1.55; white-space: pre-line; overflow-wrap: anywhere; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .x-orig.is-missing .x-orig-text { color: var(--text-muted); font-size: 12px; }
 .x-head-avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 14px; font-weight: 700; background: var(--bg-elevated); border: 1px solid var(--border); }

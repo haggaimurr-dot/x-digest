@@ -36,6 +36,17 @@ type Post struct {
 	// Original post text and its links (from raw_posts.json at import).
 	Text  string   `json:"text"`
 	Links []string `json:"links"`
+	// Kind is the AI post type (教程实操 / 技术分享 / 工具资源推荐 / 观点讨论 /
+	// 日常闲聊; "" = not classified). Resources explain each link.
+	Kind      string         `json:"kind"`
+	Resources []PostResource `json:"resources"`
+}
+
+// PostResource is one link of a post with what it is (from cmd/digest).
+type PostResource struct {
+	URL  string `json:"url"`
+	Name string `json:"name"`
+	Note string `json:"note"`
 }
 
 type Group struct {

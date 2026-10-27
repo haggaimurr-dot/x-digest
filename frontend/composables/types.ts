@@ -24,6 +24,9 @@ export interface Post {
   show_flowchart?: boolean | null
   tags?: string[]
   steps?: Step[]
+  // AI post type from cmd/digest ("" = not classified) and link explanations.
+  kind?: string
+  resources?: Array<{ url: string, name: string, note: string }>
 }
 export interface WatchlistGroup { id: string, name: string, fixed?: boolean }
 export interface WatchlistAccount {

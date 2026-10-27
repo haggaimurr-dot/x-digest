@@ -152,7 +152,7 @@ func (s *Store) ListPosts(f PostFilter) (posts []model.Post, total int, updatedA
 	offset := (f.Page - 1) * f.PageSize
 	qargs := append(append([]any{}, args...), f.PageSize, offset)
 	rows, err := s.DB.Query(`SELECT p.id,p.url,p.author,p.author_name,COALESCE(NULLIF(p.author_avatar,''),(SELECT a.avatar FROM authors a WHERE a.username=p.author),''),p.industry,p.tech,
-		p.title,p.summary,p.note,p.published_at,p.is_long,p.show_flowchart,COALESCE(p.text,''),COALESCE(p.links,'')
+		p.title,p.summary,p.note,p.published_at,p.is_long,p.show_flowchart,COALESCE(p.text,''),COALESCE(p.links,''),p.kind,COALESCE(p.resources,'')
 		FROM posts p `+where+` ORDER BY p.published_at DESC, p.id ASC LIMIT ? OFFSET ?`, qargs...)
 	if err != nil {
 		return nil, 0, "", err
@@ -163,13 +163,14 @@ func (s *Store) ListPosts(f PostFilter) (posts []model.Post, total int, updatedA
 		var p model.Post
 		var show sql.NullBool
 		var note sql.NullString
-		var links string
+		var links, resources string
 		if err := rows.Scan(&p.ID, &p.URL, &p.Author, &p.AuthorName, &p.AuthorAvatar, &p.Industry, &p.Tech,
-			&p.Title, &p.Summary, &note, &p.PublishedAt, &p.IsLong, &show, &p.Text, &links); err != nil {
+			&p.Title, &p.Summary, &note, &p.PublishedAt, &p.IsLong, &show, &p.Text, &links, &p.Kind, &resources); err != nil {
 			return nil, 0, "", err
 		}
 		p.Note = note.String
 		p.Links = decodeLinks(links)
+		p.Resources = decodeResources(resources)
 		if show.Valid {
 			v := show.Bool
 			p.ShowFlowchart = &v
@@ -185,6 +186,15 @@ func (s *Store) ListPosts(f PostFilter) (posts []model.Post, total int, updatedA
 		posts = append(posts, p)
 	}
 	return posts, total, updatedAt, rows.Err()
+}
+
+// decodeResources reads posts.resources (JSON array; "" = none).
+func decodeResources(raw string) []model.PostResource {
+	out := []model.PostResource{}
+	if raw != "" {
+		_ = json.Unmarshal([]byte(raw), &out)
+	}
+	return out
 }
 
 // decodeLinks reads posts.links (a JSON array; "" = none).
@@ -243,16 +253,17 @@ func (s *Store) GetPost(id string) (*model.Post, error) {
 	var p model.Post
 	var show sql.NullBool
 	var note sql.NullString
-	var links string
+	var links, resources string
 	err := s.DB.QueryRow(`SELECT id,url,author,author_name,COALESCE(NULLIF(author_avatar,''),(SELECT a.avatar FROM authors a WHERE a.username=posts.author),''),industry,tech,title,summary,note,
-		published_at,is_long,show_flowchart,COALESCE(text,''),COALESCE(links,'') FROM posts WHERE id=?`, id).Scan(
+		published_at,is_long,show_flowchart,COALESCE(text,''),COALESCE(links,''),kind,COALESCE(resources,'') FROM posts WHERE id=?`, id).Scan(
 		&p.ID, &p.URL, &p.Author, &p.AuthorName, &p.AuthorAvatar, &p.Industry, &p.Tech,
-		&p.Title, &p.Summary, &note, &p.PublishedAt, &p.IsLong, &show, &p.Text, &links)
+		&p.Title, &p.Summary, &note, &p.PublishedAt, &p.IsLong, &show, &p.Text, &links, &p.Kind, &resources)
 	if err != nil {
 		return nil, err
 	}
 	p.Note = note.String
 	p.Links = decodeLinks(links)
+	p.Resources = decodeResources(resources)
 	if show.Valid {
 		v := show.Bool
 		p.ShowFlowchart = &v

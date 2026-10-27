@@ -129,7 +129,19 @@ type post struct {
 	Tags          []string `json:"tags"`
 	IsLong        bool     `json:"isLong"`
 	ShowFlowchart bool     `json:"showFlowchart"`
+	Kind          string   `json:"kind"`
+	Resources     []res    `json:"resources"`
 }
+
+// res explains one link of the post (only links that are in the post).
+type res struct {
+	URL  string `json:"url"`
+	Name string `json:"name"`
+	Note string `json:"note"`
+}
+
+// postKinds are the allowed post types; anything else is stored as "".
+var postKinds = map[string]bool{"教程实操": true, "技术分享": true, "工具资源推荐": true, "观点讨论": true, "日常闲聊": true}
 
 type postsFile struct {
 	UpdatedAt string `json:"updatedAt"`
@@ -209,7 +221,9 @@ const systemPrompt = `你在为「X 博主推文日报」整理单条推文。�
  "tags": 3-6 个中文短标签,
  "summary": 2-4 句中文摘要：讲了什么、关键信息（工具、数字、做法）、结论；纯互动寒暄就一句话说明,
  "steps": 只有教程/实操类推文才填，按顺序列出步骤 [{"text": 步骤, "tools": 用到的工具, "tech": 技术点, "prep": 前提}]，其他推文给 [],
- "showFlowchart": steps 有 3 步及以上时为 true，否则 false}
+ "showFlowchart": steps 有 3 步及以上时为 true，否则 false,
+ "kind": 帖子类型，只能是以下之一：教程实操（一步步教怎么做）/ 技术分享（讲技术原理、经验、方案）/ 工具资源推荐（推荐工具、仓库、文章、课程，本身不讲做法）/ 观点讨论 / 日常闲聊,
+ "resources": 对"原文中的链接"逐个说明 [{"url": 原样照抄给出的链接, "name": 是什么（如"Claude Code 官方文档""@某人的推文""GitHub 仓库 xx"）, "note": 一句话说明内容或用途}]；看不出是什么就写"原文附带的链接"，不要编造，没有链接给 []}
 如果原文附有【引用 …】或【回复 …】，那是对方的内容，用来理解上下文，摘要以作者本人的观点为主。`
 
 type modelOut struct {
@@ -220,6 +234,27 @@ type modelOut struct {
 	Summary       string   `json:"summary"`
 	Steps         []step   `json:"steps"`
 	ShowFlowchart bool     `json:"showFlowchart"`
+	Kind          string   `json:"kind"`
+	Resources     []res    `json:"resources"`
+}
+
+// keepResources keeps the model's explanations only for links that are
+// really in the post (never a URL the model made up), one per link.
+func keepResources(in []res, links []string) []res {
+	allowed := map[string]bool{}
+	for _, l := range links {
+		allowed[l] = true
+	}
+	out := []res{}
+	seen := map[string]bool{}
+	for _, r := range in {
+		r.URL, r.Name, r.Note = strings.TrimSpace(r.URL), strings.TrimSpace(r.Name), strings.TrimSpace(r.Note)
+		if allowed[r.URL] && !seen[r.URL] && r.Name != "" {
+			seen[r.URL] = true
+			out = append(out, r)
+		}
+	}
+	return out
 }
 
 func (g *generator) one(raw map[string]any) {
@@ -249,6 +284,10 @@ func (g *generator) one(raw map[string]any) {
 		PublishedAt: str(raw, "created_at"), Title: strings.TrimSpace(m.Title), Industry: strings.TrimSpace(m.Industry),
 		Tech: strings.TrimSpace(m.Tech), Summary: strings.TrimSpace(m.Summary), Steps: m.Steps, Tags: cleanTags(m.Tags),
 		ShowFlowchart: m.ShowFlowchart && len(m.Steps) >= 3,
+		Resources:     keepResources(m.Resources, links),
+	}
+	if k := strings.TrimSpace(m.Kind); postKinds[k] {
+		p.Kind = k
 	}
 	if p.Steps == nil {
 		p.Steps = []step{}

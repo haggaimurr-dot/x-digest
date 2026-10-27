@@ -64,6 +64,13 @@ type legacyPost struct {
 	// come from data/raw_posts.json (same rules as sync-x-content.mjs).
 	Text  string   `json:"text"`
 	Links []string `json:"links"`
+	// From cmd/digest: post type and link explanations (optional).
+	Kind      string `json:"kind"`
+	Resources []struct {
+		URL  string `json:"url"`
+		Name string `json:"name"`
+		Note string `json:"note"`
+	} `json:"resources"`
 }
 
 type legacyPostsFile struct {
@@ -211,6 +218,11 @@ func Import(db *sql.DB, dataDir string) (Counts, error) {
 		if len(p.Links) == 0 {
 			p.Links = extractLinks(p.Text)
 		}
+		resourcesJSON := ""
+		if len(p.Resources) > 0 {
+			b, _ := json.Marshal(p.Resources)
+			resourcesJSON = string(b)
+		}
 		linksJSON := ""
 		if len(p.Links) > 0 {
 			b, _ := json.Marshal(p.Links)
@@ -238,15 +250,16 @@ func Import(db *sql.DB, dataDir string) (Counts, error) {
 		}
 		// text/links never overwrite a stored value with an empty one.
 		if _, err := tx.Exec(`INSERT INTO posts(id,url,author,author_name,author_avatar,industry,tech,title,summary,note,
-				published_at,is_long,show_flowchart,updated_at_meta,text,links) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+				published_at,is_long,show_flowchart,updated_at_meta,text,links,kind,resources) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
 			ON DUPLICATE KEY UPDATE url=VALUES(url), author=VALUES(author), author_name=VALUES(author_name),
 				text=IF(VALUES(text)<>'',VALUES(text),text), links=IF(VALUES(links)<>'',VALUES(links),links),
+				kind=IF(VALUES(kind)<>'',VALUES(kind),kind), resources=IF(VALUES(resources)<>'',VALUES(resources),resources),
 				author_avatar=VALUES(author_avatar), industry=VALUES(industry), tech=VALUES(tech),
 				title=VALUES(title), note=VALUES(note),
 				published_at=VALUES(published_at), is_long=VALUES(is_long),
 				show_flowchart=VALUES(show_flowchart), updated_at_meta=VALUES(updated_at_meta)`,
 			p.ID, p.URL, p.Author, p.AuthorName, p.AuthorAvatar, p.Industry, p.Tech, p.Title, "", p.Note,
-			published, boolToInt(p.IsLong), show, updatedMeta, p.Text, linksJSON); err != nil {
+			published, boolToInt(p.IsLong), show, updatedMeta, p.Text, linksJSON, p.Kind, resourcesJSON); err != nil {
 			return c, err
 		}
 		c.Posts++

@@ -428,6 +428,9 @@ ALTER TABLE bili_video_summaries ADD COLUMN IF NOT EXISTS resources MEDIUMTEXT N
 -- from the bundled frontend/assets/mock/x-content.json.
 ALTER TABLE posts ADD COLUMN IF NOT EXISTS text MEDIUMTEXT NULL;
 ALTER TABLE posts ADD COLUMN IF NOT EXISTS links TEXT NULL;
+-- AI post type and link explanations from cmd/digest (added 2026-10-27).
+ALTER TABLE posts ADD COLUMN IF NOT EXISTS kind VARCHAR(16) NOT NULL DEFAULT '';
+ALTER TABLE posts ADD COLUMN IF NOT EXISTS resources TEXT NULL;
 
 -- ---- X post AI summaries (added 2026-10-27) ----
 -- Generated on demand (POST /api/v1/posts/{id}/summary) from the post's

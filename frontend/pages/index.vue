@@ -33,6 +33,12 @@
               </div>
             </div>
           </div>
+          <div v-if="kindCounts.length" style="margin-top:8px">
+            <div class="chip-group-title">帖子类型</div>
+            <div class="chips">
+              <button v-for="kc in kindCounts" :key="kc.kind" type="button" class="chip" :class="{ active: kindFilter === kc.kind }" @click="kindFilter = kindFilter === kc.kind ? '' : kc.kind">{{ kc.kind }}（{{ kc.n }}）</button>
+            </div>
+          </div>
           <div class="filter-row" style="margin-top:8px">
             <button class="btn btn-sm" type="button" @click="clearAll">{{ t('index.clearAll') }}</button>
             <span class="result-count">{{ t('index.resultCount', { n: filtered.length }) }}</span>
@@ -59,7 +65,7 @@
           <article v-for="post in grp.posts" :key="post.id" class="post-card yt-video-card">
             <div class="yt-left">
               <div class="x-orig" :class="{ 'is-missing': !post.text }">
-                <div class="x-orig-label">𝕏 原文</div>
+                <div class="x-orig-label"><span>𝕏 原文</span><a class="x-orig-link" :href="post.url" target="_blank" rel="noopener">查看原帖 ↗</a></div>
                 <p v-if="post.text" class="x-orig-text" :class="{ 'yt-desc-open': expandedOriginal.has(post.id) }" :id="`original-${post.id}`"><template v-for="(part, pi) in linkParts(post.text)" :key="pi"><a v-if="part.href" class="yt-desc-link" :href="part.href" :title="part.href" target="_blank" rel="noopener noreferrer">{{ part.text.replace(/^https?:\/\/(www\.)?/, '') }}</a><span v-else v-html="highlightHtml(part.text, plainKeyword)" /></template></p>
                 <p v-else class="x-orig-text">原文暂未收录，<a :href="post.url" target="_blank" rel="noopener" style="color:var(--accent)">点击查看原推文</a>。</p>
               </div>
@@ -69,13 +75,14 @@
               <p v-if="post.title" class="x-brief"><span class="x-brief-label">内容简介：</span><span v-html="highlightHtml(tr(post.title), plainKeyword)" /></p>
               <p class="yt-meta"><a class="yt-meta-link" :href="post.url" target="_blank" rel="noopener">{{ shanghaiTime(post.published_at) }}（{{ relativeTime(post.published_at, lang.value) }}）</a><span v-if="post.industry"> · {{ post.industry }}</span><span v-if="post.tech"> · {{ post.tech }}</span></p>
               <div class="yt-tags">
-                <button v-for="tg in (post.tags || []).filter(tag => tag !== '复刻' || canReplicatePost(post)).slice(0, 8)" :key="tg" type="button" class="chip yt-tag yt-topic" :class="{ active: selectedTags.has(tg) }" @click="selectTagOnly(tg)">#{{ tg }}</button>
+                <button v-if="post.kind" type="button" class="chip active yt-tag" :class="{ 'x-kind-on': kindFilter === post.kind }" @click="kindFilter = kindFilter === post.kind ? '' : post.kind">{{ post.kind }}</button>
+                <button v-for="tg in (post.tags || []).filter(tag => tag !== '复刻' || isReplicable(post)).slice(0, 8)" :key="tg" type="button" class="chip yt-tag yt-topic" :class="{ active: selectedTags.has(tg) }" @click="selectTagOnly(tg)">#{{ tg }}</button>
                 <span v-for="cid in catsOf(post.id)" :key="cid" class="chip active yt-tag">{{ categoryName(cid) }}</span>
               </div>
               <div v-if="post.note" style="margin-top:6px"><span class="note-pill">{{ post.note }}</span></div>
               <div class="yt-actions">
-                <button class="btn btn-sm" type="button" @click="catMenuPost = catMenuPost === post.id ? null : post.id">{{ t('index.category') }}</button>
-                <button v-if="canReplicatePost(post)" class="btn btn-sm" :class="{ 'btn-primary': replicatedIds.has(post.id) }" type="button" @click="replicate(post)">
+                <button class="btn btn-sm cat-toggle" type="button" :aria-expanded="catMenuPost === post.id" @click="catMenuPost = catMenuPost === post.id ? null : post.id">{{ t('index.category') }}</button>
+                <button v-if="isReplicable(post)" class="btn btn-sm" :class="{ 'btn-primary': replicatedIds.has(post.id) }" type="button" @click="replicate(post)">
                   {{ replicatedIds.has(post.id) ? t('index.replicated') : t('index.replicate') }}
                 </button>
                 <NuxtLink v-if="replicatedIds.has(post.id)" to="/fuke" class="btn btn-sm">{{ t('index.goFuke') }}</NuxtLink>
@@ -88,6 +95,9 @@
                 <div style="display:flex;gap:6px;margin-top:6px">
                   <input class="field" v-model="newCatName" :placeholder="t('index.newCatPh')" maxlength="20" />
                   <button class="btn btn-sm btn-primary" type="button" @click="createCat(post.id)">{{ t('index.newCat') }}</button>
+                </div>
+                <div style="display:flex;justify-content:flex-end;margin-top:6px">
+                  <button class="btn btn-sm" type="button" @click="catMenuPost = null">完成</button>
                 </div>
               </div>
             </div>
@@ -154,6 +164,20 @@
           </template>
         </div>
         <p v-if="!loading && !filtered.length" class="empty">{{ t('index.noPosts') }}</p>
+        <nav v-if="filtered.length" class="x-pager" aria-label="分页">
+          <button class="btn btn-sm" type="button" :disabled="page <= 1" @click="goPage(page - 1)">上一页</button>
+          <template v-for="(it, ii) in pageItems" :key="'pg' + ii">
+            <span v-if="it === '…'" class="x-pager-gap">…</span>
+            <button v-else class="btn btn-sm" :class="{ 'btn-primary': it === page }" type="button" :aria-current="it === page ? 'page' : undefined" @click="goPage(it)">{{ it }}</button>
+          </template>
+          <button class="btn btn-sm" type="button" :disabled="page >= pageCount" @click="goPage(page + 1)">下一页</button>
+          <label class="x-pager-size">每页
+            <select class="field" :value="pageSize" @change="setPageSize(Number(($event.target as HTMLSelectElement).value))">
+              <option v-for="n in PAGE_SIZES" :key="n" :value="n">{{ n }} 条</option>
+            </select>
+          </label>
+          <span class="x-pager-info">共 {{ filtered.length }} 条</span>
+        </nav>
       </section>
     </main>
 
@@ -386,12 +410,50 @@ function matchesKeyword (p: Post): boolean {
   return hay.includes(q.replace(/^#+/, ''))
 }
 const filtered = computed(() => {
-  // SPEC: empty author selection = EMPTY list, not "no filter".
-  return posts.value.filter(p => selectedAuthors.value.has(p.author) && passesNonAuthor(p))
+  // 没选任何作者 = 不按作者筛选（显示全部）；其他条件同理，没选就不限制。
+  return posts.value.filter(p => authorOk(p) && passesNonAuthor(p) &&
+    (!kindFilter.value || kindOf(p) === kindFilter.value))
 })
+function authorOk (p: Post): boolean { return !selectedAuthors.value.size || selectedAuthors.value.has(p.author) }
+// ---- 帖子类型（cmd/digest 的 AI 分类；没分类的旧帖为「未分类」） ----
+const POST_KINDS = ['教程实操', '技术分享', '工具资源推荐', '观点讨论', '日常闲聊']
+const kindFilter = ref('')
+function kindOf (p: Post): string { return p.kind || '未分类' }
+const kindCounts = computed(() => {
+  const counts = new Map<string, number>()
+  for (const p of posts.value) if (authorOk(p) && passesNonAuthor(p)) counts.set(kindOf(p), (counts.get(kindOf(p)) || 0) + 1)
+  return [...POST_KINDS, '未分类'].filter(k => counts.has(k)).map(k => ({ kind: k, n: counts.get(k)! }))
+})
+// 复刻：AI 判为「教程实操」才可复刻；没分类的旧帖沿用关键词规则 canReplicatePost。
+function isReplicable (p: Post): boolean { return p.kind ? p.kind === '教程实操' : canReplicatePost(p) }
+// ---- 分页：每页 10 / 20 / 50 条（记在本机），筛选变化回到第 1 页 ----
+const PAGE_SIZES = [10, 20, 50]
+const PAGE_SIZE_KEY = 'x-digest-x-page-size'
+const pageSize = ref(20)
+const page = ref(1)
+const pageCount = computed(() => Math.max(1, Math.ceil(filtered.value.length / pageSize.value)))
+const pagedPosts = computed(() => filtered.value.slice((page.value - 1) * pageSize.value, page.value * pageSize.value))
+function setPageSize (n: number) {
+  pageSize.value = n; page.value = 1
+  try { localStorage.setItem(PAGE_SIZE_KEY, String(n)) } catch { /* private mode */ }
+}
+function goPage (n: number) {
+  page.value = Math.min(Math.max(1, n), pageCount.value)
+  if (import.meta.client) document.querySelector('.timeline')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
+// 页码条：首尾 + 当前页附近，其余用省略号。
+const pageItems = computed<Array<number | '…'>>(() => {
+  const n = pageCount.value; const c = page.value
+  const keep = [...new Set([1, n, c - 1, c, c + 1].filter(x => x >= 1 && x <= n))].sort((a, b) => a - b)
+  const out: Array<number | '…'> = []
+  keep.forEach((x, i) => { if (i && x - keep[i - 1] > 1) out.push('…'); out.push(x) })
+  return out
+})
+watch(() => filtered.value.length, () => { if (page.value > pageCount.value) page.value = 1 })
+watch([keyword, dateFrom, dateTo, kindFilter, selectedAuthors, selectedTags, selectedUserTags, selectedCats], () => { page.value = 1 })
 const activeFilterCount = computed(() =>
   selectedTags.value.size + selectedUserTags.value.size + selectedCats.value.size +
-  (keyword.value.trim() ? 1 : 0) + (dateFrom.value || dateTo.value ? 1 : 0))
+  (keyword.value.trim() ? 1 : 0) + (dateFrom.value || dateTo.value ? 1 : 0) + (kindFilter.value ? 1 : 0))
 const firstSnippet = computed(() => {
   if (!keyword.value.trim() || !filtered.value.length) return ''
   return firstHitSnippet(filtered.value[0], plainKeyword.value || keyword.value.trim())
@@ -420,9 +482,9 @@ const catOptions = computed(() => [
   { value: '__uncat', label: t('index.uncategorized'), count: catCounts.__uncat || 0 }
 ])
 function clearAll () {
-  keyword.value = ''; dateFrom.value = ''; dateTo.value = ''
+  keyword.value = ''; dateFrom.value = ''; dateTo.value = ''; kindFilter.value = ''
   selectedTags.value = new Set(); selectedUserTags.value = new Set(); selectedCats.value = new Set()
-  selectedAuthors.value = new Set(watchlist.value.accounts.filter(a => a.group === 'special').map(a => a.username))
+  selectedAuthors.value = new Set()
   persistSelection()
 }
 // 原文默认折叠为 3 行：字数多或换行多（短句多行同样会被截断）时显示展开按钮。
@@ -478,7 +540,7 @@ function onAvatarError (e: Event, post: Post) {
 // ---- 油管样式：按作者分组（顺序同关注列表）、折叠状态存本机 ----
 const groupedByAuthor = computed(() => {
   const byAuthor = new Map<string, Post[]>()
-  for (const p of filtered.value) {
+  for (const p of pagedPosts.value) {
     const list = byAuthor.get(p.author)
     if (list) list.push(p); else byAuthor.set(p.author, [p])
   }
@@ -497,7 +559,7 @@ function toggleAuthorPosts (author: string) {
   collapsedAuthors.value = s
   try { localStorage.setItem(AUTHOR_COLLAPSE_KEY, JSON.stringify([...s])) } catch { /* private mode */ }
 }
-function hasFlow (p: Post) { return canReplicatePost(p) && shouldShowFlowchart(p) && !!(p.steps || []).length }
+function hasFlow (p: Post) { return isReplicable(p) && shouldShowFlowchart(p) && !!(p.steps || []).length }
 // ---- AI 摘要（与油管同一逻辑）：首次展开时读库，没有就发起生成，生成中每 4 秒轮询 ----
 const openSummary = ref<Set<string>>(new Set())
 const summaries = ref<Record<string, YTSummary>>({})
@@ -547,11 +609,44 @@ function toggleSummary (p: Post) {
   if (!cur || cur.status === 'none') loadSummary(p)
 }
 onUnmounted(() => { for (const tm of pollTimers.values()) clearTimeout(tm); pollTimers.clear() })
-// 资源：解析出的 links 在前，原文里其余链接补在后；生成过 AI 摘要后补上它识别出的资源。
+// 分类弹窗：点弹窗外任意处或按 Esc 关闭（「分类」按钮本身负责开关）。
+function onDocClick (e: MouseEvent) {
+  if (!catMenuPost.value) return
+  const el = e.target as HTMLElement
+  if (!el.closest('.cat-menu') && !el.closest('.cat-toggle')) catMenuPost.value = null
+}
+function onDocKey (e: KeyboardEvent) { if (e.key === 'Escape') catMenuPost.value = null }
+onMounted(() => { document.addEventListener('click', onDocClick); document.addEventListener('keydown', onDocKey) })
+onUnmounted(() => { document.removeEventListener('click', onDocClick); document.removeEventListener('keydown', onDocKey) })
+// 资源：每条都带「是什么」——优先用 cmd/digest 的 AI 说明（post.resources），
+// 其次原文同一行的文字，再按网址认出类型（推文 / GitHub 仓库 / 视频…）；
+// 生成过 AI 摘要后补上摘要识别出的资源。
+function describeLink (url: string): string {
+  let u: URL
+  try { u = new URL(url) } catch { return '链接' }
+  const host = u.hostname.replace(/^www\./, '')
+  const seg = u.pathname.split('/').filter(Boolean)
+  if (/^(x|twitter)\.com$/.test(host) && seg[1] === 'status') return `@${seg[0]} 的推文`
+  if (host === 't.co') return '原文附带的短链接（未展开）'
+  if (host === 'github.com' && seg.length >= 2) return `GitHub 仓库 ${seg[0]}/${seg[1]}`
+  if (/youtube\.com$|youtu\.be$/.test(host)) return 'YouTube 视频'
+  if (/bilibili\.com$|b23\.tv$/.test(host)) return 'B站视频'
+  if (host === 'mp.weixin.qq.com') return '微信公众号文章'
+  if (/xiaohongshu\.com$|xhslink\.com$/.test(host)) return '小红书笔记'
+  return host
+}
 function resourcesOf (p: Post): Array<{ label: string, url: string, note?: string }> {
-  const out: Array<{ label: string, url: string, note?: string }> = (p.links || []).map(url => ({ label: '', url }))
-  for (const r of descResources(p.text || '')) {
-    if (!out.some(x => x.url === r.url)) out.push(r)
+  const out: Array<{ label: string, url: string, note?: string }> = []
+  const add = (url: string, label?: string, note?: string) => {
+    const hit = out.find(x => x.url === url)
+    if (hit) { if (note && !hit.note) hit.note = note; return }
+    out.push({ url, label: label || describeLink(url), note })
+  }
+  for (const r of p.resources || []) add(r.url, r.name, r.note)
+  const fromLine = new Map(descResources(p.text || '', 50).map(r => [r.url, r.label]))
+  for (const url of p.links || []) {
+    const lineLabel = fromLine.get(url)
+    add(url, lineLabel && !lineLabel.includes('.') ? lineLabel : undefined)
   }
   const sum = summaryOf(p.id)
   if (sum?.status === 'done') {
@@ -563,7 +658,7 @@ function resourcesOf (p: Post): Array<{ label: string, url: string, note?: strin
   return out
 }
 async function replicate (post: Post) {
-  if (!canReplicatePost(post) || replicatedIds.value.has(post.id)) return
+  if (!isReplicable(post) || replicatedIds.value.has(post.id)) return
   try {
     const { replica } = await store.createReplica(post)
     replicatedIds.value = new Set([...replicatedIds.value, post.id])
@@ -591,14 +686,14 @@ async function refreshWatchlist () {
   userTagOverrides.value = ut.overrides || {}
   if (!authorsInitialised) {
     authorsInitialised = true
-    // Default = special-group authors; a stored selection (even empty) wins.
+    // Default = no author filter (all authors); a stored selection wins.
     let stored: string[] | null = null
     if (import.meta.client) {
       try { const raw = localStorage.getItem(LS.selectedAuthors); stored = raw ? JSON.parse(raw) : null } catch { stored = null }
     }
     selectedAuthors.value = stored !== null
       ? new Set(stored)
-      : new Set(watchlist.value.accounts.filter(a => a.group === 'special').map(a => a.username))
+      : new Set()
     let storedCats: string[] = []
     if (import.meta.client) {
       try { storedCats = JSON.parse(localStorage.getItem(LS.selectedCats) || '[]') } catch { storedCats = [] }
@@ -650,6 +745,10 @@ async function triggerWebhook () {
 
 onMounted(async () => {
   settings.load()
+  try {
+    const n = Number(localStorage.getItem(PAGE_SIZE_KEY))
+    if (PAGE_SIZES.includes(n)) pageSize.value = n
+  } catch { /* ignore */ }
   try {
     const v = JSON.parse(localStorage.getItem(AUTHOR_COLLAPSE_KEY) || '[]')
     if (Array.isArray(v)) collapsedAuthors.value = new Set(v.filter((x: unknown) => typeof x === 'string'))

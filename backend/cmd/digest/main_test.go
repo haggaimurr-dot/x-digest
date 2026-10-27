@@ -34,3 +34,15 @@ func TestParseModel(t *testing.T) {
 		t.Fatal("empty title should fail")
 	}
 }
+
+func TestKeepResourcesOnlyRealLinks(t *testing.T) {
+	got := keepResources([]res{
+		{URL: "https://github.com/a/b", Name: "GitHub 仓库 a/b", Note: "源码"},
+		{URL: "https://made.up/x", Name: "编的"},
+		{URL: "https://github.com/a/b", Name: "重复"},
+		{URL: "https://t.co/z", Name: ""},
+	}, []string{"https://github.com/a/b", "https://t.co/z"})
+	if len(got) != 1 || got[0].Name != "GitHub 仓库 a/b" {
+		t.Fatalf("%+v", got)
+	}
+}
