@@ -378,7 +378,25 @@ func loadRaw(path string) (map[string]rawPost, error) {
 // resource links. The importer and cmd/digest share it.
 func RawContent(p map[string]any) (text string, links []string) {
 	text = expandShortLinks(textFromRaw(p), urlEntities(p)) + referencedText(p)
-	return text, resourceLinks(extractLinks(text))
+	links = resourceLinks(extractLinks(text))
+	// A quote's expanded link is the quoted tweet itself (its text is
+	// already appended), not a resource.
+	refs, _ := p["referenced_tweets"].([]any)
+	var kept []string
+	for _, l := range links {
+		isRef := false
+		for _, r := range refs {
+			if ref, ok := r.(map[string]any); ok {
+				if id, _ := ref["id"].(string); id != "" && strings.Contains(l, "/status/"+id) {
+					isRef = true
+				}
+			}
+		}
+		if !isRef {
+			kept = append(kept, l)
+		}
+	}
+	return text, kept
 }
 
 var substanceStripRe = regexp.MustCompile(`https?://\S+|@\w+`)

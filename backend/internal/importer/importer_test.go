@@ -24,8 +24,9 @@ func TestAvatarFromRaw(t *testing.T) {
 
 func TestRawExpandedURLsAndReferencedText(t *testing.T) {
 	dir := t.TempDir()
-	raw := `[{"id":"1","text":"看这个 https://t.co/aaa 和图 https://t.co/pic",
+	raw := `[{"id":"1","text":"看这个 https://t.co/aaa 和图 https://t.co/pic https://t.co/qt",
 	  "entities":{"urls":[{"url":"https://t.co/aaa","expanded_url":"https://github.com/anthropics/claude-code"},
+	                      {"url":"https://t.co/qt","expanded_url":"https://twitter.com/johnzhou123/status/9"},
 	                      {"url":"https://t.co/pic","expanded_url":"https://x.com/miles_mazy/status/1/photo/1"}]},
 	  "referenced_tweets":[{"type":"quoted","id":"9","author_username":"johnzhou123","text":"我做了个插件 https://t.co/q",
 	                        "entities":{"urls":[{"url":"https://t.co/q","expanded_url":"https://example.com/plugin"}]}}]},
@@ -47,7 +48,7 @@ func TestRawExpandedURLsAndReferencedText(t *testing.T) {
 	}
 	want := "https://github.com/anthropics/claude-code,https://example.com/plugin"
 	if strings.Join(p.Links, ",") != want {
-		t.Errorf("links = %v, want %s (media link dropped)", p.Links, want)
+		t.Errorf("links = %v, want %s (media and quoted-tweet links dropped)", p.Links, want)
 	}
 	old := got["2"]
 	if old.Text != "老格式 https://t.co/old" || strings.Join(old.Links, ",") != "https://t.co/old" {
