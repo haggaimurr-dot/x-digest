@@ -223,7 +223,7 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
 .x-orig-label { font-size: 11px; font-weight: 600; color: var(--text-muted); margin-bottom: 4px; }
 .x-orig-text { margin: 0; font-size: 13px; line-height: 1.55; white-space: pre-line; overflow-wrap: anywhere; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .x-orig.is-missing .x-orig-text { color: var(--text-muted); font-size: 12px; }
-.x-head-avatar { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 12px; font-weight: 700; }
+.x-head-avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 14px; font-weight: 700; background: var(--bg-elevated); border: 1px solid var(--border); }
 .x-head-handle { font-size: 13px; font-weight: 400; color: var(--text-muted); text-decoration: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
 .x-head-handle:hover { color: var(--accent); }
 .yt-desc-empty { margin: 6px 0 0; color: var(--text-muted); font-size: 13px; }

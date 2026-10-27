@@ -454,12 +454,20 @@ function toggleSubsteps (postId: string, i: number) {
   substepsOpen.value.has(k) ? substepsOpen.value.delete(k) : substepsOpen.value.add(k)
   substepsOpen.value = new Set(substepsOpen.value)
 }
+// 头像按顺序尝试，加载失败就换下一个，全部失败才显示首字母：
+// 库里的 posts.author_avatar → 关注列表 authors.avatar → 约定的本地静态图
+// /avatars/<username>.jpg（frontend/public/avatars，库里该列为空时也能显示）。
+function avatarCandidates (post: Post): string[] {
+  const list = [post.author_avatar, accountOf(post.author)?.avatar, `avatars/${post.author}.jpg`]
+    .map(x => avatarUrl(x || '')).filter(Boolean)
+  return [...new Set(list)]
+}
 function postAvatar (post: Post) {
-  const src = avatarUrl(post.author_avatar || accountOf(post.author)?.avatar)
-  return failedAvatars.value.has(src) ? '' : src
+  return avatarCandidates(post).find(src => !failedAvatars.value.has(src)) || ''
 }
 function onAvatarError (e: Event, post: Post) {
-  failedAvatars.value = new Set([...failedAvatars.value, postAvatar(post)])
+  const src = (e.target as HTMLImageElement).getAttribute('src') || postAvatar(post)
+  failedAvatars.value = new Set([...failedAvatars.value, src])
 }
 // ---- 油管样式：按作者分组（顺序同关注列表）、折叠状态存本机 ----
 const groupedByAuthor = computed(() => {
