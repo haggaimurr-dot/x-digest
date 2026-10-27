@@ -215,6 +215,15 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
 .yt-channel-block + .yt-channel-block { margin-top: 8px; }
 .yt-channel-head { display: flex; align-items: center; gap: 6px; width: 100%; background: none; border: 0; border-bottom: 1px solid var(--border); padding: 10px 0; margin-bottom: 10px; color: var(--text); font: inherit; font-size: 16px; font-weight: 700; cursor: pointer; text-align: left; }
 .yt-channel-name { overflow-wrap: anywhere; }
+/* X 日报沿用油管卡片：左栏「原文」框代替缩略图，作者分组头带头像和 @handle。 */
+.x-orig { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; min-width: 0; }
+.x-orig.is-missing { border-style: dashed; }
+.x-orig-label { font-size: 11px; font-weight: 600; color: var(--text-muted); margin-bottom: 4px; }
+.x-orig-text { margin: 0; font-size: 13px; line-height: 1.55; white-space: pre-line; overflow-wrap: anywhere; display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden; }
+.x-orig.is-missing .x-orig-text { color: var(--text-muted); font-size: 12px; }
+.x-head-avatar { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 12px; font-weight: 700; }
+.x-head-handle { font-size: 13px; font-weight: 400; color: var(--text-muted); text-decoration: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.x-head-handle:hover { color: var(--accent); }
 .yt-desc-empty { margin: 6px 0 0; color: var(--text-muted); font-size: 13px; }
 .yt-section-toggle { display: flex; align-items: center; gap: 6px; width: 100%; background: none; border: 0; padding: 8px 0; margin: 0; color: var(--text); font: inherit; font-size: 17px; font-weight: 700; cursor: pointer; text-align: left; }
 .yt-section-count { color: var(--text-muted); font-weight: 400; font-size: 14px; }

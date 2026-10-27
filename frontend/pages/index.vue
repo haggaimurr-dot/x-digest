@@ -1,6 +1,6 @@
 <template>
   <div>
-    <main class="feed-col" style="max-width:600px;margin:0 auto;padding:16px;min-width:0">
+    <main class="feed-col" style="max-width:760px;margin:0 auto;padding:16px;min-width:0">
       <div class="filter-row" style="margin-bottom:12px">
         <span class="updated" style="color:var(--text-muted)">{{ updatedAt ? t('index.updatedAt', { time: updatedAt }) : '' }}</span>
         <span style="flex:1" />
@@ -43,52 +43,80 @@
         </div>
       </section>
 
+      <!-- 与油管页同一卡片样式：按作者分组（可折叠），左栏原文、右栏标题/时间/标签/操作，
+           下方整行为资源与可折叠的 AI 摘要（含流程图）。 -->
       <section class="timeline">
-        <article v-for="post in filtered" :key="post.id" class="post-card">
-          <img v-if="postAvatar(post)" :src="postAvatar(post)" :alt="post.author_name" class="avatar"
-            style="width:40px;height:40px;border-radius:50%;object-fit:cover" @error="onAvatarError($event, post)" />
-          <span v-else class="avatar" :style="{ background: avatarColor(post.author_name), width: '40px', height: '40px', borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }">{{ avatarInitial(post.author_name) }}</span>
-          <div class="post-body">
-          <div class="post-meta">
-            <div style="min-width:0">
-              <div><strong>{{ post.author_name }}</strong> <a :href="`https://x.com/${post.author}`" target="_blank" rel="noopener">@{{ post.author }}</a></div>
-              <div style="color:var(--text-muted);font-size:13px">{{ relativeTime(post.published_at, lang.value) }} · {{ shanghaiTime(post.published_at) }}<span v-if="post.industry"> · {{ post.industry }}</span><span v-if="post.tech"> · {{ post.tech }}</span></div>
+        <div v-for="grp in groupedByAuthor" :key="grp.author" class="yt-channel-block">
+          <button class="yt-channel-head" type="button" :aria-expanded="!collapsedAuthors.has(grp.author)" @click="toggleAuthorPosts(grp.author)">
+            <svg class="yt-chevron" :class="{ 'is-collapsed': collapsedAuthors.has(grp.author) }" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
+            <img v-if="postAvatar(grp.posts[0])" :src="postAvatar(grp.posts[0])" :alt="grp.name" class="x-head-avatar" @error="onAvatarError($event, grp.posts[0])" />
+            <span v-else class="x-head-avatar" :style="{ background: avatarColor(grp.name) }">{{ avatarInitial(grp.name) }}</span>
+            <span class="yt-channel-name">{{ grp.name }}</span>
+            <a class="x-head-handle" :href="`https://x.com/${grp.author}`" target="_blank" rel="noopener" @click.stop>@{{ grp.author }}</a>
+            <span class="yt-section-count">（{{ grp.posts.length }}）</span>
+          </button>
+          <template v-if="!collapsedAuthors.has(grp.author)">
+          <article v-for="post in grp.posts" :key="post.id" class="post-card yt-video-card">
+            <div class="yt-left">
+              <!-- 没收录原文时左栏放 AI 摘要（下方的 AI 摘要开关仍可看全文与流程图） -->
+              <div v-if="!post.text && post.summary" class="x-orig">
+                <div class="x-orig-label">✨ AI 摘要（原文未收录）</div>
+                <p class="x-orig-text" v-html="highlightHtml(tr(post.summary), plainKeyword)" />
+              </div>
+              <div v-else class="x-orig" :class="{ 'is-missing': !post.text }">
+                <div class="x-orig-label">𝕏 原文</div>
+                <p v-if="post.text" class="x-orig-text" :class="{ 'yt-desc-open': expandedOriginal.has(post.id) }" :id="`original-${post.id}`"><template v-for="(part, pi) in linkParts(post.text)" :key="pi"><a v-if="part.href" class="yt-desc-link" :href="part.href" :title="part.href" target="_blank" rel="noopener noreferrer">{{ part.text.replace(/^https?:\/\/(www\.)?/, '') }}</a><span v-else v-html="highlightHtml(part.text, plainKeyword)" /></template></p>
+                <p v-else class="x-orig-text">原文暂未收录，可点击标题查看原推文。</p>
+              </div>
+              <button v-if="(post.text || '').length > 120" class="yt-desc-more" type="button" :aria-expanded="expandedOriginal.has(post.id)" :aria-controls="`original-${post.id}`" @click="toggleOriginal(post.id)">{{ expandedOriginal.has(post.id) ? '收起原文' : '展开原文' }}</button>
             </div>
-          </div>
-          <h2 class="post-title"><a :href="post.url" target="_blank" rel="noopener" v-html="highlightHtml(tr(post.title), plainKeyword)" /></h2>
-          <div v-if="post.text" class="post-original">
-            <p class="post-summary" :id="`original-${post.id}`" v-html="highlightHtml(originalShown(post), plainKeyword)" />
-            <button v-if="post.text.length > 280" class="btn btn-sm" type="button" :aria-expanded="expandedOriginal.has(post.id)" :aria-controls="`original-${post.id}`" @click="toggleOriginal(post.id)">{{ expandedOriginal.has(post.id) ? '收起原文' : '展开原文' }}</button>
-          </div>
-          <p v-else class="original-missing">原文暂未收录，可点击标题查看原推文。</p>
-          <div v-if="post.note" style="margin-top:6px"><span class="note-pill">{{ post.note }}</span></div>
-          <div class="chips" style="margin-top:8px">
-            <button v-for="t in (post.tags || []).filter(tag => tag !== '复刻' || canReplicatePost(post)).slice(0, 8)" :key="t" type="button" class="chip" @click="selectTagOnly(t)">{{ t }}</button>
-          </div>
-          <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap;align-items:center">
-            <span v-for="cid in catsOf(post.id)" :key="cid" class="chip active">{{ categoryName(cid) }}</span>
-            <button class="btn btn-sm" type="button" @click="catMenuPost = catMenuPost === post.id ? null : post.id">{{ t('index.category') }}</button>
-            <button v-if="canReplicatePost(post)" class="btn btn-sm" :class="{ 'btn-primary': replicatedIds.has(post.id) }" type="button" @click="replicate(post)">
-              {{ replicatedIds.has(post.id) ? t('index.replicated') : t('index.replicate') }}
+            <div class="yt-info">
+              <h2 class="post-title yt-title"><a :href="post.url" target="_blank" rel="noopener" v-html="highlightHtml(tr(post.title), plainKeyword)" /></h2>
+              <p class="yt-meta">{{ shanghaiTime(post.published_at) }}（{{ relativeTime(post.published_at, lang.value) }}）<span v-if="post.industry"> · {{ post.industry }}</span><span v-if="post.tech"> · {{ post.tech }}</span></p>
+              <div class="yt-tags">
+                <button v-for="tg in (post.tags || []).filter(tag => tag !== '复刻' || canReplicatePost(post)).slice(0, 8)" :key="tg" type="button" class="chip yt-tag yt-topic" :class="{ active: selectedTags.has(tg) }" @click="selectTagOnly(tg)">#{{ tg }}</button>
+                <span v-for="cid in catsOf(post.id)" :key="cid" class="chip active yt-tag">{{ categoryName(cid) }}</span>
+              </div>
+              <div v-if="post.note" style="margin-top:6px"><span class="note-pill">{{ post.note }}</span></div>
+              <div class="yt-actions">
+                <button class="btn btn-sm" type="button" @click="catMenuPost = catMenuPost === post.id ? null : post.id">{{ t('index.category') }}</button>
+                <button v-if="canReplicatePost(post)" class="btn btn-sm" :class="{ 'btn-primary': replicatedIds.has(post.id) }" type="button" @click="replicate(post)">
+                  {{ replicatedIds.has(post.id) ? t('index.replicated') : t('index.replicate') }}
+                </button>
+                <NuxtLink v-if="replicatedIds.has(post.id)" to="/fuke" class="btn btn-sm">{{ t('index.goFuke') }}</NuxtLink>
+              </div>
+              <div v-if="catMenuPost === post.id" class="cat-menu" style="margin-top:8px">
+                <label v-for="c in categories.categories" :key="c.id" class="cat-menu-item" style="display:flex;gap:6px">
+                  <input type="checkbox" :checked="catsOf(post.id).includes(c.id)" @change="togglePostCat(post.id, c.id, ($event.target as HTMLInputElement).checked)" />
+                  <span>{{ c.name }}</span>
+                </label>
+                <div style="display:flex;gap:6px;margin-top:6px">
+                  <input class="field" v-model="newCatName" :placeholder="t('index.newCatPh')" maxlength="20" />
+                  <button class="btn btn-sm btn-primary" type="button" @click="createCat(post.id)">{{ t('index.newCat') }}</button>
+                </div>
+              </div>
+            </div>
+            <div v-if="resourcesOf(post).length" class="yt-resources">
+              <div class="yt-res-title">提及的资源</div>
+              <ul class="yt-res-list">
+                <li v-for="r in resourcesOf(post)" :key="r.url">
+                  <span v-if="r.label" class="yt-res-label">{{ r.label }}</span>
+                  <a class="yt-desc-link" :href="r.url" target="_blank" rel="noopener noreferrer">{{ r.url.replace(/^https?:\/\/(www\.)?/, '') }}</a>
+                </li>
+              </ul>
+            </div>
+            <button v-if="post.summary || (canReplicatePost(post) && shouldShowFlowchart(post) && (post.steps || []).length)" class="yt-summary-toggle" type="button" :aria-expanded="openSummary.has(post.id)" @click="toggleSummary(post.id)">
+              <span>✨ {{ openSummary.has(post.id) ? '收起 AI 摘要' : 'AI 摘要' }}<template v-if="canReplicatePost(post) && shouldShowFlowchart(post) && (post.steps || []).length"> · {{ t('index.stepsSummary', { n: post.steps!.length }) }}</template></span>
+              <svg class="yt-chevron" :class="{ 'is-collapsed': !openSummary.has(post.id) }" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
             </button>
-            <NuxtLink v-if="replicatedIds.has(post.id)" to="/fuke" class="btn btn-sm">{{ t('index.goFuke') }}</NuxtLink>
-          </div>
-          <div v-if="catMenuPost === post.id" class="cat-menu" style="margin-top:8px">
-            <label v-for="c in categories.categories" :key="c.id" class="cat-menu-item" style="display:flex;gap:6px">
-              <input type="checkbox" :checked="catsOf(post.id).includes(c.id)" @change="togglePostCat(post.id, c.id, ($event.target as HTMLInputElement).checked)" />
-              <span>{{ c.name }}</span>
-            </label>
-            <div style="display:flex;gap:6px;margin-top:6px">
-              <input class="field" v-model="newCatName" :placeholder="t('index.newCatPh')" maxlength="20" />
-              <button class="btn btn-sm btn-primary" type="button" @click="createCat(post.id)">{{ t('index.newCat') }}</button>
-            </div>
-          </div>
-          <section v-if="post.links?.length" class="post-resources" aria-label="资源链接">
-            <h3>资源</h3>
-            <ul><li v-for="url in post.links" :key="url"><a :href="url" target="_blank" rel="noopener noreferrer">{{ url }}</a></li></ul>
-          </section>
-          <details v-if="canReplicatePost(post) && shouldShowFlowchart(post) && (post.steps || []).length" class="steps" style="margin-top:10px">
-            <summary>{{ t('index.stepsSummary', { n: post.steps!.length }) }}</summary>
+            <section v-if="openSummary.has(post.id)" class="yt-summary" aria-label="AI 摘要">
+              <template v-if="post.summary">
+                <h3 class="yt-sum-h">全文摘要</h3>
+                <p class="yt-sum-para" v-html="highlightHtml(summaryShown(post), plainKeyword)" />
+                <button v-if="post.is_long" class="btn btn-sm" type="button" @click="toggleLong(post.id)">{{ expandedLong.has(post.id) ? t('index.collapseLong') : t('index.expandLong') }}</button>
+              </template>
+          <div v-if="canReplicatePost(post) && shouldShowFlowchart(post) && (post.steps || []).length" class="steps" style="margin-top:10px">
+            <h3 class="yt-sum-h">{{ t('index.stepsSummary', { n: post.steps!.length }) }}</h3>
             <div class="flow-chart">
               <div v-for="(step, i) in post.steps" :key="i" class="flow-step" :class="{ 'is-last': i === post.steps!.length - 1 }">
                 <div class="flow-rail" aria-hidden="true"><span class="flow-node" /><span v-if="i !== post.steps!.length - 1" class="flow-line" /></div>
@@ -108,9 +136,11 @@
                 </div>
               </div>
             </div>
-          </details>
           </div>
-        </article>
+            </section>
+          </article>
+          </template>
+        </div>
         <p v-if="!loading && !filtered.length" class="empty">{{ t('index.noPosts') }}</p>
       </section>
     </main>
@@ -215,6 +245,7 @@ import { LS, useSettings } from '~/composables/useSettings'
 import { canReplicatePost } from '~/utils/x-post.mjs'
 import { avatarUrl, avatarColor, avatarInitial, relativeTime, shanghaiTime, shanghaiDayBound, highlightHtml, firstHitSnippet, shouldShowFlowchart, trunc40 } from '~/composables/useFormat'
 import { useScrollLock } from '~/composables/useScrollLock'
+import { linkParts, descResources } from '~/utils/videoTags'
 
 const store = useStore()
 const settings = useSettings()
@@ -423,6 +454,42 @@ function postAvatar (post: Post) {
 function onAvatarError (e: Event, post: Post) {
   failedAvatars.value = new Set([...failedAvatars.value, postAvatar(post)])
 }
+// ---- 油管样式：按作者分组（顺序同关注列表）、折叠状态存本机 ----
+const groupedByAuthor = computed(() => {
+  const byAuthor = new Map<string, Post[]>()
+  for (const p of filtered.value) {
+    const list = byAuthor.get(p.author)
+    if (list) list.push(p); else byAuthor.set(p.author, [p])
+  }
+  const order = watchlist.value.accounts.map(a => a.username)
+  for (const a of byAuthor.keys()) if (!order.includes(a)) order.push(a)
+  return order.filter(a => byAuthor.has(a)).map((a) => {
+    const list = byAuthor.get(a)!
+    return { author: a, name: accountOf(a)?.name || list[0].author_name || a, avatar: list[0].author_avatar || accountOf(a)?.avatar || '', posts: list }
+  })
+})
+const AUTHOR_COLLAPSE_KEY = 'x-digest-x-collapsed-authors'
+const collapsedAuthors = ref<Set<string>>(new Set())
+function toggleAuthorPosts (author: string) {
+  const s = new Set(collapsedAuthors.value)
+  if (s.has(author)) s.delete(author); else s.add(author)
+  collapsedAuthors.value = s
+  try { localStorage.setItem(AUTHOR_COLLAPSE_KEY, JSON.stringify([...s])) } catch { /* private mode */ }
+}
+const openSummary = ref<Set<string>>(new Set())
+function toggleSummary (id: string) {
+  const s = new Set(openSummary.value)
+  if (s.has(id)) s.delete(id); else s.add(id)
+  openSummary.value = s
+}
+// 资源：解析出的 links 在前，原文里其余链接补在后（带同一行的文字做标签）。
+function resourcesOf (p: Post): Array<{ label: string, url: string }> {
+  const out: Array<{ label: string, url: string }> = (p.links || []).map(url => ({ label: '', url }))
+  for (const r of descResources(p.text || '')) {
+    if (!out.some(x => x.url === r.url)) out.push(r)
+  }
+  return out
+}
 async function replicate (post: Post) {
   if (!canReplicatePost(post) || replicatedIds.value.has(post.id)) return
   try {
@@ -511,6 +578,10 @@ async function triggerWebhook () {
 
 onMounted(async () => {
   settings.load()
+  try {
+    const v = JSON.parse(localStorage.getItem(AUTHOR_COLLAPSE_KEY) || '[]')
+    if (Array.isArray(v)) collapsedAuthors.value = new Set(v.filter((x: unknown) => typeof x === 'string'))
+  } catch { /* ignore */ }
   webhookUrlDraft.value = settings.webhookUrl.value
   webhookKeyDraft.value = settings.webhookKey.value
   try {
