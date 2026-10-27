@@ -303,6 +303,14 @@ ALTER TABLE yt_videos ADD COLUMN IF NOT EXISTS live_status VARCHAR(16) NOT NULL 
 ALTER TABLE yt_videos MODIFY published_at DATETIME NULL;
 ALTER TABLE yt_videos ADD INDEX IF NOT EXISTS idx_yt_videos_channel_kind (channel_id, kind, published_at DESC);
 
+-- ---- YouTube single-video configuration (added 2026-10-27) ----
+-- sync_mode: full = the channel's tabs are synced (default); single = the
+-- channel was added through one video and only holds the videos added by
+-- URL until "同步该账号全部视频" switches it to full. "同步全部" skips
+-- single-mode channels. added_manually videos survive date-range pruning.
+ALTER TABLE yt_channels ADD COLUMN IF NOT EXISTS sync_mode VARCHAR(16) NOT NULL DEFAULT 'full';
+ALTER TABLE yt_videos ADD COLUMN IF NOT EXISTS added_manually TINYINT(1) NOT NULL DEFAULT 0;
+
 -- ---- YouTube AI summaries (added 2026-10-27) ----
 -- One row per (video, summary language). Generated on demand (POST
 -- /api/v1/yt/videos/{id}/summary) from the video's subtitles via yt-dlp

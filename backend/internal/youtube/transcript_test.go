@@ -168,3 +168,26 @@ func TestFetchTopCommentsDisabled(t *testing.T) {
 		t.Fatalf("got %v, %v", got, err)
 	}
 }
+
+func TestFetchVideo(t *testing.T) {
+	c := &Client{Runner: func(ctx context.Context, a []string) ([]byte, error) {
+		return []byte(`{"id":"abcdefghijk","title":" T ","description":"D","upload_date":"20261024","duration":125.0,
+			"thumbnail":"https://i.ytimg.com/vi/abcdefghijk/hq.jpg","channel_id":"UCxyz","channel":"Chan",
+			"uploader_id":"@chan","webpage_url":"https://www.youtube.com/shorts/abcdefghijk","live_status":"not_live"}`), nil
+	}}
+	sv, err := c.FetchVideo(context.Background(), "https://youtube.com/shorts/abcdefghijk")
+	if err != nil {
+		t.Fatal(err)
+	}
+	v := sv.Video
+	if sv.ChannelID != "UCxyz" || sv.ChannelName != "Chan" || sv.Handle != "@chan" || v.Kind != "short" ||
+		v.Title != "T" || v.PublishedAt != "2026-10-24 00:00:00" || v.Duration != 125 || v.URL != "https://www.youtube.com/shorts/abcdefghijk" {
+		t.Fatalf("%+v %+v", sv, v)
+	}
+	pl := &Client{Runner: func(ctx context.Context, a []string) ([]byte, error) {
+		return []byte(`{"_type":"playlist","id":"PL1"}`), nil
+	}}
+	if _, err := pl.FetchVideo(context.Background(), "https://www.youtube.com/playlist?list=PL1"); err == nil {
+		t.Fatal("playlist should be refused")
+	}
+}

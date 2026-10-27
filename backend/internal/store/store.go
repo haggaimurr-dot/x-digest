@@ -1531,7 +1531,7 @@ func (s *Store) ListYTChannels() ([]model.YTChannel, error) {
 	rows, err := s.DB.Query(`SELECT c.id,c.channel_id,c.handle,c.name,c.group_id,
 		DATE_FORMAT(c.date_from,'%Y-%m-%d'),DATE_FORMAT(c.date_to,'%Y-%m-%d'),
 		c.created_at,c.last_synced_at,c.sync_status,c.sync_error,
-		(SELECT COUNT(*) FROM yt_videos v WHERE v.channel_id=c.channel_id) AS video_count
+		(SELECT COUNT(*) FROM yt_videos v WHERE v.channel_id=c.channel_id) AS video_count,c.sync_mode
 		FROM yt_channels c ORDER BY c.created_at`)
 	if err != nil {
 		return nil, err
@@ -1544,7 +1544,7 @@ func (s *Store) ListYTChannels() ([]model.YTChannel, error) {
 		var videoCount int
 		if err := rows.Scan(&c.ID, &c.ChannelID, &c.Handle, &c.Name, &groupID,
 			&dateFrom, &dateTo,
-			&c.CreatedAt, &lastSyncedAt, &c.SyncStatus, &c.SyncError, &videoCount); err != nil {
+			&c.CreatedAt, &lastSyncedAt, &c.SyncStatus, &c.SyncError, &videoCount, &c.SyncMode); err != nil {
 			return nil, err
 		}
 		scanYTChannel(&c, groupID, lastSyncedAt, dateFrom, dateTo, videoCount)
@@ -1559,7 +1559,7 @@ func (s *Store) scanYTChannelRow(row *sql.Row) (model.YTChannel, error) {
 	var videoCount int
 	err := row.Scan(&c.ID, &c.ChannelID, &c.Handle, &c.Name, &groupID,
 		&dateFrom, &dateTo,
-		&c.CreatedAt, &lastSyncedAt, &c.SyncStatus, &c.SyncError, &videoCount)
+		&c.CreatedAt, &lastSyncedAt, &c.SyncStatus, &c.SyncError, &videoCount, &c.SyncMode)
 	if err != nil {
 		return c, err
 	}
@@ -1570,7 +1570,7 @@ func (s *Store) scanYTChannelRow(row *sql.Row) (model.YTChannel, error) {
 const ytChannelCols = `SELECT c.id,c.channel_id,c.handle,c.name,c.group_id,
 	DATE_FORMAT(c.date_from,'%Y-%m-%d'),DATE_FORMAT(c.date_to,'%Y-%m-%d'),
 	c.created_at,c.last_synced_at,c.sync_status,c.sync_error,
-	(SELECT COUNT(*) FROM yt_videos v WHERE v.channel_id=c.channel_id) AS video_count
+	(SELECT COUNT(*) FROM yt_videos v WHERE v.channel_id=c.channel_id) AS video_count,c.sync_mode
 	FROM yt_channels c `
 
 // GetYTChannel loads one channel by its row id.
@@ -1593,12 +1593,16 @@ func (s *Store) YTChannelExists(id string) bool {
 // CreateYTChannel inserts a new channel row (status "never" until the
 // first sync runs). Callers check for duplicates first.
 func (s *Store) CreateYTChannel(c model.YTChannel) error {
+	mode := c.SyncMode
+	if mode == "" {
+		mode = "full"
+	}
 	_, err := s.DB.Exec(`INSERT INTO yt_channels(id,channel_id,handle,name,group_id,
 		date_from,date_to,
-		created_at,last_synced_at,sync_status,sync_error) VALUES(?,?,?,?,?,?,?,?,?,?,?)`,
+		created_at,last_synced_at,sync_status,sync_error,sync_mode) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)`,
 		c.ID, c.ChannelID, c.Handle, c.Name, groupIDArg(c.GroupID),
 		dateArg(c.DateFrom), dateArg(c.DateTo),
-		c.CreatedAt, nil, c.SyncStatus, c.SyncError)
+		c.CreatedAt, nil, c.SyncStatus, c.SyncError, mode)
 	return err
 }
 
@@ -1741,7 +1745,7 @@ func (s *Store) PruneYTVideosOutsideRange(channelID, from, to string) error {
 		args = append(args, to)
 	}
 	q := `DELETE FROM yt_videos WHERE channel_id=? AND kind IN ('video','short','live')
-		AND published_at IS NOT NULL AND (` + strings.Join(outside, " OR ") + ")"
+		AND added_manually=0 AND published_at IS NOT NULL AND (` + strings.Join(outside, " OR ") + ")"
 	_, err := s.DB.Exec(q, args...)
 	return err
 }
@@ -2106,4 +2110,34 @@ func (s *Store) ReplaceYTComments(videoID string, comments []model.YTComment) er
 		return err
 	}
 	return tx.Commit()
+}
+
+// SetYTChannelSyncMode switches a channel between full and single mode.
+func (s *Store) SetYTChannelSyncMode(id, mode string) error {
+	_, err := s.DB.Exec("UPDATE yt_channels SET sync_mode=? WHERE id=?", mode, id)
+	return err
+}
+
+// MarkYTVideoManual flags a video as added by URL (kept by date pruning).
+func (s *Store) MarkYTVideoManual(id string) error {
+	_, err := s.DB.Exec("UPDATE yt_videos SET added_manually=1 WHERE id=?", id)
+	return err
+}
+
+// ManualYTVideoURLs returns the URLs of a channel's videos added by URL.
+func (s *Store) ManualYTVideoURLs(channelID string) ([]string, error) {
+	rows, err := s.DB.Query("SELECT url FROM yt_videos WHERE channel_id=? AND added_manually=1", channelID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var out []string
+	for rows.Next() {
+		var u string
+		if err := rows.Scan(&u); err != nil {
+			return nil, err
+		}
+		out = append(out, u)
+	}
+	return out, rows.Err()
 }

@@ -190,6 +190,8 @@ type YTChannel struct {
 	SyncStatus   string  `json:"sync_status"`
 	SyncError    string  `json:"sync_error"`
 	VideoCount   int     `json:"video_count"`
+	// SyncMode: full (tabs synced) or single (only videos added by URL).
+	SyncMode string `json:"sync_mode"`
 }
 
 // YTVideo mirrors the yt_videos table. ID is the YouTube video_id

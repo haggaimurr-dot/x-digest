@@ -85,6 +85,7 @@ export interface YTChannel {
   group_id?: string | null, created_at: string,
   last_synced_at?: string | null, sync_status: string, sync_error?: string | null,
   video_count: number,
+  sync_mode?: 'full' | 'single',
   date_from?: string | null, date_to?: string | null
 }
 export interface YTVideo {

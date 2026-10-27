@@ -11,7 +11,8 @@
           <span style="color:var(--text-muted)">{{ t('yt.total', { n: channels.length, v: videos.length }) }}</span>
           <span style="flex:1" />
           <button class="btn btn-sm" type="button" @click="syncAll" :disabled="syncAllBusy">{{ syncAllBusy ? t('yt.syncing') : t('yt.syncAll') }}</button>
-          <button class="btn btn-sm btn-primary" type="button" @click="openAdd">{{ t('yt.addChannel') }}</button>
+          <button v-if="P === 'yt'" class="btn btn-sm" type="button" @click="openAdd('video')">{{ t('yt.addVideo') }}</button>
+          <button class="btn btn-sm btn-primary" type="button" @click="openAdd('channel')">{{ t('yt.addChannel') }}</button>
         </div>
         <div class="filter-row" style="justify-content:space-between;margin-top:8px">
           <button class="btn btn-sm" type="button" @click="filtersCollapsed = !filtersCollapsed" :aria-expanded="!filtersCollapsed">{{ filtersCollapsed ? t('yt.expandFilters') : t('yt.collapseFilters') }}</button>
@@ -73,6 +74,7 @@
             <span v-if="groupName(c.group_id)" class="chip active">{{ groupName(c.group_id) }}</span>
             <span style="color:var(--text-muted)">{{ t('yt.videosCount', { n: c.video_count }) }}</span>
             <span style="color:var(--text-muted)">{{ rangeText(c) }}</span>
+            <span v-if="c.sync_mode === 'single'" class="chip yt-single-badge" :title="t('yt.singleModeHint')">{{ t('yt.singleMode') }}</span>
             <span :class="['sync-badge', `sync-${c.sync_status}`]">{{ syncLabel(c.sync_status) }}</span>
             <span style="color:var(--text-muted)">
               {{ c.last_synced_at ? t('yt.lastSynced', { time: shanghaiTime(c.last_synced_at) }) : t('yt.neverSyncedShort') }}
@@ -82,6 +84,7 @@
             <button class="btn btn-sm" type="button" @click="doSync(c)" :disabled="syncing.has(c.id)">
               {{ syncing.has(c.id) ? t('yt.refreshing') : t('yt.sync') }}
             </button>
+            <button v-if="c.sync_mode === 'single'" class="btn btn-sm btn-primary" type="button" @click="doSync(c, true)" :disabled="syncing.has(c.id)">{{ t('yt.syncChannelAll') }}</button>
             <button class="btn btn-sm btn-danger" type="button" @click="doDelete(c)">{{ t('common.delete') }}</button>
           </div>
           </template>
@@ -205,22 +208,24 @@
 
     <!-- 添加频道 -->
     <div v-if="showAdd" class="modal-backdrop" @click.self="showAdd = false">
-      <div class="modal-card" role="dialog" aria-modal="true" :aria-label="t('yt.addTitle')">
-        <h2>{{ t('yt.addTitle') }}</h2>
-        <label>{{ t('yt.inputLabel') }}</label>
-        <input class="field" v-model="addForm.input" :placeholder="t('yt.inputPh')" @keyup.enter="doAdd" />
-        <p style="color:var(--text-muted);font-size:13px">{{ t('yt.inputHint') }}</p>
+      <div class="modal-card" role="dialog" aria-modal="true" :aria-label="addMode === 'video' ? t('yt.addVideoTitle') : t('yt.addTitle')">
+        <h2>{{ addMode === 'video' ? t('yt.addVideoTitle') : t('yt.addTitle') }}</h2>
+        <label>{{ addMode === 'video' ? t('yt.videoInputLabel') : t('yt.inputLabel') }}</label>
+        <input class="field" v-model="addForm.input" :placeholder="addMode === 'video' ? t('yt.videoInputPh') : t('yt.inputPh')" @keyup.enter="doAdd" />
+        <p style="color:var(--text-muted);font-size:13px">{{ addMode === 'video' ? t('yt.videoInputHint') : t('yt.inputHint') }}</p>
         <label>{{ t('yt.groupLabel') }}</label>
         <select class="field" v-model="addForm.group_id">
           <option value="">{{ t('yt.ungrouped') }}</option>
           <option v-for="g in groups" :key="g.id" :value="g.id">{{ g.name }}</option>
         </select>
+        <template v-if="addMode === 'channel'">
         <label>{{ t('yt.rangeLabel') }}</label>
         <div style="display:flex;gap:6px">
           <input type="date" class="field" style="flex:1;min-width:0" v-model="addForm.date_from" :aria-label="t('yt.rangeFrom')" />
           <input type="date" class="field" style="flex:1;min-width:0" v-model="addForm.date_to" :aria-label="t('yt.rangeTo')" />
         </div>
         <p style="color:var(--text-muted);font-size:13px">{{ t('yt.rangeHint') }}</p>
+        </template>
         <p v-if="addError" style="color:var(--danger-text)">{{ addError }}</p>
         <div class="modal-actions">
           <button class="btn" type="button" @click="showAdd = false">{{ t('common.cancel') }}</button>
@@ -553,7 +558,10 @@ async function reload () {
   videos.value = vs
   groups.value = gs
 }
-function openAdd () {
+// 添加频道 / 添加单个视频（仅油管）：单个视频会连带登记它所属的频道（单视频模式）。
+const addMode = ref<'channel' | 'video'>('channel')
+function openAdd (mode: 'channel' | 'video' = 'channel') {
+  addMode.value = mode
   addForm.value = { input: '', group_id: '', date_from: '', date_to: '' }
   addError.value = ''
   showAdd.value = true
@@ -564,6 +572,14 @@ async function doAdd () {
   addBusy.value = true
   addError.value = ''
   try {
+    if (addMode.value === 'video') {
+      const res = await store.addYTVideo(input, addForm.value.group_id || null)
+      await reload()
+      showAdd.value = false
+      const name = res.channel.name || res.channel.channel_id
+      showToast(res.channel_created ? t('yt.videoAddedNewChannel', { name }) : t('yt.videoAdded', { name }))
+      return
+    }
     const ch = await store.addYTChannel(input, addForm.value.group_id || null, addForm.value.date_from || null, addForm.value.date_to || null, P)
     await reload()
     showAdd.value = false
@@ -603,10 +619,11 @@ async function doDelete (c: YTChannel) {
     showToast(t('yt.deleted', { name: c.name || c.channel_id }))
   } catch (err: any) { showToast(errText(err, t('yt.deleteFailed'))) }
 }
-async function doSync (c: YTChannel) {
+async function doSync (c: YTChannel, full = false) {
+  if (full && !confirm(t('yt.syncChannelAllConfirm', { name: c.name || c.channel_id }))) return
   syncing.value = new Set([...syncing.value, c.id])
   try {
-    const updated = await store.syncYTChannel(c.id, P)
+    const updated = await store.syncYTChannel(c.id, P, full)
     if (updated) {
       channels.value = channels.value.map(x => x.id === c.id ? updated : x)
       showToast(t('yt.refreshed', { name: updated.name || updated.channel_id }))
@@ -625,7 +642,8 @@ async function syncAll () {
   syncAllMsg.value = ''
   try {
     const res = await store.syncAllYTChannels(P)
-    syncAllMsg.value = t('yt.syncAllDone', { ok: res.synced, fail: res.failed, total: res.total })
+    syncAllMsg.value = t('yt.syncAllDone', { ok: res.synced, fail: res.failed, total: res.total }) +
+      (res.skipped ? t('yt.syncAllSkipped', { n: res.skipped }) : '')
     await reload()
   } catch (err: any) {
     syncAllMsg.value = errText(err, t('yt.syncAllFailed'))

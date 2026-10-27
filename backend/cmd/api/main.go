@@ -1309,6 +1309,9 @@ func (s *server) syncYTChannel(id string) (*model.YTChannel, error) {
 	if err != nil {
 		return nil, err
 	}
+	if ch.SyncMode == "single" {
+		return s.refreshSingleChannel(ch) // only the videos added by URL
+	}
 	// IDs already stored with a complete row (description, and for
 	// non-playlists a publish date) skip the backfill this sync; the
 	// sync re-checks everything else. Playlists count as complete
@@ -1473,6 +1476,14 @@ func (s *server) handleYTChannelSub(w http.ResponseWriter, r *http.Request) {
 			writeErr(w, 404, "NOT_FOUND", "channel not found")
 			return
 		}
+		// ?full=1 on a single-video channel = 同步该账号全部视频: switch it
+		// to full mode, then run the normal tab sync.
+		if r.URL.Query().Get("full") == "1" {
+			if err := s.st.SetYTChannelSyncMode(id, "full"); err != nil {
+				writeErr(w, 500, "DB_ERROR", err.Error())
+				return
+			}
+		}
 		ch, err := s.syncYTChannel(id)
 		if err != nil {
 			writeErr(w, 500, "DB_ERROR", err.Error())
@@ -1585,8 +1596,12 @@ func (s *server) handleYTChannelSub(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *server) handleYTVideos(w http.ResponseWriter, r *http.Request) {
+	if r.Method == http.MethodPost {
+		s.addYTVideo(w, r) // single-video configuration, see yt_single.go
+		return
+	}
 	if r.Method != http.MethodGet {
-		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only GET")
+		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only GET, POST")
 		return
 	}
 	q := r.URL.Query()
@@ -1629,8 +1644,14 @@ func (s *server) handleYTSyncAll(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	total := len(channels)
-	synced, failed := 0, 0
+	synced, failed, skipped := 0, 0, 0
 	for _, ch := range channels {
+		// Single-video channels are not pulled in full by 同步全部; their
+		// own 同步该账号全部视频 button does that.
+		if ch.SyncMode == "single" {
+			skipped++
+			continue
+		}
 		updated, err := s.syncYTChannel(ch.ID)
 		if err != nil {
 			writeErr(w, 500, "DB_ERROR", err.Error())
@@ -1644,7 +1665,7 @@ func (s *server) handleYTSyncAll(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 	writeJSON(w, 200, map[string]any{
-		"synced": synced, "failed": failed, "total": total,
+		"synced": synced, "failed": failed, "total": total, "skipped": skipped,
 	})
 }
 

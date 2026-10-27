@@ -32,6 +32,9 @@ import (
 	"sort"
 	"strconv"
 	"strings"
+	"time"
+
+	"xdigest/internal/model"
 )
 
 // Chapter is one creator-defined chapter (seconds from the start).
@@ -326,4 +329,84 @@ func topComments(raw []rawComment, n int) []Comment {
 		out = out[:n]
 	}
 	return out
+}
+
+// ---- Single video (2026-10-27) ----
+
+// SingleVideo is one video looked up by URL, with the channel it belongs to.
+type SingleVideo struct {
+	Video       model.YTVideo
+	ChannelID   string
+	ChannelName string
+	Handle      string
+}
+
+type singleMeta struct {
+	ID          string   `json:"id"`
+	Title       string   `json:"title"`
+	Description string   `json:"description"`
+	UploadDate  string   `json:"upload_date"`
+	Duration    *float64 `json:"duration"`
+	Thumbnail   string   `json:"thumbnail"`
+	ChannelID   string   `json:"channel_id"`
+	Channel     string   `json:"channel"`
+	UploaderID  string   `json:"uploader_id"`
+	WebpageURL  string   `json:"webpage_url"`
+	OriginalURL string   `json:"original_url"`
+	LiveStatus  string   `json:"live_status"`
+	Type        string   `json:"_type"`
+}
+
+// FetchVideo looks up one video (watch / youtu.be / shorts / live URL or a
+// bare video id) with a single yt-dlp metadata call. Playlists are refused.
+func (c *Client) FetchVideo(ctx context.Context, input string) (*SingleVideo, error) {
+	in := strings.TrimSpace(input)
+	if in == "" {
+		return nil, fmt.Errorf("请输入视频链接")
+	}
+	if !strings.Contains(in, "/") && len(in) == 11 {
+		in = "https://www.youtube.com/watch?v=" + in
+	}
+	ctx, cancel := context.WithTimeout(ctx, metaTimeout)
+	defer cancel()
+	out, err := c.runYtDlp(ctx, "--dump-json", "--no-playlist", "--no-warnings", "--skip-download", in)
+	if len(out) == 0 {
+		return nil, fmt.Errorf("读取视频失败（链接无效或视频不可见）：%v", err)
+	}
+	var m singleMeta
+	if derr := json.NewDecoder(bytes.NewReader(out)).Decode(&m); derr != nil {
+		return nil, fmt.Errorf("解析 yt-dlp 元数据失败：%v", derr)
+	}
+	if m.Type == "playlist" || m.ID == "" {
+		return nil, fmt.Errorf("这是播放列表或频道链接，请填写单个视频的链接")
+	}
+	if m.ChannelID == "" {
+		return nil, fmt.Errorf("读不到视频所属的频道")
+	}
+	kind := "video"
+	switch {
+	case strings.Contains(m.OriginalURL+" "+m.WebpageURL+" "+input, "/shorts/"):
+		kind = "short"
+	case m.LiveStatus == "is_live" || m.LiveStatus == "was_live" || m.LiveStatus == "post_live" || m.LiveStatus == "is_upcoming":
+		kind = "live"
+	}
+	meta := metaEntry{UploadDate: m.UploadDate}
+	v := model.YTVideo{
+		ID: m.ID, ChannelID: m.ChannelID, Kind: kind, Title: strings.TrimSpace(m.Title),
+		Description: strings.TrimSpace(m.Description), PublishedAt: meta.publishedAt(),
+		LiveStatus: strings.TrimSpace(m.LiveStatus), ThumbnailURL: m.Thumbnail,
+		URL:       "https://www.youtube.com/watch?v=" + m.ID,
+		CreatedAt: time.Now().In(shanghai).Format("2006-01-02 15:04:05"),
+	}
+	if kind == "short" {
+		v.URL = "https://www.youtube.com/shorts/" + m.ID
+	}
+	if m.Duration != nil {
+		v.Duration = int(*m.Duration)
+	}
+	handle := strings.TrimSpace(m.UploaderID)
+	if handle != "" && !strings.HasPrefix(handle, "@") {
+		handle = ""
+	}
+	return &SingleVideo{Video: v, ChannelID: m.ChannelID, ChannelName: strings.TrimSpace(m.Channel), Handle: handle}, nil
 }

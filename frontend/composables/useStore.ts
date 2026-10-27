@@ -327,12 +327,18 @@ export function useStore () {
     if (mock.value) { mockStore.deleteMockYTChannel(id); return }
     await apiFetch(`${p}/channels/${id}`, { method: 'DELETE' })
   }
-  async function syncYTChannel (id: string, p: VideoPlatform = 'yt'): Promise<YTChannel | null> {
+  // full=true on a single-video channel: switch it to full mode and sync all its videos.
+  async function syncYTChannel (id: string, p: VideoPlatform = 'yt', full = false): Promise<YTChannel | null> {
     if (mock.value) return mockStore.syncMockYTChannel(id)
-    const data = await apiFetch<any>(`${p}/channels/${id}/sync`, { method: 'POST' })
+    const data = await apiFetch<any>(`${p}/channels/${id}/sync${full ? '?full=1' : ''}`, { method: 'POST' })
     return data.channel || data || null
   }
-  async function syncAllYTChannels (p: VideoPlatform = 'yt'): Promise<{ synced: number, failed: number, total: number }> {
+  // Add one YouTube video by URL; its channel is registered (single mode) when not followed yet.
+  async function addYTVideo (url: string, groupId?: string | null): Promise<{ video: YTVideo, channel: YTChannel, channel_created: boolean }> {
+    if (!url.trim()) throw new ApiError(422, 'VALIDATION', t('yt.videoInputLabel'))
+    return apiFetch('yt/videos', { method: 'POST', body: JSON.stringify({ url: url.trim(), group_id: groupId || undefined }) })
+  }
+  async function syncAllYTChannels (p: VideoPlatform = 'yt'): Promise<{ synced: number, failed: number, total: number, skipped?: number }> {
     if (mock.value) {
       const total = mockStore.ytChannels.value.length
       for (const c of mockStore.ytChannels.value) mockStore.syncMockYTChannel(c.id)
@@ -381,7 +387,7 @@ export function useStore () {
     deleteAccount, addCategory, deleteCategory, setPostCategories, setUserTags, translateTexts,
     loadRepos, loadRepoGroups, addRepo, loadRepoDetail, loadRepoCommits, loadRepoReleases,
     patchRepo, deleteRepo, syncRepo, syncAllRepos, addRepoGroup, deleteRepoGroup, validateRepoFullName,
-    loadYTChannels, loadYTVideos, addYTChannel, updateYTChannel, deleteYTChannel, syncYTChannel, syncAllYTChannels, getYTSummary, startYTSummary, getPostSummary, startPostSummary,
+    loadYTChannels, loadYTVideos, addYTChannel, updateYTChannel, deleteYTChannel, syncYTChannel, syncAllYTChannels, getYTSummary, startYTSummary, addYTVideo, getPostSummary, startPostSummary,
     loadYTGroups, addYTGroup, deleteYTGroup
   }
 }
