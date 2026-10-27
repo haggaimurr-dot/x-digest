@@ -46,6 +46,13 @@
                 :class="{ active: channelFilter === c.channel_id }" @click="channelFilter = channelFilter === c.channel_id ? '' : c.channel_id">{{ c.name || c.channel_id }}</button>
             </div>
           </div>
+          <div v-if="tagCounts.length" style="margin-top:8px">
+            <div class="chip-group-title">{{ t('yt.tags') }}</div>
+            <div class="chips">
+              <button v-for="tc in tagCounts" :key="tc.tag" type="button" class="chip"
+                :class="{ active: tagFilter === tc.tag }" @click="tagFilter = tagFilter === tc.tag ? '' : tc.tag">{{ tc.tag }}（{{ tc.n }}）</button>
+            </div>
+          </div>
           <div class="filter-row" style="margin-top:8px">
             <button class="btn btn-sm" type="button" @click="clearAll">{{ t('yt.clearAll') }}</button>
           </div>
@@ -107,42 +114,49 @@
 
         <!-- 视频卡片（最新在前） -->
         <section class="repo-list" style="margin-top:16px">
-          <article v-for="v in filtered" :key="v.id" class="post-card yt-video-card">
+          <div v-for="grp in groupedByChannel" :key="grp.id" class="yt-channel-block">
+          <button class="yt-channel-head" type="button" :aria-expanded="!collapsedChannels.has(grp.id)" @click="toggleChannelVideos(grp.id)">
+            <svg class="yt-chevron" :class="{ 'is-collapsed': collapsedChannels.has(grp.id) }" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
+            <span class="yt-channel-name">{{ grp.name }}</span><span class="yt-section-count">（{{ grp.videos.length }}）</span>
+          </button>
+          <template v-if="!collapsedChannels.has(grp.id)">
+          <article v-for="v in grp.videos" :key="v.id" class="post-card yt-video-card">
+            <!-- 左：缩略图 + 简介；右：标题、时间、标签 -->
             <div class="yt-left">
               <a :href="v.url" target="_blank" rel="noopener" :title="t('yt.watchOnYouTube')" class="yt-thumb">
                 <img v-if="v.thumbnail_url" :src="v.thumbnail_url" :alt="v.title" loading="lazy" />
                 <span v-else class="yt-thumb-ph">▶</span>
               </a>
-              <div v-if="videoKind(v) !== 'playlist'" class="yt-comments" :aria-label="t('yt.topComments')">
-                <template v-if="commentsOf(v.id)?.length">
-                  <div class="yt-comments-title">{{ t('yt.topComments') }}</div>
-                  <div v-for="(c, ci) in commentsOf(v.id)!.slice(0, 3)" :key="ci" class="yt-comment">
-                    <div class="yt-comment-meta"><span class="yt-comment-likes">👍 {{ compactNum(c.likes) }}</span><span class="yt-comment-author">{{ c.author }}</span></div>
-                    <p class="yt-comment-text">{{ c.text }}</p>
-                  </div>
-                </template>
-                <p v-else-if="commentsPending.has(v.id)" class="yt-comments-note">{{ t('yt.commentsLoading') }}</p>
-              </div>
+              <p v-if="v.description" class="yt-desc" :class="{ 'yt-desc-open': expandedDesc.has(v.id) }"><template v-for="(part, pi) in linkParts(tr(v.description))" :key="pi"><a v-if="part.href" class="yt-desc-link" :href="part.href" :title="part.href" target="_blank" rel="noopener noreferrer">{{ part.text.replace(/^https?:\/\/(www\.)?/, '') }}</a><template v-else>{{ part.text }}</template></template></p>
+              <p v-else class="yt-desc-empty">{{ t('yt.noDesc') }}</p>
+              <button v-if="(v.description || '').length > 80" class="yt-desc-more" type="button" @click="toggleDesc(v.id)">
+                {{ expandedDesc.has(v.id) ? t('yt.collapseDesc') : t('yt.expandDesc') }}
+              </button>
             </div>
             <div class="yt-info">
               <h2 class="post-title yt-title">
                 <a :href="v.url" target="_blank" rel="noopener">{{ tr(v.title) }}</a>
               </h2>
               <p class="yt-meta">
-                {{ v.channel_name || v.channel_id }}<template v-if="v.published_at"> · {{ shanghaiTime(v.published_at) }}（{{ relativeTime(v.published_at, lang.value) }}）</template>
+                <template v-if="v.published_at">{{ shanghaiTime(v.published_at) }}（{{ relativeTime(v.published_at, lang.value) }}）</template>
               </p>
               <div class="yt-tags">
                 <span class="chip yt-tag">{{ kindLabel(v) }}</span>
                 <span v-if="v.live_status === 'is_live'" class="chip active yt-tag">{{ t('yt.liveNow') }}</span>
                 <span v-else-if="v.live_status === 'was_live'" class="chip yt-tag">{{ t('yt.liveReplay') }}</span>
+                <button v-for="tag in tagsOf(v)" :key="tag" type="button" class="chip yt-tag yt-topic" :class="{ active: tagFilter === tag }" @click="tagFilter = tagFilter === tag ? '' : tag">#{{ tag }}</button>
               </div>
-              <p v-if="v.description" class="yt-desc" :class="{ 'yt-desc-open': expandedDesc.has(v.id) }"><template v-for="(part, pi) in linkParts(tr(v.description))" :key="pi"><a v-if="part.href" class="yt-desc-link" :href="part.href" target="_blank" rel="noopener noreferrer">{{ part.text }}</a><template v-else>{{ part.text }}</template></template></p>
-              <p v-else class="yt-desc-empty">{{ t('yt.noDesc') }}</p>
-              <div v-if="(v.description || '').length > 140" class="yt-actions">
-                <button class="btn btn-sm" type="button" @click="toggleDesc(v.id)">
-                  {{ expandedDesc.has(v.id) ? t('yt.collapseDesc') : t('yt.expandDesc') }}
-                </button>
-              </div>
+            </div>
+            <!-- 视频提及的资源：简介里的链接 + AI 摘要识别出的工具/仓库/网站 -->
+            <div v-if="resourcesOf(v).length" class="yt-resources">
+              <div class="yt-res-title">{{ t('yt.resources') }}</div>
+              <ul class="yt-res-list">
+                <li v-for="(r, ri) in resourcesOf(v)" :key="'r' + ri">
+                  <span class="yt-res-label">{{ r.label }}</span>
+                  <a v-if="r.url" class="yt-desc-link" :href="r.url" target="_blank" rel="noopener noreferrer">{{ r.url.replace(/^https?:\/\/(www\.)?/, '') }}</a>
+                  <span v-if="r.note" class="yt-res-note">{{ r.note }}</span>
+                </li>
+              </ul>
             </div>
             <!-- AI 摘要：整行放在卡片模块下方（不在右侧栏内），点按展开/收起，默认收起。 -->
             <button v-if="videoKind(v) !== 'playlist'" class="yt-summary-toggle" type="button" :aria-expanded="openSummary.has(v.id)" @click="toggleSummary(v)">
@@ -183,6 +197,8 @@
               </template>
             </section>
           </article>
+          </template>
+          </div>
         </section>
       </template>
     </main>
@@ -241,9 +257,10 @@
 </template>
 
 <script setup lang="ts">
-import type { YTChannel, YTVideo, YTSummary, YTComment, RepoGroup } from '~/composables/types'
+import type { YTChannel, YTVideo, YTSummary, RepoGroup } from '~/composables/types'
 import type { VideoPlatform } from '~/composables/useStore'
 import { DICT } from '~/utils/i18n'
+import { videoTags, descResources, linkParts } from '~/utils/videoTags'
 import { ApiError } from '~/composables/types'
 import { relativeTime, shanghaiTime, shanghaiDayBound, trunc40 } from '~/composables/useFormat'
 import { useScrollLock } from '~/composables/useScrollLock'
@@ -284,9 +301,10 @@ const tabs: Array<{ key: YTKind, label: string }> = ([
 ] as Array<{ key: YTKind, label: string }>).filter(tab => P === 'yt' || tab.key === 'video' || tab.key === 'playlist')
 const activeTab = ref<YTKind>('video')
 const filtersCollapsed = ref(false)
+const tagFilter = ref('')
 const activeFilterCount = computed(() =>
   (keyword.value.trim() ? 1 : 0) + (channelFilter.value ? 1 : 0) + (groupFilter.value ? 1 : 0) +
-  (dateFrom.value || dateTo.value ? 1 : 0))
+  (dateFrom.value || dateTo.value ? 1 : 0) + (tagFilter.value ? 1 : 0))
 
 const expandedDesc = ref<Set<string>>(new Set())
 const syncing = ref<Set<string>>(new Set())
@@ -339,24 +357,6 @@ function kindLabel (v: YTVideo): string {
     default: return t('yt.tabVideo')
   }
 }
-// 简介按纯文本渲染，只把 http(s) 链接切出来做成 <a>（不用 v-html，避免注入）。
-// 链接末尾的中英文标点、括号不算进链接。
-const URL_RE = /https?:\/\/[^\s<>"'，。；！？、）】」]+/g
-function linkParts (text: string): Array<{ text: string, href?: string }> {
-  const parts: Array<{ text: string, href?: string }> = []
-  let last = 0
-  for (const m of text.matchAll(URL_RE)) {
-    let url = m[0]
-    const trail = url.match(/[.,;:!?)\]}'"]+$/)
-    if (trail) url = url.slice(0, -trail[0].length)
-    const start = m.index!
-    if (start > last) parts.push({ text: text.slice(last, start) })
-    parts.push({ text: url, href: url })
-    last = start + url.length
-  }
-  if (last < text.length) parts.push({ text: text.slice(last) })
-  return parts
-}
 function rangeText (c: YTChannel): string {
   if (!c.date_from && !c.date_to) return t('yt.allTime')
   return `${c.date_from || '…'} ~ ${c.date_to || '…'}`
@@ -390,6 +390,7 @@ const filteredExceptKind = computed(() => {
       if (groupFilter.value === '__ungrouped') { if (g) return false } else if (g !== groupFilter.value) return false
     }
     if (!matchesDate(v)) return false
+    if (tagFilter.value && !tagsOf(v).includes(tagFilter.value)) return false
     return true
   })
 })
@@ -400,13 +401,61 @@ const tabCounts = computed(() => {
   return counts
 })
 const filtered = computed(() => filteredExceptKind.value.filter(v => videoKind(v) === activeTab.value))
-watch(filtered, requestVisibleComments)
+// Topic tags from title + description (utils/videoTags.ts), cached per
+// video text; the tag chips list every tag present, most used first.
+const tagCache = new Map<string, string[]>()
+function tagsOf (v: YTVideo): string[] {
+  const key = `${v.id}\u0000${v.title}\u0000${v.description || ''}`
+  let tags = tagCache.get(key)
+  if (!tags) { tags = videoTags(v.title, v.description || ''); tagCache.set(key, tags) }
+  return tags
+}
+const tagCounts = computed(() => {
+  const counts = new Map<string, number>()
+  for (const v of videos.value) for (const tag of tagsOf(v)) counts.set(tag, (counts.get(tag) || 0) + 1)
+  return [...counts.entries()].sort((a, b) => b[1] - a[1]).map(([tag, n]) => ({ tag, n }))
+})
+// ① Videos are listed under their channel, in the channel list's order;
+// each channel block folds (remembered per browser).
+const groupedByChannel = computed(() => {
+  const byChannel = new Map<string, YTVideo[]>()
+  for (const v of filtered.value) {
+    const list = byChannel.get(v.channel_id)
+    if (list) list.push(v); else byChannel.set(v.channel_id, [v])
+  }
+  const order = channels.value.map(c => c.channel_id)
+  for (const id of byChannel.keys()) if (!order.includes(id)) order.push(id)
+  return order.filter(id => byChannel.has(id)).map(id => ({
+    id, name: channelById.value.get(id)?.name || byChannel.get(id)![0].channel_name || id, videos: byChannel.get(id)!
+  }))
+})
+const CH_COLLAPSE_KEY = `x-digest-${P}-collapsed-channel-videos`
+const collapsedChannels = ref<Set<string>>(new Set())
+function toggleChannelVideos (id: string) {
+  const s = new Set(collapsedChannels.value)
+  if (s.has(id)) s.delete(id); else s.add(id)
+  collapsedChannels.value = s
+  try { localStorage.setItem(CH_COLLAPSE_KEY, JSON.stringify([...s])) } catch { /* private mode */ }
+}
+// ⑥ Resources: the description's links, plus what the AI summary found
+// (once a summary has been loaded for the video).
+function resourcesOf (v: YTVideo): Array<{ label: string, url: string, note?: string }> {
+  const out: Array<{ label: string, url: string, note?: string }> = descResources(v.description || '')
+  const sum = summaryOf(v.id)
+  if (sum?.status === 'done') {
+    for (const r of sum.resources || []) {
+      if (r.url && out.some(x => x.url === r.url)) continue
+      out.push({ label: r.name, url: r.url, note: r.note })
+    }
+  }
+  return out
+}
 watch([filtered, lang], () => {
   enqueue(filtered.value.flatMap(v => [v.title, v.description || '']))
 })
 
 function clearAll () {
-  keyword.value = ''; channelFilter.value = ''; groupFilter.value = ''
+  keyword.value = ''; channelFilter.value = ''; groupFilter.value = ''; tagFilter.value = ''
   dateFrom.value = ''; dateTo.value = ''
   activeTab.value = 'video'
 }
@@ -485,49 +534,14 @@ function toggleSection (k: 'channels' | 'groups') {
 }
 function loadSections () {
   try {
+    const ch = JSON.parse(localStorage.getItem(CH_COLLAPSE_KEY) || '[]')
+    if (Array.isArray(ch)) collapsedChannels.value = new Set(ch.filter((x: unknown) => typeof x === 'string'))
+  } catch { /* ignore */ }
+  try {
     const v = JSON.parse(localStorage.getItem(SECTIONS_KEY) || '{}')
     collapsedSections.value = { channels: v.channels === true, groups: v.groups === true }
   } catch { /* ignore */ }
 }
-// ---- Top comments under the thumbnail ----
-// Asked for the videos on screen (current tab + filters); the server
-// fetches missing ones in the background and the page re-asks every 8s
-// while some are still pending.
-const comments = ref<Record<string, YTComment[]>>({})
-const commentsPending = ref<Set<string>>(new Set())
-let commentsTimer: ReturnType<typeof setTimeout> | null = null
-let commentsPolls = 0
-function commentsOf (id: string): YTComment[] | undefined { return comments.value[id] }
-function compactNum (n: number): string {
-  const trim = (x: number) => x.toFixed(1).replace(/\.0$/, '')
-  if (lang.value !== 'en' && n >= 10000) return trim(n / 10000) + '万'
-  if (n >= 1000000) return trim(n / 1000000) + 'M'
-  if (n >= 1000) return trim(n / 1000) + 'K'
-  return String(n)
-}
-async function fetchComments (ids: string[]) {
-  const pending = new Set(commentsPending.value)
-  for (let i = 0; i < ids.length; i += 60) {
-    const chunk = ids.slice(i, i + 60)
-    try {
-      const res = await store.loadYTComments(chunk, P)
-      comments.value = { ...comments.value, ...res.comments }
-      for (const id of chunk) pending.delete(id)
-      for (const id of res.pending) pending.add(id)
-    } catch { /* comments are optional; keep the page working */ }
-  }
-  commentsPending.value = pending
-  if (commentsTimer) { clearTimeout(commentsTimer); commentsTimer = null }
-  if (pending.size && commentsPolls < 60) {
-    commentsPolls++
-    commentsTimer = setTimeout(() => fetchComments([...commentsPending.value]), 8000)
-  }
-}
-function requestVisibleComments () {
-  const ids = filtered.value.filter(v => videoKind(v) !== 'playlist' && !(v.id in comments.value)).map(v => v.id)
-  if (ids.length) { commentsPolls = 0; fetchComments(ids) }
-}
-onUnmounted(() => { if (commentsTimer) clearTimeout(commentsTimer) })
 function toggleDesc (id: string) {
   const s = new Set(expandedDesc.value)
   if (s.has(id)) s.delete(id); else s.add(id)

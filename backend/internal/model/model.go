@@ -206,22 +206,30 @@ type YTSummaryChapter struct {
 	Summary string `json:"summary"`
 }
 
+// YTSummaryResource is something the video mentions (URL may be "").
+type YTSummaryResource struct {
+	Name string `json:"name"`
+	URL  string `json:"url"`
+	Note string `json:"note"`
+}
+
 // YTSummary mirrors yt_video_summaries: the AI summary of one video in
 // one language. Status is none (no row yet; never stored), pending, done
 // or failed. Source is transcript or description (no subtitles found).
 type YTSummary struct {
-	VideoID        string             `json:"video_id"`
-	Lang           string             `json:"lang"`
-	Status         string             `json:"status"`
-	Summary        string             `json:"summary"`
-	KeyPoints      []string           `json:"key_points"`
-	Chapters       []YTSummaryChapter `json:"chapters"`
-	Source         string             `json:"source"`
-	TranscriptLang string             `json:"transcript_lang"`
-	Model          string             `json:"model"`
-	Error          string             `json:"error"`
-	CreatedAt      string             `json:"created_at"`
-	UpdatedAt      string             `json:"updated_at"`
+	VideoID        string              `json:"video_id"`
+	Lang           string              `json:"lang"`
+	Status         string              `json:"status"`
+	Summary        string              `json:"summary"`
+	KeyPoints      []string            `json:"key_points"`
+	Chapters       []YTSummaryChapter  `json:"chapters"`
+	Resources      []YTSummaryResource `json:"resources"`
+	Source         string              `json:"source"`
+	TranscriptLang string              `json:"transcript_lang"`
+	Model          string              `json:"model"`
+	Error          string              `json:"error"`
+	CreatedAt      string              `json:"created_at"`
+	UpdatedAt      string              `json:"updated_at"`
 }
 
 // YTComment is one of a video's most-liked top-level comments.

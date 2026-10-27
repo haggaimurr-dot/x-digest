@@ -62,11 +62,20 @@ type Chapter struct {
 }
 
 // Result is a finished summary.
+// Resource is a tool, product, repo, site, paper or download the video
+// mentions. URL is only set when the material states it.
+type Resource struct {
+	Name string `json:"name"`
+	URL  string `json:"url"`
+	Note string `json:"note"`
+}
+
 type Result struct {
-	Summary   string    `json:"summary"`
-	KeyPoints []string  `json:"key_points"`
-	Chapters  []Chapter `json:"chapters"`
-	Source    string    `json:"source"`
+	Summary   string     `json:"summary"`
+	KeyPoints []string   `json:"key_points"`
+	Chapters  []Chapter  `json:"chapters"`
+	Resources []Resource `json:"resources"`
+	Source    string     `json:"source"`
 }
 
 // Summarize builds the summary of d in the target language ("zh-CN" or
@@ -121,9 +130,11 @@ func Summarize(ctx context.Context, llm Completer, d *youtube.VideoDetail, targe
 	}
 	system := "You summarize YouTube videos for a reader who has not watched them. Write everything in " + lang + ". " +
 		"Return ONLY a JSON object, no markdown fences, with this shape: " +
-		`{"summary": string, "key_points": [string], "chapters": [{"start": integer seconds, "title": string, "summary": string}]}. ` +
+		`{"summary": string, "key_points": [string], "chapters": [{"start": integer seconds, "title": string, "summary": string}], "resources": [{"name": string, "url": string, "note": string}]}. ` +
 		"summary: the whole video in 2-5 short paragraphs separated by \\n\\n — what it is about, the main arguments or steps, and the conclusion. " +
 		"key_points: 3-8 concrete takeaways (names, numbers, tools, steps), one sentence each. " +
+		"resources: up to 10 tools, products, GitHub repos, websites, papers or downloads the video mentions or recommends; " +
+		"url only when the material states it (else \"\"), never guess one; note: one short phrase on what it is or why it is mentioned; skip sponsors and social accounts. " +
 		"Each chapter summary: 1-3 sentences on what that part covers. " + chapterRule + " " +
 		"Base everything on the material given; do not invent facts. Ignore sponsor reads and calls to subscribe."
 
@@ -252,6 +263,18 @@ func parseResult(s string) (*Result, error) {
 		}
 	}
 	r.KeyPoints = kp
+	res := make([]Resource, 0, len(r.Resources))
+	for _, x := range r.Resources {
+		x.Name, x.URL, x.Note = strings.TrimSpace(x.Name), strings.TrimSpace(x.URL), strings.TrimSpace(x.Note)
+		if x.Name == "" {
+			continue
+		}
+		if !strings.HasPrefix(x.URL, "http://") && !strings.HasPrefix(x.URL, "https://") {
+			x.URL = ""
+		}
+		res = append(res, x)
+	}
+	r.Resources = res
 	return &r, nil
 }
 

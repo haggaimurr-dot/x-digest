@@ -527,12 +527,16 @@ func (h *videoHub) runSummary(video model.YTVideo, lang, key string) {
 	for i, c := range res.Chapters {
 		chapters[i] = model.YTSummaryChapter{Start: c.Start, Title: c.Title, Summary: c.Summary}
 	}
+	resources := make([]model.YTSummaryResource, len(res.Resources))
+	for i, x := range res.Resources {
+		resources[i] = model.YTSummaryResource{Name: x.Name, URL: x.URL, Note: x.Note}
+	}
 	keyPoints := res.KeyPoints
 	if keyPoints == nil {
 		keyPoints = []string{}
 	}
 	if err := h.st.FinishSummary(model.YTSummary{VideoID: video.ID, Lang: lang, Summary: res.Summary,
-		KeyPoints: keyPoints, Chapters: chapters, Source: res.Source, TranscriptLang: detail.TranscriptLang,
+		KeyPoints: keyPoints, Chapters: chapters, Resources: resources, Source: res.Source, TranscriptLang: detail.TranscriptLang,
 		Model: h.sum.llm.Model}); err != nil {
 		log.Printf("%s summary %s: store result: %v", h.prefix, video.ID, err)
 	}

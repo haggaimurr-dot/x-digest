@@ -5,7 +5,7 @@
 import rawPosts from '~/assets/mock/posts.json'
 import rawWatchlist from '~/assets/mock/watchlist.json'
 import rawUserTags from '~/assets/mock/user-tags.json'
-import type { Post, Watchlist, Categories, Replica, ReplicaStep, Attachment, Repo, RepoGroup, RepoCommit, RepoRelease, YTChannel, YTVideo, YTSummary, YTComment } from './types'
+import type { Post, Watchlist, Categories, Replica, ReplicaStep, Attachment, Repo, RepoGroup, RepoCommit, RepoRelease, YTChannel, YTVideo, YTSummary } from './types'
 import { LS } from './useSettings'
 import { t } from '~/utils/i18n'
 
@@ -417,17 +417,6 @@ export function useMockStore () {
     ytChannels.value = ytChannels.value.map(c => c.group_id === id ? { ...c, group_id: 'default' } : c)
     persistYT()
   }
-  function mockYTComments (ids: string[]): Record<string, YTComment[]> {
-    const out: Record<string, YTComment[]> = {}
-    for (const id of ids) {
-      out[id] = [
-        { author: '@viewer1', text: 'Great breakdown, the second part saved me hours.', likes: 1240, published_at: '' },
-        { author: '@viewer2', text: '讲得很清楚，求出下一期！', likes: 312, published_at: '' },
-        { author: '@viewer3', text: 'Timestamp 3:10 is the key trick.', likes: 87, published_at: '' }
-      ]
-    }
-    return out
-  }
   // Mock mode never calls the model: a canned summary shows the layout.
   function mockYTSummary (id: string, lang: string): YTSummary {
     const v = ytVideos.value.find(x => x.id === id)
@@ -445,5 +434,5 @@ export function useMockStore () {
       ]
     }
   }
-  return { watchlist, categories, userTagOverrides, vocabulary, replicas, persist, mockYTSummary, mockYTComments, createReplica, createMockStandaloneReplica, patchReplicaSteps, deleteReplica, addMockReplicaStep, deleteMockReplicaStep, addMockAttachments, deleteMockAttachment, repoGroups, repos, addMockRepo, patchMockRepo, deleteMockRepo, syncMockRepo, addMockRepoGroup, deleteMockRepoGroup, ytGroups, ytChannels, ytVideos, addMockYTChannel, patchMockYTChannel, deleteMockYTChannel, syncMockYTChannel, addMockYTGroup, deleteMockYTGroup }
+  return { watchlist, categories, userTagOverrides, vocabulary, replicas, persist, mockYTSummary, createReplica, createMockStandaloneReplica, patchReplicaSteps, deleteReplica, addMockReplicaStep, deleteMockReplicaStep, addMockAttachments, deleteMockAttachment, repoGroups, repos, addMockRepo, patchMockRepo, deleteMockRepo, syncMockRepo, addMockRepoGroup, deleteMockRepoGroup, ytGroups, ytChannels, ytVideos, addMockYTChannel, patchMockYTChannel, deleteMockYTChannel, syncMockYTChannel, addMockYTGroup, deleteMockYTGroup }
 }

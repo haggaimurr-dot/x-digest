@@ -140,3 +140,22 @@ func TestSummarizeErrors(t *testing.T) {
 		t.Errorf("upstream error should propagate, got %v", err)
 	}
 }
+
+func TestSummarizeResources(t *testing.T) {
+	d := &youtube.VideoDetail{Title: "t", Segments: []youtube.Segment{{Start: 0, Text: "x"}}}
+	llm := &fakeLLM{reply: func(system, _ string) (string, error) {
+		if !strings.Contains(system, `"resources"`) {
+			t.Errorf("prompt should ask for resources")
+		}
+		return `{"summary":"s","key_points":[],"chapters":[],"resources":[
+			{"name":" Claude Code ","url":"https://claude.com/claude-code","note":"CLI"},
+			{"name":"n8n","url":"n8n.io","note":""},{"name":"","url":"https://x","note":"no name"}]}`, nil
+	}}
+	res, err := Summarize(context.Background(), llm, d, "zh-CN")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(res.Resources) != 2 || res.Resources[0].Name != "Claude Code" || res.Resources[1].URL != "" {
+		t.Fatalf("resources = %+v", res.Resources)
+	}
+}

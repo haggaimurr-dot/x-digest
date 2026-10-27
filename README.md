@@ -49,17 +49,12 @@ cd frontend && npm install && npm run dev   # dev 端口 18091，/api 代理到 
 - 接口：`GET/POST /api/v1/yt/videos/{id}/summary?lang=zh-CN|en[&force=1]`（POST 返回 202 后页面每 4 秒轮询）；表 `yt_video_summaries`（见 `backend/schema.sql`，幂等追加）。
 - 依赖：服务器上 `TRANSLATE_API_KEY` 必须已配置，否则返回 503；yt-dlp 走 `YT_HTTP_PROXY`，与同步相同。无登录，任何能访问页面的人都能触发 AI 调用（已生成的摘要不会重复调用）。
 
-## 油管热门评论
+## 视频卡片（油管 / B站共用）
 
-- 视频缩略图下方显示点赞最多的 3 条一级评论（库里存前 5 条）。页面打开时只请求当前列表里的视频；从未获取或超过 7 天的由后台单线程逐个用 yt-dlp 拉取（每次间隔 1.5 秒），页面每 8 秒刷新一次直到拉完。拉取失败的 30 分钟内不重试。
-- 接口：`GET /api/v1/yt/comments?ids=a,b,c`（最多 60 个）；表 `yt_video_comments` 和 `yt_videos.comments_fetched_at`（见 `backend/schema.sql`）。
-
-## B站（/bilibili，与油管同一套页面）
-
-- 页面和油管共用 `frontend/components/VideoHub.vue`（`platform="bili"`）：UP 主管理、分组、拉取时间范围、视频 / 合集·系列两个栏目、热门评论、AI 摘要，界面改动两边同时生效。
-- 后端 `/api/v1/bili/...` 与 `/api/v1/yt/...` 路由和 JSON 完全相同（`backend/cmd/api/hub.go`），表为 `bili_*`（见 `backend/schema.sql`）。
-- 同步直接调 B站 Web 接口（`backend/internal/bilibili`，不走 yt-dlp）：buvid3 设备 cookie + WBI 签名；投稿列表自带简介和发布时间，无需逐条补元数据。AI 摘要用视频字幕 + 分段章节（view_points）；热门评论取热度排序后按点赞重排。
-- 可选环境变量：`BILIBILI_SESSDATA`（登录 cookie；AI 字幕只对登录请求可见，也能减少风控拦截）、`BILI_HTTP_PROXY`。被风控时同步状态会显示「B站风控拦截」，稍后重试即可。
+- 视频按账号分组显示，每个账号一块，可折叠；左栏缩略图 + 简介，右栏标题、时间、标签，下方整行是「提及的资源」和 AI 摘要。
+- 标签：按标题 + 简介关键词自动识别（Claude Code、Codex、Gemini、ChatGPT、Cursor、MCP、n8n 等，规则在 `frontend/utils/videoTags.ts`），检索条件里可按标签筛选。
+- 提及的资源：简介里的链接（去掉社交账号）+ AI 摘要识别出的工具 / 仓库 / 网站（摘要字段 `resources`）。
+- 热门评论已从页面移除（`/api/v1/<yt|bili>/comments` 接口仍在，页面不再调用）。
 
 ## 数据导入（服务器本地，不要暴露成 HTTP 接口）
 

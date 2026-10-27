@@ -418,6 +418,11 @@ CREATE TABLE IF NOT EXISTS bili_video_comments (
   PRIMARY KEY (video_id, idx)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- AI summary "resources" (tools / repos / sites the video mentions,
+-- JSON array of {name,url,note}), added 2026-10-27.
+ALTER TABLE yt_video_summaries ADD COLUMN IF NOT EXISTS resources MEDIUMTEXT NULL;
+ALTER TABLE bili_video_summaries ADD COLUMN IF NOT EXISTS resources MEDIUMTEXT NULL;
+
 -- ---- Content translation cache (added 2026-10-26) ----
 -- One row per (source text, target language). source_hash is the SHA-256
 -- of source text + target language (see internal/translate.Hash).

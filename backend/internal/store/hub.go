@@ -332,10 +332,11 @@ func (h *HubStore) GroupExists(id string) bool {
 
 func (h *HubStore) GetSummary(videoID, lang string) (sum model.YTSummary, ok bool, err error) {
 	var summary, keyPoints, chapters, errText sql.NullString
-	err = h.DB.QueryRow(h.q(`SELECT video_id,lang,status,summary,key_points,chapters,source,transcript_lang,
+	var resources string
+	err = h.DB.QueryRow(h.q(`SELECT video_id,lang,status,summary,key_points,chapters,COALESCE(resources,''),source,transcript_lang,
 		model,error,DATE_FORMAT(created_at,'%Y-%m-%d %H:%i:%s'),DATE_FORMAT(updated_at,'%Y-%m-%d %H:%i:%s')
 		FROM {p}_video_summaries WHERE video_id=? AND lang=?`), videoID, lang).
-		Scan(&sum.VideoID, &sum.Lang, &sum.Status, &summary, &keyPoints, &chapters, &sum.Source,
+		Scan(&sum.VideoID, &sum.Lang, &sum.Status, &summary, &keyPoints, &chapters, &resources, &sum.Source,
 			&sum.TranscriptLang, &sum.Model, &errText, &sum.CreatedAt, &sum.UpdatedAt)
 	if errors.Is(err, sql.ErrNoRows) {
 		return sum, false, nil
@@ -350,6 +351,10 @@ func (h *HubStore) GetSummary(videoID, lang string) (sum model.YTSummary, ok boo
 	}
 	if chapters.String != "" {
 		_ = json.Unmarshal([]byte(chapters.String), &sum.Chapters)
+	}
+	sum.Resources = []model.YTSummaryResource{}
+	if resources != "" {
+		_ = json.Unmarshal([]byte(resources), &sum.Resources)
 	}
 	return sum, true, nil
 }
@@ -371,9 +376,17 @@ func (h *HubStore) FinishSummary(sum model.YTSummary) error {
 	if err != nil {
 		return err
 	}
-	_, err = h.DB.Exec(h.q(`UPDATE {p}_video_summaries SET status='done',summary=?,key_points=?,chapters=?,
+	resources := sum.Resources
+	if resources == nil {
+		resources = []model.YTSummaryResource{}
+	}
+	rs, err := json.Marshal(resources)
+	if err != nil {
+		return err
+	}
+	_, err = h.DB.Exec(h.q(`UPDATE {p}_video_summaries SET status='done',summary=?,key_points=?,chapters=?,resources=?,
 		source=?,transcript_lang=?,model=?,error='',updated_at=? WHERE video_id=? AND lang=?`),
-		sum.Summary, string(kp), string(ch), sum.Source, sum.TranscriptLang, sum.Model, Now(), sum.VideoID, sum.Lang)
+		sum.Summary, string(kp), string(ch), string(rs), sum.Source, sum.TranscriptLang, sum.Model, Now(), sum.VideoID, sum.Lang)
 	return err
 }
 
