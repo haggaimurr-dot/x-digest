@@ -58,12 +58,7 @@
           <template v-if="!collapsedAuthors.has(grp.author)">
           <article v-for="post in grp.posts" :key="post.id" class="post-card yt-video-card">
             <div class="yt-left">
-              <!-- 没收录原文时左栏放 AI 摘要（下方的 AI 摘要开关仍可看全文与流程图） -->
-              <div v-if="!post.text && post.summary" class="x-orig">
-                <div class="x-orig-label">✨ AI 摘要（原文未收录）</div>
-                <p class="x-orig-text" v-html="highlightHtml(tr(post.summary), plainKeyword)" />
-              </div>
-              <div v-else class="x-orig" :class="{ 'is-missing': !post.text }">
+              <div class="x-orig" :class="{ 'is-missing': !post.text }">
                 <div class="x-orig-label">𝕏 原文</div>
                 <p v-if="post.text" class="x-orig-text" :class="{ 'yt-desc-open': expandedOriginal.has(post.id) }" :id="`original-${post.id}`"><template v-for="(part, pi) in linkParts(post.text)" :key="pi"><a v-if="part.href" class="yt-desc-link" :href="part.href" :title="part.href" target="_blank" rel="noopener noreferrer">{{ part.text.replace(/^https?:\/\/(www\.)?/, '') }}</a><span v-else v-html="highlightHtml(part.text, plainKeyword)" /></template></p>
                 <p v-else class="x-orig-text">原文暂未收录，可点击标题查看原推文。</p>
@@ -105,18 +100,13 @@
                 </li>
               </ul>
             </div>
-            <button v-if="post.summary || (canReplicatePost(post) && shouldShowFlowchart(post) && (post.steps || []).length)" class="yt-summary-toggle" type="button" :aria-expanded="openSummary.has(post.id)" @click="toggleSummary(post.id)">
-              <span>✨ {{ openSummary.has(post.id) ? '收起 AI 摘要' : 'AI 摘要' }}<template v-if="canReplicatePost(post) && shouldShowFlowchart(post) && (post.steps || []).length"> · {{ t('index.stepsSummary', { n: post.steps!.length }) }}</template></span>
+            <!-- AI 摘要已按 2386ee7 从 X 日报移除；可复刻的帖子在此折叠展示实现步骤流程图 -->
+            <button v-if="canReplicatePost(post) && shouldShowFlowchart(post) && (post.steps || []).length" class="yt-summary-toggle" type="button" :aria-expanded="openSummary.has(post.id)" @click="toggleSummary(post.id)">
+              <span>{{ t('index.stepsSummary', { n: post.steps!.length }) }}</span>
               <svg class="yt-chevron" :class="{ 'is-collapsed': !openSummary.has(post.id) }" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
             </button>
-            <section v-if="openSummary.has(post.id)" class="yt-summary" aria-label="AI 摘要">
-              <template v-if="post.summary">
-                <h3 class="yt-sum-h">全文摘要</h3>
-                <p class="yt-sum-para" v-html="highlightHtml(summaryShown(post), plainKeyword)" />
-                <button v-if="post.is_long" class="btn btn-sm" type="button" @click="toggleLong(post.id)">{{ expandedLong.has(post.id) ? t('index.collapseLong') : t('index.expandLong') }}</button>
-              </template>
-          <div v-if="canReplicatePost(post) && shouldShowFlowchart(post) && (post.steps || []).length" class="steps" style="margin-top:10px">
-            <h3 class="yt-sum-h">{{ t('index.stepsSummary', { n: post.steps!.length }) }}</h3>
+            <section v-if="openSummary.has(post.id)" class="yt-summary" :aria-label="t('index.stepsSummary', { n: (post.steps || []).length })">
+          <div class="steps">
             <div class="flow-chart">
               <div v-for="(step, i) in post.steps" :key="i" class="flow-step" :class="{ 'is-last': i === post.steps!.length - 1 }">
                 <div class="flow-rail" aria-hidden="true"><span class="flow-node" /><span v-if="i !== post.steps!.length - 1" class="flow-line" /></div>
