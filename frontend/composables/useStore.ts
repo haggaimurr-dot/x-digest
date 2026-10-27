@@ -341,6 +341,18 @@ export function useStore () {
   // AI summary: GET reads the stored one (status 'none' when never
   // generated); POST starts a background job (or returns the finished
   // one unless force) — the page polls GET while status is 'pending'.
+  // X post AI summary: same flow as the video one; POST sends the original
+  // text/links (they live in x-content.json on the page, not in the DB).
+  async function getPostSummary (id: string, lang: string): Promise<YTSummary> {
+    if (mock.value) return { ...mockStore.mockYTSummary(id, lang), chapters: [] }
+    const data = await apiFetch<{ summary: YTSummary }>(`posts/${encodeURIComponent(id)}/summary?lang=${lang}`)
+    return data.summary
+  }
+  async function startPostSummary (id: string, lang: string, body: { text: string, links: string[] }, force = false): Promise<YTSummary> {
+    if (mock.value) return { ...mockStore.mockYTSummary(id, lang), chapters: [] }
+    const data = await apiFetch<{ summary: YTSummary }>(`posts/${encodeURIComponent(id)}/summary?lang=${lang}${force ? '&force=1' : ''}`, { method: 'POST', body: JSON.stringify(body) })
+    return data.summary
+  }
   async function getYTSummary (id: string, lang: string, p: VideoPlatform = 'yt'): Promise<YTSummary> {
     if (mock.value) return mockStore.mockYTSummary(id, lang)
     const data = await apiFetch<{ summary: YTSummary }>(`${p}/videos/${encodeURIComponent(id)}/summary?lang=${lang}`)
@@ -367,7 +379,7 @@ export function useStore () {
     deleteAccount, addCategory, deleteCategory, setPostCategories, setUserTags, translateTexts,
     loadRepos, loadRepoGroups, addRepo, loadRepoDetail, loadRepoCommits, loadRepoReleases,
     patchRepo, deleteRepo, syncRepo, syncAllRepos, addRepoGroup, deleteRepoGroup, validateRepoFullName,
-    loadYTChannels, loadYTVideos, addYTChannel, updateYTChannel, deleteYTChannel, syncYTChannel, syncAllYTChannels, getYTSummary, startYTSummary,
+    loadYTChannels, loadYTVideos, addYTChannel, updateYTChannel, deleteYTChannel, syncYTChannel, syncAllYTChannels, getYTSummary, startYTSummary, getPostSummary, startPostSummary,
     loadYTGroups, addYTGroup, deleteYTGroup
   }
 }

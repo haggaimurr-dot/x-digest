@@ -94,19 +94,41 @@
             <div v-if="resourcesOf(post).length" class="yt-resources">
               <div class="yt-res-title">提及的资源</div>
               <ul class="yt-res-list">
-                <li v-for="r in resourcesOf(post)" :key="r.url">
+                <li v-for="(r, ri) in resourcesOf(post)" :key="'r' + ri">
                   <span v-if="r.label" class="yt-res-label">{{ r.label }}</span>
-                  <a class="yt-desc-link" :href="r.url" target="_blank" rel="noopener noreferrer">{{ r.url.replace(/^https?:\/\/(www\.)?/, '') }}</a>
+                  <a v-if="r.url" class="yt-desc-link" :href="r.url" target="_blank" rel="noopener noreferrer">{{ r.url.replace(/^https?:\/\/(www\.)?/, '') }}</a>
+                  <span v-if="r.note" class="yt-res-note">{{ r.note }}</span>
                 </li>
               </ul>
             </div>
-            <!-- AI 摘要已按 2386ee7 从 X 日报移除；可复刻的帖子在此折叠展示实现步骤流程图 -->
-            <button v-if="canReplicatePost(post) && shouldShowFlowchart(post) && (post.steps || []).length" class="yt-summary-toggle" type="button" :aria-expanded="openSummary.has(post.id)" @click="toggleSummary(post.id)">
-              <span>{{ t('index.stepsSummary', { n: post.steps!.length }) }}</span>
+            <!-- AI 摘要：点击时才调中转站 API 生成并入库（同油管），之后直接读库；可复刻帖子的流程图也在这里 -->
+            <button class="yt-summary-toggle" type="button" :aria-expanded="openSummary.has(post.id)" @click="toggleSummary(post)">
+              <span>✨ {{ openSummary.has(post.id) ? '收起 AI 摘要' : 'AI 摘要' }}<template v-if="hasFlow(post)"> · {{ t('index.stepsSummary', { n: post.steps!.length }) }}</template></span>
               <svg class="yt-chevron" :class="{ 'is-collapsed': !openSummary.has(post.id) }" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
             </button>
-            <section v-if="openSummary.has(post.id)" class="yt-summary" :aria-label="t('index.stepsSummary', { n: (post.steps || []).length })">
-          <div class="steps">
+            <section v-if="openSummary.has(post.id)" class="yt-summary" aria-label="AI 摘要">
+              <template v-for="sum in [summaryOf(post.id)]" :key="'s' + post.id">
+                <p v-if="!sum" class="yt-sum-note">{{ t('common.loading') }}</p>
+                <p v-else-if="sum.status === 'pending' || sum.status === 'none'" class="yt-sum-note"><span class="yt-spinner" aria-hidden="true" />正在调用 AI 生成摘要，通常需要十几秒…</p>
+                <div v-else-if="sum.status === 'failed'" class="yt-sum-note">
+                  <p class="yt-sum-error">生成失败：{{ sum.error }}</p>
+                  <button class="btn btn-sm" type="button" @click="generateSummary(post, true)">重试</button>
+                </div>
+                <template v-if="sum && sum.summary && sum.status !== 'pending'">
+                  <h3 class="yt-sum-h">全文摘要</h3>
+                  <p v-for="(para, pi) in sum.summary.split(/\n\s*\n/).filter(Boolean)" :key="'p' + pi" class="yt-sum-para">{{ para }}</p>
+                  <template v-if="sum.key_points.length">
+                    <h3 class="yt-sum-h">要点</h3>
+                    <ul class="yt-sum-points"><li v-for="(k, ki) in sum.key_points" :key="'k' + ki">{{ k }}</li></ul>
+                  </template>
+                  <div class="yt-sum-foot">
+                    <span>{{ sum.source === 'description' ? '原文未收录，只根据标题和已有信息生成，内容可能不完整' : '根据推文原文生成' }}<template v-if="sum.updated_at"> · 生成于 {{ sum.updated_at }}</template></span>
+                    <button v-if="sum.status === 'done'" class="btn btn-sm" type="button" @click="generateSummary(post, true)">重新生成</button>
+                  </div>
+                </template>
+              </template>
+          <div v-if="hasFlow(post)" class="steps" style="margin-top:12px">
+            <h3 class="yt-sum-h">{{ t('index.stepsSummary', { n: post.steps!.length }) }}</h3>
             <div class="flow-chart">
               <div v-for="(step, i) in post.steps" :key="i" class="flow-step" :class="{ 'is-last': i === post.steps!.length - 1 }">
                 <div class="flow-rail" aria-hidden="true"><span class="flow-node" /><span v-if="i !== post.steps!.length - 1" class="flow-line" /></div>
@@ -230,7 +252,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Post, Watchlist, Categories } from '~/composables/types'
+import type { Post, Watchlist, Categories, YTSummary } from '~/composables/types'
 import { LS, useSettings } from '~/composables/useSettings'
 import { canReplicatePost } from '~/utils/x-post.mjs'
 import { avatarUrl, avatarColor, avatarInitial, relativeTime, shanghaiTime, shanghaiDayBound, highlightHtml, firstHitSnippet, shouldShowFlowchart, trunc40 } from '~/composables/useFormat'
@@ -466,17 +488,68 @@ function toggleAuthorPosts (author: string) {
   collapsedAuthors.value = s
   try { localStorage.setItem(AUTHOR_COLLAPSE_KEY, JSON.stringify([...s])) } catch { /* private mode */ }
 }
+function hasFlow (p: Post) { return canReplicatePost(p) && shouldShowFlowchart(p) && !!(p.steps || []).length }
+// ---- AI 摘要（与油管同一逻辑）：首次展开时读库，没有就发起生成，生成中每 4 秒轮询 ----
 const openSummary = ref<Set<string>>(new Set())
-function toggleSummary (id: string) {
-  const s = new Set(openSummary.value)
-  if (s.has(id)) s.delete(id); else s.add(id)
-  openSummary.value = s
+const summaries = ref<Record<string, YTSummary>>({})
+const pollTimers = new Map<string, ReturnType<typeof setTimeout>>()
+function sumKey (id: string) { return `${id}|${lang.value}` }
+function summaryOf (id: string): YTSummary | undefined { return summaries.value[sumKey(id)] }
+function setSummary (sum: YTSummary) { summaries.value = { ...summaries.value, [`${sum.video_id}|${sum.lang}`]: sum } }
+function failSummary (p: Post, msg: string) {
+  const prev = summaryOf(p.id)
+  setSummary({ video_id: p.id, lang: lang.value, status: 'failed', summary: prev?.summary || '', key_points: prev?.key_points || [], chapters: [], resources: prev?.resources || [], source: prev?.source || '', transcript_lang: '', model: '', error: msg })
 }
-// 资源：解析出的 links 在前，原文里其余链接补在后（带同一行的文字做标签）。
-function resourcesOf (p: Post): Array<{ label: string, url: string }> {
-  const out: Array<{ label: string, url: string }> = (p.links || []).map(url => ({ label: '', url }))
+function schedulePoll (p: Post) {
+  const key = sumKey(p.id)
+  if (pollTimers.has(key)) return
+  const l = lang.value
+  pollTimers.set(key, setTimeout(async () => {
+    pollTimers.delete(key)
+    try {
+      const sum = await store.getPostSummary(p.id, l)
+      setSummary(sum)
+      if (sum.status === 'pending' && l === lang.value) schedulePoll(p)
+    } catch { if (l === lang.value) schedulePoll(p) }
+  }, 4000))
+}
+async function generateSummary (p: Post, force = false) {
+  const prev = summaryOf(p.id)
+  setSummary({ ...(prev || { video_id: p.id, lang: lang.value, summary: '', key_points: [], chapters: [], resources: [], source: '', transcript_lang: '', model: '', error: '' }), status: 'pending', error: '' })
+  try {
+    const sum = await store.startPostSummary(p.id, lang.value, { text: p.text || '', links: p.links || [] }, force)
+    setSummary(sum)
+    if (sum.status === 'pending') schedulePoll(p)
+  } catch (err: any) { failSummary(p, err?.message || '读取摘要失败') }
+}
+async function loadSummary (p: Post) {
+  try {
+    const sum = await store.getPostSummary(p.id, lang.value)
+    if (sum.status === 'none') return generateSummary(p)
+    setSummary(sum)
+    if (sum.status === 'pending') schedulePoll(p)
+  } catch (err: any) { failSummary(p, err?.message || '读取摘要失败') }
+}
+function toggleSummary (p: Post) {
+  const s = new Set(openSummary.value)
+  if (s.has(p.id)) { s.delete(p.id); openSummary.value = s; return }
+  s.add(p.id); openSummary.value = s
+  const cur = summaryOf(p.id)
+  if (!cur || cur.status === 'none') loadSummary(p)
+}
+onUnmounted(() => { for (const tm of pollTimers.values()) clearTimeout(tm); pollTimers.clear() })
+// 资源：解析出的 links 在前，原文里其余链接补在后；生成过 AI 摘要后补上它识别出的资源。
+function resourcesOf (p: Post): Array<{ label: string, url: string, note?: string }> {
+  const out: Array<{ label: string, url: string, note?: string }> = (p.links || []).map(url => ({ label: '', url }))
   for (const r of descResources(p.text || '')) {
     if (!out.some(x => x.url === r.url)) out.push(r)
+  }
+  const sum = summaryOf(p.id)
+  if (sum?.status === 'done') {
+    for (const r of sum.resources || []) {
+      if (r.url && out.some(x => x.url === r.url)) continue
+      out.push({ label: r.name, url: r.url, note: r.note })
+    }
   }
   return out
 }

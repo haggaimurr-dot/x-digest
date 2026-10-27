@@ -250,6 +250,10 @@ func (s *server) handlePosts(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *server) handlePost(w http.ResponseWriter, r *http.Request) {
+	if id, ok := strings.CutSuffix(strings.TrimPrefix(r.URL.Path, "/api/v1/posts/"), "/summary"); ok && id != "" && !strings.Contains(id, "/") {
+		s.handlePostSummary(w, r, id) // see post_summary.go
+		return
+	}
 	if r.Method != http.MethodGet {
 		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only GET")
 		return

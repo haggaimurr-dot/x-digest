@@ -159,3 +159,29 @@ func TestSummarizeResources(t *testing.T) {
 		t.Fatalf("resources = %+v", res.Resources)
 	}
 }
+
+func TestSummarizePost(t *testing.T) {
+	llm := &fakeLLM{reply: func(system, user string) (string, error) {
+		if !strings.Contains(user, "Original post:\n用不了Claude就用Grok吧") || strings.Contains(user, "Earlier digest") {
+			t.Errorf("original text should be sent, digest not:\n%s", user)
+		}
+		return `{"summary":"建议改用 Grok","key_points":[],"chapters":[{"start":0,"title":"x","summary":""}],"resources":[{"name":"Grok","url":"","note":"xAI 模型"}]}`, nil
+	}}
+	res, err := SummarizePost(context.Background(), llm, PostInput{Title: "t", Author: "miles_mazy", Text: "用不了Claude就用Grok吧", DigestSummary: "old"}, "zh-CN")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if res.Source != SourceTranscript || len(res.Chapters) != 0 || len(res.Resources) != 1 {
+		t.Fatalf("%+v", res)
+	}
+	llm2 := &fakeLLM{reply: func(_, user string) (string, error) {
+		if !strings.Contains(user, "not collected") || !strings.Contains(user, "Earlier digest of the post:\nold") || !strings.Contains(user, "1. step one") {
+			t.Errorf("without text the digest and steps should be sent:\n%s", user)
+		}
+		return `{"summary":"s","key_points":[],"chapters":[],"resources":[]}`, nil
+	}}
+	res, err = SummarizePost(context.Background(), llm2, PostInput{Title: "t", DigestSummary: "old", Steps: []string{"step one"}}, "en")
+	if err != nil || res.Source != SourceDescription {
+		t.Fatalf("%+v %v", res, err)
+	}
+}

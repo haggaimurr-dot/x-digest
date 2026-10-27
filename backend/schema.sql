@@ -423,6 +423,26 @@ CREATE TABLE IF NOT EXISTS bili_video_comments (
 ALTER TABLE yt_video_summaries ADD COLUMN IF NOT EXISTS resources MEDIUMTEXT NULL;
 ALTER TABLE bili_video_summaries ADD COLUMN IF NOT EXISTS resources MEDIUMTEXT NULL;
 
+-- ---- X post AI summaries (added 2026-10-27) ----
+-- Generated on demand (POST /api/v1/posts/{id}/summary) from the post's
+-- original text via the TRANSLATE_* relay, same flow as the video
+-- summaries. source: transcript = from the original text, description =
+-- original not collected (title / earlier digest only).
+CREATE TABLE IF NOT EXISTS post_summaries (
+  post_id    VARCHAR(64)  NOT NULL,
+  lang       VARCHAR(10)  NOT NULL,
+  status     VARCHAR(16)  NOT NULL DEFAULT 'pending',
+  summary    MEDIUMTEXT,
+  key_points MEDIUMTEXT,
+  resources  MEDIUMTEXT,
+  source     VARCHAR(16)  NOT NULL DEFAULT '',
+  model      VARCHAR(64)  NOT NULL DEFAULT '',
+  error      TEXT,
+  created_at DATETIME     NOT NULL,
+  updated_at DATETIME     NOT NULL,
+  PRIMARY KEY (post_id, lang)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 -- ---- Content translation cache (added 2026-10-26) ----
 -- One row per (source text, target language). source_hash is the SHA-256
 -- of source text + target language (see internal/translate.Hash).

@@ -49,6 +49,11 @@ cd frontend && npm install && npm run dev   # dev 端口 18091，/api 代理到 
 - 接口：`GET/POST /api/v1/yt/videos/{id}/summary?lang=zh-CN|en[&force=1]`（POST 返回 202 后页面每 4 秒轮询）；表 `yt_video_summaries`（见 `backend/schema.sql`，幂等追加）。
 - 依赖：服务器上 `TRANSLATE_API_KEY` 必须已配置，否则返回 503；yt-dlp 走 `YT_HTTP_PROXY`，与同步相同。无登录，任何能访问页面的人都能触发 AI 调用（已生成的摘要不会重复调用）。
 
+## X 日报 AI 摘要（与油管同一逻辑）
+
+- 卡片下方「✨ AI 摘要」：首次点击时后台调 `TRANSLATE_*` 中转站生成（全文摘要、要点、提及的资源），存入表 `post_summaries`，之后直接读库；「重新生成」覆盖。
+- 接口 `GET/POST /api/v1/posts/{id}/summary?lang=zh-CN|en[&force=1]`；原文不在 posts 表里（页面从 `x-content.json` 合并），所以 POST 体里由页面带上 `{text, links}`。没有原文的帖子只用标题、旧摘要和步骤生成，并在页面注明。
+
 ## 视频卡片（油管 / B站共用）
 
 - 视频按账号分组显示，每个账号一块，可折叠；左栏缩略图 + 简介，右栏标题、时间、标签，下方整行是「提及的资源」和 AI 摘要。
