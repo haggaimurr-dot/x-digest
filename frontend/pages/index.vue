@@ -61,13 +61,12 @@
               <div class="x-orig" :class="{ 'is-missing': !post.text }">
                 <div class="x-orig-label">𝕏 原文</div>
                 <p v-if="post.text" class="x-orig-text" :class="{ 'yt-desc-open': expandedOriginal.has(post.id) }" :id="`original-${post.id}`"><template v-for="(part, pi) in linkParts(post.text)" :key="pi"><a v-if="part.href" class="yt-desc-link" :href="part.href" :title="part.href" target="_blank" rel="noopener noreferrer">{{ part.text.replace(/^https?:\/\/(www\.)?/, '') }}</a><span v-else v-html="highlightHtml(part.text, plainKeyword)" /></template></p>
-                <p v-else class="x-orig-text">原文暂未收录，可点击标题查看原推文。</p>
+                <p v-else class="x-orig-text">原文暂未收录，<a :href="post.url" target="_blank" rel="noopener" style="color:var(--accent)">点击查看原推文</a>。</p>
               </div>
-              <button v-if="(post.text || '').length > 120" class="yt-desc-more" type="button" :aria-expanded="expandedOriginal.has(post.id)" :aria-controls="`original-${post.id}`" @click="toggleOriginal(post.id)">{{ expandedOriginal.has(post.id) ? '收起原文' : '展开原文' }}</button>
+              <button v-if="(post.text || '').length > 120" class="yt-desc-more" type="button" :aria-expanded="expandedOriginal.has(post.id)" :aria-controls="`original-${post.id}`" @click="toggleOriginal(post.id)">{{ expandedOriginal.has(post.id) ? '收起' : '展开' }}</button>
             </div>
             <div class="yt-info">
-              <h2 class="post-title yt-title"><a :href="post.url" target="_blank" rel="noopener" v-html="highlightHtml(tr(post.title), plainKeyword)" /></h2>
-              <p class="yt-meta">{{ shanghaiTime(post.published_at) }}（{{ relativeTime(post.published_at, lang.value) }}）<span v-if="post.industry"> · {{ post.industry }}</span><span v-if="post.tech"> · {{ post.tech }}</span></p>
+              <p class="yt-meta"><a class="yt-meta-link" :href="post.url" target="_blank" rel="noopener">{{ shanghaiTime(post.published_at) }}（{{ relativeTime(post.published_at, lang.value) }}）</a><span v-if="post.industry"> · {{ post.industry }}</span><span v-if="post.tech"> · {{ post.tech }}</span></p>
               <div class="yt-tags">
                 <button v-for="tg in (post.tags || []).filter(tag => tag !== '复刻' || canReplicatePost(post)).slice(0, 8)" :key="tg" type="button" class="chip yt-tag yt-topic" :class="{ active: selectedTags.has(tg) }" @click="selectTagOnly(tg)">#{{ tg }}</button>
                 <span v-for="cid in catsOf(post.id)" :key="cid" class="chip active yt-tag">{{ categoryName(cid) }}</span>
@@ -429,10 +428,6 @@ function toggleOriginal (id: string) {
   const next = new Set(expandedOriginal.value)
   next.has(id) ? next.delete(id) : next.add(id)
   expandedOriginal.value = next
-}
-function originalShown (p: Post) {
-  const text = p.text || ''
-  return text.length > 280 && !expandedOriginal.value.has(p.id) ? text.slice(0, 280) + '…' : text
 }
 // Enqueue the currently filtered posts' display texts for translation
 // (debounced; the queue flushes in chunks of 20). Translation runs toward

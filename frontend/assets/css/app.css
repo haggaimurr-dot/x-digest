@@ -197,6 +197,8 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
 .yt-info { min-width: 0; }
 .yt-title { margin: 0; font-size: 15px; line-height: 1.4; overflow-wrap: anywhere; }
 .yt-meta { margin: 4px 0 0; color: var(--text-muted); font-size: 12px; }
+.yt-meta-link { color: inherit; text-decoration: none; }
+.yt-meta-link:hover { text-decoration: underline; }
 .yt-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
 .yt-tag { font-size: 12px; padding: 1px 8px; }
 .yt-desc { margin: 8px 0 0; font-size: 12.5px; line-height: 1.55; color: var(--text-muted); white-space: pre-line; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }
@@ -219,7 +221,7 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
 .x-orig { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; min-width: 0; }
 .x-orig.is-missing { border-style: dashed; }
 .x-orig-label { font-size: 11px; font-weight: 600; color: var(--text-muted); margin-bottom: 4px; }
-.x-orig-text { margin: 0; font-size: 13px; line-height: 1.55; white-space: pre-line; overflow-wrap: anywhere; display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden; }
+.x-orig-text { margin: 0; font-size: 13px; line-height: 1.55; white-space: pre-line; overflow-wrap: anywhere; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .x-orig.is-missing .x-orig-text { color: var(--text-muted); font-size: 12px; }
 .x-head-avatar { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; color: #fff; font-size: 12px; font-weight: 700; }
 .x-head-handle { font-size: 13px; font-weight: 400; color: var(--text-muted); text-decoration: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
