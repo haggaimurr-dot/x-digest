@@ -76,7 +76,7 @@ export function highlightHtml (text: string, q: string): string {
 export function firstHitSnippet (p: Post, q: string): string {
   if (!q) return ''
   const needle = q.toLowerCase()
-  const fields = [p.title, p.summary || '', (p.tags || []).join(' '), p.author_name, p.author, p.industry || '', p.tech || '']
+  const fields = [p.title, p.text || '', (p.tags || []).join(' '), p.author_name, p.author, p.industry || '', p.tech || '']
   for (const f of fields) {
     const idx = f.toLowerCase().indexOf(needle)
     if (idx >= 0) {

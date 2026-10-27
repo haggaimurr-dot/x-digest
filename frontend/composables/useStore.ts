@@ -1,3 +1,4 @@
+import { rawAvatar } from '~/utils/x-post.mjs'
 import xContent from '~/assets/mock/x-content.json'
 // Data layer: real /api/v1 by default, mock fallback when NUXT_PUBLIC_USE_MOCK=1.
 // Pages only ever talk to this layer, never to raw fetch or raw mock data.
@@ -22,11 +23,11 @@ export function validateAttachmentFiles (files: File[]): string | null {
 }
 
 function withXContent (post: Post): Post {
-  const raw = (xContent as Record<string, { text: string, links: string[] }>)[post.id]
+  const raw = (xContent as Record<string, { text: string, links: string[], avatar?: string }>)[post.id]
   const text = post.text || raw?.text || ''
   const links = [...new Set([...(post.links || []), ...(raw?.links || []), ...(text.match(/https?:\/\/[^\s<>"“”]+/gu) || [])])]
     .filter(url => { try { return ['https:', 'http:'].includes(new URL(url).protocol) } catch { return false } })
-  return { ...post, text, links }
+  return { ...post, text, links, author_avatar: rawAvatar(post) || raw?.avatar || '' }
 }
 
 export function useStore () {

@@ -45,7 +45,7 @@
 
       <section class="timeline">
         <article v-for="post in filtered" :key="post.id" class="post-card">
-          <img v-if="avatarUrl(post.author_avatar)" :src="avatarUrl(post.author_avatar)" :alt="post.author_name" class="avatar"
+          <img v-if="postAvatar(post)" :src="postAvatar(post)" :alt="post.author_name" class="avatar"
             style="width:40px;height:40px;border-radius:50%;object-fit:cover" @error="onAvatarError($event, post)" />
           <span v-else class="avatar" :style="{ background: avatarColor(post.author_name), width: '40px', height: '40px', borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }">{{ avatarInitial(post.author_name) }}</span>
           <div class="post-body">
@@ -63,12 +63,12 @@
           <p v-else class="original-missing">原文暂未收录，可点击标题查看原推文。</p>
           <div v-if="post.note" style="margin-top:6px"><span class="note-pill">{{ post.note }}</span></div>
           <div class="chips" style="margin-top:8px">
-            <button v-for="t in (post.tags || []).slice(0, 8)" :key="t" type="button" class="chip" @click="selectTagOnly(t)">{{ t }}</button>
+            <button v-for="t in (post.tags || []).filter(tag => tag !== '复刻' || canReplicatePost(post)).slice(0, 8)" :key="t" type="button" class="chip" @click="selectTagOnly(t)">{{ t }}</button>
           </div>
           <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap;align-items:center">
             <span v-for="cid in catsOf(post.id)" :key="cid" class="chip active">{{ categoryName(cid) }}</span>
             <button class="btn btn-sm" type="button" @click="catMenuPost = catMenuPost === post.id ? null : post.id">{{ t('index.category') }}</button>
-            <button class="btn btn-sm" :class="{ 'btn-primary': replicatedIds.has(post.id) }" type="button" @click="replicate(post)">
+            <button v-if="canReplicatePost(post)" class="btn btn-sm" :class="{ 'btn-primary': replicatedIds.has(post.id) }" type="button" @click="replicate(post)">
               {{ replicatedIds.has(post.id) ? t('index.replicated') : t('index.replicate') }}
             </button>
             <NuxtLink v-if="replicatedIds.has(post.id)" to="/fuke" class="btn btn-sm">{{ t('index.goFuke') }}</NuxtLink>
@@ -87,12 +87,7 @@
             <h3>资源</h3>
             <ul><li v-for="url in post.links" :key="url"><a :href="url" target="_blank" rel="noopener noreferrer">{{ url }}</a></li></ul>
           </section>
-          <section v-if="post.summary" class="post-ai-summary" aria-label="AI 摘要">
-            <h3>AI 摘要</h3>
-          <p class="post-summary" v-html="highlightHtml(summaryShown(post), plainKeyword)" />
-          <button v-if="post.is_long" class="btn btn-sm" type="button" @click="toggleLong(post.id)">{{ expandedLong.has(post.id) ? t('index.collapseLong') : t('index.expandLong') }}</button>
-          </section>
-          <details v-if="shouldShowFlowchart(post) && (post.steps || []).length" class="steps" style="margin-top:10px">
+          <details v-if="canReplicatePost(post) && shouldShowFlowchart(post) && (post.steps || []).length" class="steps" style="margin-top:10px">
             <summary>{{ t('index.stepsSummary', { n: post.steps!.length }) }}</summary>
             <div class="flow-chart">
               <div v-for="(step, i) in post.steps" :key="i" class="flow-step" :class="{ 'is-last': i === post.steps!.length - 1 }">
@@ -217,6 +212,7 @@
 <script setup lang="ts">
 import type { Post, Watchlist, Categories } from '~/composables/types'
 import { LS, useSettings } from '~/composables/useSettings'
+import { canReplicatePost } from '~/utils/x-post.mjs'
 import { avatarUrl, avatarColor, avatarInitial, relativeTime, shanghaiTime, shanghaiDayBound, highlightHtml, firstHitSnippet, shouldShowFlowchart, trunc40 } from '~/composables/useFormat'
 import { useScrollLock } from '~/composables/useScrollLock'
 
@@ -246,7 +242,7 @@ const selectedUserTags = ref<Set<string>>(new Set())
 const selectedCats = ref<Set<string>>(new Set())
 const filtersCollapsed = ref(false)
 const expandedOriginal = ref<Set<string>>(new Set())
-const expandedLong = ref<Set<string>>(new Set())
+const failedAvatars = ref<Set<string>>(new Set())
 const substepsOpen = ref<Set<string>>(new Set())
 const catMenuPost = ref<string | null>(null)
 const newCatName = ref('')
@@ -342,7 +338,7 @@ function matchesKeyword (p: Post): boolean {
     return userTagsOf(p.author).some(t => t.toLowerCase().includes(needle))
   }
   const stepTexts = (p.steps || []).flatMap(s => [s.text, s.tools, s.tech, s.prep, ...(s.substeps || []).map(x => x.text)].filter(Boolean) as string[])
-  const hay = [p.title, p.text || '', ...(p.links || []), p.summary || '', p.industry || '', p.tech || '', p.author, '@' + p.author, p.author_name, accountOf(p.author)?.bio || '', ...userTagsOf(p.author), ...(p.tags || []), ...catsOf(p.id).map(categoryName), shanghaiTime(p.published_at), ...stepTexts].join('\n').toLowerCase()
+  const hay = [p.title, p.text || '', ...(p.links || []), p.industry || '', p.tech || '', p.author, '@' + p.author, p.author_name, accountOf(p.author)?.bio || '', ...userTagsOf(p.author), ...(p.tags || []), ...catsOf(p.id).map(categoryName), shanghaiTime(p.published_at), ...stepTexts].join('\n').toLowerCase()
   // Tag field: strip leading # before matching (SPEC).
   return hay.includes(q.replace(/^#+/, ''))
 }
@@ -395,13 +391,6 @@ function originalShown (p: Post) {
   const text = p.text || ''
   return text.length > 280 && !expandedOriginal.value.has(p.id) ? text.slice(0, 280) + '…' : text
 }
-function toggleLong (id: string) { expandedLong.value.has(id) ? expandedLong.value.delete(id) : expandedLong.value.add(id); expandedLong.value = new Set(expandedLong.value) }
-function summaryShown (p: Post) {
-  // Translate the full summary first, then truncate the translation.
-  const s = tr(p.summary || '')
-  if (!p.is_long || expandedLong.value.has(p.id)) return s
-  return s.slice(0, 200) + (s.length > 200 ? '…' : '')
-}
 // Enqueue the currently filtered posts' display texts for translation
 // (debounced; the queue flushes in chunks of 20). Translation runs toward
 // the current UI language; filtering always uses the original text —
@@ -411,7 +400,6 @@ function enqueueVisible () {
   const texts: string[] = []
   for (const p of filtered.value) {
     texts.push(p.title)
-    if (p.summary) texts.push(p.summary)
     for (const s of p.steps || []) {
       texts.push(s.text)
       for (const sub of s.substeps || []) texts.push(sub.text)
@@ -428,9 +416,15 @@ function toggleSubsteps (postId: string, i: number) {
   substepsOpen.value.has(k) ? substepsOpen.value.delete(k) : substepsOpen.value.add(k)
   substepsOpen.value = new Set(substepsOpen.value)
 }
-function onAvatarError (e: Event, post: Post) { (e.target as HTMLImageElement).style.display = 'none'; post.author_avatar = '' }
+function postAvatar (post: Post) {
+  const src = avatarUrl(post.author_avatar || accountOf(post.author)?.avatar)
+  return failedAvatars.value.has(src) ? '' : src
+}
+function onAvatarError (e: Event, post: Post) {
+  failedAvatars.value = new Set([...failedAvatars.value, postAvatar(post)])
+}
 async function replicate (post: Post) {
-  if (replicatedIds.value.has(post.id)) return
+  if (!canReplicatePost(post) || replicatedIds.value.has(post.id)) return
   try {
     const { replica } = await store.createReplica(post)
     replicatedIds.value = new Set([...replicatedIds.value, post.id])

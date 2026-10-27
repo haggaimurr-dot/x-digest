@@ -121,6 +121,21 @@ func Import(db *sql.DB, dataDir string) (Counts, error) {
 	}
 	c.AvatarsSeen = len(avatars.Avatars)
 
+	// Raw/API author fields are optional for legacy archives.
+	rawAvatars, err := loadRawAvatars(filepath.Join(dataDir, "data", "raw_posts.json"))
+	if err != nil {
+		return c, fmt.Errorf("raw_posts.json: %w", err)
+	}
+	authorAvatars := map[string]string{}
+	for username, av := range avatars.Avatars {
+		authorAvatars[strings.ToLower(username)] = av.Avatar
+	}
+	for _, a := range wl.Accounts {
+		if a.Avatar != "" {
+			authorAvatars[strings.ToLower(a.Username)] = a.Avatar
+		}
+	}
+
 	tx, err := db.Begin()
 	if err != nil {
 		return c, err
@@ -178,6 +193,13 @@ func Import(db *sql.DB, dataDir string) (Counts, error) {
 		}
 	}
 	for _, p := range postsFile.Posts {
+		if p.AuthorAvatar == "" {
+			p.AuthorAvatar = rawAvatars[p.ID]
+		}
+		if p.AuthorAvatar == "" {
+			p.AuthorAvatar = authorAvatars[strings.ToLower(p.Author)]
+		}
+
 		published, err := store.ParsePublished(p.PublishedAt)
 		if err != nil {
 			return c, fmt.Errorf("post %s publishedAt: %w", p.ID, err)
@@ -185,7 +207,8 @@ func Import(db *sql.DB, dataDir string) (Counts, error) {
 		// Post-only authors (e.g. a poster not on the watchlist) keep a row
 		// with NULL group so the watchlist listing stays curated, while the
 		// post itself always carries denormalised author fields.
-		if _, err := tx.Exec(`INSERT IGNORE INTO authors(username,name,avatar,group_id,bio) VALUES(?,?,?,NULL,'')`,
+		if _, err := tx.Exec(`INSERT INTO authors(username,name,avatar,group_id,bio) VALUES(?,?,?,NULL,'')
+            ON DUPLICATE KEY UPDATE avatar=IF(VALUES(avatar)<>'',VALUES(avatar),avatar)`,
 			p.Author, p.AuthorName, p.AuthorAvatar); err != nil {
 			return c, err
 		}
@@ -197,10 +220,10 @@ func Import(db *sql.DB, dataDir string) (Counts, error) {
 				published_at,is_long,show_flowchart,updated_at_meta) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)
 			ON DUPLICATE KEY UPDATE url=VALUES(url), author=VALUES(author), author_name=VALUES(author_name),
 				author_avatar=VALUES(author_avatar), industry=VALUES(industry), tech=VALUES(tech),
-				title=VALUES(title), summary=VALUES(summary), note=VALUES(note),
+				title=VALUES(title), note=VALUES(note),
 				published_at=VALUES(published_at), is_long=VALUES(is_long),
 				show_flowchart=VALUES(show_flowchart), updated_at_meta=VALUES(updated_at_meta)`,
-			p.ID, p.URL, p.Author, p.AuthorName, p.AuthorAvatar, p.Industry, p.Tech, p.Title, p.Summary, p.Note,
+			p.ID, p.URL, p.Author, p.AuthorName, p.AuthorAvatar, p.Industry, p.Tech, p.Title, "", p.Note,
 			published, boolToInt(p.IsLong), show, updatedMeta); err != nil {
 			return c, err
 		}
@@ -246,4 +269,37 @@ func boolToInt(b bool) int {
 		return 1
 	}
 	return 0
+}
+
+// avatarFromRaw accepts both flattened collectors and nested API user objects.
+func avatarFromRaw(p map[string]any) string {
+	for _, key := range []string{"author_avatar", "authorAvatar", "avatar", "avatar_url", "profile_image", "profile_image_url_https", "profile_image_url"} {
+		if value, ok := p[key].(string); ok && strings.TrimSpace(value) != "" {
+			return strings.TrimSpace(value)
+		}
+	}
+	for _, key := range []string{"author", "user", "legacy"} {
+		if nested, ok := p[key].(map[string]any); ok {
+			if value := avatarFromRaw(nested); value != "" {
+				return value
+			}
+		}
+	}
+	return ""
+}
+func loadRawAvatars(path string) (map[string]string, error) {
+	result := map[string]string{}
+	var posts []map[string]any
+	if err := readJSON(path, &posts); err != nil {
+		if os.IsNotExist(err) {
+			return result, nil
+		}
+		return nil, err
+	}
+	for _, p := range posts {
+		if id, ok := p["id"].(string); ok {
+			result[id] = avatarFromRaw(p)
+		}
+	}
+	return result, nil
 }

@@ -148,7 +148,13 @@ nginx 层加 basic auth 或 IP 白名单，或给 Go API 加 Bearer token 并让
 
 ## 原文采集与摘要流程
 
-目标流程为：**X 拉取完整原文 → 写入 `data/raw_posts.json` → 中转站 API 读取原文并产出 `title` / `summary` / `steps` → 写入 `data/posts.json`**。分析由中转站 API 完成，不走 Grok Bot；生成结果仍沿用上面的 `posts.json` 结构，前端只读取摘要文件。
+默认流程：**X 拉取完整原文及作者头像 → 写入 `data/raw_posts.json` → 导入原文/元数据**。禁止采集、解析或 import 自动生成/写入 AI 摘要；模型生成仅由用户手动触发。X 卡片不默认渲染已有 summary。import 新帖子 summary 为空，更新帖子保留用户已有摘要。
+
+头像读取 raw/API 的 avatar / profile_image 字段，并回退到作者映射与关注列表；import 补齐 posts.author_avatar 和 authors.avatar，API 也会回退到 authors.avatar。前端构建时同步原文和头像映射，运行时可回退关注列表头像。
+
+「复刻」只对原文中的教程/技术分享显示，不能因为模型生成了 steps、summary 或遗留 showFlowchart=true 就显示。普通赞美、感谢、效果感叹帖不显示复刻；已有复刻仍可在复刻页查看。
+
+本次上线：重新构建并发布 frontend；重新构建/重启 API 以启用作者头像回退。建议使用新 importer 重跑一次以补齐历史头像（无需改表），不会导入历史自动摘要或覆盖已存摘要。
 
 当前先准备好 `config/watchlist.json` 关注列表；关注列表到位后，再按最近半年窗口从 X 拉取原文并写入 `data/raw_posts.json`。**现阶段先只采集和保存原文，不做分析，也不生成或更新摘要。**
 

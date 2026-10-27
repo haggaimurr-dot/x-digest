@@ -151,7 +151,7 @@ func (s *Store) ListPosts(f PostFilter) (posts []model.Post, total int, updatedA
 	}
 	offset := (f.Page - 1) * f.PageSize
 	qargs := append(append([]any{}, args...), f.PageSize, offset)
-	rows, err := s.DB.Query(`SELECT p.id,p.url,p.author,p.author_name,p.author_avatar,p.industry,p.tech,
+	rows, err := s.DB.Query(`SELECT p.id,p.url,p.author,p.author_name,COALESCE(NULLIF(p.author_avatar,''),(SELECT a.avatar FROM authors a WHERE a.username=p.author),''),p.industry,p.tech,
 		p.title,p.summary,p.note,p.published_at,p.is_long,p.show_flowchart
 		FROM posts p `+where+` ORDER BY p.published_at DESC, p.id ASC LIMIT ? OFFSET ?`, qargs...)
 	if err != nil {
@@ -232,7 +232,7 @@ func (s *Store) GetPost(id string) (*model.Post, error) {
 	var p model.Post
 	var show sql.NullBool
 	var note sql.NullString
-	err := s.DB.QueryRow(`SELECT id,url,author,author_name,author_avatar,industry,tech,title,summary,note,
+	err := s.DB.QueryRow(`SELECT id,url,author,author_name,COALESCE(NULLIF(author_avatar,''),(SELECT a.avatar FROM authors a WHERE a.username=posts.author),''),industry,tech,title,summary,note,
 		published_at,is_long,show_flowchart FROM posts WHERE id=?`, id).Scan(
 		&p.ID, &p.URL, &p.Author, &p.AuthorName, &p.AuthorAvatar, &p.Industry, &p.Tech,
 		&p.Title, &p.Summary, &note, &p.PublishedAt, &p.IsLong, &show)
