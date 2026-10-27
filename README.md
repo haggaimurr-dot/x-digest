@@ -20,11 +20,56 @@ python3 -m http.server 8080
 | 路径 | 作用 |
 |------|------|
 | `data/posts.json` | 推文摘要列表（前端只读） |
+| `data/raw_posts.json` | X 原文暂存列表；完整对象内保存作者信息，不单独建作者表 |
 | `config/watchlist.json` | **权威关注列表**（可含 `avatar` 路径），供每日更新 Agent 使用 |
 | `data/avatars.json` | 用户名 → 头像路径映射 |
 | `avatars/*.jpg` | 本地缓存的 X 头像（优先于 twimg 热链） |
 
 浏览器设置面板会把关注列表额外写入 `localStorage`（键名 `x-digest-watchlist`），仅影响本机筛选默认值；**改仓库关注列表请编辑 `config/watchlist.json` 并提交**。
+
+### raw_posts.json 字段
+
+`data/raw_posts.json` 是单个 JSON 文件，当前为空数组 `[]`。每条原文记录都应是完整对象，作者信息随记录保存，不另建作者表。字段约定如下：
+
+```json
+{
+  "id": "tweet-id",
+  "url": "https://x.com/handle/status/tweet-id",
+  "author_id": "x-user-id",
+  "author_username": "handle",
+  "author_name": "显示名",
+  "created_at": "2026-10-18T12:00:00Z",
+  "lang": "zh",
+  "text": "完整原文，不截断",
+  "note_tweet": null,
+  "long_text": null,
+  "conversation_id": "conversation-id",
+  "in_reply_to_id": null,
+  "referenced_tweets": [
+    {
+      "type": "retweeted",
+      "id": "referenced-tweet-id",
+      "author_id": "original-author-id",
+      "author_username": "original_handle",
+      "author_name": "原作者显示名"
+    }
+  ],
+  "media": [
+    { "type": "photo", "url": "https://example.com/image.jpg" }
+  ],
+  "public_metrics": {
+    "like": 0,
+    "reply": 0,
+    "repost": 0,
+    "quote": 0,
+    "impression": 0
+  },
+  "fetched_at": "2026-10-27T12:00:00Z",
+  "source": "builtin-x"
+}
+```
+
+`author_id`、`author_username`、`author_name` 必填且不得为空。`note_tweet` 或 `long_text` 有值时保存完整长文；无长文时可为 `null`。`referenced_tweets` 保存引用或转帖的原作者信息，至少包含 `author_id` 和 `author_username`，有名称时也保存 `author_name`。`media` 中每项包含 `type`、`url`；`public_metrics` 使用 `like`、`reply`、`repost`、`quote`、`impression` 五项。`source` 为 `builtin-x` 或 `plugin`。
 
 ### posts.json 字段
 
@@ -63,13 +108,11 @@ python3 -m http.server 8080
 2. 提交并 push 到 `main`。
 3. （可选）在站点「设置」里同步添加到本机 localStorage。
 
-## 每日更新（Agent）
+## 原文采集与摘要流程
 
-1. 读取 `config/watchlist.json` 得到要拉取的账号。
-2. 用 X API / MCP 拉取各账号近期推文，摘要成上述 schema（长文提取编号步骤）。
-3. **覆盖写入** `data/posts.json`（更新 `updatedAt`，时区建议 `Asia/Shanghai`）。
-4. `git add data/posts.json && git commit -m "chore: daily posts refresh" && git push origin main`。
-5. GitHub Pages 会自动发布；站点客户端下次打开即看到新数据。
+目标流程为：**X 拉取完整原文 → 写入 `data/raw_posts.json` → 中转站 API 读取原文并产出 `title` / `summary` / `steps` → 写入 `data/posts.json`**。分析由中转站 API 完成，不走 Grok Bot；生成结果仍沿用上面的 `posts.json` 结构，前端只读取摘要文件。
+
+当前先准备好 `config/watchlist.json` 关注列表；关注列表到位后，再按最近半年窗口从 X 拉取原文并写入 `data/raw_posts.json`。**现阶段先只采集和保存原文，不做分析，也不生成或更新摘要。**
 
 ### 正文完整性与中文（硬规则）
 
