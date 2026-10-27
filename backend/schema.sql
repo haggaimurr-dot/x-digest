@@ -423,6 +423,12 @@ CREATE TABLE IF NOT EXISTS bili_video_comments (
 ALTER TABLE yt_video_summaries ADD COLUMN IF NOT EXISTS resources MEDIUMTEXT NULL;
 ALTER TABLE bili_video_summaries ADD COLUMN IF NOT EXISTS resources MEDIUMTEXT NULL;
 
+-- Original post text + links (JSON array), filled by the importer from
+-- data/raw_posts.json (added 2026-10-27). The page used to get them only
+-- from the bundled frontend/assets/mock/x-content.json.
+ALTER TABLE posts ADD COLUMN IF NOT EXISTS text MEDIUMTEXT NULL;
+ALTER TABLE posts ADD COLUMN IF NOT EXISTS links TEXT NULL;
+
 -- ---- X post AI summaries (added 2026-10-27) ----
 -- Generated on demand (POST /api/v1/posts/{id}/summary) from the post's
 -- original text via the TRANSLATE_* relay, same flow as the video

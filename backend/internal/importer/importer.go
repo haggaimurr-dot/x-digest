@@ -10,6 +10,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strings"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -59,6 +60,10 @@ type legacyPost struct {
 	IsLong       bool         `json:"isLong"`
 	Steps        []legacyStep `json:"steps"`
 	ShowFlow     *bool        `json:"showFlowchart"`
+	// Original post text / links: optional in posts.json; when absent they
+	// come from data/raw_posts.json (same rules as sync-x-content.mjs).
+	Text  string   `json:"text"`
+	Links []string `json:"links"`
 }
 
 type legacyPostsFile struct {
@@ -121,8 +126,8 @@ func Import(db *sql.DB, dataDir string) (Counts, error) {
 	}
 	c.AvatarsSeen = len(avatars.Avatars)
 
-	// Raw/API author fields are optional for legacy archives.
-	rawAvatars, err := loadRawAvatars(filepath.Join(dataDir, "data", "raw_posts.json"))
+	// Raw/API fields (avatar, original text) are optional for legacy archives.
+	raw, err := loadRaw(filepath.Join(dataDir, "data", "raw_posts.json"))
 	if err != nil {
 		return c, fmt.Errorf("raw_posts.json: %w", err)
 	}
@@ -193,8 +198,23 @@ func Import(db *sql.DB, dataDir string) (Counts, error) {
 		}
 	}
 	for _, p := range postsFile.Posts {
+		r := raw[p.ID]
 		if p.AuthorAvatar == "" {
-			p.AuthorAvatar = rawAvatars[p.ID]
+			p.AuthorAvatar = r.Avatar
+		}
+		if strings.TrimSpace(p.Text) == "" {
+			p.Text = r.Text
+		}
+		if len(p.Links) == 0 {
+			p.Links = r.Links
+		}
+		if len(p.Links) == 0 {
+			p.Links = extractLinks(p.Text)
+		}
+		linksJSON := ""
+		if len(p.Links) > 0 {
+			b, _ := json.Marshal(p.Links)
+			linksJSON = string(b)
 		}
 		if p.AuthorAvatar == "" {
 			p.AuthorAvatar = authorAvatars[strings.ToLower(p.Author)]
@@ -216,15 +236,17 @@ func Import(db *sql.DB, dataDir string) (Counts, error) {
 		if p.ShowFlow != nil {
 			show = sql.NullBool{Bool: *p.ShowFlow, Valid: true}
 		}
+		// text/links never overwrite a stored value with an empty one.
 		if _, err := tx.Exec(`INSERT INTO posts(id,url,author,author_name,author_avatar,industry,tech,title,summary,note,
-				published_at,is_long,show_flowchart,updated_at_meta) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+				published_at,is_long,show_flowchart,updated_at_meta,text,links) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
 			ON DUPLICATE KEY UPDATE url=VALUES(url), author=VALUES(author), author_name=VALUES(author_name),
+				text=IF(VALUES(text)<>'',VALUES(text),text), links=IF(VALUES(links)<>'',VALUES(links),links),
 				author_avatar=VALUES(author_avatar), industry=VALUES(industry), tech=VALUES(tech),
 				title=VALUES(title), note=VALUES(note),
 				published_at=VALUES(published_at), is_long=VALUES(is_long),
 				show_flowchart=VALUES(show_flowchart), updated_at_meta=VALUES(updated_at_meta)`,
 			p.ID, p.URL, p.Author, p.AuthorName, p.AuthorAvatar, p.Industry, p.Tech, p.Title, "", p.Note,
-			published, boolToInt(p.IsLong), show, updatedMeta); err != nil {
+			published, boolToInt(p.IsLong), show, updatedMeta, p.Text, linksJSON); err != nil {
 			return c, err
 		}
 		c.Posts++
@@ -287,8 +309,54 @@ func avatarFromRaw(p map[string]any) string {
 	}
 	return ""
 }
-func loadRawAvatars(path string) (map[string]string, error) {
-	result := map[string]string{}
+
+// rawPost is what the importer takes from one data/raw_posts.json item.
+type rawPost struct {
+	Avatar string
+	Text   string
+	Links  []string
+}
+
+// textFromRaw picks the fullest text: long_text, note_tweet, then text
+// (each may be a string or an object with a "text" field).
+func textFromRaw(p map[string]any) string {
+	for _, key := range []string{"long_text", "note_tweet", "text"} {
+		switch v := p[key].(type) {
+		case string:
+			if strings.TrimSpace(v) != "" {
+				return v
+			}
+		case map[string]any:
+			if t, ok := v["text"].(string); ok && strings.TrimSpace(t) != "" {
+				return t
+			}
+		}
+	}
+	return ""
+}
+
+var (
+	linkRe      = regexp.MustCompile(`https?://[^\s<>"“”]+`)
+	linkTrailRe = regexp.MustCompile(`[，。！？、；：）】》]+$`)
+)
+
+// extractLinks returns the distinct http(s) links in text, without
+// trailing full-width punctuation.
+func extractLinks(text string) []string {
+	var out []string
+	seen := map[string]bool{}
+	for _, m := range linkRe.FindAllString(text, -1) {
+		m = linkTrailRe.ReplaceAllString(m, "")
+		if m != "" && !seen[m] {
+			seen[m] = true
+			out = append(out, m)
+		}
+	}
+	return out
+}
+
+func loadRaw(path string) (map[string]rawPost, error) {
+	result := map[string]rawPost{}
 	var posts []map[string]any
 	if err := readJSON(path, &posts); err != nil {
 		if os.IsNotExist(err) {
@@ -298,7 +366,8 @@ func loadRawAvatars(path string) (map[string]string, error) {
 	}
 	for _, p := range posts {
 		if id, ok := p["id"].(string); ok {
-			result[id] = avatarFromRaw(p)
+			text := textFromRaw(p)
+			result[id] = rawPost{Avatar: avatarFromRaw(p), Text: text, Links: extractLinks(text)}
 		}
 	}
 	return result, nil

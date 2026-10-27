@@ -7,10 +7,10 @@ package main
 //	     → 200 with the stored summary when done (and no force), else 202
 //	       pending while a background job runs; the page polls GET.
 //
-// The original post text is not in the posts table (the page merges it
-// from frontend/assets/mock/x-content.json), so the page sends it in the
-// POST body; without it the model gets the title, the earlier digest and
-// the steps, and the summary says the original was not collected. Jobs
+// The original text comes from posts.text (imported from raw_posts.json);
+// for rows imported before that column existed the page sends its copy
+// (x-content.json) in the POST body. Without either, the model gets the
+// title, the earlier digest and the steps, and the summary says so. Jobs
 // share the video summary pool (model, concurrency cap, in-flight set).
 
 import (
@@ -71,8 +71,14 @@ func (s *server) handlePostSummary(w http.ResponseWriter, r *http.Request, id st
 		if len(body.Links) > maxPostBodyLinks {
 			body.Links = body.Links[:maxPostBodyLinks]
 		}
-		in := ytsummary.PostInput{Title: post.Title, Author: post.Author, Text: body.Text, DigestSummary: post.Summary}
-		for _, l := range body.Links {
+		// The stored original text wins; the body (page-side x-content.json)
+		// only fills in for posts imported before posts.text existed.
+		text, links := post.Text, post.Links
+		if strings.TrimSpace(text) == "" {
+			text, links = body.Text, body.Links
+		}
+		in := ytsummary.PostInput{Title: post.Title, Author: post.Author, Text: text, DigestSummary: post.Summary}
+		for _, l := range links {
 			if l = strings.TrimSpace(l); strings.HasPrefix(l, "http://") || strings.HasPrefix(l, "https://") {
 				in.Links = append(in.Links, l)
 			}

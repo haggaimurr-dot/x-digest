@@ -124,9 +124,9 @@ func (s *Store) ListPosts(f PostFilter) (posts []model.Post, total int, updatedA
 		} else {
 			like := "%" + strings.TrimPrefix(q, "#") + "%"
 			conds = append(conds, `(p.title LIKE ? OR p.summary LIKE ? OR p.industry LIKE ? OR p.tech LIKE ?
-				OR p.author_name LIKE ? OR p.author LIKE ?
+				OR p.author_name LIKE ? OR p.author LIKE ? OR p.text LIKE ?
 				OR EXISTS (SELECT 1 FROM post_tags t WHERE t.post_id=p.id AND t.tag LIKE ?))`)
-			for i := 0; i < 7; i++ {
+			for i := 0; i < 8; i++ {
 				args = append(args, like)
 			}
 		}
@@ -152,7 +152,7 @@ func (s *Store) ListPosts(f PostFilter) (posts []model.Post, total int, updatedA
 	offset := (f.Page - 1) * f.PageSize
 	qargs := append(append([]any{}, args...), f.PageSize, offset)
 	rows, err := s.DB.Query(`SELECT p.id,p.url,p.author,p.author_name,COALESCE(NULLIF(p.author_avatar,''),(SELECT a.avatar FROM authors a WHERE a.username=p.author),''),p.industry,p.tech,
-		p.title,p.summary,p.note,p.published_at,p.is_long,p.show_flowchart
+		p.title,p.summary,p.note,p.published_at,p.is_long,p.show_flowchart,COALESCE(p.text,''),COALESCE(p.links,'')
 		FROM posts p `+where+` ORDER BY p.published_at DESC, p.id ASC LIMIT ? OFFSET ?`, qargs...)
 	if err != nil {
 		return nil, 0, "", err
@@ -163,11 +163,13 @@ func (s *Store) ListPosts(f PostFilter) (posts []model.Post, total int, updatedA
 		var p model.Post
 		var show sql.NullBool
 		var note sql.NullString
+		var links string
 		if err := rows.Scan(&p.ID, &p.URL, &p.Author, &p.AuthorName, &p.AuthorAvatar, &p.Industry, &p.Tech,
-			&p.Title, &p.Summary, &note, &p.PublishedAt, &p.IsLong, &show); err != nil {
+			&p.Title, &p.Summary, &note, &p.PublishedAt, &p.IsLong, &show, &p.Text, &links); err != nil {
 			return nil, 0, "", err
 		}
 		p.Note = note.String
+		p.Links = decodeLinks(links)
 		if show.Valid {
 			v := show.Bool
 			p.ShowFlowchart = &v
@@ -183,6 +185,15 @@ func (s *Store) ListPosts(f PostFilter) (posts []model.Post, total int, updatedA
 		posts = append(posts, p)
 	}
 	return posts, total, updatedAt, rows.Err()
+}
+
+// decodeLinks reads posts.links (a JSON array; "" = none).
+func decodeLinks(raw string) []string {
+	out := []string{}
+	if raw != "" {
+		_ = json.Unmarshal([]byte(raw), &out)
+	}
+	return out
 }
 
 func (s *Store) postTags(postID string) ([]string, error) {
@@ -232,14 +243,16 @@ func (s *Store) GetPost(id string) (*model.Post, error) {
 	var p model.Post
 	var show sql.NullBool
 	var note sql.NullString
+	var links string
 	err := s.DB.QueryRow(`SELECT id,url,author,author_name,COALESCE(NULLIF(author_avatar,''),(SELECT a.avatar FROM authors a WHERE a.username=posts.author),''),industry,tech,title,summary,note,
-		published_at,is_long,show_flowchart FROM posts WHERE id=?`, id).Scan(
+		published_at,is_long,show_flowchart,COALESCE(text,''),COALESCE(links,'') FROM posts WHERE id=?`, id).Scan(
 		&p.ID, &p.URL, &p.Author, &p.AuthorName, &p.AuthorAvatar, &p.Industry, &p.Tech,
-		&p.Title, &p.Summary, &note, &p.PublishedAt, &p.IsLong, &show)
+		&p.Title, &p.Summary, &note, &p.PublishedAt, &p.IsLong, &show, &p.Text, &links)
 	if err != nil {
 		return nil, err
 	}
 	p.Note = note.String
+	p.Links = decodeLinks(links)
 	if show.Valid {
 		v := show.Bool
 		p.ShowFlowchart = &v
