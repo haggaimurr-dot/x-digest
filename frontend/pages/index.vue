@@ -4,7 +4,8 @@
       <div class="filter-row" style="margin-bottom:12px">
         <span class="updated" style="color:var(--text-muted)">{{ updatedAt ? t('index.updatedAt', { time: updatedAt }) : '' }}</span>
         <span style="flex:1" />
-        <button class="btn btn-sm" type="button" @click="triggerWebhook" :disabled="webhookBusy">{{ webhookBusy ? t('index.sending') : t('index.updateNow') }}</button>
+        <button class="btn btn-sm" type="button" @click="xDialog = 'post'">导入单帖</button>
+        <button class="btn btn-sm" type="button" @click="xDialog = 'refresh'">更新帖子</button>
         <button class="btn btn-sm" type="button" @click="showSettings = true">{{ t('index.settings') }}</button>
       </div>
       <p v-if="loadError" style="color:var(--danger-text)">{{ loadError }}</p>
@@ -293,6 +294,7 @@
         </div>
       </div>
     </div>
+    <XImportDialog v-if="xDialog" :mode="xDialog" :accounts="watchlist.accounts" @close="xDialog = null" @changed="reloadPosts" />
     <p v-if="toast" style="position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--bg-elevated);border:1px solid var(--border);padding:10px 16px;border-radius:9999px;z-index:200">{{ toast }}</p>
   </div>
 </template>
@@ -337,6 +339,16 @@ const catMenuPost = ref<string | null>(null)
 const newCatName = ref('')
 const showSettings = ref(false)
 useScrollLock(showSettings)
+const xDialog = ref<'post' | 'refresh' | null>(null)
+useScrollLock(computed(() => !!xDialog.value))
+// After an import / refresh: posts and the watchlist (new authors) reload.
+async function reloadPosts () {
+  try {
+    const p = await store.loadPosts()
+    posts.value = p.posts; updatedAt.value = p.updated_at
+    await refreshWatchlist()
+  } catch { /* the next action retries */ }
+}
 const toast = ref('')
 const webhookBusy = ref(false)
 const webhookMsg = ref('')

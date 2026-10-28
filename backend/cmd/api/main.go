@@ -20,6 +20,8 @@
 //	TRANSLATE_MODEL         translation chat model, default deepseek-flash.
 //	                       The same relay/key/model also write the
 //	                       YouTube AI summaries (see yt_summary.go).
+//	GROK_API_KEY            relay key of the Grok group: X account refresh
+//	                       (x_import.go; also GROK_MODEL, X_HTTP_PROXY).
 //
 // No authentication is implemented (see README.md "Security note").
 package main
@@ -86,6 +88,7 @@ func main() {
 	s.comments = newCommentQueue()
 	go s.runCommentWorker()
 	mux := http.NewServeMux()
+	newXImporter(st).register(mux)
 	mux.HandleFunc("/healthz", s.handleHealth)
 	mux.HandleFunc("/api/v1/healthz", s.handleHealth)
 	mux.HandleFunc("/api/v1/posts", s.handlePosts)

@@ -54,6 +54,14 @@ cd frontend && npm install && npm run dev   # dev 端口 18091，/api 代理到 
 - 卡片下方「✨ AI 摘要」：首次点击时后台调 `TRANSLATE_*` 中转站生成（全文摘要、要点、提及的资源），存入表 `post_summaries`，之后直接读库；「重新生成」覆盖。
 - 接口 `GET/POST /api/v1/posts/{id}/summary?lang=zh-CN|en[&force=1]`；原文不在 posts 表里（页面从 `x-content.json` 合并），所以 POST 体里由页面带上 `{text, links}`。没有原文的帖子只用标题、旧摘要和步骤生成，并在页面注明。
 
+## X 日报：导入单帖 / 更新帖子
+
+- 「导入单帖」：贴 x.com 帖子链接 → 用 fxtwitter 公开接口拉原文（长文、X 文章、引用、回复上下文、图片、头像）→ 中转站 AI 解析（与 `cmd/digest` 同一提示词）→ 直接写库；作者不在关注列表时自动加入「默认」分组。接口 `POST /api/v1/posts/import {url, force}`。
+- 「更新帖子」：选账号（不选 = 全部），后台任务用中转站 Grok 的 `x_search` 找每个账号已入库最新帖之后的新帖 id（没有帖子的账号找最近 `X_REFRESH_DAYS`=30 天），再逐条拉原文、AI 解析、入库；15 字以内短回复跳过。Grok 只提供 id，帖子内容和作者都以 fxtwitter 为准，编造的 id 不会入库。接口 `POST/GET /api/v1/x/refresh`，页面轮询进度。
+- AI 解析默认用 `DIGEST_MODEL`（未设则 `TRANSLATE_MODEL`）；主模型拒绝（中转站对个别话题返回 403）时改用 Grok 重试。
+- 服务器环境变量（`/etc/xdigest/api.env`）：`GROK_API_KEY`（中转站 Grok 分组的 key，必填才能「更新帖子」），可选 `GROK_MODEL`（找帖，默认 grok-4.3）、`GROK_DIGEST_MODEL`（兜底解析，默认 grok-4.20-0309-non-reasoning）、`X_HTTP_PROXY`（服务器直连不了 fxtwitter 时的代理）。
+- 这两条路径直接写数据库，不写 `data/raw_posts.json` / `posts.json`；之后再跑 `cmd/import` 不会删除它们。
+
 ## 视频卡片（油管 / B站共用）
 
 - 视频按账号分组显示，每个账号一块，可折叠；左栏缩略图 + 简介，右栏标题、时间、标签，下方整行是「提及的资源」和 AI 摘要。

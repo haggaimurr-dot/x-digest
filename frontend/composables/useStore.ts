@@ -2,7 +2,7 @@ import { rawAvatar } from '~/utils/x-post.mjs'
 import xContent from '~/assets/mock/x-content.json'
 // Data layer: real /api/v1 by default, mock fallback when NUXT_PUBLIC_USE_MOCK=1.
 // Pages only ever talk to this layer, never to raw fetch or raw mock data.
-import type { Post, Watchlist, Categories, Replica, ReplicaStep, Attachment, Repo, RepoGroup, RepoDetail, RepoRelease, YTChannel, YTVideo, YTSummary } from './types'
+import type { Post, Watchlist, Categories, Replica, ReplicaStep, Attachment, Repo, RepoGroup, RepoDetail, RepoRelease, YTChannel, YTVideo, YTSummary, XRefreshJob } from './types'
 import { ApiError } from './types'
 // Video platforms sharing the /api/v1/<p>/ routes and the VideoHub page.
 export type VideoPlatform = 'yt' | 'bili'
@@ -356,6 +356,21 @@ export function useStore () {
   // one unless force) — the page polls GET while status is 'pending'.
   // X post AI summary: same flow as the video one; POST sends the original
   // text/links (they live in x-content.json on the page, not in the DB).
+  // X daily: single-post import / account refresh (backend x_import.go).
+  async function importXPost (url: string, force = false): Promise<{ post: Post, existed?: boolean, account_created?: boolean }> {
+    if (mock.value) throw new ApiError(501, 'MOCK', '演示模式不支持导入')
+    const data = await apiFetch<{ post: Post, existed?: boolean, account_created?: boolean }>('posts/import', { method: 'POST', body: JSON.stringify({ url: url.trim(), force }) })
+    data.post = withXContent(data.post)
+    return data
+  }
+  async function getXRefresh (): Promise<XRefreshJob> {
+    if (mock.value) return { running: false, accounts: [], configured: false }
+    return apiFetch<XRefreshJob>('x/refresh')
+  }
+  async function startXRefresh (usernames: string[]): Promise<XRefreshJob> {
+    if (mock.value) throw new ApiError(501, 'MOCK', '演示模式不支持更新')
+    return apiFetch<XRefreshJob>('x/refresh', { method: 'POST', body: JSON.stringify({ usernames }) })
+  }
   async function getPostSummary (id: string, lang: string): Promise<YTSummary> {
     if (mock.value) return { ...mockStore.mockYTSummary(id, lang), chapters: [] }
     const data = await apiFetch<{ summary: YTSummary }>(`posts/${encodeURIComponent(id)}/summary?lang=${lang}`)
@@ -392,7 +407,7 @@ export function useStore () {
     deleteAccount, addCategory, deleteCategory, setPostCategories, setUserTags, setUserTagVocabulary, translateTexts,
     loadRepos, loadRepoGroups, addRepo, loadRepoDetail, loadRepoCommits, loadRepoReleases,
     patchRepo, deleteRepo, syncRepo, syncAllRepos, addRepoGroup, deleteRepoGroup, validateRepoFullName,
-    loadYTChannels, loadYTVideos, addYTChannel, updateYTChannel, deleteYTChannel, syncYTChannel, syncAllYTChannels, getYTSummary, startYTSummary, addYTVideo, getPostSummary, startPostSummary,
+    loadYTChannels, loadYTVideos, addYTChannel, updateYTChannel, deleteYTChannel, syncYTChannel, syncAllYTChannels, getYTSummary, startYTSummary, addYTVideo, getPostSummary, startPostSummary, importXPost, getXRefresh, startXRefresh,
     loadYTGroups, addYTGroup, deleteYTGroup
   }
 }

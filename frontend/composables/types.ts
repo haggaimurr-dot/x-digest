@@ -103,3 +103,24 @@ export interface YTSummary {
   source: '' | 'transcript' | 'description', transcript_lang: string, model: string,
   error: string, created_at?: string, updated_at?: string
 }
+
+export interface XRefreshAccount {
+  username: string
+  state: 'pending' | 'running' | 'done' | 'error'
+  since?: string
+  found: number
+  added: number
+  skipped: number
+  failed: number
+  error?: string
+}
+export interface XRefreshJob {
+  running: boolean
+  configured: boolean
+  started_at?: string
+  finished_at?: string
+  total?: number
+  done?: number
+  added?: number
+  accounts: XRefreshAccount[]
+}

@@ -321,3 +321,18 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
 .post-resources h3, .post-ai-summary h3 { margin: 0 0 6px; font-size: 13px; color: var(--text-muted); }
 .post-resources ul { margin: 0; padding-left: 18px; }
 .post-resources a { overflow-wrap: anywhere; }
+
+/* X daily: import / refresh dialogs (components/XImportDialog.vue) */
+.xi-msg { margin: 10px 0 0; font-size: 14px; color: var(--text); }
+.xi-msg.xi-err { color: var(--danger-text); }
+.xi-accounts { max-height: 220px; overflow-y: auto; margin-top: 8px; }
+.xi-progress { margin-top: 12px; }
+.xi-progress-head { display: flex; justify-content: space-between; gap: 8px; font-size: 14px; flex-wrap: wrap; }
+.xi-bar { height: 6px; border-radius: 9999px; background: var(--border); margin: 8px 0; overflow: hidden; }
+.xi-bar > div { height: 100%; background: var(--accent); transition: width .3s; }
+.xi-rows { list-style: none; margin: 0; padding: 0; max-height: 260px; overflow-y: auto; font-size: 13px; }
+.xi-rows li { display: flex; flex-wrap: wrap; gap: 4px 10px; padding: 5px 0; border-bottom: 1px solid var(--border); }
+.xi-name { font-weight: 600; min-width: 120px; }
+.xi-state { color: var(--text-muted); }
+.xi-running .xi-state { color: var(--accent); }
+.xi-error { color: var(--danger-text); flex-basis: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
