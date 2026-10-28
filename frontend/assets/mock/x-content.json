@@ -17271,6 +17271,35 @@
     ],
     "avatar": ""
   },
+  "2095158970558374077": {
+    "text": "我们已经从对话时代走到了Agent时代。\n\nGrok Bot把每个Agent包装成有名字、长期在岗的数字员工，让它持续负责一类结果，并逐渐熟悉你的要求。\n\n想系统学习Grok Bot的同学，建议收藏这篇万字长文👍 https://t.co/HK3ER5D21r",
+    "links": [
+      "https://t.co/HK3ER5D21r"
+    ],
+    "avatar": ""
+  },
+  "2095038154600583284": {
+    "text": "小灰真人出镜，聊一聊我用纯AI开发的第三款steam游戏😁 https://t.co/UwPBwz0FUM https://t.co/ewKIXkWpuV",
+    "links": [
+      "https://t.co/UwPBwz0FUM",
+      "https://t.co/ewKIXkWpuV"
+    ],
+    "avatar": ""
+  },
+  "2094940000538485168": {
+    "text": "普通 Mac 现在也能认真跑 Qwen3.8-27B，不一定非要最新 Studio。\n\n关键不是参数有多大，而是内存怎么分：模型、上下文、系统和加速都会占同一块统一内存。\n\n24GB 先用 4-bit，上下文别一上来开满。先测基础速度，再决定要不要开加速。 https://t.co/FogmJa06hW",
+    "links": [
+      "https://t.co/FogmJa06hW"
+    ],
+    "avatar": ""
+  },
+  "2094690813787971973": {
+    "text": "AI 最不可靠的不是智力，是记忆。\n\n上下文会衰减、会遗忘、会左右互搏；唯有经过确认的 Spec，才能把一次性的对话决策，沉淀为可追溯的工程事实。\n\n规范驱动，不是限制模型发挥，而是拒绝把系统的命运交给会过期的上下文。👍👍 https://t.co/sLQBY2Xnd1",
+    "links": [
+      "https://t.co/sLQBY2Xnd1"
+    ],
+    "avatar": ""
+  },
   "2114745397566673325": {
     "text": "@sanmeiBTC 我觉得它的股价被狙击是大概率事件。",
     "links": [],
@@ -17779,11 +17808,126 @@
     ],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2094482819976442138": {
+    "text": "@dwyanewadeflash 不客气，博主就是为粉丝朋友服务的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094480178227589401": {
+    "text": "@Ot44157 @grok @X @XCreators 在和粉丝朋友们互动，免得系统误判我是机器人，毕竟最近的流量大粉丝朋友增长速度快，哈哈。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094479577510989895": {
+    "text": "@xintongai 我去年6月就搞这个了。干货博主前期好难，我前面半个月的帖子流量加起来都不到1万，都是几十个浏览……",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094479005995192483": {
+    "text": "@Ot44157 @grok @X @XCreators 我都发帖质疑两次他了，Grok就是那样解释的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094477067303997729": {
+    "text": "@dwyanewadeflash Wise新加坡账户可以给Starryblu转账，反过来我没有试过，按道理是可以，因为Starryblu也是有同名的OCBC银行账户的，同名转转账，Wise不会拒绝的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094474863419539472": {
+    "text": "@Ot44157 @grok @X @XCreators 他几乎都是发段子玩梗诱导评论。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094474633722618289": {
+    "text": "@Ghostamer11 不用这么客气，这类的教程还会持续输出的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094474493670670466": {
+    "text": "@christmas52077 教程说了，很多海外注册都需要，比如券商、银行和U卡这几个常见的场景。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094473686350966944": {
+    "text": "@w3bD4nny 认真看了一下，你说得对。是来打广告的，拉黑。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094472527368315321": {
+    "text": "@arslanm6101011 @HVRdPzuIqj7J1QX 明天我可能会提供一种方便的充值入金方案，在等官方工作人员回复。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094472101432635762": {
+    "text": "@dwyanewadeflash @Daibw24 我已经认真考虑了，看见好多次了，太让人心寒了……",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094471249028374835": {
+    "text": "@CxxVen 那是你使用姿势不对，我的正常，评论区至少已经有三个学会并且开业卖了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2114743613955743874": {
     "text": "Anthropic计划将其A类普通股以代号“ANT”在纳斯达克全球精选市场上市，拟发行的A类普通股数量及拟议发行的价格区间尚未确定。\n\nA➗的做派好像有点反华，感觉其股价到时候会被某些人或者组织狙击，希望是我想多了吧。\n\n不管咋样，它上市后我都不参与买卖。去赚看不懂的钱，那不叫理财，那叫赌博。 https://t.co/cct4lgqPm7",
     "links": [
       "https://t.co/cct4lgqPm7"
     ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094470628250398817": {
+    "text": "@Ot44157 不知道，我又不写chatgpt日抛教程。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094468360100884635": {
+    "text": "@YouzhouG33 我没有透露未写教程的方法的习惯。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094455665775518114": {
+    "text": "@MikezxAZ 你买贵了，当时一般是卖30元~50元一份。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094454559540425012": {
+    "text": "@HVRdPzuIqj7J1QX 延迟分享，耐心等待。没有Starryblu实体卡的，先开卡。 https://t.co/jFENpMqUfN",
+    "links": [
+      "https://t.co/jFENpMqUfN"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094451236892450910": {
+    "text": "@LeonsClub09 升级19.9星球会员，只开一个月就可以了，因为这个要加v给50元奖励。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094450241349308900": {
+    "text": "@Daibw24 看了教程，学会拿去挣钱了，却连个关注都不舍得给，可能我的免费分享扶持政策是有问题，我是该认真考虑一下那些劝我搞付费分享的意见。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094447834343030862": {
+    "text": "纯从浏览量来看，这海外地址证明的教程比不过之前的打五折半价ChatGPT Team优惠码教程，不符合我的预期，按道理应该超过才对，可能是教程不够完美，我争取尽快补充更好的去水印方法。https://t.co/qBC0hOnOSz https://t.co/dK60kH8RV8",
+    "links": [
+      "https://t.co/qBC0hOnOSz",
+      "https://t.co/dK60kH8RV8"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094445636775182769": {
+    "text": "@xiaofapro 他们不自己开，原因我猜大概有3个:一，中转站是做确定性生意，不会冒险。二，他们没有那么多卡或者其它我们不知道的限制。三，5X Team突发或者中转站用量突增，来不及。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094443935494275185": {
+    "text": "@valleylmh 需要验证转账升级会员的钱后才拉白名单。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094443664248553611": {
+    "text": "@Luedongyqir 我港卡只有三张，香港中银、香港汇丰和香港众安，你可以参考一下。",
+    "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
   "2105330226490421727": {
@@ -28013,6 +28157,43 @@
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2095374700952338899": {
+    "text": "终于赶在下午一点前吃午饭了，超市搞活动三元一斤腩肉，虽然品相一般，但是也没有什么好挑剔了。猪肉价格这么跌，估计猪肉股好不到哪里去。 https://t.co/W8jLp96Bpz",
+    "links": [
+      "https://t.co/W8jLp96Bpz"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095361452005822648": {
+    "text": "@YlmazAlic0 @REAN585862 消消气，我都不生气了。0元试用ChatGPT Plus的教程早就公布了，自己认真看教程操作。ChatGPT",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095360239881297938": {
+    "text": "@CXLH22 谢谢你的关注，如果可以分享就更好了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095323616749768861": {
+    "text": "@oneruofeng 可以左脚踩右脚解决这个问题，教程隐晦提到了的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095323334443671934": {
+    "text": "@cunlegetu 除非这母号是新注册的，可有可无那种。写都不是最严重的，如果后面ChatGPT还封卡那才最麻烦。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095322987704860736": {
+    "text": "@TaoBing502 是的，就是教程说的羊毛一，只有每月前三次返利最大。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095322646452027861": {
+    "text": "@GGW25440242 看最新消息，以前是只封空间不封号，现在封号了，转移所有者都封号。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2099783156920394009": {
     "text": "@down_max123 没有专八水平，都得借助翻译，感觉别扭正常。",
     "links": [],
@@ -28303,6 +28484,73 @@
   },
   "2112835456006316048": {
     "text": "@lxl1818 @xuanxuetang 公司就是不愿意改，说改不了，闹得很僵。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095159482242478119": {
+    "text": "@grok @huahaige 我开蓝V的时候，粉丝才几十个，远小于1000，帖子曝光过100的屈指可数呀，开蓝V后24小时内就发帖了呀，半个月一次流量扶持都没有。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095158221392744855": {
+    "text": "@huahaige @Grok 出来解释一下，我之前问你说新开蓝V一周内是否有流量扶持，我没有，而别人有，你说没有这回事，现在有人说开源算法有呀。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095155388488552655": {
+    "text": "@gwklearn @jackJJ375 不是，是为了预防香港证券政策改变。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095151140296147018": {
+    "text": "@BaoReboot 我只是继承者而已，以前那些人才是大佬。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095145204429070749": {
+    "text": "@ggW00726 嗯嗯，会坚持发的，初步计划是三天一原创，明天得干活了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095137489099137353": {
+    "text": "@jiefuBTC @ggW00726 是粉丝，也是朋友，大家一起努力，一起成长。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095136055926345908": {
+    "text": "现在不再只封空间了，原母号也会被封，卖的请慎重，除非不要母号了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095135999978512810": {
+    "text": "@grok 现在不再只封空间了，原母号也会被封，卖的请慎重，除非不要母号了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095135943674253730": {
+    "text": "现在不再只封空间了，原母号也会被封，卖的请慎重，除非不要母号了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095131329948205161": {
+    "text": "今天是我运营X以来最轻松的一天，放松大脑，流量增长和粉丝朋友增长都下降了，但是我没有以前的焦虑和压力了。感谢大佬 @ggW00726 的教导，虽然我还没有完全领悟，还是心态和认知却是慢慢在改变了。 https://t.co/AdbiBUwaNz",
+    "links": [
+      "https://t.co/AdbiBUwaNz"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095126218907730185": {
+    "text": "@newcomelol 不要贪心，风险和利益是成正比的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095124809042772178": {
+    "text": "@light121dd 你起码超过11天没有关注我了，否则不会这么说。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095122773446377486": {
+    "text": "@baek_min0506 我们还是老老实实待在港区或者新加坡区吧。",
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
@@ -28639,6 +28887,75 @@
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2095118268251930726": {
+    "text": "@remixdawei 尽量三天一原创吧，我生活中也有事情要做的，不是全职搞X创作。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095114501238788315": {
+    "text": "当初为了创作者高收益而转美区的那批人，这会估计得头疼了。 https://t.co/BnYcfsK3Uh",
+    "links": [
+      "https://t.co/BnYcfsK3Uh"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095111517721235644": {
+    "text": "@remixdawei 没有，不搞社群。我不是专门搞推广，Starryblu都只是刚好用得到才顺便推广的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095104421579600176": {
+    "text": "@huahaige 我真没有，还特意问过Grok，它说官方没有这流量扶持说明。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095102534172201048": {
+    "text": "@sam_qin 你的蓝V时间线曝光量我不羡慕，但是你的泛流量我真羡慕。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095089394009116921": {
+    "text": "删了2条帖子和3条评论，流量和权重应该都下降了，以后不敢再随便截图泄露消息了。被同行竞争举报了，返50元奖励惹的祸，哈哈。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095079152701337772": {
+    "text": "@gwklearn @jackJJ375 没有使用过，我当初一口气注册香港和新加坡6家券商备用，现在只用一家。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095077002034434516": {
+    "text": "@gwklearn @jackJJ375 我上面回答错了，是新加坡盈立证券，不是新加坡盈透。美区IBKR，我是中国地址注册的，听说现在不支持了，可能是改规则了。 https://t.co/pr22MRBRfl",
+    "links": [
+      "https://t.co/pr22MRBRfl"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095073687611625758": {
+    "text": "@ZerroZuo 8月26日后，原创内容流量已经改善很多了",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095072036695760938": {
+    "text": "@whoamiqy 你的资金是闲鱼买的Starryblu之间转入，不是真正的入金，不行。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095070344088518710": {
+    "text": "@FengChuiAI 我除了自己的努力，运气也比较好，先是有两个23万和15万的大佬关注以及转发引用帖子支持，又碰上X修改优化原创内容流量算法。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095069129577521654": {
+    "text": "@baek_min0506 没办法，谁叫我现在资金这么紧张呢？就50元可以自由分配的了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095068603120808085": {
+    "text": "@WenrongYang 我分享的技术教程都是干货，肯定可以的呀，都是亲测有效才写的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2099713200182677876": {
     "text": "@YlmazAlic0 这是官方正规优惠，不过我估计你搞不掂。",
     "links": [],
@@ -28968,6 +29285,88 @@
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2095066195674501149": {
+    "text": "@Chris62771610 支付宝当初都做到，它更加没有问题。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095064354668589209": {
+    "text": "X Money能对香港用户全面开放吗？虽然我只有50元，但是也想体验一下。 https://t.co/t2LQN0wWFg https://t.co/NTtAguRrEb",
+    "links": [
+      "https://t.co/t2LQN0wWFg",
+      "https://t.co/NTtAguRrEb"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095061840867004490": {
+    "text": "@LaoChang123 @elonmusk 你理解错了，是有2000个蓝V订阅你，目前还有效的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095058354720915930": {
+    "text": "@JowehXy 推荐码是注册的时候绑定的，走邀请链接也一样。注册后，绑定关注改变不了。不走白名单，几个月通不过也正常。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095057800586232216": {
+    "text": "@xi_xixi_xixixi 注册的时候填写的，走邀请链接的不需要填写推荐码，邀请链接和推荐码二选一即可。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095057527671230956": {
+    "text": "@cucudas1717 走白名单不需要，升级星球会员几分钟就可以了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095056514637824033": {
+    "text": "@xzjianyu @REAN585862 他贪心，我除了已经分享的搞一个号0元试用ChatGPT Plus会员，还想要我那未公开的搞7个号0元试用ChatGPT Plus教程。他估计不是AI中转站的人，就是二手贩子，而且肯定是以为我不懂价值（因为我几篇教程都是可以批量生产拿去卖的，却免费分享）。他肯定有多个小号的，懒得理睬他。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095053920943153410": {
+    "text": "@navy209988 正常，那些博主绝大多数都没有我大方，肯定不会返奖励给你们。他们绝大多数也不懂教你们薅羊毛，比如那个0元试用ChatGPT Plus一个月，我都是直接写在Starryblu那文章里。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095028561690399052": {
+    "text": "问大家个严肃问题：你们买菜看到虫，第一反应是“恶心退钱”还是“稳了，真没打农药”？🥬🐛 https://t.co/gTgoNCAhKt",
+    "links": [
+      "https://t.co/gTgoNCAhKt"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095021891933360554": {
+    "text": "@yhh1066828 nodeseek论坛，L站其实更多。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095020438506348798": {
+    "text": "@iiOwOiioli 很多人不喜欢，觉得它太清淡，即使是广东人。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095020122679456172": {
+    "text": "@mumusky1900 只要通过一个，就可以左脚踩右脚了，玩法要灵活。话说，帖子教程对你有用，都舍不得给我个关注吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095019689399173528": {
+    "text": "@Ot44157 坚持就是胜利，我也是8月26号平台大修改算法扶植原创内容，我的流量才真正起来的。\n\n在26号前几天，有一位23万粉丝大佬和一位15万粉丝大佬，关注我转发引用我的帖子，也搞了一波流量，不过是比不上我现在的流量。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095018128573092147": {
+    "text": "中国广东人午饭时间到了，今天是胡萝卜玉米猪骨汤 + 清炒小白菜。嗯，青菜我最爱小白菜了。 https://t.co/5sqwqNUH6i",
+    "links": [
+      "https://t.co/5sqwqNUH6i"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095011163637727250": {
+    "text": "@dopas147 @REAN585862 不要生气，我都不生气了，哈哈。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2099675668145652028": {
     "text": "@LeonsClub09 你是不是将微信的内容发推特上评论区了？",
     "links": [],
@@ -29289,6 +29688,118 @@
   "2112757836233240808": {
     "text": "使用Claude被封号太玄学，最稳定的使用方法应该是付费订阅Gemini，然后在反重力Antigravity里使用Claude，比如Claude Opus 5.5。\n\nGemini Pro赠送的Claude额度肯定不够用的，但Gemini Ultra赠送的Claude额度就和Claude Pro的额度差不多了。\n\n我后面大概率是升级到Gemini Ultra 5X，ChatGPT Plus和ChatGPT Team各只保留一个，不再订阅Claude Pro。",
     "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095009938494165140": {
+    "text": "@Raven6667jc @REAN585862 我暂时没有收到过任何人给我的打赏，即使他们学成功挣钱了。不过我本来就没有抱着这个期待，所以无所谓的。我相信因果，总有一天我会有福报的，哈哈。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095009308933235089": {
+    "text": "@Chris62771610 不晓得，这个价格波动很大很快，据我所知最低的500元，最高是2500元，多数时间是1000元~2000元。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095008916380033238": {
+    "text": "@H0peYin 我现在也不知道呀，我是新人一个。等我成为大V后，我再回答你。大概两三年后再来问我，哈哈。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095008384240198092": {
+    "text": "@Raven6667jc @REAN585862 我好几篇干货教程，都可以批量生产拿去闲鱼或者发卡网卖，或者直接卖教程，但我都没有做，即使不少人说我傻，思想老古董。\n\n这个问题我已经发帖解释过多次，我是信佛的，相信因果的，践行当年落伍者论坛的互相共享前行的MJJ精神，只挣平台和广告商的钱，不挣粉丝朋友的钱，还免费分享教程教你们挣钱。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095006982843559994": {
+    "text": "@Chris62771610 看来你是最近几天才关注我的，临期Team是指最后3天到期的ChatGPT  Team。 https://t.co/RICJTAWRXq",
+    "links": [
+      "https://t.co/RICJTAWRXq"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095006321687073183": {
+    "text": "@Adiaos2012 正常开通，应该不会封号，但影响流量感觉是真的，我后面可能会改回港区或者新加坡区。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095005794962158019": {
+    "text": "@jimZ_2416 这个问题，在评论区我已经回答过几次，当初你们没有人有兴趣，我就没写。现在早就过一周了，已经失去时效性了，没有写教程的价值。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2095005012086931807": {
+    "text": "@grok 每天每刻价格都变动，建议自己去论坛卖。非要找我卖，我会抽100~200元，因为我只是代收。 https://t.co/OwFLFmZASF",
+    "links": [
+      "https://t.co/OwFLFmZASF"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094999148701667532": {
+    "text": "听说很多人开蓝 V后，一周内有流量扶持，但是我8月8号开通后一周内，每天的帖子总流量都不超过1000，单个帖子流量多数是两位数甚至是一位数。曾让我怀疑是不是我开的土区蓝V的原因…… https://t.co/4bZQflJfZq",
+    "links": [
+      "https://t.co/4bZQflJfZq"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094997737184072164": {
+    "text": "@BlockInsight214 这些我都说明了的，这方法也是评论区粉丝朋友反馈的，他成功了，Wise账号也正常。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094996348533895289": {
+    "text": "@Theodore198988 没有问题，已经记录，后面会出。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094995469743386899": {
+    "text": "使用我的邀请链接或者推荐码注册Starryblu新加坡银行卡，使用自己同名的港卡、境外银行卡或者wise转账到Starryblu这种真正入金的，升级星球会员，同时满足这三个条件的，可以继续找我返50元奖励，次月返（官方也是次月返我）。因为一个人的问题迁怒其他人，是不对的。 https://t.co/jFENpMqUfN",
+    "links": [
+      "https://t.co/jFENpMqUfN"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094995073314545754": {
+    "text": "使用我的邀请链接或者推荐码注册Starryblu新加坡银行卡，使用自己同名的港卡、境外银行卡或者wise转账到Starryblu这种真正入金的，升级星球会员，同时满足这三个条件的，可以继续找我返50元奖励，次月返（官方也是次月返我）。因为一个人的问题迁怒其他人，是不对的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094991244351164781": {
+    "text": "@zzy19960514 我免费分享的干货教程都几篇了，后面还会继续输出的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094990155207860224": {
+    "text": "@zzy19960514 不是，起码6月底7月初的时候，是加速开卡，包括虚拟卡和实体卡，可以选择，现在没有选择，加速就是实体卡，还好收到之前也是可以使用，感觉像有一张同号的虚拟卡一样，好奇怪，目前他们几个人反馈没有收到卡也是可以使用的，我当初不可以。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094988696517022088": {
+    "text": "@zzy19960514 我8月8号才开始运营，哪里那么块达标500万流量，暂时开通不了订阅功能，月底也许可以了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094985268621344854": {
+    "text": "@iceface88 头上一块布，全球他最富，应该是超能力买的吧。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094984545225576542": {
+    "text": "@yuyuhenbaozao 我都不敢发，哈哈。当然，我也不需要发这个。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094984344490357109": {
+    "text": "@QiqiJiao83386 @xzjianyu 如果注册使用了邀请链接和推荐码，客服一般不会帮你加白名单，得联系推广人员，这是他们的运营机制。当然有些客服可能会疏忽，就可以通过，类似我们平时找联通客服遇到实习生一样。 https://t.co/T1vbrd5uID",
+    "links": [
+      "https://t.co/T1vbrd5uID"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094983584402854372": {
+    "text": "请问有人知道这评论账号是什么意思吗？第一次看到，有点好奇。 https://t.co/2oW4OmkC3T",
+    "links": [
+      "https://t.co/2oW4OmkC3T"
+    ],
     "avatar": "avatars/mjjwiki.jpg"
   },
   "2099530080838164640": {
@@ -29645,6 +30156,102 @@
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2094982118363615317": {
+    "text": "现在Starryblu政策变了，新开已经没有虚拟卡，都是实体卡，而且邮寄期间好像可以继续使用（多人反馈是这样），和我6月底7月初那时候开的不一样了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094981008924024836": {
+    "text": "@0xarthurzs 不是达标就可以通过的，不通过的人大有人在。而且，涨得快封得快的人一大堆。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094979172586398173": {
+    "text": "@ShawnYoung02pu @wuyou731415 嗯，应该是后面规则变了，的确是早开早享受。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094978039407145396": {
+    "text": "@Trader_Aiden 有没有可能，80%都是垃圾内容，我应该是那20%，哈哈。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094977523155386774": {
+    "text": "@baiwan_8878 买大厂服务器，不用担心这个。买小厂的小鸡，买的时候就应该有心理准备，毕竟一分钱一分货。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094976507953484283": {
+    "text": "@QiqiJiao83386 @xzjianyu 你应该是自己注册的，没有使用任何人的邀请链接或者推荐码。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094972831256006790": {
+    "text": "@xzjianyu @QiqiJiao83386 得看注册是否使用了邀请链接和推荐码，使用了的话客服一般不会帮你加白名单，得联系推广人员，这是他们的运营机制。当然有些客服可能会疏忽，就可以通过，类似我们平时找联通客服遇到实习生一样。 https://t.co/Cbr6AWRf1I",
+    "links": [
+      "https://t.co/Cbr6AWRf1I"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094961937872494604": {
+    "text": "@Jvewen @REAN585862 我现在懒得想那么多了，努力做好自己就可以了。别人怎么看待我，那是他们的事情。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094961244600213798": {
+    "text": "@Chris62771610 原创内容奖励计划，是 90天50万有效蓝V流量。订阅，是三个月500万泛流量。三个月和90天看起来好像一样，但是如果是按自然月算，区别就大了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094960272679358623": {
+    "text": "@Jvewen @REAN585862 那种情形，是否会怒，和是否有底气无关。我搞了10多年IT，架构师和技术经理都做了几年，也定期给下属培训，对自己自然是有底气。我8月8号才开通蓝V开始运营，一开始定位就是技术博主原创路线。 https://t.co/plUJDtMUZq",
+    "links": [
+      "https://t.co/plUJDtMUZq"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094956143533752753": {
+    "text": "@yuan_wu950829 没事，我对事不对人，大家看法不一样很正常。真生气你的话，就不会回复你这个新号了，而是继续屏蔽你了。另外，我昨天那时候说话语气是有点冲，不好意思。毕竟我那时候被别人搞到处于心寒和气愤状态，请理解。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094954817689162111": {
+    "text": "@Adiaos2012 是的，平台算法是这样的，你敢休息，它就敢不给你推流量。我大概计算了一下，平均三天就得发一篇高质量帖子，才会一直维持流量不下跌。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094953773609492642": {
+    "text": "@yuan_wu950829 你可以看我的历史帖子，在我回复你之前，我刚被一个人气到连发三条帖子，我那时候正处于寒心和气愤状态，而你又直接说我逻辑思维能力有问题，我不直接怼回去才奇怪。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094952040615260464": {
+    "text": "昨天的流量增长和粉丝朋友增长，和前天的差不多。前几天没有发布技术原创教程帖子，流量就会阶梯式减少。看来今天得发布技术原创教程帖子了，让我好好想想发什么比较好，准备开始新的一天，努力冲刺500万流量开通订阅功能。当然，原创内容奖励计划，也是要争取拿下的。 https://t.co/XlBccaDz5c",
+    "links": [
+      "https://t.co/XlBccaDz5c"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094947426721464745": {
+    "text": "@lopero0623 gemini会员闲鱼上很便宜，就10元左右一年，建议搞12个月的，18个月的没有12个月的稳定。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094946864277922049": {
+    "text": "@yuan_wu950829 都屏蔽你了，还换号来……你的IQ是130，我的教程不适合你，建议你还是另找高明吧，免得大家又闹不愉快。话说，你的IP显示中华人民共和国，你是直连X的吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094944920314462245": {
+    "text": "@isnqnsI 嗯，昨天我收到官方的通知，就马上发帖告诉你们了，今天修复了很正常。可以截图看看修复后是怎么提示的吗？还有备用方案的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094943519731556484": {
+    "text": "@Siy_Huang 我自己以前测试是这样，但是评论区有人反馈说可以，可能规则改变了，你可以试试。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2099509569458409818": {
     "text": "@xfengbro 是有人这么搞流量，但有点缺德了，除非对方真有问题，否则不建议这样搞，出来混讲究和气生财。",
     "links": [],
@@ -29982,6 +30589,75 @@
   },
   "2112490716865888679": {
     "text": "@wzq0625id 我也讨厌复杂的人情世故，只能说各有利弊吧。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094943175861518346": {
+    "text": "@Cangbaic 你是不是误解了？即使我后面开通付费订阅功能，多数教程还是免费的。另外，付费订阅也不贵，可以过滤一些人，有些教程价值会远超付费订阅的钱。有人付费订阅，我才能更好坚持原创持续输出，毕竟我也要生活的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094835597798178945": {
+    "text": "@herbert_ru22123 有10万以上粉丝朋友的才叫大V。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094834385145204935": {
+    "text": "@dongqing666 @REAN585862 KYC审核无法加速，我这里是卡审核加速。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094828547122806974": {
+    "text": "@H0peYin 好家伙，不求有什么大成就，只想实现财富自由，我先回避了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094828176606478748": {
+    "text": "@Poon908173903 我以前申请的，不记得有这个要求了，不过我的信息都是用国内的。 https://t.co/JvLYaWNHoD",
+    "links": [
+      "https://t.co/JvLYaWNHoD"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094825310319788072": {
+    "text": "@GQa1rb 建议有，虽然不扣，但是可以查询到卡余额信息，会对成功可能会有一定的影响。我的卡一直有钱，没有这样操作过。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094824032898367824": {
+    "text": "@flyinghail 充值后找我加白名单（发金额截图和你的ID），然后你升级会员开卡。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094822998603866441": {
+    "text": "@wuyou731415 @ShawnYoung02pu 我的IBKR真的是使用中国大陆地址。 https://t.co/ZBSujTXbus",
+    "links": [
+      "https://t.co/ZBSujTXbus"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094819366143766637": {
+    "text": "@xiaochangai 可以继续办理，只是我个人不再私自补贴升级会员的奖励给你们新开通的了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094818776185516037": {
+    "text": "@dtdz0s 你的话真是简单直接命中要害，我会继续努力的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094814974921380245": {
+    "text": "@Fei2411 嗯，能保持目前的流量的话，月底之前达标问题不大，即使没有爆款帖子。问题是，只要连续2天不出原创技术教程，流量增长和粉丝朋友增长，都明显下降，所以还是有一定压力的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094807377992175755": {
+    "text": "@0xOo0o0 一起加油！感谢你的私信授课，哈哈。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094806913196413119": {
+    "text": "@newcomelol 都是青春的回忆，我们老了，哈哈。一起加油，MJJ互助共享前行。",
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
@@ -30324,6 +31000,98 @@
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2094806177456763352": {
+    "text": "@zy839971925 是有一些人是这样的，明明教程写清楚了也问，估计是懒得细看，觉得浪费时间，就直接评论区反复提问，更有甚者直接私信，有时候我都忙晕了，大家的时间都宝贵呀。这些人有的是没有关注我的，还提问这么多，礼貌吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094804254821421079": {
+    "text": "@Lovislexus 谢谢你的支持，我会继续加油的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094803764935028898": {
+    "text": "@LeonsClub09 @REAN585862 其实也好，起码自己是开心的，哈哈。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094802451962745206": {
+    "text": "@LeonsClub09 @REAN585862 你这是有点像唯心主义者了，哈哈。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094802069190516991": {
+    "text": "感谢今晚各位粉丝朋友的评论和私信，是我着相了，觉得自己对别人好，别人也会对我好，太在乎别人对我的看法了。人民币都有人不喜欢，何况是我？\n\nMJJ含义从最高的赞誉变成只会薅羊毛的白嫖党的调侃自称，落伍者论坛也变成了活化石，当年那些大佬都不再坚持，我又何必执着？我还是会坚持原创路线，互助共享前行，不喜欢我的帖子或者觉得我为人虚伪的，我也不会再你们争论，一切结果随缘。\n\n我以后只对支持我的粉丝朋友们负责，其他人的评论非必要都不回复了。努力达到500万流量开通官方的付费订阅功能，后面的一些教程只对付费用户用户开放。开通订阅功能之前，一切照旧。\n\n最后，我希望自己这个月能产出一条爆款帖子提提速。每次看到别人发段子玩梗诱导评论或者发个擦边内容就几百万甚至上千万流量，我就特别羡慕，我一条爆款帖子都没有过呀！",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094785933375860779": {
+    "text": "@CaiDave 不客气，可以帮到你，我也高兴。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094785781789491317": {
+    "text": "@us_wu46523 谁要和你分个高下？不是你硬扯我逻辑思维能力有问题，我都懒得理睬你。我引用你这条评论就是让大家看看你的逻辑思维是多奇葩而已。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094785219291451718": {
+    "text": "@yijiangnann 我没有为单人解决一个大众问题的习惯，特别是我还没有写进教程的，写教程也是面向全部人。有些博主提供付费单人咨询，你可以去问问。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094784432142164075": {
+    "text": "@GusGumee 当初我是想写这个详细教程分享的，可是帖子才几百人浏览量和一条评论，无人问津，实在没有写的欲望。当然，像他这种人，我以后懒得理睬。以后不关注我的人的评论，我都少回复。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094783109267153113": {
+    "text": "@Poon908173903 哪个券商要这样填写工作在哪里？不是填写工作收入就可以了吗？我当初搞长桥和富途都是这样呀。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094782624699183113": {
+    "text": "@us_wu46523 你这理解能力感人。我什么时候说过我写了教程解决美国学生认证？另外，你已经跳话题了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094773646460076174": {
+    "text": "@us_wu46523 马斯克的第一性原理理解成这样也是个人才，不亏IQ130的人，然后却解决这个学生认证，呵呵。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094772254668443796": {
+    "text": "@TrongLi5175 开通星球会员一个月可以加我V。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094772036547805567": {
+    "text": "@SenMuShare 正规新加坡华侨银行合作的正规借记卡，万事达。港卡和Wise转账进去不要手续费，其它需要。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094771543591235845": {
+    "text": "@sky1846259 我很多时候是按看我帖子的评论和私信的需求建议写教程的，现在置顶的地址证明帖子就是有人需要，我才写。 https://t.co/QXoJBtHJbM",
+    "links": [
+      "https://t.co/QXoJBtHJbM"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094771348572975305": {
+    "text": "真是搞笑，不是按你的思维就是逻辑能力不行？我很多时候是按看我帖子的评论和私信的需求建议写教程的，现在置顶的地址证明帖子就是有人需要，我才写。 https://t.co/UtsTt57dna https://t.co/gOTb7jdQD3",
+    "links": [
+      "https://t.co/UtsTt57dna",
+      "https://t.co/gOTb7jdQD3"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094771257741058319": {
+    "text": "@us_wu46523 真是搞笑，不是按你的思维就是逻辑能力不行？我很多时候是按看我帖子的评论和私信的需求建议写教程的，现在置顶的地址证明帖子就是有人需要，我才写。 https://t.co/Px2A6oLAtB",
+    "links": [
+      "https://t.co/Px2A6oLAtB"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2099473438188703894": {
     "text": "@leiw519 先领取了优惠，到时候开才开再决定。",
     "links": [],
@@ -30635,6 +31403,79 @@
   },
   "2112210104343036058": {
     "text": "@leiw519 我清仓的是短线资金的，长线没有动，就是定投。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094769982102265887": {
+    "text": "@yijiangnann 一周前了，时效性已经过了，没有写的必要了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094769620594958761": {
+    "text": "@quanneixiaogui 现在才看得见你的评论，我们私信聊过了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094769268315628002": {
+    "text": "@Cielve77 使用谁的邀请链接或者推荐码注册的，找谁要去。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094769112312672652": {
+    "text": "@call88767 确定吗？Wise可以给Starryblu入金喔，反过来不行？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094768899518763442": {
+    "text": "@QiqiJiao83386 用谁的邀请链接或者推荐码注册的，就找谁处理。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094765469018292497": {
+    "text": "请注意，后面再升级会员的没有奖励返现了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094764658469323030": {
+    "text": "@Yel93254Ll @REAN585862 帖子有引用功能，可以加上你的观点，引用后的帖子流量也是你的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094763963758022965": {
+    "text": "有些人说，使用Starryblu卡，无法通过0元试用ChatGPT Plus一个月。\n\n请注意细节，细节决定成败！\n\n检查这三点：\n一，原生新加坡IP。\n二，VPN开全局 +\n开启Tun，电脑或者手机定位关闭，浏览器开无痕模式。\n三，新加坡账单地址要真实可查。 https://t.co/9MlUpWtYMi https://t.co/jFENpMqmqf",
+    "links": [
+      "https://t.co/9MlUpWtYMi",
+      "https://t.co/jFENpMqmqf"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094761822717112620": {
+    "text": "@fubaorb23 @REAN585862 你检查这三点：一，原生新加坡IP。二，VPN开全局 +\nTun，电脑或者手机定位关闭，浏览器开无痕模式。三，新加坡账单地址要真实。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094759464461299725": {
+    "text": "@Tumuzn 推特X平台鼓励原创内容，我是技术博主原创路线的，流量和粉丝的增长速度自然比一般博主速度快。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094755437107360043": {
+    "text": "@fubaorb23 @REAN585862 你教程不认真看，也不关注我，自己摸索吧。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094753407945130440": {
+    "text": "@kukmoon97 天天输出一篇原创很难的，三天一篇都只能说尽力。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094750961927614799": {
+    "text": "@eirtons 以前AI破甲过的对话可以继续破甲，新的难度很大，和苹果手机越狱一样。后面会更新更好更通用的去水印技术，留意更新。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094749268498362413": {
+    "text": "@Yuwine77 @REAN585862 他将免费分享技术教程和返现当成理所当然了。",
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
@@ -30983,6 +31824,96 @@
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2094748134555754528": {
+    "text": "@gkxspace 这是真实地址+真实账单搞的，不是你理解那种AI生成。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094745781215678496": {
+    "text": "@weifeng0222 嗯，昨天已经拉你进白名单了，没有看我发你的私信而已。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094745407649910824": {
+    "text": "@Johnny20251111 @dtdz0s @REAN585862 我发帖说过几次，是系统会自动屏蔽非蓝V小号或者新号的私信甚至评论，我私信你吧。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094743765324120347": {
+    "text": "@qingshi1126 嗯，护照是硬性条件。你当地办理护照，成本120元，7天左右收到。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094741480019784048": {
+    "text": "@0xOo0o0 @REAN585862 这是羊毛二，我写在教程里面的了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094741342501126337": {
+    "text": "@Ezra_2412 @REAN585862 这有点离谱吧？你护照是不是拍照不清楚？我想没有几个人敢伪造护照，这是犯罪呀！",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094740387294576845": {
+    "text": "@zengeeklabs @REAN585862 已经被气到拉黑他微信了，推特X暂时不拉黑他，让他看看帖子和评论区，我相信公道自在人心，我问心无愧！",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094739840852197511": {
+    "text": "@0xOo0o0 @REAN585862 主要是资金回国、订阅海外AI、消费返利（每月10元+）和其它各种薅羊毛，用处大了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094738328251982322": {
+    "text": "@qianyuwing @Sookiebabe123 大佬厉害！Web3真挣钱，后面我也会学习一下。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094735783353823475": {
+    "text": "@its_ziling @REAN585862 我微信拉黑了他，推特X没有拉黑他，让他看帖子和评论，公道自在人心，我问心无愧！",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094735321414164885": {
+    "text": "@0xOo0o0 @REAN585862 可能他觉得我免费分享技术教程文章和返利给他都是理所当然的，我觉得在推特X上能同时做到这2点的博主应该很少吧？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094734913132224622": {
+    "text": "@dtdz0s @REAN585862 主要是我很早分享搞1个号的0元试用ChatGPT Plus一个月的教程了，他还说我神神秘秘，不肯分享，还要我未发布的搞7个号的0元试用ChatGPT Plus一个月教程，太让人寒心和气愤了。我现在都还气愤，可能是我的修身养性的功夫不到家。。。。。。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094734573876003241": {
+    "text": "@herbert_ru22123 @REAN585862 一，搞一个号的0元试用ChatGPT Plus一个月，我之前在帖子公开了，你现在开通Starryblu卡就可以搞了。二，搞7个号的0元试用ChatGPT Plus一个月，推迟一个月，因为我还没有500万浏览量，暂时无法开通官方X的订阅功能。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094734033989304694": {
+    "text": "@Nyxdc0sws @REAN585862 谢谢你的支持！之前就应该听你们的建议的。我是想走X官方的付费订阅，我暂时还没有500万浏览量，月底应该够了，到时候会开通。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094733664559177924": {
+    "text": "@qianyuwing @REAN585862 我要吸取教训，多听取你们的建议，后面有些教程是只面向付费订阅我的用户的了，不再全部免费公开。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094733272890957988": {
+    "text": "@its_ziling @REAN585862 主要是我很早分享搞1个号的0元试用ChatGPT Plus一个月的教程了，他还说我神神秘秘，不肯分享，还要我未发布的搞7个号的0元试用ChatGPT Plus一个月教程，太让人寒心和气愤了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094730869911257258": {
+    "text": "@qianyuwing @REAN585862 我只感到心寒，以后分享教程的策略会改变。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094730586158137684": {
+    "text": "@wxx886ge @0xchal 你要先携号转网成功，然后拿到PAC码30天内申请。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2099442533600522479": {
     "text": "@down_max123 嗯，我每次发干货教程，最高日流量到38万，日增粉丝600~900人，你可以刷到很正常。",
     "links": [],
@@ -31277,6 +32208,97 @@
   },
   "2112138656379261198": {
     "text": "@yufu112200 三个月都正常，找你的推广者加速吧",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094729480422207571": {
+    "text": "@sm4cop @404NoFound000 盈透IBKR可以使用国内的地址吧？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094728944188903861": {
+    "text": "做人太难了！坚持免费分享技术教程，搞一个号的0元试用ChatGPT Plus一个月的方法也很早公布了。Starryblu新加坡银行卡虽然有推广性质，但是这卡的确是很多人需要的，而我也需要挣点生活费，并且我还答应返了50元奖励给粉丝朋友（其他博主没有我这么大方吧，起码我没有见过），结果还被 @REAN585862 欺负，逼我要搞7个号的0元试用ChatGPT Plus一个月的方法。本来今晚还想发一篇原创帖子，没有心情了……明天开始，升级Starryblu会员的不会再给返利，搞7个号0元试用ChatGPT Plus一个月的方法推迟一个月公开，并且只对付费订阅我的用户开放。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094724079173677510": {
+    "text": "@ggW00726 这个建议不错，我考虑一下，谢谢了。你说的对，可能就是我太实在了，才被别人欺负。https://t.co/nxeJFIAqy3",
+    "links": [
+      "https://t.co/nxeJFIAqy3"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094721978716594304": {
+    "text": "@KG8538283796855 转账升级会员的金额进去了吗？如果转了，私信发我",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094720370133938664": {
+    "text": "@REAN585862 免费通过1个号的0元试用ChatGPT Plus一个月的方法，我一开始就写在教程了，他没有认真看，就说我神神秘秘的，真是搞笑！我没有公开的是开7个号的0元试用ChatGPT Plus一个月的教程，他的眼睛可以捐了。 https://t.co/WzJjmDlQII",
+    "links": [
+      "https://t.co/WzJjmDlQII"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094719297998520787": {
+    "text": "@ggW00726 谢谢你的建议，你说的其实我也考虑过。但是擦边的我担心被封号，转载的我怕通不过原创内容奖励和订阅。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094718745398943980": {
+    "text": "@Adiaos2012 @REAN585862 免费通过1个号的0元试用ChatGPT Plus一个月的方法，我一开始就写在教程了，他没有认真看，就说我神神秘秘的，真是搞笑！我没有公开的是开7个号的0元试用ChatGPT Plus一个月的教程，他的眼睛可以捐了。 https://t.co/nrqDatCejc",
+    "links": [
+      "https://t.co/nrqDatCejc"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094718136411099627": {
+    "text": "@REAN585862 免费通过1个号的0元试用ChatGPT Plus一个月的方法，我一开始就写在教程了，自己没有认真看，还说我神神秘秘的，真是搞笑！我没有公开的是开7个号的0元试用ChatGPT Plus一个月的教程，眼睛不好就捐给有需要的人吧。心就算了，你捐别人不敢要你的。 https://t.co/eGNkNoSFYO https://t.co/jFENpMqUfN",
+    "links": [
+      "https://t.co/eGNkNoSFYO",
+      "https://t.co/jFENpMqUfN"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094715332401430751": {
+    "text": "推特X上也就我会返升级Starryblu会员50元奖励吧，现在没有了，和其他博主一样。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094715063630540967": {
+    "text": "@lumiheree @REAN585862 免费得到的东西，别人不会珍惜。升米恩，斗米仇。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094714326787502478": {
+    "text": "这是完整截图，我还真不稀罕你 @REAN585862 这一条评论。我免费分享技术教程，传播当年落伍者论坛的MJJ互相共享前行的精神，我为人人，人人为我。我不需要刷任何评论，只是我以为我帮了你，你帮我客观评价是个顺手的事。\n\n我不是大V，至于是什么人，不是你一个人可以定论。想提前要我的搞7个0元试用ChatGPT Plus方法，门都没有。\n\n真想不到，我走技术博主原创路线，全部帖子就一篇帖子带有推广性质，都被别人这样说，也明白了为什么会有人看完教程，关注和点赞都不舍得给的。\n\n我决定了，搞7个0元试用ChatGPT Plus的教程延迟一个月发布，只对付费订阅用户公开。明天起，升级Starryblu会员不再有50元返利。嗯，你更加没有，其他已经开通的人正常。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094708480011882578": {
+    "text": "@Ot44157 我不认识你，你走开，我胆子小。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094708301334561179": {
+    "text": "这是我不回复你们的原因，因为我看不到，我太久不回复的，直接私信发我。 https://t.co/koLvphoErq",
+    "links": [
+      "https://t.co/koLvphoErq"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094707123808825579": {
+    "text": "@whoamiqy 是升级会员需要转账升级会员的钱后私信我加白名单。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094706841934864565": {
+    "text": "@Nuanyang912 dtc压根就不是中国人在新加坡推出的给中国大陆人玩的东西，你玩U卡都魔怔了。dtc的盈利模式也不是你说的那样，它和其它U卡不一样。Starryblu已经没有虚拟卡了，统一实体卡。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094705897344053638": {
+    "text": "@SophieAnxg 今天还可以加速，评论区看不到你的截图，私信发我。",
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
@@ -31585,6 +32607,93 @@
   },
   "2112122567733715343": {
     "text": "@XYing61 嗯，是的，谷歌学生福利，0元一年和优惠四年，后者就是。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094704890815861071": {
+    "text": "@Chris62771610 这个漏洞是我发现的，早知道不反馈给官方了，草率了，我都还没有推广多少个人入金达标的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094703774518690193": {
+    "text": "刚收到通知，该Bug明天就会修复。明天开始再这样充值升级会员，我这边没有任何奖励，也不帮忙加白名单。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094703509262463086": {
+    "text": "刚收到通知，该Bug明天就会修复。明天开始再这样充值升级会员，我这边没有任何奖励，也不帮忙加白名单。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094699452066152463": {
+    "text": "@quanneixiaogui 有港卡或者Wise就自己入金，否则走闲鱼。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094699290119844011": {
+    "text": "@ggW00726 原创内容输出很少有爆款帖子的，我一个都没有。发段子玩梗诱导评论和擦边的，才会爆款。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094698553058931007": {
+    "text": "教程提的虚拟卡已经没有了，走白名单加速的都是实体卡了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094698507177484754": {
+    "text": "教程提的虚拟卡已经没有了，走白名单加速的都是实体卡了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094692452922003811": {
+    "text": "@quanneixiaogui 联系我呀，截图金额发我，我核实后拉你进白名单加速就可以了",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094691297655431371": {
+    "text": "@yy58899yy 联系我呀，截图给我看金额，然后发ID给我加白名单加速。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094691054469742877": {
+    "text": "@yimingfudev 嗯，没有港卡或者Wise的人可以这样。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094690946671911116": {
+    "text": "@Nuanyang912 不一样的，Starryblu不是U卡。另外。Starryblu取现超过额度，费用贵，挣钱多，不怕你们取现。这两点开起来，就不用担心了。欧洲iban是说这个月上线，Wise也是有欧洲账户，也是全套大陆资料，不用担心这个。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094685669738340634": {
+    "text": "@chaoxiao MJJ意思变化，是在全球主机论坛的中期开始的，老人都隐退了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094683664496181265": {
+    "text": "@quanneixiaogui 那干嘛注销？转账升级会员的钱进去，我验证后拉你进白名单，然后你升级会员一天内通过卡申请。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094683271481442316": {
+    "text": "@chaoxiao 当年我都得不到MJJ赞美，虽然我当年也是白嫖，但是很佩服很感激那些MJJ大佬免费帮助我们，从来不敢说自己是MJJ，只是说自己是羊毛党。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094682111383097398": {
+    "text": "@chaoxiao 升华个屁，你们接触互联网太晚，白嫖党硬是将自己调侃美化成MJJ，当年落伍者论坛有资格叫MJJ的人不多，那是最高荣耀。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094680154899636501": {
+    "text": "@chaoxiao 你对MJJ有误解，你该不会以为MJJ是买小鸡、撸羊毛的意思吧？我传播的MJJ精神是互助共享前行，是当年落伍者论坛的最高荣耀，简单来说就是免费为大家服务。 https://t.co/1UWTnju80k",
+    "links": [
+      "https://t.co/1UWTnju80k"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094679336360329490": {
+    "text": "@1ngN4 所有在我帖子和我互动的蓝V我都关注的，但我不是大V，是新人一个。",
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
@@ -31928,6 +33037,96 @@
   },
   "2112113756209905899": {
     "text": "@TrbimixsQ 是的，Colab额度还有人单独收购。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094677760996479036": {
+    "text": "@quanneixiaogui 你之前使用别人的邀请链接或者推荐码注册的，对吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094675763765313652": {
+    "text": "@chaoxiao 我一开始就是定位技术博主原创路线输出呀，只是平台的算法是8月26号才更新为支持原创，以前是很艰难的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094675343764574335": {
+    "text": "@whoamiqy 是升级会员才可以加白名单免排队",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094672587666477297": {
+    "text": "@guxinghanyi 其实，我上面那句话是想安慰你的。我不担心流量和粉丝朋友的增长，更不担心被封号，因为我是技术博主原创路线的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094672187970195619": {
+    "text": "粉丝朋友数量增加到4000人了（虽然蓝V人数还不到一半，比较少），又进步了一点，感谢各位的信任和支持，我会尽量持续原创内容输出。 https://t.co/ANi0HpmtZE",
+    "links": [
+      "https://t.co/ANi0HpmtZE"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094671218754650171": {
+    "text": "@i6OPbFlQOKb7Qus 是的，教程帖子的图片应该画图说明了的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094668483959365710": {
+    "text": "今天不做中国新疆人了，再次体验中国古代和尚生活，青菜豆腐汤来了。 https://t.co/4d0x7ZC9u7 https://t.co/wmb4feb1oO",
+    "links": [
+      "https://t.co/4d0x7ZC9u7",
+      "https://t.co/wmb4feb1oO"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094666604152045723": {
+    "text": "@xi_xixi_xixixi 可以的，放心，我教程和评论区推友应该都有相关晒图。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094666326778507279": {
+    "text": "@wuxiaomingzii 走邀请链接注册的不用填写推荐码，两个二选一即可。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094664491460129030": {
+    "text": "@wuxiaomingzii 你搞错了，推荐码是注册的时候填写的，一直有效。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094664366918680872": {
+    "text": "@SpringHaoAI 一周前了，时效性已经过了，没有写的必要了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094658917766938784": {
+    "text": "@SophieAnxg 可以，10美元的连续开2个月也是返50元奖励。差不多是第二个月免费开会员。还不如直接一步到位搞星球会员卡，我的是10美元星空卡，做工手感和界面都比不上星球卡，只怪我7月开的时候不懂……",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094654507011731644": {
+    "text": "@xchat666666 注册护照120元，也就一周左右就收到了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094651884128883006": {
+    "text": "@mzw6612 我没有在闲鱼卖我教程提到的任何东西，否则那样会对你们不公平，也会减少别人看我的教程。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094651536844656968": {
+    "text": "@dtdz0s 的确是个备选方案，第一次应该不会风控，多次肯定风控，wise很严的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094651070576578790": {
+    "text": "@Grok 请问可以设置帖子只有关注我的人才可以评论吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094650812412908008": {
+    "text": "@MISAKI1330038 wise这么重要不建议这样搞的，你的左脚踩右脚没错，但是选错对象了。又一个看教程后评论连关注都不舍得给的……",
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
@@ -32291,6 +33490,81 @@
     ],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2094647655918166083": {
+    "text": "@Tinwung11 记得截图给我，核实后就拉你进白名单。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094646395781402894": {
+    "text": "@xi_xixi_xixixi 不晓得，你是想搞新加坡账单，左脚踩右脚上天吧？我没有试过，官方没有说明是否可以注销后重新注册，你问一下客服看看。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094645209061830718": {
+    "text": "@lhze0d 如果你是使用我的邀请链接或者推荐码注册的，转账升级会员的钱进去截图给我，我拉你进白名单，就可以一天开卡，有50元奖励。不过你这样问，也没有关注我，你应该没有使用我的邀请链接或者推荐码注册。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094640988614533280": {
+    "text": "@Flowers_hurt 厉害，应该是帖子爆款了吧，你昨天的有效蓝V流量增加了多少？距离50万还差多少？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094637217578975530": {
+    "text": "@wuxiaomingzii 需要用的时候就去研究，研究后就知道了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094636229862228404": {
+    "text": "@BlakeYueng 你是蓝V，可以直接主动发私信给我的，系统不会拦截的。我发不了私信给你，你设置了别人不能发私信给你。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094632849681101097": {
+    "text": "@gdupc123 不用排队，快速开卡，星球实体卡尾号靓号定制，撸各种羊毛，包括0元试用ChatGPT Plus会员一个月。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094631098915643429": {
+    "text": "@dtdz0s 是的，但是wise接收别人转账风控比较严。我教程最开始的评论区，我就建议使用港卡和wise入金，但是不敢建议他们去闲鱼wise代入金，免得搞坏他们的wise，这责任我承担不起。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094626921346932764": {
+    "text": "@valleylmh 可以看最新的帖子或者帖子最新的评论，有新的入金途径，不用港卡，也有返50元奖励。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094626715960225885": {
+    "text": "@wuxiaomingzii 我当时其实也不知道怎么解决，第二天研究才晓得的，但是看帖子反应大家没有兴趣，就不发了，结果一周后你们又有兴趣了……",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094624773938782284": {
+    "text": "@wuxiaomingzii 不知道就找闲鱼买，当初你们如果有人看那帖子或者评论，我就发教程了，现在一周过去了发也没有意义了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094624393674846646": {
+    "text": "@zacharyzdigital 美区的地址我没有研究过，不过这都是小事，最难的是过美区风控，建议搞一个美国税号ITIN，搞美国资源会安全很多。又一个看完教程后，发评论问问题连关注都不舍得给的，我以后真的不想回复你们这样的人了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094620167645114615": {
+    "text": "@REAN585862 哥们，你没有截图Starryblu账户金额给我看呀",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094619124156797094": {
+    "text": "@REAN585862 你要升级会员才可以开卡，要升级会员得拉进白名单，要拉进白名单得先转账充值升级会员的钱进去。没有港卡或者Wise转账，就看最新的帖子方法处理。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094618521489777147": {
+    "text": "@its_ziling 恭喜你了🎉耐心等待收到卡就可以了，到时候统一教你们搞0元试用ChatGPT Plus一个月。对了，你定制的尾号靓号都不舍得给大家看吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2099309523504959781": {
     "text": "@Realbaofuliu 我是1.09元买的，当时都不知道有他这个操作。",
     "links": [],
@@ -32605,6 +33879,51 @@
     "links": [
       "https://t.co/bAYREMBGz3"
     ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094615059779711448": {
+    "text": "@WenrongYang 非蓝V新号或者小号会被系统拦截，我发帖说过，我私信你吧。只要你是使用我的邀请链接或者推荐码注册的，都返50元奖励。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094611047479165419": {
+    "text": "@alleywu270684 @sky1846259 一周前宽松很多，当天就可以过。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094606461133615467": {
+    "text": "@REAN585862 是的，你看我今天发的最新消息方法，转账升级会员的钱进去后，截图给我才可以拉你进白名单。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094604733554331763": {
+    "text": "@QXian16526 @CxxVen 需要AI破甲，又一个关注都不舍得给的……",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094596726216904992": {
+    "text": "@JunL1u19er 谢谢反馈，我今天抽空测试一下效果。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094596311798735157": {
+    "text": "@isnqnsI 教程写了，现在ai的道德点比以前高了，破甲难度更大。像我以前破甲过的，可以继续正常使用。以前没有破甲过的，现在很难，这也是为什么两次逾期发布的原因。我后面会补充更好的去水印方法，留意我的更新。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094595453983891519": {
+    "text": "@iamethanwu 需要加入白名单才可以升级会员，你转账升级会员的钱进去后截图给我看看，核实后我拉你进白名单，你才可以升级会员，才可以一天通过卡申请。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094595055453708325": {
+    "text": "@iamethanwu 退订会员后，卡可以继续正常使用。19.9美元的星球会员1个月或者9.9美元的星空会员连续2个月，都可以加我V返50元，其他博主好像都没有我这么大方。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094594177439039956": {
+    "text": "@REAN585862 国内银行信用卡账单、电费账单、水费账单都可以做地址证明。",
+    "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
   "2099137066940727307": {
@@ -33150,6 +34469,38 @@
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2094438195228488156": {
+    "text": "@jackJJ375 可以，新加坡盈透，使用生成的香港地址。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094435754609135907": {
+    "text": "@twitte_ethan 转账升级会员的钱进去截图给我，核实后拉你进白名单，一天通过卡审核。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094432354521735393": {
+    "text": "垃圾微信！垃圾WeChat！没有发任何敏感信息也封号！虽然提供解封了，但是好恶心！ https://t.co/GnECUGH9zD",
+    "links": [
+      "https://t.co/GnECUGH9zD"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094421802915123545": {
+    "text": "@CxxVen @grok x好像就是马斯克被封号后买下来的，有钱任性！",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094421421116289324": {
+    "text": "@skymumu1900 一样有办法，我喜欢发的帖子就是闲鱼的进货渠道。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094420902242902061": {
+    "text": "@weichen_ink 我觉得大家可能低估了平台算法，更冤枉了平台，被封号的应该很少是冤枉的，否则都可以申诉回来，而且解封速度很快。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2099090880254881939": {
     "text": "八万大V在线要饭，不到半个小时，要到119美元，差不多800元，这是要产生畸形赛道了吗？ https://t.co/5yjb9M9eo5",
     "links": [
@@ -33378,6 +34729,91 @@
   },
   "2110396161807052887": {
     "text": "9月开了9.9美元的Plus星空会员，如果10月再开1个月的话，次月也有50元奖励。相当于只花了17元，算是对我的一种支持，可加我微信。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094419940698907015": {
+    "text": "@CxxVen @grok 我这个月已经发帖吐槽三次了，哈哈",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094418731741114439": {
+    "text": "@dadaBia117830 照着教程操作就可以了，后面会补充更好的去水印方法。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094418058257543473": {
+    "text": "@herbert_ru22123 前面说了呀，你的节点网络质量问题。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094417820524368125": {
+    "text": "@grok 吐槽一下X平台的使用体验，如果一个非蓝V的新号或者小号的推友评论你的帖子或者发私信给你，即使你设置里没有任何屏蔽和拦截，你也会经常收不到相关消息提醒，这些推友有时候会以为你高傲不理睬他们。为了减少不必要的误会，我经常去帖子底部垃圾信息里挖坟……",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094415916545262009": {
+    "text": "学生4个月优惠方法我知道，我在6天前也就是8月25日就分享了ChatGPT学生优惠信息，但是帖子没有什么人看，只有一个人评论，我以为大家不感兴趣，就不想写它的详细教程了。https://t.co/kMdwRhjNbE https://t.co/sZyaJLTAIN",
+    "links": [
+      "https://t.co/kMdwRhjNbE",
+      "https://t.co/sZyaJLTAIN"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094415711842230287": {
+    "text": "@nlqh04 学生4个月优惠方法我知道，我在6天前也就是8月25日就分享了ChatGPT学生优惠信息，但是帖子没有什么人看，只有一个人评论，我以为大家不感兴趣，就不想写它的详细教程了。 https://t.co/1b6DLnPOin",
+    "links": [
+      "https://t.co/1b6DLnPOin"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094413154684125418": {
+    "text": "@shu_hao23148 不是市场需要的，我都懒得写，因为很难涨流量和涨粉丝。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094412757861081247": {
+    "text": "@oxxoccp1 推荐码只有注册的时候填写的。只不过在我这里注册的，升级会员会返50元奖励，在其他博主那里注册的升级会员也不会返奖励给你们。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094410632942796897": {
+    "text": "@KsmdnR97271 以前有的，闲鱼可能屏蔽了相关关键词，不能发和搜吧。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094400666777301265": {
+    "text": "@herbert_ru22123 你测试一下你的vpn节点的去程和回程，如果都是三网直连，肯定没有问题，我的就是三网直连。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094399427951898668": {
+    "text": "@Silas_Hou 谢谢，再加个点赞最好了，一键四连了！",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094398260857475270": {
+    "text": "@lxing44158060 可能他们被抬走了，邪修方法不安全，要想我这样自然涨粉才行。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094389592728481991": {
+    "text": "@SophieAnxg 截图给我核实后，我就拉你进白名单，一天内通过卡审核。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094389129232666943": {
+    "text": "@btcmos 我是纯技术博主原创路线，一样是0到1。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094387252357165524": {
+    "text": "@its_ziling @Ot44157 私信回复你了，需要确认你转账了升级会员的钱进去，才拉你进白名单。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2094386893165298171": {
+    "text": "@0xEthan666 你比我乐观，我当初也是这样，以为得几辈子，哈哈哈",
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },

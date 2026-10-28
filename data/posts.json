@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-28T09:39:36Z",
+  "updatedAt": "2026-10-28T09:44:07Z",
   "posts": [
     {
       "id": "2115316092302491757",
@@ -177585,6 +177585,78 @@
       "resources": []
     },
     {
+      "id": "2095374700952338899",
+      "url": "https://x.com/mjjwiki/status/2095374700952338899",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-03T04:53:53.000Z",
+      "title": "猪肉降价或利空猪肉股",
+      "industry": "农业",
+      "tech": "",
+      "summary": "赶在下午一点前吃午饭，买到超市促销的腩肉，价格为三元一斤，品相一般。作者观察到猪肉价格大跌，认为猪肉相关股票的表现可能不会太好。",
+      "steps": [],
+      "tags": [
+        "猪肉价格",
+        "超市促销",
+        "猪肉股",
+        "日常观察"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://t.co/W8jLp96Bpz",
+          "name": "原文附带的链接",
+          "note": "推文附带链接，原文未说明具体内容或用途。"
+        }
+      ]
+    },
+    {
+      "id": "2095361452005822648",
+      "url": "https://x.com/mjjwiki/status/2095361452005822648",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-03T04:01:14.000Z",
+      "title": "提醒查看零元试用 Plus 教程",
+      "industry": "人工智能",
+      "tech": "ChatGPT Plus",
+      "summary": "推文回应他人争论，称自己并未生气，并提醒“0元试用 ChatGPT Plus”的教程早已公布。建议有需求的人自行认真查看教程并按步骤操作。",
+      "steps": [],
+      "tags": [
+        "ChatGPT",
+        "Plus试用",
+        "零元试用",
+        "教程",
+        "互动回复"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2095360239881297938",
+      "url": "https://x.com/mjjwiki/status/2095360239881297938",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-03T03:56:25.000Z",
+      "title": "感谢关注并邀请分享",
+      "industry": "",
+      "tech": "",
+      "summary": "感谢对方关注，并表示如果能分享会更好。",
+      "steps": [],
+      "tags": [
+        "互动致谢",
+        "关注",
+        "分享邀请"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
       "id": "2095355974731358383",
       "url": "https://x.com/Saccc_c/status/2095355974731358383",
       "author": "Saccc_c",
@@ -177635,6 +177707,102 @@
       "resources": []
     },
     {
+      "id": "2095323616749768861",
+      "url": "https://x.com/mjjwiki/status/2095323616749768861",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-03T01:30:54.000Z",
+      "title": "调侃用 AI 伪造地址证明",
+      "industry": "人工智能",
+      "tech": "AI、去水印",
+      "summary": "推文调侃可通过“左脚踩右脚”的方式解决海外地址问题，指向利用 AI 生成地址证明并去除水印的做法。其引用内容同时提示，该方式可能在后续平台审核中被发现，通过率取决于各平台的审核机制。",
+      "steps": [],
+      "tags": [
+        "地址证明",
+        "AI生成",
+        "去水印",
+        "平台审核",
+        "风险提示"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://t.co/jGH5kkjT0x",
+          "name": "原文附带的链接",
+          "note": "与回复中提及的 AI 生成地址证明及去水印做法相关。"
+        }
+      ]
+    },
+    {
+      "id": "2095323334443671934",
+      "url": "https://x.com/mjjwiki/status/2095323334443671934",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-03T01:29:46.000Z",
+      "title": "担忧 ChatGPT 后续封卡",
+      "industry": "人工智能",
+      "tech": "ChatGPT",
+      "summary": "讨论认为，除非用于注册的母号是新注册且可有可无，否则相关操作存在风险。相比“写”的问题，更担心 ChatGPT 后续进一步封卡，届时影响更麻烦。",
+      "steps": [],
+      "tags": [
+        "ChatGPT",
+        "封卡风险",
+        "账号注册",
+        "支付卡",
+        "风险讨论"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2095322987704860736",
+      "url": "https://x.com/mjjwiki/status/2095322987704860736",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-03T01:28:24.000Z",
+      "title": "返利羊毛每月前三次最高",
+      "industry": "",
+      "tech": "",
+      "summary": "回复确认所说的是教程中的“羊毛一”，其返利额度仅在每月前三次达到最大。对于对方提及的50元及60新币奖励，原文未进一步确认。",
+      "steps": [],
+      "tags": [
+        "返利奖励",
+        "羊毛活动",
+        "月度次数",
+        "新币奖励"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2095322646452027861",
+      "url": "https://x.com/mjjwiki/status/2095322646452027861",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-03T01:27:02.000Z",
+      "title": "转移所有者现会连带封号",
+      "industry": "",
+      "tech": "",
+      "summary": "最新消息称，过去仅封禁空间、不封禁账号的情况已变化。现在转移所有者也会导致账号被封禁。",
+      "steps": [],
+      "tags": [
+        "账号封禁",
+        "空间转移",
+        "平台规则",
+        "最新消息"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": []
+    },
+    {
       "id": "2095173348838043802",
       "url": "https://x.com/Saccc_c/status/2095173348838043802",
       "author": "Saccc_c",
@@ -177677,6 +177845,29 @@
       "resources": []
     },
     {
+      "id": "2095159482242478119",
+      "url": "https://x.com/mjjwiki/status/2095159482242478119",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T14:38:41.000Z",
+      "title": "质疑蓝V通用冷启动扶持",
+      "industry": "社交媒体",
+      "tech": "X 蓝V、时间线冷启动",
+      "summary": "发帖者称自己开通蓝V时粉丝仅几十人、历史帖子曝光超过100的很少，且在开通后24小时内发帖，但半个月内未获得任何流量扶持。其内容针对“粉丝不超过1000、低曝光账号在24小时内发原帖可能获得一次时间线测试推荐”的通用冷启动说法提出质疑。",
+      "steps": [],
+      "tags": [
+        "蓝V",
+        "流量扶持",
+        "冷启动",
+        "时间线推荐",
+        "小号曝光"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
       "id": "2095159416828092482",
       "url": "https://x.com/Saccc_c/status/2095159416828092482",
       "author": "Saccc_c",
@@ -177692,6 +177883,769 @@
         "古城夜游",
         "视觉效果",
         "付费体验"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2095158970558374077",
+      "url": "https://x.com/XiaohuiAI666/status/2095158970558374077",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-09-02T14:36:39.000Z",
+      "title": "Grok Bot 推动 Agent 数字员工化",
+      "industry": "人工智能",
+      "tech": "Grok Bot、Agent",
+      "summary": "推文认为，行业已从对话时代进入 Agent 时代。Grok Bot 将每个 Agent 包装为具名、长期在岗的数字员工，可持续负责某一类结果，并逐步熟悉用户要求。文中推荐收藏一篇系统学习 Grok Bot 的万字长文。",
+      "steps": [],
+      "tags": [
+        "Grok Bot",
+        "智能体",
+        "数字员工",
+        "长期任务",
+        "学习资源"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://x.com/i/article/2094984278723710976",
+          "name": "Grok Bot 万字长文",
+          "note": "用于系统学习 Grok Bot 的长文资源。"
+        }
+      ]
+    },
+    {
+      "id": "2095158221392744855",
+      "url": "https://x.com/mjjwiki/status/2095158221392744855",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T14:33:40.000Z",
+      "title": "质疑蓝V新号流量扶持规则",
+      "industry": "社交媒体",
+      "tech": "X开源算法、Grok、Codex",
+      "summary": "作者质疑 X 新开蓝V账号是否存在一周内的流量扶持，称自己此前未获得扶持、但观察到其他人似乎有。回复内容提到可让 Codex 查阅 X 开源算法，核实是否存在针对历史曝光量低于1000作者的新帖测试曝光规则；该说法在原文中尚未得到证实。",
+      "steps": [],
+      "tags": [
+        "蓝V新号",
+        "流量扶持",
+        "冷启动",
+        "推荐算法",
+        "曝光测试"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2095155388488552655",
+      "url": "https://x.com/mjjwiki/status/2095155388488552655",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T14:22:25.000Z",
+      "title": "提前防范香港证券政策变动",
+      "industry": "证券",
+      "tech": "",
+      "summary": "推文澄清相关做法并非出于其他原因，而是为了预防香港证券政策发生改变带来的影响。",
+      "steps": [],
+      "tags": [
+        "香港证券",
+        "政策风险",
+        "风险预防"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2095151140296147018",
+      "url": "https://x.com/mjjwiki/status/2095151140296147018",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T14:05:32.000Z",
+      "title": "自称只是继承前人",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复称自己只是继承者，认为以前的人才是真正的大佬。",
+      "steps": [],
+      "tags": [
+        "社区互动",
+        "谦逊回应",
+        "MJJ百科"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2095145204429070749",
+      "url": "https://x.com/mjjwiki/status/2095145204429070749",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T13:41:57.000Z",
+      "title": "计划三天发布一篇原创",
+      "industry": "",
+      "tech": "",
+      "summary": "将坚持发布内容，初步计划为每三天发布一篇原创。表示明天将开始投入工作。",
+      "steps": [],
+      "tags": [
+        "原创更新",
+        "内容计划",
+        "持续发布"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2095137489099137353",
+      "url": "https://x.com/mjjwiki/status/2095137489099137353",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T13:11:17.000Z",
+      "title": "与粉丝朋友共同成长",
+      "industry": "",
+      "tech": "",
+      "summary": "与两位用户互动，称彼此既是粉丝也是朋友。希望大家一起努力、共同成长。",
+      "steps": [],
+      "tags": [
+        "粉丝互动",
+        "朋友",
+        "共同成长"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2095136055926345908",
+      "url": "https://x.com/mjjwiki/status/2095136055926345908",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T13:05:36.000Z",
+      "title": "出售账号需防母号被封",
+      "industry": "社交媒体",
+      "tech": "",
+      "summary": "不再只封禁空间，原始母号也可能一并被封禁。出售相关账号时需谨慎，除非能够接受失去母号。",
+      "steps": [],
+      "tags": [
+        "账号交易",
+        "封号风险",
+        "母号",
+        "空间",
+        "风险提醒"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://twitter.com/mjjwiki/status/2092327105170440538",
+          "name": "@mjjwiki 的推文链接",
+          "note": "原文附带的相关推文链接。"
+        }
+      ]
+    },
+    {
+      "id": "2095135999978512810",
+      "url": "https://x.com/mjjwiki/status/2095135999978512810",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T13:05:22.000Z",
+      "title": "Grok封禁或波及原母号",
+      "industry": "",
+      "tech": "Grok",
+      "summary": "推文提醒，Grok 现在可能不再只封禁空间，原母号也可能被封。出售相关账号时需谨慎，除非已不在意母号。",
+      "steps": [],
+      "tags": [
+        "Grok",
+        "账号封禁",
+        "空间号",
+        "母号风险",
+        "账号交易"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2095135943674253730",
+      "url": "https://x.com/mjjwiki/status/2095135943674253730",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T13:05:09.000Z",
+      "title": "出售空间或致原母号被封",
+      "industry": "",
+      "tech": "",
+      "summary": "平台封禁范围不再仅限于空间，原母号也可能一并被封。出售相关资源需谨慎，除非不再需要保留母号。",
+      "steps": [],
+      "tags": [
+        "账号封禁",
+        "空间交易",
+        "母号风险",
+        "交易提醒"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2095131329948205161",
+      "url": "https://x.com/mjjwiki/status/2095131329948205161",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T12:46:49.000Z",
+      "title": "运营X心态转变减轻焦虑",
+      "industry": "",
+      "tech": "",
+      "summary": "作者称这是运营 X 以来最轻松的一天，尽管流量和粉丝增长都有所下降，但已不再感到过去的焦虑和压力。其感谢 @ggW00726 的教导，并认为自己的心态和认知正在逐步改变。",
+      "steps": [],
+      "tags": [
+        "X运营",
+        "心态调整",
+        "流量增长",
+        "粉丝增长",
+        "认知改变"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2095126218907730185",
+      "url": "https://x.com/mjjwiki/status/2095126218907730185",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T12:26:30.000Z",
+      "title": "投资勿贪心，风险收益成正比",
+      "industry": "",
+      "tech": "",
+      "summary": "提醒不要贪心，认为风险和利益成正比。",
+      "steps": [],
+      "tags": [
+        "风险意识",
+        "收益风险",
+        "理性投资"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2095124809042772178",
+      "url": "https://x.com/mjjwiki/status/2095124809042772178",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T12:20:54.000Z",
+      "title": "质疑对方已取关超过11天",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复 @light121dd，称对方至少已有11天没有关注自己，否则不会发表上述说法。",
+      "steps": [],
+      "tags": [
+        "社交互动",
+        "关注关系",
+        "回应质疑"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2095122773446377486",
+      "url": "https://x.com/mjjwiki/status/2095122773446377486",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T12:12:49.000Z",
+      "title": "建议留在港区或新加坡区",
+      "industry": "",
+      "tech": "",
+      "summary": "针对转往美区追求高收益后遭遇政策变化的情况，建议仍老老实实留在港区或新加坡区。回复上下文提到，转美区后可能面临两头不讨好的处境。",
+      "steps": [],
+      "tags": [
+        "地区账号",
+        "港区",
+        "新加坡区",
+        "平台政策",
+        "收益变化"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2095118268251930726",
+      "url": "https://x.com/mjjwiki/status/2095118268251930726",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T11:54:55.000Z",
+      "title": "非全职运营 X，尽量三天一更",
+      "industry": "",
+      "tech": "",
+      "summary": "回应网友催更时表示，会尽量保持三天发布一条原创内容。其说明自己并非全职进行 X 内容创作，生活中还有其他事务需要处理。",
+      "steps": [],
+      "tags": [
+        "内容创作",
+        "更新频率",
+        "X运营",
+        "日常回应"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2095114501238788315",
+      "url": "https://x.com/mjjwiki/status/2095114501238788315",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T11:39:57.000Z",
+      "title": "美区创作者高收益或受影响",
+      "industry": "内容创作",
+      "tech": "",
+      "summary": "推文提到，过去因创作者高收益而转向美区的用户，如今可能面临令人头疼的情况。原文未说明具体变化或影响原因。",
+      "steps": [],
+      "tags": [
+        "美区账号",
+        "创作者收益",
+        "平台政策",
+        "内容变现"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2095111517721235644",
+      "url": "https://x.com/mjjwiki/status/2095111517721235644",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T11:28:05.000Z",
+      "title": "不搞社群，按需顺带推广",
+      "industry": "",
+      "tech": "Starryblu",
+      "summary": "回复网友关于是否有社群的提问，明确表示不搞社群。其称自己并非专门做推广，推广 Starryblu 只是因为刚好有使用需求。",
+      "steps": [],
+      "tags": [
+        "社群",
+        "推广",
+        "Starryblu",
+        "个人回应"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2095104421579600176",
+      "url": "https://x.com/mjjwiki/status/2095104421579600176",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T10:59:53.000Z",
+      "title": "Grok称官方未说明千粉扶持",
+      "industry": "人工智能",
+      "tech": "Grok",
+      "summary": "针对“一千粉丝之内有扶持”的说法，作者表示自己没有发现相关情况，并特意询问了 Grok。Grok 的回复是，官方没有关于该流量扶持的说明。",
+      "steps": [],
+      "tags": [
+        "Grok",
+        "流量扶持",
+        "官方说明",
+        "千粉账号"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2095102534172201048",
+      "url": "https://x.com/mjjwiki/status/2095102534172201048",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T10:52:23.000Z",
+      "title": "羡慕蓝V账号的泛流量",
+      "industry": "",
+      "tech": "",
+      "summary": "称不羡慕对方蓝V账号在时间线上的曝光量，但很羡慕其获得的泛流量。",
+      "steps": [],
+      "tags": [
+        "蓝V",
+        "流量曝光",
+        "泛流量",
+        "社交媒体"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2095089394009116921",
+      "url": "https://x.com/mjjwiki/status/2095089394009116921",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T10:00:11.000Z",
+      "title": "删帖评论后担心流量权重下降",
+      "industry": "",
+      "tech": "",
+      "summary": "因截图泄露消息并被同行竞争举报，删除了2条帖子和3条评论。作者担心此举会导致流量和账号权重下降，并称今后不敢再随意泄露消息。提到事件起因与“返50元奖励”有关。",
+      "steps": [],
+      "tags": [
+        "删帖",
+        "评论删除",
+        "流量权重",
+        "同行举报",
+        "消息泄露"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2095079152701337772",
+      "url": "https://x.com/mjjwiki/status/2095079152701337772",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T09:19:29.000Z",
+      "title": "注册六家券商后现只用一家",
+      "industry": "金融",
+      "tech": "香港券商、新加坡券商",
+      "summary": "作者称自己曾一次注册香港和新加坡共 6 家券商作为备用，目前只使用其中一家。对回复中询问的盈立特色未作说明。",
+      "steps": [],
+      "tags": [
+        "券商",
+        "香港",
+        "新加坡",
+        "备用账户",
+        "投资"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2095077002034434516",
+      "url": "https://x.com/mjjwiki/status/2095077002034434516",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T09:10:56.000Z",
+      "title": "更正券商名称并说明 IBKR 注册限制",
+      "industry": "金融投资",
+      "tech": "盈立证券、IBKR",
+      "summary": "更正此前信息：提及的是新加坡盈立证券，并非新加坡盈透。其美区 IBKR 账户曾以中国地址注册，但听说目前可能已不再支持，或因规则调整。针对回复中香港地址申请多次未通过的情况，原文未提供进一步解决办法。",
+      "steps": [],
+      "tags": [
+        "券商开户",
+        "IBKR",
+        "新加坡",
+        "中国地址",
+        "香港地址"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2095073687611625758",
+      "url": "https://x.com/mjjwiki/status/2095073687611625758",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T08:57:46.000Z",
+      "title": "8月26日后原创流量改善",
+      "industry": "内容创作",
+      "tech": "",
+      "summary": "8月26日后，原创内容的流量已改善很多。",
+      "steps": [],
+      "tags": [
+        "原创内容",
+        "流量变化",
+        "平台运营"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2095072036695760938",
+      "url": "https://x.com/mjjwiki/status/2095072036695760938",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T08:51:12.000Z",
+      "title": "闲鱼转入资金不算真实入金",
+      "industry": "",
+      "tech": "Starryblu、闲鱼",
+      "summary": "闲鱼购买的 Starryblu 资金在账户之间转入，不属于真正的入金，因此不可行。",
+      "steps": [],
+      "tags": [
+        "资金入金",
+        "闲鱼交易",
+        "Starryblu",
+        "账户转入"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2095070344088518710",
+      "url": "https://x.com/mjjwiki/status/2095070344088518710",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T08:44:29.000Z",
+      "title": "原创内容算法调整带来流量",
+      "industry": "社交媒体",
+      "tech": "X 原创内容流量算法",
+      "summary": "作者认为自己的账号增长除个人努力外，也受益于运气：获得两位拥有23万和15万粉丝的大号关注、转发和引用支持。作者还提到，恰逢 X 修改并优化原创内容的流量算法。",
+      "steps": [],
+      "tags": [
+        "X平台",
+        "原创内容",
+        "流量算法",
+        "账号增长",
+        "运气因素"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2095069129577521654",
+      "url": "https://x.com/mjjwiki/status/2095069129577521654",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T08:39:39.000Z",
+      "title": "资金紧张仅有50元可自由分配",
+      "industry": "",
+      "tech": "",
+      "summary": "围绕相关服务目前仅限美国账户的话题，作者称自己资金紧张，只有50元可以自由分配。",
+      "steps": [],
+      "tags": [
+        "资金紧张",
+        "50元预算",
+        "账户限制",
+        "体验需求"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2095068603120808085",
+      "url": "https://x.com/mjjwiki/status/2095068603120808085",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T08:37:34.000Z",
+      "title": "技术教程均经亲测有效",
+      "industry": "",
+      "tech": "",
+      "summary": "回复称，自己分享的技术教程都是干货，且均在亲自测试有效后才会发布。",
+      "steps": [],
+      "tags": [
+        "技术教程",
+        "亲测有效",
+        "经验分享"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2095066195674501149",
+      "url": "https://x.com/mjjwiki/status/2095066195674501149",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T08:28:00.000Z",
+      "title": "认为其开放支付功能可行",
+      "industry": "支付",
+      "tech": "支付宝",
+      "summary": "针对“6%但可能不会开放、过于敏感”的回复，推文认为支付宝当初都能做到，因此相关功能实现或开放没有问题。",
+      "steps": [],
+      "tags": [
+        "支付",
+        "支付宝",
+        "开放功能",
+        "敏感议题"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2095064354668589209",
+      "url": "https://x.com/mjjwiki/status/2095064354668589209",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T08:20:41.000Z",
+      "title": "盼望 X Money 向香港开放",
+      "industry": "金融科技",
+      "tech": "X Money、X Premium、X Premium+",
+      "summary": "关注 X Money 是否能对香港用户全面开放，并表示即使只有 50 元也想体验。引用信息称，X Money 已向拥有美国账户的 Premium 和 Premium+ 订阅用户开放。",
+      "steps": [],
+      "tags": [
+        "X Money",
+        "香港用户",
+        "支付体验",
+        "订阅用户"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2095061840867004490",
+      "url": "https://x.com/mjjwiki/status/2095061840867004490",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T08:10:41.000Z",
+      "title": "2000 个蓝V订阅仍有效",
+      "industry": "社交媒体",
+      "tech": "X 蓝V订阅",
+      "summary": "推文澄清蓝V免费资格的理解：条件不是拥有2500名蓝V关注者，而是当前仍有2000个蓝V订阅该账号。作者强调该规则目前仍然有效。",
+      "steps": [],
+      "tags": [
+        "X平台",
+        "蓝V订阅",
+        "免费资格",
+        "关注者数量"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2095058354720915930",
+      "url": "https://x.com/mjjwiki/status/2095058354720915930",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T07:56:50.000Z",
+      "title": "注册推荐码与白名单审核说明",
+      "industry": "",
+      "tech": "推荐码、邀请链接、白名单",
+      "summary": "推荐码需在注册时绑定，使用邀请链接注册也是同样规则。注册完成后即使后续改变关注关系，也无法再绑定推荐码。未通过白名单审核而数月未下卡属于正常情况。",
+      "steps": [],
+      "tags": [
+        "推荐码",
+        "邀请链接",
+        "注册绑定",
+        "白名单审核"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": []
+    },
+    {
+      "id": "2095057800586232216",
+      "url": "https://x.com/mjjwiki/status/2095057800586232216",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T07:54:38.000Z",
+      "title": "邀请链接与推荐码二选一",
+      "industry": "",
+      "tech": "",
+      "summary": "注册时填写推荐码即可；通过邀请链接注册则无需再填写推荐码。邀请链接和推荐码只能二选一使用。",
+      "steps": [],
+      "tags": [
+        "注册说明",
+        "邀请码",
+        "邀请链接"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2095057527671230956",
+      "url": "https://x.com/mjjwiki/status/2095057527671230956",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T07:53:33.000Z",
+      "title": "升级星球会员无需白名单",
+      "industry": "",
+      "tech": "星球会员",
+      "summary": "升级星球会员只需几分钟，不需要走白名单。回复内容提到无论收费卡还是免费卡都需要排队。",
+      "steps": [],
+      "tags": [
+        "星球会员",
+        "白名单",
+        "排队",
+        "开通升级"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2095056514637824033",
+      "url": "https://x.com/mjjwiki/status/2095056514637824033",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T07:49:32.000Z",
+      "title": "质疑索要免费试用教程者动机",
+      "industry": "人工智能",
+      "tech": "ChatGPT Plus",
+      "summary": "推文称，对方除索要已分享的“0元试用 ChatGPT Plus”方法外，还想获取未公开的“7个号0元试用”教程。作者认为对方可能是 AI 中转站从业者或二手贩子，意图将可批量生产的教程拿去售卖，因此不予理睬。",
+      "steps": [],
+      "tags": [
+        "ChatGPT Plus",
+        "免费试用",
+        "教程分享",
+        "账号注册",
+        "二手贩子"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2095053920943153410",
+      "url": "https://x.com/mjjwiki/status/2095053920943153410",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T07:39:13.000Z",
+      "title": "称博主少返利且不教薅羊毛",
+      "industry": "人工智能",
+      "tech": "ChatGPT Plus、Starryblu",
+      "summary": "推文称多数博主不会向用户返还奖励，也不擅长教授优惠获取方法。文中以 ChatGPT Plus 可 0 元试用一个月为例，称自己已将该方法写在 Starryblu 的文章中。",
+      "steps": [],
+      "tags": [
+        "返利奖励",
+        "薅羊毛",
+        "ChatGPT Plus",
+        "0元试用",
+        "博主讨论"
       ],
       "isLong": false,
       "showFlowchart": false,
@@ -177748,6 +178702,34 @@
       ]
     },
     {
+      "id": "2095038154600583284",
+      "url": "https://x.com/XiaohuiAI666/status/2095038154600583284",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-09-02T06:36:34.000Z",
+      "title": "真人出镜分享纯AI开发Steam游戏",
+      "industry": "人工智能、游戏开发",
+      "tech": "AI、Steam",
+      "summary": "小灰真人出镜，分享自己用纯 AI 开发的第三款 Steam 游戏。推文附带视频、另一条相关推文及一篇引用文章链接。",
+      "steps": [],
+      "tags": [
+        "纯AI开发",
+        "Steam游戏",
+        "游戏开发",
+        "真人出镜"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": [
+        {
+          "url": "https://x.com/i/article/2094783020419231744",
+          "name": "原文附带的链接",
+          "note": "引用内容中的文章链接。"
+        }
+      ]
+    },
+    {
       "id": "2095031220761751651",
       "url": "https://x.com/Saccc_c/status/2095031220761751651",
       "author": "Saccc_c",
@@ -177766,6 +178748,138 @@
       "isLong": false,
       "showFlowchart": false,
       "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2095028561690399052",
+      "url": "https://x.com/mjjwiki/status/2095028561690399052",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T05:58:27.000Z",
+      "title": "买菜见虫该退钱还是放心",
+      "industry": "农产品",
+      "tech": "",
+      "summary": "讨论买菜时发现蔬菜有虫的第一反应：是觉得恶心并要求退钱，还是认为这说明没打农药而感到放心。",
+      "steps": [],
+      "tags": [
+        "买菜",
+        "蔬菜",
+        "虫害",
+        "农药",
+        "消费讨论"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2095021891933360554",
+      "url": "https://x.com/mjjwiki/status/2095021891933360554",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T05:31:57.000Z",
+      "title": "推荐 Nodeseek 与 L 站论坛",
+      "industry": "",
+      "tech": "Nodeseek论坛、L站",
+      "summary": "回复中提到 Nodeseek 论坛，并表示 L 站的相关内容其实更多。",
+      "steps": [],
+      "tags": [
+        "论坛推荐",
+        "Nodeseek",
+        "L站",
+        "社区交流"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2095020438506348798",
+      "url": "https://x.com/mjjwiki/status/2095020438506348798",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T05:26:10.000Z",
+      "title": "小白菜口味清淡引争议",
+      "industry": "",
+      "tech": "",
+      "summary": "围绕小白菜的口味展开回复，称很多人不喜欢它，认为味道过于清淡，甚至部分广东人也如此。",
+      "steps": [],
+      "tags": [
+        "小白菜",
+        "饮食口味",
+        "广东人",
+        "互动回复"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2095020122679456172",
+      "url": "https://x.com/mjjwiki/status/2095020122679456172",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T05:24:55.000Z",
+      "title": "通过一个即可灵活操作",
+      "industry": "",
+      "tech": "",
+      "summary": "推文称只要通过一个，就可以“左脚踩右脚”，玩法需要灵活。作者同时询问教程若有帮助，读者是否愿意关注。",
+      "steps": [],
+      "tags": [
+        "互动交流",
+        "玩法灵活",
+        "关注请求"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2095019689399173528",
+      "url": "https://x.com/mjjwiki/status/2095019689399173528",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T05:23:12.000Z",
+      "title": "算法扶持原创带动流量上涨",
+      "industry": "社交媒体",
+      "tech": "平台算法、原创内容",
+      "summary": "8月26日平台修改算法并扶持原创内容后，账号流量才真正上涨。在此之前，曾有23万粉丝和15万粉丝的账号关注、转发并引用其帖子，带来过一波流量，但不及当前表现。",
+      "steps": [],
+      "tags": [
+        "流量增长",
+        "算法调整",
+        "原创内容",
+        "社交媒体运营"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2095018128573092147",
+      "url": "https://x.com/mjjwiki/status/2095018128573092147",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T05:17:00.000Z",
+      "title": "午饭分享胡萝卜玉米猪骨汤",
+      "industry": "",
+      "tech": "",
+      "summary": "午饭是胡萝卜玉米猪骨汤和清炒小白菜。作者表示最喜欢的青菜是小白菜。",
+      "steps": [],
+      "tags": [
+        "午饭分享",
+        "家常菜",
+        "猪骨汤",
+        "小白菜"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
       "resources": []
     },
     {
@@ -177812,6 +178926,992 @@
       "resources": []
     },
     {
+      "id": "2095011163637727250",
+      "url": "https://x.com/mjjwiki/status/2095011163637727250",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T04:49:19.000Z",
+      "title": "劝对方别生气并自我调侃",
+      "industry": "",
+      "tech": "",
+      "summary": "回复他人称不要生气，并说自己已经不生气了，以“哈哈”缓和气氛。",
+      "steps": [],
+      "tags": [
+        "互动回复",
+        "情绪安抚",
+        "轻松调侃"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2095009938494165140",
+      "url": "https://x.com/mjjwiki/status/2095009938494165140",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T04:44:27.000Z",
+      "title": "分享经验不求打赏回报",
+      "industry": "",
+      "tech": "",
+      "summary": "作者称暂未收到任何人的打赏，即便有人通过其分享的内容学成并赚到钱。其表示自己本就不期待获得打赏，因此并不在意，并以相信因果和福报回应。",
+      "steps": [],
+      "tags": [
+        "经验分享",
+        "打赏",
+        "收益",
+        "因果",
+        "心态"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2095009308933235089",
+      "url": "https://x.com/mjjwiki/status/2095009308933235089",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T04:41:57.000Z",
+      "title": "某商品价格多在千至两千元",
+      "industry": "",
+      "tech": "",
+      "summary": "该商品价格波动较大且变化很快，已知最低约500元、最高约2500元。多数时间的价格区间在1000元至2000元之间。",
+      "steps": [],
+      "tags": [
+        "价格波动",
+        "市场行情",
+        "售价区间"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2095008916380033238",
+      "url": "https://x.com/mjjwiki/status/2095008916380033238",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T04:40:23.000Z",
+      "title": "自称新人称两三年后再谈成大V",
+      "industry": "",
+      "tech": "",
+      "summary": "回复网友“怎么才能成为大V”的提问时，作者称自己目前也是新人，并不知道答案。作者调侃称等成为大V后再回答，建议两三年后再来问。",
+      "steps": [],
+      "tags": [
+        "成为大V",
+        "新人自嘲",
+        "互动回复"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2095008384240198092",
+      "url": "https://x.com/mjjwiki/status/2095008384240198092",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T04:38:16.000Z",
+      "title": "坚持免费分享教程不向粉丝收费",
+      "industry": "互联网创业",
+      "tech": "闲鱼、发卡网",
+      "summary": "推文称，自己发布的多篇干货教程本可批量生产后在闲鱼、发卡网销售，或直接售卖教程，但并未这样做。其理由是信佛、相信因果，并践行落伍者论坛“互相共享前行”的 MJJ 精神。作者表示只赚取平台和广告商的钱，免费分享教程帮助粉丝赚钱。",
+      "steps": [],
+      "tags": [
+        "免费教程",
+        "知识分享",
+        "闲鱼",
+        "发卡网",
+        "MJJ精神",
+        "因果观"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2095006982843559994",
+      "url": "https://x.com/mjjwiki/status/2095006982843559994",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T04:32:42.000Z",
+      "title": "解释临期 Team 的含义",
+      "industry": "人工智能",
+      "tech": "ChatGPT Team",
+      "summary": "解释“临期Team”指的是最后 3 天到期的 ChatGPT Team。引用内容提到，可在 Team 月度订阅临近到期时，将其出售给 AI 中转站；其中关于成本、售价和利润的数据均来自引用内容。",
+      "steps": [],
+      "tags": [
+        "ChatGPT Team",
+        "临期账号",
+        "AI中转站",
+        "账号交易"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://t.co/RICJTAWRXq",
+          "name": "原文附带的链接",
+          "note": "用于关联该回复的链接。"
+        },
+        {
+          "url": "https://t.co/V6VlUX4fMf",
+          "name": "原文附带的链接",
+          "note": "引用推文中附带的链接。"
+        },
+        {
+          "url": "https://t.co/fO5xdlGBTw",
+          "name": "原文附带的链接",
+          "note": "引用推文中附带的链接。"
+        }
+      ]
+    },
+    {
+      "id": "2095006321687073183",
+      "url": "https://x.com/mjjwiki/status/2095006321687073183",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T04:30:05.000Z",
+      "title": "低价区账号或影响流量",
+      "industry": "",
+      "tech": "",
+      "summary": "推文称账号目前可正常开通，预计不会被封号，但低价区可能影响流量。作者考虑后续改回港区或新加坡区。",
+      "steps": [],
+      "tags": [
+        "账号地区",
+        "流量影响",
+        "封号风险",
+        "港区",
+        "新加坡区"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2095005794962158019",
+      "url": "https://x.com/mjjwiki/status/2095005794962158019",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T04:27:59.000Z",
+      "title": "称问题已过时不再写教程",
+      "industry": "",
+      "tech": "",
+      "summary": "推文回复称，该问题此前已在评论区回答过多次，但当时无人感兴趣，因此没有专门撰写教程。如今已过去一周，认为话题失去时效性，不再具备写教程的价值。",
+      "steps": [],
+      "tags": [
+        "教程时效性",
+        "评论区答疑",
+        "内容创作",
+        "过期话题"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2095005012086931807",
+      "url": "https://x.com/mjjwiki/status/2095005012086931807",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T04:24:52.000Z",
+      "title": "代收交易收取100至200元",
+      "industry": "",
+      "tech": "",
+      "summary": "价格每天每刻都在变动，建议自行到论坛出售。若坚持通过其代收出售，将收取100至200元费用，因为仅提供代收服务。",
+      "steps": [],
+      "tags": [
+        "价格波动",
+        "论坛交易",
+        "代收服务",
+        "手续费"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://t.co/OwFLFmZASF",
+          "name": "原文附带的链接",
+          "note": "原文未说明链接具体内容或用途。"
+        }
+      ]
+    },
+    {
+      "id": "2094999148701667532",
+      "url": "https://x.com/mjjwiki/status/2094999148701667532",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T04:01:34.000Z",
+      "title": "开通蓝V后流量未获扶持",
+      "industry": "社交媒体",
+      "tech": "X 蓝V认证",
+      "summary": "作者称，听说开通蓝V后一周内会获得流量扶持，但其于8月8日开通后的一周内，每天帖子总流量均未超过1000。单条帖子的流量多数仅为两位数甚至一位数，因此怀疑可能与开通的是土区蓝V有关。",
+      "steps": [],
+      "tags": [
+        "蓝V认证",
+        "流量扶持",
+        "推文曝光",
+        "涨粉",
+        "土区蓝V"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://t.co/4bZQflJfZq",
+          "name": "原文附带的链接",
+          "note": "原文未说明链接具体内容。"
+        },
+        {
+          "url": "https://t.co/6ZpbKMKQFL",
+          "name": "@GOTANK454045 的推文",
+          "note": "被引用的推文，讨论开通小蓝V后的涨粉与发帖流量表现。"
+        }
+      ]
+    },
+    {
+      "id": "2094997737184072164",
+      "url": "https://x.com/mjjwiki/status/2094997737184072164",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T03:55:58.000Z",
+      "title": "称闲鱼转账开卡方法已验证",
+      "industry": "金融科技",
+      "tech": "Wise、闲鱼",
+      "summary": "针对“闲鱼找人转 Wise”风险的质疑，推文称此前已说明相关情况。该方法来自评论区粉丝反馈，对方已成功操作，且 Wise 账号目前正常。",
+      "steps": [],
+      "tags": [
+        "Wise",
+        "开卡",
+        "闲鱼",
+        "账号安全",
+        "经验反馈"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094996348533895289",
+      "url": "https://x.com/mjjwiki/status/2094996348533895289",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T03:50:27.000Z",
+      "title": "已记录需求，后续将发布",
+      "industry": "",
+      "tech": "",
+      "summary": "回复称相关内容没有问题，已经记录，后续会发布。",
+      "steps": [],
+      "tags": [
+        "需求记录",
+        "后续发布",
+        "互动回复"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094995469743386899",
+      "url": "https://x.com/mjjwiki/status/2094995469743386899",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T03:46:57.000Z",
+      "title": "Starryblu 入金会员返50元",
+      "industry": "金融服务",
+      "tech": "Starryblu、Wise、OCBC",
+      "summary": "通过邀请链接或推荐码注册 Starryblu 新加坡银行卡，并使用本人同名港卡、境外银行卡或 Wise 完成真实入金、升级星球会员，三项条件均满足可申请返 50 元奖励。奖励将在次月发放，原因是官方也于次月向推广方结算。引用内容称该卡自带 OCBC 同名账户，可用于订阅海外 AI 会员。",
+      "steps": [],
+      "tags": [
+        "新加坡银行卡",
+        "邀请返利",
+        "同名入金",
+        "星球会员",
+        "境外转账"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://t.co/jFENpMqUfN",
+          "name": "原文附带的链接",
+          "note": "与 Starryblu 注册、入金及返奖说明相关。"
+        },
+        {
+          "url": "https://t.co/luiqMEzMdS",
+          "name": "@mjjwiki 的引用推文链接",
+          "note": "介绍可远程开通 Starryblu 新加坡银行卡及其 OCBC 同名账户。"
+        }
+      ]
+    },
+    {
+      "id": "2094995073314545754",
+      "url": "https://x.com/mjjwiki/status/2094995073314545754",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T03:45:23.000Z",
+      "title": "Starryblu入金注册返50元",
+      "industry": "跨境金融",
+      "tech": "Starryblu、新加坡银行卡、Wise、OCBC账户",
+      "summary": "通过作者邀请链接或推荐码注册 Starryblu 新加坡银行卡，并使用本人同名港卡、境外银行卡或 Wise 向 Starryblu 实际入金。完成注册、入金和升级星球会员三个条件后，可联系作者申请 50 元奖励，奖励于次月发放。作者说明其也是次月从官方获得返利。",
+      "steps": [],
+      "tags": [
+        "Starryblu",
+        "新加坡银行卡",
+        "邀请返利",
+        "跨境转账",
+        "星球会员"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://t.co/luiqMEzMdS",
+          "name": "原文附带的链接",
+          "note": "回复内容提及 Starryblu 可远程开通新加坡银行卡，带有 OCBC 同名账户，并支持订阅国外 AI 会员。"
+        }
+      ]
+    },
+    {
+      "id": "2094991244351164781",
+      "url": "https://x.com/mjjwiki/status/2094991244351164781",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T03:30:10.000Z",
+      "title": "将持续免费分享干货教程",
+      "industry": "",
+      "tech": "",
+      "summary": "回复中提到，已免费分享多篇干货教程，后续还会继续输出相关内容。",
+      "steps": [],
+      "tags": [
+        "免费教程",
+        "干货分享",
+        "持续输出"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094990155207860224",
+      "url": "https://x.com/mjjwiki/status/2094990155207860224",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T03:25:50.000Z",
+      "title": "加速开卡现仅发实体卡",
+      "industry": "金融科技",
+      "tech": "虚拟卡、实体卡",
+      "summary": "6月底至7月初，加速开卡可在虚拟卡和实体卡之间选择；目前选择加速后只会开实体卡。作者称实体卡在收到前也能使用，体验像拥有同号虚拟卡；另有其他用户反馈未收到卡也可使用，但作者当初不能。",
+      "steps": [],
+      "tags": [
+        "开卡",
+        "加速开卡",
+        "虚拟卡",
+        "实体卡",
+        "卡片使用"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094988696517022088",
+      "url": "https://x.com/mjjwiki/status/2094988696517022088",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T03:20:02.000Z",
+      "title": "8月起运营，订阅功能暂未开通",
+      "industry": "",
+      "tech": "订阅功能",
+      "summary": "账号于8月8日才开始运营，尚未达到500万流量，因此暂时无法开通订阅功能。预计月底或许可以开通。",
+      "steps": [],
+      "tags": [
+        "账号运营",
+        "订阅功能",
+        "流量目标",
+        "月底计划"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094985268621344854",
+      "url": "https://x.com/mjjwiki/status/2094985268621344854",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T03:06:25.000Z",
+      "title": "调侃阿拉伯大V互动少",
+      "industry": "",
+      "tech": "",
+      "summary": "推文回复“阿拉伯大V关注量几十万但帖子回复很少”的疑问，调侃称其财富可能来自“超能力买的”。未提供具体数据或分析依据。",
+      "steps": [],
+      "tags": [
+        "阿拉伯大V",
+        "社交媒体",
+        "互动数据",
+        "调侃"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094984545225576542",
+      "url": "https://x.com/mjjwiki/status/2094984545225576542",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T03:03:33.000Z",
+      "title": "不需要发布相关内容",
+      "industry": "",
+      "tech": "",
+      "summary": "回复称自己都不敢发，并以“哈哈”调侃。其表示自己也不需要发布这类内容。",
+      "steps": [],
+      "tags": [
+        "互动回复",
+        "日常交流",
+        "轻松调侃"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094984344490357109",
+      "url": "https://x.com/mjjwiki/status/2094984344490357109",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T03:02:45.000Z",
+      "title": "邀请码注册需联系推广加白",
+      "industry": "",
+      "tech": "",
+      "summary": "使用邀请链接和推荐码注册后，客服通常不会协助添加白名单，需要联系推广人员处理，这是其运营机制。个别客服可能因疏忽而放行。",
+      "steps": [],
+      "tags": [
+        "邀请码",
+        "推荐码",
+        "白名单",
+        "客服",
+        "推广人员"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://t.co/T1vbrd5uID",
+          "name": "原文附带的链接",
+          "note": "原文未说明链接具体内容或用途。"
+        }
+      ]
+    },
+    {
+      "id": "2094983584402854372",
+      "url": "https://x.com/mjjwiki/status/2094983584402854372",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T02:59:44.000Z",
+      "title": "好奇评论账号的含义",
+      "industry": "",
+      "tech": "",
+      "summary": "推文询问是否有人知道某个评论账号的含义。作者称自己第一次看到这类账号，感到好奇。",
+      "steps": [],
+      "tags": [
+        "评论账号",
+        "账号含义",
+        "提问互动"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://t.co/2oW4OmkC3T",
+          "name": "原文附带的链接",
+          "note": "用于指向作者提到的评论账号或相关内容。"
+        }
+      ]
+    },
+    {
+      "id": "2094982118363615317",
+      "url": "https://x.com/mjjwiki/status/2094982118363615317",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T02:53:54.000Z",
+      "title": "Starryblu新开户改发实体卡",
+      "industry": "金融科技",
+      "tech": "Starryblu、OCBC",
+      "summary": "Starryblu 目前新开户不再提供虚拟卡，改为发放实体卡。作者称，多人反馈实体卡邮寄期间似乎仍可继续使用；这与其 6 月底至 7 月初开户时的情况不同。",
+      "steps": [],
+      "tags": [
+        "Starryblu",
+        "新加坡银行卡",
+        "实体卡",
+        "虚拟卡",
+        "海外订阅"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": [
+        {
+          "url": "https://x.com/i/article/2092971897709645825",
+          "name": "原文附带的链接",
+          "note": "回复中用于介绍 Starryblu 远程开户、OCBC 同名账户及海外 AI 会员订阅支持的链接。"
+        }
+      ]
+    },
+    {
+      "id": "2094981008924024836",
+      "url": "https://x.com/mjjwiki/status/2094981008924024836",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T02:49:30.000Z",
+      "title": "达标不等于能通过马斯克低保",
+      "industry": "",
+      "tech": "verified followers",
+      "summary": "推文指出，达到相关指标并不代表一定能通过“老马低保”，仍有不少人未能通过。作者还提醒，增长过快的账号容易被封禁，类似情况很多。",
+      "steps": [],
+      "tags": [
+        "马斯克低保",
+        "认证粉丝",
+        "账号风控",
+        "流量增长"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094979172586398173",
+      "url": "https://x.com/mjjwiki/status/2094979172586398173",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T02:42:12.000Z",
+      "title": "海外地址规则收紧，早开早享受",
+      "industry": "",
+      "tech": "",
+      "summary": "回复讨论称，相关规则后续可能发生变化，如今需要海外地址。认同“早开早享受”的看法。",
+      "steps": [],
+      "tags": [
+        "规则变化",
+        "海外地址",
+        "早期开通",
+        "互动回复"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094978039407145396",
+      "url": "https://x.com/mjjwiki/status/2094978039407145396",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T02:37:42.000Z",
+      "title": "自认属于少数优质内容",
+      "industry": "",
+      "tech": "",
+      "summary": "回应“X 上 70% 是垃圾内容”的观点，认为垃圾内容比例可能高达 80%。同时以玩笑口吻称自己应属于剩下 20% 的优质内容。",
+      "steps": [],
+      "tags": [
+        "内容质量",
+        "X平台",
+        "信息筛选",
+        "观点回应"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094977523155386774",
+      "url": "https://x.com/mjjwiki/status/2094977523155386774",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T02:35:38.000Z",
+      "title": "小厂 VPS 倒闭属低价风险",
+      "industry": "云计算",
+      "tech": "VPS、服务器",
+      "summary": "推文认为，购买大厂服务器无需过度担心服务商倒闭问题；购买小厂 VPS 时则应对相关风险有心理准备。其观点是低价产品往往伴随相应风险，属于“一分钱一分货”。",
+      "steps": [],
+      "tags": [
+        "VPS",
+        "服务器",
+        "小厂主机",
+        "跑路风险",
+        "性价比"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094976507953484283",
+      "url": "https://x.com/mjjwiki/status/2094976507953484283",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T02:31:36.000Z",
+      "title": "说明未使用邀请链接注册",
+      "industry": "",
+      "tech": "",
+      "summary": "回复用户称，其账号应为自行注册，未使用任何人的邀请链接或推荐码。对方随后表示审核已经通过。",
+      "steps": [],
+      "tags": [
+        "账号注册",
+        "邀请链接",
+        "推荐码",
+        "回复互动"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094972831256006790",
+      "url": "https://x.com/mjjwiki/status/2094972831256006790",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T02:17:00.000Z",
+      "title": "邀请注册或需联系推广开白名单",
+      "industry": "",
+      "tech": "",
+      "summary": "使用邀请链接或推荐码注册时，客服通常不会直接协助添加白名单，需要联系推广人员，这是其运营机制。部分客服可能因疏忽而放行，存在通过客服开通的可能。",
+      "steps": [],
+      "tags": [
+        "白名单",
+        "邀请链接",
+        "推荐码",
+        "客服",
+        "会员开通"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094961937872494604",
+      "url": "https://x.com/mjjwiki/status/2094961937872494604",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T01:33:43.000Z",
+      "title": "专注做好自己，不在意他人评价",
+      "industry": "",
+      "tech": "",
+      "summary": "表达了专注于努力做好自己、不再过度思考外界看法的态度。认为别人如何评价自己是对方的事情。",
+      "steps": [],
+      "tags": [
+        "自我成长",
+        "心态调整",
+        "做自己",
+        "个人态度"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094961244600213798",
+      "url": "https://x.com/mjjwiki/status/2094961244600213798",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T01:30:57.000Z",
+      "title": "原创奖励与订阅流量门槛差异",
+      "industry": "社交媒体",
+      "tech": "原创内容奖励计划、订阅",
+      "summary": "原创内容奖励计划的要求是90天内获得50万有效蓝V流量；订阅的要求是三个月内获得500万泛流量。虽然“三个月”和“90天”看似相近，但若按自然月计算，两者的时间范围会有明显差异。",
+      "steps": [],
+      "tags": [
+        "流量门槛",
+        "蓝V",
+        "原创奖励",
+        "订阅",
+        "自然月"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": []
+    },
+    {
+      "id": "2094960272679358623",
+      "url": "https://x.com/mjjwiki/status/2094960272679358623",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T01:27:06.000Z",
+      "title": "回应底气质疑并说明运营定位",
+      "industry": "人工智能",
+      "tech": "",
+      "summary": "推文回应“有底气就不会怒”的说法，认为是否愤怒与是否有底气无关。其称自己从事 IT 超过 10 年，做过数年架构师和技术经理，并定期培训下属，对自身能力有底气。其还提到于 8 月 8 日开通蓝V并开始运营，起初定位为技术博主原创路线。",
+      "steps": [],
+      "tags": [
+        "技术博主",
+        "职业经历",
+        "账号运营",
+        "观点回应"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094956143533752753",
+      "url": "https://x.com/mjjwiki/status/2094956143533752753",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T01:10:41.000Z",
+      "title": "就争论语气致歉并求理解",
+      "industry": "",
+      "tech": "",
+      "summary": "就与网友的争论回应称，对事不对人，看法不同很正常。承认此前语气偏冲并致歉，解释当时因遭遇他人影响而感到心寒和气愤，希望获得理解。",
+      "steps": [],
+      "tags": [
+        "沟通致歉",
+        "观点分歧",
+        "情绪表达",
+        "理性交流"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094954817689162111",
+      "url": "https://x.com/mjjwiki/status/2094954817689162111",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T01:05:25.000Z",
+      "title": "X平台需三天一更保流量",
+      "industry": "社交媒体",
+      "tech": "X平台算法、推流量",
+      "summary": "推文认为，X 平台算法会因账号停更而减少推流量，运营体验类似上班。作者估算，平均每三天发布一篇高质量帖子，才能持续维持流量不下跌。",
+      "steps": [],
+      "tags": [
+        "X运营",
+        "平台算法",
+        "流量维护",
+        "内容更新"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094953773609492642",
+      "url": "https://x.com/mjjwiki/status/2094953773609492642",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T01:01:16.000Z",
+      "title": "回应争执称当时情绪激动",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回应网友称，在回复前刚因他人连续发了三条帖子，当时处于寒心和气愤状态。作者认为，对方直接评价其逻辑思维能力有问题，因此自己回怼是正常反应。",
+      "steps": [],
+      "tags": [
+        "网友争执",
+        "情绪回应",
+        "历史帖子"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094952040615260464",
+      "url": "https://x.com/mjjwiki/status/2094952040615260464",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T00:54:23.000Z",
+      "title": "靠原创教程冲刺500万流量",
+      "industry": "内容创作",
+      "tech": "",
+      "summary": "推文称，昨日流量和新增粉丝与前日大致相同；前几天未发布技术原创教程后，流量出现阶梯式减少。计划当天发布新的技术原创教程，并以500万流量开通订阅功能为目标，同时争取原创内容奖励计划。",
+      "steps": [],
+      "tags": [
+        "流量增长",
+        "原创教程",
+        "内容运营",
+        "订阅功能",
+        "创作激励"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094947426721464745",
+      "url": "https://x.com/mjjwiki/status/2094947426721464745",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T00:36:03.000Z",
+      "title": "建议闲鱼购 Gemini 12 个月会员",
+      "industry": "人工智能",
+      "tech": "Gemini",
+      "summary": "推文称闲鱼上的 Gemini 会员价格约为 10 元一年。建议购买 12 个月版本，认为其比 18 个月版本更稳定。",
+      "steps": [],
+      "tags": [
+        "Gemini会员",
+        "闲鱼",
+        "低价订阅",
+        "账号稳定性"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094946864277922049",
+      "url": "https://x.com/mjjwiki/status/2094946864277922049",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T00:33:49.000Z",
+      "title": "回应换号关注并质疑直连X",
+      "industry": "",
+      "tech": "X",
+      "summary": "推文回应一名曾被屏蔽、又换号关注的用户，称自己的教程不适合对方，并建议对方另找内容以避免冲突。随后根据对方显示为中华人民共和国的 IP，询问其是否直连使用 X。",
+      "steps": [],
+      "tags": [
+        "用户互动",
+        "换号关注",
+        "屏蔽",
+        "X访问",
+        "IP属地"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094944920314462245",
+      "url": "https://x.com/mjjwiki/status/2094944920314462245",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T00:26:05.000Z",
+      "title": "官方修复问题后征集提示截图",
+      "industry": "",
+      "tech": "",
+      "summary": "收到官方通知后已第一时间发帖告知相关问题，次日修复属于正常情况。推文请对方截图反馈修复后的提示信息，并称仍有备用方案。",
+      "steps": [],
+      "tags": [
+        "问题修复",
+        "官方通知",
+        "提示截图",
+        "备用方案"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094943519731556484",
+      "url": "https://x.com/mjjwiki/status/2094943519731556484",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T00:20:31.000Z",
+      "title": "Plus 用户可尝试订阅该服务",
+      "industry": "",
+      "tech": "",
+      "summary": "作者称，自己此前测试时 Plus 用户无法订阅，但评论区有人反馈可以订阅，可能相关规则已经改变。建议已是 Plus 用户的提问者自行尝试。",
+      "steps": [],
+      "tags": [
+        "订阅规则",
+        "Plus用户",
+        "用户反馈",
+        "测试经验"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094943175861518346",
+      "url": "https://x.com/mjjwiki/status/2094943175861518346",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-02T00:19:09.000Z",
+      "title": "付费订阅不影响多数免费教程",
+      "industry": "",
+      "tech": "付费订阅",
+      "summary": "多数教程仍会免费发布，即使后续开通付费订阅功能。付费订阅价格不会太高，部分教程的价值会超过订阅费用，同时可过滤部分用户。订阅收入有助于维持原创内容的持续输出。",
+      "steps": [],
+      "tags": [
+        "付费订阅",
+        "免费教程",
+        "原创内容",
+        "持续输出",
+        "创作者收入"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094940000538485168",
+      "url": "https://x.com/XiaohuiAI666/status/2094940000538485168",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-09-02T00:06:32.000Z",
+      "title": "普通 Mac 跑 Qwen3.8-27B 建议",
+      "industry": "人工智能",
+      "tech": "Qwen3.8-27B、4-bit 量化、统一内存",
+      "summary": "普通 Mac 也可以运行 Qwen3.8-27B，不一定需要最新 Studio。运行关键在于统一内存的分配，模型、上下文、系统和加速都会共同占用内存。24GB 内存建议先使用 4-bit 量化，不要一开始就开满上下文，并先测试基础速度再决定是否启用加速。",
+      "steps": [],
+      "tags": [
+        "Mac 本地推理",
+        "大模型部署",
+        "内存管理",
+        "4-bit量化",
+        "性能测试"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": [
+        {
+          "url": "https://x.com/i/article/2094415629612986368",
+          "name": "@ai_suxiaole 的 X 文章",
+          "note": "原文引用的相关文章链接。"
+        }
+      ]
+    },
+    {
       "id": "2094843498084315456",
       "url": "https://x.com/Saccc_c/status/2094843498084315456",
       "author": "Saccc_c",
@@ -177830,6 +179930,235 @@
       "isLong": false,
       "showFlowchart": false,
       "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094835597798178945",
+      "url": "https://x.com/mjjwiki/status/2094835597798178945",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T17:11:41.000Z",
+      "title": "10万粉丝以上才算大V",
+      "industry": "",
+      "tech": "",
+      "summary": "回应网友“新大V”的称呼，指出拥有10万以上粉丝的人才算大V。",
+      "steps": [],
+      "tags": [
+        "粉丝量",
+        "大V",
+        "互动回复"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094834385145204935",
+      "url": "https://x.com/mjjwiki/status/2094834385145204935",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T17:06:52.000Z",
+      "title": "澄清仅可加速卡审核",
+      "industry": "",
+      "tech": "KYC审核、卡审核",
+      "summary": "回应用户请求时澄清，KYC 审核无法加速，可协助加速的是卡审核。对方已完成注册，正在等待审核。",
+      "steps": [],
+      "tags": [
+        "KYC",
+        "审核加速",
+        "卡审核",
+        "账号注册"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094828547122806974",
+      "url": "https://x.com/mjjwiki/status/2094828547122806974",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T16:43:40.000Z",
+      "title": "调侃大二生追求财富自由",
+      "industry": "",
+      "tech": "",
+      "summary": "针对一名机器人工程专业大二学生寻求财富自由建议的求助，作者以“我先回避了”调侃回应。未提供具体职业规划或投资建议。",
+      "steps": [],
+      "tags": [
+        "财富自由",
+        "大学生",
+        "职业建议",
+        "调侃互动"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094828176606478748",
+      "url": "https://x.com/mjjwiki/status/2094828176606478748",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T16:42:11.000Z",
+      "title": "申请信息使用国内资料",
+      "industry": "",
+      "tech": "",
+      "summary": "回复称，自己以前申请时不记得有相关要求。其申请信息均使用国内资料。",
+      "steps": [],
+      "tags": [
+        "申请经验",
+        "国内信息",
+        "回复互动"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://t.co/JvLYaWNHoD",
+          "name": "原文附带的链接",
+          "note": "原文未说明链接内容或用途。"
+        }
+      ]
+    },
+    {
+      "id": "2094825310319788072",
+      "url": "https://x.com/mjjwiki/status/2094825310319788072",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T16:30:48.000Z",
+      "title": "建议保持卡内有余额",
+      "industry": "",
+      "tech": "",
+      "summary": "针对卡内是否需要有钱的问题，建议保留余额。虽然不会扣款，但可能会查询卡余额信息，或对操作成功率产生一定影响。其本人使用的卡一直有余额，未测试过卡内无余额的情况。",
+      "steps": [],
+      "tags": [
+        "支付卡",
+        "余额查询",
+        "成功率",
+        "使用建议"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": []
+    },
+    {
+      "id": "2094824032898367824",
+      "url": "https://x.com/mjjwiki/status/2094824032898367824",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T16:25:44.000Z",
+      "title": "KYC后充值需加白名单开卡",
+      "industry": "",
+      "tech": "KYC、白名单、会员开卡",
+      "summary": "完成 KYC 后，仍需在充值后联系作者添加白名单。需发送充值金额截图和个人 ID，随后再升级会员开卡。",
+      "steps": [],
+      "tags": [
+        "KYC",
+        "白名单",
+        "充值",
+        "会员开卡"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": []
+    },
+    {
+      "id": "2094822998603866441",
+      "url": "https://x.com/mjjwiki/status/2094822998603866441",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T16:21:37.000Z",
+      "title": "确认 IBKR 使用中国大陆地址",
+      "industry": "金融",
+      "tech": "IBKR",
+      "summary": "推文称其 IBKR 账户实际使用的是中国大陆地址，以回应“申请后需提交海外工作地址证明”的说法。未提供具体申请流程或证明材料细节。",
+      "steps": [],
+      "tags": [
+        "IBKR",
+        "中国大陆地址",
+        "开户",
+        "地址证明"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://t.co/ZBSujTXbus",
+          "name": "原文附带的链接",
+          "note": "推文附带链接，原文未说明具体内容或用途。"
+        }
+      ]
+    },
+    {
+      "id": "2094819366143766637",
+      "url": "https://x.com/mjjwiki/status/2094819366143766637",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T16:07:11.000Z",
+      "title": "新开通会员不再补贴升级奖励",
+      "industry": "",
+      "tech": "",
+      "summary": "可继续办理相关业务，但新开通的会员将不再获得其个人私自补贴的升级会员奖励。",
+      "steps": [],
+      "tags": [
+        "会员升级",
+        "奖励补贴",
+        "规则调整"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094818776185516037",
+      "url": "https://x.com/mjjwiki/status/2094818776185516037",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T16:04:50.000Z",
+      "title": "回应鼓励称会继续努力",
+      "industry": "",
+      "tech": "",
+      "summary": "回复网友关于“免费易得的东西不被珍惜”的感慨，认可对方说法简单直接、切中要害，并称会继续努力。",
+      "steps": [],
+      "tags": [
+        "互动回复",
+        "感谢鼓励",
+        "继续努力"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094814974921380245",
+      "url": "https://x.com/mjjwiki/status/2094814974921380245",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T15:49:44.000Z",
+      "title": "原创技术教程决定账号增长",
+      "industry": "内容创作",
+      "tech": "",
+      "summary": "保持当前流量，预计月底前可完成目标，即使没有爆款帖子。连续两天不发布原创技术教程时，流量和粉丝增长都会明显下降，因此仍有持续产出压力。",
+      "steps": [],
+      "tags": [
+        "流量增长",
+        "涨粉",
+        "技术教程",
+        "原创内容",
+        "账号运营"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
       "resources": []
     },
     {
@@ -177889,6 +180218,157 @@
       "resources": []
     },
     {
+      "id": "2094807377992175755",
+      "url": "https://x.com/mjjwiki/status/2094807377992175755",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T15:19:33.000Z",
+      "title": "感谢私信交流并互相加油",
+      "industry": "",
+      "tech": "",
+      "summary": "感谢对方通过私信分享授课内容，并回应一起加油。",
+      "steps": [],
+      "tags": [
+        "互动交流",
+        "私信授课",
+        "互相鼓励"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094806913196413119",
+      "url": "https://x.com/mjjwiki/status/2094806913196413119",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T15:17:42.000Z",
+      "title": "怀念旧社区并互勉前行",
+      "industry": "",
+      "tech": "",
+      "summary": "围绕落伍者和 im286 等早期互联网社区回忆青春时光，感叹岁月流逝。提倡 MJJ 群体继续互助、共享并共同前行。",
+      "steps": [],
+      "tags": [
+        "青春回忆",
+        "MJJ",
+        "社区互助",
+        "互相鼓励"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094806177456763352",
+      "url": "https://x.com/mjjwiki/status/2094806177456763352",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T15:14:46.000Z",
+      "title": "吐槽反复提问耗费时间",
+      "industry": "",
+      "tech": "",
+      "summary": "吐槽部分用户即使教程已写清楚，仍不细看内容而在评论区或私信中反复提问。其认为大家时间都宝贵，未关注账号却频繁提问的行为也欠缺礼貌。",
+      "steps": [],
+      "tags": [
+        "教程答疑",
+        "重复提问",
+        "时间成本",
+        "社区互动"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094804254821421079",
+      "url": "https://x.com/mjjwiki/status/2094804254821421079",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T15:07:08.000Z",
+      "title": "感谢支持并表示继续努力",
+      "industry": "",
+      "tech": "",
+      "summary": "感谢对方的支持，并表示会继续加油。",
+      "steps": [],
+      "tags": [
+        "互动致谢",
+        "支持鼓励",
+        "日常交流"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094803764935028898",
+      "url": "https://x.com/mjjwiki/status/2094803764935028898",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T15:05:11.000Z",
+      "title": "开心就好",
+      "industry": "",
+      "tech": "",
+      "summary": "回复他人关于“真诚的唯心主义”的调侃，认为这样也好，至少自己是开心的。",
+      "steps": [],
+      "tags": [
+        "互动回复",
+        "开心",
+        "唯心主义"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094802451962745206",
+      "url": "https://x.com/mjjwiki/status/2094802451962745206",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T14:59:58.000Z",
+      "title": "调侃对方有唯心主义倾向",
+      "industry": "",
+      "tech": "",
+      "summary": "回复中调侃对方的看法有些像唯心主义者，并以“哈哈”表达轻松语气。",
+      "steps": [],
+      "tags": [
+        "互动回复",
+        "观点调侃",
+        "唯心主义"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094802069190516991",
+      "url": "https://x.com/mjjwiki/status/2094802069190516991",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T14:58:27.000Z",
+      "title": "将冲刺付费订阅与爆款流量",
+      "industry": "内容创作",
+      "tech": "X 官方付费订阅功能",
+      "summary": "作者反思自己过度在意外界评价，表示今后会继续坚持原创、互助共享，但主要对支持自己的粉丝负责，非必要不再回复其他评论。其目标是达到 500 万流量以开通官方付费订阅功能，后续部分教程将仅向付费用户开放；开通前仍维持现状。作者也希望本月产出一条爆款帖子，提升流量表现。",
+      "steps": [],
+      "tags": [
+        "内容创作",
+        "粉丝互动",
+        "付费订阅",
+        "原创路线",
+        "流量增长"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
       "id": "2094792657147224127",
       "url": "https://x.com/Saccc_c/status/2094792657147224127",
       "author": "Saccc_c",
@@ -177916,6 +180396,581 @@
       ]
     },
     {
+      "id": "2094785933375860779",
+      "url": "https://x.com/mjjwiki/status/2094785933375860779",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T13:54:20.000Z",
+      "title": "回应网友感谢并祝贺成功上车",
+      "industry": "",
+      "tech": "",
+      "summary": "回复网友感谢，称能帮到对方也很高兴。上下文显示该网友已成功“上车”。",
+      "steps": [],
+      "tags": [
+        "互动回复",
+        "用户感谢",
+        "成功上车"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094785781789491317",
+      "url": "https://x.com/mjjwiki/status/2094785781789491317",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T13:53:44.000Z",
+      "title": "回应逻辑思维争议",
+      "industry": "",
+      "tech": "",
+      "summary": "推文回应他人称其逻辑思维能力有问题的评论，否认要与对方争高下。其称引用对方评论的目的是让大家看到对方逻辑思维的奇怪之处。",
+      "steps": [],
+      "tags": [
+        "评论争论",
+        "逻辑思维",
+        "公开回应"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094785219291451718",
+      "url": "https://x.com/mjjwiki/status/2094785219291451718",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T13:51:30.000Z",
+      "title": "教程面向大众不做单人咨询",
+      "industry": "",
+      "tech": "",
+      "summary": "推文说明，未写入教程的问题不会为单个用户单独解决。作者写教程面向所有人；如需一对一帮助，可寻找提供付费单人咨询的博主。",
+      "steps": [],
+      "tags": [
+        "教程写作",
+        "单人咨询",
+        "用户沟通"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094784432142164075",
+      "url": "https://x.com/mjjwiki/status/2094784432142164075",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T13:48:22.000Z",
+      "title": "低互动令详细教程搁置",
+      "industry": "",
+      "tech": "",
+      "summary": "作者称原本想写详细教程分享，但此前帖子仅有几百浏览量和一条评论，因无人问津而失去写作欲望。其表示今后会减少回复未关注者的评论，也不再理睬相关对象。",
+      "steps": [],
+      "tags": [
+        "互动反馈",
+        "教程创作",
+        "账号运营",
+        "评论回复"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094783109267153113",
+      "url": "https://x.com/mjjwiki/status/2094783109267153113",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T13:43:07.000Z",
+      "title": "询问券商开户地址填写要求",
+      "industry": "金融",
+      "tech": "长桥、富途",
+      "summary": "推文询问哪家券商需要填写工作地点，并表示自己办理长桥和富途时只需填写工作收入。内容为对券商开户资料填写要求的讨论。",
+      "steps": [],
+      "tags": [
+        "券商开户",
+        "工作信息",
+        "收入填写",
+        "长桥",
+        "富途"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094782624699183113",
+      "url": "https://x.com/mjjwiki/status/2094782624699183113",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T13:41:11.000Z",
+      "title": "否认发布美国学生认证教程",
+      "industry": "",
+      "tech": "",
+      "summary": "推文否认曾发布“解决美国学生认证”的教程，并指出对方已经偏离原本话题。",
+      "steps": [],
+      "tags": [
+        "美国学生认证",
+        "教程澄清",
+        "话题偏移"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094773646460076174",
+      "url": "https://x.com/mjjwiki/status/2094773646460076174",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T13:05:30.000Z",
+      "title": "嘲讽第一性原理与学生认证",
+      "industry": "",
+      "tech": "",
+      "summary": "推文调侃对方对马斯克“第一性原理”的理解，并提及其解决了学生认证问题。作者以“呵呵”表达讽刺态度。",
+      "steps": [],
+      "tags": [
+        "马斯克",
+        "第一性原理",
+        "学生认证",
+        "调侃",
+        "IQ130"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094772254668443796",
+      "url": "https://x.com/mjjwiki/status/2094772254668443796",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T12:59:59.000Z",
+      "title": "开通星球会员可加微信",
+      "industry": "",
+      "tech": "",
+      "summary": "开通星球会员满一个月后，可以添加作者微信联系。该回复用于说明添加方式。",
+      "steps": [],
+      "tags": [
+        "星球会员",
+        "微信联系",
+        "会员权益"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094772036547805567",
+      "url": "https://x.com/mjjwiki/status/2094772036547805567",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T12:59:07.000Z",
+      "title": "新加坡华侨银行借记卡转账说明",
+      "industry": "金融科技",
+      "tech": "新加坡华侨银行借记卡、万事达、Wise",
+      "summary": "该卡为与新加坡华侨银行合作的正规万事达借记卡。使用香港银行卡或 Wise 向卡内转账不收手续费，其他方式转账则需要手续费。原文未说明是否可用于订阅 GPT 菲律宾地区。",
+      "steps": [],
+      "tags": [
+        "借记卡",
+        "新加坡华侨银行",
+        "万事达",
+        "Wise转账",
+        "港卡转账"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": []
+    },
+    {
+      "id": "2094771543591235845",
+      "url": "https://x.com/mjjwiki/status/2094771543591235845",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T12:57:09.000Z",
+      "title": "按读者需求决定教程选题",
+      "industry": "",
+      "tech": "",
+      "summary": "推文称，教程选题很多时候依据读者在评论和私信中提出的需求与建议。置顶的地址证明相关帖子因为确实有人需要，所以才会撰写教程。",
+      "steps": [],
+      "tags": [
+        "教程选题",
+        "读者反馈",
+        "评论私信",
+        "置顶帖子"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094771348572975305",
+      "url": "https://x.com/mjjwiki/status/2094771348572975305",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T12:56:23.000Z",
+      "title": "教程选题按读者需求决定",
+      "industry": "",
+      "tech": "",
+      "summary": "回应他人对未提供美国学生认证搜索教程的批评，强调教程通常根据评论和私信中的需求建议来写。其称置顶的地址证明帖子已有用户需要，因此才会制作相关教程。",
+      "steps": [],
+      "tags": [
+        "教程选题",
+        "读者需求",
+        "评论私信",
+        "学生认证",
+        "置顶帖"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094771257741058319",
+      "url": "https://x.com/mjjwiki/status/2094771257741058319",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T12:56:01.000Z",
+      "title": "教程选题来自读者实际需求",
+      "industry": "",
+      "tech": "",
+      "summary": "回应“逻辑能力不行”的质疑，说明教程通常根据帖下评论和私信中的需求建议来写。置顶的地址证明帖子也表明确实有人需要相关内容，因此才会发布教程。",
+      "steps": [],
+      "tags": [
+        "教程创作",
+        "读者需求",
+        "评论私信",
+        "内容选题"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094769982102265887",
+      "url": "https://x.com/mjjwiki/status/2094769982102265887",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T12:50:57.000Z",
+      "title": "认为一周前话题已失时效",
+      "industry": "",
+      "tech": "",
+      "summary": "回复网友请求时称，该话题已过去一周，时效性已经过了，因此没有撰写的必要。",
+      "steps": [],
+      "tags": [
+        "时效性",
+        "内容创作",
+        "回复互动"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094769620594958761",
+      "url": "https://x.com/mjjwiki/status/2094769620594958761",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T12:49:31.000Z",
+      "title": "回复称已私信沟通",
+      "industry": "",
+      "tech": "",
+      "summary": "推文回复用户称，现在才看见对方的评论。双方此前已经通过私信沟通过。",
+      "steps": [],
+      "tags": [
+        "评论回复",
+        "私信沟通",
+        "互动"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094769268315628002",
+      "url": "https://x.com/mjjwiki/status/2094769268315628002",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T12:48:07.000Z",
+      "title": "邀请码奖励需找推荐人领取",
+      "industry": "",
+      "tech": "",
+      "summary": "使用他人邀请链接或推荐码注册后，如需领取相关奖励，应联系对应的推荐人索取。",
+      "steps": [],
+      "tags": [
+        "邀请码",
+        "推荐码",
+        "注册奖励",
+        "答疑"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094769112312672652",
+      "url": "https://x.com/mjjwiki/status/2094769112312672652",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T12:47:29.000Z",
+      "title": "询问 Wise 与 Starryblu 入金互通",
+      "industry": "跨境支付",
+      "tech": "Wise、Starryblu",
+      "summary": "推文询问 Wise 是否可以向 Starryblu 入金，并确认是否存在反向无法操作的情况。内容为针对他人说法的确认。",
+      "steps": [],
+      "tags": [
+        "Wise",
+        "Starryblu",
+        "入金",
+        "跨境支付"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094768899518763442",
+      "url": "https://x.com/mjjwiki/status/2094768899518763442",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T12:46:39.000Z",
+      "title": "注册问题应联系邀请人处理",
+      "industry": "",
+      "tech": "",
+      "summary": "使用谁的邀请链接或推荐码完成注册，就应联系对应的邀请人处理相关问题。",
+      "steps": [],
+      "tags": [
+        "注册问题",
+        "邀请链接",
+        "推荐码",
+        "售后处理"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094765469018292497",
+      "url": "https://x.com/mjjwiki/status/2094765469018292497",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T12:33:01.000Z",
+      "title": "后续升级会员不再返现",
+      "industry": "",
+      "tech": "",
+      "summary": "提醒用户，后续再升级会员将不再获得奖励返现。回复内容提及可远程开通新加坡银行卡 Starryblu，用于订阅国外 AI 会员，但并非作者本人观点。",
+      "steps": [],
+      "tags": [
+        "会员升级",
+        "返现活动",
+        "规则提醒"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://x.com/i/article/2092971897709645825",
+          "name": "原文附带的链接",
+          "note": "回复中附带的链接，内容涉及远程开通新加坡银行卡 Starryblu。"
+        }
+      ]
+    },
+    {
+      "id": "2094764658469323030",
+      "url": "https://x.com/mjjwiki/status/2094764658469323030",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T12:29:48.000Z",
+      "title": "建议用引用功能补充观点",
+      "industry": "",
+      "tech": "X 帖子引用功能",
+      "summary": "推文建议在帖子中使用引用功能补充自己的观点。引用后的帖子也会带来属于引用者的流量。",
+      "steps": [],
+      "tags": [
+        "引用功能",
+        "内容互动",
+        "流量",
+        "观点补充"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": []
+    },
+    {
+      "id": "2094763963758022965",
+      "url": "https://x.com/mjjwiki/status/2094763963758022965",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T12:27:02.000Z",
+      "title": "Starryblu卡试用ChatGPT Plus要点",
+      "industry": "人工智能",
+      "tech": "Starryblu卡、ChatGPT Plus、VPN、Tun",
+      "summary": "推文针对使用 Starryblu 卡无法获得 ChatGPT Plus 一个月 0 元试用的问题，列出三项检查要点。需使用原生新加坡 IP，并开启 VPN 全局模式和 Tun，同时关闭设备定位、使用浏览器无痕模式；新加坡账单地址还需真实可查。",
+      "steps": [
+        {
+          "text": "使用原生新加坡 IP。",
+          "tools": "",
+          "tech": "原生新加坡IP",
+          "prep": ""
+        },
+        {
+          "text": "开启 VPN 全局模式和 Tun，关闭电脑或手机定位，并使用浏览器无痕模式。",
+          "tools": "VPN、浏览器",
+          "tech": "全局代理、Tun、无痕模式",
+          "prep": "已连接新加坡 IP"
+        },
+        {
+          "text": "填写真实可查的新加坡账单地址。",
+          "tools": "",
+          "tech": "账单地址验证",
+          "prep": ""
+        }
+      ],
+      "tags": [
+        "ChatGPT Plus",
+        "Starryblu卡",
+        "新加坡IP",
+        "VPN设置",
+        "账单地址"
+      ],
+      "isLong": false,
+      "showFlowchart": true,
+      "kind": "教程实操",
+      "resources": [
+        {
+          "url": "https://x.com/i/article/2092971897709645825",
+          "name": "MJJ百科关于 Starryblu 新加坡银行卡的文章",
+          "note": "介绍可远程开通的 Starryblu 新加坡银行卡及其订阅国外 AI 会员的用途。"
+        }
+      ]
+    },
+    {
+      "id": "2094761822717112620",
+      "url": "https://x.com/mjjwiki/status/2094761822717112620",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T12:18:31.000Z",
+      "title": "注册前检查新加坡 IP 与账单地址",
+      "industry": "网络服务",
+      "tech": "原生新加坡IP、VPN全局模式、TUN、浏览器无痕模式",
+      "summary": "建议检查三项条件：使用原生新加坡 IP；VPN 开启全局模式和 TUN，关闭电脑或手机定位，并使用浏览器无痕模式；新加坡账单地址需真实。",
+      "steps": [
+        {
+          "text": "确认使用原生新加坡 IP。",
+          "tools": "",
+          "tech": "原生IP",
+          "prep": ""
+        },
+        {
+          "text": "将 VPN 开启全局模式和 TUN，关闭电脑或手机定位，并打开浏览器无痕模式。",
+          "tools": "VPN、浏览器",
+          "tech": "全局模式、TUN、无痕模式",
+          "prep": "已连接 VPN"
+        },
+        {
+          "text": "确认新加坡账单地址真实。",
+          "tools": "",
+          "tech": "账单地址",
+          "prep": ""
+        }
+      ],
+      "tags": [
+        "新加坡IP",
+        "VPN设置",
+        "TUN模式",
+        "账单地址",
+        "隐私模式"
+      ],
+      "isLong": false,
+      "showFlowchart": true,
+      "kind": "教程实操",
+      "resources": []
+    },
+    {
+      "id": "2094759464461299725",
+      "url": "https://x.com/mjjwiki/status/2094759464461299725",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T12:09:09.000Z",
+      "title": "X 平台鼓励原创促增粉",
+      "industry": "社交媒体",
+      "tech": "X 平台",
+      "summary": "推文认为，X 平台鼓励原创内容。作为走原创路线的技术博主，流量和粉丝增长速度会比一般博主更快。",
+      "steps": [],
+      "tags": [
+        "原创内容",
+        "技术博主",
+        "流量增长",
+        "粉丝增长"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094755437107360043",
+      "url": "https://x.com/mjjwiki/status/2094755437107360043",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T11:53:09.000Z",
+      "title": "未认真看教程者自行摸索",
+      "industry": "",
+      "tech": "",
+      "summary": "回复称，对方没有认真看教程，也未关注账号，因此建议其自行摸索。",
+      "steps": [],
+      "tags": [
+        "教程",
+        "互动回复",
+        "自行摸索"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094753407945130440",
+      "url": "https://x.com/mjjwiki/status/2094753407945130440",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T11:45:05.000Z",
+      "title": "高频原创输出难以持续",
+      "industry": "",
+      "tech": "",
+      "summary": "原创内容每天更新一篇很难做到，三天发布一篇也只能尽力而为。",
+      "steps": [],
+      "tags": [
+        "内容创作",
+        "原创写作",
+        "更新频率",
+        "创作压力"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
       "id": "2094751690885116118",
       "url": "https://x.com/Saccc_c/status/2094751690885116118",
       "author": "Saccc_c",
@@ -177937,6 +180992,1342 @@
       "resources": []
     },
     {
+      "id": "2094750961927614799",
+      "url": "https://x.com/mjjwiki/status/2094750961927614799",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T11:35:22.000Z",
+      "title": "旧对话可继续 AI 去水印",
+      "industry": "人工智能",
+      "tech": "AI去水印",
+      "summary": "回复称，之前已通过 AI“破甲”处理过的对话仍可继续处理，而新对话的处理难度较大，类似苹果手机越狱的限制。其表示后续会更新更好、更通用的去水印技术，建议关注更新。",
+      "steps": [],
+      "tags": [
+        "AI去水印",
+        "对话破甲",
+        "旧对话",
+        "技术更新"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": []
+    },
+    {
+      "id": "2094749268498362413",
+      "url": "https://x.com/mjjwiki/status/2094749268498362413",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T11:28:38.000Z",
+      "title": "批评将免费教程和返现视为理所当然",
+      "industry": "",
+      "tech": "",
+      "summary": "推文批评有人将他人免费分享的技术教程和返现当作理所当然。未提供具体教程、工具或返现细节。",
+      "steps": [],
+      "tags": [
+        "免费教程",
+        "返现",
+        "内容分享",
+        "观点批评"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094748134555754528",
+      "url": "https://x.com/mjjwiki/status/2094748134555754528",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T11:24:08.000Z",
+      "title": "澄清账单并非 AI 生成",
+      "industry": "",
+      "tech": "AI",
+      "summary": "作者澄清，相关操作使用的是真实地址和真实账单，并非对方所理解的 AI 生成图片。该回复围绕机构审核是否会被随意生成的图片蒙混过关展开。",
+      "steps": [],
+      "tags": [
+        "账单审核",
+        "真实地址",
+        "真实账单",
+        "AI生成",
+        "回复讨论"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://twitter.com/mjjwiki/status/2094294210791039462",
+          "name": "@MJJ百科的推文",
+          "note": "原文附带的相关讨论链接。"
+        }
+      ]
+    },
+    {
+      "id": "2094745781215678496",
+      "url": "https://x.com/mjjwiki/status/2094745781215678496",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T11:14:47.000Z",
+      "title": "确认已将对方加入白名单",
+      "industry": "",
+      "tech": "白名单、私信",
+      "summary": "回复中确认已在昨天将对方加入白名单，对方只是未查看此前发送的私信。对方随后表示已经开通。",
+      "steps": [],
+      "tags": [
+        "白名单",
+        "私信",
+        "回复互动"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094745407649910824",
+      "url": "https://x.com/mjjwiki/status/2094745407649910824",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T11:13:18.000Z",
+      "title": "称系统会屏蔽新号私信评论",
+      "industry": "",
+      "tech": "X 平台私信、评论",
+      "summary": "称曾多次说明，系统会自动屏蔽非蓝V小号或新账号的私信，甚至评论。其表示将主动通过私信联系对方。",
+      "steps": [],
+      "tags": [
+        "私信受限",
+        "评论屏蔽",
+        "新账号",
+        "蓝V认证"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094743765324120347",
+      "url": "https://x.com/mjjwiki/status/2094743765324120347",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T11:06:46.000Z",
+      "title": "办理护照是硬性条件",
+      "industry": "",
+      "tech": "",
+      "summary": "护照是相关事项的硬性条件。当地办理护照成本约120元，通常7天左右可收到。",
+      "steps": [],
+      "tags": [
+        "护照办理",
+        "证件要求",
+        "办理成本",
+        "时效"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094741480019784048",
+      "url": "https://x.com/mjjwiki/status/2094741480019784048",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T10:57:41.000Z",
+      "title": "羊毛二可试用 GPT",
+      "industry": "人工智能",
+      "tech": "GPT",
+      "summary": "提到“羊毛二”的用途已写在教程中，并回应称其可以用于试用 GPT。这是一条围绕活动福利用途的简短回复。",
+      "steps": [],
+      "tags": [
+        "羊毛二",
+        "GPT试用",
+        "教程",
+        "活动福利"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094741342501126337",
+      "url": "https://x.com/mjjwiki/status/2094741342501126337",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T10:57:09.000Z",
+      "title": "回应护照伪造指控",
+      "industry": "",
+      "tech": "",
+      "summary": "针对他人称申请两次被拒并被指伪造护照的情况，推文认为这一结果“有点离谱”。推文猜测可能是护照拍照不清晰导致审核误判，并指出伪造护照属于犯罪，认为一般人不敢这么做。",
+      "steps": [],
+      "tags": [
+        "护照审核",
+        "申请被拒",
+        "身份验证",
+        "讨论回应"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094740387294576845",
+      "url": "https://x.com/mjjwiki/status/2094740387294576845",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T10:53:21.000Z",
+      "title": "因争议拉黑微信保留 X 关注",
+      "industry": "",
+      "tech": "",
+      "summary": "推文称已因生气拉黑对方微信，但暂时不在 X 上拉黑对方。其希望对方继续查看帖子和评论区，并强调自己问心无愧、相信公道自在人心。",
+      "steps": [],
+      "tags": [
+        "争议回应",
+        "拉黑",
+        "评论区",
+        "个人表态"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094739840852197511",
+      "url": "https://x.com/mjjwiki/status/2094739840852197511",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T10:51:11.000Z",
+      "title": "海外账户可用于订阅 AI 与返利",
+      "industry": "人工智能",
+      "tech": "海外AI订阅",
+      "summary": "推文列举了开设相关账户的用途，包括资金回国、订阅海外 AI 服务、获取每月 10 元以上的消费返利，以及参与其他优惠活动。其核心观点是该账户实际用途很多。",
+      "steps": [],
+      "tags": [
+        "资金回国",
+        "海外AI订阅",
+        "消费返利",
+        "薅羊毛"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094738328251982322",
+      "url": "https://x.com/mjjwiki/status/2094738328251982322",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T10:45:10.000Z",
+      "title": "Web3 赚钱模式引发关注",
+      "industry": "Web3",
+      "tech": "",
+      "summary": "作者称赞对方在 Web3 领域的盈利能力，并表示之后也会学习。其回复上下文提到“割”KOL 的说法及 40 万美元收入来源，但这些内容来自被回复者的推文。",
+      "steps": [],
+      "tags": [
+        "Web3",
+        "赚钱",
+        "KOL",
+        "散户",
+        "学习"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://twitter.com/qianyuwing/status/2093783866100346892",
+          "name": "@qianyuwing 的推文",
+          "note": "原文附带的前序推文链接，用于说明 40 万美元的来源。"
+        }
+      ]
+    },
+    {
+      "id": "2094735783353823475",
+      "url": "https://x.com/mjjwiki/status/2094735783353823475",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T10:35:03.000Z",
+      "title": "微信拉黑对方但保留 X 可见",
+      "industry": "",
+      "tech": "微信、X",
+      "summary": "作者称已在微信拉黑对方，但未在推特 X 拉黑，仍让对方看到帖子和评论。作者认为公道自在人心，并表示自己问心无愧。",
+      "steps": [],
+      "tags": [
+        "社交平台",
+        "拉黑",
+        "公开回应",
+        "评论互动"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094735321414164885",
+      "url": "https://x.com/mjjwiki/status/2094735321414164885",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T10:33:13.000Z",
+      "title": "免费教程与返利不该被视作理所当然",
+      "industry": "",
+      "tech": "",
+      "summary": "推文讨论他人将免费技术教程文章和返利视为理所当然的现象。作者认为，在 X 上能同时提供免费技术内容与返利的博主并不多，这些帮助不应被当作应得。",
+      "steps": [],
+      "tags": [
+        "技术教程",
+        "返利",
+        "社交互动",
+        "创作者",
+        "边界感"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094734913132224622",
+      "url": "https://x.com/mjjwiki/status/2094734913132224622",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T10:31:36.000Z",
+      "title": "因试用教程争议感到气愤",
+      "industry": "人工智能",
+      "tech": "ChatGPT Plus",
+      "summary": "作者称自己早已分享过通过一个账号零元试用 ChatGPT Plus 一个月的教程，却被指责神神秘秘、不愿分享。对方还要求其发布使用 7 个账号零元试用一个月的教程，作者对此感到寒心和气愤，并认为自己修身养性的功夫仍不足。",
+      "steps": [],
+      "tags": [
+        "ChatGPT Plus",
+        "零元试用",
+        "教程分享",
+        "社群争议",
+        "情绪表达"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094734573876003241",
+      "url": "https://x.com/mjjwiki/status/2094734573876003241",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T10:30:15.000Z",
+      "title": "Starryblu卡可试用ChatGPT Plus",
+      "industry": "人工智能",
+      "tech": "ChatGPT Plus、Starryblu卡、X订阅",
+      "summary": "可通过开通 Starryblu 卡，为一个账号实现 0 元试用 ChatGPT Plus 一个月，此前已公开相关内容。针对 7 个账号的试用方案需推迟一个月，原因是尚未达到 500 万浏览量，暂时无法开通官方 X 订阅功能。",
+      "steps": [],
+      "tags": [
+        "ChatGPT Plus",
+        "免费试用",
+        "Starryblu卡",
+        "X订阅",
+        "账号"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": []
+    },
+    {
+      "id": "2094734033989304694",
+      "url": "https://x.com/mjjwiki/status/2094734033989304694",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T10:28:06.000Z",
+      "title": "月底达标后开通 X 付费订阅",
+      "industry": "",
+      "tech": "X 付费订阅",
+      "summary": "计划通过 X 官方付费订阅实现支持渠道，目前尚未达到 500 万浏览量门槛。预计月底浏览量达标后开通订阅。",
+      "steps": [],
+      "tags": [
+        "付费订阅",
+        "X 平台",
+        "创作者变现",
+        "浏览量门槛"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094733664559177924",
+      "url": "https://x.com/mjjwiki/status/2094733664559177924",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T10:26:38.000Z",
+      "title": "后续部分教程将改为付费订阅",
+      "industry": "",
+      "tech": "",
+      "summary": "将吸取教训并听取用户建议，后续部分教程仅面向付费订阅用户发布，不再全部免费公开。该决定是在与他人讨论创作内容被过度索取的背景下提出。",
+      "steps": [],
+      "tags": [
+        "付费订阅",
+        "教程内容",
+        "创作调整",
+        "用户建议"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094733272890957988",
+      "url": "https://x.com/mjjwiki/status/2094733272890957988",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T10:25:05.000Z",
+      "title": "回应索要多号免费试用教程",
+      "industry": "人工智能",
+      "tech": "ChatGPT Plus",
+      "summary": "推文回应他人称其不愿分享的说法。作者称自己早已分享过用 1 个账号 0 元试用 ChatGPT Plus 一个月的教程，但对方仍索要尚未发布的 7 个账号免费试用教程，因此感到寒心和气愤。",
+      "steps": [],
+      "tags": [
+        "ChatGPT Plus",
+        "免费试用",
+        "账号教程",
+        "争议回应"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094730869911257258",
+      "url": "https://x.com/mjjwiki/status/2094730869911257258",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T10:15:32.000Z",
+      "title": "因争议调整教程分享策略",
+      "industry": "",
+      "tech": "",
+      "summary": "针对他人讨论的网络争议，表示自己只感到心寒，今后分享教程的策略会改变。未说明具体将如何调整。",
+      "steps": [],
+      "tags": [
+        "教程分享",
+        "创作策略",
+        "网络争议",
+        "心寒"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094730586158137684",
+      "url": "https://x.com/mjjwiki/status/2094730586158137684",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T10:14:24.000Z",
+      "title": "携号转网后30天内申请PAC码",
+      "industry": "通信",
+      "tech": "携号转网、PAC码",
+      "summary": "需先成功完成携号转网，再取得PAC码，并在30天内提交申请。该回复针对对方等待多日未获回应的情况给出操作条件与时限。",
+      "steps": [],
+      "tags": [
+        "携号转网",
+        "PAC码",
+        "申请时限",
+        "号码转移"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": []
+    },
+    {
+      "id": "2094729480422207571",
+      "url": "https://x.com/mjjwiki/status/2094729480422207571",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T10:10:00.000Z",
+      "title": "询问盈透能否用国内地址",
+      "industry": "金融",
+      "tech": "盈透IBKR",
+      "summary": "推文询问盈透 IBKR 是否可以使用中国大陆地址。回复上下文讨论了用于开户的“左脚”及是否会被盈透检测。",
+      "steps": [],
+      "tags": [
+        "盈透IBKR",
+        "国内地址",
+        "开户",
+        "账户审核"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094728944188903861",
+      "url": "https://x.com/mjjwiki/status/2094728944188903861",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T10:07:53.000Z",
+      "title": "七号免费试用教程延期付费开放",
+      "industry": "人工智能",
+      "tech": "ChatGPT Plus、Starryblu新加坡银行卡",
+      "summary": "推文称，此前已公布单个账号 0 元试用 ChatGPT Plus 一个月的方法，原计划分享多账号方案。因与他人发生争执，作者决定自次日起停止向升级 Starryblu 会员者返利，并将 7 个账号 0 元试用 ChatGPT Plus 一个月的方法延期一个月发布，且仅向其付费订阅用户开放。",
+      "steps": [],
+      "tags": [
+        "ChatGPT Plus",
+        "免费试用",
+        "Starryblu",
+        "返利",
+        "付费订阅"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094724079173677510",
+      "url": "https://x.com/mjjwiki/status/2094724079173677510",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T09:48:33.000Z",
+      "title": "认可建议并反思过于实在",
+      "industry": "",
+      "tech": "",
+      "summary": "回复网友称对方的建议不错，会考虑采纳，并表达感谢。其认为自己可能因太过实在而容易被别人欺负。",
+      "steps": [],
+      "tags": [
+        "互动回复",
+        "采纳建议",
+        "自我反思",
+        "社交感想"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://x.com/mjjwiki/status/2094714326787502478",
+          "name": "原文附带的链接",
+          "note": "链接指向该 X 帖子。"
+        }
+      ]
+    },
+    {
+      "id": "2094721978716594304",
+      "url": "https://x.com/mjjwiki/status/2094721978716594304",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T09:40:12.000Z",
+      "title": "核实转账升级会员到账情况",
+      "industry": "",
+      "tech": "LuminFold",
+      "summary": "推文回复用户关于 LuminFold 的问题，询问其升级会员的转账金额是否已到账。若已完成转账，要求通过私信发送相关信息以便处理。",
+      "steps": [],
+      "tags": [
+        "会员升级",
+        "转账核实",
+        "私信处理"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094720370133938664",
+      "url": "https://x.com/mjjwiki/status/2094720370133938664",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T09:33:48.000Z",
+      "title": "回应免费试用教程争议",
+      "industry": "人工智能",
+      "tech": "ChatGPT Plus",
+      "summary": "推文回应他人质疑，称用 1 个账号 0 元试用 ChatGPT Plus 一个月的方法已写在原教程中。作者表示未公开的是通过 7 个账号实现 0 元试用一个月的教程，并强调自己免费分享技术教程、倡导社区互助。",
+      "steps": [],
+      "tags": [
+        "ChatGPT Plus",
+        "免费试用",
+        "教程争议",
+        "账号注册",
+        "社区互助"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094719297998520787",
+      "url": "https://x.com/mjjwiki/status/2094719297998520787",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T09:29:33.000Z",
+      "title": "擦边与转载内容均有顾虑",
+      "industry": "内容创作",
+      "tech": "",
+      "summary": "回复称，已考虑过相关建议，但担心擦边内容导致账号被封。对于转载内容，则担心无法通过原创内容奖励和订阅审核。",
+      "steps": [],
+      "tags": [
+        "内容运营",
+        "账号风险",
+        "原创奖励",
+        "订阅",
+        "转载"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094718745398943980",
+      "url": "https://x.com/mjjwiki/status/2094718745398943980",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T09:27:21.000Z",
+      "title": "回应ChatGPT Plus试用争议",
+      "industry": "人工智能",
+      "tech": "ChatGPT Plus",
+      "summary": "围绕ChatGPT Plus一个月0元试用方法，发帖人称单账号的免费试用方式已写入教程，对方未认真阅读便质疑其故弄玄虚。其称未公开的是使用7个账号进行0元试用一个月的教程，并对相关批评作出反驳。",
+      "steps": [],
+      "tags": [
+        "ChatGPT Plus",
+        "免费试用",
+        "教程争议",
+        "账号",
+        "推文互动"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094718136411099627",
+      "url": "https://x.com/mjjwiki/status/2094718136411099627",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T09:24:56.000Z",
+      "title": "回应 ChatGPT Plus 试用教程质疑",
+      "industry": "人工智能",
+      "tech": "ChatGPT Plus",
+      "summary": "推文回应他人对教程内容的质疑，称单账号 0 元试用 ChatGPT Plus 一个月的方法已在教程中写明。作者称未公开的是使用 7 个账号进行 0 元试用一个月的教程，并强调对方未认真阅读。引用内容提到可通过新加坡银行卡 Starryblu 及同名 OCBC 账户订阅海外 AI 会员。",
+      "steps": [],
+      "tags": [
+        "ChatGPT Plus",
+        "免费试用",
+        "账号注册",
+        "教程争议",
+        "AI会员"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://x.com/i/article/2092971897709645825",
+          "name": "Starryblu 新加坡银行卡开通文章",
+          "note": "原文引用的文章链接，介绍远程开通 Starryblu 新加坡银行卡及其用于订阅海外 AI 会员。"
+        }
+      ]
+    },
+    {
+      "id": "2094715332401430751",
+      "url": "https://x.com/mjjwiki/status/2094715332401430751",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T09:13:47.000Z",
+      "title": "停止 Starryblu 升级返现奖励",
+      "industry": "",
+      "tech": "Starryblu会员",
+      "summary": "此前升级 Starryblu 会员可获 50 元奖励的活动现已取消，之后将与其他博主一致不再提供该奖励。作者在回复中称自己免费分享技术教程，倡导 MJJ 社区互相共享、共同前行的精神，并认为获得帮助后给予客观评价是顺手之举。",
+      "steps": [],
+      "tags": [
+        "会员奖励",
+        "返现取消",
+        "技术分享",
+        "MJJ社区"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094715063630540967",
+      "url": "https://x.com/mjjwiki/status/2094715063630540967",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T09:12:43.000Z",
+      "title": "免费资源未必被珍惜",
+      "industry": "",
+      "tech": "",
+      "summary": "推文认为，免费得到的东西往往不会被人珍惜，并以“升米恩，斗米仇”表达长期无偿给予可能引发反效果的看法。回复内容提到“拖延教程”是合理做法，但作者原文未展开具体做法。",
+      "steps": [],
+      "tags": [
+        "免费资源",
+        "用户心理",
+        "价值感知",
+        "观点讨论"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094714326787502478",
+      "url": "https://x.com/mjjwiki/status/2094714326787502478",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T09:09:48.000Z",
+      "title": "ChatGPT Plus教程改为付费公开",
+      "industry": "人工智能",
+      "tech": "ChatGPT Plus、Starryblu会员",
+      "summary": "作者回应他人对其分享动机的质疑，称自己免费分享技术教程是出于 MJJ 互助共享的精神，并不需要刷评论。原计划发布的“7 个 0 元试用 ChatGPT Plus”方法将延后一个月，且仅向付费订阅用户公开。自明天起，升级 Starryblu 会员不再提供 50 元返利，已开通用户不受影响。",
+      "steps": [],
+      "tags": [
+        "ChatGPT Plus",
+        "技术教程",
+        "付费订阅",
+        "会员调整",
+        "创作争议"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094708480011882578",
+      "url": "https://x.com/mjjwiki/status/2094708480011882578",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T08:46:34.000Z",
+      "title": "婉拒陌生人靠近互动",
+      "industry": "",
+      "tech": "",
+      "summary": "回复用户 @Ot44157，称不认识对方并让其走开，表示自己胆子小。",
+      "steps": [],
+      "tags": [
+        "社交互动",
+        "陌生人",
+        "玩笑回应"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094708301334561179",
+      "url": "https://x.com/mjjwiki/status/2094708301334561179",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T08:45:51.000Z",
+      "title": "X平台漏提醒导致私信失联",
+      "industry": "社交媒体",
+      "tech": "X平台、私信、消息提醒",
+      "summary": "作者解释自己长期未回复的原因是收不到消息提醒，而非刻意不理会。对于太久未获回复的情况，作者建议直接发送私信联系。引用内容指出，X 平台可能不会向用户提示非蓝V新号或小号的评论、私信。",
+      "steps": [],
+      "tags": [
+        "X平台",
+        "消息提醒",
+        "私信",
+        "非蓝V",
+        "沟通失联"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094707123808825579",
+      "url": "https://x.com/mjjwiki/status/2094707123808825579",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T08:41:10.000Z",
+      "title": "转账后私信办理会员升级",
+      "industry": "",
+      "tech": "",
+      "summary": "升级会员需先转账支付升级费用，再私信账号以加入白名单。回复中提到可在“我的”页面点击升级会员，且可能需要先开卡。",
+      "steps": [],
+      "tags": [
+        "会员升级",
+        "白名单",
+        "转账",
+        "私信"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094706841934864565",
+      "url": "https://x.com/mjjwiki/status/2094706841934864565",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T08:40:03.000Z",
+      "title": "澄清 DTC 与 Starryblu 卡模式",
+      "industry": "加密支付",
+      "tech": "DTC、U卡、Starryblu、虚拟卡、实体卡",
+      "summary": "推文反驳将 DTC 视为中国人在新加坡面向中国大陆用户推出的产品，并称其盈利模式不同于其他 U 卡。另称 Starryblu 已不再提供虚拟卡，统一改为实体卡。",
+      "steps": [],
+      "tags": [
+        "DTC",
+        "U卡",
+        "Starryblu",
+        "虚拟卡",
+        "实体卡",
+        "盈利模式"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094705897344053638",
+      "url": "https://x.com/mjjwiki/status/2094705897344053638",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T08:36:18.000Z",
+      "title": "可协助加速并索要截图",
+      "industry": "",
+      "tech": "",
+      "summary": "回复称今天仍可进行加速操作。由于评论区无法看到对方截图，要求通过私信发送截图。",
+      "steps": [],
+      "tags": [
+        "互动回复",
+        "加速",
+        "截图",
+        "私信"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094704890815861071",
+      "url": "https://x.com/mjjwiki/status/2094704890815861071",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T08:32:18.000Z",
+      "title": "发现漏洞后悔过早反馈官方",
+      "industry": "",
+      "tech": "",
+      "summary": "推文称该漏洞由其发现，并已反馈给官方。由于尚未推广多少人完成入金达标，作者认为自己反馈得过早、感到草率。",
+      "steps": [],
+      "tags": [
+        "漏洞反馈",
+        "推广入金",
+        "官方修复",
+        "后悔",
+        "互动回复"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094703774518690193",
+      "url": "https://x.com/mjjwiki/status/2094703774518690193",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T08:27:52.000Z",
+      "title": "充值升级漏洞明日修复",
+      "industry": "",
+      "tech": "",
+      "summary": "收到通知，相关 Bug 将于明天修复。修复后，按该方式充值升级会员将不再获得任何奖励，也不会协助添加白名单。",
+      "steps": [],
+      "tags": [
+        "漏洞修复",
+        "会员充值",
+        "奖励调整",
+        "白名单"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094703509262463086",
+      "url": "https://x.com/mjjwiki/status/2094703509262463086",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T08:26:48.000Z",
+      "title": "充值升级会员漏洞明日修复",
+      "industry": "",
+      "tech": "",
+      "summary": "推文称已收到通知，相关 Bug 将在明天修复。修复后，如仍以此前方式充值升级会员，作者不会获得任何奖励，也不会协助添加白名单。",
+      "steps": [],
+      "tags": [
+        "漏洞修复",
+        "会员充值",
+        "奖励取消",
+        "白名单"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094699452066152463",
+      "url": "https://x.com/mjjwiki/status/2094699452066152463",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T08:10:41.000Z",
+      "title": "有港卡或 Wise 可自行入金",
+      "industry": "金融服务",
+      "tech": "港卡、Wise、闲鱼",
+      "summary": "针对入金方式提问，建议有港卡或 Wise 的用户自行入金；没有这些条件则可通过闲鱼处理。回复语境中，“小黄鱼”指闲鱼。",
+      "steps": [],
+      "tags": [
+        "入金",
+        "港卡",
+        "Wise",
+        "闲鱼",
+        "资金充值"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094699290119844011",
+      "url": "https://x.com/mjjwiki/status/2094699290119844011",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T08:10:03.000Z",
+      "title": "原创内容难出爆款帖",
+      "industry": "",
+      "tech": "",
+      "summary": "原创内容很少能产出爆款帖子，作者称自己没有一条爆款。其观察是，发段子、玩梗、诱导评论以及擦边内容更容易成为爆款。",
+      "steps": [],
+      "tags": [
+        "原创内容",
+        "爆款推文",
+        "玩梗",
+        "互动诱导",
+        "内容观察"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094698553058931007",
+      "url": "https://x.com/mjjwiki/status/2094698553058931007",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T08:07:07.000Z",
+      "title": "白名单加速虚拟卡已改实体卡",
+      "industry": "金融科技",
+      "tech": "虚拟卡、实体卡、白名单加速",
+      "summary": "此前教程中提到的虚拟卡已不可用，走白名单加速的卡目前均为实体卡。回复内容提及可远程开通新加坡银行卡 Starryblu，并称其自带 OCBC 同名账户、可用于订阅海外 AI 会员，但这并非作者本人明确推荐。",
+      "steps": [],
+      "tags": [
+        "虚拟卡",
+        "实体卡",
+        "白名单",
+        "支付卡",
+        "教程更新"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": [
+        {
+          "url": "https://x.com/i/article/2092971897709645825",
+          "name": "原文附带的链接",
+          "note": "回复中用于介绍 Starryblu 新加坡银行卡及其 OCBC 同名账户。"
+        }
+      ]
+    },
+    {
+      "id": "2094698507177484754",
+      "url": "https://x.com/mjjwiki/status/2094698507177484754",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T08:06:56.000Z",
+      "title": "白名单加速改用实体卡",
+      "industry": "",
+      "tech": "虚拟卡、实体卡、白名单加速",
+      "summary": "此前教程中提到的虚拟卡已不可用。走白名单加速的卡现均为实体卡。",
+      "steps": [],
+      "tags": [
+        "虚拟卡",
+        "实体卡",
+        "白名单",
+        "加速",
+        "教程更新"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": []
+    },
+    {
+      "id": "2094692452922003811",
+      "url": "https://x.com/mjjwiki/status/2094692452922003811",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T07:42:52.000Z",
+      "title": "核实金额后可加白名单加速",
+      "industry": "",
+      "tech": "白名单",
+      "summary": "针对用户升级会员仅显示排队的问题，提出让对方联系并发送金额截图。核实后可将其加入白名单，以加速处理。",
+      "steps": [],
+      "tags": [
+        "会员升级",
+        "排队",
+        "白名单",
+        "加速处理"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094691297655431371",
+      "url": "https://x.com/mjjwiki/status/2094691297655431371",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T07:38:17.000Z",
+      "title": "充值截图后可加白名单加速",
+      "industry": "",
+      "tech": "白名单加速",
+      "summary": "回复用户关于充值 20 美元后如何领取美元卡的提问。要求对方联系自己，提供充值金额截图和 ID，以便加入白名单并获得加速。",
+      "steps": [],
+      "tags": [
+        "充值咨询",
+        "白名单",
+        "加速服务"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094691054469742877",
+      "url": "https://x.com/mjjwiki/status/2094691054469742877",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T07:37:19.000Z",
+      "title": "无港卡或 Wise 可用此方式入金",
+      "industry": "跨境支付",
+      "tech": "港卡、Wise、starryblu",
+      "summary": "回复中确认，这是一种向 starryblu 充值入金的方式。没有港卡或 Wise 的人可以采用该方式。",
+      "steps": [],
+      "tags": [
+        "入金",
+        "跨境支付",
+        "港卡",
+        "Wise"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094690946671911116",
+      "url": "https://x.com/mjjwiki/status/2094690946671911116",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T07:36:53.000Z",
+      "title": "Starryblu取现费高称无需担忧关卡",
+      "industry": "跨境金融",
+      "tech": "Starryblu、欧洲IBAN、Wise",
+      "summary": "推文称 Starryblu 并非 U 卡，且超过取现额度后的费用较高，因此认为平台不怕用户大量取现。其表示欧洲 IBAN 预计当月上线，Wise 也提供欧洲账户，且均可使用全套中国大陆资料申请，因此无需担心。",
+      "steps": [],
+      "tags": [
+        "跨境账户",
+        "实体卡",
+        "取现额度",
+        "欧洲IBAN",
+        "Wise"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094690813787971973",
+      "url": "https://x.com/XiaohuiAI666/status/2094690813787971973",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-09-01T07:36:22.000Z",
+      "title": "Spec 将 AI 决策沉淀为工程事实",
+      "industry": "人工智能",
+      "tech": "Spec、上下文管理",
+      "summary": "推文认为，AI 最不可靠的并非智力，而是会衰减、遗忘甚至产生冲突的上下文记忆。经过确认的 Spec 能将一次性对话中的决策沉淀为可追溯的工程事实。规范驱动不是限制模型能力，而是避免将系统命运交给会过期的上下文。",
+      "steps": [],
+      "tags": [
+        "AI记忆",
+        "规范驱动",
+        "Spec",
+        "上下文衰减",
+        "工程实践"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://x.com/i/article/2094660924267438080",
+          "name": "@coder_left 的 X Article",
+          "note": "被引用的文章链接，用于说明规范驱动与 AI 上下文问题。"
+        }
+      ]
+    },
+    {
+      "id": "2094685669738340634",
+      "url": "https://x.com/mjjwiki/status/2094685669738340634",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T07:15:55.000Z",
+      "title": "MJJ含义在主机论坛中期变化",
+      "industry": "互联网社区",
+      "tech": "全球主机论坛",
+      "summary": "推文称，MJJ 一词的含义是在全球主机论坛发展中期开始发生变化的。当时论坛中的老用户逐渐隐退。",
+      "steps": [],
+      "tags": [
+        "MJJ",
+        "主机论坛",
+        "社区文化",
+        "术语演变"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094683664496181265",
+      "url": "https://x.com/mjjwiki/status/2094683664496181265",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T07:07:57.000Z",
+      "title": "转账验证后可进白名单办卡",
+      "industry": "",
+      "tech": "白名单、会员升级、卡申请",
+      "summary": "回复中说明，用户转入升级会员的款项后，经验证即可被加入白名单。进入白名单后，升级会员并申请卡，通常可在一天内通过。",
+      "steps": [],
+      "tags": [
+        "白名单",
+        "会员升级",
+        "转账验证",
+        "卡申请"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094683271481442316",
+      "url": "https://x.com/mjjwiki/status/2094683271481442316",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T07:06:23.000Z",
+      "title": "回忆羊毛党受助经历",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回应网友，回忆自己当年虽是“白嫖”用户，却很佩服并感激免费提供帮助的 MJJ 大佬。作者称自己当时不敢自称 MJJ，只称自己是羊毛党。",
+      "steps": [],
+      "tags": [
+        "MJJ",
+        "羊毛党",
+        "免费帮助",
+        "社区回忆"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094682111383097398",
+      "url": "https://x.com/mjjwiki/status/2094682111383097398",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T07:01:47.000Z",
+      "title": "MJJ称呼曾是论坛最高荣耀",
+      "industry": "互联网社区",
+      "tech": "",
+      "summary": "推文反驳将“MJJ”视为普通“买鸡鸡”行为的说法，认为这种理解是对白嫖党的自我调侃与美化。其指出，早年落伍者论坛中有资格被称为 MJJ 的人很少，这一称呼曾被视为最高荣耀。",
+      "steps": [],
+      "tags": [
+        "MJJ",
+        "落伍者论坛",
+        "互联网文化",
+        "身份称呼",
+        "观点争论"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094680154899636501",
+      "url": "https://x.com/mjjwiki/status/2094680154899636501",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T06:54:00.000Z",
+      "title": "MJJ精神是互助共享服务",
+      "industry": "互联网社区",
+      "tech": "",
+      "summary": "推文澄清对“MJJ”含义的误解，指出其并非买小鸡或撸羊毛。作者所传播的MJJ精神是互助、共享、共同前行，并称其为当年落伍者论坛的最高荣耀，核心是免费为大家服务。",
+      "steps": [],
+      "tags": [
+        "MJJ",
+        "互助共享",
+        "免费服务",
+        "落伍者论坛"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "http://x.com/i/article/2087520806171705346",
+          "name": "@mjjwiki 的 X 文章链接",
+          "note": "围绕“MJJ”含义的相关内容。"
+        }
+      ]
+    },
+    {
+      "id": "2094679336360329490",
+      "url": "https://x.com/mjjwiki/status/2094679336360329490",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T06:50:45.000Z",
+      "title": "与互动蓝V互关",
+      "industry": "",
+      "tech": "",
+      "summary": "表示会关注所有在其帖子下互动的蓝V账号，同时称自己并非大V，只是新人。该内容是对对方称其为“大V”的回应。",
+      "steps": [],
+      "tags": [
+        "蓝V互动",
+        "互关",
+        "新人博主"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094677760996479036",
+      "url": "https://x.com/mjjwiki/status/2094677760996479036",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T06:44:30.000Z",
+      "title": "确认是否用他人邀请链接注册",
+      "industry": "",
+      "tech": "",
+      "summary": "围绕注册后的排队问题，询问对方此前是否通过他人的邀请链接或推荐码完成注册。回复内容称已理解错误，目前已经处于排队状态，并询问是否需要注销后重新注册。",
+      "steps": [],
+      "tags": [
+        "注册邀请",
+        "推荐码",
+        "排队",
+        "账号注册"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094675763765313652",
+      "url": "https://x.com/mjjwiki/status/2094675763765313652",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T06:36:33.000Z",
+      "title": "平台更新后开始支持原创内容",
+      "industry": "内容创作",
+      "tech": "平台算法",
+      "summary": "MJJ百科称，自己一开始就定位为技术博主原创路线输出。平台算法直到 8 月 26 日才更新为支持原创内容，此前做原创较为艰难。",
+      "steps": [],
+      "tags": [
+        "原创内容",
+        "技术博主",
+        "平台算法",
+        "流量增长"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094675343764574335",
+      "url": "https://x.com/mjjwiki/status/2094675343764574335",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T06:34:53.000Z",
+      "title": "升级会员可加白名单免排队",
+      "industry": "",
+      "tech": "",
+      "summary": "升级会员后才可以加入白名单并免排队。免费星空卡是否具备该资格，原文未作说明。",
+      "steps": [],
+      "tags": [
+        "会员升级",
+        "白名单",
+        "免排队",
+        "星球卡"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094672587666477297",
+      "url": "https://x.com/mjjwiki/status/2094672587666477297",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T06:23:56.000Z",
+      "title": "技术原创路线不惧涨粉封号",
+      "industry": "人工智能",
+      "tech": "",
+      "summary": "作者回应他人建议，称此前的话本意是安慰对方。作者表示不担心流量和粉丝增长，也不担心账号被封，认为自己走的是技术博主原创路线。",
+      "steps": [],
+      "tags": [
+        "技术博主",
+        "原创内容",
+        "账号运营",
+        "涨粉",
+        "封号风险"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
       "id": "2094672552589471850",
       "url": "https://x.com/Saccc_c/status/2094672552589471850",
       "author": "Saccc_c",
@@ -177951,6 +182342,185 @@
         "实时互动",
         "内容生成",
         "国内直播"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094672187970195619",
+      "url": "https://x.com/mjjwiki/status/2094672187970195619",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T06:22:21.000Z",
+      "title": "粉丝数突破4000人",
+      "industry": "",
+      "tech": "",
+      "summary": "账号粉丝数量增加到 4000 人，蓝V粉丝占比尚不足一半。后续将尽量持续输出原创内容。",
+      "steps": [],
+      "tags": [
+        "粉丝增长",
+        "感谢支持",
+        "原创内容",
+        "账号动态"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://t.co/ANi0HpmtZE",
+          "name": "原文附带的链接",
+          "note": "推文附带链接，未提供可识别的具体内容。"
+        }
+      ]
+    },
+    {
+      "id": "2094671218754650171",
+      "url": "https://x.com/mjjwiki/status/2094671218754650171",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T06:18:30.000Z",
+      "title": "教程帖子应配图说明",
+      "industry": "",
+      "tech": "",
+      "summary": "回复读者关于是否需要点击某项的提问，指出教程帖子的图片应当通过画图进行说明。",
+      "steps": [],
+      "tags": [
+        "教程配图",
+        "图文说明",
+        "回复互动"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://t.co/xcoStwZ6Ya",
+          "name": "原文附带的链接",
+          "note": "回复中用于询问“要点击这个吗”的链接。"
+        }
+      ]
+    },
+    {
+      "id": "2094668483959365710",
+      "url": "https://x.com/mjjwiki/status/2094668483959365710",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T06:07:38.000Z",
+      "title": "再次体验古代和尚饮食",
+      "industry": "",
+      "tech": "",
+      "summary": "分享再次体验中国古代和尚生活，并准备了青菜豆腐汤。引用内容提到，古代和尚喜欢的一道菜是青菜豆腐汤。",
+      "steps": [],
+      "tags": [
+        "日常分享",
+        "古代生活",
+        "和尚饮食",
+        "青菜豆腐汤"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://t.co/4d0x7ZC9u7",
+          "name": "原文附带的链接",
+          "note": "推文附带链接，具体内容未说明。"
+        },
+        {
+          "url": "https://t.co/wmb4feb1oO",
+          "name": "原文附带的链接",
+          "note": "推文附带链接，具体内容未说明。"
+        },
+        {
+          "url": "https://t.co/2SH3I1u4Sz",
+          "name": "引用推文附带的链接",
+          "note": "引用内容中与青菜豆腐汤相关的链接，具体内容未说明。"
+        }
+      ]
+    },
+    {
+      "id": "2094666604152045723",
+      "url": "https://x.com/mjjwiki/status/2094666604152045723",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T06:00:10.000Z",
+      "title": "回应国区注册支付可用性",
+      "industry": "",
+      "tech": "微信、支付宝",
+      "summary": "回复称国区注册可以正常使用微信和支付宝，并表示教程及评论区推友应有相关晒图可供参考。",
+      "steps": [],
+      "tags": [
+        "国区注册",
+        "支付方式",
+        "微信支付",
+        "支付宝",
+        "评论互动"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094666326778507279",
+      "url": "https://x.com/mjjwiki/status/2094666326778507279",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T05:59:03.000Z",
+      "title": "邀请链接与推荐码二选一",
+      "industry": "",
+      "tech": "",
+      "summary": "通过邀请链接注册时无需再填写推荐码，邀请链接和推荐码任选其一即可。",
+      "steps": [],
+      "tags": [
+        "注册邀请",
+        "推荐码",
+        "使用说明"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094664491460129030",
+      "url": "https://x.com/mjjwiki/status/2094664491460129030",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T05:51:46.000Z",
+      "title": "推荐码需在注册时填写且长期有效",
+      "industry": "",
+      "tech": "",
+      "summary": "推荐码需要在注册时填写，且会一直有效。",
+      "steps": [],
+      "tags": [
+        "推荐码",
+        "注册",
+        "使用规则"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094664366918680872",
+      "url": "https://x.com/mjjwiki/status/2094664366918680872",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T05:51:16.000Z",
+      "title": "一周前内容已过时不写教程",
+      "industry": "",
+      "tech": "",
+      "summary": "回复他人建议写教程时，认为相关内容已是一周前的事，时效性已经过去，因此没有写作必要。",
+      "steps": [],
+      "tags": [
+        "教程写作",
+        "时效性",
+        "内容选题"
       ],
       "isLong": false,
       "showFlowchart": false,
@@ -177996,6 +182566,229 @@
       ]
     },
     {
+      "id": "2094658917766938784",
+      "url": "https://x.com/mjjwiki/status/2094658917766938784",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T05:29:37.000Z",
+      "title": "连续订阅两月返50元奖励",
+      "industry": "",
+      "tech": "星球会员卡、星空卡",
+      "summary": "10 美元套餐连续开通 2 个月可获得 50 元奖励，效果接近第二个月免费订阅。作者认为相比之下直接购买星球会员卡更划算，并称自己此前开通的 10 美元星空卡在做工、手感和界面上都不如星球卡。",
+      "steps": [],
+      "tags": [
+        "会员订阅",
+        "返现奖励",
+        "星球卡",
+        "星空卡"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094654507011731644",
+      "url": "https://x.com/mjjwiki/status/2094654507011731644",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T05:12:05.000Z",
+      "title": "注册护照120元一周收到",
+      "industry": "",
+      "tech": "",
+      "summary": "分享注册护照的费用为120元，约一周左右收到。回复内容提到需要护照才能办理。",
+      "steps": [],
+      "tags": [
+        "护照注册",
+        "收件时效",
+        "费用信息"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094651884128883006",
+      "url": "https://x.com/mjjwiki/status/2094651884128883006",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T05:01:40.000Z",
+      "title": "澄清未在闲鱼出售教程内容",
+      "industry": "",
+      "tech": "",
+      "summary": "针对网友索要闲鱼链接的提问，作者澄清自己没有在闲鱼出售教程中提到的任何东西。其认为这样做会对读者不公平，也会降低他人阅读教程的意愿。",
+      "steps": [],
+      "tags": [
+        "闲鱼",
+        "教程",
+        "公平性",
+        "澄清回复"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094651536844656968",
+      "url": "https://x.com/mjjwiki/status/2094651536844656968",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T05:00:17.000Z",
+      "title": "Wise 多次不同名账户或触发风控",
+      "industry": "跨境支付",
+      "tech": "Wise",
+      "summary": "推文认为，@dtdz0s 提到的方案可以作为备选。第一次操作可能不会触发风控，但多次操作肯定会被风控；Wise 的风控较严格。",
+      "steps": [],
+      "tags": [
+        "Wise",
+        "账户风控",
+        "不同名账户",
+        "备选方案"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094651070576578790",
+      "url": "https://x.com/mjjwiki/status/2094651070576578790",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T04:58:26.000Z",
+      "title": "询问能否限制评论权限",
+      "industry": "",
+      "tech": "Grok",
+      "summary": "询问是否可以将帖子的评论权限设置为仅限关注自己的人评论。",
+      "steps": [],
+      "tags": [
+        "X 平台",
+        "评论权限",
+        "关注者",
+        "Grok",
+        "功能咨询"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094650812412908008",
+      "url": "https://x.com/mjjwiki/status/2094650812412908008",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T04:57:25.000Z",
+      "title": "不建议用 Wise 改外国地址",
+      "industry": "金融科技",
+      "tech": "Wise",
+      "summary": "针对用 Wise 修改外国地址开券商账户的提问，推文明确不建议这样操作。其认为思路本身未必有错，但用于 Wise 这个对象不合适，暗示后续审核存在风险。",
+      "steps": [],
+      "tags": [
+        "Wise",
+        "开户地址",
+        "券商",
+        "二次审核",
+        "风险提示"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094647655918166083",
+      "url": "https://x.com/mjjwiki/status/2094647655918166083",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T04:44:52.000Z",
+      "title": "截图核实后加入白名单",
+      "industry": "",
+      "tech": "白名单",
+      "summary": "要求对方提交截图，核实后会将其加入白名单。",
+      "steps": [],
+      "tags": [
+        "白名单",
+        "截图核实",
+        "互动回复"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094646395781402894",
+      "url": "https://x.com/mjjwiki/status/2094646395781402894",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T04:39:52.000Z",
+      "title": "新加坡账单注册需咨询客服",
+      "industry": "",
+      "tech": "KYC",
+      "summary": "针对已完成 KYC 的账号能否注销后重新走新加坡流程的问题，推文称自己未尝试过。官方尚未说明是否支持注销后重新注册，建议向客服确认。",
+      "steps": [],
+      "tags": [
+        "新加坡账单",
+        "账号注销",
+        "重新注册",
+        "KYC",
+        "客服咨询"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094645209061830718",
+      "url": "https://x.com/mjjwiki/status/2094645209061830718",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T04:35:09.000Z",
+      "title": "邀请注册可白名单开卡",
+      "industry": "金融服务",
+      "tech": "邀请链接、推荐码、白名单、会员开卡",
+      "summary": "使用其邀请链接或推荐码注册的用户，转账升级会员后将截图发送给作者，可被加入白名单并在一天内开卡。作者提到该方式有50元奖励；未通过其邀请或推荐码注册的用户不适用。",
+      "steps": [],
+      "tags": [
+        "开卡",
+        "会员升级",
+        "邀请注册",
+        "白名单",
+        "奖励"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": []
+    },
+    {
+      "id": "2094640988614533280",
+      "url": "https://x.com/mjjwiki/status/2094640988614533280",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T04:18:22.000Z",
+      "title": "询问爆款推文带来的蓝V流量",
+      "industry": "社交媒体",
+      "tech": "X、X Money、ITIN",
+      "summary": "围绕对方单日流量近200万的动态，询问其爆款帖子带来的有效蓝V流量增量，以及距离50万目标还差多少。回复内容提到已收到 X Money，但 ITIN 尚未获批。",
+      "steps": [],
+      "tags": [
+        "X平台",
+        "推文流量",
+        "蓝V",
+        "爆款帖子",
+        "X Money"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
       "id": "2094638666476056730",
       "url": "https://x.com/Saccc_c/status/2094638666476056730",
       "author": "Saccc_c",
@@ -178015,6 +182808,561 @@
       "isLong": false,
       "showFlowchart": false,
       "kind": "工具资源推荐",
+      "resources": []
+    },
+    {
+      "id": "2094637217578975530",
+      "url": "https://x.com/mjjwiki/status/2094637217578975530",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T04:03:23.000Z",
+      "title": "需要时再研究就会明白",
+      "industry": "",
+      "tech": "",
+      "summary": "推文回复称，在需要使用某项事物时再去研究，研究之后自然就会知道。",
+      "steps": [],
+      "tags": [
+        "学习方法",
+        "按需研究",
+        "经验分享"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094636229862228404",
+      "url": "https://x.com/mjjwiki/status/2094636229862228404",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T03:59:28.000Z",
+      "title": "说明私信权限与蓝V限制",
+      "industry": "",
+      "tech": "X 私信",
+      "summary": "回应对方关于私信的提问，称蓝V账号可主动向其发送私信且不会被系统拦截。其本人无法主动私信对方，原因是对方关闭了接收他人私信的设置。",
+      "steps": [],
+      "tags": [
+        "私信功能",
+        "蓝V",
+        "账号权限",
+        "互动回复"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094632849681101097",
+      "url": "https://x.com/mjjwiki/status/2094632849681101097",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T03:46:02.000Z",
+      "title": "星球会员可快速开卡薅权益",
+      "industry": "数字会员服务",
+      "tech": "星球实体卡、ChatGPT Plus",
+      "summary": "推文回复星球会员升级用途，称可免排队快速开卡，并支持实体卡尾号靓号定制。其列举的权益包括参与各类优惠活动，以及0元试用一个月 ChatGPT Plus 会员。",
+      "steps": [],
+      "tags": [
+        "星球会员",
+        "实体卡",
+        "靓号定制",
+        "羊毛权益",
+        "ChatGPT Plus"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": []
+    },
+    {
+      "id": "2094631098915643429",
+      "url": "https://x.com/mjjwiki/status/2094631098915643429",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T03:39:05.000Z",
+      "title": "提醒谨慎使用闲鱼代入金",
+      "industry": "跨境金融",
+      "tech": "Wise、港卡、StarryBlu、闲鱼",
+      "summary": "推文指出，Wise 接收他人转账的风控较严格。作者此前建议用港卡和 Wise 入金，但不敢推荐通过闲鱼进行 Wise 代入金，以免导致账户出现问题；即使该方式可能可行，也不愿承担相关风险。",
+      "steps": [],
+      "tags": [
+        "Wise",
+        "入金",
+        "风控",
+        "港卡",
+        "闲鱼"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094626921346932764",
+      "url": "https://x.com/mjjwiki/status/2094626921346932764",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T03:22:28.000Z",
+      "title": "新增入金途径可返50元",
+      "industry": "",
+      "tech": "",
+      "summary": "推文提示可查看最新帖子或最新评论，了解新增的入金途径。该途径不需要港卡，并提供50元返奖。",
+      "steps": [],
+      "tags": [
+        "入金途径",
+        "返现奖励",
+        "最新评论"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094626715960225885",
+      "url": "https://x.com/mjjwiki/status/2094626715960225885",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T03:21:40.000Z",
+      "title": "回应教程发布时机",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复称，当时并不知道如何解决，第二天研究后才弄清方法。由于当时帖子反馈显示大家没兴趣，因此没有发布；一周后大家又开始对此感兴趣。",
+      "steps": [],
+      "tags": [
+        "互动回复",
+        "教程话题",
+        "用户兴趣",
+        "发帖时机"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094624773938782284",
+      "url": "https://x.com/mjjwiki/status/2094624773938782284",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T03:13:57.000Z",
+      "title": "错过时机后不再发教程",
+      "industry": "",
+      "tech": "闲鱼",
+      "summary": "推文回复称，不知道相关信息可以去闲鱼购买。作者表示，如果当初有人查看帖子或评论，自己就会发布教程；但现在已过去一周，认为再发教程已没有意义。",
+      "steps": [],
+      "tags": [
+        "闲鱼",
+        "教程",
+        "时效性",
+        "评论互动"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094624393674846646",
+      "url": "https://x.com/mjjwiki/status/2094624393674846646",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T03:12:26.000Z",
+      "title": "美区资源建议办理美国 ITIN",
+      "industry": "跨境电商",
+      "tech": "美国税号ITIN",
+      "summary": "推文回复美区资源获取问题，称美国地址不是难点，最难的是通过美区风控。建议办理美国税号 ITIN，认为使用美国资源会安全很多。作者同时吐槽有读者看完教程后提问却不关注的行为。",
+      "steps": [],
+      "tags": [
+        "美区资源",
+        "美国ITIN",
+        "风控",
+        "账号安全",
+        "互动吐槽"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094620167645114615",
+      "url": "https://x.com/mjjwiki/status/2094620167645114615",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T02:55:38.000Z",
+      "title": "提醒补发 Starryblu 账户余额截图",
+      "industry": "",
+      "tech": "Starryblu",
+      "summary": "回复对方称尚未收到 Starryblu 账户金额截图，并提醒补发。",
+      "steps": [],
+      "tags": [
+        "账户余额",
+        "截图",
+        "互动回复"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094619124156797094",
+      "url": "https://x.com/mjjwiki/status/2094619124156797094",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T02:51:29.000Z",
+      "title": "开卡需先充值升级会员",
+      "industry": "金融服务",
+      "tech": "Wise、港卡",
+      "summary": "开卡需要先升级会员，而升级会员需进入白名单并先转账充值相应费用。没有港卡或 Wise 转账的用户，可查看最新帖子中的处理方法。",
+      "steps": [],
+      "tags": [
+        "会员升级",
+        "开卡",
+        "白名单",
+        "转账充值",
+        "Wise"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": []
+    },
+    {
+      "id": "2094618521489777147",
+      "url": "https://x.com/mjjwiki/status/2094618521489777147",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T02:49:06.000Z",
+      "title": "收到卡后教零元试用 ChatGPT Plus",
+      "industry": "人工智能",
+      "tech": "ChatGPT Plus",
+      "summary": "推文祝贺对方并称，耐心等待收到卡后，会统一教大家如何零元试用 ChatGPT Plus 一个月。作者还询问对方是否愿意展示其定制的尾号靓号。回复内容提到，对方已通过这条路径成功。",
+      "steps": [],
+      "tags": [
+        "ChatGPT Plus",
+        "零元试用",
+        "银行卡",
+        "定制尾号",
+        "互动回复"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094615059779711448",
+      "url": "https://x.com/mjjwiki/status/2094615059779711448",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T02:35:20.000Z",
+      "title": "邀请注册可返50元奖励",
+      "industry": "",
+      "tech": "",
+      "summary": "非蓝V的新号或小号可能会被系统拦截，作者称会通过私信沟通。使用其邀请链接或推荐码注册的用户，可获得50元奖励。",
+      "steps": [],
+      "tags": [
+        "邀请注册",
+        "推荐码",
+        "返现奖励",
+        "私信沟通"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094611047479165419",
+      "url": "https://x.com/mjjwiki/status/2094611047479165419",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T02:19:24.000Z",
+      "title": "SheerID 线下审核近期变严",
+      "industry": "",
+      "tech": "SheerID",
+      "summary": "推文称一周前的审核条件宽松很多，当天即可通过。结合回复上下文，线下审核目前变严且耗时更长。",
+      "steps": [],
+      "tags": [
+        "SheerID",
+        "审核",
+        "闲鱼",
+        "线下验证",
+        "时效"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094606461133615467",
+      "url": "https://x.com/mjjwiki/status/2094606461133615467",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T02:01:10.000Z",
+      "title": "转账升级后截图加入白名单",
+      "industry": "",
+      "tech": "",
+      "summary": "升级会员需先转账，再将转账截图发出，确认后才能被加入白名单。",
+      "steps": [],
+      "tags": [
+        "会员升级",
+        "转账",
+        "白名单",
+        "截图验证"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094604733554331763",
+      "url": "https://x.com/mjjwiki/status/2094604733554331763",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T01:54:19.000Z",
+      "title": "调侃对方需要 AI 破甲",
+      "industry": "人工智能",
+      "tech": "AI",
+      "summary": "推文回复两名用户，调侃对方“需要 AI 破甲”。同时指出对方连一个关注都不愿意给。",
+      "steps": [],
+      "tags": [
+        "AI",
+        "互动调侃",
+        "社交媒体",
+        "关注"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094596726216904992",
+      "url": "https://x.com/mjjwiki/status/2094596726216904992",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T01:22:29.000Z",
+      "title": "将测试夸克浏览器去水印效果",
+      "industry": "",
+      "tech": "夸克浏览器",
+      "summary": "针对网友提出“夸克浏览器可以带去水印”的反馈，将在当天抽空测试实际效果。",
+      "steps": [],
+      "tags": [
+        "夸克浏览器",
+        "去水印",
+        "功能测试",
+        "用户反馈"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094596311798735157",
+      "url": "https://x.com/mjjwiki/status/2094596311798735157",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T01:20:51.000Z",
+      "title": "AI 去水印难度提升",
+      "industry": "人工智能",
+      "tech": "Grok、去水印",
+      "summary": "推文称，当前 AI 的道德限制较此前更高，去水印“破甲”难度加大。此前已完成相关操作的账号仍可正常使用，未操作过的用户现在较难实现；这也是教程两次延期发布的原因。后续将补充更好的去水印方法。",
+      "steps": [],
+      "tags": [
+        "AI道德限制",
+        "去水印",
+        "Grok",
+        "教程更新",
+        "内容生成"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": []
+    },
+    {
+      "id": "2094595453983891519",
+      "url": "https://x.com/mjjwiki/status/2094595453983891519",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T01:17:26.000Z",
+      "title": "升级会员需白名单核实",
+      "industry": "",
+      "tech": "白名单、会员升级、银行卡申请",
+      "summary": "升级会员需先加入白名单：转账后将截图发来核实，确认后才能被拉入白名单完成升级。升级会员后可实现一天通过银行卡申请。该回复针对用户点击购买银行卡后显示“排队中”、无法购买的问题。",
+      "steps": [],
+      "tags": [
+        "会员升级",
+        "白名单",
+        "银行卡",
+        "排队",
+        "核实"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094595055453708325",
+      "url": "https://x.com/mjjwiki/status/2094595055453708325",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T01:15:51.000Z",
+      "title": "退订会员后卡仍可正常使用",
+      "industry": "",
+      "tech": "星球会员、星空会员",
+      "summary": "退订会员后，已制卡仍可继续正常使用。购买19.9美元星球会员1个月，或连续购买9.9美元星空会员2个月，均可加作者微信返50元。",
+      "steps": [],
+      "tags": [
+        "会员退订",
+        "卡片使用",
+        "返现活动",
+        "V返50元"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094594177439039956",
+      "url": "https://x.com/mjjwiki/status/2094594177439039956",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-09-01T01:12:22.000Z",
+      "title": "国内多类账单可作地址证明",
+      "industry": "",
+      "tech": "",
+      "summary": "国内银行信用卡账单、电费账单和水费账单都可以用作地址证明。",
+      "steps": [],
+      "tags": [
+        "地址证明",
+        "国内银行",
+        "信用卡账单",
+        "水电费账单"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": []
+    },
+    {
+      "id": "2094482819976442138",
+      "url": "https://x.com/mjjwiki/status/2094482819976442138",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T17:49:52.000Z",
+      "title": "回应粉丝称将继续服务",
+      "industry": "",
+      "tech": "",
+      "summary": "博主回复粉丝致谢，称自己就是为粉丝朋友服务。粉丝表示会在明天尝试。",
+      "steps": [],
+      "tags": [
+        "粉丝互动",
+        "回复致谢",
+        "日常交流"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094480178227589401",
+      "url": "https://x.com/mjjwiki/status/2094480178227589401",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T17:39:22.000Z",
+      "title": "互动粉丝避免被误判机器人",
+      "industry": "",
+      "tech": "X、Grok",
+      "summary": "推文称正在与粉丝朋友互动，以避免系统误判账号为机器人。作者提到近期流量较大，粉丝增长速度较快。",
+      "steps": [],
+      "tags": [
+        "粉丝互动",
+        "账号运营",
+        "机器人误判",
+        "流量增长"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094479577510989895",
+      "url": "https://x.com/mjjwiki/status/2094479577510989895",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T17:36:59.000Z",
+      "title": "干货博主前期流量低迷",
+      "industry": "",
+      "tech": "",
+      "summary": "作者称自己去年 6 月就开始做相关内容，并分享干货博主前期起量困难的经历。其前半个月发布的帖子总浏览量不足 1 万，单条通常只有几十次浏览。",
+      "steps": [],
+      "tags": [
+        "内容创作",
+        "干货博主",
+        "流量增长",
+        "创作经验"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094479005995192483",
+      "url": "https://x.com/mjjwiki/status/2094479005995192483",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T17:34:43.000Z",
+      "title": "两次质疑后 Grok 仍作相同解释",
+      "industry": "人工智能",
+      "tech": "Grok",
+      "summary": "发帖者称，自己已两次发帖质疑相关对象，但 Grok 给出的解释仍是同样的说法。推文未说明具体质疑内容及 Grok 的解释细节。",
+      "steps": [],
+      "tags": [
+        "Grok",
+        "质疑回应",
+        "X平台",
+        "AI解释"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094477067303997729",
+      "url": "https://x.com/mjjwiki/status/2094477067303997729",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T17:27:01.000Z",
+      "title": "Wise与Starryblu同名转账",
+      "industry": "跨境金融",
+      "tech": "Wise、Starryblu、OCBC银行账户",
+      "summary": "Wise 新加坡账户可以向 Starryblu 转账。Starryblu 也有同名的 OCBC 银行账户，因此按道理可向 Wise 转账且不会被拒绝，但作者本人尚未实际测试反向转账。",
+      "steps": [],
+      "tags": [
+        "Wise",
+        "Starryblu",
+        "新加坡账户",
+        "同名转账",
+        "账户激活"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
       "resources": []
     },
     {
@@ -178045,6 +183393,201 @@
       ]
     },
     {
+      "id": "2094474863419539472",
+      "url": "https://x.com/mjjwiki/status/2094474863419539472",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T17:18:15.000Z",
+      "title": "靠玩梗段子诱导评论",
+      "industry": "",
+      "tech": "Grok、X、XCreators",
+      "summary": "推文称，对方几乎都在发布段子、玩梗，以此诱导用户评论互动。",
+      "steps": [],
+      "tags": [
+        "玩梗",
+        "段子",
+        "评论互动"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094474633722618289",
+      "url": "https://x.com/mjjwiki/status/2094474633722618289",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T17:17:20.000Z",
+      "title": "承诺持续发布教程",
+      "industry": "",
+      "tech": "",
+      "summary": "回复网友致谢时表示不用客气，并称这类教程还会持续输出。",
+      "steps": [],
+      "tags": [
+        "教程更新",
+        "互动回复",
+        "持续输出"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094474493670670466",
+      "url": "https://x.com/mjjwiki/status/2094474493670670466",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T17:16:47.000Z",
+      "title": "海外注册常需地址信息",
+      "industry": "跨境金融",
+      "tech": "海外注册、券商、银行、U卡",
+      "summary": "推文回应地址用途问题，指出许多海外注册场景都需要地址信息。常见场景包括券商、银行和 U 卡注册。",
+      "steps": [],
+      "tags": [
+        "海外注册",
+        "地址信息",
+        "券商",
+        "银行",
+        "U卡"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094473686350966944",
+      "url": "https://x.com/mjjwiki/status/2094473686350966944",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T17:13:34.000Z",
+      "title": "确认对方借图卖广告并拉黑",
+      "industry": "",
+      "tech": "",
+      "summary": "回复指出对方售卖的图片带有未去除的水印，价格为 3U 一份。作者确认对方是在打广告，并表示已拉黑。",
+      "steps": [],
+      "tags": [
+        "广告识别",
+        "图片水印",
+        "拉黑处理"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094472527368315321",
+      "url": "https://x.com/mjjwiki/status/2094472527368315321",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T17:08:58.000Z",
+      "title": "或将提供便捷充值入金方案",
+      "industry": "金融服务",
+      "tech": "",
+      "summary": "推文回应用户“没有港卡不知道怎么入金”的问题，称正在等待官方工作人员回复。作者预计明天可能提供一种更方便的充值入金方案。",
+      "steps": [],
+      "tags": [
+        "充值入金",
+        "支付方案",
+        "官方回复",
+        "港卡"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094472101432635762",
+      "url": "https://x.com/mjjwiki/status/2094472101432635762",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T17:07:17.000Z",
+      "title": "对知识付费现象感到心寒",
+      "industry": "",
+      "tech": "",
+      "summary": "推文称已认真考虑过相关问题，且多次见到类似情况，因此感到心寒。回复上下文提及“知识付费，合情合理”，作者未进一步说明具体事件或结论。",
+      "steps": [],
+      "tags": [
+        "知识付费",
+        "观点表达",
+        "失望",
+        "互动回复"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094471249028374835",
+      "url": "https://x.com/mjjwiki/status/2094471249028374835",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T17:03:53.000Z",
+      "title": "回应 AI 去水印效果质疑",
+      "industry": "人工智能",
+      "tech": "AI 去水印",
+      "summary": "推文回应 AI 去水印会对遮挡文字胡编的问题，认为这是使用方式不对，自己使用时效果正常。其称评论区至少已有三人学会相关方法，并已开业提供服务。",
+      "steps": [],
+      "tags": [
+        "AI去水印",
+        "水印处理",
+        "使用技巧",
+        "开业变现"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094470628250398817",
+      "url": "https://x.com/mjjwiki/status/2094470628250398817",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T17:01:25.000Z",
+      "title": "不写 ChatGPT 日抛教程",
+      "industry": "人工智能",
+      "tech": "ChatGPT",
+      "summary": "作者回复称自己不知道相关情况，并表示不写 ChatGPT 的“日抛教程”。",
+      "steps": [],
+      "tags": [
+        "ChatGPT",
+        "教程内容",
+        "日常回复"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094468360100884635",
+      "url": "https://x.com/mjjwiki/status/2094468360100884635",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T16:52:25.000Z",
+      "title": "拒绝透露未写教程的方法",
+      "industry": "",
+      "tech": "SheerID",
+      "summary": "针对“sheerid怎么过”的提问，作者表示自己没有透露尚未写成教程的方法的习惯。",
+      "steps": [],
+      "tags": [
+        "SheerID",
+        "教程",
+        "方法分享",
+        "回复互动"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
       "id": "2094455764672995328",
       "url": "https://x.com/aiwarts/status/2094455764672995328",
       "author": "aiwarts",
@@ -178066,6 +183609,737 @@
       "showFlowchart": false,
       "kind": "技术分享",
       "resources": []
+    },
+    {
+      "id": "2094455665775518114",
+      "url": "https://x.com/mjjwiki/status/2094455665775518114",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T16:01:58.000Z",
+      "title": "港券地址曾卖30至50元",
+      "industry": "",
+      "tech": "",
+      "summary": "回应他人去年花300元在咸鱼购买开港券地址，称对方买贵了。该地址当时通常售价为每份30元至50元。",
+      "steps": [],
+      "tags": [
+        "港券",
+        "价格",
+        "咸鱼",
+        "地址"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094454559540425012",
+      "url": "https://x.com/mjjwiki/status/2094454559540425012",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T15:57:34.000Z",
+      "title": "Starryblu 卡延迟分享提醒",
+      "industry": "跨境金融",
+      "tech": "Starryblu实体卡、OCBC同名账户",
+      "summary": "推文称延迟分享，建议耐心等待。尚未持有 Starryblu 实体卡的用户可先开卡；引用内容提到该卡自带 OCBC 同名账户，并支持订阅海外 AI 会员。",
+      "steps": [],
+      "tags": [
+        "Starryblu",
+        "实体卡",
+        "新加坡银行卡",
+        "OCBC账户",
+        "延迟分享"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://x.com/i/article/2092971897709645825",
+          "name": "Starryblu 远程开通新加坡银行卡文章",
+          "note": "介绍 Starryblu 及其 OCBC 同名账户和海外 AI 会员订阅支持。"
+        }
+      ]
+    },
+    {
+      "id": "2094451236892450910",
+      "url": "https://x.com/mjjwiki/status/2094451236892450910",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T15:44:22.000Z",
+      "title": "升级星球会员可获加V奖励",
+      "industry": "",
+      "tech": "19.9星球会员",
+      "summary": "建议升级 19.9 星球会员，且只需开通一个月。原文称，此举是为了加 V 并获得 50 元奖励。",
+      "steps": [],
+      "tags": [
+        "星球会员",
+        "加V奖励",
+        "会员升级",
+        "互动回复"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094450241349308900",
+      "url": "https://x.com/mjjwiki/status/2094450241349308900",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T15:40:25.000Z",
+      "title": "免费教程或将转向付费分享",
+      "industry": "互联网",
+      "tech": "",
+      "summary": "推文提到，有人看完教程并用于赚钱，却没有给予关注互动。作者因此反思免费分享扶持政策是否存在问题，并考虑采纳他人建议转向付费分享。",
+      "steps": [],
+      "tags": [
+        "免费分享",
+        "付费内容",
+        "教程变现",
+        "关注互动"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094447834343030862",
+      "url": "https://x.com/mjjwiki/status/2094447834343030862",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T15:30:51.000Z",
+      "title": "海外地址证明教程将补充去水印方法",
+      "industry": "",
+      "tech": "ChatGPT Team",
+      "summary": "推文称，海外地址证明教程的浏览量低于此前“打五折半价 ChatGPT Team 优惠码”教程，未达预期。作者认为可能是教程还不够完善，计划尽快补充更好的去水印方法。",
+      "steps": [],
+      "tags": [
+        "浏览量",
+        "海外地址证明",
+        "去水印",
+        "教程优化",
+        "ChatGPT Team"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://x.com/mjjwiki/status/2092490133958504945",
+          "name": "@mjjwiki 的推文",
+          "note": "原文提及的海外地址证明教程相关推文。"
+        }
+      ]
+    },
+    {
+      "id": "2094445636775182769",
+      "url": "https://x.com/mjjwiki/status/2094445636775182769",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T15:22:07.000Z",
+      "title": "中转站不自开通的三点猜测",
+      "industry": "",
+      "tech": "中转站、5X Team",
+      "summary": "推文回复了“为何他们不自己开通”的疑问，并提出三点猜测：中转站做的是确定性生意，不愿承担冒险；可能缺少足够的卡或受其他未知限制；遇到 5X Team 突发情况或中转站用量激增时，可能来不及处理。",
+      "steps": [],
+      "tags": [
+        "中转站",
+        "运营风险",
+        "确定性生意",
+        "卡资源",
+        "用量波动"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094443935494275185",
+      "url": "https://x.com/mjjwiki/status/2094443935494275185",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T15:15:21.000Z",
+      "title": "验证转账后升级会员加白名单",
+      "industry": "",
+      "tech": "",
+      "summary": "需先验证用于升级会员的转账款项，随后才会将用户加入白名单。该回复针对用户 valleylmh 提供的 ID。",
+      "steps": [],
+      "tags": [
+        "会员升级",
+        "转账验证",
+        "白名单",
+        "社区互动"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094443664248553611",
+      "url": "https://x.com/mjjwiki/status/2094443664248553611",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T15:14:17.000Z",
+      "title": "推荐香港中银、汇丰与众安卡",
+      "industry": "跨境金融",
+      "tech": "香港中银、香港汇丰、香港众安",
+      "summary": "回复网友关于港卡使用选择的提问，列出自己持有的三张香港银行卡：香港中银、香港汇丰和香港众安，供对方参考。",
+      "steps": [],
+      "tags": [
+        "港卡",
+        "香港银行",
+        "中银香港",
+        "汇丰银行",
+        "众安银行"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094438195228488156",
+      "url": "https://x.com/mjjwiki/status/2094438195228488156",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T14:52:33.000Z",
+      "title": "新加坡盈透可用生成香港地址",
+      "industry": "金融投资",
+      "tech": "新加坡盈透、香港地址",
+      "summary": "回复称，新加坡盈透可以使用生成的香港地址。原文未说明地址证明的具体审核条件或操作方式。",
+      "steps": [],
+      "tags": [
+        "盈透证券",
+        "新加坡盈透",
+        "地址证明",
+        "香港地址"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094435754609135907",
+      "url": "https://x.com/mjjwiki/status/2094435754609135907",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T14:42:51.000Z",
+      "title": "转账核实后可进会员白名单",
+      "industry": "",
+      "tech": "",
+      "summary": "需将升级会员的款项转入指定渠道并发送截图，核实后可加入白名单。加入白名单后可在一天内通过银行卡审核。",
+      "steps": [],
+      "tags": [
+        "会员升级",
+        "转账核实",
+        "白名单",
+        "审核排队"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094432354521735393",
+      "url": "https://x.com/mjjwiki/status/2094432354521735393",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T14:29:20.000Z",
+      "title": "微信无敏感信息仍遭封号",
+      "industry": "",
+      "tech": "微信、WeChat",
+      "summary": "推文称，在未发送任何敏感信息的情况下，微信/WeChat 账号仍被封禁。虽然平台提供了解封，但作者对此体验表示强烈不满。",
+      "steps": [],
+      "tags": [
+        "微信封号",
+        "账号申诉",
+        "使用吐槽"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://t.co/GnECUGH9zD",
+          "name": "原文附带的链接",
+          "note": "推文附带链接，未提供可识别的具体内容。"
+        }
+      ]
+    },
+    {
+      "id": "2094421802915123545",
+      "url": "https://x.com/mjjwiki/status/2094421802915123545",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T13:47:24.000Z",
+      "title": "称马斯克因封号买下 X",
+      "industry": "社交媒体",
+      "tech": "X、Grok",
+      "summary": "推文称，X 似乎是马斯克在被封号后买下来的，并以“有钱任性”调侃此事。",
+      "steps": [],
+      "tags": [
+        "马斯克",
+        "X平台",
+        "封号",
+        "收购",
+        "随口评论"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094421421116289324",
+      "url": "https://x.com/mjjwiki/status/2094421421116289324",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T13:45:53.000Z",
+      "title": "闲鱼可作为进货渠道",
+      "industry": "跨境电商",
+      "tech": "闲鱼",
+      "summary": "回复中提到，闲鱼同样有办法操作，并称自己喜欢发布与闲鱼进货渠道相关的内容。",
+      "steps": [],
+      "tags": [
+        "闲鱼",
+        "进货渠道",
+        "货源",
+        "电商"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094420902242902061",
+      "url": "https://x.com/mjjwiki/status/2094420902242902061",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T13:43:50.000Z",
+      "title": "平台封号申诉快且误封少",
+      "industry": "内容创作",
+      "tech": "平台算法、广告收益",
+      "summary": "推文认为大众可能低估了平台算法，也冤枉了平台。其观点是，被封号者很少属于误封，否则可以通过申诉快速恢复账号。",
+      "steps": [],
+      "tags": [
+        "平台算法",
+        "封号申诉",
+        "内容创作者",
+        "广告收益",
+        "账号安全"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://t.co/KPiLUOHYrM",
+          "name": "原文附带的链接",
+          "note": "回复内容中附带的链接。"
+        }
+      ]
+    },
+    {
+      "id": "2094419940698907015",
+      "url": "https://x.com/mjjwiki/status/2094419940698907015",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T13:40:00.000Z",
+      "title": "吐槽同一问题已发三帖",
+      "industry": "",
+      "tech": "Grok",
+      "summary": "本月已针对该问题发帖吐槽三次。回复中的上下文称，该问题存在已久且体验很差。",
+      "steps": [],
+      "tags": [
+        "问题吐槽",
+        "Grok",
+        "多次反馈",
+        "互动回复"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094418731741114439",
+      "url": "https://x.com/mjjwiki/status/2094418731741114439",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T13:35:12.000Z",
+      "title": "按教程操作可去水印",
+      "industry": "",
+      "tech": "去水印",
+      "summary": "回复用户求带时，建议直接照着现有教程操作即可。后续会补充更好的去水印方法。",
+      "steps": [],
+      "tags": [
+        "去水印",
+        "教程",
+        "操作指引"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094418058257543473",
+      "url": "https://x.com/mjjwiki/status/2094418058257543473",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T13:32:32.000Z",
+      "title": "节点网络质量导致异常",
+      "industry": "网络服务",
+      "tech": "节点网络",
+      "summary": "针对对方反馈的偶发问题，指出原因是节点网络质量存在问题。",
+      "steps": [],
+      "tags": [
+        "节点",
+        "网络质量",
+        "故障排查"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": [
+        {
+          "url": "https://t.co/Z4ewqR8N2S",
+          "name": "@herbert_ru22123 的推文链接",
+          "note": "回复中用于展示其遇到的问题。"
+        }
+      ]
+    },
+    {
+      "id": "2094417820524368125",
+      "url": "https://x.com/mjjwiki/status/2094417820524368125",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T13:31:35.000Z",
+      "title": "X平台小号消息提醒常缺失",
+      "industry": "社交媒体",
+      "tech": "X平台、Grok",
+      "summary": "推文吐槽 X 平台对非蓝V新号或小号的评论、私信经常不发送提醒，即使账户未设置屏蔽或拦截也会出现。作者担心对方因此误以为自己不理人，只能经常到帖子底部的垃圾信息中查找遗漏消息。",
+      "steps": [],
+      "tags": [
+        "X平台",
+        "消息提醒",
+        "非蓝V",
+        "小号评论",
+        "私信通知"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094415916545262009",
+      "url": "https://x.com/mjjwiki/status/2094415916545262009",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T13:24:01.000Z",
+      "title": "此前已分享 ChatGPT 学生优惠",
+      "industry": "人工智能",
+      "tech": "ChatGPT",
+      "summary": "作者称已于 8 月 25 日分享过 ChatGPT 学生优惠信息，距本条发布约 6 天。由于此前帖子浏览和互动较少，仅有一条评论，作者原本认为大家不感兴趣，因此不打算继续写详细教程。",
+      "steps": [],
+      "tags": [
+        "ChatGPT",
+        "学生优惠",
+        "优惠信息",
+        "推文互动"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://t.co/kMdwRhjNbE",
+          "name": "原文附带的链接",
+          "note": "与作者此前分享的 ChatGPT 学生优惠信息相关。"
+        },
+        {
+          "url": "https://t.co/sZyaJLTAIN",
+          "name": "原文附带的链接",
+          "note": "原文附带的链接。"
+        },
+        {
+          "url": "https://t.co/Ezy5kTFRX1",
+          "name": "@alleywu270684 的推文",
+          "note": "引用内容提及曾分享过 plus 零元购，并询问是否为作者下一期计划分享的内容。"
+        }
+      ]
+    },
+    {
+      "id": "2094415711842230287",
+      "url": "https://x.com/mjjwiki/status/2094415711842230287",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T13:23:12.000Z",
+      "title": "ChatGPT 学生优惠教程暂未发布",
+      "industry": "人工智能",
+      "tech": "ChatGPT Plus、SheerID",
+      "summary": "作者回复称，自己已于 8 月 25 日分享过 ChatGPT 学生优惠信息，但因互动较少，暂时不打算撰写详细教程。引用内容显示，符合条件的美区学生可通过 SheerID 验证，免费领取 4 个月 ChatGPT Plus，领取截止时间为 2026 年 10 月 31 日。",
+      "steps": [],
+      "tags": [
+        "ChatGPT",
+        "学生优惠",
+        "Plus会员",
+        "美区学生",
+        "SheerID"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://t.co/1b6DLnPOin",
+          "name": "作者此前分享的 ChatGPT 学生优惠推文",
+          "note": "作者称该帖发布于 8 月 25 日，介绍了 ChatGPT 学生优惠信息。"
+        },
+        {
+          "url": "https://t.co/0wouxOnlFs",
+          "name": "ChatGPT 学生优惠领取地址",
+          "note": "引用内容称，符合条件的美区学生可通过 SheerID 提交信息验证并领取优惠。"
+        }
+      ]
+    },
+    {
+      "id": "2094413154684125418",
+      "url": "https://x.com/mjjwiki/status/2094413154684125418",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T13:13:03.000Z",
+      "title": "只写有市场需求的内容",
+      "industry": "",
+      "tech": "",
+      "summary": "推文认为内容创作应围绕市场需求，否则很难获得流量和粉丝增长。回复中的观点是需求决定市场。",
+      "steps": [],
+      "tags": [
+        "内容创作",
+        "市场需求",
+        "流量增长",
+        "涨粉"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094412757861081247",
+      "url": "https://x.com/mjjwiki/status/2094412757861081247",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T13:11:28.000Z",
+      "title": "推荐码仅注册时可填",
+      "industry": "",
+      "tech": "推荐码、会员升级",
+      "summary": "推荐码只能在注册时填写，注册完成后再填写会显示无效。通过该账号注册的用户，升级会员可获得50元奖励；通过其他博主推荐注册则无法获得该奖励。",
+      "steps": [],
+      "tags": [
+        "推荐码",
+        "注册",
+        "会员升级",
+        "返现奖励"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094410632942796897",
+      "url": "https://x.com/mjjwiki/status/2094410632942796897",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T13:03:01.000Z",
+      "title": "闲鱼或屏蔽相关交易关键词",
+      "industry": "二手交易",
+      "tech": "闲鱼",
+      "summary": "针对闲鱼渠道售卖困难的问题，推文称此前存在相关渠道，但闲鱼可能已屏蔽相关关键词，导致内容无法发布和搜索。",
+      "steps": [],
+      "tags": [
+        "闲鱼",
+        "关键词屏蔽",
+        "渠道售卖",
+        "账号封禁"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094400666777301265",
+      "url": "https://x.com/mjjwiki/status/2094400666777301265",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T12:23:25.000Z",
+      "title": "排查 VPN 节点三网直连",
+      "industry": "网络服务",
+      "tech": "VPN、三网直连",
+      "summary": "建议测试 VPN 节点的去程和回程线路。若两者均为三网直连，使用应不会有问题；其自身节点为三网直连。",
+      "steps": [],
+      "tags": [
+        "VPN节点",
+        "网络排查",
+        "去程回程",
+        "三网直连"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": [
+        {
+          "url": "https://t.co/escmAwIxhP",
+          "name": "原文附带的链接",
+          "note": "回复中附带的链接，原文未说明具体内容。"
+        }
+      ]
+    },
+    {
+      "id": "2094399427951898668",
+      "url": "https://x.com/mjjwiki/status/2094399427951898668",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T12:18:30.000Z",
+      "title": "互动致谢并呼吁点赞",
+      "industry": "",
+      "tech": "",
+      "summary": "感谢对方互动，并希望对方再点赞。提到已完成“一键四连”。",
+      "steps": [],
+      "tags": [
+        "互动致谢",
+        "点赞",
+        "一键四连"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094398260857475270",
+      "url": "https://x.com/mjjwiki/status/2094398260857475270",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T12:13:52.000Z",
+      "title": "调侃邪修涨粉方法不安全",
+      "industry": "",
+      "tech": "",
+      "summary": "调侃所谓“邪修方法”可能导致账号被处理，认为这种方式不安全。提倡通过自然方式增长粉丝。",
+      "steps": [],
+      "tags": [
+        "涨粉",
+        "账号运营",
+        "调侃",
+        "自然增长"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094389592728481991",
+      "url": "https://x.com/mjjwiki/status/2094389592728481991",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T11:39:25.000Z",
+      "title": "核实截图后加入白名单",
+      "industry": "",
+      "tech": "",
+      "summary": "要求对方提供截图以供核实，核实后将其加入白名单。审核预计在一天内通过。",
+      "steps": [],
+      "tags": [
+        "白名单",
+        "截图核实",
+        "审核",
+        "互动回复"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094389129232666943",
+      "url": "https://x.com/mjjwiki/status/2094389129232666943",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T11:37:34.000Z",
+      "title": "纯技术原创同样能从零起步",
+      "industry": "技术内容创作",
+      "tech": "",
+      "summary": "作者回应称，自己走的是纯技术博主的原创路线，同样属于从 0 到 1 的过程。",
+      "steps": [],
+      "tags": [
+        "技术博主",
+        "原创内容",
+        "从零到一"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2094387252357165524",
+      "url": "https://x.com/mjjwiki/status/2094387252357165524",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T11:30:07.000Z",
+      "title": "确认会员转账后加入白名单",
+      "industry": "",
+      "tech": "",
+      "summary": "需先确认已转账升级会员费用，确认后才会被拉入白名单。作者已通过私信回复对方。",
+      "steps": [],
+      "tags": [
+        "会员升级",
+        "白名单",
+        "私信回复"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2094386893165298171",
+      "url": "https://x.com/mjjwiki/status/2094386893165298171",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-08-31T11:28:41.000Z",
+      "title": "感叹账号爆火难度大",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复称对方比自己乐观，自己当初也曾以为需要花上几辈子。对于“再给一年也难达到这个曝光量”的说法，作者感叹账号想要爆火并不容易。",
+      "steps": [],
+      "tags": [
+        "曝光量",
+        "账号增长",
+        "爆火",
+        "互动回复"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://t.co/g8OKqP4snO",
+          "name": "@0xEthan666 的推文",
+          "note": "回复中提及曝光量和账号爆火难度的原帖链接。"
+        }
+      ]
     },
     {
       "id": "2094370413312983061",
