@@ -105,8 +105,6 @@ func main() {
 	mux.HandleFunc("/api/v1/watchlist/accounts/bulk", s.handleAccountsBulk)
 	mux.HandleFunc("/api/v1/watchlist/accounts/", s.handleAccount)
 	mux.HandleFunc("/api/v1/tags", s.handleTags)
-	mux.HandleFunc("/api/v1/user-tags", s.handleUserTags)
-	mux.HandleFunc("/api/v1/user-tags/", s.handleUserTagSub)
 	mux.HandleFunc("/api/v1/categories", s.handleCategories)
 	mux.HandleFunc("/api/v1/categories/", s.handleCategory)
 	mux.HandleFunc("/api/v1/categories/assignments", s.handleCategoryAssignments)

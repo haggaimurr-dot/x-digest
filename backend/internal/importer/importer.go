@@ -25,7 +25,6 @@ type Counts struct {
 	Authors       int `json:"authors"`
 	Groups        int `json:"groups"`
 	AuthorTags    int `json:"author_tags"`
-	Vocabulary    int `json:"vocabulary"`
 	AvatarsSeen   int `json:"avatars_seen"`
 	Categories    int `json:"categories"`
 	PostsWithStep int `json:"posts_with_steps"`
@@ -132,7 +131,7 @@ func readJSON(path string, v any) error {
 }
 
 // Import performs the full legacy import. dataDir is the old site root
-// (containing data/posts.json, config/watchlist.json, config/user-tags.json,
+// (containing data/posts.json, config/watchlist.json,
 // data/avatars.json).
 func Import(db *sql.DB, dataDir string) (Counts, error) {
 	var c Counts
@@ -143,12 +142,6 @@ func Import(db *sql.DB, dataDir string) (Counts, error) {
 	var wl legacyWatchlist
 	if err := readJSON(filepath.Join(dataDir, "config", "watchlist.json"), &wl); err != nil {
 		return c, fmt.Errorf("watchlist.json: %w", err)
-	}
-	var userTags struct {
-		Tags []string `json:"tags"`
-	}
-	if err := readJSON(filepath.Join(dataDir, "config", "user-tags.json"), &userTags); err != nil {
-		return c, fmt.Errorf("user-tags.json: %w", err)
 	}
 	var avatars struct {
 		Avatars map[string]struct {
@@ -212,12 +205,6 @@ func Import(db *sql.DB, dataDir string) (Counts, error) {
 			}
 			c.AuthorTags++
 		}
-	}
-	for _, t := range userTags.Tags {
-		if _, err := tx.Exec("INSERT IGNORE INTO user_tag_vocabulary(tag) VALUES(?)", t); err != nil {
-			return c, err
-		}
-		c.Vocabulary++
 	}
 	// Fallback authors from avatars.json (only if not already present).
 	for username, av := range avatars.Avatars {

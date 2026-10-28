@@ -10,7 +10,6 @@ export const LS = {
   fontFamily: 'x-digest-font-family',
   fontSize: 'x-digest-font-size',
   lang: 'xd-lang',
-  userTags: 'x-digest-user-tags',
   webhookUrl: 'x-digest-webhook-url',
   webhookKey: 'x-digest-webhook-key',
   chipsAuthorsExpanded: 'x-digest-chips-authors-expanded',

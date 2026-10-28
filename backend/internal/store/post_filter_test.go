@@ -12,14 +12,13 @@ func TestBuildPostWhere(t *testing.T) {
 	}
 	w, a := buildPostWhere(PostFilter{
 		Authors: []string{"alice", "bob"}, Tag: "#AI", Tags: []string{"AI", "Agent"},
-		Categories: []string{"c1", "__uncat"}, UserTags: []string{"工具"}, Kind: "教程实操",
+		Categories: []string{"c1", "__uncat"}, Kind: "教程实操",
 		DateFrom: "2026-10-01", DateTo: "2026-10-28",
 	})
 	for _, frag := range []string{
 		"p.author IN (?,?)",
 		"t.tag COLLATE utf8mb4_bin IN (?,?)", // "#AI" and "AI" fold into one
 		"NOT EXISTS (SELECT 1 FROM post_categories pc JOIN categories c ON c.id=pc.category_id WHERE pc.post_id=p.id AND c.deleted_at IS NULL) OR EXISTS (SELECT 1 FROM post_categories pc WHERE pc.post_id=p.id AND pc.category_id IN (?))",
-		"at.tag COLLATE utf8mb4_bin IN (?)",
 		"p.kind=?",
 		"p.published_at >= ?",
 		"p.published_at < DATE_ADD(?, INTERVAL 1 DAY)",
@@ -28,7 +27,7 @@ func TestBuildPostWhere(t *testing.T) {
 			t.Errorf("WHERE lacks %q:\n%s", frag, w)
 		}
 	}
-	want := []any{"alice", "bob", "AI", "Agent", "c1", "工具", "工具", "教程实操", "2026-10-01 00:00:00", "2026-10-28 00:00:00"}
+	want := []any{"alice", "bob", "AI", "Agent", "c1", "教程实操", "2026-10-01 00:00:00", "2026-10-28 00:00:00"}
 	if !reflect.DeepEqual(a, want) {
 		t.Errorf("args = %v\nwant   %v", a, want)
 	}
@@ -38,13 +37,10 @@ func TestBuildPostWhere(t *testing.T) {
 }
 
 func TestBuildPostWhereQuery(t *testing.T) {
-	// 标签:xxx only hits user tags (substring, like the page did).
+	// 标签：xxx is a plain keyword search now (the user-tag dimension is gone).
 	w, a := buildPostWhere(PostFilter{Query: "标签：Claude"})
-	if !strings.Contains(w, "LOWER(at.tag) LIKE ?") || !strings.Contains(w, "LOWER(uo.tag) LIKE ?") || strings.Contains(w, "p.title") {
-		t.Errorf("user-tag query WHERE: %s", w)
-	}
-	if !reflect.DeepEqual(a, []any{"%claude%", "%claude%"}) {
-		t.Errorf("args %v", a)
+	if !strings.Contains(w, "p.title LIKE ?") || len(a) != 8 || a[0] != "%标签：Claude%" {
+		t.Errorf("tag-prefix query: %s %v", w, a)
 	}
 	w, a = buildPostWhere(PostFilter{Query: "#DeepSeek", Kind: "未分类"})
 	if !strings.Contains(w, "p.title LIKE ?") || !strings.Contains(w, "COALESCE(p.kind,'')=''") || len(a) != 8 || a[0] != "%DeepSeek%" {

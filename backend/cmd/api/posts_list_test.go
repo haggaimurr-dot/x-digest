@@ -25,7 +25,7 @@ func TestFirstHitSnippet(t *testing.T) {
 		t.Fatalf("snippet = %q", got)
 	}
 	if firstHitSnippet(p, "标签:AI") != "" {
-		t.Fatal("user-tag query has no snippet")
+		t.Fatal("literal 标签:AI is not in the post → no snippet")
 	}
 	if firstHitSnippet(p, "nothing") != "" {
 		t.Fatal("no hit → empty")
@@ -55,7 +55,7 @@ func TestPatchPostValidation(t *testing.T) {
 	}
 }
 
-// The page sends comma lists in tag/category/user_tag (multi-select);
+// The page sends comma lists in tag/category (multi-select);
 // the plural names work too. Bad bodies never reach the store here, so only
 // the parsing helper is checked.
 func TestPostsListParams(t *testing.T) {

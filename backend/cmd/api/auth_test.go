@@ -29,7 +29,6 @@ func TestRequireAuth(t *testing.T) {
 		{"POST", "/api/v1/replicas/r1/attachments", "", 401},
 		{"DELETE", "/api/v1/attachments/a1", "", 401},
 		{"PATCH", "/api/v1/categories/c1", "", 401},
-		{"PUT", "/api/v1/user-tags", "", 401},
 		{"GET", "/api/v1/posts", "", 200},
 		{"GET", "/api/v1/attachments/a1", "", 200},
 		{"HEAD", "/api/v1/posts", "", 200},

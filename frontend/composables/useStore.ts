@@ -40,7 +40,7 @@ export function useStore () {
   const mockDeleted = useState<string[]>('xd-mock-deleted-posts', () => [])
 
   async function loadPosts (params: {
-    authors?: string[], tags?: string[], userTags?: string[], categories?: string[],
+    authors?: string[], tags?: string[], categories?: string[],
     keyword?: string, dateFrom?: string, dateTo?: string, kind?: string, minChars?: number,
     page?: number, pageSize?: number
   } = {}): Promise<{ updated_at: string, total: number, posts: Post[] }> {
@@ -56,7 +56,6 @@ export function useStore () {
     const q = new URLSearchParams()
     if (params.authors?.length) q.set('author', params.authors.join(','))
     if (params.tags?.length) q.set('tag', params.tags.join(','))
-    if (params.userTags?.length) q.set('user_tag', params.userTags.join(','))
     if (params.categories?.length) q.set('category', params.categories.join(','))
     if (params.keyword?.trim()) q.set('q', params.keyword.trim())
     if (params.dateFrom) q.set('date_from', params.dateFrom)
@@ -90,10 +89,6 @@ export function useStore () {
     }
     const data = await apiFetch<{ tags: string[] }>('tags')
     return data.tags || []
-  }
-  async function loadUserTags (): Promise<{ vocabulary: string[], overrides: Record<string, string[]> }> {
-    if (mock.value) return { vocabulary: mockStore.vocabulary.value, overrides: mockStore.userTagOverrides.value }
-    return apiFetch<{ vocabulary: string[], overrides: Record<string, string[]> }>('user-tags')
   }
   async function loadCategories (): Promise<Categories> {
     if (mock.value) return mockStore.categories.value
@@ -162,7 +157,7 @@ export function useStore () {
     const data = await apiFetch<any>(`replicas/${replicaId}/attachments`)
     return Array.isArray(data) ? data : (data.attachments || [])
   }
-  // Watchlist / category / user-tag mutations (SPEC endpoints; mock = local state).
+  // Watchlist / category mutations (SPEC endpoints; mock = local state).
   async function addGroup (name: string) {
     if (mock.value) {
       const id = `g-${Date.now().toString(36)}`
@@ -230,17 +225,6 @@ export function useStore () {
   async function cloneReplica (id: string, copyNotes = false): Promise<Replica> {
     return apiFetch<Replica>(`replicas/${id}/clone`, { method: 'POST', body: JSON.stringify({ copy_notes: copyNotes }) })
   }
-  // User-tag aliases (backend tag_aliases.go).
-  async function loadTagAliases (): Promise<Array<{ alias: string, canonical: string }>> {
-    if (mock.value) return []
-    return (await apiFetch<{ aliases: Array<{ alias: string, canonical: string }> }>('user-tags/aliases')).aliases
-  }
-  async function setTagAlias (alias: string, canonical: string) {
-    await apiFetch('user-tags/aliases', { method: 'POST', body: JSON.stringify({ alias, canonical }) })
-  }
-  async function deleteTagAlias (alias: string) {
-    await apiFetch(`user-tags/aliases?alias=${encodeURIComponent(alias)}`, { method: 'DELETE' })
-  }
   // Multi-select batch actions on the X daily page.
   async function batchCategory (postIds: string[], categoryId: string, action: 'add' | 'remove'): Promise<{ changed: number }> {
     return apiFetch('categories/assignments/batch', { method: 'POST', body: JSON.stringify({ post_ids: postIds, category_id: categoryId, action }) })
@@ -273,10 +257,6 @@ export function useStore () {
     if (mock.value) return
     await apiFetch(`posts/${id}`, { method: 'PATCH', body: JSON.stringify({ replica_enabled: v }) })
   }
-  async function mergeUserTags (from: string[], to: string) {
-    if (mock.value) return
-    await apiFetch('user-tags/merge', { method: 'POST', body: JSON.stringify({ from, to }) })
-  }
   async function renameCategory (id: string, name: string) {
     if (mock.value) {
       mockStore.categories.value = { ...mockStore.categories.value, categories: mockStore.categories.value.categories.map(c => c.id === id ? { ...c, name } : c) }
@@ -296,15 +276,6 @@ export function useStore () {
       return
     }
     await apiFetch('categories/assignments', { method: 'PUT', body: JSON.stringify({ post_id: postId, category_ids: categoryIds }) })
-  }
-  // Replace the user-tag vocabulary (常用标签).
-  async function setUserTagVocabulary (vocabulary: string[]) {
-    if (mock.value) { mockStore.vocabulary.value = [...vocabulary]; return }
-    await apiFetch('user-tags', { method: 'PUT', body: JSON.stringify({ vocabulary }) })
-  }
-  async function setUserTags (username: string, tags: string[]) {
-    if (mock.value) { mockStore.userTagOverrides.value = { ...mockStore.userTagOverrides.value, [username]: tags }; return }
-    await apiFetch('user-tags', { method: 'PUT', body: JSON.stringify({ username, tags }) })
   }
   // ---------- Content translation (POST /api/v1/translate) ----------
   // Mock mode has no backend: return the originals (UI toggle still works).
@@ -513,10 +484,10 @@ export function useStore () {
     await apiFetch(`${p}/groups/${id}`, { method: 'DELETE' })
   }
   return {
-    mock, loading, error, loadPosts, loadWatchlist, loadWatchlistActivity, bulkAddAccounts, loadTags, loadUserTags, loadCategories,
+    mock, loading, error, loadPosts, loadWatchlist, loadWatchlistActivity, bulkAddAccounts, loadTags, loadCategories,
     loadReplicas, createReplica, createStandaloneReplica, patchReplicaSteps, addReplicaStep, deleteReplicaStep, deleteReplica, uploadAttachments,
     deleteAttachment, replicaAttachments, addGroup, deleteGroup, addAccount, patchAccount,
-    deleteAccount, addCategory, deleteCategory, renameCategory, restoreCategory, mergeUserTags, deletePosts, setPostReplicaEnabled, loadViews, createView, deleteView, batchCategory, batchPostSummaries, loadTagAliases, setTagAlias, deleteTagAlias, cloneReplica, loadNotifications, markNotificationsRead, createReplicaFromRepo, setPostCategories, setUserTags, setUserTagVocabulary, translateTexts,
+    deleteAccount, addCategory, deleteCategory, renameCategory, restoreCategory, deletePosts, setPostReplicaEnabled, loadViews, createView, deleteView, batchCategory, batchPostSummaries, cloneReplica, loadNotifications, markNotificationsRead, createReplicaFromRepo, setPostCategories, translateTexts,
     loadRepos, loadRepoGroups, addRepo, loadRepoDetail, loadRepoCommits, loadRepoReleases,
     patchRepo, deleteRepo, syncRepo, syncAllRepos, getRepoSyncStatus, addRepoGroup, deleteRepoGroup, validateRepoFullName,
     loadYTChannels, loadYTVideos, addYTChannel, updateYTChannel, deleteYTChannel, syncYTChannel, syncAllYTChannels, getYTSummary, startYTSummary, addYTVideo, getPostSummary, startPostSummary, importXPost, getXRefresh, startXRefresh, retryXRefresh,
