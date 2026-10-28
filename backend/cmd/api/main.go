@@ -451,15 +451,26 @@ func (s *server) handleUserTags(w http.ResponseWriter, r *http.Request) {
 		}
 		writeJSON(w, 200, map[string]any{"vocabulary": vocab, "overrides": overrides})
 	case http.MethodPut:
+		// {username, tags} sets one author's override; {vocabulary: [...]}
+		// replaces the user-tag vocabulary (the tag list in settings).
 		var body struct {
-			Username string   `json:"username"`
-			Tags     []string `json:"tags"`
+			Username   string    `json:"username"`
+			Tags       []string  `json:"tags"`
+			Vocabulary *[]string `json:"vocabulary"`
 		}
 		if !decodeBody(w, r, &body) {
 			return
 		}
+		if body.Vocabulary != nil {
+			if err := s.st.SetUserTagVocabulary(*body.Vocabulary); err != nil {
+				writeErr(w, 500, "DB_ERROR", err.Error())
+				return
+			}
+			writeJSON(w, 200, map[string]bool{"ok": true})
+			return
+		}
 		if body.Username == "" {
-			writeErr(w, 422, "VALIDATION", "username is required")
+			writeErr(w, 422, "VALIDATION", "username or vocabulary is required")
 			return
 		}
 		if !s.st.AccountExists(body.Username) {

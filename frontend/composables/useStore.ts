@@ -197,6 +197,11 @@ export function useStore () {
     }
     await apiFetch('categories/assignments', { method: 'PUT', body: JSON.stringify({ post_id: postId, category_ids: categoryIds }) })
   }
+  // Replace the user-tag vocabulary (常用标签).
+  async function setUserTagVocabulary (vocabulary: string[]) {
+    if (mock.value) { mockStore.vocabulary.value = [...vocabulary]; return }
+    await apiFetch('user-tags', { method: 'PUT', body: JSON.stringify({ vocabulary }) })
+  }
   async function setUserTags (username: string, tags: string[]) {
     if (mock.value) { mockStore.userTagOverrides.value = { ...mockStore.userTagOverrides.value, [username]: tags }; return }
     await apiFetch('user-tags', { method: 'PUT', body: JSON.stringify({ username, tags }) })
@@ -384,7 +389,7 @@ export function useStore () {
     loading, error, loadPosts, loadWatchlist, loadTags, loadUserTags, loadCategories,
     loadReplicas, createReplica, createStandaloneReplica, patchReplicaSteps, addReplicaStep, deleteReplicaStep, deleteReplica, uploadAttachments,
     deleteAttachment, replicaAttachments, addGroup, deleteGroup, addAccount, patchAccount,
-    deleteAccount, addCategory, deleteCategory, setPostCategories, setUserTags, translateTexts,
+    deleteAccount, addCategory, deleteCategory, setPostCategories, setUserTags, setUserTagVocabulary, translateTexts,
     loadRepos, loadRepoGroups, addRepo, loadRepoDetail, loadRepoCommits, loadRepoReleases,
     patchRepo, deleteRepo, syncRepo, syncAllRepos, addRepoGroup, deleteRepoGroup, validateRepoFullName,
     loadYTChannels, loadYTVideos, addYTChannel, updateYTChannel, deleteYTChannel, syncYTChannel, syncAllYTChannels, getYTSummary, startYTSummary, addYTVideo, getPostSummary, startPostSummary,

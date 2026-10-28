@@ -517,6 +517,31 @@ func (s *Store) UserTags() (vocab []string, overrides map[string][]string, err e
 	return vocab, overrides, orows.Err()
 }
 
+// SetUserTagVocabulary replaces the user-tag vocabulary (trimmed, no
+// duplicates, empty entries dropped). Authors' own tags are untouched.
+func (s *Store) SetUserTagVocabulary(tags []string) error {
+	tx, err := s.DB.Begin()
+	if err != nil {
+		return err
+	}
+	defer tx.Rollback()
+	if _, err := tx.Exec("DELETE FROM user_tag_vocabulary"); err != nil {
+		return err
+	}
+	seen := map[string]bool{}
+	for _, t := range tags {
+		t = strings.TrimSpace(t)
+		if t == "" || seen[t] {
+			continue
+		}
+		seen[t] = true
+		if _, err := tx.Exec("INSERT INTO user_tag_vocabulary(tag) VALUES(?)", t); err != nil {
+			return err
+		}
+	}
+	return tx.Commit()
+}
+
 func (s *Store) SetUserTagOverride(username string, tags []string) error {
 	tx, err := s.DB.Begin()
 	if err != nil {

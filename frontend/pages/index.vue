@@ -188,22 +188,7 @@
           <h2 style="margin:0">{{ t('settings.title') }}</h2>
           <button class="btn btn-sm" type="button" @click="showSettings = false" :aria-label="t('settings.close')">✕</button>
         </div>
-        <label>{{ t('settings.theme') }}</label>
-        <div style="display:flex;gap:8px">
-          <button class="btn" :class="{ 'btn-primary': theme === 'dark' }" type="button" @click="setTheme('dark')">{{ t('settings.dark') }}</button>
-          <button class="btn" :class="{ 'btn-primary': theme === 'light' }" type="button" @click="setTheme('light')">{{ t('settings.light') }}</button>
-        </div>
-        <label>{{ t('settings.fontSize') }}</label>
-        <div style="display:flex;gap:6px;flex-wrap:wrap">
-          <button v-for="s in ['13px', '15px', '17px', '19px']" :key="s" class="btn btn-sm" :class="{ 'btn-primary': fontSize === s }" type="button" @click="setFontSize(s)">{{ s }}</button>
-        </div>
-        <label>{{ t('settings.font') }}</label>
-        <select class="field" :value="fontFamily" @change="setFontFamily(($event.target as HTMLSelectElement).value)">
-          <option value="">{{ t('settings.fontSystem') }}</option>
-          <option value="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif">{{ t('settings.fontPingFang') }}</option>
-          <option value="Georgia,serif">{{ t('settings.fontSerif') }}</option>
-          <option value="ui-monospace,Menlo,monospace">{{ t('settings.fontMono') }}</option>
-        </select>
+        <p style="color:var(--text-muted);font-size:13px;margin:6px 0 0">主题、字号、字体在顶栏右上角「Aa 外观」里设置，对所有页面生效。</p>
 
         <div class="settings-section">
           <h3>{{ t('settings.watchlist') }}</h3>
@@ -243,8 +228,9 @@
                   <label>分组<select class="field" :value="a.group" @change="doPatchAccount(a.username, { group: ($event.target as HTMLSelectElement).value })">
                     <option v-for="g in watchlist.groups" :key="g.id" :value="g.id">{{ g.name }}</option>
                   </select></label>
-                  <label>{{ t('settings.userTagsPh') }}<input class="field" :value="(a.tags || []).join('，')" @change="doPatchAccount(a.username, { tags: ($event.target as HTMLInputElement).value.split(/[,，]/).map(s => s.trim()).filter(Boolean) })" /></label>
-                  <label>标签覆盖（填了就代替上面的用户标签用于筛选）<input class="field" :value="(userTagOverrides[a.username] || []).join('，')" @change="doSetUserTags(a.username, ($event.target as HTMLInputElement).value.split(/[,，]/).map(s => s.trim()).filter(Boolean))" /></label>
+                  <div class="wl-field"><span>用户标签（用于「用户标签」筛选）</span>
+                    <TagInput :model-value="userTagsOf(a.username)" :suggestions="userTagVocab" @update:model-value="saveAuthorTags(a.username, $event)" />
+                  </div>
                   <div style="display:flex;justify-content:flex-end"><button class="btn btn-sm btn-danger" type="button" @click="doDeleteAccount(a.username)">{{ t('settings.deleteAuthor') }}</button></div>
                 </div>
               </div>
@@ -270,15 +256,22 @@
 
         <div class="settings-section">
           <h3>{{ t('settings.userTagSection') }}</h3>
-          <p style="color:var(--text-muted)">{{ t('settings.vocabHintPrefix') }}<code>标签:xxx</code>{{ t('settings.vocabHintSuffix') }}</p>
-          <div class="chips">
-            <button v-for="t in userTagVocab" :key="t" type="button" class="chip" @click="removeVocab(t)">{{ t }} ×</button>
-          </div>
-          <div style="display:flex;gap:6px;margin-top:8px">
-            <input class="field" v-model="newVocab" :placeholder="t('settings.newUserTagPh')" style="flex:1" />
+          <p style="color:var(--text-muted);font-size:13px;margin:0">给作者打的标签，用于「用户标签」筛选和关键词 <code>标签:xxx</code> 搜索。这里维护常用标签，作者的标签在上方「编辑」里选。</p>
+          <div class="wl-add-row" style="grid-template-columns:1fr auto;margin-top:8px">
+            <input class="field" v-model="newVocab" :placeholder="t('settings.newUserTagPh') + '（回车添加，可用逗号一次加多个）'" @keyup.enter="addVocab" />
             <button class="btn btn-sm btn-primary" type="button" @click="addVocab">{{ t('settings.add') }}</button>
           </div>
-          <p style="color:var(--text-muted);font-size:13px">按作者覆盖标签：在上方「关注列表」里点作者的「编辑」设置。</p>
+          <div class="tagmgr-list">
+            <div v-for="tg in tagManagerRows" :key="tg.tag" class="tagmgr-row">
+              <span class="tagmgr-name">{{ tg.tag }}</span>
+              <span class="tagmgr-count">{{ tg.n ? `${tg.n} 位作者` : '未使用' }}</span>
+              <span v-if="!tg.inVocab" class="tagmgr-count">（作者自带，未在常用列表）</span>
+              <span style="flex:1" />
+              <button v-if="!tg.inVocab" class="btn btn-sm" type="button" @click="addVocabTag(tg.tag)">加入常用</button>
+              <button v-else class="btn btn-sm btn-danger" type="button" @click="removeVocab(tg.tag)">移出</button>
+            </div>
+            <p v-if="!tagManagerRows.length" style="color:var(--text-muted);font-size:13px">还没有标签。</p>
+          </div>
         </div>
 
         <div class="settings-section">
@@ -316,7 +309,7 @@ const store = useStore()
 const settings = useSettings()
 const { t, lang } = useLang()
 const { tr, enqueue, translating } = useTranslate()
-const { theme, fontSize, fontFamily, setTheme, setFontSize, setFontFamily, saveWebhook, clearWebhook, postWebhook } = settings
+const { saveWebhook, clearWebhook, postWebhook } = settings
 
 const loading = ref(true)
 const loadError = ref('')
@@ -788,12 +781,45 @@ async function doDeleteAccount (username: string) {
   if (!confirm(t('settings.deleteAuthorConfirm', { username }))) return
   await store.deleteAccount(username); await refreshWatchlist()
 }
-async function doSetUserTags (username: string, tags: string[]) { await store.setUserTags(username, tags); await refreshWatchlist() }
-function addVocab () {
-  if (!newVocab.value.trim() || userTagVocab.value.includes(newVocab.value.trim())) return
-  userTagVocab.value = [...userTagVocab.value, newVocab.value.trim()]; newVocab.value = ''
+// 常用标签（词汇表）：增删都立即保存到服务端。
+async function saveVocab (next: string[]) {
+  const prev = userTagVocab.value
+  userTagVocab.value = next
+  try { await store.setUserTagVocabulary(next) } catch (e: any) { userTagVocab.value = prev; showToast(e?.message || '保存标签失败') }
 }
-function removeVocab (t: string) { userTagVocab.value = userTagVocab.value.filter(x => x !== t) }
+function addVocab () {
+  const add = newVocab.value.split(/[,，、]/).map(x => x.trim()).filter(x => x && !userTagVocab.value.includes(x))
+  newVocab.value = ''
+  if (add.length) saveVocab([...userTagVocab.value, ...add])
+}
+function addVocabTag (tg: string) { if (!userTagVocab.value.includes(tg)) saveVocab([...userTagVocab.value, tg]) }
+function removeVocab (tg: string) {
+  const n = tagUsage.value.get(tg) || 0
+  if (n && !confirm(`「${tg}」还有 ${n} 位作者在用。移出常用列表不会从这些作者身上删掉它，确定移出？`)) return
+  saveVocab(userTagVocab.value.filter(x => x !== tg))
+}
+// 每个标签被多少位作者使用（按生效的标签：有覆盖用覆盖，否则用作者自带标签）。
+const tagUsage = computed(() => {
+  const m = new Map<string, number>()
+  for (const a of watchlist.value.accounts) for (const tg of userTagsOf(a.username)) m.set(tg, (m.get(tg) || 0) + 1)
+  return m
+})
+const tagManagerRows = computed(() => {
+  const all = [...new Set([...userTagVocab.value, ...tagUsage.value.keys()])]
+  return all.map(tag => ({ tag, n: tagUsage.value.get(tag) || 0, inVocab: userTagVocab.value.includes(tag) }))
+    .sort((a, b) => b.n - a.n || a.tag.localeCompare(b.tag, 'zh'))
+})
+// 作者标签只编辑一份：写到作者自带标签，并清掉旧的覆盖，避免两处不一致；
+// 新输入的标签顺手加入常用列表。
+async function saveAuthorTags (username: string, tags: string[]) {
+  try {
+    await store.patchAccount(username, { tags })
+    if (userTagOverrides.value[username]) await store.setUserTags(username, [])
+    const fresh = tags.filter(x => !userTagVocab.value.includes(x))
+    if (fresh.length) await saveVocab([...userTagVocab.value, ...fresh])
+    await refreshWatchlist()
+  } catch (e: any) { showToast(e?.message || '保存标签失败') }
+}
 function saveWebhookDraft () { saveWebhook(webhookUrlDraft.value.trim(), webhookKeyDraft.value); webhookMsg.value = t('settings.webhookSaved') }
 function clearWebhookDraft () { clearWebhook(); webhookUrlDraft.value = ''; webhookKeyDraft.value = ''; webhookMsg.value = t('settings.webhookCleared') }
 async function triggerWebhook () {

@@ -239,6 +239,26 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
 .x-head-handle { font-size: 13px; font-weight: 400; color: var(--text-muted); text-decoration: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
 .x-head-handle:hover { color: var(--accent); }
 .yt-desc-empty { margin: 6px 0 0; color: var(--text-muted); font-size: 13px; }
+/* 顶栏「Aa 外观」弹层：全站主题 / 字号 / 字体。 */
+.appearance-wrap { position: relative; margin-left: auto; }
+.appearance-wrap .lang-toggle { margin-left: 0; }
+.appearance-wrap + .lang-toggle { margin-left: 6px; }
+.appearance-pop { position: absolute; right: 0; top: calc(100% + 6px); z-index: 300; width: 240px; padding: 12px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-elevated); box-shadow: 0 8px 24px rgba(0,0,0,.35); display: grid; gap: 6px; }
+.appearance-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+.appearance-row { display: flex; flex-wrap: wrap; gap: 6px; }
+/* 标签输入（TagInput） */
+.tag-input-box { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; min-height: 38px; padding: 5px 8px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); cursor: text; }
+.tag-input-chip { display: inline-flex; align-items: center; gap: 2px; padding: 2px 4px 2px 10px; border-radius: 9999px; background: var(--accent-soft); color: var(--accent); font-size: 13px; }
+.tag-input-x { background: none; border: 0; color: inherit; font-size: 15px; line-height: 1; cursor: pointer; padding: 0 4px; }
+.tag-input-field { flex: 1; min-width: 90px; border: 0; outline: 0; background: none; color: var(--text); font: inherit; font-size: 14px; padding: 4px 0; }
+.tag-input-suggest { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; margin-top: 6px; }
+.tag-input-suggest-label { font-size: 12px; color: var(--text-muted); }
+.tag-input-suggest-chip { font-size: 12px; padding: 1px 8px; }
+/* 设置 · 用户标签列表 */
+.tagmgr-list { display: flex; flex-direction: column; gap: 4px; margin-top: 8px; }
+.tagmgr-row { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border: 1px solid var(--border); border-radius: 8px; }
+.tagmgr-name { font-weight: 600; }
+.tagmgr-count { font-size: 12px; color: var(--text-muted); }
 /* X 日报设置 · 关注列表：新增在上，已关注作者按分组折叠。 */
 .wl-add { border: 1px solid var(--border); border-radius: 10px; padding: 10px; background: var(--bg-elevated); margin-bottom: 12px; }
 .wl-add-title { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
@@ -253,6 +273,7 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
 .wl-author-handle { color: var(--text-muted); font-size: 13px; text-decoration: none; }
 .wl-author-handle:hover { color: var(--accent); }
 .wl-author-edit { display: grid; gap: 6px; margin-top: 6px; padding: 8px; border-radius: 8px; background: var(--bg-elevated); }
+.wl-field { display: grid; gap: 4px; font-size: 12px; color: var(--text-muted); }
 .wl-author-edit label { display: grid; gap: 2px; font-size: 12px; color: var(--text-muted); }
 @media (max-width: 620px) {
   .wl-add-row { grid-template-columns: 1fr 1fr; }

@@ -21,6 +21,7 @@ export const DICT: Record<string, { zh: string, en: string }> = {
   'nav.fuke': { zh: '复刻', en: 'Replicas' },
   'nav.youtube': { zh: '油管', en: 'YouTube' },
   'nav.bilibili': { zh: 'B站', en: 'Bilibili' },
+  'settings.appearance': { zh: '外观', en: 'Appearance' },
   'lang.switchToEn': { zh: '切换到英文', en: 'Switch to English' },
   'lang.switchToZh': { zh: '切换到中文', en: 'Switch to Chinese' },
 
