@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-28T01:48:10Z",
+  "updatedAt": "2026-10-28T01:48:49Z",
   "posts": [
     {
       "id": "2115159844173050305",
@@ -1146,6 +1146,33 @@
       "resources": []
     },
     {
+      "id": "2114326356494266431",
+      "url": "https://x.com/miles_mazy/status/2114326356494266431",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-25T12:01:00.000Z",
+      "title": "小红书卖Skills月赚40万",
+      "industry": "电子商务",
+      "tech": "Skills、小红书",
+      "summary": "提到有人在小红书售卖 Skills，一个月赚了40万元，以此支持通过售卖 Skills 赚钱。具体方法指向引用的文章，推文本身没有展开操作细节。",
+      "steps": [],
+      "tags": [
+        "技能售卖",
+        "小红书变现",
+        "赚钱案例"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://x.com/i/article/2114313358006714369",
+          "name": "《为什么想赚钱不应该卖 Skills？》",
+          "note": "引用推文附带的文章，作者称其中介绍了售卖 Skills 的赚钱方法。"
+        }
+      ]
+    },
+    {
       "id": "2114316792999158258",
       "url": "https://x.com/miles_mazy/status/2114316792999158258",
       "author": "miles_mazy",
@@ -1206,6 +1233,668 @@
       "isLong": false,
       "showFlowchart": false,
       "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2114297164448887004",
+      "url": "https://x.com/miles_mazy/status/2114297164448887004",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-25T10:05:00.000Z",
+      "title": "两个多月在X变现超六位数",
+      "industry": "社交媒体",
+      "tech": "X",
+      "summary": "Miles Ma 分享，过去两个多月在 X 上的变现已超过六位数，未说明币种。他推荐将引用的内容下载到本地学习，以防内容被删除，但未提供具体变现方法。",
+      "steps": [],
+      "tags": [
+        "平台变现",
+        "内容学习",
+        "本地保存"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://x.com/i/article/2114260651455766528",
+          "name": "X 文章",
+          "note": "引用内容附带的文章链接，未提供文章正文。"
+        }
+      ]
+    },
+    {
+      "id": "2114285335635284083",
+      "url": "https://x.com/miles_mazy/status/2114285335635284083",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-25T09:18:00.000Z",
+      "title": "为何中国用户使用TikTok门槛高",
+      "industry": "社交媒体",
+      "tech": "TikTok",
+      "summary": "推文以 TikTok 是中国软件为前提，质疑为何中国用户使用它的门槛却很高。关注点是软件归属与中国用户使用便利性之间的反差，并未展开具体原因。",
+      "steps": [],
+      "tags": [
+        "使用门槛",
+        "用户体验",
+        "短视频平台"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2114274713589739584",
+      "url": "https://x.com/miles_mazy/status/2114274713589739584",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-25T08:35:47.000Z",
+      "title": "接下来将赴香港等五城",
+      "industry": "人工智能",
+      "tech": "AI、FDE",
+      "summary": "接下来的行程包括香港、广州、宁波、绍兴和北京。引用的杭州活动回顾提到，与 AI 从业者进行了八小时交流，话题涵盖 AI、FDE、流量和变现等，并预告 11 月初广州见。",
+      "steps": [],
+      "tags": [
+        "城市行程",
+        "线下交流",
+        "人工智能"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://twitter.com/miles_mazy/status/2113952140339064893",
+          "name": "@miles_mazy 的推文",
+          "note": "原文附带的推文链接，未提供具体内容。"
+        }
+      ]
+    },
+    {
+      "id": "2114269137161867383",
+      "url": "https://x.com/Saccc_c/status/2114269137161867383",
+      "author": "Saccc_c",
+      "authorName": "Sac",
+      "publishedAt": "2026-10-25T08:13:38.000Z",
+      "title": "开源工具批量制作知识科普视频",
+      "industry": "人工智能",
+      "tech": "opus 5.5、Claude、lemo-opuscar",
+      "summary": "作者认为，国内自媒体使用 opus 5.5 制作知识科普类视频仍处于窗口期，单个视频有机会涨粉1万。推荐给 Claude 安装开源项目 lemo-opuscar，以快速、批量产出视频；该项目内置59种风格，也支持自定义风格。",
+      "steps": [],
+      "tags": [
+        "知识科普",
+        "视频生成",
+        "开源工具",
+        "自媒体涨粉",
+        "批量创作"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://github.com/lemomo-ai/lemo-opuscar",
+          "name": "GitHub 仓库 lemo-opuscar",
+          "note": "作者推荐的视频批量生成开源项目，内置59种风格并支持自定义。"
+        },
+        {
+          "url": "https://x.com/i/article/2112813136277540864",
+          "name": "引用内容中的 X 文章",
+          "note": "引用 @lemomo_ai 时附带的文章链接，未提供文章正文。"
+        }
+      ]
+    },
+    {
+      "id": "2114250997048766731",
+      "url": "https://x.com/miles_mazy/status/2114250997048766731",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-25T07:01:33.000Z",
+      "title": "先用好一个智能体，摸清边界再扩充",
+      "industry": "人工智能",
+      "tech": "智能体",
+      "summary": "针对是否需要熟练使用多种智能体的疑问，Miles 建议先用好一个。摸清当前工具的能力边界后，再扩充使用其他工具，而不是急于全面尝试。",
+      "steps": [],
+      "tags": [
+        "智能体",
+        "工具选择",
+        "使用边界",
+        "学习策略"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2114230725956501751",
+      "url": "https://x.com/miles_mazy/status/2114230725956501751",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-25T05:41:00.000Z",
+      "title": "领X收益能否办理美国工作签证",
+      "industry": "",
+      "tech": "X",
+      "summary": "推文提到大家在领 X 的“工资”、赚取美元。由此提出疑问：是否可以凭此直接办理美国工作签证？",
+      "steps": [],
+      "tags": [
+        "平台收益",
+        "美元收入",
+        "美国工签"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2114206566823903279",
+      "url": "https://x.com/miles_mazy/status/2114206566823903279",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-25T04:05:00.000Z",
+      "title": "质疑做AI一上来就用Obsidian",
+      "industry": "人工智能",
+      "tech": "Obsidian",
+      "summary": "作者质疑做 AI 一上来就使用 Obsidian，将这种做法比作“差生文具多”。同时向熟悉的人请教 Obsidian 到底有什么用，原文未展开具体功能或使用方法。",
+      "steps": [],
+      "tags": [
+        "人工智能",
+        "工具选择",
+        "Obsidian",
+        "用途讨论"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2114195745288925251",
+      "url": "https://x.com/miles_mazy/status/2114195745288925251",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-25T03:22:00.000Z",
+      "title": "用搜狗输入法也在鄙视链底端？",
+      "industry": "",
+      "tech": "X、搜狗输入法、豆包",
+      "summary": "以自嘲口吻发问：在 X 上用搜狗输入法，是不是和只用豆包一样，处于工具使用的“鄙视链底端”。",
+      "steps": [],
+      "tags": [
+        "输入法",
+        "工具选择",
+        "鄙视链",
+        "自嘲调侃"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2114184924081119312",
+      "url": "https://x.com/miles_mazy/status/2114184924081119312",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-25T02:39:00.000Z",
+      "title": "推荐“00后老登化改造”赚钱方向",
+      "industry": "",
+      "tech": "",
+      "summary": "推荐将“00后的老登化改造”作为赚大钱的方向。以“别问为什么”强调这一建议，但未解释原因或提供具体做法。",
+      "steps": [],
+      "tags": [
+        "00后",
+        "老登化改造",
+        "赚钱方向"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2114170327747936288",
+      "url": "https://x.com/miles_mazy/status/2114170327747936288",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-25T01:41:00.000Z",
+      "title": "杭州乘南航遇摆渡车登机",
+      "industry": "航空",
+      "tech": "",
+      "summary": "在杭州乘坐南航航班时，第一次遇到需要坐摆渡车登机的情况，因此打趣质疑南航在杭州是否没什么地位。",
+      "steps": [],
+      "tags": [
+        "南方航空",
+        "杭州",
+        "摆渡车登机",
+        "出行体验"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2114158499903287669",
+      "url": "https://x.com/miles_mazy/status/2114158499903287669",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-25T00:54:00.000Z",
+      "title": "FDE落地与推特个人IP资料售卖",
+      "industry": "",
+      "tech": "FDE、推特",
+      "summary": "推文售卖两份资料：一份是 FDE 实战落地手册，包含吉利汽车 FDE 培训及落地案例内部分享；另一份是推特增长与个人 IP 流量打造内部分享。资料被介绍为行文通俗、案例丰富，每份售价 99，原文未注明币种。购买方式为添加 miles_mzy 转账并备注“资料”，随后发送资料。",
+      "steps": [],
+      "tags": [
+        "付费资料",
+        "FDE落地",
+        "推特增长",
+        "个人IP"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": []
+    },
+    {
+      "id": "2114146169030918501",
+      "url": "https://x.com/miles_mazy/status/2114146169030918501",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-25T00:05:00.000Z",
+      "title": "沙龙演讲时发推，原来是提前定时",
+      "industry": "",
+      "tech": "X",
+      "summary": "线下沙龙后的聚餐中，Miles Ma 被反复问到，为什么在台上演讲时还能持续发推。他解释，这些推文都是提前编辑好并设置定时发布的。",
+      "steps": [],
+      "tags": [
+        "定时发推",
+        "线下沙龙",
+        "日常分享"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2114082424464523417",
+      "url": "https://x.com/Saccc_c/status/2114082424464523417",
+      "author": "Saccc_c",
+      "authorName": "Sac",
+      "publishedAt": "2026-10-24T19:51:42.000Z",
+      "title": "Higgsfield获赞，投资信心增强",
+      "industry": "",
+      "tech": "",
+      "summary": "转发 @GadzhiIman 关于 Higgsfield 的投资信心表态，未附加个人评论。被转发内容提到，世界上市值最高公司的 CEO 赞赏 Higgsfield 创始人的远见与才智，@GadzhiIman 据此认为自己做出了正确的投资选择。",
+      "steps": [],
+      "tags": [
+        "投资信心",
+        "创始团队",
+        "企业评价"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://twitter.com/higgsfield/status/2113996828379336979",
+          "name": "@higgsfield 的推文",
+          "note": "被转发内容引用的链接，用于支持对 Higgsfield 创始团队的赞誉及投资信心表态。"
+        }
+      ]
+    },
+    {
+      "id": "2114023627306025225",
+      "url": "https://x.com/miles_mazy/status/2114023627306025225",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-24T15:58:04.000Z",
+      "title": "已回大湾区，相约下次广州见",
+      "industry": "",
+      "tech": "",
+      "summary": "Miles Ma 回复称已回到大湾区，并与对方相约下次在广州见。",
+      "steps": [],
+      "tags": [
+        "日常互动",
+        "大湾区",
+        "广州"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2114023397038633077",
+      "url": "https://x.com/miles_mazy/status/2114023397038633077",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-24T15:57:09.000Z",
+      "title": "杭州AI聚会八小时交流收获满满",
+      "industry": "人工智能",
+      "tech": "AI、FDE",
+      "summary": "在杭州与一群 AI 从业者交流，话题涵盖 AI、FDE、流量、变现和人性。从下午 2 点到晚上 10 点，持续八小时高强度交流，收获满满。作者表示还会再来杭州，并预告 11 月初广州见。",
+      "steps": [],
+      "tags": [
+        "杭州聚会",
+        "人工智能",
+        "线下交流",
+        "流量变现",
+        "广州见面"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2114010171580305517",
+      "url": "https://x.com/miles_mazy/status/2114010171580305517",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-24T15:04:35.000Z",
+      "title": "线下沙龙收费99的赚钱设想",
+      "industry": "",
+      "tech": "",
+      "summary": "提出每天办一场线下沙龙、每人收费99的赚钱思路。认为只要每场来百十来人，就能轻松实现日入过万。",
+      "steps": [],
+      "tags": [
+        "线下沙龙",
+        "收费模式",
+        "赚钱思路"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2113967239884149005",
+      "url": "https://x.com/miles_mazy/status/2113967239884149005",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-24T12:14:00.000Z",
+      "title": "推荐鸭王的专属贾维斯教程",
+      "industry": "人工智能",
+      "tech": "Claude、Grok",
+      "summary": "Miles Ma 推荐鸭王的文章，感叹每次阅读都能学到很多。引用的文章介绍如何不拆螺丝、不花钱打造专属“贾维斯”，涵盖基本功能、接入 Claude 和 Grok，以及避开 7 个常见坑。",
+      "steps": [],
+      "tags": [
+        "文章推荐",
+        "人工智能助手",
+        "使用避坑"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://x.com/i/article/2113937402599481344",
+          "name": "鸭王的专属贾维斯教程文章",
+          "note": "涵盖基本功能、接入 Claude 和 Grok，以及 7 个避坑点。"
+        }
+      ]
+    },
+    {
+      "id": "2113952140339064893",
+      "url": "https://x.com/miles_mazy/status/2113952140339064893",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-24T11:14:00.000Z",
+      "title": "X增长与FDE都是交付",
+      "industry": "",
+      "tech": "X、FDE",
+      "summary": "杭州的一场闭门会原计划下午5点结束，实际讲到了快7点。核心总结是：X增长和FDE本质上都是交付，前者交付内容，后者交付项目。",
+      "steps": [],
+      "tags": [
+        "内容交付",
+        "项目交付",
+        "账号增长",
+        "闭门交流"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2113941570886172892",
+      "url": "https://x.com/miles_mazy/status/2113941570886172892",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-24T10:32:00.000Z",
+      "title": "苹果手机开热点吃亏后的提醒",
+      "industry": "",
+      "tech": "苹果手机、个人热点",
+      "summary": "博主自述吃了大亏，连续五次提醒不要用苹果手机开热点。原文未说明具体遭遇、损失或原因。",
+      "steps": [],
+      "tags": [
+        "苹果手机",
+        "手机热点",
+        "使用提醒"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2113919425288306835",
+      "url": "https://x.com/miles_mazy/status/2113919425288306835",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-24T09:04:00.000Z",
+      "title": "做X账号先明确赚钱涨粉或影响力目标",
+      "industry": "社交媒体",
+      "tech": "X",
+      "summary": "做 X 账号感到纠结时，先问自己是为了赚钱、涨粉，还是构建影响力。作者认为，想清楚自己的目标，就不会再纠结。",
+      "steps": [],
+      "tags": [
+        "账号运营",
+        "目标定位",
+        "涨粉",
+        "影响力"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2113910364941295691",
+      "url": "https://x.com/miles_mazy/status/2113910364941295691",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-24T08:28:00.000Z",
+      "title": "调侃王者荣耀下载与公摊面积",
+      "industry": "游戏",
+      "tech": "Apple ID、王者荣耀",
+      "summary": "听说只有中国区 Apple ID 才能下载《王者荣耀》，便用“没必要公摊面积也入乡随俗”开了个玩笑。",
+      "steps": [],
+      "tags": [
+        "王者荣耀",
+        "苹果账号",
+        "公摊面积",
+        "调侃"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2113896775446892681",
+      "url": "https://x.com/miles_mazy/status/2113896775446892681",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-24T07:34:00.000Z",
+      "title": "惊讶杭州餐厅不收茶位费",
+      "industry": "餐饮",
+      "tech": "",
+      "summary": "作者惊讶地发现，在杭州去餐厅吃饭不收茶位费。",
+      "steps": [],
+      "tags": [
+        "杭州",
+        "餐厅消费",
+        "茶位费"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2113887464091750907",
+      "url": "https://x.com/miles_mazy/status/2113887464091750907",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-24T06:57:00.000Z",
+      "title": "调侃00后的机会与出路",
+      "industry": "人工智能、Web3",
+      "tech": "AI、Web3",
+      "summary": "围绕00后的出路，把搞AI、Web3与“崩老头、找富婆”并列为机会来源。以夸张、调侃的口吻断言，不做这些就“没有任何机会了”，未提供具体论据或做法。",
+      "steps": [],
+      "tags": [
+        "零零后",
+        "人工智能",
+        "机会选择",
+        "出路讨论"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2113878907648684120",
+      "url": "https://x.com/miles_mazy/status/2113878907648684120",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-24T06:23:00.000Z",
+      "title": "杭州滴滴司机为何开车刷抖音",
+      "industry": "交通出行",
+      "tech": "滴滴、抖音",
+      "summary": "提到自己观察到杭州滴滴司机开车时喜欢刷抖音的现象，并好奇背后的原因。推文未进一步解释原因。",
+      "steps": [],
+      "tags": [
+        "杭州",
+        "网约车",
+        "驾驶习惯",
+        "短视频"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2113866324694933914",
+      "url": "https://x.com/miles_mazy/status/2113866324694933914",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-24T05:33:00.000Z",
+      "title": "今日AI变现：领创作者收益红包",
+      "industry": "人工智能",
+      "tech": "",
+      "summary": "调侃今日的“AI 变现”：各个群里的大佬领到了用创作者收益发出的红包。",
+      "steps": [],
+      "tags": [
+        "AI变现",
+        "创作者收益",
+        "群聊红包",
+        "日常调侃"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2113856761853800745",
+      "url": "https://x.com/miles_mazy/status/2113856761853800745",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-24T04:55:00.000Z",
+      "title": "两周涨粉复盘：长文、真人出镜与活人感",
+      "industry": "社交媒体",
+      "tech": "",
+      "summary": "复盘了近两周的涨粉情况，归纳出三个有效因素：长文、真人出镜和活人感。结论是，这三类内容或呈现方式有助于涨粉。",
+      "steps": [],
+      "tags": [
+        "涨粉复盘",
+        "长文内容",
+        "真人出镜",
+        "活人感"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2113845688731656464",
+      "url": "https://x.com/miles_mazy/status/2113845688731656464",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-24T04:11:00.000Z",
+      "title": "线下活动增多挤占创作和发推时间",
+      "industry": "",
+      "tech": "",
+      "summary": "线下活动增多后，留给创作和发推的时间明显减少，作者感叹个人精力有限，并向大家征求解决方案。",
+      "steps": [],
+      "tags": [
+        "精力分配",
+        "时间管理",
+        "内容创作",
+        "线下活动"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2113832350807449776",
+      "url": "https://x.com/miles_mazy/status/2113832350807449776",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-24T03:18:00.000Z",
+      "title": "创作者收益复盘：爆款长文权重更高",
+      "industry": "内容创作",
+      "tech": "",
+      "summary": "本期创作者收益比上一期略少，但仍有四位数，原文未说明币种。结合对多位创作者收益的分析，作者反复强调：绝对爆款的权重高，爆款长文的权重更高。",
+      "steps": [],
+      "tags": [
+        "创作者收益",
+        "爆款内容",
+        "长文创作",
+        "收益复盘"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2113820357622898761",
+      "url": "https://x.com/miles_mazy/status/2113820357622898761",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-24T02:30:20.000Z",
+      "title": "熬夜准备杭州闭门会分享材料",
+      "industry": "",
+      "tech": "",
+      "summary": "行程已排满，正在熬夜制作分享材料，并邀请大家参加第二场下午的杭州闭门会。",
+      "steps": [],
+      "tags": [
+        "杭州闭门会",
+        "分享准备",
+        "线下活动"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
       "resources": []
     }
   ]
