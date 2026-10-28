@@ -111,6 +111,10 @@ func (s *Store) UpsertXPost(p XPostRow) error {
 		return err
 	}
 	defer tx.Rollback()
+	// Importing a deleted post again (导入单帖) restores it. Error ignored so
+	// imports keep working before schema.sql adds deleted_posts (MariaDB does
+	// not abort the transaction on a failed statement).
+	_, _ = tx.Exec("DELETE FROM deleted_posts WHERE id=?", p.ID)
 	if _, err := tx.Exec(`INSERT INTO authors(username,name,avatar,group_id,bio) VALUES(?,?,?,'other','')
 		ON DUPLICATE KEY UPDATE avatar=IF(avatar='',VALUES(avatar),avatar)`, p.Author, p.AuthorName, p.AuthorAvatar); err != nil {
 		return err

@@ -63,3 +63,27 @@ func TestPostsListParams(t *testing.T) {
 		t.Fatalf("merged = %v", got)
 	}
 }
+
+// POST /posts/batch-delete rejects bad bodies before touching the store.
+func TestPostsBatchDeleteValidation(t *testing.T) {
+	s := &server{}
+	many := `{"ids":["` + strings.Repeat(`p","`, maxBatchDelete) + `p"]}`
+	for body, want := range map[string]int{
+		`{}`:               422,
+		`{"ids":[]}`:       422,
+		`{"ids":[" ",""]}`: 422,
+		many:               422,
+		`not json`:         400,
+	} {
+		rec := httptest.NewRecorder()
+		s.handlePost(rec, httptest.NewRequest("POST", "/api/v1/posts/batch-delete", strings.NewReader(body)))
+		if rec.Code != want {
+			t.Errorf("body %.30s: got %d want %d", body, rec.Code, want)
+		}
+	}
+	rec := httptest.NewRecorder()
+	s.handlePost(rec, httptest.NewRequest("GET", "/api/v1/posts/batch-delete", nil))
+	if rec.Code != 405 {
+		t.Errorf("GET: got %d", rec.Code)
+	}
+}

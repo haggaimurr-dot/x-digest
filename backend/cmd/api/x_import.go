@@ -495,7 +495,7 @@ func (x *xImporter) importIDs(ctx context.Context, a *refreshAccount, ids []stri
 		sem <- struct{}{}
 		go func(id string) {
 			defer func() { <-sem; wg.Done() }()
-			if x.st.PostExists(id) {
+			if x.st.PostExists(id) || x.st.PostDeleted(id) {
 				x.set(func() { a.Skipped++ })
 				return
 			}

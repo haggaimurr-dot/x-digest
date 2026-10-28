@@ -37,6 +37,15 @@ describe('FilterCombo', () => {
     expect(w.emitted('update:modelValue')?.[0]?.[0]).toEqual(['c2'])
     w.unmount()
   })
+  it('closes the dropdown with the confirm button', async () => {
+    const w = mount(FilterCombo, { props: { label: '类别', options, modelValue: ['c1'] }, attachTo: document.body })
+    await w.find('input').trigger('focus')
+    expect(w.find('.combo-pop').exists()).toBe(true)
+    expect(w.find('.combo-picked').text()).toContain('1')
+    await w.find('.combo-foot button').trigger('click')
+    expect(w.find('.combo-pop').exists()).toBe(false)
+    w.unmount()
+  })
   it('shows chip labels and removes', async () => {
     const w = mount(FilterCombo, { props: { label: '类别', options, modelValue: ['c1'] } })
     expect(w.find('.combo-chip').text()).toContain('AI 工具')

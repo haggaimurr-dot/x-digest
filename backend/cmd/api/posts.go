@@ -137,6 +137,10 @@ func runeIndex(h, n []rune) int {
 }
 
 func (s *server) handlePost(w http.ResponseWriter, r *http.Request) {
+	if r.URL.Path == "/api/v1/posts/batch-delete" {
+		s.handlePostsBatchDelete(w, r)
+		return
+	}
 	if r.URL.Path == "/api/v1/posts/summary/batch" {
 		s.handlePostSummaryBatch(w, r) // see post_summary.go
 		return
@@ -159,8 +163,20 @@ func (s *server) handlePost(w http.ResponseWriter, r *http.Request) {
 	case http.MethodPatch:
 		s.patchPost(w, r, id)
 		return
+	case http.MethodDelete:
+		n, err := s.st.DeletePosts([]string{id})
+		if err != nil {
+			writeErr(w, 500, "DB_ERROR", err.Error())
+			return
+		}
+		if n == 0 {
+			writeErr(w, 404, "NOT_FOUND", "post not found")
+			return
+		}
+		writeJSON(w, 200, map[string]int{"deleted": n})
+		return
 	default:
-		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only GET, PATCH")
+		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only GET, PATCH, DELETE")
 		return
 	}
 	p, err := s.st.GetPost(id)
@@ -173,6 +189,34 @@ func (s *server) handlePost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	writeJSON(w, 200, p)
+}
+
+const maxBatchDelete = 500
+
+// POST /api/v1/posts/batch-delete {"ids": [...]} → {"deleted": n}.
+// Unknown ids are skipped (n counts the posts actually removed).
+func (s *server) handlePostsBatchDelete(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only POST")
+		return
+	}
+	var body struct {
+		IDs []string `json:"ids"`
+	}
+	if !decodeBody(w, r, &body) {
+		return
+	}
+	ids := splitList(strings.Join(body.IDs, ","))
+	if len(ids) == 0 || len(ids) > maxBatchDelete {
+		writeErr(w, 422, "VALIDATION", "ids must hold 1–500 post ids")
+		return
+	}
+	n, err := s.st.DeletePosts(ids)
+	if err != nil {
+		writeErr(w, 500, "DB_ERROR", err.Error())
+		return
+	}
+	writeJSON(w, 200, map[string]int{"deleted": n})
 }
 
 // PATCH /api/v1/posts/{id} {"replica_enabled": true|false|null}

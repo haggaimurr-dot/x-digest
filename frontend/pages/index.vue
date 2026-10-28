@@ -11,61 +11,59 @@
       <p v-if="loadError" style="color:var(--danger-text)">{{ loadError }}</p>
       <p v-if="loading">{{ t('common.loading') }}</p>
 
-      <section class="filter-panel" v-if="!loading">
+      <!-- 搜索区：所有条件放在一个大框里，改条件不会立即检索，点「搜索」（或在关键词框回车）才生效；「重置」清空条件并检索全部。 -->
+      <section class="filter-panel search-panel" v-if="!loading" role="search" :aria-label="t('index.searchPanel')">
         <div class="filter-row" style="justify-content:space-between">
           <button class="btn btn-sm" type="button" @click="filtersCollapsed = !filtersCollapsed" :aria-expanded="!filtersCollapsed">{{ filtersCollapsed ? t('index.expandFilters') : t('index.collapseFilters') }}</button>
           <span class="active-count" v-if="filtersCollapsed && activeFilterCount">{{ t('index.selectedFilters', { n: activeFilterCount }) }}</span>
         </div>
-        <div v-show="!filtersCollapsed">
+        <form v-show="!filtersCollapsed" class="search-box" @submit.prevent="runSearch">
           <div class="unified-bar">
-            <div class="cond">
-              <label class="cond-label">{{ t('index.keyword') }}</label>
-              <input class="field" style="width:100%" type="search" v-model="keyword" :placeholder="t('index.keywordPh')" :aria-label="t('common.keywordSearch')" />
+            <div class="cond cond-wide">
+              <label class="cond-label" for="x-keyword">{{ t('index.keyword') }}</label>
+              <input id="x-keyword" class="field" style="width:100%" type="search" v-model="keyword" :placeholder="t('index.keywordPh')" :aria-label="t('common.keywordSearch')" />
             </div>
             <FilterCombo :label="t('index.author')" :placeholder="t('index.authorPh')" :options="authorOptions" v-model="selectedAuthorsArr" />
             <FilterCombo :label="t('index.postTags')" :placeholder="t('index.postTagsPh')" :options="tagOptions" v-model="selectedTagsArr" />
-            <FilterCombo :label="t('index.userTags')" :placeholder="t('index.userTagsPh')" :options="userTagOptions" v-model="selectedUserTagsArr" />
             <FilterCombo :label="t('index.postCats')" :placeholder="t('index.postCatsPh')" :options="catOptions" v-model="selectedCatsArr" />
-            <div class="cond cond-date">
-              <label class="cond-label">{{ t('index.date') }}</label>
-              <div style="display:flex;gap:6px">
-                <input type="date" class="field" style="flex:1;min-width:0" v-model="dateFrom" :aria-label="t('index.dateFromAria')" />
-                <input type="date" class="field" style="flex:1;min-width:0" v-model="dateTo" :aria-label="t('index.dateToAria')" />
-              </div>
-            </div>
             <div class="cond">
-              <label class="cond-label">{{ t('index.minChars') }}</label>
-              <select class="field" style="width:100%" v-model.number="minChars" :aria-label="t('index.minChars')">
+              <label class="cond-label" for="x-min-chars">{{ t('index.minChars') }}</label>
+              <select id="x-min-chars" class="field" style="width:100%" v-model.number="minChars">
                 <option :value="0">{{ t('index.minCharsAny') }}</option>
                 <option v-for="n in [50, 100, 200, 500, 1000]" :key="n" :value="n">{{ t('index.minCharsAbove', { n }) }}</option>
               </select>
             </div>
           </div>
-          <div v-if="kindCounts.length" style="margin-top:8px">
-            <div class="chip-group-title">帖子类型</div>
+          <div class="cond" style="margin-top:8px">
+            <div class="cond-label">{{ t('index.kind') }}</div>
             <div class="chips">
-              <button v-for="kc in kindCounts" :key="kc.kind" type="button" class="chip" :class="{ active: kindFilter === kc.kind }" @click="kindFilter = kindFilter === kc.kind ? '' : kc.kind">{{ kc.kind }}</button>
+              <button v-for="kc in kindCounts" :key="kc.kind" type="button" class="chip" :class="{ active: kindFilter === kc.kind }" :aria-pressed="kindFilter === kc.kind" @click="kindFilter = kindFilter === kc.kind ? '' : kc.kind">{{ kc.kind }}</button>
             </div>
           </div>
-          <div class="filter-row" style="margin-top:8px">
+          <div class="filter-row search-actions">
+            <button class="btn btn-primary" type="submit">{{ t('index.search') }}</button>
+            <button class="btn" type="button" @click="resetFilters">{{ t('index.reset') }}</button>
+            <span v-if="searchDirty" class="active-count">{{ t('index.pendingSearch') }}</span>
+            <span style="flex:1" />
             <select v-if="savedViews.length" class="field" style="width:auto" :aria-label="t('index.views')" :value="currentViewId" @change="applyView(($event.target as HTMLSelectElement).value)">
               <option value="">{{ t('index.viewsPick') }}</option>
               <option v-for="v in savedViews" :key="v.id" :value="v.id">{{ v.name }}</option>
             </select>
             <button class="btn btn-sm" type="button" @click="saveCurrentView">{{ t('index.viewSave') }}</button>
             <button v-if="currentViewId" class="btn btn-sm btn-danger" type="button" @click="deleteCurrentView">{{ t('index.viewDelete') }}</button>
-            <button class="btn btn-sm" type="button" @click="clearAll">{{ t('index.clearAll') }}</button>
+          </div>
+          <div class="filter-row" style="margin-top:4px">
             <span class="result-count">{{ t('index.resultCount', { n: totalPosts }) }}</span>
             <span v-if="translating" class="active-count">{{ t('common.translating') }}</span>
             <span class="active-count" v-if="activeFilterCount">{{ t('index.selectedFilters', { n: activeFilterCount }) }}</span>
           </div>
-          <p v-if="keyword && firstSnippet" class="hint" v-html="t('index.firstHit') + firstSnippet" />
-        </div>
+          <p v-if="applied.keyword && firstSnippet" class="hint" v-html="t('index.firstHit') + firstSnippet" />
+        </form>
       </section>
 
       <!-- 与油管页同一卡片样式：按作者分组（可折叠），左栏原文、右栏标题/时间/标签/操作，
            下方整行为资源与可折叠的 AI 摘要（含流程图）。 -->
-      <!-- 多选：批量归类 / 批量生成 AI 摘要 -->
+      <!-- 多选：批量归类 / 批量生成 AI 摘要 / 批量删除 -->
       <div class="filter-row" style="margin:8px 0">
         <button class="btn btn-sm" :class="{ 'btn-primary': selectMode }" type="button" @click="toggleSelectMode">{{ selectMode ? '退出多选' : '多选' }}</button>
         <template v-if="selectMode">
@@ -78,6 +76,7 @@
           <button class="btn btn-sm" type="button" :disabled="!batchCat || !selectedPosts.size || batchBusy" @click="batchCategory('add')">归入</button>
           <button class="btn btn-sm" type="button" :disabled="!batchCat || !selectedPosts.size || batchBusy" @click="batchCategory('remove')">移出</button>
           <button class="btn btn-sm btn-primary" type="button" :disabled="!selectedPosts.size || batchBusy" @click="batchSummaries">批量生成 AI 摘要</button>
+          <button class="btn btn-sm btn-danger" type="button" :disabled="!selectedPosts.size || batchBusy" @click="deleteSelected">删除所选</button>
           <span v-if="batchMsg" class="active-count">{{ batchMsg }}</span>
         </template>
       </div>
@@ -114,8 +113,8 @@
               <p v-if="post.title" class="x-brief"><span class="x-brief-label">内容简介：</span><span v-html="highlightHtml(tr(post.title), plainKeyword)" /></p>
               <p class="yt-meta"><a class="yt-meta-link" :href="post.url" target="_blank" rel="noopener">{{ shanghaiTime(post.published_at) }}（{{ relativeTime(post.published_at, lang.value) }}）</a><span v-if="post.industry"> · {{ post.industry }}</span><span v-if="post.tech"> · {{ post.tech }}</span></p>
               <div class="yt-tags">
-                <button v-if="post.kind" type="button" class="chip active yt-tag" :class="{ 'x-kind-on': kindFilter === post.kind }" @click="kindFilter = kindFilter === post.kind ? '' : post.kind">{{ post.kind }}</button>
-                <button v-for="tg in (post.tags || []).filter(tag => tag !== '复刻' || isReplicable(post)).slice(0, 8)" :key="tg" type="button" class="chip yt-tag yt-topic" :class="{ active: selectedTags.has(tg) }" @click="selectTagOnly(tg)">#{{ tg }}</button>
+                <button v-if="post.kind" type="button" class="chip active yt-tag" :class="{ 'x-kind-on': applied.kind === post.kind }" @click="searchKind(post.kind)">{{ post.kind }}</button>
+                <button v-for="tg in (post.tags || []).filter(tag => tag !== '复刻' || isReplicable(post)).slice(0, 8)" :key="tg" type="button" class="chip yt-tag yt-topic" :class="{ active: applied.tags.includes(tg) }" @click="selectTagOnly(tg)">#{{ tg }}</button>
                 <span v-for="cid in catsOf(post.id)" :key="cid" class="chip active yt-tag">{{ categoryName(cid) }}</span>
               </div>
               <div v-if="post.note" style="margin-top:6px"><span class="note-pill">{{ post.note }}</span></div>
@@ -125,6 +124,7 @@
                   {{ replicatedIds.has(post.id) ? t('index.replicated') : t('index.replicate') }}
                 </button>
                 <NuxtLink v-if="replicatedIds.has(post.id)" to="/fuke" class="btn btn-sm">{{ t('index.goFuke') }}</NuxtLink>
+                <button class="btn btn-sm btn-danger" type="button" :disabled="deleting.has(post.id)" @click="deletePost(post)">删除</button>
               </div>
               <div v-if="catMenuPost === post.id" class="cat-menu" style="margin-top:8px">
                 <div v-for="c in categories.categories" :key="c.id" class="cat-menu-item" style="display:flex;gap:6px;align-items:center">
@@ -139,7 +139,7 @@
                   <input class="field" v-model="newCatName" :placeholder="t('index.newCatPh')" maxlength="20" />
                   <button class="btn btn-sm btn-primary" type="button" @click="createCat(post.id)">{{ t('index.newCat') }}</button>
                 </div>
-                <label style="display:flex;gap:6px;align-items:center;margin-top:6px;font-size:13px">
+                <label v-if="isLongPost(post)" style="display:flex;gap:6px;align-items:center;margin-top:6px;font-size:13px">
                   复刻入口
                   <select class="field" style="width:auto" :value="post.replica_enabled === true ? 'on' : post.replica_enabled === false ? 'off' : 'auto'" @change="setReplicaMode(post, ($event.target as HTMLSelectElement).value)">
                     <option value="auto">自动（{{ autoReplicable(post) ? '显示' : '隐藏' }}）</option>
@@ -162,12 +162,12 @@
                 </li>
               </ul>
             </div>
-            <!-- AI 摘要：点击时才调中转站 API 生成并入库（同油管），之后直接读库；可复刻帖子的流程图也在这里 -->
-            <button class="yt-summary-toggle" type="button" :aria-expanded="openSummary.has(post.id)" @click="toggleSummary(post)">
+            <!-- AI 摘要：只对长文（字数 > 100）提供。点击时才调中转站 API 生成并入库（同油管），之后直接读库；可复刻帖子的流程图也在这里 -->
+            <button v-if="isLongPost(post)" class="yt-summary-toggle" type="button" :aria-expanded="openSummary.has(post.id)" @click="toggleSummary(post)">
               <span>✨ {{ openSummary.has(post.id) ? '收起 AI 摘要' : 'AI 摘要' }}<template v-if="hasFlow(post)"> · {{ t('index.stepsSummary', { n: post.steps!.length }) }}</template></span>
               <svg class="yt-chevron" :class="{ 'is-collapsed': !openSummary.has(post.id) }" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
             </button>
-            <section v-if="openSummary.has(post.id)" class="yt-summary" aria-label="AI 摘要">
+            <section v-if="isLongPost(post) && openSummary.has(post.id)" class="yt-summary" aria-label="AI 摘要">
               <template v-for="sum in [summaryOf(post.id)]" :key="'s' + post.id">
                 <p v-if="!sum" class="yt-sum-note">{{ t('common.loading') }}</p>
                 <p v-else-if="sum.status === 'pending' || sum.status === 'none'" class="yt-sum-note"><span class="yt-spinner" aria-hidden="true" />正在调用 AI 生成摘要，通常需要十几秒…</p>
@@ -281,7 +281,6 @@
                   <span class="wl-author-name">{{ a.name || a.username }}</span>
                   <a class="wl-author-handle" :href="`https://x.com/${a.username}`" target="_blank" rel="noopener">@{{ a.username }}</a>
                   <span class="chip-count" :title="'近 30 天发帖数'">30 天 {{ posts30d[a.username] ?? 0 }} 帖</span>
-                  <span v-for="tg in (a.tags || [])" :key="tg" class="chip yt-tag">{{ tg }}</span>
                   <span style="flex:1" />
                   <button class="btn btn-sm" type="button" :aria-expanded="editingAuthor === a.username" @click="editingAuthor = editingAuthor === a.username ? '' : a.username">{{ editingAuthor === a.username ? '收起' : '编辑' }}</button>
                 </div>
@@ -290,9 +289,6 @@
                   <label>分组<select class="field" :value="a.group" @change="doPatchAccount(a.username, { group: ($event.target as HTMLSelectElement).value })">
                     <option v-for="g in watchlist.groups" :key="g.id" :value="g.id">{{ g.name }}</option>
                   </select></label>
-                  <div class="wl-field"><span>用户标签（用于「用户标签」筛选）</span>
-                    <TagInput :model-value="userTagsOf(a.username)" :suggestions="userTagVocab" @update:model-value="saveAuthorTags(a.username, $event)" />
-                  </div>
                   <div style="display:flex;justify-content:flex-end"><button class="btn btn-sm btn-danger" type="button" @click="doDeleteAccount(a.username)">{{ t('settings.deleteAuthor') }}</button></div>
                 </div>
               </div>
@@ -314,52 +310,6 @@
               <button v-if="!g.fixed" class="btn btn-sm btn-danger" type="button" @click="doDeleteGroup(g.id)">{{ t('settings.deleteGroup') }}</button>
             </div>
           </template>
-        </div>
-
-        <div class="settings-section">
-          <h3>{{ t('settings.userTagSection') }}</h3>
-          <p style="color:var(--text-muted);font-size:13px;margin:0">给作者打的标签，用于「用户标签」筛选和关键词 <code>标签:xxx</code> 搜索。这里维护常用标签，作者的标签在上方「编辑」里选。</p>
-          <div class="wl-add-row" style="grid-template-columns:1fr auto;margin-top:8px">
-            <input class="field" v-model="newVocab" :placeholder="t('settings.newUserTagPh') + '（回车添加，可用逗号一次加多个）'" @keyup.enter="addVocab" />
-            <button class="btn btn-sm btn-primary" type="button" @click="addVocab">{{ t('settings.add') }}</button>
-          </div>
-          <!-- 标签云：字号按使用的作者数，点击即按该标签筛选 -->
-          <div v-if="tagCloud.length" class="tag-cloud" aria-label="标签云">
-            <button v-for="c in tagCloud" :key="c.tag" type="button" class="tag-cloud-item" :style="{ fontSize: `${c.size}px` }" :title="`${c.n} 位作者`" @click="searchUserTag(c.tag)">{{ c.tag }}</button>
-          </div>
-          <!-- 标签别名：搜索「标签:别名」与写入时都映射到正式标签 -->
-          <div class="tagmgr-list" style="margin-bottom:8px">
-            <p style="color:var(--text-muted);font-size:13px;margin:0">别名（如 cc → claude-code）：</p>
-            <div v-for="a in tagAliases" :key="a.alias" class="tagmgr-row">
-              <span class="tagmgr-name">{{ a.alias }} → {{ a.canonical }}</span>
-              <span style="flex:1" />
-              <button class="btn btn-sm btn-danger" type="button" @click="removeAlias(a.alias)">删除</button>
-            </div>
-            <div class="wl-add-row" style="grid-template-columns:1fr 1fr auto">
-              <input class="field" v-model="aliasDraft.alias" placeholder="别名" />
-              <input class="field" v-model="aliasDraft.canonical" placeholder="正式标签" />
-              <button class="btn btn-sm btn-primary" type="button" @click="addAlias">添加</button>
-            </div>
-          </div>
-          <div v-if="tagDupGroups.length" class="tagmgr-list" style="margin-bottom:8px">
-            <p style="color:var(--text-muted);font-size:13px;margin:0">疑似重复（仅大小写 / 全半角不同）：</p>
-            <div v-for="g in tagDupGroups" :key="g[0]!.tag" class="tagmgr-row">
-              <span class="tagmgr-name">{{ g.map(x => `${x.tag}×${x.n}`).join(' / ') }}</span>
-              <span style="flex:1" />
-              <button class="btn btn-sm btn-primary" type="button" @click="mergeTags(g.slice(1).map(x => x.tag), g[0]!.tag)">合并为 {{ g[0]!.tag }}</button>
-            </div>
-          </div>
-          <div class="tagmgr-list">
-            <div v-for="tg in tagManagerRows" :key="tg.tag" class="tagmgr-row">
-              <span class="tagmgr-name">{{ tg.tag }}</span>
-              <span class="tagmgr-count">{{ tg.n ? `${tg.n} 位作者` : '未使用' }}</span>
-              <span v-if="!tg.inVocab" class="tagmgr-count">（作者自带，未在常用列表）</span>
-              <span style="flex:1" />
-              <button v-if="!tg.inVocab" class="btn btn-sm" type="button" @click="addVocabTag(tg.tag)">加入常用</button>
-              <button v-else class="btn btn-sm btn-danger" type="button" @click="removeVocab(tg.tag)">移出</button>
-            </div>
-            <p v-if="!tagManagerRows.length" style="color:var(--text-muted);font-size:13px">还没有标签。</p>
-          </div>
         </div>
 
         <div class="settings-section">
@@ -400,12 +350,11 @@ import type { Post, Watchlist, WatchlistAccount, Categories, YTSummary, SavedVie
 import { LS, useSettings } from '~/composables/useSettings'
 import { canReplicatePost } from '~/utils/x-post.mjs'
 import { splitParagraphs } from '~/utils/paragraphs'
-import { cloudSizes, duplicateGroups } from '~/utils/tags'
 import { followSummary } from '~/utils/summaryStream'
 import { exportSettings, importSettings } from '~/utils/settingsTransfer'
 import { normalizeFilter, sameFilter, type FilterState } from '~/utils/filterView'
 import { apiBase } from '~/composables/useApi'
-import { avatarUrl, avatarColor, avatarInitial, relativeTime, shanghaiTime, highlightHtml, firstHitSnippet, shouldShowFlowchart, trunc40 } from '~/composables/useFormat'
+import { avatarUrl, avatarColor, avatarInitial, relativeTime, shanghaiTime, highlightHtml, firstHitSnippet, shouldShowFlowchart, trunc40, isLongPost } from '~/composables/useFormat'
 import { useScrollLock } from '~/composables/useScrollLock'
 import { linkParts, descResources } from '~/utils/videoTags'
 
@@ -423,17 +372,13 @@ const tagNames = ref<string[]>([])
 const updatedAt = ref('')
 const watchlist = ref<Watchlist>({ groups: [], accounts: [] })
 const categories = ref<Categories>({ categories: [], assignments: {} })
-const userTagVocab = ref<string[]>([])
-const userTagOverrides = ref<Record<string, string[]>>({})
 const replicaCount = ref(0)
 const replicatedIds = ref<Set<string>>(new Set())
 
+// 搜索区的条件（草稿）：改动不会立即检索，点「搜索」时复制到 applied 再加载。
 const keyword = ref('')
-const dateFrom = ref('')
-const dateTo = ref('')
 const selectedAuthors = ref<Set<string>>(new Set())
 const selectedTags = ref<Set<string>>(new Set())
-const selectedUserTags = ref<Set<string>>(new Set())
 const selectedCats = ref<Set<string>>(new Set())
 const minChars = ref(0)
 const filtersCollapsed = ref(false)
@@ -446,18 +391,16 @@ const showSettings = ref(false)
 useScrollLock(showSettings)
 const xDialog = ref<'post' | 'refresh' | null>(null)
 useScrollLock(computed(() => !!xDialog.value))
-// Server-side load: fetch the current page with the current filters.
+// Server-side load: fetch the current page with the applied (searched) filters.
 async function loadPostsPage () {
+  const f = applied.value
   const p = await store.loadPosts({
-    authors: [...selectedAuthors.value],
-    tags: [...selectedTags.value],
-    userTags: [...selectedUserTags.value],
-    categories: [...selectedCats.value],
-    keyword: keyword.value,
-    dateFrom: dateFrom.value,
-    dateTo: dateTo.value,
-    kind: kindFilter.value,
-    minChars: minChars.value,
+    authors: f.authors,
+    tags: f.tags,
+    categories: f.categories,
+    keyword: f.keyword,
+    kind: f.kind,
+    minChars: f.min_chars,
     page: page.value,
     pageSize: pageSize.value,
   })
@@ -476,7 +419,6 @@ const webhookMsg = ref('')
 const webhookUrlDraft = ref('')
 const webhookKeyDraft = ref('')
 const newGroupName = ref('')
-const newVocab = ref('')
 const newAccount = ref({ username: '', name: '', group: 'other' })
 
 let authorsInitialised = false
@@ -527,21 +469,10 @@ const unlistedAuthors = computed(() => {
   const known = new Set(watchlist.value.accounts.map(a => a.username))
   return [...new Set(posts.value.map(p => p.author))].filter(a => !known.has(a))
 })
-function userTagsOf (username: string): string[] {
-  // SPEC: user tags = watchlist account tags, with per-author overrides winning.
-  if (userTagOverrides.value[username]) return userTagOverrides.value[username]
-  return accountOf(username)?.tags || []
-}
-const userTagOptions = computed(() => {
-  const s = new Set<string>(userTagVocab.value)
-  for (const a of watchlist.value.accounts) for (const t of userTagsOf(a.username)) s.add(t)
-  return [...s]
-})
 const catsOf = (postId: string) => categories.value.assignments[postId] || []
 const categoryName = (id: string) => categories.value.categories.find(c => c.id === id)?.name || id
-// Keyword highlighting only (filtering is server-side now).
-const isUserTagQuery = computed(() => /^(?:标签[:：]|tag:)/i.test(keyword.value.trim()))
-const plainKeyword = computed(() => isUserTagQuery.value ? keyword.value.trim().replace(/^(?:标签[:：]|tag:)/i, '').trim() : keyword.value.trim())
+// Keyword highlighting only (filtering is server-side): the searched keyword.
+const plainKeyword = computed(() => applied.value.keyword)
 // ---- 帖子类型（cmd/digest 的 AI 分类；没分类的旧帖为「未分类」） ----
 const POST_KINDS = ['教程实操', '技术分享', '工具资源推荐', '观点讨论', '日常闲聊']
 const kindFilter = ref('')
@@ -549,8 +480,11 @@ function kindOf (p: Post): string { return p.kind || '未分类' }
 const kindCounts = computed(() => [...POST_KINDS, '未分类'].map(kind => ({ kind })))
 // 复刻：AI 判为「教程实操」才可复刻；没分类的旧帖沿用关键词规则 canReplicatePost。
 function autoReplicable (p: Post): boolean { return p.kind ? p.kind === '教程实操' : canReplicatePost(p) }
-// 手动开关（posts.replica_enabled）优先，没设置时按自动规则。
-function isReplicable (p: Post): boolean { return typeof p.replica_enabled === 'boolean' ? p.replica_enabled : autoReplicable(p) }
+// 只有长文（字数 > 100）才可复刻；其中手动开关（posts.replica_enabled）优先，没设置时按自动规则。
+function isReplicable (p: Post): boolean {
+  if (!isLongPost(p)) return false
+  return typeof p.replica_enabled === 'boolean' ? p.replica_enabled : autoReplicable(p)
+}
 async function setReplicaMode (p: Post, mode: string) {
   const v = mode === 'on' ? true : mode === 'off' ? false : null
   try {
@@ -581,58 +515,58 @@ const pageItems = computed<Array<number | '…'>>(() => {
   keep.forEach((x, i) => { if (i && x - keep[i - 1] > 1) out.push('…'); out.push(x) })
   return out
 })
-// Filter changes: reset to page 1 and reload. If already on page 1, reload
-// directly; otherwise the page watcher fires the reload.
-// While clearAll runs its own reset+reload, suppress the watcher-triggered
-// reloads (filter, page and debounced keyword watchers would otherwise each
-// fire another reload). Clears after 350ms to cover the 300ms keyword debounce.
-let suppressReload = false
-let suppressTimer: any = null
-let keywordTimer: any = null
-function onFilterChange () {
-  if (suppressReload) return
-  if (page.value === 1) reloadPosts()
-  else page.value = 1
+// ---- 搜索：条件改动只改草稿，点「搜索」/回车才检索；「重置」清空后检索全部 ----
+// 当前草稿条件（同保存视图的格式）。
+function currentFilter (): FilterState {
+  return normalizeFilter({
+    keyword: keyword.value.trim(), kind: kindFilter.value, min_chars: minChars.value,
+    authors: [...selectedAuthors.value], tags: [...selectedTags.value], categories: [...selectedCats.value]
+  })
 }
-watch(keyword, () => {
-  clearTimeout(keywordTimer)
-  keywordTimer = setTimeout(onFilterChange, 300)
-})
-watch([selectedAuthors, selectedTags, selectedUserTags, selectedCats, dateFrom, dateTo, kindFilter, minChars], onFilterChange)
-watch([page, pageSize], () => { if (!suppressReload) reloadPosts() })
+// 已生效（最近一次搜索）的条件：列表、分页、高亮都按它。
+const applied = ref<FilterState>(currentFilter())
+const searchDirty = computed(() => !sameFilter(currentFilter(), applied.value))
+function runSearch () {
+  applied.value = currentFilter()
+  persistSelection()
+  if (page.value !== 1) page.value = 1 // the page watcher reloads
+  else reloadPosts()
+}
+function resetFilters () {
+  keyword.value = ''; kindFilter.value = ''; minChars.value = 0
+  selectedAuthors.value = new Set(); selectedTags.value = new Set(); selectedCats.value = new Set()
+  runSearch()
+}
+watch([page, pageSize], () => reloadPosts())
 watch(totalPosts, () => { if (page.value > pageCount.value) page.value = 1 })
-const activeFilterCount = computed(() =>
-  selectedTags.value.size + selectedUserTags.value.size + selectedCats.value.size +
-  (keyword.value.trim() ? 1 : 0) + (dateFrom.value || dateTo.value ? 1 : 0) + (kindFilter.value ? 1 : 0) + (minChars.value ? 1 : 0))
-const firstSnippet = computed(() => {
-  if (!keyword.value.trim() || !posts.value.length) return ''
-  return firstHitSnippet(posts.value[0], plainKeyword.value || keyword.value.trim())
+const activeFilterCount = computed(() => {
+  const f = applied.value
+  return f.authors.length + f.tags.length + f.categories.length + (f.keyword ? 1 : 0) + (f.kind ? 1 : 0) + (f.min_chars ? 1 : 0)
 })
-function selectTagOnly (t: string) { selectedTags.value = new Set([t]) }
-// 下拉联想框用数组 v-model，内部筛选状态仍是 Set；桥接读写并保持原有的持久化。
-function setBridge (refSet: Ref<Set<string>>, persist = false) {
+const firstSnippet = computed(() => {
+  if (!applied.value.keyword || !posts.value.length) return ''
+  return firstHitSnippet(posts.value[0], applied.value.keyword)
+})
+// 卡片上点标签 / 类型：直接按它检索（明确的点击动作，不必再点搜索）。
+function selectTagOnly (t: string) { selectedTags.value = new Set([t]); runSearch() }
+function searchKind (kind: string) { kindFilter.value = applied.value.kind === kind ? '' : kind; runSearch() }
+// 下拉联想框用数组 v-model，内部筛选状态仍是 Set。
+function setBridge (refSet: Ref<Set<string>>) {
   return computed<string[]>({
     get: () => [...refSet.value],
-    set: (v) => { refSet.value = new Set(v); if (persist) persistSelection() }
+    set: (v) => { refSet.value = new Set(v) }
   })
 }
 // ---- 保存的筛选视图（/api/v1/views）：一键切换常用筛选组合 ----
 const savedViews = ref<SavedView[]>([])
-function currentFilter (): FilterState {
-  return normalizeFilter({
-    keyword: keyword.value, date_from: dateFrom.value, date_to: dateTo.value, kind: kindFilter.value,
-    authors: [...selectedAuthors.value], tags: [...selectedTags.value], user_tags: [...selectedUserTags.value], categories: [...selectedCats.value]
-  })
-}
 const currentViewId = computed(() => savedViews.value.find(v => sameFilter(normalizeFilter(v.filter), currentFilter()))?.id || '')
 function applyView (id: string) {
   const v = savedViews.value.find(x => x.id === id)
   if (!v) return
   const f = normalizeFilter(v.filter)
-  keyword.value = f.keyword; dateFrom.value = f.date_from; dateTo.value = f.date_to; kindFilter.value = f.kind
-  selectedAuthors.value = new Set(f.authors); selectedTags.value = new Set(f.tags)
-  selectedUserTags.value = new Set(f.user_tags); selectedCats.value = new Set(f.categories)
-  persistSelection()
+  keyword.value = f.keyword; kindFilter.value = f.kind; minChars.value = f.min_chars
+  selectedAuthors.value = new Set(f.authors); selectedTags.value = new Set(f.tags); selectedCats.value = new Set(f.categories)
+  runSearch()
 }
 async function refreshViews () { try { savedViews.value = await store.loadViews() } catch { /* views are optional */ } }
 async function saveCurrentView () {
@@ -647,10 +581,9 @@ async function deleteCurrentView () {
   if (!v || !window.confirm(t('index.viewDeleteConfirm', { name: v.name }))) return
   try { await store.deleteView(v.id); await refreshViews() } catch (e: any) { showToast(e?.message || t('index.viewSaveFailed')) }
 }
-const selectedAuthorsArr = setBridge(selectedAuthors, true)
+const selectedAuthorsArr = setBridge(selectedAuthors)
 const selectedTagsArr = setBridge(selectedTags)
-const selectedUserTagsArr = setBridge(selectedUserTags)
-const selectedCatsArr = setBridge(selectedCats, true)
+const selectedCatsArr = setBridge(selectedCats)
 // 各条件框的下拉选项（值多的字段靠输入联想过滤，见 FilterCombo）。
 const authorOptions = computed(() => {
   const listed = watchlist.value.accounts.map(a => ({ value: a.username, label: `${a.name} @${a.username}` }))
@@ -662,18 +595,6 @@ const catOptions = computed(() => [
   ...categories.value.categories.map(c => ({ value: c.id, label: c.name })),
   { value: '__uncat', label: t('index.uncategorized') }
 ])
-function clearAll () {
-  suppressReload = true
-  clearTimeout(suppressTimer)
-  clearTimeout(keywordTimer)
-  keyword.value = ''; dateFrom.value = ''; dateTo.value = ''; kindFilter.value = ''; minChars.value = 0
-  selectedTags.value = new Set(); selectedUserTags.value = new Set(); selectedCats.value = new Set()
-  selectedAuthors.value = new Set()
-  persistSelection()
-  page.value = 1
-  suppressTimer = setTimeout(() => { suppressReload = false }, 350)
-  reloadPosts()
-}
 // 原文默认折叠为 3 行：字数多或换行多（短句多行同样会被截断）时显示展开按钮。
 function isLongText (text?: string) {
   const s = text || ''
@@ -908,12 +829,15 @@ async function batchCategory (action: 'add' | 'remove') {
   } catch (e: any) { batchMsg.value = e?.message || '批量归类失败' } finally { batchBusy.value = false }
 }
 async function batchSummaries () {
-  const ids = [...selectedPosts.value]
+  // AI 摘要只对长文提供：短帖不送去生成。
+  const ids = posts.value.filter(p => selectedPosts.value.has(p.id) && isLongPost(p)).map(p => p.id)
+  const short = selectedPosts.value.size - ids.length
+  if (!ids.length) { batchMsg.value = '所选都是短帖（≤ 100 字），没有 AI 摘要'; return }
   if (ids.length > 30) { batchMsg.value = '一次最多 30 帖'; return }
   batchBusy.value = true
   try {
     const r = await store.batchPostSummaries(ids, lang.value)
-    batchMsg.value = `已排队 ${r.queued} 帖，跳过 ${r.skipped} 帖（已有摘要）`
+    batchMsg.value = `已排队 ${r.queued} 帖，跳过 ${r.skipped} 帖（已有摘要）` + (short ? `，${short} 帖为短帖未生成` : '')
     // Open the queued ones so their panels follow progress (SSE / poll).
     const open = new Set(openSummary.value)
     for (const p of posts.value) {
@@ -921,6 +845,37 @@ async function batchSummaries () {
     }
     openSummary.value = open
   } catch (e: any) { batchMsg.value = e?.message || '批量生成失败' } finally { batchBusy.value = false }
+}
+// ---- 删除帖子：单个（卡片「删除」）与批量（多选「删除所选」）。删除后不会被自动更新/导入找回，
+// 需要时可用「导入单帖」重新导入。
+const deleting = ref<Set<string>>(new Set())
+async function removePosts (ids: string[]) {
+  const r = await store.deletePosts(ids)
+  const sel = new Set(selectedPosts.value)
+  for (const id of ids) sel.delete(id)
+  selectedPosts.value = sel
+  await loadPostsPage()
+  return r.deleted
+}
+async function deletePost (p: Post) {
+  const title = (p.title || p.text || p.id).slice(0, 40)
+  if (!window.confirm(`删除这条帖子？\n「${title}」\n删除后不会再被自动更新拉回，如需恢复可用「导入单帖」重新导入。`)) return
+  deleting.value = new Set([...deleting.value, p.id])
+  try {
+    await removePosts([p.id])
+    showToast('已删除 1 条帖子')
+  } catch (e: any) { showToast(e?.message || '删除失败') } finally {
+    const s = new Set(deleting.value); s.delete(p.id); deleting.value = s
+  }
+}
+async function deleteSelected () {
+  const ids = [...selectedPosts.value]
+  if (!ids.length || !window.confirm(`删除选中的 ${ids.length} 条帖子？删除后不会再被自动更新拉回。`)) return
+  batchBusy.value = true
+  try {
+    const n = await removePosts(ids)
+    batchMsg.value = `已删除 ${n} 条帖子`
+  } catch (e: any) { batchMsg.value = e?.message || '批量删除失败' } finally { batchBusy.value = false }
 }
 async function renameCat (id: string, old: string) {
   const name = window.prompt(t('index.catRenamePrompt'), old)?.trim()
@@ -941,9 +896,6 @@ async function removeCat (id: string, name: string) {
 }
 async function refreshWatchlist () {
   watchlist.value = await store.loadWatchlist()
-  const ut = await store.loadUserTags()
-  userTagVocab.value = ut.vocabulary || []
-  userTagOverrides.value = ut.overrides || {}
   restoreSelection()
 }
 async function doAddGroup () {
@@ -1021,68 +973,6 @@ async function doDeleteAccount (username: string) {
   if (!confirm(t('settings.deleteAuthorConfirm', { username }))) return
   await store.deleteAccount(username); await refreshWatchlist()
 }
-// 常用标签（词汇表）：增删都立即保存到服务端。
-async function saveVocab (next: string[]) {
-  const prev = userTagVocab.value
-  userTagVocab.value = next
-  try { await store.setUserTagVocabulary(next) } catch (e: any) { userTagVocab.value = prev; showToast(e?.message || '保存标签失败') }
-}
-function addVocab () {
-  const add = newVocab.value.split(/[,，、]/).map(x => x.trim()).filter(x => x && !userTagVocab.value.includes(x))
-  newVocab.value = ''
-  if (add.length) saveVocab([...userTagVocab.value, ...add])
-}
-function addVocabTag (tg: string) { if (!userTagVocab.value.includes(tg)) saveVocab([...userTagVocab.value, tg]) }
-function removeVocab (tg: string) {
-  const n = tagUsage.value.get(tg) || 0
-  if (n && !confirm(`「${tg}」还有 ${n} 位作者在用。移出常用列表不会从这些作者身上删掉它，确定移出？`)) return
-  saveVocab(userTagVocab.value.filter(x => x !== tg))
-}
-// 每个标签被多少位作者使用（按生效的标签：有覆盖用覆盖，否则用作者自带标签）。
-const tagUsage = computed(() => {
-  const m = new Map<string, number>()
-  for (const a of watchlist.value.accounts) for (const tg of userTagsOf(a.username)) m.set(tg, (m.get(tg) || 0) + 1)
-  return m
-})
-const tagManagerRows = computed(() => {
-  const all = [...new Set([...userTagVocab.value, ...tagUsage.value.keys()])]
-  return all.map(tag => ({ tag, n: tagUsage.value.get(tag) || 0, inVocab: userTagVocab.value.includes(tag) }))
-    .sort((a, b) => b.n - a.n || a.tag.localeCompare(b.tag, 'zh'))
-})
-const tagDupGroups = computed(() => duplicateGroups(tagManagerRows.value))
-const tagCloud = computed(() => cloudSizes(tagManagerRows.value.filter(r => r.n > 0)))
-function searchUserTag (tag: string) { keyword.value = `标签:${tag}`; showSettings.value = false }
-const tagAliases = ref<Array<{ alias: string, canonical: string }>>([])
-const aliasDraft = ref({ alias: '', canonical: '' })
-async function refreshAliases () { try { tagAliases.value = await store.loadTagAliases() } catch { /* optional */ } }
-async function addAlias () {
-  const { alias, canonical } = aliasDraft.value
-  if (!alias.trim() || !canonical.trim()) return
-  try { await store.setTagAlias(alias.trim(), canonical.trim()); aliasDraft.value = { alias: '', canonical: '' }; await refreshAliases() } catch (e: any) { showToast(e?.message || '保存别名失败') }
-}
-async function removeAlias (alias: string) {
-  try { await store.deleteTagAlias(alias); await refreshAliases() } catch (e: any) { showToast(e?.message || '删除别名失败') }
-}
-watch(showSettings, (v) => { if (v) refreshAliases() })
-async function mergeTags (from: string[], to: string) {
-  if (!window.confirm(`把 ${from.join('、')} 合并为 ${to}？所有作者的这些标签都会改成 ${to}。`)) return
-  try {
-    await store.mergeUserTags(from, to)
-    await refreshWatchlist()
-    showToast(`已合并为 ${to}`)
-  } catch (e: any) { showToast(e?.message || '合并失败') }
-}
-// 作者标签只编辑一份：写到作者自带标签，并清掉旧的覆盖，避免两处不一致；
-// 新输入的标签顺手加入常用列表。
-async function saveAuthorTags (username: string, tags: string[]) {
-  try {
-    await store.patchAccount(username, { tags })
-    if (userTagOverrides.value[username]) await store.setUserTags(username, [])
-    const fresh = tags.filter(x => !userTagVocab.value.includes(x))
-    if (fresh.length) await saveVocab([...userTagVocab.value, ...fresh])
-    await refreshWatchlist()
-  } catch (e: any) { showToast(e?.message || '保存标签失败') }
-}
 function doExportSettings () {
   const blob = new Blob([exportSettings(localStorage)], { type: 'application/json' })
   const a = document.createElement('a')
@@ -1134,8 +1024,6 @@ onMounted(async () => {
       loadPostsPage(), store.loadWatchlist(), store.loadCategories(), store.loadReplicas('time').catch(() => [] as any[]), store.loadTags()
     ])
     watchlist.value = w; categories.value = c; tagNames.value = tags
-    const ut = await store.loadUserTags()
-    userTagVocab.value = ut.vocabulary || []; userTagOverrides.value = ut.overrides || {}
     replicatedIds.value = new Set((reps as any[]).map(r => r.post_id))
     refreshViews()
     replicaCount.value = (reps as any[]).length
@@ -1146,9 +1034,9 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-.tag-cloud { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; margin: 8px 0; }
-.tag-cloud-item { border: none; background: transparent; color: var(--text); cursor: pointer; padding: 0; line-height: 1.3; }
-.tag-cloud-item:hover { color: var(--accent, #1d9bf0); text-decoration: underline; }
+.search-box { border: 1px solid var(--border); border-radius: 12px; padding: 12px; margin-top: 8px; background: var(--bg-elevated); }
+.search-box .cond-wide { flex: 1 1 100%; }
+.search-actions { margin-top: 10px; gap: 8px; }
 .bilingual { margin: 6px 0; border-left: 3px solid var(--border); padding-left: 10px; }
 .bilingual .bi-orig { margin: 6px 0 2px; white-space: pre-wrap; }
 .bilingual .bi-tr { margin: 0 0 8px; color: var(--text-muted); white-space: pre-wrap; }

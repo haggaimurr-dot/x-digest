@@ -243,8 +243,18 @@ func Import(db *sql.DB, dataDir string) (Counts, error) {
 		}
 		rows.Close()
 	}
-	c.Failed = []FailedPost{}
+	// Posts deleted on the page stay deleted (no table yet = nothing deleted).
 	seenIDs := map[string]bool{}
+	if rows, err := tx.Query("SELECT id FROM deleted_posts"); err == nil {
+		for rows.Next() {
+			var id string
+			if rows.Scan(&id) == nil {
+				seenIDs[id] = true
+			}
+		}
+		rows.Close()
+	}
+	c.Failed = []FailedPost{}
 	for _, p := range postsFile.Posts {
 		published, reason := checkPost(p)
 		if reason != "" {

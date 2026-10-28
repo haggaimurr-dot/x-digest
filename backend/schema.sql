@@ -549,3 +549,12 @@ CREATE TABLE IF NOT EXISTS user_settings (
   json        TEXT         NOT NULL,
   updated_at  DATETIME(3)  NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Posts deleted on the page (2026-10-29): DELETE /api/v1/posts/{id} and
+-- POST /api/v1/posts/batch-delete record the id here so the bot import
+-- (cmd/import) and 更新帖子 do not bring the post back; importing it again
+-- with 导入单帖 removes the record.
+CREATE TABLE IF NOT EXISTS deleted_posts (
+  id         VARCHAR(64) NOT NULL PRIMARY KEY,
+  deleted_at DATETIME    NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

@@ -37,6 +37,7 @@ export function useStore () {
   const mockStore = useMockStore()
   const loading = useState<boolean>('xd-loading', () => false)
   const error = useState<string>('xd-error', () => '')
+  const mockDeleted = useState<string[]>('xd-mock-deleted-posts', () => [])
 
   async function loadPosts (params: {
     authors?: string[], tags?: string[], userTags?: string[], categories?: string[],
@@ -44,7 +45,7 @@ export function useStore () {
     page?: number, pageSize?: number
   } = {}): Promise<{ updated_at: string, total: number, posts: Post[] }> {
     if (mock.value) {
-      const posts = [...MOCK_POSTS].sort((a, b) => {
+      const posts = MOCK_POSTS.filter(p => !mockDeleted.value.includes(p.id)).sort((a, b) => {
         const d = Date.parse(b.published_at) - Date.parse(a.published_at)
         return d !== 0 ? d : a.id.localeCompare(b.id)
       })
@@ -257,6 +258,16 @@ export function useStore () {
   }
   async function deleteView (id: string) {
     await apiFetch(`views/${id}`, { method: 'DELETE' })
+  }
+  // Delete posts (backend records them so imports do not bring them back).
+  async function deletePosts (ids: string[]): Promise<{ deleted: number }> {
+    if (mock.value) {
+      const hit = ids.filter(id => MOCK_POSTS.some(p => p.id === id) && !mockDeleted.value.includes(id))
+      mockDeleted.value = [...mockDeleted.value, ...hit]
+      return { deleted: hit.length }
+    }
+    if (ids.length === 1) return apiFetch(`posts/${encodeURIComponent(ids[0]!)}`, { method: 'DELETE' })
+    return apiFetch('posts/batch-delete', { method: 'POST', body: JSON.stringify({ ids }) })
   }
   async function setPostReplicaEnabled (id: string, v: boolean | null) {
     if (mock.value) return
@@ -505,7 +516,7 @@ export function useStore () {
     mock, loading, error, loadPosts, loadWatchlist, loadWatchlistActivity, bulkAddAccounts, loadTags, loadUserTags, loadCategories,
     loadReplicas, createReplica, createStandaloneReplica, patchReplicaSteps, addReplicaStep, deleteReplicaStep, deleteReplica, uploadAttachments,
     deleteAttachment, replicaAttachments, addGroup, deleteGroup, addAccount, patchAccount,
-    deleteAccount, addCategory, deleteCategory, renameCategory, restoreCategory, mergeUserTags, setPostReplicaEnabled, loadViews, createView, deleteView, batchCategory, batchPostSummaries, loadTagAliases, setTagAlias, deleteTagAlias, cloneReplica, loadNotifications, markNotificationsRead, createReplicaFromRepo, setPostCategories, setUserTags, setUserTagVocabulary, translateTexts,
+    deleteAccount, addCategory, deleteCategory, renameCategory, restoreCategory, mergeUserTags, deletePosts, setPostReplicaEnabled, loadViews, createView, deleteView, batchCategory, batchPostSummaries, loadTagAliases, setTagAlias, deleteTagAlias, cloneReplica, loadNotifications, markNotificationsRead, createReplicaFromRepo, setPostCategories, setUserTags, setUserTagVocabulary, translateTexts,
     loadRepos, loadRepoGroups, addRepo, loadRepoDetail, loadRepoCommits, loadRepoReleases,
     patchRepo, deleteRepo, syncRepo, syncAllRepos, getRepoSyncStatus, addRepoGroup, deleteRepoGroup, validateRepoFullName,
     loadYTChannels, loadYTVideos, addYTChannel, updateYTChannel, deleteYTChannel, syncYTChannel, syncAllYTChannels, getYTSummary, startYTSummary, addYTVideo, getPostSummary, startPostSummary, importXPost, getXRefresh, startXRefresh, retryXRefresh,

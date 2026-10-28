@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { avatarColor, avatarInitial, avatarUrl, deriveShowFlowchart, escapeHtml, firstHitSnippet, highlightHtml, shanghaiDayBound, shanghaiTime, shouldShowFlowchart, trunc40 } from '~/composables/useFormat'
+import { avatarColor, avatarInitial, avatarUrl, deriveShowFlowchart, escapeHtml, firstHitSnippet, highlightHtml, shanghaiDayBound, shanghaiTime, shouldShowFlowchart, trunc40, postChars, isLongPost } from '~/composables/useFormat'
 import type { Post } from '~/composables/types'
 
 const post = (p: Partial<Post>): Post => ({ id: '1', url: '', author: 'alice', author_name: 'Alice', author_avatar: '', industry: '', tech: '', title: '', summary: '', note: '', published_at: '2026-10-01T00:00:00+08:00', is_long: false, tags: [], steps: [], ...p } as Post)
@@ -48,5 +48,13 @@ describe('useFormat', () => {
   it('trunc40', () => {
     expect(trunc40('a'.repeat(41))).toBe('a'.repeat(40) + '…')
     expect(trunc40('short')).toBe('short')
+  })
+  it('long posts: more than 100 chars of text, else summary, else title', () => {
+    expect(postChars(post({ text: '  ' + '字'.repeat(100) + '  ', summary: 'x'.repeat(500) }))).toBe(100)
+    expect(isLongPost(post({ text: '字'.repeat(100) }))).toBe(false)
+    expect(isLongPost(post({ text: '字'.repeat(101) }))).toBe(true)
+    expect(isLongPost(post({ text: '', summary: 's'.repeat(101) }))).toBe(true)
+    expect(isLongPost(post({ title: '短标题' }))).toBe(false)
+    expect(postChars(post({ text: '😀'.repeat(3) }))).toBe(3)
   })
 })

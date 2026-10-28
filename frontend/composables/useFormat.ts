@@ -110,3 +110,12 @@ export function shouldShowFlowchart (p: Post): boolean {
 export function trunc40 (s: string): string {
   return s.length > 40 ? s.slice(0, 40) + '…' : s
 }
+// 帖子字数：原文，没有原文时用摘要、再退到标题（同后端 min_chars 筛选）；按字符计。
+export function postChars (p: Pick<Post, 'text' | 'summary' | 'title'>): number {
+  return [...((p.text || '').trim() || (p.summary || '').trim() || (p.title || '').trim())].length
+}
+// 长文（字数 > 100）才提供 AI 智能分析与复刻。
+export const LONG_POST_CHARS = 100
+export function isLongPost (p: Pick<Post, 'text' | 'summary' | 'title'>): boolean {
+  return postChars(p) > LONG_POST_CHARS
+}
