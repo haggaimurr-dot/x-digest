@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-28T05:50:10Z",
+  "updatedAt": "2026-10-28T05:50:36Z",
   "posts": [
     {
       "id": "2115313586105192884",
@@ -30,6 +30,39 @@
           "url": "https://t.co/Fgy0dBAHsJ",
           "name": "原文附带的链接",
           "note": "出现在引用 @thsottiaux 的内容中，对方称其已到来，具体所指不明。"
+        }
+      ]
+    },
+    {
+      "id": "2115303040735736115",
+      "url": "https://x.com/0xlangeai/status/2115303040735736115",
+      "author": "0xlangeai",
+      "authorName": "蓝哥AI",
+      "publishedAt": "2026-10-28T04:41:59.000Z",
+      "title": "收藏 Claude Duet 使用细节",
+      "industry": "人工智能",
+      "tech": "Claude Duet、Claude、skills",
+      "summary": "收藏了对方关于 Claude Duet 的细节分享，内容涉及直接使用 Claude 账号中的记忆、skills 和已连接应用，并感叹此前未注意到这些细节。",
+      "steps": [],
+      "tags": [
+        "人工智能",
+        "账号记忆",
+        "应用连接",
+        "内容收藏"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://t.co/8j83yqk6pP",
+          "name": "原文附带的链接",
+          "note": "附于被回复的 Claude Duet 分享中，具体内容无法从原文确定。"
+        },
+        {
+          "url": "https://t.co/hUc2zjKKev",
+          "name": "原文附带的链接",
+          "note": "附于被回复的 Claude Duet 分享中，具体内容无法从原文确定。"
         }
       ]
     },
@@ -10230,6 +10263,29 @@
       "resources": []
     },
     {
+      "id": "2113173189140558040",
+      "url": "https://x.com/Steve202333/status/2113173189140558040",
+      "author": "Steve202333",
+      "authorName": "队长波特er",
+      "publishedAt": "2026-10-22T07:38:43.000Z",
+      "title": "Tim Cook震撼现身iPhone Duo折叠评测",
+      "industry": "消费电子",
+      "tech": "iPhone Duo",
+      "summary": "Tim Cook现身iPhone Duo折叠手机评测视频，视频标题为“10,000 Folds Later...”，展示了该折叠设备经过上万次折叠后的使用体验。",
+      "steps": [],
+      "tags": [
+        "iPhone",
+        "折叠手机",
+        "Tim Cook",
+        "产品评测",
+        "苹果"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": []
+    },
+    {
       "id": "2113165456475349428",
       "url": "https://x.com/miles_mazy/status/2113165456475349428",
       "author": "miles_mazy",
@@ -11990,6 +12046,27 @@
           "note": "用于申请NS论坛邀请码的Telegram机器人"
         }
       ]
+    },
+    {
+      "id": "2112780567490318387",
+      "url": "https://x.com/mjjwiki/status/2112780567490318387",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-21T05:38:35.000Z",
+      "title": "免费虚拟卡已停止开放申请",
+      "industry": "金融科技",
+      "tech": "虚拟卡",
+      "summary": "针对虚拟卡是否也要付费的提问，MJJ百科说明该产品并非U卡，仅在6月底至7月初曾可免费开虚拟卡，当时约有10万人申请。目前申请人数已接近80万，而在申请人数达到40万时，就已无法免费开虚拟卡。",
+      "steps": [],
+      "tags": [
+        "虚拟卡",
+        "开卡费用",
+        "申请人数"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
     },
     {
       "id": "2112779664670544147",
@@ -14231,6 +14308,28 @@
       ]
     },
     {
+      "id": "2112200708527165487",
+      "url": "https://x.com/mjjwiki/status/2112200708527165487",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-19T15:14:26.000Z",
+      "title": "美股资金分三份，仅清仓短线部分",
+      "industry": "投资理财",
+      "tech": "",
+      "summary": "作者回应他人提问，说明自己美股资金分为三份，目前只清仓了其中的短线部分。对方认为美股应该玩长线，作者以此澄清自己并非全部清仓。",
+      "steps": [],
+      "tags": [
+        "美股投资",
+        "资金分配",
+        "长线持有",
+        "短线交易"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
       "id": "2112199523556860233",
       "url": "https://x.com/miles_mazy/status/2112199523556860233",
       "author": "miles_mazy",
@@ -15161,6 +15260,27 @@
       "isLong": false,
       "showFlowchart": false,
       "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2112106637414834438",
+      "url": "https://x.com/XiaohuiAI666/status/2112106637414834438",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-10-19T09:00:38.000Z",
+      "title": "单机游戏无需服务器，Token月费200美元足够",
+      "industry": "人工智能、游戏",
+      "tech": "Token",
+      "summary": "针对Token成本和游戏服务器租用费用的提问，认为每月200美元的Token预算绰绰有余。单机游戏不需要服务器，因此无需租用游戏服务器。",
+      "steps": [],
+      "tags": [
+        "Token成本",
+        "单机游戏",
+        "服务器费用"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
       "resources": []
     },
     {
