@@ -18812,6 +18812,11 @@
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2112150231823577444": {
+    "text": "@JustLikeBit 应该是，我今天刷到一个博主，一个月发了2.5万贴的，这几天都是一小时发了十几条的……当时忘记屏蔽他了，草率了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2112144756759527540": {
     "text": "@MaYvhan Ultra也有5H限制吗？Pro的5h额度改为周额度的5%，之前好像是周额度的20%，我都忍不住吐槽它了。",
     "links": [],
@@ -19021,6 +19026,14 @@
     ],
     "avatar": ""
   },
+  "2114374452205048085": {
+    "text": "Didn't expect this much interest in Octopus OS. Lots of architecture questions.\n\nAgents can edit their own harness while using it. How their work is organized is stored as editable data.\n\nNormal use on the left, live system activity on the right.\n\nGive it a try! Repo in replies. https://t.co/ldghohH6vj https://t.co/K0Pz4okIBj",
+    "links": [
+      "https://t.co/ldghohH6vj",
+      "https://t.co/K0Pz4okIBj"
+    ],
+    "avatar": ""
+  },
   "2115282464025510337": {
     "text": "Anthropic最新研究：当你用AI干活儿时，你以为你在掌握全局，实际上，AI可能已经在不知不觉中影响甚至主导了你的判断\n\nAnthropic做了个实验，结果相当惊人：\n86%的关键分析选择跟着AI走，77%的人在事后解释自己的决策时，至少一次复述了AI提供的论据\n\n在事先明确表达过个人偏好的案例中，当AI提出相反建议时，60%的选择发生了改变\n\n更扎心的是，那些个四项分析选择全部跟着AI走的人，对自己最终结论的信心和其他分析师几乎没有差别。有52%的受访分析师事后仍认为，最终建议更多来自自己的判断不是AI\n\n实验是，Anthropic找了50位专业分析师用Claude Code做因果分析，帮一家农业合作社评估一项农业咨询服务是否有效、是否值得推广\n\n看似是个普通的数据分析任务，但其中有几个是没有唯一正确答案的专业判断，每个选项都有合理依据，但不同选择可能会改变最终结论\n\n研究者们做了一个前置设计，就是事先秘密为每位分析师使用的AI，在各项关键决策上分别随机指定偏好，比如采用哪种统计方法、如何衡量效果、给哪些数据更高权重等\n\n就是想看看，面对一个看起来专业论据充分的AI，专家们到底会不会坚持自己的独立判断？\n\n结果就是，专家们的分析选择明显受到了AI偏好的影响\n\n过去我们讨论AI的安全性，经常强调Human-in-the-loop，人参与审核、批准关键决策，那么问题来了，人类保留最终批准权，等于人类真正掌握了决策权吗？\n\nAnthropic给了建议，下一代Agent除了追求执行效率，还应该帮助使用者保留真正的判断能力\n\n比如说在重大决策上，AI可以先询问用户原本的观点，再提供建议；主动解释多个合理选项各自的优缺点；把真正涉及目标、价值观和专业判断的决策交还给人，不是全部替用户默认选择\n\n组织也需要明确，哪些工作可以完全交给AI，哪些关键判断必须由人独立完成\n\n#AIAlignment  #HumanInTheLoop  #AI安全",
     "links": [],
@@ -19069,6 +19082,11 @@
       "https://t.co/FBGAxGl3VQ",
       "https://t.co/pjgfYJcmM5"
     ],
+    "avatar": "avatars/0xlangeai.jpg"
+  },
+  "2115271143804534878": {
+    "text": "@yihui_indie 这绝对是实打实的底裤都给大家讲明白了,   一个是商业模式是怎么样子的,  一个是营销怎么来弄.    大多人容易一有个想法就开始 vibe coding 了,  差不多做出来, 才考虑怎么营销,  再到营销也没啥用户,  再回去反思商业模式 ,  走的是一个相反的路径",
+    "links": [],
     "avatar": "avatars/0xlangeai.jpg"
   }
 }

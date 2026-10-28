@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-28T05:48:32Z",
+  "updatedAt": "2026-10-28T05:49:04Z",
   "posts": [
     {
       "id": "2115300040701096272",
@@ -114,6 +114,34 @@
           "url": "https://t.co/pjgfYJcmM5",
           "name": "原文附带的链接",
           "note": "原文未说明链接的具体内容或用途。"
+        }
+      ]
+    },
+    {
+      "id": "2115271143804534878",
+      "url": "https://x.com/0xlangeai/status/2115271143804534878",
+      "author": "0xlangeai",
+      "authorName": "蓝哥AI",
+      "publishedAt": "2026-10-28T02:35:15.000Z",
+      "title": "做产品别先写代码再想商业模式",
+      "industry": "软件开发",
+      "tech": "Vibe Coding",
+      "summary": "蓝哥AI认可对方把商业模式和营销做法讲得透彻。很多人一有想法就开始 Vibe Coding，产品差不多做出来才考虑营销，发现没什么用户后又回头反思商业模式。他认为这种先开发、后营销、最后再想商业模式的顺序走反了。",
+      "steps": [],
+      "tags": [
+        "商业模式",
+        "产品营销",
+        "独立开发",
+        "开发误区"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://t.co/sYYq9eOFk0",
+          "name": "原文附带的链接",
+          "note": "出现在回复上下文中，未提供链接目标的具体内容。"
         }
       ]
     },
@@ -2371,6 +2399,28 @@
         "前后端开发",
         "模型协作",
         "交叉检查"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": []
+    },
+    {
+      "id": "2114374452205048085",
+      "url": "https://x.com/miu21590/status/2114374452205048085",
+      "author": "miu21590",
+      "authorName": "vechen",
+      "publishedAt": "2026-10-25T15:12:07.000Z",
+      "title": "Octopus OS支持智能体自改运行框架",
+      "industry": "人工智能",
+      "tech": "Octopus OS、Agent Harness",
+      "summary": "Octopus OS 受到关注后，作者补充说明其架构：智能体可以在使用自身运行框架的同时修改它，工作组织方式以可编辑数据的形式存储。演示左侧展示正常使用，右侧展示实时系统活动。作者邀请大家试用，并说明代码仓库在回复中。",
+      "steps": [],
+      "tags": [
+        "智能体",
+        "自我改进",
+        "系统架构",
+        "开源项目"
       ],
       "isLong": false,
       "showFlowchart": false,
@@ -14277,6 +14327,27 @@
       "isLong": false,
       "showFlowchart": false,
       "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2112150231823577444",
+      "url": "https://x.com/mjjwiki/status/2112150231823577444",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-19T11:53:51.000Z",
+      "title": "博主月发2.5万帖刷屏",
+      "industry": "",
+      "tech": "",
+      "summary": "刷到一位一个月发了2.5万帖、近几天每小时发十几条的博主，赞同这类高频输出可能是自动化搬运，并懊恼当时忘了屏蔽对方。",
+      "steps": [],
+      "tags": [
+        "高频发帖",
+        "自动化搬运",
+        "屏蔽账号"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
       "resources": []
     },
     {
