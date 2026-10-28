@@ -38,7 +38,11 @@ export function useStore () {
   const loading = useState<boolean>('xd-loading', () => false)
   const error = useState<string>('xd-error', () => '')
 
-  async function loadPosts (): Promise<{ updated_at: string, total: number, posts: Post[] }> {
+  async function loadPosts (params: {
+    authors?: string[], tags?: string[], userTags?: string[], categories?: string[],
+    keyword?: string, dateFrom?: string, dateTo?: string, kind?: string, minChars?: number,
+    page?: number, pageSize?: number
+  } = {}): Promise<{ updated_at: string, total: number, posts: Post[] }> {
     if (mock.value) {
       const posts = [...MOCK_POSTS].sort((a, b) => {
         const d = Date.parse(b.published_at) - Date.parse(a.published_at)
@@ -46,9 +50,21 @@ export function useStore () {
       })
       return { updated_at: MOCK_UPDATED_AT, total: posts.length, posts: posts.map(withXContent) }
     }
-    const data = await apiFetch<{ updated_at: string, total: number, posts: Post[] }>('posts?page=1&page_size=1000')
-    // Client-side filtering (SPEC semantics) is applied in the page; the server
-    // list is already published_at DESC, id ASC per SPEC.
+    // Server-side filtering + pagination: the API returns only the requested
+    // page, so the client never downloads the whole library at once.
+    const q = new URLSearchParams()
+    if (params.authors?.length) q.set('author', params.authors.join(','))
+    if (params.tags?.length) q.set('tag', params.tags.join(','))
+    if (params.userTags?.length) q.set('user_tag', params.userTags.join(','))
+    if (params.categories?.length) q.set('category', params.categories.join(','))
+    if (params.keyword?.trim()) q.set('q', params.keyword.trim())
+    if (params.dateFrom) q.set('date_from', params.dateFrom)
+    if (params.dateTo) q.set('date_to', params.dateTo)
+    if (params.kind) q.set('kind', params.kind)
+    if (params.minChars) q.set('min_chars', String(params.minChars))
+    q.set('page', String(params.page || 1))
+    q.set('page_size', String(params.pageSize || 20))
+    const data = await apiFetch<{ updated_at: string, total: number, posts: Post[] }>(`posts?${q.toString()}`)
     data.posts = data.posts.map(withXContent)
     return data
   }

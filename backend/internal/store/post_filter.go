@@ -60,6 +60,11 @@ func buildPostWhere(f PostFilter) (string, []any) {
 		conds = append(conds, "p.kind=?")
 		args = append(args, f.Kind)
 	}
+	if f.MinChars > 0 {
+		// Same fallback as the frontend postChars: text, then summary, then title.
+		conds = append(conds, "CHAR_LENGTH(TRIM(COALESCE(NULLIF(p.text, ''), p.summary, p.title))) >= ?")
+		args = append(args, f.MinChars)
+	}
 	if q := strings.TrimSpace(f.Query); q != "" {
 		if ut, ok := userTagQuery(q); ok {
 			conds = append(conds, userTagCond(1, "LIKE"))

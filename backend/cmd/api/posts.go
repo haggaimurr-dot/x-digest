@@ -29,13 +29,16 @@ func (s *server) handlePosts(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	}
-	f.Tag = q.Get("tag")
-	f.Tags = splitList(q.Get("tags"))
-	f.Category = q.Get("category")
-	f.Categories = splitList(q.Get("categories"))
-	f.UserTag = q.Get("user_tag")
-	f.UserTags = splitList(q.Get("user_tags"))
+	// tag/category/user_tag take comma lists (the page's multi-select);
+	// tags/categories/user_tags are accepted as aliases.
+	f.Tags = append(splitList(q.Get("tag")), splitList(q.Get("tags"))...)
+	f.Categories = append(splitList(q.Get("category")), splitList(q.Get("categories"))...)
+	f.UserTags = append(splitList(q.Get("user_tag")), splitList(q.Get("user_tags"))...)
 	f.Kind = q.Get("kind")
+	f.MinChars = atoiDefault(q.Get("min_chars"), 0)
+	if f.MinChars < 0 {
+		f.MinChars = 0
+	}
 	f.Query = q.Get("q")
 	f.DateFrom = q.Get("date_from")
 	f.DateTo = q.Get("date_to")
@@ -48,8 +51,8 @@ func (s *server) handlePosts(w http.ResponseWriter, r *http.Request) {
 	if f.PageSize < 1 {
 		f.PageSize = 200
 	}
-	if f.PageSize > 1000 {
-		f.PageSize = 1000
+	if f.PageSize > 20000 {
+		f.PageSize = 20000
 	}
 	posts, total, updatedAt, err := s.st.ListPosts(f)
 	if err != nil {

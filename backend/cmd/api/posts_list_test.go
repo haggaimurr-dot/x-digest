@@ -54,3 +54,12 @@ func TestPatchPostValidation(t *testing.T) {
 		t.Errorf("PUT: got %d", rec.Code)
 	}
 }
+
+// The page sends comma lists in tag/category/user_tag (multi-select);
+// the plural names work too. Bad bodies never reach the store here, so only
+// the parsing helper is checked.
+func TestPostsListParams(t *testing.T) {
+	if got := append(splitList("AI,Agent"), splitList("MCP")...); !reflect.DeepEqual(got, []string{"AI", "Agent", "MCP"}) {
+		t.Fatalf("merged = %v", got)
+	}
+}

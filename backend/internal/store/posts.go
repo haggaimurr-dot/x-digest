@@ -21,6 +21,7 @@ type PostFilter struct {
 	UserTag       string
 	UserTags      []string // any of (OR)
 	Kind          string   // posts.kind; "未分类" = empty kind
+	MinChars      int      // minimum length of text (fallback summary, then title)
 	Query         string
 	DateFrom      string // YYYY-MM-DD, Shanghai day start (inclusive)
 	DateTo        string // YYYY-MM-DD, Shanghai day end (inclusive)

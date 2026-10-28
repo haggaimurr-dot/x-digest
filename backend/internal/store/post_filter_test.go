@@ -57,3 +57,13 @@ func TestPostOrder(t *testing.T) {
 		t.Fatal("sort order")
 	}
 }
+
+func TestBuildPostWhereMinChars(t *testing.T) {
+	w, a := buildPostWhere(PostFilter{MinChars: 50})
+	if !strings.Contains(w, "CHAR_LENGTH(TRIM(COALESCE(NULLIF(p.text, ''), p.summary, p.title))) >= ?") || len(a) != 1 || a[0] != 50 {
+		t.Fatalf("min_chars: %s %v", w, a)
+	}
+	if w, _ := buildPostWhere(PostFilter{MinChars: 0}); w != "" {
+		t.Fatalf("min_chars 0 must not filter: %s", w)
+	}
+}
