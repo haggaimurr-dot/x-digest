@@ -16673,6 +16673,33 @@
     ],
     "avatar": "avatars/yaojingang.jpg"
   },
+  "2101521063243116839": {
+    "text": "一位微信好友，分享了一份他们团队目前在做的事情，发来一份文档\n提炼了下这份文档里关于Vibe Coding的一些观点和心法，团队是前nasa科学家和comcast工程师，很有启发：\n\n1. AI越来越强，但AI创造的软件，反而越来越难以被信任\n\n2.",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2101309608300331208": {
+    "text": "@HiTw93 电影院版还没有去看过，不过用电脑和电视，至少看过不下于10遍了，下周也找时间去体验下电影版",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2101233400413884422": {
+    "text": "这是来自ProFound的一份关于AI Mention Effect的研究\n研究的内容是：当用户原本没有主动搜索某个品牌，但AI在回答里提到了这个品牌，接下来7天，用户访问这个品牌官网的概率会发生什么变化\n\n数据来自2026年1月至6月的200多万次AI对话及关联浏览记录，覆盖ChatGPT、Gemini和Google AI Overviews，研究将“提问未出现、AI回答出现”的品牌视为曝光\n以Gemini为例，预测基线访问率只有2.21%，被AI提及之后变成5.42%，相当于原来的2.45倍\nChatGPT也从4.33%提升到了6.39%\n具体数据见图1\n\n如何理解这些数据？\n可以把这张表理解成一个非常简单的问题\n同样是1000个潜在用户，如果AI没有主动提到这个品牌，预计多少人会访问官网？如果AI提到了，之后7天又有多少人访问官网？\n这样看就更好理解了\n对应的表格就变成了图2\n\n也就是，如果AI向潜在用户推荐过目标品牌，会对目标品牌的用户访问产生极大的增量价值\n用户的一个行为特征是，AI提到品牌以后，用户未必马上点击链接\n他可能当天记住这个名字，晚上去百度搜索，第二天访问官网，几天后再去看案例，最后才咨询\n所以很多时候，我们在网站统计里看到的“百度流量”“直接访问”“品牌词搜索”，越来越多的证据表明，最早的起点可能来自一次AI回答里的推荐\n\n这个数据可以帮助我们更直观的理解AI带来的数据与价值，当然，实际情况肯定要因企业而异，每家企业的情况都不一样",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2100768658943528971": {
+    "text": "这段时间，两个ChatGPT Pro账号的Codex额度都不够用，ChatGPT的聊天版Pro确实很好用，是一个很好的补充 https://t.co/csXC2W86RU",
+    "links": [
+      "https://t.co/csXC2W86RU"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2100587596757754324": {
+    "text": "@hiheimu 我的理解是：\n\n首先，GEO服务类项目，是需要承诺结果的，所以交付会比较重，对应的运营人力成本、数据采集成本、Token成本、内容成本、投放成本综合占比还是很高的，所以毛利并不高",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
   "2114270707232465176": {
     "text": "小灰真人出镜，分享一下Kimi K3.1 Pro的实测情况 https://t.co/z2dSpKXWkm https://t.co/sRVU6n3mzk",
     "links": [
@@ -16922,6 +16949,22 @@
     "links": [
       "https://t.co/SJJoDwnHis",
       "https://t.co/MneM0jnaa7"
+    ],
+    "avatar": ""
+  },
+  "2100917912521601104": {
+    "text": "这篇Workbuddy技能的文章爆了，看来好用的技能自带流量。\n\n今天小灰再给大家推荐两个靠谱技能：\n\n1. Tencent BrowserSkill（腾讯官方浏览器技能）\n\n接到你已经登录好的真实浏览器上，任务在独立 Agent 窗口跑，不抢你正在看的标签。适合查已登录后台、填表、截长图、抽动态页面数据。\n\n安装方法：\n\n对 WorkBuddy 说，按照 https://t.co/23xFEEgncR 的说明，在本机安装并配置 browser-skill。\n\n2. Computer Repair Skill（电脑维修技能）\n\n这个技能解决的是 C 盘爆满、卡顿、流氓软件、应用迁盘、断网、数据恢复等，流程是先取证、再计划、你确认后再改，不是一上来乱删。\n\n安装方法：\n\n对 WorkBuddy 说，帮我安装这个技能：\nhttps://t.co/9ZFlhi1rfh\n\n希望以上两个技能可以帮助到大家。",
+    "links": [
+      "https://t.co/23xFEEgncR",
+      "https://t.co/9ZFlhi1rfh"
+    ],
+    "avatar": ""
+  },
+  "2100530785900269904": {
+    "text": "小灰真人出镜，给大家推荐 WorkBuddy 的 15 个宝藏技能！\n\n喜欢阅读文字的朋友可以看图文版本，喜欢观看视频的朋友可以看视频版本。😄 https://t.co/jd8rsRi3oi https://t.co/yKyKK4cc6N",
+    "links": [
+      "https://t.co/jd8rsRi3oi",
+      "https://t.co/yKyKK4cc6N"
     ],
     "avatar": ""
   },
@@ -17593,6 +17636,71 @@
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2101018992525869083": {
+    "text": "@math_manify 我说是它自己跑出来的，你信吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101018567500251178": {
+    "text": "@SBrucken80204 你进入web shell，输入x-ui settings，截图给我。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101005507620434004": {
+    "text": "@kittendong @hanqing1120 我替他回答吧，比如新加坡就没有合法家宽出租，你如果租了新加坡家宽，后面自己想。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101000103863734774": {
+    "text": "@boli798 太多人涌入了，换其它节点，或者白天再搞。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100995812834898094": {
+    "text": "@monsterhao 现在的云服务器都超售，别说NAT小鸡了，超程度不同而已。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100983299728654834": {
+    "text": "访问不了3xui面板的，几乎都是没有带上根路径的，请看教程认真一些，已经很详细了。 https://t.co/rXijJFacjy https://t.co/rKPTJzwH6V",
+    "links": [
+      "https://t.co/rXijJFacjy",
+      "https://t.co/rKPTJzwH6V"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100972068393377904": {
+    "text": "@cj3214567667 大佬你就别装了，你肯定知道的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100971568088363231": {
+    "text": "@xorepa_ @ZuiJiu61637 会的。但我们对MJJ的理解不一样。 https://t.co/1UWTnju80k",
+    "links": [
+      "https://t.co/1UWTnju80k"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100970782017143212": {
+    "text": "@bcpz007 大妈的性价比还可以，你说的应该加拿大那家VMISS吧",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100968760614211852": {
+    "text": "@bcpz007 @yuzhiblue 家宽一般都过百元一个月，也听过80元一个月。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100968584898097185": {
+    "text": "@yuzhiblue 怎么可能，就是普通云服务器切割出来的IP，几十个人共享，家宽我都不舍得买。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100968171545239629": {
+    "text": "@bcpz007 我当初写这个教程是上个帖子评论区的几个粉丝朋友要比不良林视频成本低的，我就直接找NAT小鸡来写了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2104555822198255886": {
     "text": "@weichen_ink 你都不懂我说什么。美区要换X Money，你没有换就是没有绑卡。",
     "links": [],
@@ -17762,6 +17870,67 @@
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2100961326072057912": {
+    "text": "原来推特X真的有直播，之前有个粉丝朋友在我的喂鸡鸭帖子下和我说过，当时我都有点不太相信，是我见识少了。 https://t.co/lpXN8056km",
+    "links": [
+      "https://t.co/lpXN8056km"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100957914815238260": {
+    "text": "@huantim7 没有留意，土耳其我都是使用机场。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100957688079548786": {
+    "text": "@likebookmark 你懂什么叫灵活？你不知道我的干货教程都是系列吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100957165678928151": {
+    "text": "@suversal 你这篇教程不错，其实我8月23号凌晨两点发的《手把手教你giffgaff携号转网三：WIFI Call激活lebara、保号设置和携号转网》，就提到过这个，只是我的苹果手机XS MAX是IOS18，没法演示。没有想到你和另外一个人写这个都火了。https://t.co/ZLnnJijrg5",
+    "links": [
+      "https://t.co/ZLnnJijrg5"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100947638086705321": {
+    "text": "@elioinvest 我最近30天发了11篇干货教程，一般每篇都有10万+流量。每次我发干货教程的时候，是有不少人喜欢引用转发我的帖子，是支持我也给自己带来流量，你这次就有8万多流量。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100941622687015168": {
+    "text": "@ygxdmss1 @ffrr33520 7月的时候10万港币就可以下卡了，8月听说要12万港币了，不知道真假，你9月搬15万港币的确更保障。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100938549520703781": {
+    "text": "@iswangchu 我为什么要羡慕妒忌举报？\n\n我运营X才40天，\n无论是流量增长还是粉丝增长都比较满意，\n过几天我就可以开通原创内容奖励计划和订阅这两个功能了。\n\n我只是觉得平台这算法和审核比较🐶，还解释说他这是提供情绪价值……",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100935610202812478": {
+    "text": "@Flowers_hurt 作者引用我的帖子后一直在解释他的网站数据是准确的，以为我不知道他说什么，以为我看不懂X后台数据一样，这都不敢面对，还说改进，我已经取关他了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100930115094102058": {
+    "text": "@NMJomg 教程不错，你也成功了，却不值得一个关注吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100920708054597866": {
+    "text": "@bjyx_zs 又好的NAT小鸡，价格不一样。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100918568129065338": {
+    "text": "王长富他的账号第一次申请没有通过原创内容奖励计划，低调了几天，整改后申诉通过了，又开始旧操作了。 https://t.co/GpTg1GGhKq",
+    "links": [
+      "https://t.co/GpTg1GGhKq"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2104541327191093518": {
     "text": "@Rammerbee6 @lengs4189 嗯，早就私信和他说了，自建+机场，我就是这样组合使用的。",
     "links": [],
@@ -17919,6 +18088,85 @@
   "2111795300054753455": {
     "text": "@WeiDemin 我看到的时候都有点不相信，几乎是我转化率的三倍，再三对比那三张图片后，我默默退出了，哈哈。",
     "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100916231268368679": {
+    "text": "@ZuiJiu61637 自从我免费分享蓝V批发站货源教程后，市场价格是越来越卷了。 https://t.co/QbM0CV7mJp",
+    "links": [
+      "https://t.co/QbM0CV7mJp"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100915614663819300": {
+    "text": "@Jeees2u 我也不知道呀，要不你问一下AI？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100915261943484739": {
+    "text": "那些年，我们追过的女孩。\n\n这几天，我们消失的推友。 https://t.co/EziyoZKRWY",
+    "links": [
+      "https://t.co/EziyoZKRWY"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100909763945173436": {
+    "text": "@A9Beacon 只要你敢一周不发技术教程干货帖子，每天的涨粉敢给你降低到20个以下，你没有看错，就是二十以下。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100908425077280862": {
+    "text": "@RammerZeng @ccckkk928427 我的技术教程干货帖子好像一直都有人拿去卖。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100908006741610794": {
+    "text": "这个粉丝朋友 @ZuiJiu61637  提醒的对，这个不能像之前的干货教程那样拿去卖，只能自用（不涉政一般没有人鸟你），卖VPN是明确违法。 https://t.co/ss2oj2LOXf https://t.co/rKPTJzwH6V",
+    "links": [
+      "https://t.co/ss2oj2LOXf",
+      "https://t.co/rKPTJzwH6V"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100905695696814254": {
+    "text": "@allin5662 这个教程里说了的，你没有认真看。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100905539345821900": {
+    "text": "@boli798 你重装系统，按教程从头操作一遍。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100905038113886681": {
+    "text": "@ZuiJiu61637 对喔，这点提醒是要的，有些小白可能真的不知道。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100904700426207579": {
+    "text": "@A9Beacon 这是第一次日涨粉1100，之前的技术教程干货帖子都是日涨粉五六百。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100904343671394611": {
+    "text": "@paopaopao188 基操，和之前的干货教程差不多。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100904061256278042": {
+    "text": "@ccckkk928427 技术教程干货帖子怎么会不吸引人？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100903452767572125": {
+    "text": "@ZuiJiu61637 亲，教程全文从头到尾都没有说过卖呀，都是自用。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100903197737189854": {
+    "text": "@Ylj158852 https://t.co/3peN2eLLQp 娱乐站一个，站长还不承认数据不正确，一直在狡辩，我取关他了，也不会再看这个站。",
+    "links": [
+      "https://t.co/3peN2eLLQp"
+    ],
     "avatar": "avatars/mjjwiki.jpg"
   },
   "2104532140520247692": {
@@ -18119,6 +18367,63 @@
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2100902753107386710": {
+    "text": "@sdjn_wgc 我之前也比较多，现在想想觉得没有必要。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100902549943619835": {
+    "text": "@allin5662 仔细看教程，你没有修改链接的端口。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100902356850479571": {
+    "text": "@Ken_shafa 我之前也是这么认为的，但是X平台没有长尾流量。昨天我帖子小爆款，58.6万流量，置顶的帖子是蓝V货源批发价教程，只是从12.3万变成12.4万……所以，我今天干脆都换了新的置顶帖子。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100900818287464894": {
+    "text": "@jedeeai 一，我X的后台粉丝朋友增长昨天是1100，对不上。曝光是58.6万，也对不上。你说X榜单没有计算回复，我的回复的浏览量不晓得，但肯定没有那么多。\n\n二，无论你怎么均都一样，我连每天蓝V时间线的流量都是你说7日均曝光的2倍。\n\n三，不用再回复，你觉得你网站数据是正确那你就正确，我不阻碍你自欺欺人。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100899292185825751": {
+    "text": "@XHCAIGC 这次是汇总，没有刻意挂他。后面如果没有特殊情况，我不会再理会这三位了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100868564588867882": {
+    "text": "@CryptoJHK 需要在他网站先登记。你这爆款帖子真厉害！",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100865803621126650": {
+    "text": "@sherwin_going 叫我炳荣、M哥或者百科老师就好，其它乱七八糟的名字就算了，很多人对MJJ理解和我不一样。你非要叫MJJ的话，那就叫我MJJ老师。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100865189038240241": {
+    "text": "@df61616161 @biuzai339 我擦！你这个想法很大胆，流量肯定不少，但是他们的脑残粉肯定喷死你。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100863337676628286": {
+    "text": "@xingzhi0502 之前我没有怎么留意，今天特意截图对比才发现。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100862535520112958": {
+    "text": "@jedeeai 一，X后台的数据也是昨天 8 点到今天 8 点这 24 小时里的数据，流量和粉丝都相差很多。\n\n二，我平均每天就10个帖子左右，别说总流量或者总蓝V流量，我就算日均时间线的流量过13K（这还不包含昨天大涨的）。\n\n直接看官方的数据图吧 https://t.co/ZssI6n5Uhg",
+    "links": [
+      "https://t.co/ZssI6n5Uhg"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100857206921195647": {
+    "text": "年少不知钱可贵\n\n大手大脚乱消费\n\n花多花少无所谓\n\n长大步入了社会\n\n才懂赚钱有多累\n\n赚多赚少都受罪\n\n为了赚点生活费\n\n每天起早贪黑\n\n表面微笑心里面\n\n早就快要崩溃\n\n身心疲惫沧桑憔悴\n\n再苦也要面对\n\n再累也不后退\n\n不然还能靠谁",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2104520558423736760": {
     "text": "@lishishen7i 是的，所以很多人喜欢用家宽或者比较干净的原生IP。",
     "links": [],
@@ -18256,6 +18561,58 @@
   },
   "2111758864660283397": {
     "text": "@WildVariable01 还有人说，就是我猜的那种，把账号退订获得半价优惠的号。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100852954060538295": {
+    "text": "之前看大家说最近很多人被送走了，不停掉粉，每天100个左右。\n\n我当时没有怎么留意，没发现。\n\n今天时不时截图看看，果然发现了，在7000粉上下跳，大概少了92个。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100851330197991582": {
+    "text": "@RammerZeng 分析得不错，我被套了1000刀，还好买得不多。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100850790126809235": {
+    "text": "@kourou2025 8月23号以来，H推就没有断过……",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100850238894280989": {
+    "text": "@RammerZeng 嗯，每个人的经历和底线不一样。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100848137988665355": {
+    "text": "@RammerZeng 我的修身养性功夫还不到家，哈哈。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100847898963460294": {
+    "text": "@xingzhi0502 炒香芋饭，过夜的是最好吃的，粤西的人都知道。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100847386860068938": {
+    "text": "@biuzai339 是的，我当时只是客观真实点评了一下他的Codex帖子，说他危言耸听，为了流量净胡扯！\n\n然后，他马上拉黑屏蔽我了。我的回复也被他隐藏，别人都看不见。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100840029623026061": {
+    "text": "@BesnowCloud 我没有说过固定IP=干净IP。固定IP对AI服务明显有好处，甲骨文那么脏的IP固定使用AI都没有问题。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100837092461080902": {
+    "text": "做人要大度，我也在不断修身养性。\n\n之前偷偷取关我的、拉我进列表的、各种打广告的，我都解除屏蔽了。\n\n就剩下小码哥、狗富贵和王小神这三个极品了，我的修身养性功夫还不到家，哈哈。 https://t.co/W71LQnsaWO",
+    "links": [
+      "https://t.co/W71LQnsaWO"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100834931253359041": {
+    "text": "@Cangbaic 这个可能性是有的，但是我觉得王小神他本人的问题更大。",
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
@@ -18397,6 +18754,68 @@
       "https://t.co/cSDuyH4ApY",
       "https://t.co/W8y9T8bevX"
     ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100832879425323285": {
+    "text": "@Cangbaic 我也是郁闷，30天内纯免费分享技术教程干货11篇，也会被别人喷，一天挂我两次，他帖子评论区其他推友还无脑跟节奏。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100831765434937622": {
+    "text": "@its_ziling 谢谢，这的确算是一个质变的进步，新的开始。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100830169783250965": {
+    "text": "@xingzhi0502 AI，让老板可以最大化压榨你的时间和剩余价值，提高老板公司的效率。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100829338958741521": {
+    "text": "感觉Grok的水平和Gemini有得一比，不懂技术的人估计能被它们忽悠得分不清东南西北，哈哈。 https://t.co/oVph6QBNyI https://t.co/rKPTJzwH6V",
+    "links": [
+      "https://t.co/oVph6QBNyI",
+      "https://t.co/rKPTJzwH6V"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100828926524510222": {
+    "text": "@lchng17661 懒得做饭，我都差点想煮面条吃了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100828450567446849": {
+    "text": "@TonyDing90 母鸡的IP如果没有被墙，压根不会换IP。20几个人共享，不比机场万人骑好？\n\n而且，这是2元低价的。如果你换日本节点的5元看看，评论区推友测试晚高峰都正常。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100826707943170350": {
+    "text": "@grok @xiaoshuaid15668 一个人自己使用3XUI，128M内存完全足够了，根本不会OOM崩溃。\n\n退一万步来说，一条命令即可解决这个潜在风险。\n\n现在的AI水平，还这么差吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100825774299435438": {
+    "text": "@xiaoaokuang527 启动梯子，一般默认配置即可，然后点击下载，你没有试过吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100824522391728546": {
+    "text": "今天的午饭，炒香芋饭 + 黄晶果。\n\n香芋是自家种的，黄晶果是外婆家种的。 https://t.co/pC71lYeO0q",
+    "links": [
+      "https://t.co/pC71lYeO0q"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100823562101903587": {
+    "text": "@qianyuwing 王小神，他本性如此，你可以看看这个推友写的帖子，或者看我之前的帖子的评论区。 https://t.co/jU8d4sbz36",
+    "links": [
+      "https://t.co/jU8d4sbz36"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100822498409681326": {
+    "text": "@muselabs_co 泛流量赛道的博主N多爆款帖子，过千万的我都见过2次。",
+    "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
   "2104477004754206976": {
@@ -18622,6 +19041,85 @@
     ],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2100818387832385811": {
+    "text": "我总算有了第一篇爆款帖子，技术赛道要有爆款帖子太难了。\n\n之前Grok都只承认我的技术教程干货帖子是高质量热门帖子，而不是爆款帖子。 https://t.co/5RzgDJlS4r https://t.co/rKPTJzwH6V",
+    "links": [
+      "https://t.co/5RzgDJlS4r",
+      "https://t.co/rKPTJzwH6V"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100814369898791037": {
+    "text": "@chaoxiao 没有研究过，即使有官方接口大概率也是收费的，我估计他是部分收费接口+免费爬虫的组合。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100813861876343181": {
+    "text": "@FanFan_upup 谢谢你的认可和支持，我心里舒服多了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100812370318966961": {
+    "text": "@chaoxiao 嗯，我之前发现了，所以提交了我的。现在看来，不是延迟性问题，数据差别太大，只能娱乐。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100810527689621688": {
+    "text": "@Mikemura648 我对王小神他也是无语，我最近30天都写了11篇干货教程了，他居然说我一篇干货都没有，全是广告。 https://t.co/zyEClJOOf5",
+    "links": [
+      "https://t.co/zyEClJOOf5"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100809969498997145": {
+    "text": "说几个问题：\n\n一，大家叫我炳荣、M哥或者百科老师就好，其它乱七八糟的名字就算了，很多人对MJJ理解和我不一样。\n\n二，有问题，尽量在评论区提问，直接私信是不礼貌的，特别是那些都还没有关注的。我目前10篇左右干货教程都是免费的，没有义务私信单独为某人解惑（如果我有空倒无所谓），大家都私信那我啥都不用干了。\n\n三，我没有任何挂某人获取流量的意思，我压根不差这点流量。我是先在王小神的帖子评论区被明确回复说我“你为什么要把广告叫技术干货教程”，接着再被他挂到他首页继续说我，我才拉黑屏蔽他。然后他再次将我挂首页说我小气，还污蔑我说挨个看过我的帖子，30天内全广告，一个干货都没有。看他的帖子评论区，就知道会三人成虎了，我肯定得回应的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100803395342983213": {
+    "text": "@chaoxiao 去年6月就办理港卡了。出金到美股账户？我都是港币出金，非常快到账。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100801825683505437": {
+    "text": "@chaoxiao 饮食作息都乱了，都在想要不要停一下炒美股。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100800788948005068": {
+    "text": "太多人搞这个节点了，测速都只有7M了，能不慢吗？搭建还是分散买点其它节点吧。 https://t.co/PQKE6QMzcE",
+    "links": [
+      "https://t.co/PQKE6QMzcE"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100800648744931581": {
+    "text": "太多人搞这个节点了，测速都只有7M了，能不慢吗？搭建还是分散买点其它节点吧。 https://t.co/3eTmpyGEYW",
+    "links": [
+      "https://t.co/3eTmpyGEYW"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100798019947946463": {
+    "text": "@GusGumee 我当时测试是196ms，你看教程的截图。晚上高峰肯定慢，加上这么多人搞这款，肯定更慢了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100797526316290291": {
+    "text": "@chungyu_cheung 我当时测试是196ms，你看教程的截图。晚上高峰肯定慢，加上这么多人搞这款，肯定更慢了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100796502432199141": {
+    "text": "忽然发现我昨天上了推友做的推特X榜单，涨粉榜第九名，紧挨的第十名是李新宝。\n\n看了一下，前20名只有我的粉丝朋友数量是少于1万的，毕竟我运营推特X才40天。\n\n仔细对比了一下这推特X榜单的数据和我推特X后台官方的数据，这X榜单的数据是不准确的。\n\n粉丝朋友数据少了13%，推文曝光少了44%，发帖数准确，评论数少了15条。7天帖均曝光就胡扯了，比我7天内最低那天的十分之一还少。\n\n之前听说推特X榜单的数据是滞后的，没有想到准确性差这么多，只能说可以做娱乐参考。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100791686062350430": {
+    "text": "@y1cxmm 这是你看太多人主页的原因，停下来就好了，你们玩互关的经常会遇到这个问题。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2104464585340362778": {
     "text": "@Prex_w 泛流量赛道，很多人很多帖子爆款几百万上千万浏览量的，那才是牛逼，我这个是长期积累的。",
     "links": [],
@@ -18783,6 +19281,61 @@
     "text": "我的天呀！！！\n\n菲区ChatGPT Plus一个月成品号的价格已经卷到68元人民币了！！！\n\n还说是非黑充非盗刷，质保订阅，不质保封号。 https://t.co/c0sIABs2vV",
     "links": [
       "https://t.co/c0sIABs2vV"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100791038327787556": {
+    "text": "@Wutongshu2732 我的行不通，我是走技术博主原创路线自然涨粉的，每次发教程都是涨好几百粉丝，昨天更加是超过1100粉丝，蓝V比例不高，导致我关注的人都不到我粉丝朋友的一半，那些玩互关的会觉得我高傲不回关，甚至以为我偷偷取关……",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100790271936233737": {
+    "text": "@xorepa_ 估计独角鲸官方都不明白为什么忽然来了一大批用户，哈哈。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100786835274215509": {
+    "text": "@Wutongshu2732 转化率可以呀，我就是蓝朋友太少了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100786627413000402": {
+    "text": "@ai_fengshou 我好奇你搞什么消耗这么大这么快。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100785631685382616": {
+    "text": "@allenhe168 如果是对方故意挂你先，还一天挂两次那种呢？对方除了挂你，还挂其他人？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100784960613621931": {
+    "text": "@xiaofapro X要999+很难吧，我最多是好几个100同时出现。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100784620535177253": {
+    "text": "@zfcbtc 她好像进去好几次了，肯定是违规了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100783521543680431": {
+    "text": "@MariRegina55109 嗯嗯，按Grok统计，我最近30天已经输出11份干货教程了。 https://t.co/GOvu64cFaj",
+    "links": [
+      "https://t.co/GOvu64cFaj"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100781963024252963": {
+    "text": "@gegewu203 昨晚看美股太晚，今天起床太晚了。喂鸡鸭后，煮好早餐，差不多是这个点了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100781126151459027": {
+    "text": "太多人买教程演示的那个独角鲸官方自营的新加坡节点了，NAT小鸡估计都过度超售了。\n\n其实，香港、日本、美国等其它节点也可以的，昨晚帖子评论区有推友测试日本节点的自建VPN速度很好，晚上看youtube都流畅。\n\n话说，独角鲸官方是不是欠我一个广告费，哈哈。 https://t.co/MX9XluOMki https://t.co/rKPTJzwH6V",
+    "links": [
+      "https://t.co/MX9XluOMki",
+      "https://t.co/rKPTJzwH6V"
     ],
     "avatar": "avatars/mjjwiki.jpg"
   },
@@ -18980,6 +19533,71 @@
   },
   "2111667516510818760": {
     "text": "@fengdeng585 教程发布两天了，太多人薅羊毛了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100778791891288550": {
+    "text": "@syusannyo 苹果手机安全性高，而nat小鸡没法搞IP证书（端口问题）。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100778427725095203": {
+    "text": "@0xTimor 我没有说它只能单独使用呀，配合机场搞链式代理使用，不是很爽吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100778117107511763": {
+    "text": "@impylove 太多人都买这款了，其实香港、日本、美国都可以买的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100775888115892356": {
+    "text": "@NianHoihan 机场IP才是万人骑，NAT超售卖才多少人？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100775782780203420": {
+    "text": "@NianHoihan 机场IP才是万人骑，NAT超售卖才多少人？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100775467070664963": {
+    "text": "@heroback8 那是你不知道或者不需要实体卡的场景。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100775169136771311": {
+    "text": "@sdk16889 @zhsji162886 选个稳定可靠的就可以了，记得先DD和BBR。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100774935400735163": {
+    "text": "@yasierna 甲骨文永久免费更好，但不适合大众。谷歌云和亚马逊云，都是限时或者限量免费，容易被反薅，到时候背黑锅的是我。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100773878822060324": {
+    "text": "@934035092 别人的老教程是存在这个问题，你可以按我的新教程操作。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100773603444953505": {
+    "text": "@jeason1326502 可以的，教程只是拿新加坡的演示，评论区就有买香港和日本的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100772588511539215": {
+    "text": "@math_manify @grok 我也是昨天听那推友说，才反应过来。我觉得M哥比M总更好听，显得我更年轻，你觉得呢？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100771835965227286": {
+    "text": "@AceW80342825 工单或者TG群问客服，估计太多人进去，他们的机器超售了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100770845631430904": {
+    "text": "@BuqiyuxingGo 我自己自建的是每月67元，30元左右的我找找看。",
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
@@ -19242,6 +19860,46 @@
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2100770207350538242": {
+    "text": "@KELESHARENMO 我看不懂，非币圈的人估计都看不懂。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100769953217671199": {
+    "text": "@xiaofapro @sisi_chen7203 他是说速度提升，NAT小鸡的IP只是比机场好一些而已。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100769526224974164": {
+    "text": "@MrLiao941225 你肯定是某些细节搞错了，评论区很多人成功了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100646719335870565": {
+    "text": "@MrLiao941225 最少是2个端口，4个是标准推荐。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100632322093846565": {
+    "text": "@0xqiubite 按Grok统计，最近30天我发了11篇技术教程干货帖子了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100629016583737435": {
+    "text": "@cuijason1 的确慢就是快，我之前1000粉丝朋友增长到1300粉丝朋友，足足花了8天才增加300粉丝朋友，现在我高峰的时候，一天都远超这个数。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100627896125792691": {
+    "text": "@elioinvest 不错的话，也不值得一个关注吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100625524578202080": {
+    "text": "@bigballW 我自建的四个国家地区都是正式服务器。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2104424705025523813": {
     "text": "@ai_fengshou 没有啦，我最开始也玩了几天互关起号，我第二个关注的博主就你，当时你有个网站。\n\n但是我测试了一下，发现账号权重很低，甚至限流，于是我放弃了这条路线，后来涨粉300个花了我足足8天，前期好难，后面被23万粉丝大佬和15万粉丝大佬关注转发引用后就走出冷启动了。",
     "links": [],
@@ -19422,6 +20080,80 @@
   },
   "2113940758327931085": {
     "text": "@Xlin_kis 谷歌邮箱非常重要，我绑定了很多东西。虽然我也有几个谷歌小号，但都没有搞，谷歌已经很良心了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100619214768005528": {
+    "text": "@aicaptain42 前期都慢，我1000粉丝朋友到1300粉丝朋友，足足花了我8天时间。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100618270093308390": {
+    "text": "@unity25803 是的，对方通过列表看我们的帖子，但我们的帖子没有任何权重增加，属于百害无一利。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100617496982335803": {
+    "text": "@xFVpgScu6KoRC8s 技术教程博主原创路线不好走，太累。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100615038109426119": {
+    "text": "@Cangbaic @sisi_chen7203 我的10篇左右技术教程干货帖子，一直都是10万+流量，只能说是高质量热门帖子，不是爆款帖子。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100614581282554076": {
+    "text": "@xiaofapro 我是自建+机场，一起结合使用。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100614504317087964": {
+    "text": "@xiaofapro 自建的话，推荐这个，选推荐说的日本节点。 https://t.co/rKPTJzwH6V",
+    "links": [
+      "https://t.co/rKPTJzwH6V"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100614202100793652": {
+    "text": "@xiaofapro 如果你不想自建话，就推荐这个。 https://t.co/0DkiUWzlyJ",
+    "links": [
+      "https://t.co/0DkiUWzlyJ"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100612919520367016": {
+    "text": "@0x_dcgbb 这个蛮好的，这样修改后一般都可以通过吧。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100612430858719726": {
+    "text": "@VAlexanderYang 家宽我养不起，不过我的原生IP养了好几年了，还不错。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100612046421397912": {
+    "text": "@xiaofapro 这是IP不干净，影响还是比较大的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100611823859102177": {
+    "text": "@taozibuilds 我知道3种邪修快速起号方法，都不敢用。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100608796683039040": {
+    "text": "@SuHang948 你截图的地址是我教程里的地址吗？还是跳转了的地址？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100608608501436788": {
+    "text": "@SuHang948 那就奇怪了，你截图的地址是我教程里的地址吗？还是跳转了？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100607508729753881": {
+    "text": "@Lt8py @xiaoshen 按我引用的帖子的老哥说法，王小神他就是故意这样咬人搞流量的。",
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
@@ -19674,6 +20406,88 @@
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2100606457205109109": {
+    "text": "@SuHang948 你要先成功登陆giffgaff官网。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100606098189480373": {
+    "text": "@Aigoodbro @grok 他今天在他主页都挂了我两次了，赤裸裸污蔑呀，不回应不行呀。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100605346465378519": {
+    "text": "@Lt8py @xiaoshen 我之前和他几乎没有任何互动，今天才发现。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100605168719110176": {
+    "text": "@1903901 @sisi_chen7203 甲骨文新加坡也是移动快乐，出海好像移动和联通都比较爽。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100604718955589789": {
+    "text": "@xiaofapro 嗯，我开通蓝V的第二天就定位走技术博主原创路线了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100598897576144925": {
+    "text": "@qiaowan6 体验套餐是一般，讲究性价比，高级套餐好很多吧。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100598207386673599": {
+    "text": "@zhuli08889248 其他推友测试是日本节点更好，5元一个月。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100596330079162458": {
+    "text": "@Lcool49 我都发了11篇技术教程干货帖子了，你才发现。 https://t.co/ZDOizReVUm",
+    "links": [
+      "https://t.co/ZDOizReVUm"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100596062109217016": {
+    "text": "这位老哥说得好！王小神 @xiaoshen 他在泛流量赛道和币圈里，应该是最不要脸的、睁眼说瞎话、故意诋毁别人的咬人老鼠了。 https://t.co/UUHcf5fxUB https://t.co/jU8d4sbz36",
+    "links": [
+      "https://t.co/UUHcf5fxUB",
+      "https://t.co/jU8d4sbz36"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100594716090028172": {
+    "text": "@xixiha12361 @sisi_chen7203 VPN机场我之前推荐过，首月1.09元，按粉丝朋友的教程可以做到免费。 https://t.co/0DkiUWzlyJ",
+    "links": [
+      "https://t.co/0DkiUWzlyJ"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100594219265990887": {
+    "text": "@XiaohuaY45395 官方从来没有说变相提供这个功能，反而明确禁止搞代理加速，被发现肯定封号。\n\n至于你说的出口搞稳定，我没有研究过，我有6台商用服务器，不折腾这些，写这个教程也是几个粉丝评论区留言才搞的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100593267452924232": {
+    "text": "@Camofeather 这个NAT小鸡的IP只是比机场好一些，算不上纯净和快速，可以看评论区使用买贵一点的NAT小鸡，教程只是示范。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100592797233696976": {
+    "text": "@nailong798 CF优选时代，的确很爽，我网站都使用，现在不行了。而且，它不是固定IP，养AI和运营自媒体需要固定IP。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100592227911418084": {
+    "text": "@walterandwhite 自己使用，128M绝对够用了。64M使用apline，一个人都可以。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100582152392036777": {
+    "text": "@ysp2025 他今天诋毁我三次，挂我2次首页，其他粉丝朋友告诉我上他的电视了我才知道，哈哈。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2104394257947865276": {
     "text": "@dwyanewadeflash 以前回答过了，三个论坛都有人收。",
     "links": [],
@@ -19919,6 +20733,96 @@
   },
   "2113834752813957169": {
     "text": "@Absolute_Belial 自古以来，双方战乱，底层老百姓都是最遭罪。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100581026020114927": {
+    "text": "@ysp2025 说得好！他在泛流量赛道和币圈里，应该是最不要脸的睁眼说瞎话故意诋毁别人的老鼠了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100579655275483310": {
+    "text": "@okxyz0 我们已经互关了呀，任何关注我的蓝V和活跃互动的非蓝V，我都会回关的。如果漏了，随时提醒我。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100579354225086626": {
+    "text": "感谢这位粉丝朋友 @sisi_chen7203  的测试反馈，可以买个日本的一个月5块钱200G流量的机器搭建VPN，他亲测晚上看youtube是可以流畅观看的，延迟80ms.\n\n我只是拿官方自营的新加坡小鸡做VPN教程教程，白天是200ms，晚上高峰期表现差吧，毕竟是2元一个月。\n\n独角鲸里面也有其它更好的NAT小鸡，价格不一样。\n\n教程最后，我都是建议购买正常服务器来搭建的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100579072573346296": {
+    "text": "@ysp2025 你这么说，我现在都有点怀疑他是故意的了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100578800576979178": {
+    "text": "感谢这位粉丝朋友 @sisi_chen7203  的测试反馈，可以买个日本的一个月5块钱200G流量的机器搭建VPN，他亲测晚上看youtube是可以流畅观看的，延迟80ms.\n\n我只是拿官方自营的新加坡小鸡做VPN教程教程，白天是200ms，晚上高峰期表现差吧，毕竟是2元一个月。\n\n独角鲸里面也有其它更好的NAT小鸡，价格不一样。\n\n教程最后，我都是建议购买正常服务器来搭建的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100577565832630375": {
+    "text": "@sisi_chen7203 感谢你的反馈！\n\n我只是拿官方自营的小鸡做教程，白天是200ms，晚上高峰期表现差吧，毕竟是2元一个月。也有其它更好的NAT小鸡，价格不一样。教程最后，我都是建议购买正常服务器来搭建的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100577223782940681": {
+    "text": "@ysp2025 今天他都污蔑我三次了。肯定不能惯着他呀，他粉丝再多5倍都不是大V，他不配！",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100576809435938975": {
+    "text": "@Adiaos2012 他今天都三次污蔑我了，肯定要反击呀。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100575009714618760": {
+    "text": "@grok 王小神睁眼说瞎话，感谢Grok为我正名。 https://t.co/hmkR5X9oHs",
+    "links": [
+      "https://t.co/hmkR5X9oHs"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100574572563386549": {
+    "text": "王小神睁眼说瞎话，感谢Grok为我正名。 https://t.co/ZwErBjVNq1 https://t.co/WVgvcU8RB8",
+    "links": [
+      "https://t.co/ZwErBjVNq1",
+      "https://t.co/WVgvcU8RB8"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100574482335453683": {
+    "text": "王小神睁眼说瞎话，感谢Grok为我正名。 https://t.co/tgKLIT6KM3",
+    "links": [
+      "https://t.co/tgKLIT6KM3"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100573354558382085": {
+    "text": "@zhuli08889248 白天是200ms，晚上高峰期表现差吧，毕竟是2元一个月。也有其它更好的NAT小鸡，价格不一样。教程最后，我都是建议购买正常服务器来搭建的。\n\n我只是拿官方自营的小鸡做教程，里面还有其它更好的NAT小鸡呀，比如新加坡那个1美元的，好像是三网直连。你选择退款官方的，买好一点的就可以了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100573057324912643": {
+    "text": "@taozibuilds 我又不是全职搞这个，而且是免费的，有空就发，不喜欢拉到，哈哈。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100572801744908784": {
+    "text": "@934035092 你按别人的老教程操作的吧，我这个教程操作不会出现这个的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100572492092027046": {
+    "text": "这王小神是第三次不要脸，睁眼说瞎话。\n\n说我MJJ百科30天内全是广告，还100%广告。\n\n我的干货教程帖子我自己没有计算过，但这30天内没有10篇也有七八篇了吧？ @Grok 麻烦帮我统计一下，谢谢。 https://t.co/CD6W58V0S6 https://t.co/I2l7DwwU1u",
+    "links": [
+      "https://t.co/CD6W58V0S6",
+      "https://t.co/I2l7DwwU1u"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100568960941138383": {
+    "text": "@taozibuilds 他们说我10天不发干货教程，发一些生活点滴和资讯，说我改赛道了……\n\n如果我每天都可以发一篇干货教程，不用一年，我至少是20万以上粉丝的大佬了，都不知道那些人怎么想的。",
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
@@ -20216,6 +21120,71 @@
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2100568355115839915": {
+    "text": "@sisi_chen7203 我只是拿官方自营的小鸡做教程，里面还有其它更好的NAT小鸡呀，比如新加坡那个1美元的，好像是三网直连。你选择退款官方的，买好一点的就可以了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100566854028997041": {
+    "text": "@sisi_chen7203 白天是200ms，晚上高峰期表现差吧，毕竟是2元一个月。也有其它更好的NAT小鸡，价格不一样。教程最后，我都是建议购买正常服务器来搭建的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100563264174531062": {
+    "text": "@niumoney @mainv01d 我比一般人好一些吧，但我见过三个粉丝比我还少，时间比我还短，就通过原创内容奖励计划的，那才是高手。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100559495219020045": {
+    "text": "@socoola1 才看到。只有确定要升级会员才可以加入白名单加速的，而且升级会员的资金不能是闲鱼购买的那种别人使用Starryblu账号转给你的，只能是其它银行卡转账进去的（可以是自己的卡，也可以是亲人或者朋友的卡，港卡、 Wise或者其它境外卡都可以），才是真正入金。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100559357306089749": {
+    "text": "@Makabakamikaba 才看到……只有确定要升级会员才可以加入白名单加速的，而且升级会员的资金不能是闲鱼购买的那种别人使用Starryblu账号转给你的，只能是其它银行卡转账进去的（可以是自己的卡，也可以是亲人或者朋友的卡，港卡、 Wise或者其它境外卡都可以），才是真正入金。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100559028774735980": {
+    "text": "@js5wyq 有，达标后次月返，我私人返的50元奖励。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100558670065270916": {
+    "text": "@91miss8 只有确定要升级会员才可以加入白名单加速的，而且升级会员的资金不能是闲鱼购买的那种别人使用Starryblu账号转给你的，只能是其它银行卡转账进去的（可以是自己的卡，也可以是亲人或者朋友的卡，港卡、 Wise或者其它境外卡都可以），才是真正入金。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100556683533746513": {
+    "text": "@chaoxiao 扯，这一周我都到你的帖子互动，点赞和评论都有。你要不要看动态看看我说的是不是真的，是你没有互动我。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100556297183887634": {
+    "text": "@taozibuilds 距离我上次发干货教程已经间隔12天了，有些人等不了都取关了，哈哈。\n\n之前发干货教程最高的一天涨了615个粉丝朋友，看看这次能否突破。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100555388395589755": {
+    "text": "@404jsh 这个可以有，养AI和运营自媒体才需要固定干净的IP。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100554908189811188": {
+    "text": "@rookie_fu 的确在佛山小区被抓了，触犯，态度好，交了15万罚款就放人了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100553657628643400": {
+    "text": "@rookie_fu 我堂弟搞这个，淘宝店卖福建莆田A货，两年挣了50多万。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100553155046228247": {
+    "text": "@chaoxiao 邪修起号，一个月就可以2万粉丝。10万以上才算大V吧，每个人看法不一样。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2104229639401111708": {
     "text": "@omnusS1 @leo_liumeng 别人刚成功。可能现在不是百分百成功了。 https://t.co/iE3FBkswuj",
     "links": [
@@ -20434,6 +21403,71 @@
     "links": [
       "https://t.co/JrqTktcK3X"
     ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100551780891521485": {
+    "text": "@inwelove 收藏其实对帖子没有任何权重提升的，还不如点赞……",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100551224051515702": {
+    "text": "@inwelove 技术干货教程的长文章，流量不小的，我的很多都单贴超过10万流量。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100550555567612263": {
+    "text": "@linmumu223 真正的高质量长文章，还得看MJJ百科。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100549855307563129": {
+    "text": "@ysp2025 没有压力的话，睡眠质量自然是好。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100548625701147003": {
+    "text": "@A9Beacon 我距离上次发教程，间隔了12天，期间流量也一般般，否则早就满50M了，不过现在也快了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100546904836993140": {
+    "text": "@nipcatmoe 教程是买独角鲸的自营的，除非独角鲸自己跑路。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100546693506965960": {
+    "text": "@btc_xs 你没有关注我而已，你随便找我的任何一篇技术干货教程，收藏都比点赞，接近2倍的都有。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100546087631344060": {
+    "text": "@Wencheng988 我教程的截图是延迟200呀，你怎么来400的？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100545577218170906": {
+    "text": "@A9Beacon 那你很厉害了呀，我8月8号开始搞的，现在一个月零一周，时间应该和你差不多，进度比你快一些。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100544183476125876": {
+    "text": "@iLQfwb 一，CF优选时代已经过去了，毛线的速度呀。二，这不是固定IP。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100542082310177178": {
+    "text": "@A9Beacon 说起爆款，就是伤心事，我一个爆款帖子都没有，每次看到别人上百万上千万的爆款帖子就特别羡慕。我高质量热门帖子的话，有10个左右吧，流量是10万左右。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100540108630089909": {
+    "text": "@A9Beacon 一个人，还喝酒，那不是更孤独吗？不过我还真有不错的红酒。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100538887223304197": {
+    "text": "@Omnisunce 不客气，我每个帖子都会在评论区动态更新，有问题一般都可以解决的。",
+    "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
   "2104216876687712437": {
@@ -20658,6 +21692,58 @@
     ],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2100537264048877669": {
+    "text": "才喂一下鸡鸭，就错过了6000粉丝朋友的截图…… https://t.co/jIxHmPSYlV",
+    "links": [
+      "https://t.co/jIxHmPSYlV"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100532785232707631": {
+    "text": "@qsyybb 是段子的话，能怎么看？\n不是段子的话，还用怎么看？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100531560818872557": {
+    "text": "@lumeroute 我的技术教程干货帖子都是长文章，很多流量都是过10万的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100530460384543133": {
+    "text": "@Tinwung11 币圈的骗子估计和TG一样多，哈哈。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100530229567787480": {
+    "text": "@Absolute_Belial 正常，Starryblu是熊猫速汇和新加坡华侨银行合作的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100529742931984795": {
+    "text": "@niumoney 捡垃圾做不到，开收废站1000%可以的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100529489566654771": {
+    "text": "@ai_fengshou 升级MAX很容易被封，别问我怎么知道的……",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100527815976501485": {
+    "text": "@RogerWei1982 @ThanksuTrump 评论区前面有人问过，我回答了。我觉得教程已经做到手把手教的程度了，但是有些细节还是无法避免忘记。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100527354351362170": {
+    "text": "@H9027Song 如果其他粉丝朋友都像你这样，那就太好了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100527206401503284": {
+    "text": "@iswangchu 这个我就不写了，你们自己琢磨，很简单的。CF大善人，我觉得还是得尊重一下。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2104204672693387494": {
     "text": "@silencerjoker 淡定，我这方法是新鲜出炉的，五分钟就可以顺利成功注册。",
     "links": [],
@@ -20871,6 +21957,80 @@
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2100526228382036393": {
+    "text": "@H9027Song NAT小鸡是切割出来的，便宜正常。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100526002422337717": {
+    "text": "@ThanksuTrump 教程忘记说了，帖子评论区我回复说明过。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100525702307319963": {
+    "text": "@sisi_chen7203 具体得看母鸡的配置和是否超售，可以肯定的是比机场的人少很多。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100525136927760681": {
+    "text": "@Omnisunce 不用呀，我的教程演示都是使用第三方开源的客户端呀，教程评论区也有说这个问题，你使用v2rayNG即可。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100524704897654876": {
+    "text": "@niumoney 那我帮你重温一下记忆：你猜我信不信你，从8月23号到现在，我多条干货教程帖子，过10万热门帖子好几个，超3M总流量，粉丝从1300自然增长到5700，但是你一条互动都没有，而我去你那互动了好几次，就是时间线的。 https://t.co/Hmg4HwQirJ",
+    "links": [
+      "https://t.co/Hmg4HwQirJ"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100523700303139155": {
+    "text": "@iswangchu 我没法无视呀，他帖子的截图就是我呀，两次说我的技术教程长文章是广告，还挂我出来，我能忍？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100523111120814349": {
+    "text": "@jiangding01 他两次说我的长文章是广告，还挂我出来，不屏蔽拉黑他没有天理了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100522676863562238": {
+    "text": "@Tinwung11 我不是对币圈有意见，我只是对他这样的有意见。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100522366405390713": {
+    "text": "@Omnisunce 手机端你是IOS还是安卓？客户端使用哪个？是最新版本吗？使用前，更新订阅了吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100521598235050287": {
+    "text": "@xiaofapro 每个人都有自己做事的准则和底线。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100521124186771917": {
+    "text": "@shyyyyguuuu @Bobo41322 甲骨文的IP质量很一般，毕竟是免费换IP的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100496275393437937": {
+    "text": "@ysp2025 我对币圈了解不深，2次爆了我2000刀后就不玩了哈哈。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100495824904216921": {
+    "text": "有人建议利用 cloudflare 搞个永久免费的VPN使用，我个人是不建议的。\n\n我2019年以来都是自建VPN自用，但不是使用CF大善人来搞，而是买服务器自建。\n\nCF Workers 有每日10万次请求限制，\n很多年之前我就拿来搞全球主机论坛镜像站给大家使用，\n经常达到每日上限。 https://t.co/rKPTJzwH6V",
+    "links": [
+      "https://t.co/rKPTJzwH6V"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100495392748269914": {
+    "text": "有人建议利用 cloudflare 搞个永久免费的VPN使用，我个人是不建议的。\n\n我2019年以来都是自建VPN自用，但不是使用CF大善人来搞，而是买服务器自建。\n\nCF Workers 有每日10万次请求限制，\n很多年之前我就拿来搞全球主机论坛镜像站给大家使用，\n经常达到每日上限。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2104196700726608094": {
     "text": "@hauy 肯定没有完全的言论自由，只有相对的言论自由。",
     "links": [],
@@ -21070,6 +22230,76 @@
   "2113602640622092570": {
     "text": "@cyka_33 我所有的推广，都是测试不错才推广的，自己都在使用的，不是有利益就推广的。",
     "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100495224921587992": {
+    "text": "有人建议利用 cloudflare 搞个永久免费的VPN使用，我个人是不建议的。\n\n我2019年以来都是自建VPN自用，但不是使用CF大善人来搞，而是买服务器自建。\n\nCF Workers 有每日10万次请求限制，\n很多年之前我就拿来搞全球主机论坛镜像站给大家使用，\n经常达到每日上限。\n\n最重要的是，它的IP比机场还脏，速度又差，还有单链接超时与配额限制，\n这体验应该比CF 官方的免费内网穿透Cloudflare Tunnel还差，\n我很难想象居然有人用它来搞VPN科学上网。\n\n另外，如果被CF官方发现，还得面临封号的风险。\n\n我目前的组合是买三网直连的正常服务器自建 + 机场的包月套餐，\n有些人懒得自建，会直接上机场的高级套餐。\n\n手头紧，就搞NAT小鸡，每月才2元。\n\n如果你非要利用cloudflare搞个永久免费的VPN使用，可以看看这个项目 https://t.co/cVACoLAXxy 。",
+    "links": [
+      "https://t.co/cVACoLAXxy"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100492873716412782": {
+    "text": "@ysp2025 我之前几乎没有和他接触，想不到他口碑这么差。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100488945851387960": {
+    "text": "@1903901 @Lovislexus 海口我还没有去过，虽然离茂名很近。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100488295981453551": {
+    "text": "@Chieh_Zh 如果不详细的话，哪敢叫手把手教？我手把手教的教程写了好几篇了，",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100488046764548549": {
+    "text": "@RoyDen2022 教程图片说了防封设置，如果是被母鸡其他人连累的，就换NAT小鸡，官方自营的一直有货。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100487471968792862": {
+    "text": "@Suraelaxeqw 嗯，但是没有机场共享的人多，相对来没有那么脏，",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100487198491750612": {
+    "text": "@zhsji162886 这是教程演示买的，我自建的是使用正经的服务器，2H4G，三网直连，每月67元。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100486112372527217": {
+    "text": "你说的这个，我在上个帖子回复过了呀！\n\n我2019年以来都是自建自用，但不是使用CF大善人来搞，而是买服务器自建。CF Workers 有每日 10 万次请求限制，很多年之前，我就拿来搞全球主机论坛镜像站给大家使用，经常达到每日上限。加上它的IP脏、速度差、单链接超时与配额限制，这体验应该比CF 官方的免费内网穿透Cloudflare Tunnel还差吧？我很难想象居然有人用它来搞VPN科学上网。\n\n写这帖子之前，我问过Grok的，确定平台允许才写的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100485375051640898": {
+    "text": "@KkZLuo77 认识她更重要，毕竟我资质通过中银和汇丰很轻松，就晚半个小时而已。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100485027897504151": {
+    "text": "@tiancaijb666 免费申请打五折半价ChatGPT  Team优惠码不是更便宜吗？直接免费。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100481185894035599": {
+    "text": "@Bobo41322 之前的帖子评论区好几个人需要，而平台又没有规定不能说VPN，为什么不能发？\n\n永久0元不就是甲骨文吗？我都6年多了，又不适合大众。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100479786451886185": {
+    "text": "@MRWANGHENG 被你发现了，真的好肥，我都丢冰箱里吃好几天了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100478491007369466": {
+    "text": "请不要拉我进任何列表，见一个，屏蔽拉黑一个。 https://t.co/oiowhXTeUM https://t.co/OkVFSiACyj",
+    "links": [
+      "https://t.co/oiowhXTeUM",
+      "https://t.co/OkVFSiACyj"
+    ],
     "avatar": "avatars/mjjwiki.jpg"
   },
   "2104077981614489774": {
@@ -21279,6 +22509,36 @@
     "links": [
       "https://t.co/4PUgxYNKV8"
     ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100476364373790896": {
+    "text": "@knknzi0001 instagram上的，口碑很好，期间换过域名正常。你的如果真不错，我也可以帮忙推荐。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100475171530510579": {
+    "text": "@w201300 之前分享几篇干货教程后，就想搞youtube的，因为推特X的算法对我这种干货博主来说不太友好，因为它没有长尾流量。但我现在在农村老家，很忙，推特X都无法保证及时更新。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100472116516917396": {
+    "text": "@jj08046719 Codex自然可以完成，但是自己手动操作会印象更深刻，也更有成就感。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100470749786173568": {
+    "text": "@OGKAIM 建议你不要太依赖AI，把它当做辅助驾驶比自动驾驶更好，免得以后离开AI啥也不会了，哈哈。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100469540387962967": {
+    "text": "@weizhan85526909 可以的，Loon 是支持 Reality 的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2100468063217070311": {
+    "text": "@OGKAIM 就6条命令，复制粘贴运行就可以了，这也需要AI？",
+    "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
   "2104064137009766455": {
@@ -30552,6 +31812,33 @@
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2101849879618486461": {
+    "text": "@taozibuilds 我应该是全网最不怕原创内容审核的博主之一了，哈哈。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101849697027817673": {
+    "text": "@Cangbaic 花了28天了，速度比一般人快一些，但跟某些猛人比不了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101847915132317935": {
+    "text": "@A9Beacon 可惜昨天差一点没有达标，浪费我今天3W+时间线蓝V流量。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101847311844565194": {
+    "text": "就等今天更新数据了，然后订阅和原创内容奖励计划这两个一起申请。 https://t.co/C3JxKWnUSf",
+    "links": [
+      "https://t.co/C3JxKWnUSf"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101833560474980531": {
+    "text": "@yvchengshanren 懂了，大概是和Gemini一样，前端开发不错，后端开发一坨，所以才被吐槽开发不行。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2105500396206837931": {
     "text": "@huaihezhipan 毕竟是三大邪修方法之一，流传很久了，最少都有半年了。",
     "links": [],
@@ -30701,6 +31988,61 @@
     ],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2101830964108505405": {
+    "text": "@wenwu275197 你应该是哪里设置漏了一步，比如设置开机启动之类的，反正我第一次听说重启不成功。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101830160492474874": {
+    "text": "@zhouchuanx 我30天都分享了11篇技术教程干货帖子了",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101829998323851295": {
+    "text": "@zhouchuanx 你看教程不认真呀。\n\n教程最后一张图那里，说了要改为外部端口。\n\n我评论区没有说IOS不能使用，只是说我用户使用小火箭有问题，建议更新客户端或者换客户端。\n\n一开始就说了是养号或者学习。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101828783892574439": {
+    "text": "@sqzr74110 看你自己，我只是说自己的看法。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101828484473782760": {
+    "text": "@ITBEGBNL 你没有通过我的邀请链接或者推荐码注册，不能参加抽奖。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101714247130775740": {
+    "text": "@Hello_Worlda 活跃互动的非蓝V我一样会关注的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101710021147177445": {
+    "text": "@Xlin_kis 最初的时候涨粉很难，300粉要足足8天，现在我一天最高涨粉1100+。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101701669977485477": {
+    "text": "@qsyybb 你可以看我之前的帖子晒图，每次发技术教程干货帖子，都是至少涨500+粉丝，而且是持续3天，这次直接上升到日增1100+了，三天自然破2300+了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101699998698373569": {
+    "text": "@ikun666 主要是我好像用不上grok bot",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101694184373813356": {
+    "text": "@RammerZeng 因为我知道退款原理和规则呀，否则怎么敢在教程写“成功率没有100%也有99%吧。”",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101693647536484477": {
+    "text": "@HaenyeoZ soga，那也得升级星球会员开卡后才有资格，初步计划是明天中午开奖，要不要等你一下？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2105474463890592019": {
     "text": "@xKaka1456 都抱政府大腿了，什么时候给我们老百姓使用，可能它自己说了都不算……",
     "links": [],
@@ -30817,6 +32159,46 @@
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2101692981611016211": {
+    "text": "@HaenyeoZ 你没有通过我的邀请链接或者推荐码注册，不能参加抽奖。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101688628997128602": {
+    "text": "@yefeng05356388 嗯，90%的粉丝都是被技术教程干货帖子吸引来的，哈哈。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101688336662602056": {
+    "text": "@Ernser666 携号转网是我的需求，你可以直接做lebara激活的，教程还有效的，评论区可见证。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101686632009400650": {
+    "text": "@Black_GTone 努力用会有回报的，毕竟30天输出了11篇技术教程干货帖子。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101683969653924047": {
+    "text": "@cunlegetu 是的，想当初起步阶段，300粉搞了足足8天，那时候最难。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101683712605999269": {
+    "text": "@AndyHu44502446 可惜大多数都是非蓝V粉丝朋友。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101677610950635982": {
+    "text": "@iceface88 你账号很老了，什么时候才开始运营的？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101677301918581082": {
+    "text": "@AndyHu44502446 持续输出技术教程干货帖子，涨粉速度自然不慢。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2105463156416081975": {
     "text": "@freestyle_error 应该是按时间线有效蓝V流量和账号权重计算收益的",
     "links": [],
@@ -30896,6 +32278,66 @@
   },
   "2109554673531433414": {
     "text": "@hayabusasxss 同档位，它是比ChatGPT强一些。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101668627389075650": {
+    "text": "@sdjn_wgc 有人评论说10刀都不划算，流口水了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101668286262132736": {
+    "text": "@0xEthan666 又不是8000个蓝V粉丝朋友。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101666248224571550": {
+    "text": "@A9Beacon 我都是免费分享，都不介意别人拿去卖，还介意你抄袭？\n\n之前外国推友评论区问我是否可以拿去洗稿，我都回复说可以呀。\n\n其实不用抄袭都可以的，转发引用我的帖子，流量和粉丝都涨不少的，这次就有三个人是超过10万流量的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101665245110452638": {
+    "text": "@lengs4189 30天内发了11篇技术教程干货帖子，涨粉丝不快我就得吐血了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101664921528500491": {
+    "text": "@A9Beacon 被我曝光？听不懂。我曝光你干嘛？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101664728179232855": {
+    "text": "@cyka_33 11篇技术教程干货帖子都差不多，就看是否需要而已。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101664279984513410": {
+    "text": "@allenhe168 小心账号权重越来越低，越来越限流。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101663757164482824": {
+    "text": "@A9Beacon 你觉得你可以转型就试试，万一成功了呢？另外，你对我的的技术教程干货帖子理解有误。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101661412162678875": {
+    "text": "@zhozhnfi193916 @grok 正常，你越互关，账号权重越低，越限流。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101661100412637322": {
+    "text": "@suntechyuan 一天300个粉丝？你是走互关的吧？你知道我888个粉丝开始发技术教程干货帖子的时候，涨300粉花了我足足8天。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101659223260307787": {
+    "text": "@lucky46017 你是泛流量赛道的，不是技术赛道的，很难的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101658821739549029": {
+    "text": "@zhozhnfi193916 @grok 互关路线的账号本来就是权重很低，甚至直接限流的呀！",
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
@@ -30985,6 +32427,80 @@
     "links": [
       "https://t.co/mIFDRGYe9h"
     ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101657735532322983": {
+    "text": "@chaoxiao 你如果30天内发11篇技术教程干货帖子，也可以涨这么快的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101657667337097266": {
+    "text": "@lucky46017 你如果30天内发11篇技术教程干货帖子，也可以涨这么快的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101657547510001820": {
+    "text": "@allin5662 我明天才申请开通，到时候会分享。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101657364332179863": {
+    "text": "@benlinbaofu 你如果30天内发11篇技术教程干货帖子，也可以涨这么快的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101655635897221380": {
+    "text": "@allin5662 我觉得我那个教程已经写得很详细了，属于手把手教系列的了，也很多人成功了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101654747631767773": {
+    "text": "@cj3214567667 30天内发了11篇技术教程干货帖子，我容易吗？ https://t.co/cOVAFJPYtJ",
+    "links": [
+      "https://t.co/cOVAFJPYtJ"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101654192779899323": {
+    "text": "@CocoDickGa4rqa 从888粉开始分享技术教程干货帖子到现在，以前涨300粉得8天，现在最高一天涨1100粉。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101653874788712704": {
+    "text": "@xiaofapro 破一万粉不难，再发一两篇技术教程干货帖子就差不多了。\n\n我老家没有养母鸡，养的话也不卖，都是自家留着吃的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101653168375627844": {
+    "text": "@cyka_33 那你是最近才关注的，30天内11篇技术教程干货帖子，vps是最新的那篇。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101652806990193099": {
+    "text": "@liubaodao 浇友会降低账号权重，甚至限流的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101652539699871793": {
+    "text": "@Acznan 你没有通过我的邀请链接或者推荐码注册，不能参加抽奖。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101652469147373633": {
+    "text": "@iconfident1314 教程是25天前的，官方改动地址很正常呀，你问客服要新地址即可。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101648075173589287": {
+    "text": "不知不觉，已经8000个粉丝朋友了，感谢大家的信任与支持。 https://t.co/IjUjlgJjCo",
+    "links": [
+      "https://t.co/IjUjlgJjCo"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101647422086844778": {
+    "text": "@gegewu203 我的版本是12.27.1-prod.01",
+    "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
   "2105310368998531551": {
@@ -31106,6 +32622,50 @@
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2101645344883060862": {
+    "text": "@MariRegina55109 之前应该很多人提了，好像都没有修复。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101637091180560893": {
+    "text": "@yanniscyu 认真看教程的截图，截图有1、2、3顺序，你的顺序没有搞对。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101636020181831993": {
+    "text": "有两个消息，一个好消息和一个坏消息。\n\n好消息是：\n今年中秋节放假三天。\n\n坏消息是:\n其中两天是本来就放假的周六和周日，还有一天周五是今天加班调休得来。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101634098498593142": {
+    "text": "@fomo_box 嗯，因为我发现在IOS登陆是正常的，才去问Grok。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101630759589020008": {
+    "text": "X的原创内容奖励计划，一点击 App 就退出，这问题一个月碰到两次了，都是安卓手机。 https://t.co/wuruxmdRFJ",
+    "links": [
+      "https://t.co/wuruxmdRFJ"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101627481702986030": {
+    "text": "@KuanLuanAnvril @sisi_chen7203 5元200G是日本节点，东京亚马逊母鸡。机场是 https://t.co/0DkiUWzlyJ",
+    "links": [
+      "https://t.co/0DkiUWzlyJ"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101627017997545935": {
+    "text": "@GiffgaffENfly 你没有通过我的邀请链接或者推荐码注册，不能参加抽奖。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101626117077778617": {
+    "text": "@calaquendiv IOS吧？你换其它客户端试试，win、mac和安卓都正常。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2105292765647216923": {
     "text": "@ThanksuTrump 应该不是单价问题，应该是你们理解的周期不对。\n\n如果是单价问题，那我下次估计得上2000美元了。",
     "links": [],
@@ -31219,6 +32779,41 @@
   },
   "2109472220556951884": {
     "text": "@kozfdc 这是我第二次看到这么好看的cosplay。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101613380159328564": {
+    "text": "@Trece_8N24 你没有通过我的邀请链接或者推荐码注册，不能参加抽奖。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101613132045324604": {
+    "text": "@Cangbaic 是的，如果连接过国内网络，需要删除重新下载。评论区也有不少推友分享经验，和我有点出入，但是可以成功。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101604303484182646": {
+    "text": "@xinzhai27 我这是新用户优惠吧，之前没有开过。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101599004887077194": {
+    "text": "@monsterhao 我刚下决心开P+，你这让我又犹豫了……",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101597833334022515": {
+    "text": "@006xyf 我没有家宽，干净的原生IP可以吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101594918242377881": {
+    "text": "@jim85442137 40元怎么来的？免费的呀！另外，只是否要求不严格的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2101587582333432268": {
+    "text": "@Starryblu_ 感谢Starryblu官方的回复！",
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
