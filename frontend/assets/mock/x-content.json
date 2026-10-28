@@ -16504,6 +16504,20 @@
     "links": [],
     "avatar": "avatars/yaojingang.jpg"
   },
+  "2108005157237907725": {
+    "text": "提示词：\n\n这是我的开源项目GEOFlow：https://t.co/LYdvqIahvv\n请以世界顶级4A公司水准，为它创作并制作一个宣传视频",
+    "links": [
+      "https://t.co/LYdvqIahvv"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2108004975187996973": {
+    "text": "通过Grok Bot，一段极简提示词生成的GEOFlow宣传片视频，效果还挺不错 https://t.co/uD8KGkBrJg",
+    "links": [
+      "https://t.co/uD8KGkBrJg"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
   "2105472543155245425": {
     "text": "抖音的相关搜索词数据爬虫skill来了，开源给大家\nGitHub地址见文末\n\n输入多个核心词根，AI自动按「词根→一级词→二级词」扩展进行操作\nAI自动记录相关搜索词的下拉位置、来源路径，再按行业商业意图打分，最后完成统计，输出一份完整的Excel文件\n\n还是一样的逻辑，Codex原生电脑操作，抖音网页版，无需点击和页面刷新动作，相对风控风险较低\n为了谨慎起见，建议小号测试\n\n截图为留学案例实测：3 个词根，200 条记录，142 个去重词\n\nGitHub地址：\nhttps://t.co/8nOIXep8zl",
     "links": [
@@ -17757,6 +17771,80 @@
     ],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2108100292516708802": {
+    "text": "@leeking420 我的帖子评论区，8月27日就说了充值卡的giffgaff退款方法。https://t.co/L2qvaE3ZKH",
+    "links": [
+      "https://t.co/L2qvaE3ZKH"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108099424308142515": {
+    "text": "这个对我来说，比币安广场的邪修起号更有价值。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108098203157725660": {
+    "text": "@sino_go_global 我每天帖子10篇左右，评论每天150条左右，强度中等偏下吧。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108097838660120788": {
+    "text": "@iceface88 农村家里多数都是自己种花生的呀，农村人还是占多数吧。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108097560493875246": {
+    "text": "@likebookmark 不客气，这只是我自己的经验，不一定准确。\n\n像李新宝那种就很少评论别人，只是引用别人的帖子，这样引用帖子的流量就是他的，很多人效仿。\n\n我的互动不一样，点赞、评论、收藏、转发引用，得看帖子的内容。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108095532140998755": {
+    "text": "@iceface88 我家里的油都是自家种的花生炸的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108095309473890594": {
+    "text": "@kalipusitkk 被你发现了，被举报怕了。无论是TG还是域名，都是我的，想证明不会产生利益很难的，加上更安全。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108093607328858136": {
+    "text": "@iceface88 吃多了会腻，外卖快餐吃的和自己买菜做饭最大的区别是油。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108092960495792492": {
+    "text": "@GaTsunami P+是加大评论曝光，大概是P的2倍，你需要多评论才可以的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108092679162937491": {
+    "text": "现在几乎所有AI模型都这样了，国内AI蒸馏Claude和ChatGPT的时候就已经开始了的，都默认打上隐式元数据或者隐写水印。 https://t.co/U11XTBQdt5",
+    "links": [
+      "https://t.co/U11XTBQdt5"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108090790107132078": {
+    "text": "@Ylj158852 用户量小就这样，大厂都是人多超售的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108090111393202296": {
+    "text": "@likebookmark 主动多评论别人，评论的流量不算有效时间线流量，但算法会加大自己其它的帖子曝光的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108089399242297414": {
+    "text": "@Ylj158852 优秀。这个价格应该是小厂的吧？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108089202265203077": {
+    "text": "@RayAlwaysDay1 吃一堑长一智，我分享出来，是希望大家有前车之鉴。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2111724871034003606": {
     "text": "@biuzai339 嗯嗯，你这是我听的第四种说法了，我已经搞不清了，哈哈。",
     "links": [],
@@ -17823,6 +17911,66 @@
     ],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2108088653155299688": {
+    "text": "@RayAlwaysDay1 按平台规则来说，评论和回复也是帖子，我的确是违规了。如果没有人举报，平台一般也不管的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108088374016020722": {
+    "text": "@kozfdc 是的，其实如果没有人举报，平台一般懒得理你。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108088128158494832": {
+    "text": "你是劳模呀，我历史上，每天评论+回复超过300次的也只有2天而已，正常是150次左右。\n\n至于发帖，那就更少了，每天10贴左右。 https://t.co/4mYa6ei8Eg https://t.co/Djsq6KAVBf",
+    "links": [
+      "https://t.co/4mYa6ei8Eg",
+      "https://t.co/Djsq6KAVBf"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108086245591322805": {
+    "text": "@iceface88 我在广州工作的时候，也经常去这种自选餐厅吃饭，也是按量称重计费。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108085342817407010": {
+    "text": "@heyfoil 看起来不错，虽然我很少用国产AI。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108083837083464114": {
+    "text": "@GaTsunami 我试过搞了14个小时，才360多条评论。\n\n那些一天1000+条评论怎么是真手速，要么是机器人评论。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108082853091422552": {
+    "text": "@CaribbeanKelp2 我倒是没有在微信和支付宝被骗过，我是坚决不先款的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108081937801945308": {
+    "text": "@leehyuk26 你要不要回去看看我之前怎么说的？\n\n我之前是说TG是骗子集中营，很抵触它，不想使用它，更不想建群收割粉丝朋友。\n\n我微信被禁言那一周，十几个人微信问我Starryblu返现，但是我无法回复他们。没有备用沟通工具，后续就麻烦了，他们很多不怎么上推特X的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108081036647424228": {
+    "text": "@biuzai339 毕竟是端对端加密，聊天肯定安全，否则怎么自由聊天？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108080723148312931": {
+    "text": "@leehyuk26 @maoshen @sujing110 是不是后面发现她们几乎不互动你？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108080402170798549": {
+    "text": "又是新疆午饭时间，韭菜炒蛋和菜干炖扣肉。 https://t.co/Za9inUIu36",
+    "links": [
+      "https://t.co/Za9inUIu36"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2111693500597354942": {
     "text": "@loveAIwang 开通后马上改密码，之前的Session就会失效了。",
     "links": [],
@@ -17868,6 +18016,85 @@
     "links": [
       "https://t.co/c0sIABs2vV"
     ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108068051350634808": {
+    "text": "@WangXx66666 有道理，我的推特X坚决不碰政治话题。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108067659262595551": {
+    "text": "@objboya 那就更证明了Claude是随机封号的",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108067400377868491": {
+    "text": "@zihao_ZiO 是的，审美很重要，Gemini的前端设计和开发不错，可以弥补一下ChatGPT的前端设计和开发。有Claude自然更好了，一个就可以了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108066993337434451": {
+    "text": "@Aria_yly TG出来之前，那些骗子就是活跃在各大论坛的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108066591929942227": {
+    "text": "在中国，炒币所涉及的交易行为是不受法律保护的，监管政策的核心是禁止一切虚拟货币相关的业务活动。\n\n个人参与加密货币买卖的话，面临的法律风险主要是入金和出金，某些特定行为可能构成犯罪。\n\n所以，安全出入金很重要，C2C就不建议了，特别是量大的情况下。 https://t.co/k04971c2q8",
+    "links": [
+      "https://t.co/k04971c2q8"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108062575653159122": {
+    "text": "@ppbanker888 我免费的Claude还活着，订阅的两个反而挂了，都是同一个IP。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108061806229070310": {
+    "text": "@biuzai339 TG没有任何安全可言！\n\n被骗的人90%以上都是使用TG沟通的，起码我常用的三大论坛这十年来都是这样。\n\nTG只是聊天沟通自由而已，没有微信那些敏感词，我用它做备用聊天工具。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108060605701853652": {
+    "text": "@yangywtm IP纯净度很一般，能正常使用Claude吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108059942444023833": {
+    "text": "我之前曾在TG(telegram)被骗过，这些年在论坛发现90%以上被骗的人都是使用TG沟通的，后来我直接放弃使用TG了，这几年都没有再被骗过。\n\n所以我一直认为TG是骗子的集中营，加上很多人喜欢玩TG群收割别人，我就更加抵触使用TG了，即使之前不少粉丝朋友劝说过。\n\n前段时间我微信发了那三个字触发敏感词，被微信禁言了一周。后来和老乡沟通后，还是决定使用TG作为备用沟通工具。\n\n今天有空我就搞一下，结果发现mjjwiki的ID和频道都被别人9月18日注册了。那我就使用https://t.co/PIOKw2LbiX的域名注册时间起名TG的ID，mjjwiki2022。",
+    "links": [
+      "https://t.co/PIOKw2LbiX的域名注册时间起名TG的ID，mjjwiki2022"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108051351196647550": {
+    "text": "@kevinchenfudy 对于大多数人来说，Plasma One是Top1层的U卡，仅次于E卡，你说呢？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108046529294737825": {
+    "text": "@Xlin_kis 我的设置中国时区。。。。。。看来还是得改时区了，谢谢了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108045939269369952": {
+    "text": "@Xlin_kis 你的代理服务器时区设置哪里的？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108045669143556603": {
+    "text": "@798145343h @grok 被封是件丢脸的事情，我都说出来让大家避雷，你居然不信我，有点伤心。。。。。。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108045276879675417": {
+    "text": "@cyka_33 嗯，我每次DD完系统后，都使用IPQuality来再检测一次，强迫症。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108041525674307893": {
+    "text": "@mason0x_ 郁闷了……你的时区设置哪里的？",
+    "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
   "2111675729884922139": {
@@ -17917,6 +18144,106 @@
   },
   "2111667516510818760": {
     "text": "@fengdeng585 教程发布两天了，太多人薅羊毛了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108041358628081942": {
+    "text": "@Xlin_kis 三次……我之前帖子评论区不是说了吗？ID（身份证/护照） + 邮箱/手机号码  + 地址证明，这个组合，最多试2次，2次后要更换其中一个条件。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108039790507794933": {
+    "text": "@not_null_cookie 新加坡的家宽是违法的，我没有买。我的是新加坡原生IP，养了几年服务器了，已经算干净了。但是我没有Claude三个月后还是挂了，可能是时区设置问题。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108039153153953945": {
+    "text": "@ygxdmss2 okx我没有注册，听说背后是北京。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108038301399802155": {
+    "text": "@chakmillion 帖子设置付费合作即可，删帖多了影响权重的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108037978199372099": {
+    "text": "@xutp666 官方没有说明，一般都可以3台设备使用。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108032383731544207": {
+    "text": "看到不少人使用这网站进行Claude AI IP风险检测，我也去测试了一下，感觉还是有一定的参考价值。\n\n我自建的VPN节点只监测出不推荐使用中国大陆时区，不知道我的第一个Claude账号使用3个月后被封是否和这个有关。\n\n网站地址是 https://t.co/C4HBHO4Aya  ，这不是我的网站，和我没有任何利益，别动不动举报我的帖子。",
+    "links": [
+      "https://t.co/C4HBHO4Aya"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108032155821675007": {
+    "text": "@Aria_yly 不要刻意使用，我都是正常使用。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108031906239451309": {
+    "text": "@KingsleyP0811 @lengs4189 很多新人不懂的，抱着侥幸心理的人太多了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108030902643446227": {
+    "text": "@cyberspacecc ID + 境外手机号码 +境外地址证明",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108030647268970792": {
+    "text": "@cyka_33 谈不上共同富裕，对半分官方的奖励而已。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108026549429837920": {
+    "text": "@scumax 国外的地址即可，目前评论区他们成功通过的主要是英国和法国。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108026177248284871": {
+    "text": "@BuqiyuxingGo 这就离谱了，你可以直接问客服什么情况。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108019325336789060": {
+    "text": "@Luedongyqir 你的Plasma One的ID是哪个？发我看看是不是走我的邀请链接，如果是的话，你达标后我就返你5美元。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108018987632345513": {
+    "text": "@ygxdmss2 有心无力，我都不知道这8个人的推特X是哪个，无法联系他们，只能等他们联系我。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108018482277486751": {
+    "text": "@Lniosytest 那可惜了，我的所有推广都默认返50%给你们的，就是我们对半分，老粉丝朋友应该都知道。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108018200206311507": {
+    "text": "@ChangzhouUid 按官方的提示注册即可，我的邀请链接看评论区。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108017774408937505": {
+    "text": "@cyka_33 说得好，这种人就是心理不平衡，见不得别人好。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108017411652043126": {
+    "text": "如果你还没有注册币安，可以全套国内资料注册。我币安的邀请链接是https://t.co/nZRgWcKCkb 或者填写邀请码D05W28HD，你将有30%永久返佣，节省交易佣金费用。 https://t.co/9F6Dgmi3GX",
+    "links": [
+      "https://t.co/nZRgWcKCkb",
+      "https://t.co/9F6Dgmi3GX"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108015245117755625": {
+    "text": "最近几天共有8位推友走我的邀请链接注册通过了Plasma One的审核，恭喜了🎉。\n\n通过审核14天内，如果你们充值消费满100美元，官方会返我10美元（需走我的邀请链接注册）。如果你们达标了可以找我返5美元，我们对半分。\n\n入金方法:Add funds，进去后选择USDT加密货币，进去后选择Plasma链，然后使用币安等交易所或者加密钱包转给你的Plasma就可以了。",
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
@@ -18004,6 +18331,70 @@
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2108011278988186072": {
+    "text": "我的Plasma One邀请链接是https://t.co/3iTn2aJyUT，或者直接填写邀请码 LDCY45 。",
+    "links": [
+      "https://t.co/3iTn2aJyUT，或者直接填写邀请码"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108009454180692082": {
+    "text": "@Aria_yly 使用重置卡会降智？应该是巧合吧？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108007948740178079": {
+    "text": "@JMkernt 是呀，谁想得到评论也算是帖子。\n\n我以为自己很谨慎了，结果还是因为评论没有揭露付费合作而被举报了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108005679407800778": {
+    "text": "@qianyuwing github仓库得看具体内容的",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108001932967100840": {
+    "text": "严格按照X平台的付费伙伴关系规则来说，只要会产生利益就要揭露付费合作。\n\n那么之前大家发帖带了Muse AI智能体的邀请码，都要揭露付费合作，否则都有被举报封号的风险。\n\n具体操作是：帖子右上角，内容揭露，选择付费合作。\n\n发帖、评论和回复，都算是帖子，我就是吃了“以为评论回复不算帖子”的亏。 https://t.co/dNzI9steYf",
+    "links": [
+      "https://t.co/dNzI9steYf"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108000727792849252": {
+    "text": "@ZouYinxyz 我没有去过，朋友这次国庆假期去的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108000418563555751": {
+    "text": "@cj3214567667 @maoshen @sujing110 她们的粉丝可能有很多都是僵尸粉",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2108000021144821799": {
+    "text": "@LinhTran955 If that's the case, ChatGPT's front-end aesthetics haven't reached the standard yet.",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2107986330022252793": {
+    "text": "最爱ChatGPT的重置卡了，使用更灵活，比直接重置好多了。\n\n如果可以解除ChatGPT Plus和ChatGPT Team的5H限制，那就更好了。\n\n希望ChatGPT后面的更新，有提升前端设计和开发的。现在的前端审美实在是不敢恭维，每次我都还得使用Gemini来优化。Claude的前端审美，就比ChatGPT好多 。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2107921483691676035": {
+    "text": "@Nascan4 Chúc bạn thành công trong việc ra đi sớm.",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2107916737664647200": {
+    "text": "@qianyuwing 听说多次被举报后，账号会被永封。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2107916195840336278": {
+    "text": "@voidJan 别乱说，P+的评论的曝光是P的2倍（现在是说最大曝光），主贴的加成官方没有说。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2111509878850379855": {
     "text": "@10086110x @elonmusk 可惜你操作之前没有看到我这教程。https://t.co/OkRdbTO7t6",
     "links": [
@@ -18085,6 +18476,93 @@
   },
   "2113940758327931085": {
     "text": "@Xlin_kis 谷歌邮箱非常重要，我绑定了很多东西。虽然我也有几个谷歌小号，但都没有搞，谷歌已经很良心了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2107915542426493334": {
+    "text": "最难那一步KYC认证过了，随时可以开Plasma One卡了，恭喜你了。\n\n如果是走我的Plasma One邀请链接注册的，你达标后我们可以对半分它的奖励。 https://t.co/DHAPj87Iov",
+    "links": [
+      "https://t.co/DHAPj87Iov"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2107913802939551981": {
+    "text": "@xiangning0 嗯，那条评论是我随手评论一个粉丝朋友的求助帖子，大概有3.5K浏览量吧。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2107909579711582275": {
+    "text": "@xKaka1456 一般不算，但具体得看项目的内容，反正会产生利益加上准没错。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2107907997641081043": {
+    "text": "@xKaka1456 你的粉丝和流量还小，别人还不会眼红你，我那条评论当天都过3.5K浏览量。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2107907693897978286": {
+    "text": "@qianyuwing 有些人就是有眼红病，心里不平衡。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2107907498246332856": {
+    "text": "@xKaka1456 我知道帖子需要加上，但是不知道评论和回复也是算帖子……",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2107906011113877607": {
+    "text": "@xKaka1456 不带外部链接就好，带了最好进行内容揭露。帖子右上角，内容揭露，付费合作。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2107905270760575192": {
+    "text": "@zihao_ZiO 可以这么理解，帖子右上角，内容揭露，选择付费合作即可。只要有外部链接，有利益产生可能。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2107904272860078480": {
+    "text": "@xKaka1456 如果多次被举报，的确会被永封的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2107903344215990440": {
+    "text": "@getinfo8888 按平台的规则，我这个的确是违规了，我不知道评论回复也是算帖子，也要加上这个，我的主贴是加上了的。还好不算严重，吸取教训了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2107902624020541710": {
+    "text": "@zihao_ZiO 是的，帖子和评论都要进行内容揭露。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2107838445284651128": {
+    "text": "@zw_goooooooo 我也郁闷，我免费分享的技术教程干货帖子不少吧，尼玛居然还有人举报我。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2107837856962224357": {
+    "text": "@99ninecloud 举报如果没有门槛，平台肯定乱。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2107837442741223766": {
+    "text": "@sujing110 @skdky_0xzero @maoshen 我都不知道你什么时候关注我的，完全没有印象，但是所有关注我的蓝V我都默认回关了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2107836688798290298": {
+    "text": "@cheuk_baby @maoshen @sujing110 粉丝数是粉丝数，含金量就不晓得了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2107836310715080757": {
+    "text": "@skdky_0xzero @maoshen @sujing110 杀破狼以前87万多粉丝的，时不时发一些恶心帖子，比如各种打飞机，都掉粉一万多了，我也取关他了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2107835486375194725": {
+    "text": "@99ninecloud 被封有三种，临时封、正式封和永封，被封后别人点你首页看到的界面都一样的。\n\n我的是临时封，你的是正式封，解封条件不一样。临时封登陆账号的时候，会指导你怎么操作解封的。邮件发来一分钟内，我就登陆配合解封了。\n\n那条评论不在我帖子下，是我看到一个粉丝朋友发帖求助，我随手回复他，具体忘了。",
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
@@ -18204,6 +18682,16 @@
   },
   "2113875391006024156": {
     "text": "@LXiangchen71169 他纠缠不清，我直接发新贴将他晒出了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2107832615529287929": {
+    "text": "@biuzai339 这样的人估计不少，我们只能吃一堑长一智了",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2107826496220102751": {
+    "text": "@heyfoil 我一个主打免费分享技术教程干货帖子的博主，也有人举报我，我也是没有想到的。",
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
@@ -25659,6 +26147,11 @@
     "links": [],
     "avatar": ""
   },
+  "2108005543541686510": {
+    "text": "@duolaiqian365 哈哈，很多人让我尝试一下中分的发型",
+    "links": [],
+    "avatar": ""
+  },
   "2109051831951229144": {
     "text": "@Gen_Cathelineau @elonmusk @RapidResponse47 @POTUS @grok don't make it personal, you old geezer. you have no right to talk down to Ukrainians as if you're somehow superior. US support isn't charity, it's driven by mutual interests so drop the arrogance and try addressing the actual argument for once",
     "links": [],
@@ -25839,6 +26332,55 @@
     "links": [],
     "avatar": ""
   },
+  "2108085335146062157": {
+    "text": "@thsottiaux bro you could have left it for tomorrow, It was already a good day",
+    "links": [],
+    "avatar": ""
+  },
+  "2108074098127523974": {
+    "text": "@simanofohr most likely those problems are gone already ig\n\na lot has changed since then, in the past month alone I’ve closed over 200 issues",
+    "links": [],
+    "avatar": ""
+  },
+  "2108072903313170740": {
+    "text": "@simanofohr maybe you tested an outdated patch because I'm constantly fixing stuff, all the demos on my profile (including this) were shot on the first try, and I often use 6 Pro myself\n\nIf there's something specific with logs, issues are welcome",
+    "links": [],
+    "avatar": ""
+  },
+  "2108058138599706762": {
+    "text": "Launcher for macOS, Linux and Windows. Includes Zero Risk Mode with zero browser automation: you send messages manually, while the model still gets Codex tools:\nhttps://t.co/0Gfkuc5W6s",
+    "links": [
+      "https://t.co/0Gfkuc5W6s"
+    ],
+    "avatar": ""
+  },
+  "2108057616433791344": {
+    "text": "With GPT-6 now on the web, a reminder: you can use Web models inside Codex without spending your Codex quota. Even the Pro models.\n\nI built a tool for this: pick a Web model and work with your files and tools as usual, using your ChatGPT limits.\n\nRepo in replies. https://t.co/4kte2hVTvj",
+    "links": [
+      "https://t.co/4kte2hVTvj"
+    ],
+    "avatar": ""
+  },
+  "2108041422607925566": {
+    "text": "@thsottiaux don’t worry, banked reset helped me forget about haiku 5.5",
+    "links": [],
+    "avatar": ""
+  },
+  "2107914093428408388": {
+    "text": "@thsottiaux This is definitely the best of the three days so far",
+    "links": [],
+    "avatar": ""
+  },
+  "2107913740515672220": {
+    "text": "@thsottiaux okay, this is great one, but it's still not related to Codex, right? So there will be something else?",
+    "links": [],
+    "avatar": ""
+  },
+  "2107909127888380158": {
+    "text": "@TokenGremlin months? gpt 6 is month old",
+    "links": [],
+    "avatar": ""
+  },
   "2108473832612999239": {
     "text": "@dululu567 应该是的，不过要看场景吧，功能复刻、理解第三方实现等做常规逆向分析这类还好吧，恶意软件逆向、漏洞分析啥的绕不开CVP",
     "links": [],
@@ -25931,6 +26473,26 @@
   },
   "2108105273940586939": {
     "text": "OpenAI Decisions API的一个有趣用例，拿来做鸡蛋自动化质检，挑出脏蛋、破蛋，留下干净蛋，一分钱判46颗蛋\n\n产线摄像头持续拍传送带上的蛋，用Roboflow的RF-DETR模型在画面里找出每颗蛋的位置框\n\n然后按框把每颗蛋单独裁成小图给到Decisions API，让其快速判断鸡蛋是干净、脏还是破损的，输出三种状态概率\n\n这个方法，延迟约270ms，成本算下来约$0.03处理1000张鸡蛋图片\n\n在实时质检场景，目前看经济上可行技术上成立，对分拣、质检类业务有一定参考价值\n\n#OpenAIDecisionsAPI",
+    "links": [],
+    "avatar": ""
+  },
+  "2108024943564996986": {
+    "text": "Grok Bot现在可以直接搜索、阅读、监测X，这个功能等于直接给Grok在实时信息监测赛道上加了一张“王牌”\n\n以后你无需手动刷推，让Grok Bot帮你盯X信息\n\n几个场景：比如你有一款产品，可以让它持续关注X上用户对你产品的评价和讨论，做追踪产品反馈\n\n跟踪突发新闻，让它持续跟进最新进展；\n定期给你整理一份某行业的最新消息汇总，每周发送\n\n#GrokBot舆情监测",
+    "links": [],
+    "avatar": ""
+  },
+  "2108004447305765265": {
+    "text": "OpenAI GPT-6的Intelligent UI，感觉就是Andrej Karpathy前两天提出的那个思路的实现\n\n他提问时会加一句“以HTML形式组织回答”，别甩文字墙，直接给可运行、可交互的东西\n\n让软件从预先写好的程序变成了按需生成，成为AI时代沟通/思考的新生形态，用完即弃\n\n今天OpenAI做的，说话→模型即时生成小软件（账单分摊器、计算器、交互图解等）→用完即弃，本质就是“按需生成软件”那个概念的落地\n\n这个功能全用户能用，区别是Plus/Pro/企业版背后是GPT-6 Sol，免费用户是GPT-6 Luna\n\n#GPT6IntelligentUI",
+    "links": [],
+    "avatar": ""
+  },
+  "2107971672058040404": {
+    "text": "突发，Anthropic发布了：Claude Haiku 5.5，运行成本平均比Haiku 4.5降低了约75%，Sonnet 5.5也降价了\n\nAnthropic目前最快模型，提示词10万token以内便宜90%，10万以上便宜50%\n\n电脑操作测试跑分暴涨，从15.7%升到了72.4%；终端编程任务从0%到了39.2%\n\nHaiku现在也支持“努力度调节”，权衡成本与智能\n\n适合拿来做摘要、上下文压缩、数据库查询、分类请求、浏览器操作等高并发、成本敏感任务，可以作为Opus 5.5的编码子智能体，复杂agentic编程还是Opus\n\n另外，Sonnet 5.5缓存读取降价50%，从$0.2降到了$0.1；Max/Team订阅每月送$100–500API额度\n\n#ClaudeHaiku55",
+    "links": [],
+    "avatar": ""
+  },
+  "2107845482362146852": {
+    "text": "谷歌刚才把自己的“AI验真器”开放了，从今天起SynthID Detector全球可用，可查图片、视频、音频是否AI生成的\n\n能查范围目前包括谷歌、OpenAI、NVIDIA、Kakao，后面苹果也会接进来\n\n谷歌说已经给1800多亿张图/视频、24万年音频打过水印\n\n对于品牌、广告、政务等场景，快速辨别是否AI生成是一个快速通道\n\n#AI生成鉴别 #SynthIDDetector",
     "links": [],
     "avatar": ""
   },
@@ -26898,6 +27460,11 @@
   },
   "2108243054377447622": {
     "text": "10/08 今天AI半导体集体下跌，很多朋友还沉浸在积极胜利的喜悦当中，被市场打了个猝不及防，心在滴血\n\n究其原因，今天宏观压力是导火索，油价、美债收益率高企，熟悉 DCF 现金流折算的朋友都知道这会影响高 β 的估值\n\n光通信的高涨幅和集中持仓放大了跌幅，但基本面没有出现任何变化\n\n这件事情在我眼里其实是好事，因为 AI 的脚步没有受到任何的变化，只会让我们判断是否有一个新的好价格出现，再次跟随 AI 一起上涨\n\n很多朋友问 $MRVL 在投资者日之后，基本面发生了什么变化吗？我的答案是没有，甚至更好了，但现在的价格的确有点小贵\n\n目前我正在写一篇文章：站在今天的 10 月投资者日之后，我们该怎么去看待 2027 年的 MRVL？如果你有什么问题，请在评论区让我知道，我会在文章里一起 cover 到\n\n注意，最近又出现了一些骗子。我不会带大家买股票，不会收费，更不会建群、荐股，也不会给大家某个价格让大家买入。个人经验分享：投资需谨慎",
+    "links": [],
+    "avatar": ""
+  },
+  "2108062380643197105": {
+    "text": "忙碌的 Q3 终于过去了，我们团队有3个比较猛的数字：\n我的团队 Token 用量比 Q2 翻了100%，AI 账单反而下降了；by default 90+% 的会议都有录屏，并有 AI 的直接参与。接近 75% 的内部 ticket AI 都能直接闭环了\n\n此外，我被 escalate 了 5+ 次，原因是成员过度依赖 AI，对面团队不满\n\n我在硅谷大厂带 AI 训练管理团队，今天跟大家汇报一下这个季度的 AI 化进展。希望给也在带团队、做训练推理、折腾 AI 的朋友一点具体参考\n\n这个季度让我感受最深的是：模型越来越强，团队能不能吃到这波红利，要看工具、经验和流程是否能 AI Native 化\n\n1/ 先让 AI 真正用上内部工具。\n经过不懈的努力，大约 85% 的内部工具已经完成 CLI / MCP 化，剩下约 15% 通过 Browser Use 补齐操作入口\n\n训练团队的工作里，有大量查日志、看实验状态、比配置的事情。\n\n这一步很关键：把工具接好，AI 才有机会把一个任务往下做完\n\n2/ 把一个人用 AI 的经验，变成整个团队都能用的东西\n我们建立了团队内部的 skill 中央 repo，统一分发给每个人的 Codex/Claude\n\n一个人打磨好的 skill，其他人也能接着用。少一点各自摸索，少一点重复踩坑\n\n我觉得这件事很有复利。工具会换，模型会升级，但团队积累下来的好方法，应该留下来。反馈下来，大家都表示很好\n\n3/ Ticket 也开始接近自动流转，接近 90% 可以 one shot 完成。\n这是让我兴奋的地方。工具接通、skill 共享，最后要落到任务能不能做完\n\n对我们团队来说，很多时候基础 ticket 的 debug 是对人力的一个消耗。用 Harness 自动处理 Ticket 之后，成员的时间才有机会腾出来，花在定义实验、判断结果、找真正的卡点上\n\n当然，任务做完之后，该有的验收标准还是要有。能自动跑起来只是第一步，团队成员仍花不少时间在 evaluate，也存在返工的情况\n\n4/ Token 消耗翻倍，但总账单反而下降\nQ3 相比 Q2，我们团队的 Token 用量上涨了 100%，总体金额却下降了。大家目前最常用、最喜欢的，依然是 Opus 5.5\n\n用得更多，花得更少\n\n但作为 manager，我更想盯着一个数：完成一个经过验收的任务，到底花了多少钱。这个是我们下个 Q 监控的重点\n\n要接着问：GPU、实验和 Token跑出了多少有效结果？从一个想法到拿到可靠结论，究竟快了多少？\n\n5/ 团队成员过度依赖 AI，引发对面团队不满\n\n5/ 团队成员过度依赖 AI，引发对面团队不满\n一个最主要的原因，就是团队成员的文档全是拿 AI 写的。动辄一个小的技术需求，就上来一个万字文档，对面没法读，没法合作，甚至发文档的人自己都讲不清楚在干啥\n\n另外一个原因就是我们团队自动化程度很高，但 CI/CD 没有跟上。\n\n一次团队成员用 AI 写的代码，AI evaluate 都过了，但 CI/CD 不够好，把线上和隔壁团队的整个 pipeline 搞崩了。但又不知道怎么解决，只能无脑 rollback\n\n这个也是让我苦恼的点，暂时没有想到什么好的办法解决，只能告诫大家不要盲目信任 AI，但这也有点奇怪，不知道大家有没有什么好的办法？\n\n6/ 跟全部成员完成了累计 100+人次的 1:1\n说实话，这个把我累个半死。我能感觉到大家对于后训练这个方向还是比较认可的，但有着深深的焦虑感\n\n我觉得当 一个靠谱 manager 很难的是：既要处理一线的事务，又要帮团队成员当心理咨询师。今天 A 有情绪了，明天 B 觉得 C 抢了 scope，D 觉得做的事情无聊，E 又过度依赖 AI\n\n这份 Q3 汇报先分享给大家。",
     "links": [],
     "avatar": ""
   },
@@ -28216,6 +28783,13 @@
     ],
     "avatar": ""
   },
+  "2108013383215907185": {
+    "text": "强如 manus，也有翻车的时候 https://t.co/d9Bjil5KtG",
+    "links": [
+      "https://t.co/d9Bjil5KtG"
+    ],
+    "avatar": ""
+  },
   "2115308830192247134": {
     "text": "卧槽，我微信被风控了，我在微信被强制下线之后，直接额截不了图了... 电脑重启了、配置调了都没用\n\n我看也有网友遇到这个情况，说是 agent 操控微信了，我寻思我妹有啊😭 冤枉我了腾子",
     "links": [],
@@ -28328,6 +28902,13 @@
     "links": [],
     "avatar": ""
   },
+  "2107833375113531730": {
+    "text": "在调研一些增速很快的AI新站\n\n第一个就特么给我雷霆一击\n\n注意⚠：不要在公共场所打开这个站！ https://t.co/4VOFfXKjHa",
+    "links": [
+      "https://t.co/4VOFfXKjHa"
+    ],
+    "avatar": ""
+  },
   "2113560277790900325": {
     "text": "虽然跟我没关系。 但是我的感受和风总一样，\n舒服了 https://t.co/xDupbfU8ns",
     "links": [
@@ -28409,6 +28990,14 @@
   "2108563830523732291": {
     "text": "草了。 这钱 放哪都不安全了。 我资金都在 ledger。\n这下 被盗。 说是供应商出问题了。\n可问题是 没人敢赌。\n哎 真难搞。",
     "links": [],
+    "avatar": ""
+  },
+  "2107922555525046380": {
+    "text": "目前小资金打了 几天。（刚接几天时间，需要测试稳定性）\n马上邀请码就自由了。\n按照我平时交易量来算 每天生产 几个码 是没什么压力的\n策略自身收益也还行。（赚不了钱的perp 我是不打的） https://t.co/q1tRlIBl8m https://t.co/R89yqvKj9A",
+    "links": [
+      "https://t.co/q1tRlIBl8m",
+      "https://t.co/R89yqvKj9A"
+    ],
     "avatar": ""
   },
   "2114883442915881200": {
