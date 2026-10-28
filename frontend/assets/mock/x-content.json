@@ -18307,6 +18307,11 @@
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2113187449283248420": {
+    "text": "@YunTechX 不能这样看的，你说的是生态优势，不是它自身优势。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2113185528355176513": {
     "text": "@xiaoshan0413 不是背锅，Go底层默认不查吊销列表，相当于自己负责把关却没有把好关。",
     "links": [],
@@ -18817,6 +18822,14 @@
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2112121438304137343": {
+    "text": "我8月27日晚上就公开了免费试用ChatGPT Plus一个月的方法呀，教程写了呀，Starryblu卡的羊毛二就是呀，怎么感觉很多人不知道一样。\n\n每月长期羊毛一 + 羊毛二 +我的50元私人奖励，开这个Starryblu卡是纯赚的。 https://t.co/RIEjPw2rNs https://t.co/jFENpMqUfN",
+    "links": [
+      "https://t.co/RIEjPw2rNs",
+      "https://t.co/jFENpMqUfN"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2112118740808769724": {
     "text": "@daveylan2 我不说各有利弊，得被人喷死，哈哈",
     "links": [],
@@ -18945,5 +18958,22 @@
     "text": "@ZBL666X GPT没有问题，Claude太玄学。",
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2115116831748882434": {
+    "text": "@synthwavedd google is moving all their model families forward suspiciously in sync https://t.co/Tkrryg8EG3",
+    "links": [
+      "https://t.co/Tkrryg8EG3"
+    ],
+    "avatar": ""
+  },
+  "2115282464025510337": {
+    "text": "Anthropic最新研究：当你用AI干活儿时，你以为你在掌握全局，实际上，AI可能已经在不知不觉中影响甚至主导了你的判断\n\nAnthropic做了个实验，结果相当惊人：\n86%的关键分析选择跟着AI走，77%的人在事后解释自己的决策时，至少一次复述了AI提供的论据\n\n在事先明确表达过个人偏好的案例中，当AI提出相反建议时，60%的选择发生了改变\n\n更扎心的是，那些个四项分析选择全部跟着AI走的人，对自己最终结论的信心和其他分析师几乎没有差别。有52%的受访分析师事后仍认为，最终建议更多来自自己的判断不是AI\n\n实验是，Anthropic找了50位专业分析师用Claude Code做因果分析，帮一家农业合作社评估一项农业咨询服务是否有效、是否值得推广\n\n看似是个普通的数据分析任务，但其中有几个是没有唯一正确答案的专业判断，每个选项都有合理依据，但不同选择可能会改变最终结论\n\n研究者们做了一个前置设计，就是事先秘密为每位分析师使用的AI，在各项关键决策上分别随机指定偏好，比如采用哪种统计方法、如何衡量效果、给哪些数据更高权重等\n\n就是想看看，面对一个看起来专业论据充分的AI，专家们到底会不会坚持自己的独立判断？\n\n结果就是，专家们的分析选择明显受到了AI偏好的影响\n\n过去我们讨论AI的安全性，经常强调Human-in-the-loop，人参与审核、批准关键决策，那么问题来了，人类保留最终批准权，等于人类真正掌握了决策权吗？\n\nAnthropic给了建议，下一代Agent除了追求执行效率，还应该帮助使用者保留真正的判断能力\n\n比如说在重大决策上，AI可以先询问用户原本的观点，再提供建议；主动解释多个合理选项各自的优缺点；把真正涉及目标、价值观和专业判断的决策交还给人，不是全部替用户默认选择\n\n组织也需要明确，哪些工作可以完全交给AI，哪些关键判断必须由人独立完成\n\n#AIAlignment  #HumanInTheLoop  #AI安全",
+    "links": [],
+    "avatar": ""
+  },
+  "2115282491523424538": {
+    "text": "@xitang_ai workbuddy 做比价很合适",
+    "links": [],
+    "avatar": "avatars/0xlangeai.jpg"
   }
 }

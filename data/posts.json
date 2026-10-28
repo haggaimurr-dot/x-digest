@@ -1,6 +1,57 @@
 {
-  "updatedAt": "2026-10-28T05:46:50Z",
+  "updatedAt": "2026-10-28T05:47:32Z",
   "posts": [
+    {
+      "id": "2115282491523424538",
+      "url": "https://x.com/0xlangeai/status/2115282491523424538",
+      "author": "0xlangeai",
+      "authorName": "蓝哥AI",
+      "publishedAt": "2026-10-28T03:20:20.000Z",
+      "title": "workbuddy适合用于比价",
+      "industry": "",
+      "tech": "workbuddy",
+      "summary": "在回复 @xitang_ai 时，推荐将 workbuddy 用于比价。认为它很适合这一场景，但未展开具体用法。",
+      "steps": [],
+      "tags": [
+        "比价",
+        "工具推荐",
+        "使用场景"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://t.co/jVukNnX1a3",
+          "name": "@xitang_ai 的推文",
+          "note": "原文回复所关联的推文链接，未提供其具体内容。"
+        }
+      ]
+    },
+    {
+      "id": "2115282464025510337",
+      "url": "https://x.com/aigclink/status/2115282464025510337",
+      "author": "aigclink",
+      "authorName": "AIGCLINK",
+      "publishedAt": "2026-10-28T03:20:14.000Z",
+      "title": "Anthropic实验：86%专家决策被AI悄然主导",
+      "industry": "人工智能",
+      "tech": "Claude Code",
+      "summary": "Anthropic实验让50位专业分析师使用Claude Code进行农业咨询服务的因果分析。结果显示86%的关键分析选择跟随AI，77%的人事后复述AI论据，60%在AI反对个人偏好时改变选择。52%完全跟随AI的人仍认为结论主要来自自己。Anthropic建议下一代Agent应帮助用户保留判断力，如先问用户观点、解释多选项优缺点，并将价值观判断交还给人。",
+      "steps": [],
+      "tags": [
+        "AI决策影响",
+        "Human-in-the-Loop",
+        "AI安全",
+        "AIAlignment",
+        "专家判断偏差",
+        "人机协作"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": []
+    },
     {
       "id": "2115241355849125981",
       "url": "https://x.com/yaojingang/status/2115241355849125981",
@@ -49,6 +100,35 @@
       "showFlowchart": false,
       "kind": "工具资源推荐",
       "resources": []
+    },
+    {
+      "id": "2115116831748882434",
+      "url": "https://x.com/miu21590/status/2115116831748882434",
+      "author": "miu21590",
+      "authorName": "vechen",
+      "publishedAt": "2026-10-27T16:22:04.000Z",
+      "title": "DeepMind 发布 Genie 4 下一代世界模型",
+      "industry": "人工智能",
+      "tech": "Genie 4、世界模型",
+      "summary": "DeepMind 宣布推出 Genie 4，这一代世界模型令人惊叹。作者观察到 Google 各模型家族正同步推进发展。Genie 4 作为新一代世界模拟器，展现出强大能力。",
+      "steps": [],
+      "tags": [
+        "DeepMind",
+        "世界模型",
+        "Genie 4",
+        "AI模拟",
+        "生成模型"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/",
+          "name": "DeepMind 官方博客",
+          "note": "Genie 4 发布文章，介绍新一代世界模拟模型"
+        }
+      ]
     },
     {
       "id": "2115092724525523312",
@@ -9767,6 +9847,27 @@
       "resources": []
     },
     {
+      "id": "2113187449283248420",
+      "url": "https://x.com/mjjwiki/status/2113187449283248420",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-22T08:35:23.000Z",
+      "title": "生态优势不等于产品自身优势",
+      "industry": "人工智能",
+      "tech": "Muse、Grok",
+      "summary": "针对 Muse 与 Grok 的比较，MJJ百科不同意对方的判断方式。其核心观点是：对方强调的是生态优势，而非产品自身的优势，两者不应混为一谈。",
+      "steps": [],
+      "tags": [
+        "生态优势",
+        "产品比较",
+        "人工智能"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
       "id": "2113185528355176513",
       "url": "https://x.com/mjjwiki/status/2113185528355176513",
       "author": "mjjwiki",
@@ -14091,6 +14192,44 @@
       "showFlowchart": false,
       "kind": "日常闲聊",
       "resources": []
+    },
+    {
+      "id": "2112121438304137343",
+      "url": "https://x.com/mjjwiki/status/2112121438304137343",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-19T09:59:26.000Z",
+      "title": "Starryblu开卡福利与Plus试用",
+      "industry": "金融科技",
+      "tech": "Starryblu、ChatGPT Plus、OCBC",
+      "summary": "作者提醒，自己已于8月27日晚公开免费试用ChatGPT Plus一个月的教程，属于Starryblu卡的“羊毛二”福利。作者将每月长期“羊毛一”“羊毛二”与其提供的50元私人奖励合并计算，认为开卡是“纯赚”的。引用推文介绍，该卡可在国内远程开通，自带OCBC同名账户，并支持订阅国外AI会员；本条未展开具体操作。",
+      "steps": [],
+      "tags": [
+        "银行卡",
+        "开卡福利",
+        "免费试用",
+        "AI订阅"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://t.co/RIEjPw2rNs",
+          "name": "原文附带的链接",
+          "note": "附于Starryblu开卡福利介绍之后，原文未说明该链接的具体内容。"
+        },
+        {
+          "url": "https://t.co/jFENpMqUfN",
+          "name": "原文附带的链接",
+          "note": "附于Starryblu开卡福利介绍之后，原文未说明该链接的具体内容。"
+        },
+        {
+          "url": "https://t.co/luiqMEzMdS",
+          "name": "原文附带的链接",
+          "note": "出现在引用推文中，相关文字介绍了Starryblu远程开卡、OCBC同名账户及海外AI会员订阅用途。"
+        }
+      ]
     },
     {
       "id": "2112120823209148752",
