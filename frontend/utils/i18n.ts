@@ -134,7 +134,7 @@ export const DICT: Record<string, { zh: string, en: string }> = {
   'settings.displayNamePh': { zh: '显示名', en: 'Display name' },
   'settings.userTagsPh': { zh: '用户标签（中文逗号分隔）', en: 'User tags (comma-separated)' },
   'settings.deleteAuthor': { zh: '删除作者', en: 'Delete author' },
-  'settings.usernamePh': { zh: 'username（不含 @）', en: 'username (without @)' },
+  'settings.usernamePh': { zh: '用户名：@xxx 或 x.com 链接', en: 'Username: @xxx or an x.com link' },
   'settings.addAuthor': { zh: '新增作者', en: 'Add author' },
   'settings.userTagSection': { zh: '用户标签', en: 'User tags' },
   'settings.vocabHintPrefix': { zh: '词汇表（用于自定义标签 chips 与 ', en: 'Vocabulary (used for custom-tag chips and ' },
@@ -156,7 +156,7 @@ export const DICT: Record<string, { zh: string, en: string }> = {
   'settings.groupAdded': { zh: '分组已新增', en: 'Group added' },
   'settings.groupAddFailed': { zh: '新增分组失败，请重试', en: 'Failed to add group, please retry' },
   'settings.deleteGroupConfirm': { zh: '删除该分组？组内作者将归入“默认”。', en: 'Delete this group? Its authors will move to “Default”.' },
-  'settings.accountEmpty': { zh: '请填写 username 与显示名', en: 'Enter a username and display name' },
+  'settings.accountEmpty': { zh: '请填写有效的用户名（字母、数字、下划线，最多 15 位）', en: 'Enter a valid username (letters, digits, underscore, up to 15)' },
   'settings.deleteAuthorConfirm': { zh: '删除作者 @{username}？', en: 'Delete author @{username}?' },
 
   // ---- repos (仓库) ----

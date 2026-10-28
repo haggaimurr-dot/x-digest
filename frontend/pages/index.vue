@@ -207,31 +207,65 @@
 
         <div class="settings-section">
           <h3>{{ t('settings.watchlist') }}</h3>
-          <div style="display:flex;gap:6px;flex-wrap:wrap">
-            <input class="field" v-model="newGroupName" :placeholder="t('settings.newGroupPh')" style="flex:1;min-width:140px" />
-            <button class="btn btn-sm btn-primary" type="button" @click="doAddGroup">{{ t('settings.addGroup') }}</button>
+          <!-- 新增作者放最上面：填 @用户名 或 x.com 链接即可，显示名可不填 -->
+          <div class="wl-add">
+            <div class="wl-add-title">新增作者</div>
+            <div class="wl-add-row">
+              <input class="field" v-model="newAccount.username" :placeholder="t('settings.usernamePh')" @keyup.enter="doAddAccount" />
+              <input class="field" v-model="newAccount.name" :placeholder="t('settings.displayNamePh') + '（可选）'" @keyup.enter="doAddAccount" />
+              <select class="field" v-model="newAccount.group">
+                <option v-for="g in watchlist.groups" :key="g.id" :value="g.id">{{ g.name }}</option>
+              </select>
+              <button class="btn btn-sm btn-primary" type="button" @click="doAddAccount">{{ t('settings.addAuthor') }}</button>
+            </div>
           </div>
-          <div v-for="g in watchlist.groups" :key="g.id" class="watch-row">
-            <strong>{{ g.name }}</strong><span style="color:var(--text-muted)">({{ g.id }})</span>
-            <button v-if="!g.fixed" class="btn btn-sm btn-danger" type="button" @click="doDeleteGroup(g.id)">{{ t('settings.deleteGroup') }}</button>
+          <!-- 已关注作者：按分组折叠 + 搜索；点「编辑」才展开该作者的编辑项 -->
+          <div class="wl-list-head">
+            <span>已关注 {{ watchlist.accounts.length }} 位作者</span>
+            <input class="field wl-search" type="search" v-model="authorSearch" placeholder="搜索名字或 @用户名" />
           </div>
-          <div v-for="a in watchlist.accounts" :key="a.username" class="watch-row">
-            <input :value="a.name" :placeholder="t('settings.displayNamePh')" @change="doPatchAccount(a.username, { name: ($event.target as HTMLInputElement).value })" />
-            <span>@{{ a.username }}</span>
-            <select :value="a.group" @change="doPatchAccount(a.username, { group: ($event.target as HTMLSelectElement).value })">
-              <option v-for="g in watchlist.groups" :key="g.id" :value="g.id">{{ g.name }}</option>
-            </select>
-            <input :value="(a.tags || []).join('，')" :placeholder="t('settings.userTagsPh')" @change="doPatchAccount(a.username, { tags: ($event.target as HTMLInputElement).value.split(/[,，]/).map(s => s.trim()).filter(Boolean) })" />
-            <button class="btn btn-sm btn-danger" type="button" @click="doDeleteAccount(a.username)">{{ t('settings.deleteAuthor') }}</button>
+          <div v-for="grp in watchGroupsView" :key="grp.id" class="wl-group">
+            <button class="wl-group-head" type="button" :aria-expanded="isWatchGroupOpen(grp.id)" @click="toggleWatchGroup(grp.id)">
+              <svg class="yt-chevron" :class="{ 'is-collapsed': !isWatchGroupOpen(grp.id) }" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
+              <span>{{ grp.name }}</span><span class="yt-section-count">（{{ grp.accounts.length }}）</span>
+            </button>
+            <template v-if="isWatchGroupOpen(grp.id)">
+              <div v-for="a in grp.accounts" :key="a.username" class="wl-author">
+                <div class="wl-author-line">
+                  <span class="wl-author-name">{{ a.name || a.username }}</span>
+                  <a class="wl-author-handle" :href="`https://x.com/${a.username}`" target="_blank" rel="noopener">@{{ a.username }}</a>
+                  <span v-for="tg in (a.tags || [])" :key="tg" class="chip yt-tag">{{ tg }}</span>
+                  <span style="flex:1" />
+                  <button class="btn btn-sm" type="button" :aria-expanded="editingAuthor === a.username" @click="editingAuthor = editingAuthor === a.username ? '' : a.username">{{ editingAuthor === a.username ? '收起' : '编辑' }}</button>
+                </div>
+                <div v-if="editingAuthor === a.username" class="wl-author-edit">
+                  <label>{{ t('settings.displayNamePh') }}<input class="field" :value="a.name" @change="doPatchAccount(a.username, { name: ($event.target as HTMLInputElement).value })" /></label>
+                  <label>分组<select class="field" :value="a.group" @change="doPatchAccount(a.username, { group: ($event.target as HTMLSelectElement).value })">
+                    <option v-for="g in watchlist.groups" :key="g.id" :value="g.id">{{ g.name }}</option>
+                  </select></label>
+                  <label>{{ t('settings.userTagsPh') }}<input class="field" :value="(a.tags || []).join('，')" @change="doPatchAccount(a.username, { tags: ($event.target as HTMLInputElement).value.split(/[,，]/).map(s => s.trim()).filter(Boolean) })" /></label>
+                  <label>标签覆盖（填了就代替上面的用户标签用于筛选）<input class="field" :value="(userTagOverrides[a.username] || []).join('，')" @change="doSetUserTags(a.username, ($event.target as HTMLInputElement).value.split(/[,，]/).map(s => s.trim()).filter(Boolean))" /></label>
+                  <div style="display:flex;justify-content:flex-end"><button class="btn btn-sm btn-danger" type="button" @click="doDeleteAccount(a.username)">{{ t('settings.deleteAuthor') }}</button></div>
+                </div>
+              </div>
+            </template>
           </div>
-          <div class="watch-row">
-            <input class="field" v-model="newAccount.username" :placeholder="t('settings.usernamePh')" />
-            <input class="field" v-model="newAccount.name" :placeholder="t('settings.displayNamePh')" />
-            <select v-model="newAccount.group">
-              <option v-for="g in watchlist.groups" :key="g.id" :value="g.id">{{ g.name }}</option>
-            </select>
-            <button class="btn btn-sm btn-primary" type="button" @click="doAddAccount">{{ t('settings.addAuthor') }}</button>
-          </div>
+          <p v-if="authorSearch && !watchGroupsView.length" style="color:var(--text-muted)">没有匹配的作者</p>
+          <!-- 分组管理（折叠） -->
+          <button class="wl-group-head" type="button" style="margin-top:10px" :aria-expanded="showGroupMgr" @click="showGroupMgr = !showGroupMgr">
+            <svg class="yt-chevron" :class="{ 'is-collapsed': !showGroupMgr }" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
+            <span>分组管理</span><span class="yt-section-count">（{{ watchlist.groups.length }}）</span>
+          </button>
+          <template v-if="showGroupMgr">
+            <div style="display:flex;gap:6px;flex-wrap:wrap">
+              <input class="field" v-model="newGroupName" :placeholder="t('settings.newGroupPh')" style="flex:1;min-width:140px" @keyup.enter="doAddGroup" />
+              <button class="btn btn-sm btn-primary" type="button" @click="doAddGroup">{{ t('settings.addGroup') }}</button>
+            </div>
+            <div v-for="g in watchlist.groups" :key="g.id" class="watch-row">
+              <strong>{{ g.name }}</strong><span style="color:var(--text-muted)">({{ g.id }})</span>
+              <button v-if="!g.fixed" class="btn btn-sm btn-danger" type="button" @click="doDeleteGroup(g.id)">{{ t('settings.deleteGroup') }}</button>
+            </div>
+          </template>
         </div>
 
         <div class="settings-section">
@@ -244,12 +278,7 @@
             <input class="field" v-model="newVocab" :placeholder="t('settings.newUserTagPh')" style="flex:1" />
             <button class="btn btn-sm btn-primary" type="button" @click="addVocab">{{ t('settings.add') }}</button>
           </div>
-          <label>{{ t('settings.overrideByAuthor') }}</label>
-          <div v-for="a in watchlist.accounts" :key="'ov-' + a.username" class="watch-row">
-            <span style="min-width:120px">{{ a.name }} @{{ a.username }}</span>
-            <input class="field" :value="(userTagOverrides[a.username] || []).join('，')" style="flex:1"
-              @change="doSetUserTags(a.username, ($event.target as HTMLInputElement).value.split(/[,，]/).map(s => s.trim()).filter(Boolean))" />
-          </div>
+          <p style="color:var(--text-muted);font-size:13px">按作者覆盖标签：在上方「关注列表」里点作者的「编辑」设置。</p>
         </div>
 
         <div class="settings-section">
@@ -276,7 +305,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Post, Watchlist, Categories, YTSummary } from '~/composables/types'
+import type { Post, Watchlist, WatchlistAccount, Categories, YTSummary } from '~/composables/types'
 import { LS, useSettings } from '~/composables/useSettings'
 import { canReplicatePost } from '~/utils/x-post.mjs'
 import { avatarUrl, avatarColor, avatarInitial, relativeTime, shanghaiTime, shanghaiDayBound, highlightHtml, firstHitSnippet, shouldShowFlowchart, trunc40 } from '~/composables/useFormat'
@@ -714,10 +743,45 @@ async function doDeleteGroup (id: string) {
   if (!confirm(t('settings.deleteGroupConfirm'))) return
   await store.deleteGroup(id); await refreshWatchlist()
 }
+// 关注列表：搜索、分组折叠（默认收起，搜索时自动展开）、一次只编辑一位作者。
+const authorSearch = ref('')
+const openWatchGroups = ref<Set<string>>(new Set())
+const editingAuthor = ref('')
+const showGroupMgr = ref(false)
+const watchGroupsView = computed(() => {
+  const q = authorSearch.value.trim().toLowerCase().replace(/^@/, '')
+  const match = (a: WatchlistAccount) => !q || a.username.toLowerCase().includes(q) || (a.name || '').toLowerCase().includes(q)
+  const known = new Set(watchlist.value.groups.map(g => g.id))
+  const groups = [...watchlist.value.groups, { id: '__none', name: '未分组' }]
+  return groups.map(g => ({
+    id: g.id, name: g.name,
+    accounts: watchlist.value.accounts.filter(a => (g.id === '__none' ? !known.has(a.group) : a.group === g.id) && match(a))
+  })).filter(g => g.accounts.length)
+})
+function isWatchGroupOpen (id: string) { return !!authorSearch.value.trim() || openWatchGroups.value.has(id) }
+function toggleWatchGroup (id: string) {
+  const s = new Set(openWatchGroups.value)
+  if (s.has(id)) s.delete(id); else s.add(id)
+  openWatchGroups.value = s
+}
+// 用户名可填 @xxx、x.com/xxx 或 twitter.com/xxx 链接；显示名不填就用用户名。
+function normalizeUsername (input: string): string {
+  const s = input.trim()
+  const m = s.match(/(?:x|twitter)\.com\/(@?[A-Za-z0-9_]{1,15})/i)
+  return (m ? m[1] : s).replace(/^@/, '').trim()
+}
 async function doAddAccount () {
-  if (!newAccount.value.username.trim() || !newAccount.value.name.trim()) { showToast(t('settings.accountEmpty')); return }
-  await store.addAccount({ ...newAccount.value, avatar: '', tags: [], bio: '' })
-  newAccount.value = { username: '', name: '', group: 'other' }; await refreshWatchlist()
+  const username = normalizeUsername(newAccount.value.username)
+  if (!/^[A-Za-z0-9_]{1,15}$/.test(username)) { showToast(t('settings.accountEmpty')); return }
+  if (watchlist.value.accounts.some(a => a.username.toLowerCase() === username.toLowerCase())) { showToast(`@${username} 已在关注列表中`); return }
+  const name = newAccount.value.name.trim() || username
+  try {
+    await store.addAccount({ username, name, group: newAccount.value.group, avatar: '', tags: [], bio: '' })
+  } catch (e: any) { showToast(e?.message || t('settings.accountEmpty')); return }
+  newAccount.value = { username: '', name: '', group: newAccount.value.group }
+  openWatchGroups.value = new Set([...openWatchGroups.value, watchlist.value.groups.some(g => g.id === newAccount.value.group) ? newAccount.value.group : '__none'])
+  await refreshWatchlist()
+  showToast(`已添加 @${username}`)
 }
 async function doPatchAccount (username: string, patch: any) { await store.patchAccount(username, patch); await refreshWatchlist() }
 async function doDeleteAccount (username: string) {
