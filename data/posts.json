@@ -1,6 +1,39 @@
 {
-  "updatedAt": "2026-10-28T05:48:02Z",
+  "updatedAt": "2026-10-28T05:48:32Z",
   "posts": [
+    {
+      "id": "2115300040701096272",
+      "url": "https://x.com/0xlangeai/status/2115300040701096272",
+      "author": "0xlangeai",
+      "authorName": "蓝哥AI",
+      "publishedAt": "2026-10-28T04:30:04.000Z",
+      "title": "Claude Code配置与用法避坑",
+      "industry": "人工智能",
+      "tech": "Claude Code、CLAUDE.md、AGENTS.md",
+      "summary": "Claude Code 被觉得“变笨”，可能与不报错的配置问题和使用习惯有关。原文提到一个隐形坑：项目同时存在 CLAUDE.md 和 AGENTS.md 时，默认只读取前者，后者未加载也不会报错。作者提示需在 CLAUDE.md 中补充一行配置，但所给正文在此处截断，未展示具体内容及其余两个坑。",
+      "steps": [],
+      "tags": [
+        "编程助手",
+        "配置避坑",
+        "使用习惯",
+        "指令文件"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": [
+        {
+          "url": "https://t.co/4yLfNrtH04",
+          "name": "原文附带的链接",
+          "note": "链接位于 CLAUDE.md 配置修改提示之后，所给原文未展示其具体目标内容。"
+        },
+        {
+          "url": "https://t.co/VJ7Dp2Kovu",
+          "name": "Claude Code 避坑指南文章",
+          "note": "引用推文介绍该指南共七章，文章开头提供五分钟版本。"
+        }
+      ]
+    },
     {
       "id": "2115282491523424538",
       "url": "https://x.com/0xlangeai/status/2115282491523424538",
@@ -10381,6 +10414,56 @@
       ]
     },
     {
+      "id": "2113100190660092407",
+      "url": "https://x.com/xiaohuiyuan/status/2113100190660092407",
+      "author": "xiaohuiyuan",
+      "authorName": "晓辉博士",
+      "publishedAt": "2026-10-22T02:48:39.000Z",
+      "title": "用 YouMind 养成最后一天做 PPT 的习惯",
+      "industry": "",
+      "tech": "YouMind",
+      "summary": "作者分享自己和 @lifesinger 一样，经常在最后一天才完成任务。通过 YouMind 养成习惯：任何分享不到最后一天就不做 PPT，但总能在截止日当天用 YouMind 快速搞定。",
+      "steps": [],
+      "tags": [
+        "YouMind",
+        "PPT制作",
+        "工作习惯",
+        "效率工具"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2113094832692593037",
+      "url": "https://x.com/xiaohuiyuan/status/2113094832692593037",
+      "author": "xiaohuiyuan",
+      "authorName": "晓辉博士",
+      "publishedAt": "2026-10-22T02:27:22.000Z",
+      "title": "作者因北京速冻中断走路上班计划",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复别人说自己今天也要中断走路上班计划，因为晚上9:30还在飞机上，同时提到北京速冻导致计划中断了两天。她坦言其实是自己偷懒，并称如果是晓辉博士可能就不会有这些问题。",
+      "steps": [],
+      "tags": [
+        "日常计划",
+        "北京天气",
+        "自我反思",
+        "走路上班"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://twitter.com/xiaohuiyuan/status/2113038596001480732",
+          "name": "晓辉博士本条推文",
+          "note": "原文回复的推文链接"
+        }
+      ]
+    },
+    {
       "id": "2113089707554881679",
       "url": "https://x.com/miles_mazy/status/2113089707554881679",
       "author": "miles_mazy",
@@ -11657,6 +11740,51 @@
       "resources": []
     },
     {
+      "id": "2112799673757098356",
+      "url": "https://x.com/mjjwiki/status/2112799673757098356",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-21T06:54:30.000Z",
+      "title": "MJJ百科只用 CLI 版 Claude，未装桌面端",
+      "industry": "人工智能",
+      "tech": "Claude、CLI",
+      "summary": "MJJ百科回复称自己一直使用 Claude 的 CLI 版本，御三家（Claude、GPT、Gemini）均只用命令行，从未安装过桌面端。",
+      "steps": [],
+      "tags": [
+        "Claude",
+        "CLI工具",
+        "桌面端",
+        "使用习惯"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2112791375796380100",
+      "url": "https://x.com/mjjwiki/status/2112791375796380100",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-21T06:21:32.000Z",
+      "title": "MJJ用2个Team+2个Plus仍不够，主要靠Claude审核GPT代码",
+      "industry": "人工智能",
+      "tech": "Claude、GPT、Gemini Ultra",
+      "summary": "作者目前拥有2个Team和2个Plus订阅但仍用不完，主要使用Claude来审核GPT生成的代码。他认为如果开通Gemini Ultra 5X应该够用。对方询问是否相当于Claude Pro的额度，作者未直接回复。",
+      "steps": [],
+      "tags": [
+        "AI订阅",
+        "Claude使用",
+        "GPT代码审核",
+        "订阅额度",
+        "AI工具"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
       "id": "2112785475039527168",
       "url": "https://x.com/mjjwiki/status/2112785475039527168",
       "author": "mjjwiki",
@@ -11858,6 +11986,29 @@
         "财富自由",
         "人生选择",
         "自由"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2112769112367907039",
+      "url": "https://x.com/mjjwiki/status/2112769112367907039",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-21T04:53:04.000Z",
+      "title": "MJJ 不再续订 Gollumgulu 家宽",
+      "industry": "",
+      "tech": "Clash",
+      "summary": "作者表示 Gollumgulu 目前未被封，但因担心后续使用担惊受怕，决定不再继续订阅。对方回复称自己用新号+台湾家宽IP，通过 Clash 分流订阅 Google Pay 升级到 Max，App、CLI、Desktop 均正常使用几天无问题。",
+      "steps": [],
+      "tags": [
+        "家宽IP",
+        "订阅服务",
+        "封号风险",
+        "Gollumgulu",
+        "Clash分流"
       ],
       "isLong": false,
       "showFlowchart": false,
@@ -12087,6 +12238,35 @@
       "showFlowchart": false,
       "kind": "观点讨论",
       "resources": []
+    },
+    {
+      "id": "2112741787869524002",
+      "url": "https://x.com/miu21590/status/2112741787869524002",
+      "author": "miu21590",
+      "authorName": "vechen",
+      "publishedAt": "2026-10-21T03:04:29.000Z",
+      "title": "Mythos项目优先给大投资者早期访问",
+      "industry": "人工智能",
+      "tech": "Mythos",
+      "summary": "作者质疑Anthropic在Mythos项目上声称“为安全牺牲商业利益”的说法，指出其实际优先向Amazon、Google、Microsoft、NVIDIA等最大投资者和基础设施伙伴提供早期访问，却避开了明显的财务利益。作者感谢NathanCalvin的调查工作，认为公开审视AI公司行为对公众有益。",
+      "steps": [],
+      "tags": [
+        "AI安全",
+        "Mythos",
+        "早期访问",
+        "投资者优先",
+        "DarioAmodei"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://t.co/QZgPvh4tX4",
+          "name": "原文附带的链接",
+          "note": "推文中回复DarioAmodei的完整内容链接"
+        }
+      ]
     },
     {
       "id": "2112734424815239226",
@@ -12443,6 +12623,28 @@
         "IP风险",
         "服务器",
         "机房IP"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2112562213588512949",
+      "url": "https://x.com/mjjwiki/status/2112562213588512949",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-20T15:10:55.000Z",
+      "title": "MJJ 分享英区 GPT Team 订阅 11 英镑最满意",
+      "industry": "",
+      "tech": "ChatGPT",
+      "summary": "作者表示自己有3个GPT订阅，包含好价和正常价，其中最满意的是英区11英镑的Team计划。对方询问是否为半价。",
+      "steps": [],
+      "tags": [
+        "GPT订阅",
+        "英区账号",
+        "Team计划",
+        "价格分享"
       ],
       "isLong": false,
       "showFlowchart": false,
@@ -12840,6 +13042,28 @@
       "isLong": false,
       "showFlowchart": false,
       "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2112481704523047308",
+      "url": "https://x.com/mjjwiki/status/2112481704523047308",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-20T09:51:01.000Z",
+      "title": "X平台热度衰减：24小时至少减半",
+      "industry": "",
+      "tech": "",
+      "summary": "作者指出X平台（Twitter）上的内容热度通常在48小时内结束，但实际上24小时后已经至少减半。相比之下，抖音的内容飞轮转起来后还能维持半个月热度。",
+      "steps": [],
+      "tags": [
+        "X平台",
+        "内容热度",
+        "流量衰减",
+        "算法观察"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
       "resources": []
     },
     {
@@ -13388,6 +13612,34 @@
       ]
     },
     {
+      "id": "2112413844903432391",
+      "url": "https://x.com/yaojingang/status/2112413844903432391",
+      "author": "yaojingang",
+      "authorName": "姚金刚",
+      "publishedAt": "2026-10-20T05:21:22.000Z",
+      "title": "《AI领导力》上架微信读书",
+      "industry": "人工智能",
+      "tech": "AI",
+      "summary": "作者姚金刚与合作者合著的《AI领导力》已上架微信读书，同时可在京东、当当及视频号小店购买。收到读者积极反馈和出版社版税让他们深受鼓舞，初心正是将摸索的AI领导力经验分享给更多人。",
+      "steps": [],
+      "tags": [
+        "AI领导力",
+        "书籍出版",
+        "睡后收入",
+        "经验分享"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://twitter.com/hiheimu/status/2112376775607255301",
+          "name": "@hiheimu的推文",
+          "note": "对《AI领导力》的反馈和推荐"
+        }
+      ]
+    },
+    {
       "id": "2112405196978483611",
       "url": "https://x.com/miles_mazy/status/2112405196978483611",
       "author": "miles_mazy",
@@ -13546,6 +13798,30 @@
           "note": "铁柱AGI开发的 Grok Bot 中文学习站。"
         }
       ]
+    },
+    {
+      "id": "2112320651394752523",
+      "url": "https://x.com/aigclink/status/2112320651394752523",
+      "author": "aigclink",
+      "authorName": "AIGCLINK",
+      "publishedAt": "2026-10-19T23:11:02.000Z",
+      "title": "Earshot让Claude Code拥有听觉并自动优化音效",
+      "industry": "人工智能",
+      "tech": "Claude Code、Earshot",
+      "summary": "Earshot是一个开源项目，为Claude Code等AI增加音频理解和自我优化能力。AI不仅能生成画面和声音，还能通过工具检查声画同步、判断效果是否符合需求，并自动用代码修改优化音效。主要适用于AI自动生成产品宣传片和游戏音效等场景，可大幅减少人工反复试听调整。",
+      "steps": [],
+      "tags": [
+        "开源项目",
+        "AI音效",
+        "音频分析",
+        "自动优化",
+        "游戏音效",
+        "宣传片制作"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": []
     },
     {
       "id": "2112227061813391859",
@@ -13933,6 +14209,28 @@
       "resources": []
     },
     {
+      "id": "2112157948743188908",
+      "url": "https://x.com/mjjwiki/status/2112157948743188908",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-19T12:24:31.000Z",
+      "title": "Gemini 是好用 AI 里的性价比之王",
+      "industry": "人工智能",
+      "tech": "Gemini",
+      "summary": "作者回复称 Gemini 是目前好用的 AI 中性价比最高的。",
+      "steps": [],
+      "tags": [
+        "Gemini",
+        "AI工具",
+        "性价比",
+        "大模型"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
       "id": "2112157817234722906",
       "url": "https://x.com/miles_mazy/status/2112157817234722906",
       "author": "miles_mazy",
@@ -14046,6 +14344,28 @@
         "使用限制",
         "额度调整",
         "AI配额"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2112143550918111266",
+      "url": "https://x.com/mjjwiki/status/2112143550918111266",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-19T11:27:18.000Z",
+      "title": "Gemini Ultra 额度远不如 Claude Pro",
+      "industry": "人工智能",
+      "tech": "Gemini、Claude",
+      "summary": "作者回复用户称自己觉得Gemini Pro额度已勉强够用，但理解有人只想用Ultra。指出Ultra的额度甚至不如Claude Pro，吐槽其名为AI Pro却不是Google Pro。",
+      "steps": [],
+      "tags": [
+        "Gemini Ultra",
+        "额度限制",
+        "Claude Pro",
+        "AI订阅"
       ],
       "isLong": false,
       "showFlowchart": false,
@@ -14240,6 +14560,28 @@
         "AI订阅",
         "额度对比",
         "付费账号"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2112125509756952716",
+      "url": "https://x.com/mjjwiki/status/2112125509756952716",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-19T10:15:37.000Z",
+      "title": "MJJ 私人 50 元奖励 + 每月 6~10 元羊毛",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复称，开卡费已经回本，不仅如此还有得赚：私人 50 元奖励 + 每月可薅 6~10 元羊毛。",
+      "steps": [],
+      "tags": [
+        "羊毛党",
+        "开卡奖励",
+        "每月收益",
+        "回本"
       ],
       "isLong": false,
       "showFlowchart": false,
@@ -14648,6 +14990,34 @@
       "showFlowchart": false,
       "kind": "观点讨论",
       "resources": []
+    },
+    {
+      "id": "2112091353295532282",
+      "url": "https://x.com/mjjwiki/status/2112091353295532282",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-19T07:59:54.000Z",
+      "title": "Gemini关门后就不挑毛病了",
+      "industry": "人工智能",
+      "tech": "Gemini",
+      "summary": "作者回复他人称，等哪天Gemini真的关门了，用户就不挑毛病了。目前Gemini支持3个月15美元的订阅方案。",
+      "steps": [],
+      "tags": [
+        "Gemini",
+        "AI订阅",
+        "付费服务",
+        "用户吐槽"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://t.co/FoK9Rna5cq",
+          "name": "原文附带的链接",
+          "note": "Gemini 3个月15美元订阅相关页面"
+        }
+      ]
     },
     {
       "id": "2112090598287327479",
