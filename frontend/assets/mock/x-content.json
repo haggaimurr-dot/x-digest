@@ -16205,5 +16205,1960 @@
       "https://t.co/wYHPB8GC6C"
     ],
     "avatar": "avatars/Saccc_c.jpg"
+  },
+  "2115241355849125981": {
+    "text": "@Jackywine @vista8 感谢Jackwine老师的推荐，欢迎大家报名🤝",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2115092724525523312": {
+    "text": "@gezhizcy @0xWEIHAN 看到了，确实，我之前坐过动车软卧，睡一觉就到了，还挺舒服的",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2115069903984292285": {
+    "text": "@rfboen 我们接下来打算对这个系统，增加一键屏蔽垃圾蜘蛛的功能",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2114928887499288842": {
+    "text": "早上收到一个关于GEOInflow的好评，已经有朋友开始陆续用起来了👍 https://t.co/eTwO3EuHoh https://t.co/GG09pUqKPB",
+    "links": [
+      "https://t.co/eTwO3EuHoh",
+      "https://t.co/GG09pUqKPB"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2114686793643606452": {
+    "text": "非常感谢大家对于这个开源项目的关注和支持\n\n这个系统最大的挑战在于：服务器的数据日志数据量，要远大于普通访客的数据量\n对于很多网站，每天的AI爬虫日志数据，可能超过上千万行，所以，缓存机制设计、分库分表的机制等等，都需要持续优化\n\n还有就是大量的爬虫，也会通过js混入到人类访客的数据里，同时，大量的爬虫也会伪装成人类的访客行为去爬取数据，或者通过匿名来去访问数据，这也增加了这个系统的复杂性\n\n不过，这些都会慢慢通过持续的迭代，今天，也有擅长大数据并发和缓存优化的技术大神加入，协助持续迭代系统，已经在开始做系统的相关优化了👍",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2114605540659929520": {
+    "text": "@ReignSwords 能，目前都是基于各大AI平台的官网的文档进行整理和区分，有些爬虫官网没有公布，就需要我们自己做下过滤机制了，这个需要点时间",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2114596646948376753": {
+    "text": "@boydonew @vista8 有误报，需要不断的优化，目前整理了61个AI爬虫信息，还有不少，需要增加各种过滤和校验机制",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2114582325090718136": {
+    "text": "@0xWEIHAN 你这次来深圳吗，11月21日的深圳GEO大会",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2114581228804325855": {
+    "text": "项目的持续离不开各方的支持：\n联合发布：猎看科技、北京日报智源GEO\n项目发起人：姚金刚、向阳乔木、任强\n也欢迎大家提交PR，一起持续完善",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2114576405631517174": {
+    "text": "GEOInflow基于Umami开发，同样采取MIT开源，感谢Umami项目的开源贡献者",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2114576259762233816": {
+    "text": "让Claude做了一个简单的宣传视频，也可以通过这个视频了解 https://t.co/OQJOXu7dZM",
+    "links": [
+      "https://t.co/OQJOXu7dZM"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2114576054018818536": {
+    "text": "重磅开源：GEOInflow\n一套面向GEO的网站与AI爬虫分析系统，同时支持完整的访客数据、转化数据统计与分析\nMIT协议，Docker一键部署\n\nGEOInflow将网站访客、AI搜索引荐、服务器抓取日志和内容目录放在同一个网站上下文中\n帮助团队回答这些问题：哪些 AI 蜘蛛访问了网站，访问了哪些内容，哪些关键页面长期缺少抓取记录，访问是否遇到错误，以及AI搜索实际带来了多少访客和转化\n\n核心逻辑与能力：\n1、哪些AI平台在抓你的站（OpenAI、Anthropic、Perplexity、Google、字节、百度、Kimi、腾讯混元…），是训练、AI 搜索，还是用户触发的访问。包括，抓了哪些页面，哪些关键页从没被抓过\n2、同时可以追踪AI搜索引荐来的会话、落地页和转化，看清GEO的真实效果\n3、它也是一套完整的网站统计：PV/UV、事件漏斗、热力图、留存、团队权限与分享\n4、核心统计无需模型API Key，默认无Cookie采集，数据留在你自己的服务器上\n5、系统已整理61种全球范围内各种不同的AI爬虫身份及分类，在这个基础上构建了大量的全新数据分析看板\n\n做GEO，每一次内容调整都值得有数据可以复盘\n欢迎体验和提PR\n\nGitHub地址：https://t.co/DshYcj50be",
+    "links": [
+      "https://t.co/DshYcj50be"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2114552908817514848": {
+    "text": "@VjcrwSB6wrS6woP 这个难度越来越大了，里面有大量的变量",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2114552770967560540": {
+    "text": "@1024studio 不是，这里的大厂，是指传统的互联网大厂",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2114551121998143913": {
+    "text": "RT @vista8: NextToken词元之外最新一期来了。\n\n小宇宙推荐榜第一位，收听地址\n\nhttps://t.co/i9rv0w4egv\n\n聊完这期播客开始弄kindle越狱，昨天搞定了。\n\n开源见评论区 https://t.co/gpsTzLkNPX",
+    "links": [
+      "https://t.co/i9rv0w4egv",
+      "https://t.co/gpsTzLkNPX"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2114298439332671601": {
+    "text": "@yymhxie 国内确实，能看清边界且守住边界，还挺难得的",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2114298286471311705": {
+    "text": "@JerryLe79468816 受早期红利的影响，再加上没有深入研究背后的本质吧",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2114298087254733034": {
+    "text": "@Fangxin95399 如果承诺交付结果，要做到相对可控，所以可以定一套动态结果指标",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2114266995419947010": {
+    "text": "国内一家大厂，下场做GEO\n由于缺乏交付能力，就找了一些GEO供应商，负责在背后对他们的GEO客户进行交付\n\n这一年下来\n因为不专业，大量的过度承诺和不合理的目标设定，导致没有一家供应商能完成交付\n\n所以，他们的负责人底下开玩笑\n他们最大的收获：就是沉淀了一套成熟的道歉话术和道歉SOP\n非常离谱",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2113813688843120642": {
+    "text": "国家队主流媒体，集体入局GEO，央广总台、人民网、新华社、北京日报，都齐了\n\n今晚七点，在视频号直播间，我们也会与北京日报，联合正式开源全新的GEO流量统计系统\n\n欢迎观看 https://t.co/JhWrPG7cz3",
+    "links": [
+      "https://t.co/JhWrPG7cz3"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2113450156456575186": {
+    "text": "闺女一年级了\n最近跟闺女下国际象棋\n故意让着她\n快到结束的时候，她往往会以微弱的优势，赢我\n这让她对国际象棋很有成就感\n早上吃饭的时候\n她又约我晚上一起下国际象棋，希望我早点回家\n并且嘱咐我，晚上下棋“长点心”\n我说，没问题\n\n下棋结束之后，我们一家三口会去旁边公园转一转\n我会和闺女有两个小PK\n第一个是吊杠，看谁坚持的时间更长，这个我一般会一领先1-2秒的优势超过她\n结束后，闺女就很希望再比一次\n\n第二个是短跑比赛\n一次大概两百米左右，这个我一般会以略慢一点的配速，故意“输”给她\n然后连续比几次，一次比一次快\n她后来给我说，她在体育课上的短跑，比他们班上最快的男生还要快，体育老师都一直夸她\n我说，那你岂不是班上跑得最快的\n她说，对啊\n\n所以，一晚上下来，我和闺女的PK，从象棋到运动，她基本上是收获三局两胜\n然后到时间点，闺女心满意足，自己洗漱自己睡觉了",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2113280733104243105": {
+    "text": "@robinb1129 如果能真正融合行业生态，是有可以的",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2113223066566427070": {
+    "text": "RT @vista8: 经常刷 X 的朋友，好消息！\n\nChrome 插件上架，支持 AI 回复过滤、高级 X 搜索、更好用的@\n\n自带类飞书 Markdown 编辑器 + AI 助手，写完直接发 X 文章。\n\nChrome 插件安装地址：\nhttps://t.co/wFzwq…",
+    "links": [
+      "https://t.co/wFzwq…"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2113085471081345288": {
+    "text": "腾讯的GEO产品AnswerBit团队到访，一起交流了一个多小时\n他们的产品同学分享了整个GEO产品的逻辑、理念，对我也有不少启发\n\n1、定位SaaS平台，主要的核心能力，一是GEO数据监测，二是GEO内容生成，不做投放，不做服务，不做运营，也就是，以工具属性为主\n\n2、数据能力确实是他们的一个重要优势，其数据获取的原理，也和目前主流的方法一样，通过自建爬虫进行抓取\n\n3、基于数据的能力，构建了多维度、多层次的数据指标和看板，很多数据还挺详细的\n\n4、在聊到用户意图问句挖掘时，他们的做法，更多的是基于抓取到的各种AI搜索平台的数据，通过AI或算法，进行用户意图问句的全面挖掘，核心策略就是围绕大量的目标用户场景问句，进行广覆盖\n\n5、整体的商业逻辑，就是卖积分套餐，实现标准化的售卖，工具的各个功能，都会基于实际的成本折算成积分进行消耗\n\n6、对于行业生态，AnswerBit希望与更多行业伙伴形成互补联动，比如他们不做服务和运营，那么就需要与更多的服务商一起来合作，包括数据也可以通过API赋能给行业GEO公司\n\n7、对腾讯而言，AnswerBit只是他们定义中的AI营销领域的一个重要切入点，未来还会围绕AI营销这个大的概念，不断的对产品进行延展\n\n8、关于产品，他们也坦言，目前的产品设计工程能力很强，对小白并不是那么友好，所以，也希望通过内置Agent能力，降低用户的使用门槛，比如通过对话的方式，就可以完成工具各种功能的操作和使用",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2113079389831188801": {
+    "text": "OpenAI披露PHP两个致命漏洞，同时，PHP官方发布紧急安全更新\nGEOFlow的用户，注意及时更新自己的服务器最新PHP版本\n这两项漏洞影响范围很广，几乎影响所有的网站，可能让攻击者在无需登录网站后台的情况下，在服务器上执行恶意代码，甚至窃取敏感数据\n两项漏洞的CVSS 4.0评分均为9.2分（严重）\n\n给网站客户最重要的建议：立即检查网站实际使用的PHP版本，尽快安装官方或可信服务商提供的安全修复版本，并完成网站功能验证\n\n1、这次PHP的两个漏洞是什么？攻击原理是什么？\n可以通俗理解为PHP这套运行网站程序的引擎，在处理内存和请求时存在两个严重缺陷\n漏洞一：CVE-2026-109618（内存耗尽处理漏洞）\n攻击者可以通过特制的网络请求，让PHP在处理请求时发生内存耗尽。某些情况下，PHP会错误地处理尚未正确初始化的内存数据，最终可能造成恶意代码执行\n\n漏洞二：CVE-2026-109619（全局状态残留漏洞）\nPHP处理一个请求后，某些内存状态可能没有被正确清除。当同一工作进程处理下一个请求时，可能继续使用已经释放的旧内存数据，攻击者可以利用这一缺陷尝试执行恶意代码\n\n2、这两个漏洞会对网站造成什么危害？\n一旦成功利用，攻击者可能：\n控制网站服务器上的PHP执行环境，植入后门或恶意程序\n窃取数据库凭据、用户信息、API密钥等敏感数据\n篡改网页内容，影响网站正常访问\n利用服务器攻击其他业务系统\n导致网站服务中断或数据泄露\n\n3、哪些网站需要检查？\n主要是使用受影响PHP运行环境的网站，包括WordPress、GEOFlow、Drupal、Joomla、各类PHP建站系统和自行开发的PHP应用\n\n4、如何判断自己的网站是否受到影响？\nOpenAI发布了官方免费检测工具：\nhttps://t.co/L0cAZDkF4i\n\n5、这两个漏洞如何修复？\n核心修复方式：升级到已包含安全补丁的PHP版本\n对于直接使用PHP官方版本的网站，应升级到对应的安全版本或更新的受支持版本\n对于使用宝塔面板、Ubuntu、云服务器托管环境的客户，也可以安装对应服务商发布的安全更新\n\n6、升级PHP会不会影响网站？升级后是否就安全了？\n同一PHP大版本分支内安装安全补丁通常更容易控制兼容性风险；跨大版本升级可能影响旧代码、插件和扩展\n升级前应备份网站文件、数据库与运行配置。升级后应重点验证首页、登录、表单、文件上传、数据库连接及支付等核心功能\n完成漏洞修复后，如果此前长期暴露在风险之中，还应检查访问日志、异常进程、可疑文件和账号活动。 安装补丁可以阻止相关漏洞继续被利用，但无法自动清除此前可能留下的恶意程序\n\n相关材料：\n\n1. OpenAI 中文披露：\nhttps://t.co/Q2SpsnK9Mq\n\n2. PHP 官方公告：\nhttps://t.co/CzoFELSXhR\n\n3. CVE-2026-109618：\nhttps://t.co/HNVHdvwK2o\n\n4. CVE-2026-109619：\nhttps://t.co/8qaCKDVYqz\n\n5. Wiz 技术文：\nhttps://t.co/ql22lBzCmZ\n\n6. 自检 skill：\nhttps://t.co/L0cAZDkF4i",
+    "links": [
+      "https://t.co/L0cAZDkF4i",
+      "https://t.co/Q2SpsnK9Mq",
+      "https://t.co/CzoFELSXhR",
+      "https://t.co/HNVHdvwK2o",
+      "https://t.co/8qaCKDVYqz",
+      "https://t.co/ql22lBzCmZ"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2112749982063161471": {
+    "text": "10月24日晚上7点，也就是这周六，我会通过我的视频号，以直播的形式，做一场新GEO产品与开源系统的正式发布会\n\n给大家分享一套全新的GEO系统，一套全新的运营SOP，同时开源一套全新的GEO流量统计系统\n\n希望借着这次直播发布会，分享一些新的思路、新的设计、新的方法与理念，希望能给大家带来一些启发\n\n欢迎访问文章，了解和预约直播",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2112413844903432391": {
+    "text": "感谢 @hiheimu 的反馈和推荐，这是对我们非常大的鼓舞\n\n书名《AI领导力》，也上架到了微信读书，欢迎阅读，京东、当当、视频号小店，直接搜索书名可以直接购买 https://t.co/4hgcWXaAci",
+    "links": [
+      "https://t.co/4hgcWXaAci"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2111736958599016941": {
+    "text": "陈哥，我四川的老乡\n非常优秀，人生也很精彩，起起伏伏经历了很多，充满激情，每次路过重庆，都会和他聚一下\n\n06年开始创业，很早的时候，就每月赚50万了\n这两年，开始进军海外，核心的逻辑，就是做小语种国家的海外互联网项目，借住AI，拿到了一些不错的反馈\n\n他分享了这二十年来的一些创业感触与原则，很有启发\n\n1. 风口与机遇，很多赚的钱，不是自己有多厉害，而是风口带来的机会，所以，要对风口保持敏锐\n\n2. 学会借势，站在巨人肩膀上，谁做得好，谁有资源，合作、学习\n\n3. 持续学习，各种学习方式，包括学习商业模式，喜欢看广告，广告打得越多的，越赚钱，一个例子，在故事会杂志里，看到一个广告，关于减肥的广告，于是就去找相关的产品资源，也赚到了不少钱\n\n4. 差异化与辨识度，每一个项目都要重视品牌与包装，这会带来很高的溢价\n\n5. 执行力，赚钱要快，成交要快，快速复制，快速放大\n\n4. 学会抄，他讲了一个小故事，刚开始创业时，虽然不懂SEO，但懂抄，就去看哪个网站为什么赚钱，为什么排名好，就直接抄，后来在这个基础上，去进一步完善，多方学习参考与借鉴",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2110979737774379129": {
+    "text": "简单总结了下GEO行业的12种典型盈利模式\n\n1. 卖服务，目前的主流模式，一般按项目收费，季度起合作，提供全案运营服务，主要面向中大型客户\n\n2. 卖系统，SaaS或一次性私有化部署授权，都可以\n\n3. 卖信源，做信源媒介或自己做成AI信源，按一篇文章或一个短视频发布收费\n\n4.",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2110335911992979960": {
+    "text": "估值18亿美元的Profound，通过REA逆向了下它的系统，包括官网、产品工作台、管理后台三个系统的相关页面\n系统已开源到GitHub，链接见文末\n\n整体的还原程度很高\n有不少设计值得参考和学习的地方\n\n核心功能包括：\n1、7个AI 引擎可视化：ChatGPT、Perplexity、Claude、Gemini、Microsoft Copilot、AI Overviews、DeepSeek —— 每日可见度趋势、引用分类（earned / owned / social / competition）、品牌情绪、FactCheck 勘误\n2、AI Marketer对话助手：用自然语言提问可见度 / 引用 / 情绪 / 提示词缺口，或直接触发 Agent —— 会真实写入运行记录与步骤 trace、扣减 trial credits\n3、Agent系统：7 个可复用工作流（内容写作、页面优化、引用追踪、FactCheck、社交、购物、发布套件），带运行历史与逐工具耗时\n4、认证与权限：scrypt 密码哈希、httpOnly session cookie、middleware 预检、owner / admin 双角色\n示例数据：虚构品牌 Wrenfield（城市电动自行车）工作区 —— 40 条提示词、90 天可见度数据、引用域名、Agent 模板库、销售线索\n\n技术栈\n1、Next.js 16.4 — App Router、async params、cacheComponents（PPR 部分预渲染）、Turbopack\n2、React 19 + server components（数据全部在服务端查询，图表 props 用可序列化枚举）\n3、Tailwind CSS v4 — 单应用三套主题\n4、better-sqlite3（WAL 模式）— 单文件数据库，scripts/seed.mjs 一键重建\n\n本项目仅供个人学习与研究，用于了解现代 SaaS 产品的信息架构、Next.js App Router 与数据可视化实践\n\nGitHub仓库地址：\nhttps://t.co/3lSxlhT5to",
+    "links": [
+      "https://t.co/3lSxlhT5to"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2109116825447309340": {
+    "text": "复旦大学与上海浦东密码学研究院团队的一篇最新的论文：《从公开内容发布到AI搜索引用：衡量AI搜索系统的脆弱性》\n\n这是一篇与GEO行业高度相关的实证研究\n它不仅研究 AI 搜索引用哪些网站，而且通过真实的内容发布实验，验证了内容发布平台的选择，如何影响内容进入AI搜索结果以及被AI引用的概率\n论文研究了包括 ChatGPT、Google AI、Perplexity、Grok、豆包、元宝、文心、千问、Kimi 和 DeepSeek 在内的10个AI搜索平台\n\n几个重要发现：\n- 17,211次AI引用： 研究发现，不同AI平台对信源存在明显的选择偏好，部分平台前20个网站贡献了超过70%的引用\n- 80%的平台引用了人为创造的概念： 研究人员在公开内容平台发布虚构概念，7天内有8个AI搜索平台引用了相关内容\n- 发布渠道比单纯增加数量更值得关注： 在特定实验中，1 篇发布在高引用偏好平台上的文章，其引用效果超过 20 多篇发布在低偏好平台上的文章\n- 内容可以较快进入AI答案： 不同平台的引用延迟从约24小时到超过5天不等；另一个GEO服务采购案例，在发布后1小时内观察到了AI引用\n- 低成本的商业化GEO服务已经存在： 研究人员花费14美元购买了一次GEO服务，服务商发布了13篇公开内容，随后观察到 AI 搜索引用了其中的内容\n\n一些有价值的数据\n1、不同AI平台的引用特征\nGrok平均每次回答有52.2条引用，而千问只有6.52条，相差约8倍，数据存在非常明显的差异，不过，这不能说明Grok的答案质量是千问的8倍，也不能简单理解为Grok对网站更加友好，各个平台的引用展示机制、回答长度、检索策略不同\n合理的做法，是在每个平台内部建立基线，再比较品牌自身的变化与竞争对手的表现\n\n2、AI引用具有显著的头部集中效应\n这个结论其实已经是常识了，不过仍然有必要分享下\n研究人员统计了各个平台引用最多的前 1、3、5、10、20 个域名，分析这些网站占据了多少引用份额\n结果发现：\n文心的前20个域名，占据了70.8%的引用\nDeepSeek的前20个域名，占据了20.5%的引用\n即使在四种不同问题类型内分别统计，头部网站的集中效应仍然存在\n这说明AI搜索并不是从互联网上均匀地选择信息来源，不同AI平台实际上呈现出了不同的信源分布\n\n3、不同AI平台的信源重叠程度很低\n研究人员引入了Jaccard相似系数，衡量两个AI平台最常引用的网站有多大程度的重合\n两个平台完全引用相同的域名集合时，Jaccard值为1，完全没有重合时，值为0\n研究发现，所有平台两两比较，前20个高频引用域名的平均Jaccard值只有0.201，也就是说，不同AI平台在信源选择上存在很大的差异\n所以，GEO系统应该建设面向不同AI平台的独立信源画像，而不是把所有平台混合为一个统一渠道\n\n4、平台存在关联信源集中现象\n论文还研究了AI平台是否倾向于引用自身母公司或关联公司的内容\n\n一些重要结论或观点总结\n1、AI搜索最大的权力，不是生成答案，而是决定哪些信息有资格成为答案\n2、AI看似在搜索整个互联网，实际上可能反复引用少数几个网站\n3、GEO不是把内容发布到更多地方，而是把内容发布到更有价值的地方\n4、互联网只有一个，但不同AI眼中的互联网，可能完全不同\n5、内容生产存在边际收益，但内容数量不等于影响力\n6、AI经常引用一个网站，不代表这个网站的信息就值得信任\n7、在信息稀缺的领域，最先建立可见信息的人，可能拥有更大的认知影响力\n8、内容可以在互联网上被删除，却不一定立即从 AI 的答案中消失\n9、GEO的终极目标，不是让AI引用品牌，而是让AI正确理解品牌，并影响真实的商业决策",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2108106577408389217": {
+    "text": "开源17套知识付费提示词，分享给正在做课程的老师、知识创作者和教育产品团队，地址见文末\n\n四年前，成立过一家知识付费类的MCN公司，主要模式是签约一些明星和艺术家，包括一些歌手、导演、奥运冠军和国粹大师等，通过短视频和直播的形式来运营他们的IP，并通过知识付费来形成商业闭环\n\n这种模式的好处是，流量非常好做，账号也很容易做起来，不少IP本身也自带流量，随便一开播，同时在线就能上万人在线\n\n但弊端也很大，需要提供非常重的服务，包括非常重的情绪价值，这也导致整体的运营成本很高\n\n为了帮助他们做出更好的课程，结合之前十年的在线教育行业经验，闭关写了一本《课程营销学》，有了AI之后，便把这本书的每一个章节，提炼出了提示词，一共17套\n\n这17套提示词，可以直接使用，涵盖课程定位、课程设计、课程售卖和课程运营四大核心模块\n\n正在筹备第一门课，或者想重新梳理已有课程的朋友，欢迎拿去试试\n\n用起来有哪些地方需要补充，也欢迎反馈",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2105472543155245425": {
+    "text": "抖音的相关搜索词数据爬虫skill来了，开源给大家\nGitHub地址见文末\n\n输入多个核心词根，AI自动按「词根→一级词→二级词」扩展进行操作\nAI自动记录相关搜索词的下拉位置、来源路径，再按行业商业意图打分，最后完成统计，输出一份完整的Excel文件\n\n还是一样的逻辑，Codex原生电脑操作，抖音网页版，无需点击和页面刷新动作，相对风控风险较低\n为了谨慎起见，建议小号测试\n\n截图为留学案例实测：3 个词根，200 条记录，142 个去重词\n\nGitHub地址：\nhttps://t.co/8nOIXep8zl",
+    "links": [
+      "https://t.co/8nOIXep8zl"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2104370696423931980": {
+    "text": "不知不觉，GEO公开课已经完成了5期了\n\n和@vista8 向阳老师在开始讨论系列GEO公开课时，初步定的是每月1期，持续12期，还剩7期\n\n每期定一个大的主题，然后通过直播的形式，完成关于这个主题的系统性分享\n之后每次分享，会做个简单的调研，根据大家当前最关心的问题，来调整公开课的内容节奏与安排",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2114270707232465176": {
+    "text": "小灰真人出镜，分享一下Kimi K3.1 Pro的实测情况 https://t.co/z2dSpKXWkm https://t.co/sRVU6n3mzk",
+    "links": [
+      "https://t.co/z2dSpKXWkm",
+      "https://t.co/sRVU6n3mzk"
+    ],
+    "avatar": ""
+  },
+  "2113942467569688882": {
+    "text": "今天是1024程序员节，再给大家推荐两个不烧心的skill：\n\n1. BrowserSkill（浏览器操控技能）\n\n普通 AI 只能搜网页或读公开页面，遇到需要登录的网站（小红书创作后台、飞书/企微文档、京东、BOSS 直聘、公司内部系统等）就束手无策。\n\nBrowserSkill 可以复用你本机已登录的 Chrome/Edge 状态，在一个独立的 Agent 窗口里自动操作网页（搜索、点击、填表、翻页、截图、上传等），不影响你自己正在用的浏览器窗口。\n\n适合场景：\n小红书运营（看数据、发笔记）、飞书同步文档、多平台发文、电商后台查询、需要登录才能访问的资料收集等。\n\n安装方式：\n在 WorkBuddy 里直接说：按照 https://t.co/23xFEEgncR 的说明，在本机安装并配置 browser-skill。\n\n2.Content Repurposer（内容再加工 / 一稿多用）\n\n以前写完一篇长文之后，还要手动改成小红书图文、推文/X 帖、短视频脚本、LinkedIn 帖、公众号金句卡等多平台版本，又费时间又容易风格跑偏。\n\n它采用 Hub & Spoke 思路：先提取长文的核心论点、关键要点、故事和数据，再按目标平台重新适配成一套原生格式的短内容包（不是简单摘要或缩写）。\n\n适合场景：\n做内容、自媒体、副业，尤其是一篇文章想多平台分发的场景。\n\n安装方式：\n直接对 WorkBuddy 说：帮我安装 content-repurposer 技能。\n\n也可以丢给它对应的 GitHub 链接，让它直接装。\n\n大家最近在使用哪些新技能？欢迎在评论区说一说。",
+    "links": [
+      "https://t.co/23xFEEgncR"
+    ],
+    "avatar": ""
+  },
+  "2113579911478931786": {
+    "text": "从ICU到KTV，我的大A账户终于回血了！\n\n截止到今天收盘，小灰的账户情况如下：\n\n当日收益：239266.65元\n当月收益：-461323.98元\n2026年收益：-586189.49元\n炒股总收益：-459591.53元\n\n单看今天收益还行，但我的回本之路还是任重而道远~~\n\n大家今天在大A的情况如何？欢迎留言进行分享。 https://t.co/diI96tQ3XB https://t.co/3y2CsS6IUm",
+    "links": [
+      "https://t.co/diI96tQ3XB",
+      "https://t.co/3y2CsS6IUm"
+    ],
+    "avatar": ""
+  },
+  "2113458407403569593": {
+    "text": "我的大A账户实时播报 😂\n\n截止到今天上午10点多，小灰的账户情况如下：\n\n当日收益：-209205.93元\n当月收益：-905096.21元\n2026年收益：-1029961.72元\n炒股总收益：-903363.76元\n\n到今天为止，我大A已经12连跌了，真的是一泻千里~~\n\n大家目前在大A的情况如何？欢迎留言进行分享。 https://t.co/jAk0TErbzU https://t.co/fMzcWuheWI",
+    "links": [
+      "https://t.co/jAk0TErbzU",
+      "https://t.co/fMzcWuheWI"
+    ],
+    "avatar": ""
+  },
+  "2112837925352460404": {
+    "text": "@Khazix0918 卡神不必跟某些人计较，有的人专门喜欢蹭大V的流量，靠着喷别人来彰显自己的“强大”，我也亲身领教过",
+    "links": [],
+    "avatar": ""
+  },
+  "2114745397566673325": {
+    "text": "@sanmeiBTC 我觉得它的股价被狙击是大概率事件。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114744220405936631": {
+    "text": "@ltparisinfo 我的自建一直都是自己一个人使用。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114744092332884346": {
+    "text": "@Beefujian 世界杯我使用AI瞎猜的，倒是挣了一些。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114743767324651644": {
+    "text": "Anthropic计划将其A类普通股以代号“ANT”在纳斯达克全球精选市场上市，拟发行的A类普通股数量及拟议发行的价格区间尚未确定。\n\nA➗的做派好像有点反华，感觉其股价到时候会被某些人或者组织狙击，希望是我想多了吧。 https://t.co/cct4lgqPm7",
+    "links": [
+      "https://t.co/cct4lgqPm7"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114735182569963694": {
+    "text": "@samxqu8 我以检测为准，这次他们说的是真的，应该是深圳大会影响。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114734864796938570": {
+    "text": "@monsterhao 被封和这些无关，主要是深圳大会盯上了某些地区的一些IP段。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114734003697922416": {
+    "text": "@Lovislexus 嗯，做人做事都得有自己的准则和底线。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114733574884896888": {
+    "text": "@lengs4189 看地区和IP段的，深圳大会影响，今天还有不少搬瓦工的IP被封呢",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114733168939188373": {
+    "text": "@ZiYueCommentary 我还有3台自建、机场VPN和美国家宽备用，不打算改配置。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114732785630105728": {
+    "text": "@dengyue_vpn 嗯，应该是IP段被盯上了，估计和深圳大会有关。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114732465722200376": {
+    "text": "@DangcingAI 就算四个自建都挂，我还有机场VPN和美国家宽应急。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114600250803671413": {
+    "text": "@Ylj158852 帖子右上角-三个点-内容揭露-付费合作，只要你的帖子有外部链接，可能会产生收益，举报是几乎是百分百成功，我被别人举报两次了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114598500730368500": {
+    "text": "@Ylj158852 你这帖子不进行内容揭露为商业合作吗？不怕被举报封号吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114597912630247759": {
+    "text": "@Ylj158852 我之前推荐的VPN机场的香港节点也是正常，我的香港节点是使用阿里云轻量服务器搭建的，可能是阿里云比较严吧，使用了四年了，的确没有华为云稳定。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114596590233231651": {
+    "text": "@echoecho1996 自建的肯定更稳定，至于机场VPN稳不稳得看搭建的机器和水平以及维护力度。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114596144148074927": {
+    "text": "早上刷推的时候，发现有博主说又开始封VPN了。\n\n我自建的四个国家地区梯子，都是docker compose配置，版本和所有配置统一写死，配置一模一样，检测结果发现香港地区的挂了，其它地区的正常。\n\n我都是3xui自建自用，没有使用v2board、Xboard等开源机场程序搭建VPN机场来谋取不当利益，也不教机场这个。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114593873494413799": {
+    "text": "@WildVariable01 嗯，书荒的时候我都刷凡人修仙传。仙逆当初就是抄袭凡人修仙传，忘语更新慢，然后仙逆就自己发展成这样了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114593357649551508": {
+    "text": "@hewuan66 连播顺，开头没有重复上一集的结尾。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114587199773761650": {
+    "text": "@kun_ge39141 是的，我都怀疑他们的人物建模提示词都一样……",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114580929708745041": {
+    "text": "@xxiaonezha 听说是别的平台大V来的，但是我没有刷到过他，我没有去搜索。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114579641696665878": {
+    "text": "@cloudi66 三家就谷歌的成本最便宜，问题不大。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114579035720429951": {
+    "text": "@huang18825 是的，已经有推友的积分一天翻了10倍。 https://t.co/JJKpyFd0Fk",
+    "links": [
+      "https://t.co/JJKpyFd0Fk"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114578110993858643": {
+    "text": "@bangbuilds 不追求收益就不累了，比如像我这几天都是中午12点后才佛性发帖更新。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114577865161556366": {
+    "text": "@hjnpng975714623 10个人能留下1个的话，用户数都恐怖得吓人。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114577585875378601": {
+    "text": "@Jason85885174 对于正常付费订阅用户来说，就是好事。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114577439104082291": {
+    "text": "@YunTechX 谷歌的成本应该是三家最低的，毕竟是使用自家的TPU。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114577152851296699": {
+    "text": "@rainwaterJay Gemini 2.5 Pro巅峰时期，还真的拳打Claude，脚踢ChatGPT，不过回不去了，稳住现在就好了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114575813261795436": {
+    "text": "一般的短剧，我是不看的，但1000集、每集1分钟的短剧我高低都得看一下。1000分钟差不多16.7小时，做下饭剧可以看蛮久了。\n\n问鼎仙途，踏碎仙凡，剩下的路只能自己走，可能类似凡人修仙传或者仙逆吧，是我喜欢看的类型。\n\n话说，现在的AI短剧，很多人物长得跟现在的网红脸一样，审美疲劳，没有辨别度。 https://t.co/3A6EunUPMH",
+    "links": [
+      "https://t.co/3A6EunUPMH"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114393065163256161": {
+    "text": "@gb9886 之前分享豆包客户端活动，我就已经在使用了，搞PPT、图片和视频都不错呀。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114386813658030479": {
+    "text": "@LiusirHK @1shenyingheisou 很多是搜索流量、收藏流量，不算有效流量。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114381769181221146": {
+    "text": "@hodu382759 用户基数的确也算是一种护城河。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114381456038650360": {
+    "text": "@PiggyVoyager 不是，我曾想开Subscription的Plus和Cursor Pro。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114379470916538646": {
+    "text": "用户就是流量，流量就是钱，抖音多大的用户基数呀，引流到豆包轻而易举。所以用户数发展，Claude、ChatGPT、DeepSeek应该是比不过豆包的。\n\n另外，AI远不止编程应用，非编程方面的人很多，而豆包刚好非编程方面的能力比较突出，比如文档、图片和视频，所以AI市场这蛋糕肯定有一大块是豆包的。 https://t.co/gVLTFq9ldX",
+    "links": [
+      "https://t.co/gVLTFq9ldX"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114375277656825968": {
+    "text": "@jamesmusk345316 感谢告知，你是第一次开蓝V吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114374509897859416": {
+    "text": "@lihu9048 一直是GPT做后端主力，Gemini做前端主力。现在，Gemini的后端也还可以，配合GPT互相检查，蛮好的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114373615848505434": {
+    "text": "@taozibuilds 那是看，不是写，写不是简单翻译过来就可以了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114313945356062724": {
+    "text": "@niaoshu 年轻的时候这很正常，问题是鸟叔你现在比我还大一些，还这么饥渴吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114313144709603441": {
+    "text": "@BlockInsight214 收到，今晚抽空开始清理僵尸粉。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114312942342869301": {
+    "text": "@qianyuwing 现在的AI智能体，某些场景是真的可以替代助理。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114311724358836719": {
+    "text": "@y1cxmm 666，你就说你要贷款3个小目标。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114311401082872218": {
+    "text": "@niaoshu 少搜索，少看片，钱包都打成强暴了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114309948440260872": {
+    "text": "感谢分享，原来开始有第二笔原创内容奖励了，这样我又有原创动力了，看来以后不能佛性更新了。 https://t.co/fqMa4C0krj",
+    "links": [
+      "https://t.co/fqMa4C0krj"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114308467163095068": {
+    "text": "@404jsh 从他昨天在帖子评论区、私信和我纠缠说的话，就知道他太年轻了。\n\n目前获利最多的就是泛流量，的确很打击原创动力。\n\n你的流量不错，我都佛性更新了，谁叫X的算法水平只能看见抖音算法的车尾灯呢，我脸皮又薄。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114306584751071564": {
+    "text": "@fxmqs 嗯，X的算法水平的确不咋样，估计就看得见抖音算法的车尾灯。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114304960343179289": {
+    "text": "@paluyyds 每个人都有自己的原则和底线，反正我做不到。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114302228848931000": {
+    "text": "@fxmqs 嗯嗯，但如果像他这样不要脸疯狂发帖或者造势，还是有不少蓝V流量和新粉的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114301671757242503": {
+    "text": "@AFARUNM @SwordXyj 是的，但是如果不要脸疯狂发帖或者造势，还是有不少蓝V流量和新粉的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114300386941210671": {
+    "text": "@404jsh 香港老雷，他是泛流量赛道，内容都是那样。\n\n我是看老雷他的粉丝从一万多涨到现在五万多粉丝，最开始是模仿王长富，最后超越了。\n\n他们两个的粉丝增长都不是自然增长，是同时邪修起号，王长富晒过日增长五百多，取关有一百多。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114299275744293316": {
+    "text": "@LXiangchen71169 如果为了这点流量小钱都没有原则底线，再多点钱就敢犯罪了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114284132931084317": {
+    "text": "@Eason_Chou_ 比ChatGPT Plus额度还多一些，轻量使用够用了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114282053449691152": {
+    "text": "@newcomelol 是的，绝大多数都是非蓝V。\n\n但是他在不要脸造势吸引蓝V，蓝V流量和粉丝还是会涨不少的，有梭哈哥的雏形了。 https://t.co/vStWD5bpLr",
+    "links": [
+      "https://t.co/vStWD5bpLr"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114281376912637981": {
+    "text": "@Insuelin 他昨天和我鬼扯一天后，我取关了他，没有屏蔽他。\n\n如果时间线刷到他，我再屏蔽他，看缘分。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114279672192319924": {
+    "text": "@hodu382759 如果人家不要脸疯狂发，一天过千万泛流量，一天拿50万左右蓝V流量还是可以的，有300美元左右吧。\n\n我当初也想过，两次最终都放弃了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114277766397047289": {
+    "text": "还是太年轻，我们进入流量池单贴过百万流量都不好意思拿出来秀，王长富也是两周过亿流量才秀一下。\n\n只有平时不得志的人，才会这样得意忘形加不要脸。 https://t.co/Cca3ciH6qh https://t.co/W8y9T8bMlv",
+    "links": [
+      "https://t.co/Cca3ciH6qh",
+      "https://t.co/W8y9T8bMlv"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114275308212023804": {
+    "text": "@roy_gtt 是的，所以我说这种流量没有多大意义。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114275133640835198": {
+    "text": "@A9Beacon 泛流量赛道发的其实都差不多……",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114274661240570111": {
+    "text": "@GaTsunami 不晓得他们，好像没有见过大虫拉屎一样。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114274392599560552": {
+    "text": "@iamking2121 土区Pro加满血ytb会员，不用5刀呀，你看我的历史帖子，才29.6人民币。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114273637826256962": {
+    "text": "某些博主不知道是见识少，还是在蹭流量，X账号进入流量池3分钟单贴过万流量很正常好吗？\n\n我9月和10月分别进入一次，每次有效期都是24小时。几乎每篇帖子都是3分钟就有11K流量以上，日过10万流量的单贴都是2~5篇。\n\n这垃圾泛流量意义不大，120万垃圾泛流量还不如日常22万正常流量，除非不要脸疯狂发。 https://t.co/zKf5nKxaj7",
+    "links": [
+      "https://t.co/zKf5nKxaj7"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114269130413257044": {
+    "text": "@wewe06662893 @iamking2121 你的理解能力感人，土区就是土区，网页端、IOS端和安卓端都可以开通。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114267760645845495": {
+    "text": "@YuKi_Dem 大概率是的，已经多个博主测试，我没有测试，目前还是旧的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114267381539459116": {
+    "text": "@Lgk007 @Xiaoyzi_Web3 流量池而已，我也进过2次，每次24小时有效期，所有帖子都是3分钟就1.1万流量起步。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114266455973966204": {
+    "text": "@wewe06662893 @iamking2121 不是，学生优惠直接订Pro就是25人民币。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114259633489764536": {
+    "text": "@Scrbyer argon的额度，网页端和AGY应该是一样的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114259114641834240": {
+    "text": "@wewe06662893 @iamking2121 你自己测试吧，可能我测试不准确。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114259029027602498": {
+    "text": "@gb9886 从Gemini 2.5 Pro巅峰的拳打Claude、脚踢ChatGPT水平被白嫖成流口水的美国大豆包……",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114258650311311561": {
+    "text": "@Jerry_Galaxy 是的，否则没有人愿意正常订阅Gemini了，Gemini想保证御三家水平就知道灭杀或者控制白嫖用户。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114256778934566992": {
+    "text": "@gb9886 只要谷歌不想被白嫖，就很难白嫖，参考Claude。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114255387763626259": {
+    "text": "@huyuvalley 按周额度计算，月额度估计有2.5亿左右。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114254247869218828": {
+    "text": "币安神算子第一期活动，总奖池是100万U的超大羊毛，大家快来一起瓜分吧。\n\n默认是100积分，每天签到送40积分，发布内容分享到币安广场有 100积分，现货/闪兑/合约交易任务有200积分，邀请好友符合条件也有积分。\n\n积分可以拿去竞猜预测，各位AI神算子快来赚钱吧。＃币安神算子 https://t.co/g7FTT3CVHT",
+    "links": [
+      "https://t.co/g7FTT3CVHT"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114248447964672033": {
+    "text": "@ai_fengshou 谨慎升级5X或者20X，我升级当晚就没有了，当时已经活了三个月多。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114248164782084549": {
+    "text": "@realTigerLiang 黑五不是还有一个月零2天吗？提前搞活动也不会提前这么多天吧？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114246961905934552": {
+    "text": "@iamking2121 土区更划算，但是土区难度比其它区高。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114246377882755397": {
+    "text": "@ai_fengshou 就是5个月了，快半年了，算厉害了",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114244597790683425": {
+    "text": "@gegewu203 部分大陆大学才可以的，不是所有，只是看别人搞台湾区认证的时候别人说的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114243899103588812": {
+    "text": "@BTCzizi 没有封号，我觉得谷歌都太仁慈了，灭了邮箱才有人知道疼。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114243486299931022": {
+    "text": "@gegewu203 运气好，估计是谷歌重心在处理8.99美元那批白嫖用户。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114243027426500650": {
+    "text": "@Cangbaic 正常付费订阅用户都觉得爽，哈哈。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114240311706968371": {
+    "text": "@TrbimixsQ @bot 嗯，否则对我们正常付费订阅用户不公平。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114240084249907492": {
+    "text": "@eat_Orange04 Pro的额度都提升了，Ultra的额度肯定也提升了，估计都蹭不完了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114239485500379475": {
+    "text": "@FrankQIN558638 嗯，反正大量白嫖用户被处理后，额度明显大增。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114239317677838783": {
+    "text": "@wzq0625id 我很早就说了，我不碰产业链，你们喜欢赚钱就去搞，反正我不建议，",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114239015071412611": {
+    "text": "@Cangbaic 很多人的X收入占总收入比例都比较小，他也是。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114230549674127428": {
+    "text": "@huang18825 编程的话，独立Cursor明显更好。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114230019526729765": {
+    "text": "大量白嫖Gemini用户被处理后，Gemini 4 Argon Pro的额度已大幅提升，已经微超目前ChatGPT Plus的额度了。\n\n如果反重力Antigravity的Claude额度也这样提升的话，那就更好了。\n\n想Gemini重回2.5 Pro的巅峰，拳打Claude，脚踢ChatGPT，不太现实，能保持Gemini 4 argon目前的水平和提升后的额度就很好了。 https://t.co/8m6d9JUq0x",
+    "links": [
+      "https://t.co/8m6d9JUq0x"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114743613955743874": {
+    "text": "Anthropic计划将其A类普通股以代号“ANT”在纳斯达克全球精选市场上市，拟发行的A类普通股数量及拟议发行的价格区间尚未确定。\n\nA➗的做派好像有点反华，感觉其股价到时候会被某些人或者组织狙击，希望是我想多了吧。\n\n不管咋样，它上市后我都不参与买卖。去赚看不懂的钱，那不叫理财，那叫赌博。 https://t.co/cct4lgqPm7",
+    "links": [
+      "https://t.co/cct4lgqPm7"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114223930898808858": {
+    "text": "@hodu382759 不知道是所有人都这样，还是只有部分人才这样。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114223641542177173": {
+    "text": "@Jayker012 我开始也是这样认为的，但是刷到不少博主都说要审核长达10天才开通。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114216679115006155": {
+    "text": "@NND2026 我也在纠结中，目前还是旧版的会员。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114215836647072221": {
+    "text": "@even366 感觉是，起码Cursor Pro有第三方模型的免费额度。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114213620129443975": {
+    "text": "@xxiaonezha 我5个号，2个满额，3个不满额，实际上一个都用不完……",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114213170353230324": {
+    "text": "听说现在开通新版X的Premium会员，需要人工审核一周左右，是真的吗？\n\nThe X Subscription的Premium相当于旧版的Premium+的加强版，多了一个没有免费第三方模型额度的Cursor。\n\n如果更在意编程的话，是不是同时开The X Subscription的Plus和Cursor Pro会比单独开The X Subscription的Premium更好？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114209188410978368": {
+    "text": "@hodu382759 抖音平台是抽50%，其它的我不知道。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114208767671668975": {
+    "text": "第一次见连续两天领取两份不同的原创内容奖励的，这是查漏补缺吗？ https://t.co/zBpWe0zbwc",
+    "links": [
+      "https://t.co/zBpWe0zbwc"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114204718230860156": {
+    "text": "@Adiaos2012 @Xiaoyzi_Web3 那你是怎么处理的呢？忽略？屏蔽？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114202936192680081": {
+    "text": "@Lgk007 纯金额看，不多，但是这个还得看你运营X多久了以及每天花的时间。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114201880738050089": {
+    "text": "@SwordXyj 合规的个人途径，是难，但是有不少其它办法出去。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114200023902851552": {
+    "text": "@jianyi99 差不多刚好抵扣汇损，算是无损消费了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114199263173644726": {
+    "text": "@objboya 从表现来说，的确是这样。我上面主要想说的是，这样表现的原因。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114198722158764342": {
+    "text": "@tzb360 我在老家事情多，都是佛性随缘更新，速度肯定不快的，应该是你关注的人太少了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2111849057249526236": {
+    "text": "综合考虑后，Plasma One这U卡的邪修开卡方法，我还是不敢公布。\n\n可以负责任说，这方法还是有效的，今天又一个开通了，你们去各TG群找方法吧。\n\n走我邀请链接或者邀请码注册开卡，并14天完成100美元消费有17美元返利，其中5美元是我私人返。 https://t.co/mMkygt8Uz0 https://t.co/RngTyjT1WC",
+    "links": [
+      "https://t.co/mMkygt8Uz0",
+      "https://t.co/RngTyjT1WC"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114277610465218845": {
+    "text": "还是太年轻，我们进入流量池过单贴过百万流量都不好意思拿出来秀，王长富也是两周过亿流量才秀一下。\n\n只有平时不得志的人，才会这样得意忘形加不要脸。 https://t.co/cSDuyH4ApY https://t.co/W8y9T8bevX",
+    "links": [
+      "https://t.co/cSDuyH4ApY",
+      "https://t.co/W8y9T8bevX"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2111717931545772207": {
+    "text": "华为云的200元代金券还可以继续免费领取。\n\n如果开通新加坡L实例2H0.5G的话，加3元就可以开7个月，搭建VPN自用的话还不错。\n\n新强开新加坡L实例的话，是移动单网直连，不是以前老SG的三网直连。\nhttps://t.co/VW7rJmZNMN https://t.co/XeJwKCxVdd",
+    "links": [
+      "https://t.co/VW7rJmZNMN",
+      "https://t.co/XeJwKCxVdd"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2111699538235036051": {
+    "text": "可以初步确认他的ChatGPT成品号不是K12那种日抛号，于是好奇简单研究了一下看看。\n\nChatGPT Plus目前最便宜的是菲律宾区的，₱999比索大概是106元人民币，他选菲区没有毛病。\n\nGPT Plus 3个月半价订阅链接是\nhttps://t.co/av0VuSf0lO\n但很多账号是没有这半价资格的， https://t.co/EmSyV91RbR",
+    "links": [
+      "https://t.co/av0VuSf0lO",
+      "https://t.co/EmSyV91RbR"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2111678493218177157": {
+    "text": "我的天呀！！！\n\n菲区ChatGPT Plus一个月成品号的价格已经卷到68元人民币了！！！\n\n还说是非黑充非盗刷，质保订阅，不质保封号。 https://t.co/c0sIABs2vV",
+    "links": [
+      "https://t.co/c0sIABs2vV"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114198425554346399": {
+    "text": "X这是要添加帖子打赏或者博主打赏功能吗？\n\n是只支持X Money，还是美区优先？\n\n社交平台，有打赏功能的确更好，不知道是不是和抖音平台一样抽50%。 https://t.co/5YV5ujs3XF",
+    "links": [
+      "https://t.co/5YV5ujs3XF"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114033911164772536": {
+    "text": "@PlatoFighter 你真是骂人不带一个脏字，A➗就是这尿性，哈哈。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114033704352006561": {
+    "text": "@ltparisinfo 每个人的认知不一样，做事的准则和底线也不一样。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114033475162706030": {
+    "text": "@Betinlife 我WIFI Call激活的时候，客服也是这样说的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114024868857721269": {
+    "text": "@Trece_8N24 表现肯定是这样，我帖子说的是原因。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114024313708073033": {
+    "text": "@Betinlife WIFI Call也不可以了吗",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2114024114432397673": {
+    "text": "@zw_goooooooo @Xiaoyzi_Web3 我说了几次此话题终结了，是他在评论区和私信一直纠缠不清……",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113977447817552255": {
+    "text": "@benlinbaofu @songchanggui 我去年6月线下开户，验资和验流水……",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113976565491171669": {
+    "text": "@clenusgrok @Xiaoyzi_Web3 我说了几次此话题终结，是他在评论区和私信一直纠缠不清，只能晒他了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2111491631367217285": {
+    "text": "香港中银有两个中国内地消费满减活动，满30元减5元和满30元减10元。需要下载安装它的Boc Pay+使用，商店支持银联即可。\n\n活动一：\n中国内地线下实体店，逢周五、周六和周日，消费满30元人民币即减5元人民币。每人每月只能参加两次，活动到期时间是2026年12月31日。\n\n活动二：\n中国内地的奈雪的茶、名创优品和哈根达斯，不限周几，消费满30元人民币减10元人民币。三个的可参与次数不一样，具体看优惠规则，活动到期时间是2026年12月31日。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113969107586719830": {
+    "text": "@btcmos 一万多粉丝变成5万多粉丝了，厉害！",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113968504819089789": {
+    "text": "@wellzhiai 工资流水和存款最重要，中银很看重这两个。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113967019246932358": {
+    "text": "@jianyi99 可以正常使用，你问一下客服吧，他们客服不错。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113966132747276312": {
+    "text": "@sigumnd18987 嗯，我也觉得纯模型来说，差距应该不大。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113960490137436253": {
+    "text": "@tzb360 我都快四十岁了，已经结婚有孩子很正常吧？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113960137467764737": {
+    "text": "@Absolute_Belial 说错了吧，是19.9美元吧？只要没有白嫖用户浪费算力，Gemini的AI御三家水平就有保障。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113957347391586443": {
+    "text": "@Cangbaic 正价订阅，其实比ChatGPT和Claude便宜多了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113956955270398282": {
+    "text": "Claude一定比ChatGPT强吗？未必。\n\nClaude主要是面向B端企业用户，C端个人用户正价订阅都会玄学杀，用户和算力应该是处于一种动态平衡，可以比较稳定不降智。\n\nChatGPT主要是面向C端个人用户，有学生和兵哥白嫖、有0元试用、有退订半价、有K12大量子号日抛、有Team炸弹车群，算力会紧缺而降智不奇怪。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113941183194157219": {
+    "text": "@Yucheng_9518 只要白嫖用户被限制够狠，就有可能。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113940758327931085": {
+    "text": "@Xlin_kis 谷歌邮箱非常重要，我绑定了很多东西。虽然我也有几个谷歌小号，但都没有搞，谷歌已经很良心了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113932396215365772": {
+    "text": "@Timbazp 你的解封经验分享一下，更多人想看。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113932145404375525": {
+    "text": "@jianyi99 通过原创内容奖励后，都看不到有效流量了，只能看到泛流量和蓝V流量。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113931776796262426": {
+    "text": "@leiw519 你又没有经历我这些，不用对比这些乱七八糟的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113930182419746986": {
+    "text": "@Xlin_kis 谷歌还是太善良了，如果是我处理，得加个封号，白嫖的连网页版和APP端的高点思考等级都不让使用。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113929758916694386": {
+    "text": "@MuweiCallisto @Xiaoyzi_Web3 第一次需要晒，有意义，后面的晒不晒都无所谓。\n\n活得久，领得久，才是王道。 https://t.co/tY3dJN5dhH",
+    "links": [
+      "https://t.co/tY3dJN5dhH"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113916540664037848": {
+    "text": "@xio1795236 你已经白嫖惯了，觉得理所当然。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113915939309994349": {
+    "text": "再次符合预判，谷歌果然又来一次大清算。\n\n那些想8.99美元白嫖两年多在反重力Antigravity里使用Gemini 4 Argon的人，终于开始被处理了，正式订阅用户不再担心Gemini 4 Argon会降智流口水了。 https://t.co/i3U0bdXeNl",
+    "links": [
+      "https://t.co/i3U0bdXeNl"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113912017786703913": {
+    "text": "@gb9886 每次周末和节假日，回家的人数都不固定的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113910770950189528": {
+    "text": "@DenitaRuger9427 可以实体卡转ESIM，但是好像得收到卡才可以……",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113907828574531647": {
+    "text": "@DenitaRuger9427 这样应该拿不到ESIM吧？你是买实体卡？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113892229333024768": {
+    "text": "@taozibuilds 我上次蓝V流量比我老乡的多一半，收益却比他少一半，不是更玄学？\n\n其实原因就是我图片说的那三个，我已经验证了两个，下次发工资验证第三个猜测。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113891608613752913": {
+    "text": "@ppbanker888 @Xiaoyzi_Web3 我都说了几次此话题终结了，是他在评论区和私信一直纠缠不清，那只能晒他出来了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113888237920088077": {
+    "text": "@gwvpsceping 老乡他的互动没有我的多，无论是主贴还是评论。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113887755155775709": {
+    "text": "@lengs4189 我这样操作，只是想快点结束惩罚期，降低算法注意力，毕竟当初被惩罚降权就是那两篇技术贴的原因。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113875391006024156": {
+    "text": "@LXiangchen71169 他纠缠不清，我直接发新贴将他晒出了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113875148235526461": {
+    "text": "@xxiaonezha 账号权重的确很重要，我很久很久没有处理粉丝了，有空也清理一下机器人粉丝。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113874457790140521": {
+    "text": "@hamy8998 @Xiaoyzi_Web3 他估计读书少，不知道实践是检验真理的唯一标准。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113874210917601742": {
+    "text": "@LXiangchen71169 实践是检验真理的唯一标准，鞋子是否合脚得自己穿才知道，而不是鞋子标明是多少码或者商家厂家说多少码，不知道AI信息会滞后吗？不知道人工客服会照本宣科吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113874009750126627": {
+    "text": "@SwordXyj @Xiaoyzi_Web3 我和他说了几次终止此话题了，是他在纠缠不清而已。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113870624456331623": {
+    "text": "@Xiaoyzi_Web3 他这是得平时多不得志才会骄傲到心理扭曲呀？ https://t.co/LYMvCy4Wn8",
+    "links": [
+      "https://t.co/LYMvCy4Wn8"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113870162411876658": {
+    "text": "这期工资继续不晒，但我晒个极品推友 @Xiaoyzi_Web3 。\n\n实践是检验真理的唯一标准，鞋子是否合脚得自己穿才知道，而不是鞋子标明是多少码或者商家厂家说多少码，不知道AI信息会滞后吗？不知道人工客服会照本宣科吗？\n\n他一开始上来就说我是小学生…… https://t.co/RmDLX3DGYn https://t.co/cTp4LFmmf3",
+    "links": [
+      "https://t.co/RmDLX3DGYn",
+      "https://t.co/cTp4LFmmf3"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113865079280336918": {
+    "text": "@Xiaoyzi_Web3 @SwordXyj 大聪明你好！我是神算呀，知道他前几天的蓝V流量和他平时时间线有效曝光转化率？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113864347684605963": {
+    "text": "@tzb360 它不好的话，我不会使用，更不会推荐。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113864224183374157": {
+    "text": "@Xiaoyzi_Web3 @caomaowang1 你继续自欺欺人，整个帖子评论区就这个特例，其他人的评论你都睁眼瞎。不说我的帖子，但凡看任何收了两次工资以上的人发帖都知道你的说法是错的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113862774602559715": {
+    "text": "老乡猜测和内容有关系，我不认可，因为我当时的蓝V流量比他多一半，收却比他少一半。真和内容有关系的话，那我的时间线有效蓝V曝光转化率得是他的三分一。而在那之前我的帖子内容没有大变化，平时转化率比他还高一点，要转化率降低66%才可以，这几乎是不可能的事情。 https://t.co/B8sSY7VcUv https://t.co/tf2OtLl6Vj",
+    "links": [
+      "https://t.co/B8sSY7VcUv",
+      "https://t.co/tf2OtLl6Vj"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113836804365504967": {
+    "text": "@caomaowang1 如果你说的转化率是真的，肯定超过最低的30美元起发线。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113836416199532873": {
+    "text": "@ddny09 嗯，不管怎么算，都不会是从通过后算起。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113836083758674126": {
+    "text": "@us_wu46523 不是朋友，只能说聊得过来。他是中国大陆人，公司出差香港几年而已。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113835546707726706": {
+    "text": "@hao_gu12801 帖子进去第一评论就是发帖人，也就是我的评论，看评论不需要翻看，只需要带眼睛。\n\n另外，也可以自己测试，官方1美元测试一天。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113834976303329628": {
+    "text": "@Absolute_Belial 我第一次使用，以前都是孩子他妈使用。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113834752813957169": {
+    "text": "@Absolute_Belial 自古以来，双方战乱，底层老百姓都是最遭罪。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113833802187587917": {
+    "text": "@ddny09 不是加上之前全部，如果是加上之前全部的，我第一次绝对远不止是300多美元。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113832906200334782": {
+    "text": "@pingmin12789 不止是这个问题，做人做事都得有自己的原则和底线。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113832743817658523": {
+    "text": "@xingzhi0502 不是看总流量，是看总时间线有效蓝V流量。\n\n通过原创内容奖励后，只能看总蓝V流量和平时的转化率来推算。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113729484964896807": {
+    "text": "@caomaowang1 你之前的时间线有效蓝V曝光转化率是不是比较低？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113723100458311768": {
+    "text": "@Xiaoyzi_Web3 @Lovislexus 你宁愿怀疑系统发错工资给我，都不愿意相信自己的计算方式不对，佩服。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113722687780684232": {
+    "text": "@Xiaoyzi_Web3 @Lovislexus 我的历史帖子晒过多次粉丝数据，蓝V比例低于40%，技术博主自然粉丝都是这样的比例。不过，我们最大的差别不是蓝V粉丝。\n\n看我的历史帖子，就知道我的账号被惩罚了。\n\n如果你硬是想跟低谷的我比，等下次你晒工资，我可以私信告诉你结果。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113714878611595542": {
+    "text": "@Xiaoyzi_Web3 @Lovislexus 不是臆想，是一步步往前推算，跟多个博主一起验证得出。\n\n你看本帖的评论区和我之前的帖子的评论区，有人支持你观点吗？\n\n新人年轻气盛可以理解，下次发工资你就明白了。\n\n我从几百粉丝就一直纯靠技术教程干货帖子自然涨粉到一万，28天就同时达标原创内容奖励和订阅，对互关起号的你说我小学生只想笑。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113712913240518664": {
+    "text": "@Xiaoyzi_Web3 @Lovislexus 除了你总流量两次我只回复一次，其它都没有漏。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113711401051332804": {
+    "text": "@Xiaoyzi_Web3 @Lovislexus 不要自己臆想，得看历史帖子转化率。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113711260072362295": {
+    "text": "@Xiaoyzi_Web3 @Lovislexus 你脑子有毛病吧？你哪条评论我没有回复你？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113710977896349967": {
+    "text": "@lengs4189 等他们下次再发工资，就不会嘴硬了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113709362544042137": {
+    "text": "@Xiaoyzi_Web3 @Lovislexus 只看蓝V流量，在你蓝V流量截图那里回复你了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113709153923617238": {
+    "text": "@Xiaoyzi_Web3 @Lovislexus 这就对了呀，你5.5天的蓝V流量才62.3万，虽然不知道你的蓝V流量转换到时间线有效蓝V曝光是多少（得看你自己有没有发历史记录帖子），就按多数人的平均数50%来算，就是31万时间线有效蓝V流量，跟你的458.8美元对不上的。\n\n你往前加上5天，就差不多准确了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113708107889307945": {
+    "text": "@caomaowang1 方便的话，看看你的最近7天的蓝V流量。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113707656523497511": {
+    "text": "@Xiaoyzi_Web3 @Lovislexus 你这截图不完整，大概率是总流量，不是蓝V流量。你要点击蓝V流量，截图完整。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113707227005763803": {
+    "text": "@xiangning0 是的，很多人都这样，他们这些第一发的太倔强了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113706795307086274": {
+    "text": "@Xiaoyzi_Web3 @Lovislexus 你先晒出你这5.5天的蓝V流量，和你以前时间线有效蓝V流量的转化率（不是总流量转化，是总蓝V流量转化）的旧帖子，自己计算一下就知道了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113704954523427206": {
+    "text": "@Xiaoyzi_Web3 @Lovislexus 时间线有效蓝V流量，这几个字被你吃了？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113704173720232217": {
+    "text": "马教主这帖子的话题有点深沉，评论区更是热闹，甚至有点激烈……\n\n只要涉及利益，人心就会变得复杂，经济和政治更加是放大器。\n\n对于底层的普通人来说，他们的要求其实很简单，平安、健康、温饱即可。 https://t.co/bZciRslufK",
+    "links": [
+      "https://t.co/bZciRslufK"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113700618326188303": {
+    "text": "@Lovislexus 比较准确的，我那帖子评论区不止一个推友认可我的观点。\n\n如果账号处于正常状态，大概是1万时间线有效蓝V曝光等于10美元收益。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113699598225359028": {
+    "text": "@Xiaoyzi_Web3 真是依赖AI的人连思考质疑的能力都下降了……不知道实践才是检验真理的唯一标准吗？ https://t.co/0qIzxiX8Yt",
+    "links": [
+      "https://t.co/0qIzxiX8Yt"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113698284741206034": {
+    "text": "@Lovislexus 网上流传的计算是旧创作者收益和Grok的回答结合体，说收益是从通过那刻或者那天后才开始计算，结果很多人都相信了，真是依赖AI的人连思考质疑的能力都下降了。\n\n这个问题我之前的帖子解答过的，和其他博主一起核对过的。 https://t.co/Sa4hkpqjqL",
+    "links": [
+      "https://t.co/Sa4hkpqjqL"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113696702268084241": {
+    "text": "@hao_gu12801 帖子的评论区不是有我的测试吗？其它帖子也发过，帖子+评论区起码发过四五次，你没有看到就代表我没有发？\n\n你要是想较真，发个支付宝口令红包来，我现在开电脑跑脚本测试最新最完整的发你。 https://t.co/2o66HJPFqf",
+    "links": [
+      "https://t.co/2o66HJPFqf"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113694674519265594": {
+    "text": "@cccbxdx 超级无语……Ultra的升级动力没有了……",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113694190089720023": {
+    "text": "@hao_gu12801 ipure、ipregistry、ipinfo、IP2Location和AbuseIPDB，我都测试过，都是家宽，这是我在用的。 https://t.co/JWyPnRquO7",
+    "links": [
+      "https://t.co/JWyPnRquO7"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113690954834292796": {
+    "text": "@hao_gu12801 你问的是帖子这家IP代理池？还是问我之前推荐的美国家宽？ https://t.co/JWyPnRquO7",
+    "links": [
+      "https://t.co/JWyPnRquO7"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113690242633076931": {
+    "text": "@Daiziya1127 ipure、ipregistry、ipinfo、IP2Location和AbuseIPDB，我都测试过，都是家宽。\n\n我的订单和检测，都发过图，你的呢？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113689453579649295": {
+    "text": "真是三人成虎，这么多人被洗脑，不是这样计算的。\n\n我当初通过原创内容奖励才3天就发工资328.32美元。\n\n难道我就是3天收益有328.32美元吗？https://t.co/IQU2pIPFoS https://t.co/FUBzpsV5pC",
+    "links": [
+      "https://t.co/IQU2pIPFoS",
+      "https://t.co/FUBzpsV5pC"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113678004912271377": {
+    "text": "@LiusirHK 老家里只有白酒和红酒，没有啤酒。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113671936203178455": {
+    "text": "@SwordXyj 邪修起号一个月可以2万粉丝，如果你是广告主的话，你会投广告吗？即使投递，你给的价格会高吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113671156129747025": {
+    "text": "家里这台2021年公司送的空气炸锅，才4L，家里的走地鸡砍三份都不一定可以放得进去……\n\n没有烤整鸡的功能，还得手动翻，想下单买过一只更大更好的空气炸锅，结果孩子他妈不同意……\n\n暂时不想了，边看剧边吃喝吧，开始一个人的夜宵生活。 https://t.co/JrqTktcK3X",
+    "links": [
+      "https://t.co/JrqTktcK3X"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113662536566600141": {
+    "text": "@Kemaxinall @xxiaonezha 那是小哪吒自荐的，我推荐的是这两个检测。 https://t.co/2o66HJPFqf",
+    "links": [
+      "https://t.co/2o66HJPFqf"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113660869725110315": {
+    "text": "@Menghuaban520 ipure、ipregistry、ipinfo、IP2Location和AbuseIPDB都测试过吗？都是家宽吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113659941739471022": {
+    "text": "@Menghuaban520 我也是为了养Claude才开的它，目前的确还没有封号，但是以后不好说。我推荐那家才3.5美元一个月，很划算了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113657775079542959": {
+    "text": "@bossXAI 说漏了一个，ipregistry测试也是家宽。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113656515353801147": {
+    "text": "@Menghuaban520 这家IP代理池我都没有公布过，好坏你都不知道，有什么可惜的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113656380909597081": {
+    "text": "@Menghuaban520 IP代理池网上很多，自己找就是。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113656142132068845": {
+    "text": "@bossXAI 你不会测试，ipure、ipinfo、IP2Location和AbuseIPDB我测试都是家宽。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113655237735231530": {
+    "text": "@bossXAI ipure、ipinfo、IP2Location和AbuseIPDB我测试都是家宽。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113653809058562328": {
+    "text": "@Harmonychno @FrankQIN558638 是听说过不少操女粉，真假就不知道了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113653574383071659": {
+    "text": "@FrankQIN558638 有道理，估计是发生在墙内大家接受不了而已。你那学姐家里很穷？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113653074476556464": {
+    "text": "@bossXAI 是机房IP，还是家宽，不是靠喊的。 https://t.co/tpm4z42RUt",
+    "links": [
+      "https://t.co/tpm4z42RUt"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113649940182540561": {
+    "text": "@Harmonychno 不自爱，她们的父母若知道得多伤心。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113643062211789230": {
+    "text": "@bossXAI 我之前推荐过自己使用的美国家宽呀 https://t.co/JWyPnRquO7",
+    "links": [
+      "https://t.co/JWyPnRquO7"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113641691127456053": {
+    "text": "@zihao_ZiO 你看起来经验丰富呀，分享一下。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113636003953229841": {
+    "text": "@YiXin_Q 正常，你玩啥游戏？\n\n我大学的时候，有个舍友玩那个QQ炫舞，四年搞了足足7个女生，真心想不懂。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113634449162113506": {
+    "text": "@WildVariable01 你搬运别人的东西然后没有打码？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113634066822246910": {
+    "text": "今晚和朋友聊天，不知道怎么说起美籍王水牛与上百名女性发生关系的事情，他说是不是故意炒作，不敢相信。\n\n其实我是相信的，因为我认识的人就有美女投怀送抱，而他只是有香港临时身份证而已，美籍或者非洲就更受欢迎了。\n\n那些女生不知道怎么想的，可能是寂寞空虚，可能是虚荣心作祟，反正我没法理解。 https://t.co/nwJcg3s026",
+    "links": [
+      "https://t.co/nwJcg3s026"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113628304205135893": {
+    "text": "@WildVariable01 是不是有外链接的帖子没有进行内容揭露为商业合作？😂",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113627785524895754": {
+    "text": "@xxiaonezha 我这家用得很满意，应该是性价比最高的一家美国家宽了。😘",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113627288726339932": {
+    "text": "@Ouh_web1 @xxiaonezha 无限流量、不限速的美国家宽只要24人民币？请推荐给我，太便宜了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113625491043496076": {
+    "text": "@xxiaonezha 使用我的邀请链接注册后，每月3.5美元。 https://t.co/JWyPnRquO7",
+    "links": [
+      "https://t.co/JWyPnRquO7"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113620990160953355": {
+    "text": "@xxiaonezha 不错，和我推荐的那个美国家宽差不多，自己测试也是差不多这样。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113620013336990174": {
+    "text": "@ohayou792 所以我不建议搞，除非在那边上学或者工作。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113619146600579475": {
+    "text": "@xxiaonezha 130U + 返佣，有约定的，达不到就是30U + 返佣，所以我说30U或者130U。\n\n对于我来说，达到130U肯定没有问题，否则我怎么会合作，其它都是100U呢。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113618647034077624": {
+    "text": "@omnihanson Pro的有这个限制，否则也不会这么便宜。Max和Ultra没有这个限制，你可以看看。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113617659376132180": {
+    "text": "@xiaojiaoai 一念之差，10多万利润就这样擦边而过……",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113611180854165941": {
+    "text": "@bangbuilds 做人做事都得有自己的准则和底线。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113607236379652186": {
+    "text": "@gwvpsceping 他的可能连伪家宽都不是，毕竟是专门搞代理IP池。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113603455768260997": {
+    "text": "@LiusirHK 我在广东高州，荔枝从小吃到大。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113603090020815216": {
+    "text": "@Lovislexus @10086110x 也不是家宽，是IP池，这和机场、家宽都不一样。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113602796264263919": {
+    "text": "@LiusirHK 很客观评测，负面他大爷，哈哈。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113602640622092570": {
+    "text": "@cyka_33 我所有的推广，都是测试不错才推广的，自己都在使用的，不是有利益就推广的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113598732205973589": {
+    "text": "@gb9886 那倒不至于，合作不成也没有必要打击别人，我也是客观评测。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113597291756228771": {
+    "text": "@kalipusitkk 小道消息，未证实，不值得冒险。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113593497156739430": {
+    "text": "@ThanksuTrump 我没有想过买，我妹妹那台华为折叠屏我玩了一会，折叠屏对我没有吸引力。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113593006473548145": {
+    "text": "@cyka_33 这家广告商不是机场，也不是我之前推荐的机场和美国家宽，它是代理IP池。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113592253260390908": {
+    "text": "请问有人知道这是真的吗？\n\niPhone Duo 折叠屏的质量这么差吗？\n\n我印象中苹果的品控还不错呀，难道是这五年没有用苹果新品产生信息差了？ https://t.co/SQ9xCp4Bz1",
+    "links": [
+      "https://t.co/SQ9xCp4Bz1"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113591373098254733": {
+    "text": "@DunYex 查了一下，好像是没有关门，但是得视频开户了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113590912601501909": {
+    "text": "@caicai_life 一直都良心，做人做事都得有自己的准则和底线。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113588598142574773": {
+    "text": "@Beefujian 肯定不能干这违心的事情，如果加多了2个0，我考虑一下，哈哈。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113587783168332279": {
+    "text": "放弃一家广告合作，不是真家宽非要我用不准确的平台检测出家宽，真搞笑！ https://t.co/4PUgxYNKV8",
+    "links": [
+      "https://t.co/4PUgxYNKV8"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113552991974481977": {
+    "text": "@yscyao 如果免费的，临时用用还是可以的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113540422480056630": {
+    "text": "@WildVariable01 我是说不要太依赖，不是说不使用。\n\n你最后那段话，说的就是太依赖AI的弊端，这样长久下去很多人离开AI就废了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113539882991993090": {
+    "text": "@taozibuilds 免费的话，我还是敢用的，火狐的口碑还可以。\n\n付费的话，我是不会买的，只能它的浏览器使用不值得。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113539441965121785": {
+    "text": "@oh_Roach 付费我不会买，只限制它浏览器不值得。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113539254072864783": {
+    "text": "@zhaxinX 透露所在城市没有什么呀，我一直都不隐藏。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113538792527364210": {
+    "text": "@Xiaoyzi_Web3 不用嘴，绝大多数人都没有一个月一万，哈哈。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113536580136906958": {
+    "text": "@bigballW 除了6月底和7月初申请的，我没有见过有人可以免费开卡的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113535851674394807": {
+    "text": "@Ylj158852 那天应该买CF的，我发帖后没有反应过来。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113534451053674849": {
+    "text": "@alicooler 怪不得我测试没有，原来要付费的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113534328995217918": {
+    "text": "@A9Beacon 我只相信自己测试的，你可以测试一下。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113534199789465875": {
+    "text": "@bigballW 最低门槛的，只要邮箱，付费开卡，每月都付费。\n\n次低门槛的，只需要身份证，付费开卡，只付费一次。\n\n上面两个我都没有推，如果E卡和P卡开不了，那建议搞Starryblu卡，只要护照和身份证。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113532930236797207": {
+    "text": "你要去测试火狐手机浏览器一下，我之前看到别的博主发了，下载注册测试过，没有内置免费VPN。\n\n这消息，要么是假的，要么是内测阶段只有少数人可以。\n\n如果是真的，那么火狐手机浏览器真的会爆火，每月50G免费VPN流量杀伤力很大，虽然只能在火狐手机浏览器使用。 https://t.co/GtsjEhrgYj",
+    "links": [
+      "https://t.co/GtsjEhrgYj"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113531353148879268": {
+    "text": "@HelloMrTse 不建议使用假的地址证明，除非这个不重要。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113530638460719548": {
+    "text": "需要引用之前的帖子，没法引用原帖，截图的原帖在这里https://t.co/UScgeEPglS",
+    "links": [
+      "https://t.co/UScgeEPglS"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113530328291930183": {
+    "text": "@RayAlwaysDay1 我点赞一下就走了，因为要引用之前的帖子，之前的帖子提过这个问题，不少人都和你一样，没有针对你的意思。\n\n你想多了，很多人不适合引用的时候都这样发点评的（不是不舍得引用）。\n\n将你的帖子链接放评论区，ok？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113529746722300412": {
+    "text": "@down_max123 嗯嗯，我的美股资金分三份的，短线交易的不到20个，才开杠杆的。当然，主要是贪心了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113526746209558805": {
+    "text": "@y1cxmm 不应该是888888.88吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113513705510260880": {
+    "text": "@BlockInsight214 是的，被抽到的话就直接Game Over了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113513326705877398": {
+    "text": "@WildVariable01 广电开卡很简单的，想体验可以去试试，首月免费。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113513191091179879": {
+    "text": "@WildVariable01 广电卡晚上容易限速，我是联通卡为主，广电卡为辅。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113509046842277957": {
+    "text": "不少人为了Wise、海妖、iFast GB的卡，使用假的地址证明。\n\n不少人为了E卡和Plasma One的银行账户，也使用假的地址证明。\n\n有些东西其实很重要，想长期稳定放心使用，最好使用真实过硬的资料，任何时候抽查都不怕那种，我一直是这样。 https://t.co/xCx70YpQJZ https://t.co/Dflf1R39Br",
+    "links": [
+      "https://t.co/xCx70YpQJZ",
+      "https://t.co/Dflf1R39Br"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113508440635023386": {
+    "text": "@gb9886 你如果居住在韩国，有真实的水电账单或者韩国银行账单，那没有问题。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113505274610999379": {
+    "text": "@gb9886 定期抽查的，如果你的资料不够硬早晚被关户。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113504587567304904": {
+    "text": "@hellotimjonasso 全国的，你去贴吧看就知道了。多打几个电话，换几个客服。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113504374307909671": {
+    "text": "@gb9886 银行账户只有几个区的资料可以开通，有多少人有正规资料？非正规资料侥幸通过也有被关风险，想长期使用都是正规开通，没有银行账户，出入金都是经过交易所或者加密钱包。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113503822907908435": {
+    "text": "@huangyoushu888 广电是四家月租性价比最高的了，其它三家都38元起步了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113502580244430922": {
+    "text": "@huangyoushu888 你如果不是AI，要不要看看其它三家的手机套餐月租再说？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113501984225730709": {
+    "text": "@gb9886 正规开通的人，90%都没有银行账户。我转入转出，都是经过币安。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113501401381064706": {
+    "text": "@DaixiXha 嗯，E卡和P卡的开门都是按小时算的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113500585370828903": {
+    "text": "@1903901 我知道呀，我那帖子评论区说了，Facebook和Instagram都可以这样绕过的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113500040211927448": {
+    "text": "@down_max123 是的，上杠杆的话，收益和亏损都放大，很难拿住。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113498922819977683": {
+    "text": "@Beefujian 前面两个帖子，我说了理由，它的数据如果是真的，就没有必要继续临床试验。\n\n如果我前天晚上不看盘就好了，十几万大肉就这样错过了……",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113498150724149524": {
+    "text": "@Washington17767 然后你就理解为我说它没有自研模型？你的理解能力感人",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113497675773718709": {
+    "text": "@Lovislexus 你对比使用看看，每个人的场景不一样，体验也可能不一样。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113495520018854091": {
+    "text": "中国广电卡连续免费赠送12个月0元50G通用流量，月实收金额不低于19元的存量在网3个月以上的单移主卡用户都可以开通。\n\n这50G通用流量羊毛福利，主副卡可共享，但当月未使用完不可结转至次月。\n\n广东省用户可以通过微信打开链接自助开通，其它省份用户需要打10099找客服开通。https://t.co/HdQHyV1O2s https://t.co/Kh3IvQkhUV",
+    "links": [
+      "https://t.co/HdQHyV1O2s",
+      "https://t.co/Kh3IvQkhUV"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113312545037819962": {
+    "text": "@hamy8998 我厨艺是这个水平的了，能吃就行。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113312373587222569": {
+    "text": "@Washington17767 我没有说过它没有自研模型吧？别激动。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113310902628012262": {
+    "text": "最初的判断没有错，是得做空美股MRNA。\n\n可惜时间节奏没有对，不应该上杠杆，太影响看盘心态。\n\n本来可以发一笔小财，结果被我搞成小亏，够郁闷了。 https://t.co/eQOmqwRYTG",
+    "links": [
+      "https://t.co/eQOmqwRYTG"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113239781912219899": {
+    "text": "@blueice49810906 你的眼神不太好。\n\n我发的帖子99.99%都是纯手工写的。\n\n我的记忆中只有一帖子和一长文章是由AI主写。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113239019966628322": {
+    "text": "@taozibuilds 嗯，明年年初十才出去找工作，大概率是广州，小概率是一个小城市。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113237219137974483": {
+    "text": "@YunTechX Muse一样有自己的Meta生态，我是要抛开它们的生态对比综合使用体验。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113229959242391604": {
+    "text": "@lengs4189 蛮好的，我当时得罪了老板，被做了手脚，领取不了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113229674667286594": {
+    "text": "晚饭，煎豆饼 + 煮麦菜，简简单单又一餐。 https://t.co/su5W1RMIsn",
+    "links": [
+      "https://t.co/su5W1RMIsn"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113222184080650685": {
+    "text": "@Lovislexus 帖子肯定得发的，我大概是10帖子对应150~300评论。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113221965083488288": {
+    "text": "@SwordXyj 我的手把手教你系列教程都靠谱。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113220383063343529": {
+    "text": "@SwordXyj 很多人不知道我那教程，那教程是我账号惩罚期写的，流量不好。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113218443248119944": {
+    "text": "Plasma One这个排行第二的U卡，最近一个月一直都不断有人成功注册，走我邀请链接注册成功并且14天内消费满100U就可以得到17U的奖励。 https://t.co/Qa4p8mis2o https://t.co/RngTyjT1WC",
+    "links": [
+      "https://t.co/Qa4p8mis2o",
+      "https://t.co/RngTyjT1WC"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113216165476712922": {
+    "text": "@pandaxia0613 它自家的生态肯定接入的，但Grok Bot的生态可能比它还好一些。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113215392579760218": {
+    "text": "@acshiryu 快消费100美元吧，这样你有17美元奖励。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113214977058521420": {
+    "text": "@Jayker012 Grok Bot的生态优势的确更明显。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113193543229637086": {
+    "text": "@1903901 也得看转发你帖子的人的账号权重的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113192332686209379": {
+    "text": "@glchu2022 这是E卡，P卡的邀请链接看这个帖子。 https://t.co/RngTyjSu74",
+    "links": [
+      "https://t.co/RngTyjSu74"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113182705881858158": {
+    "text": "常年稳居U卡第一宝座的E卡，今天有粉丝朋友注册成功了！！！\n\n没有的可以去试试，走我的邀请链接注册并成功消费100U的，和Plasma One一样，我私人返你5U。\n\n只限前10名达标的，官方规定的，目前我邀请的人还没有达标。9月的旧贴的邀请链接不小心被我删了，新的邀请链接是https://t.co/gi9v3abuyR https://t.co/84J5d70fIC",
+    "links": [
+      "https://t.co/gi9v3abuyR",
+      "https://t.co/84J5d70fIC"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113164622916362284": {
+    "text": "最近玩美股短线，实在是事事不顺……\n\n我想说，股票的主力呀，你就差我这三瓜两枣吗？\n\n看来美股短线得休息一段时间了，还是中长线定投舒心。 https://t.co/2rKrD8eFbO https://t.co/NgITObzhIG",
+    "links": [
+      "https://t.co/2rKrD8eFbO",
+      "https://t.co/NgITObzhIG"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113156916667129923": {
+    "text": "@y1cxmm 算法更改初期，好像多数人流量都不好。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113156581668041118": {
+    "text": "评论互动的流量虽然不算时间线有效流量，但是评论可以让算法知道你是活跃的活人，会推你其它帖子给其他推友看。\n\n简单来说，多互动就是多曝光自己。 https://t.co/NZ9ZMTPvgE",
+    "links": [
+      "https://t.co/NZ9ZMTPvgE"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113155357161975902": {
+    "text": "@linxiaobei888 你也证明了Claude封号就是玄学。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113153388427039012": {
+    "text": "@Will_ZBN 其他两位推友不是这么说的，他们都说和Pro的一样。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2113153081924051213": {
+    "text": "🚨【不止PHP有安全漏洞，Golang也有！】权威CA机构eMudhra曝大乌龙：8张受信任中间证书私钥形同裸奔（其中一张竟是数字“4”），黑客可借此伪造任意域名的合法HTTPS证书！\n\n​⚠️因Go底层默认不查吊销列表，老版本Go程序发起HTTPS请求时会信任伪造证书，极易遭中间人劫持（CVE-2026-111943）。\n\n​🔥Go已紧急发布1.26.10与1.27.3硬编码拉黑这批证书。注意：Go是静态编译，仅升级环境无效，必须用新版重新编译你的Go服务！ #Golang #PHP #网络安全",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2112964969113514090": {
+    "text": "@1903901 @newcomelol 马来西亚的租房好便宜呀，有没有菲律宾那么乱？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2112958810738524654": {
+    "text": "@1903901 欧洲其实有点佛性，他们才是生活。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2112955167952003191": {
+    "text": "Web建站，PHP依然是王者，起码现存占比还是第一。\n\n这次PHP安全漏洞影响还是很大的，欧洲等地政府网站集体下线，进行安全紧急应对。 https://t.co/7FSr1J9CzE https://t.co/xbjRLy4WeO",
+    "links": [
+      "https://t.co/7FSr1J9CzE",
+      "https://t.co/xbjRLy4WeO"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2112947917296427381": {
+    "text": "@zihao_ZiO 你可以看看他的显学，对比一下。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2112945442900390052": {
+    "text": "@1903901 铁粉要求，不离谱的帖子，我还是会帮忙转发引用的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2112945142722437456": {
+    "text": "@newcomelol 怎么解决长期签证？还有语言沟通。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2112943833290014765": {
+    "text": "@Lovislexus 我的也才几天，能多久就多久吧，我已经看淡了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2112942991333843405": {
+    "text": "@xiaoshan0413 我没有和别人共用，IP固定，就是Claude Pro升级Max 5x的那天晚上被封号了，此前已经存活3个月。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2112941388170158204": {
+    "text": "一个粉丝朋友的Claude玄学心得。\n\n什么IP，什么时区，什么语言，都是扯淡。\n\n人家全踩了，一样没有被Claude封号。 https://t.co/E2DDDYSkhe",
+    "links": [
+      "https://t.co/E2DDDYSkhe"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2112869135969595861": {
+    "text": "X这时间线推荐有毒，不能只有我一个人刷到。 https://t.co/HErkl03a32",
+    "links": [
+      "https://t.co/HErkl03a32"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2112867982712119435": {
+    "text": "@ranranyk 你这是多次申请终于通过后就想偷懒了吧？😂",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2112859876858994795": {
+    "text": "@Beefujian 是PHP 官方安全团队在 https://t.co/bg2I8yY1RR 发布的紧急预告，安全机构 watchTowr、Sansec 及 CERT-EU 均已发声确认。",
+    "links": [
+      "https://t.co/bg2I8yY1RR"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2112854358681702831": {
+    "text": "@balabala289 @CaptainXTop 这个消息我之前发过了，那就是没有变化。 https://t.co/wzMYJhXDw5",
+    "links": [
+      "https://t.co/wzMYJhXDw5"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2112853608370954405": {
+    "text": "@xin1462409 得选个好的母鸡，我教程是用最便宜的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2112853390959194408": {
+    "text": "@lxl1818 @xuanxuetang 公司说一个月内可以改，超过改不了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2112837283812659701": {
+    "text": "@ltparisinfo 我这边是广东粤西地区，也算比较穷了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2112837130926092463": {
+    "text": "@sfunccc 绑定我的邀请码，完成消费5U任务就可以找我返2U了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2112836784266833971": {
+    "text": "@Pingan_Chain 推友反馈，ultra5x大概有300刀opus用量，20x则1200，刚好是一个claude pro，我用来审核GPT写的代码足够了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2112836543245398287": {
+    "text": "@Boli_deng 截图的推友是Ultra 20X，评论区也有20X推友证实了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2112836007787987255": {
+    "text": "@NimiNoa114514 嗯嗯，性价比很高，你说漏了ytb会员。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2112835797087141990": {
+    "text": "@NimiNoa114514 感谢反馈，你们2个Ultra 20X都这么说，应该是真的了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2112835456006316048": {
+    "text": "@lxl1818 @xuanxuetang 公司就是不愿意改，说改不了，闹得很僵。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2112835092427194426": {
+    "text": "@LiusirHK 估计他们是AI运营X，数据太旧了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2112834479740117047": {
+    "text": "PHP核心曝两个严重RCE漏洞（CVE-2026-109618/109619），可直接拿Shell。\n\n​PHP 5.4及以上版本均受影响，但官方仅修复PHP8.2~8.5的版本。\n\n​官方将于今晚（10月21日）22:00发布补丁，补丁代码一公开，黑客15分钟内就能逆向出攻击脚本，全网通杀所有未打补丁的机器！#PHP #网络安全",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2112800651134787876": {
+    "text": "@Betinlife @Cangbaic 能否使用，和是否全新的没有关系。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2112785475039527168": {
+    "text": "@WildVariable01 三大论坛，就NS最简单注册，但是三个论坛也它最水。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2112779492037206126": {
+    "text": "@Ryusoohow 感谢反馈，再次仔细看了一下截图内容，截图那哥们开的是Ultra 20×。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2112779133352878488": {
+    "text": "@cccbxdx 截图那哥们是Ultra 20X",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2112757836233240808": {
+    "text": "使用Claude被封号太玄学，最稳定的使用方法应该是付费订阅Gemini，然后在反重力Antigravity里使用Claude，比如Claude Opus 5.5。\n\nGemini Pro赠送的Claude额度肯定不够用的，但Gemini Ultra赠送的Claude额度就和Claude Pro的额度差不多了。\n\n我后面大概率是升级到Gemini Ultra 5X，ChatGPT Plus和ChatGPT Team各只保留一个，不再订阅Claude Pro。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2112571589531415035": {
+    "text": "马斯克发帖说，X（推特）的“推荐时间线”的算法做了两个大改动，目的是让用户更愿意停下来看内容，而不是刷几秒就划走。​\n\n以前X的算法更看重点赞、转发、评论这些表面互动，现在更直接预测用户的真实停留、阅读的时间。 https://t.co/6WFlKAzx0N",
+    "links": [
+      "https://t.co/6WFlKAzx0N"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2112560043531133408": {
+    "text": "我也是服了，谷歌居然只修复了美区的8.99美元订阅Bug，其它地区没修复。\n\n如果白嫖用户都可在反重力Antigravity里使用Gemini 4 Argon的话，那么Gemini 4 Argon很快就会降智流口水。\n\n希望事后能像之前那样来一次大清算吧，让白嫖用户使用一个月就收回，反正就只付款了一个月，拨乱反正很合情合理。@antigravity @Gemini @Google",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2112437347505557675": {
+    "text": "分享我常用的2个网站，鉴别家宽住宅IP与机房数据IP，个人觉得还是比较准确和方便的。\n\nhttps://t.co/vxrwtbJXnw 和 https://t.co/ORNOcy8mwd\n\n截图测试的是我的美国家宽住宅IP和我的华为云新加坡原生机房IP，你们可以参考一下。\n\n当然，还可以使用开源脚本来进行全面测试，更准确更全面，但不适合多数人了。",
+    "links": [
+      "https://t.co/vxrwtbJXnw",
+      "https://t.co/ORNOcy8mwd"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
   }
 }
