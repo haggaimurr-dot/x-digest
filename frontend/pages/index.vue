@@ -44,12 +44,12 @@
           <div v-if="kindCounts.length" style="margin-top:8px">
             <div class="chip-group-title">帖子类型</div>
             <div class="chips">
-              <button v-for="kc in kindCounts" :key="kc.kind" type="button" class="chip" :class="{ active: kindFilter === kc.kind }" @click="kindFilter = kindFilter === kc.kind ? '' : kc.kind">{{ kc.kind }}（{{ kc.n }}）</button>
+              <button v-for="kc in kindCounts" :key="kc.kind" type="button" class="chip" :class="{ active: kindFilter === kc.kind }" @click="kindFilter = kindFilter === kc.kind ? '' : kc.kind">{{ kc.kind }}</button>
             </div>
           </div>
           <div class="filter-row" style="margin-top:8px">
             <button class="btn btn-sm" type="button" @click="clearAll">{{ t('index.clearAll') }}</button>
-            <span class="result-count">{{ t('index.resultCount', { n: filtered.length }) }}</span>
+            <span class="result-count">{{ t('index.resultCount', { n: totalPosts }) }}</span>
             <span v-if="translating" class="active-count">{{ t('common.translating') }}</span>
             <span class="active-count" v-if="activeFilterCount">{{ t('index.selectedFilters', { n: activeFilterCount }) }}</span>
           </div>
@@ -171,8 +171,8 @@
           </article>
           </template>
         </div>
-        <p v-if="!loading && !filtered.length" class="empty">{{ t('index.noPosts') }}</p>
-        <nav v-if="filtered.length" class="x-pager" aria-label="分页">
+        <p v-if="!loading && !totalPosts" class="empty">{{ t('index.noPosts') }}</p>
+        <nav v-if="totalPosts" class="x-pager" aria-label="分页">
           <button class="btn btn-sm" type="button" :disabled="page <= 1" @click="goPage(page - 1)">上一页</button>
           <template v-for="(it, ii) in pageItems" :key="'pg' + ii">
             <span v-if="it === '…'" class="x-pager-gap">…</span>
@@ -184,7 +184,7 @@
               <option v-for="n in PAGE_SIZES" :key="n" :value="n">{{ n }} 条</option>
             </select>
           </label>
-          <span class="x-pager-info">共 {{ filtered.length }} 条</span>
+          <span class="x-pager-info">共 {{ totalPosts }} 条</span>
         </nav>
       </section>
     </main>
@@ -310,7 +310,7 @@
 import type { Post, Watchlist, WatchlistAccount, Categories, YTSummary } from '~/composables/types'
 import { LS, useSettings } from '~/composables/useSettings'
 import { canReplicatePost } from '~/utils/x-post.mjs'
-import { avatarUrl, avatarColor, avatarInitial, relativeTime, shanghaiTime, shanghaiDayBound, highlightHtml, firstHitSnippet, shouldShowFlowchart, trunc40 } from '~/composables/useFormat'
+import { avatarUrl, avatarColor, avatarInitial, relativeTime, shanghaiTime, highlightHtml, firstHitSnippet, shouldShowFlowchart, trunc40 } from '~/composables/useFormat'
 import { useScrollLock } from '~/composables/useScrollLock'
 import { linkParts, descResources } from '~/utils/videoTags'
 
@@ -323,6 +323,8 @@ const { saveWebhook, clearWebhook, postWebhook } = settings
 const loading = ref(true)
 const loadError = ref('')
 const posts = ref<Post[]>([])
+const totalPosts = ref(0)
+const tagNames = ref<string[]>([])
 const updatedAt = ref('')
 const watchlist = ref<Watchlist>({ groups: [], accounts: [] })
 const categories = ref<Categories>({ categories: [], assignments: {} })
@@ -349,11 +351,27 @@ const showSettings = ref(false)
 useScrollLock(showSettings)
 const xDialog = ref<'post' | 'refresh' | null>(null)
 useScrollLock(computed(() => !!xDialog.value))
+// Server-side load: fetch the current page with the current filters.
+async function loadPostsPage () {
+  const p = await store.loadPosts({
+    authors: [...selectedAuthors.value],
+    tags: [...selectedTags.value],
+    userTags: [...selectedUserTags.value],
+    categories: [...selectedCats.value],
+    keyword: keyword.value,
+    dateFrom: dateFrom.value,
+    dateTo: dateTo.value,
+    kind: kindFilter.value,
+    minChars: minChars.value,
+    page: page.value,
+    pageSize: pageSize.value,
+  })
+  posts.value = p.posts; totalPosts.value = p.total; updatedAt.value = p.updated_at
+}
 // After an import / refresh: posts and the watchlist (new authors) reload.
 async function reloadPosts () {
   try {
-    const p = await store.loadPosts()
-    posts.value = p.posts; updatedAt.value = p.updated_at
+    await loadPostsPage()
     await refreshWatchlist()
   } catch { /* the next action retries */ }
 }
@@ -367,6 +385,26 @@ const newVocab = ref('')
 const newAccount = ref({ username: '', name: '', group: 'other' })
 
 let authorsInitialised = false
+// Restore the stored author/category selections (once). Runs at setup, before
+// any watcher exists, so the first server load already uses them.
+function restoreSelection () {
+  if (authorsInitialised) return
+  authorsInitialised = true
+  // Default = no author filter (all authors); a stored selection wins.
+  let stored: string[] | null = null
+  if (import.meta.client) {
+    try { const raw = localStorage.getItem(LS.selectedAuthors); stored = raw ? JSON.parse(raw) : null } catch { stored = null }
+  }
+  selectedAuthors.value = stored !== null
+    ? new Set(stored)
+    : new Set()
+  let storedCats: string[] = []
+  if (import.meta.client) {
+    try { storedCats = JSON.parse(localStorage.getItem(LS.selectedCats) || '[]') } catch { storedCats = [] }
+  }
+  selectedCats.value = new Set(storedCats)
+}
+restoreSelection()
 function showToast (msg: string) { toast.value = msg; setTimeout(() => { toast.value = '' }, 3000) }
 function persistSelection () {
   if (!import.meta.client) return
@@ -391,91 +429,16 @@ const userTagOptions = computed(() => {
   for (const a of watchlist.value.accounts) for (const t of userTagsOf(a.username)) s.add(t)
   return [...s]
 })
-const allTags = computed(() => {
-  const counts = new Map<string, number>()
-  for (const p of posts.value) for (const t of p.tags || []) counts.set(t, (counts.get(t) || 0) + 1)
-  return [...counts.entries()].map(([tag, n]) => ({ tag, n })).sort((a, b) => b.n - a.n)
-})
 const catsOf = (postId: string) => categories.value.assignments[postId] || []
 const categoryName = (id: string) => categories.value.categories.find(c => c.id === id)?.name || id
-const catCounts = computed(() => {
-  const counts: Record<string, number> = { __uncat: 0 }
-  for (const p of baseFiltered.value) {
-    const cats = catsOf(p.id)
-    if (!cats.length) counts.__uncat++
-    for (const c of cats) counts[c] = (counts[c] || 0) + 1
-  }
-  return counts
-})
-// Filters other than the author chips (used for author-chip consistency).
-const baseFiltered = computed(() => posts.value.filter(p => passesNonAuthor(p)))
-function passesNonAuthor (p: Post): boolean {
-  if (selectedUserTags.value.size && !userTagsOf(p.author).some(t => selectedUserTags.value.has(t))) return false
-  if (!matchesCats(p)) return false
-  if (!matchesDate(p)) return false
-  if (!matchesTags(p)) return false
-  if (!matchesKeyword(p)) return false
-  if (!matchesChars(p)) return false
-  return true
-}
-// 帖子字数：优先用原文长度；没原文的旧帖用摘要，再没有就用标题。
-function postChars (p: Post): number {
-  const s = (p.text || '').trim() || (p.summary || '').trim() || (p.title || '').trim()
-  return [...s].length
-}
-function matchesChars (p: Post): boolean {
-  if (!minChars.value) return true
-  return postChars(p) >= minChars.value
-}
-function matchesCats (p: Post): boolean {
-  if (!selectedCats.value.size) return true
-  const cats = catsOf(p.id)
-  if (selectedCats.value.has('__uncat') && !cats.length) return true
-  return cats.some(c => selectedCats.value.has(c))
-}
-function matchesDate (p: Post): boolean {
-  const from = shanghaiDayBound(dateFrom.value, false)
-  const to = shanghaiDayBound(dateTo.value, true)
-  if (from == null && to == null) return true
-  const ts = Date.parse(p.published_at || '')
-  if (Number.isNaN(ts)) return false
-  if (from != null && ts < from) return false
-  if (to != null && ts > to) return false
-  return true
-}
-function matchesTags (p: Post): boolean {
-  if (!selectedTags.value.size) return true
-  return (p.tags || []).some(t => selectedTags.value.has(t))
-}
+// Keyword highlighting only (filtering is server-side now).
 const isUserTagQuery = computed(() => /^(?:标签[:：]|tag:)/i.test(keyword.value.trim()))
 const plainKeyword = computed(() => isUserTagQuery.value ? keyword.value.trim().replace(/^(?:标签[:：]|tag:)/i, '').trim() : keyword.value.trim())
-function matchesKeyword (p: Post): boolean {
-  const q = keyword.value.trim().toLowerCase()
-  if (!q) return true
-  if (isUserTagQuery.value) {
-    const needle = plainKeyword.value.toLowerCase()
-    return userTagsOf(p.author).some(t => t.toLowerCase().includes(needle))
-  }
-  const stepTexts = (p.steps || []).flatMap(s => [s.text, s.tools, s.tech, s.prep, ...(s.substeps || []).map(x => x.text)].filter(Boolean) as string[])
-  const hay = [p.title, p.text || '', ...(p.links || []), p.industry || '', p.tech || '', p.author, '@' + p.author, p.author_name, accountOf(p.author)?.bio || '', ...userTagsOf(p.author), ...(p.tags || []), ...catsOf(p.id).map(categoryName), shanghaiTime(p.published_at), ...stepTexts].join('\n').toLowerCase()
-  // Tag field: strip leading # before matching (SPEC).
-  return hay.includes(q.replace(/^#+/, ''))
-}
-const filtered = computed(() => {
-  // 没选任何作者 = 不按作者筛选（显示全部）；其他条件同理，没选就不限制。
-  return posts.value.filter(p => authorOk(p) && passesNonAuthor(p) &&
-    (!kindFilter.value || kindOf(p) === kindFilter.value))
-})
-function authorOk (p: Post): boolean { return !selectedAuthors.value.size || selectedAuthors.value.has(p.author) }
 // ---- 帖子类型（cmd/digest 的 AI 分类；没分类的旧帖为「未分类」） ----
 const POST_KINDS = ['教程实操', '技术分享', '工具资源推荐', '观点讨论', '日常闲聊']
 const kindFilter = ref('')
 function kindOf (p: Post): string { return p.kind || '未分类' }
-const kindCounts = computed(() => {
-  const counts = new Map<string, number>()
-  for (const p of posts.value) if (authorOk(p) && passesNonAuthor(p)) counts.set(kindOf(p), (counts.get(kindOf(p)) || 0) + 1)
-  return [...POST_KINDS, '未分类'].filter(k => counts.has(k)).map(k => ({ kind: k, n: counts.get(k)! }))
-})
+const kindCounts = computed(() => [...POST_KINDS, '未分类'].map(kind => ({ kind })))
 // 复刻：AI 判为「教程实操」才可复刻；没分类的旧帖沿用关键词规则 canReplicatePost。
 function isReplicable (p: Post): boolean { return p.kind ? p.kind === '教程实操' : canReplicatePost(p) }
 // ---- 分页：每页 10 / 20 / 50 条（记在本机），筛选变化回到第 1 页 ----
@@ -483,8 +446,8 @@ const PAGE_SIZES = [10, 20, 50]
 const PAGE_SIZE_KEY = 'x-digest-x-page-size'
 const pageSize = ref(20)
 const page = ref(1)
-const pageCount = computed(() => Math.max(1, Math.ceil(filtered.value.length / pageSize.value)))
-const pagedPosts = computed(() => filtered.value.slice((page.value - 1) * pageSize.value, page.value * pageSize.value))
+const pageCount = computed(() => Math.max(1, Math.ceil(totalPosts.value / pageSize.value)))
+const pagedPosts = computed(() => posts.value)
 function setPageSize (n: number) {
   pageSize.value = n; page.value = 1
   try { localStorage.setItem(PAGE_SIZE_KEY, String(n)) } catch { /* private mode */ }
@@ -501,14 +464,32 @@ const pageItems = computed<Array<number | '…'>>(() => {
   keep.forEach((x, i) => { if (i && x - keep[i - 1] > 1) out.push('…'); out.push(x) })
   return out
 })
-watch(() => filtered.value.length, () => { if (page.value > pageCount.value) page.value = 1 })
-watch([keyword, dateFrom, dateTo, kindFilter, selectedAuthors, selectedTags, selectedUserTags, selectedCats], () => { page.value = 1 })
+// Filter changes: reset to page 1 and reload. If already on page 1, reload
+// directly; otherwise the page watcher fires the reload.
+// While clearAll runs its own reset+reload, suppress the watcher-triggered
+// reloads (filter, page and debounced keyword watchers would otherwise each
+// fire another reload). Clears after 350ms to cover the 300ms keyword debounce.
+let suppressReload = false
+let suppressTimer: any = null
+let keywordTimer: any = null
+function onFilterChange () {
+  if (suppressReload) return
+  if (page.value === 1) reloadPosts()
+  else page.value = 1
+}
+watch(keyword, () => {
+  clearTimeout(keywordTimer)
+  keywordTimer = setTimeout(onFilterChange, 300)
+})
+watch([selectedAuthors, selectedTags, selectedUserTags, selectedCats, dateFrom, dateTo, kindFilter, minChars], onFilterChange)
+watch([page, pageSize], () => { if (!suppressReload) reloadPosts() })
+watch(totalPosts, () => { if (page.value > pageCount.value) page.value = 1 })
 const activeFilterCount = computed(() =>
   selectedTags.value.size + selectedUserTags.value.size + selectedCats.value.size +
   (keyword.value.trim() ? 1 : 0) + (dateFrom.value || dateTo.value ? 1 : 0) + (kindFilter.value ? 1 : 0) + (minChars.value ? 1 : 0))
 const firstSnippet = computed(() => {
-  if (!keyword.value.trim() || !filtered.value.length) return ''
-  return firstHitSnippet(filtered.value[0], plainKeyword.value || keyword.value.trim())
+  if (!keyword.value.trim() || !posts.value.length) return ''
+  return firstHitSnippet(posts.value[0], plainKeyword.value || keyword.value.trim())
 })
 function selectTagOnly (t: string) { selectedTags.value = new Set([t]) }
 // 下拉联想框用数组 v-model，内部筛选状态仍是 Set；桥接读写并保持原有的持久化。
@@ -528,16 +509,22 @@ const authorOptions = computed(() => {
   const unlisted = unlistedAuthors.value.map(u => ({ value: u, label: `${authorName(u)} @${u}` }))
   return [...listed, ...unlisted]
 })
-const tagOptions = computed(() => allTags.value.map(t => ({ value: t.tag, label: t.tag, count: t.n })))
+const tagOptions = computed(() => tagNames.value.map(t => ({ value: t, label: t })))
 const catOptions = computed(() => [
-  ...categories.value.categories.map(c => ({ value: c.id, label: c.name, count: catCounts[c.id] || 0 })),
-  { value: '__uncat', label: t('index.uncategorized'), count: catCounts.__uncat || 0 }
+  ...categories.value.categories.map(c => ({ value: c.id, label: c.name })),
+  { value: '__uncat', label: t('index.uncategorized') }
 ])
 function clearAll () {
+  suppressReload = true
+  clearTimeout(suppressTimer)
+  clearTimeout(keywordTimer)
   keyword.value = ''; dateFrom.value = ''; dateTo.value = ''; kindFilter.value = ''; minChars.value = 0
   selectedTags.value = new Set(); selectedUserTags.value = new Set(); selectedCats.value = new Set()
   selectedAuthors.value = new Set()
   persistSelection()
+  page.value = 1
+  suppressTimer = setTimeout(() => { suppressReload = false }, 350)
+  reloadPosts()
 }
 // 原文默认折叠为 3 行：字数多或换行多（短句多行同样会被截断）时显示展开按钮。
 function isLongText (text?: string) {
@@ -549,14 +536,14 @@ function toggleOriginal (id: string) {
   next.has(id) ? next.delete(id) : next.add(id)
   expandedOriginal.value = next
 }
-// Enqueue the currently filtered posts' display texts for translation
+// Enqueue the current page's display texts for translation
 // (debounced; the queue flushes in chunks of 20). Translation runs toward
 // the current UI language; filtering always uses the original text —
 // only display goes through tr().
 let enqueueTimer: any = null
 function enqueueVisible () {
   const texts: string[] = []
-  for (const p of filtered.value) {
+  for (const p of posts.value) {
     texts.push(p.title)
     for (const s of p.steps || []) {
       texts.push(s.text)
@@ -565,7 +552,7 @@ function enqueueVisible () {
   }
   enqueue(texts)
 }
-watch([filtered, lang], () => {
+watch([posts, lang], () => {
   clearTimeout(enqueueTimer)
   enqueueTimer = setTimeout(enqueueVisible, 300)
 })
@@ -736,22 +723,7 @@ async function refreshWatchlist () {
   const ut = await store.loadUserTags()
   userTagVocab.value = ut.vocabulary || []
   userTagOverrides.value = ut.overrides || {}
-  if (!authorsInitialised) {
-    authorsInitialised = true
-    // Default = no author filter (all authors); a stored selection wins.
-    let stored: string[] | null = null
-    if (import.meta.client) {
-      try { const raw = localStorage.getItem(LS.selectedAuthors); stored = raw ? JSON.parse(raw) : null } catch { stored = null }
-    }
-    selectedAuthors.value = stored !== null
-      ? new Set(stored)
-      : new Set()
-    let storedCats: string[] = []
-    if (import.meta.client) {
-      try { storedCats = JSON.parse(localStorage.getItem(LS.selectedCats) || '[]') } catch { storedCats = [] }
-    }
-    selectedCats.value = new Set(storedCats)
-  }
+  restoreSelection()
 }
 async function doAddGroup () {
   if (!newGroupName.value.trim()) { showToast(t('settings.groupNameEmpty')); return }
@@ -876,11 +848,12 @@ onMounted(async () => {
   webhookUrlDraft.value = settings.webhookUrl.value
   webhookKeyDraft.value = settings.webhookKey.value
   try {
-    const [p, w, c, reps] = await Promise.all([
-      store.loadPosts(), store.loadWatchlist(), store.loadCategories(), store.loadReplicas('time').catch(() => [] as any[])
+    // Selections were already restored at setup; the posts load (first element)
+    // runs in parallel with the other loads and uses the restored filters.
+    const [, w, c, reps, tags] = await Promise.all([
+      loadPostsPage(), store.loadWatchlist(), store.loadCategories(), store.loadReplicas('time').catch(() => [] as any[]), store.loadTags()
     ])
-    posts.value = p.posts; updatedAt.value = p.updated_at
-    watchlist.value = w; categories.value = c
+    watchlist.value = w; categories.value = c; tagNames.value = tags
     const ut = await store.loadUserTags()
     userTagVocab.value = ut.vocabulary || []; userTagOverrides.value = ut.overrides || {}
     replicatedIds.value = new Set((reps as any[]).map(r => r.post_id))

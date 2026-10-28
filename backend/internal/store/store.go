@@ -70,9 +70,11 @@ func emptyStrSlice() []string { return []string{} }
 type PostFilter struct {
 	AuthorPresent bool
 	Authors       []string
-	Tag           string
-	Category      string
-	UserTag       string
+	Tags          []string // OR within the list (multi-select in the UI)
+	Categories    []string // OR within the list; "__uncat" matches posts with no category
+	UserTags      []string // OR within the list
+	Kind          string   // AI post kind; "未分类" matches kind = ''
+	MinChars      int      // minimum length of text (fallback summary, then title)
 	Query         string
 	DateFrom      string // YYYY-MM-DD, Shanghai day start (inclusive)
 	DateTo        string // YYYY-MM-DD, Shanghai day end (inclusive)
@@ -98,20 +100,62 @@ func (s *Store) ListPosts(f PostFilter) (posts []model.Post, total int, updatedA
 			args = append(args, a)
 		}
 	}
-	if f.Tag != "" {
+	if len(f.Tags) > 0 {
 		// BINARY collation: the legacy JS match is case-sensitive, and the
 		// source has both "workbuddy" and "Workbuddy" as distinct tags.
-		conds = append(conds, "EXISTS (SELECT 1 FROM post_tags t WHERE t.post_id=p.id AND t.tag COLLATE utf8mb4_bin = ?)")
-		args = append(args, strings.TrimPrefix(f.Tag, "#"))
+		ph := strings.Repeat("?,", len(f.Tags))
+		conds = append(conds, "EXISTS (SELECT 1 FROM post_tags t WHERE t.post_id=p.id AND t.tag COLLATE utf8mb4_bin IN ("+strings.TrimSuffix(ph, ",")+"))")
+		for _, tg := range f.Tags {
+			args = append(args, strings.TrimPrefix(tg, "#"))
+		}
 	}
-	if f.Category != "" {
-		conds = append(conds, "EXISTS (SELECT 1 FROM post_categories pc WHERE pc.post_id=p.id AND pc.category_id=?)")
-		args = append(args, f.Category)
+	if len(f.Categories) > 0 {
+		var catConds []string
+		var catIDs []string
+		uncat := false
+		for _, c := range f.Categories {
+			if c == "__uncat" {
+				uncat = true
+			} else {
+				catIDs = append(catIDs, c)
+			}
+		}
+		if len(catIDs) > 0 {
+			ph := strings.Repeat("?,", len(catIDs))
+			catConds = append(catConds, "EXISTS (SELECT 1 FROM post_categories pc WHERE pc.post_id=p.id AND pc.category_id IN ("+strings.TrimSuffix(ph, ",")+"))")
+			for _, c := range catIDs {
+				args = append(args, c)
+			}
+		}
+		if uncat {
+			catConds = append(catConds, "NOT EXISTS (SELECT 1 FROM post_categories pc WHERE pc.post_id=p.id)")
+		}
+		conds = append(conds, "("+strings.Join(catConds, " OR ")+")")
 	}
-	if f.UserTag != "" {
-		conds = append(conds, `(EXISTS (SELECT 1 FROM author_tags at WHERE at.username=p.author AND at.tag COLLATE utf8mb4_bin = ?)
-			OR EXISTS (SELECT 1 FROM user_tag_overrides uo WHERE uo.username=p.author AND uo.tag COLLATE utf8mb4_bin = ?))`)
-		args = append(args, f.UserTag, f.UserTag)
+	if len(f.UserTags) > 0 {
+		ph := strings.Repeat("?,", len(f.UserTags))
+		conds = append(conds, `(EXISTS (SELECT 1 FROM author_tags at WHERE at.username=p.author AND at.tag COLLATE utf8mb4_bin IN (`+strings.TrimSuffix(ph, ",")+`))
+			OR EXISTS (SELECT 1 FROM user_tag_overrides uo WHERE uo.username=p.author AND uo.tag COLLATE utf8mb4_bin IN (`+strings.TrimSuffix(ph, ",")+`))`)
+		for _, ut := range f.UserTags {
+			args = append(args, ut)
+		}
+		for _, ut := range f.UserTags {
+			args = append(args, ut)
+		}
+	}
+	if f.Kind != "" {
+		// "未分类" is the UI label for kind = '' (posts the digest never classified).
+		if f.Kind == "未分类" {
+			conds = append(conds, "p.kind = ''")
+		} else {
+			conds = append(conds, "p.kind = ?")
+			args = append(args, f.Kind)
+		}
+	}
+	if f.MinChars > 0 {
+		// Same fallback as the frontend postChars: text, then summary, then title.
+		conds = append(conds, "CHAR_LENGTH(TRIM(COALESCE(NULLIF(p.text, ''), p.summary, p.title))) >= ?")
+		args = append(args, f.MinChars)
 	}
 	if f.Query != "" {
 		q := f.Query

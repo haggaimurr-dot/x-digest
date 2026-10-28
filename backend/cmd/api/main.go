@@ -224,9 +224,23 @@ func (s *server) handlePosts(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	}
-	f.Tag = q.Get("tag")
-	f.Category = q.Get("category")
-	f.UserTag = q.Get("user_tag")
+	splitList := func (v string) []string {
+		var out []string
+		for _, s := range strings.Split(v, ",") {
+			if s = strings.TrimSpace(s); s != "" {
+				out = append(out, s)
+			}
+		}
+		return out
+	}
+	f.Tags = splitList(q.Get("tag"))
+	f.Categories = splitList(q.Get("category"))
+	f.UserTags = splitList(q.Get("user_tag"))
+	f.Kind = q.Get("kind")
+	f.MinChars = atoiDefault(q.Get("min_chars"), 0)
+	if f.MinChars < 0 {
+		f.MinChars = 0
+	}
 	f.Query = q.Get("q")
 	f.DateFrom = q.Get("date_from")
 	f.DateTo = q.Get("date_to")
