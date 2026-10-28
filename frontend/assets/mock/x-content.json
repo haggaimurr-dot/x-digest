@@ -17121,6 +17121,632 @@
     "links": [],
     "avatar": "avatars/yaojingang.jpg"
   },
+  "2087004444634579033": {
+    "text": "GEOHub GitHub地址、Skill设计原理、能力可视化报告和相关参考链接:\n\n1、Skill GitHub仓库链接\nhttps://t.co/eaJuASdoQy\n\n2、Skill原理及能力可视化报告\nhttps://t.co/5ntX0bfOBq\n\n3、GEO数据集及论文集仓库\nhttps://t.co/PPatGGrWxE\n\n4、GEO skill合集\nhttps://t.co/Gee55y5OiT\n\n5、一句话网站SEO\nhttps://t.co/XD5mJaZ7He\n\n6、Waza skill架构\nhttps://t.co/vkkDqlmZ8w",
+    "links": [
+      "https://t.co/eaJuASdoQy",
+      "https://t.co/5ntX0bfOBq",
+      "https://t.co/PPatGGrWxE",
+      "https://t.co/Gee55y5OiT",
+      "https://t.co/XD5mJaZ7He",
+      "https://t.co/vkkDqlmZ8w"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2087004245178659221": {
+    "text": "开源一个GEO超级Skill：GEOHub\n这个Skill，把GEO研究、诊断和内容生产等能力，放进同一套能力注册表，并为测量与SEO留出统一入口，方便集中管理和持续扩展\nGitHub地址、Skill设计原理、能力可视化报告和相关参考链接，详见评论区\n\nSkill相关逻辑：\n1、Skill包含能力注册表、路由器、工作流编排、多个Skill、统一产物协议、JSON Schema、证据账本、质量报告、CLI、测试和打包体系等\n2、设计统一入口，负责理解中英文GEO请求，再从注册表中选择能力，单一意图会进入最小可用Skill，明确提出多阶段任务时，它可以运行两条稳定工作流：问题发现后做品牌诊断，或问题发现后进入内容生产\n3、覆盖14类GEO与SEO任务，主要包括：GEO问题与机会了解、比较、评估、行动，品牌、网站和页面诊断，7种内容生产模式：标题、科普解释、对比、榜单、页面蓝图、内容优化、文章友好改写等以及网站SEO规划等\n4、通过最新国内外GEO研究数据集及54篇GEO相关论文，对Skill的相关底层能力、标准进行了二次校验并完成迭代，提升经验与理论体系的一致性\n\n如果你在做GEO服务、GEO运营、品牌AI搜索优化、内容工程、网站或官网优化，欢迎体验GEOHub",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2086733141444817220": {
+    "text": "明天晚上7点，我们在刘润直播间首次分享这本新书的内容，欢迎参与直播 https://t.co/huBk2WUbdw",
+    "links": [
+      "https://t.co/huBk2WUbdw"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2086376639878005132": {
+    "text": "GEOFlow v2.3相关链接\n1、仓库地址：https://t.co/LYdvqIahvv\n2、v2.3更新报告：https://t.co/dNzJDLJmC7\n3、GEOFlow官网演示站点：https://t.co/MVowcVzYku",
+    "links": [
+      "https://t.co/LYdvqIahvv",
+      "https://t.co/dNzJDLJmC7",
+      "https://t.co/MVowcVzYku"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2086376558206529619": {
+    "text": "经过这几周的多次迭代，GEOFlow终于升级至v 2.3，最新版本已推送至GitHub，相关链接详见评论区\n\n这次升级，主要上线了全新的GEO官网模板、官网表单管理功能、配套CLI等\n演示站点也同步上线\n\n主要包括：\n1、企业官网主题，覆盖首页、分类、文章、关于和归档页，适配桌面端与移动端\n2、内置 50 篇参考内容，全新安装即可获得完整官网骨架\n3、补齐84个后台页面状态，新增人工发布工作台和 AI 模型适配\n4、更新迭代配套CLI，实现更好的AI工作台管理与运营",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2085366236385546285": {
+    "text": "迭代了一下：\n1、已按一位网友建议，测试完成后生成一份证书，支持下载图片和多维度雷达图\n2、测试题目整体迭代一轮，理解起来更容易\n\n欢迎体验\n\n测试地址：https://t.co/bDIEXer4Ja\n证书示例：https://t.co/Okzz3e2q73\n\n与题目相关的GEO论文及数据仓库地址：\nhttps://t.co/MNtFi8yNC1 https://t.co/GbVkw1wZEI https://t.co/lWgQ8G4Ydn",
+    "links": [
+      "https://t.co/bDIEXer4Ja",
+      "https://t.co/Okzz3e2q73",
+      "https://t.co/MNtFi8yNC1",
+      "https://t.co/GbVkw1wZEI",
+      "https://t.co/lWgQ8G4Ydn"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2085186548665069657": {
+    "text": "@0xCarlos_s 两者有不少重叠的知识，可以一起学",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2085022558307614720": {
+    "text": "体验了下，确实不错，简单易理解的AI科普学习站点，结合大厂JD，实用性强了很多 https://t.co/xFsXDvanHW",
+    "links": [
+      "https://t.co/xFsXDvanHW"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2085008725648298132": {
+    "text": "相关链接\n1、GEO在线专业测试系统：\nhttps://t.co/bDIEXer4Ja\n2、GEO论文及数据GitHub开源仓库：\nhttps://t.co/MNtFi8yNC1",
+    "links": [
+      "https://t.co/bDIEXer4Ja",
+      "https://t.co/MNtFi8yNC1"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2085008615942094863": {
+    "text": "写了一个免费的GEO在线专业测试系统，已上线开放，相关链接放在了评论区\n\n测试相关说明：\n1、只需要输入姓名，即可开始答题进行测试，测试完成后会生成一个详细的可视化测试报告，包含每个题目的详细解析、原理及对应的证据来源；\n2、基于54篇国内外GEO相关论文，21万条国内AI平台的引用特征，海外AI平台1.8万条引用特征，加上对应的权重设计，产生了这30道GEO相关专业题目；\n3、测试与数据完全免费开源，旨在帮助大家更好的建立GEO专业认知\n\n欢迎体验测试，欢迎晒出报告分数",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2084611189947126164": {
+    "text": "1、qiaomu-meta-skill\nhttps://t.co/kcpYK88kSo\n\n2、yao-meta-skill\nhttps://t.co/N5kTvHNuoZ",
+    "links": [
+      "https://t.co/kcpYK88kSo",
+      "https://t.co/N5kTvHNuoZ"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2084610956999704776": {
+    "text": "看了下下我的Codex记录，yao-meta-skill已经成为我最常用的skill之一了\n\n一个好的元skill，价值非常大，所有的这类场景，比如创建skill、迭代完善skill\n都可以极大的提升AI产出的质量\n\n下午 @vista8 说，这个元skill非常好用，但很多人还不知道它的存在\n也在此基础上，更新了一版：它是乔木 skill 创建流程的唯一权威，内部已经包含 https://t.co/G81syntVpO + SkillsMP 双目录发现、GitHub 验源、对比和综合方法。命中后不再叠加 generic skill-creator，也不需要下载或安装其他 discovery skill\n详见图二\n\n我把两个版本的元skill对应的GitHub仓库地址，放在评论区，欢迎体验",
+    "links": [
+      "https://t.co/G81syntVpO"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2084572691890373107": {
+    "text": "一句话优化网站 SEO，推荐👍 https://t.co/HIG5HwDbre",
+    "links": [
+      "https://t.co/HIG5HwDbre"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2084449123525448185": {
+    "text": "RT @dotey: 现在我很多复杂一点的任务都是 Fable 5 写方案，Codex 去执行，Fable 5 验收，相对来说可以做出比较靠谱的方案，以及兼顾性价比。具体是这么做的：\n\n1. Fable 5 的产出是技术方案文档（图1）\n\n一方面文档方便批注修改，另一方面文档方…",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2084447891884790153": {
+    "text": "RT @kunchenguid: if you've been using latest frontier LLMs, it's almost certain that you would have noticed by now the newer models have be…",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2083894071387705346": {
+    "text": "@_Chener_ 认同，慢一点，才能更好的享受过程",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2083440230657630491": {
+    "text": "@ReynoldDai 是啊，经历后，才知道边界与风险意识多重要",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2083435676838879742": {
+    "text": "和朋友交流\n几年前，因为行业政策变化，他的企业快速负债，之后一直在努力还账\n多年过去，我问他：现在坑还有多少？\n我原本以为，可能只剩几百万了\n结果他说：还有接近2000万\n还是挺震惊的，真是个巨坑，太不容易了\n\n一个企业家的生命周期里，可能需要花几年，甚至十几年，去修复一次错误决策带来的影响\n\n前几天，和几位传统企业高管聚餐\n其中一位CTO分享，他们公司的创始人，之前在企业上市后，有了大量现金，于是开始投资、多元化布局\n这些在当时看起来，都有想象空间\n但这些动作，后来导致公司和个人，都背上了巨大债务\n创始人卖掉了大量资产，依然很难填补之前的坑\n\n我想起多年前刚开始创业时，认识的一位企业家\n他分享自己的创业心法：\n第一条：经营公司，就是经营风险\n第二条：不要忘记第一条\n……\n一直印象深刻\n\n增长决定企业能走多快\n风险控制决定企业能走多远\n很多机会值得冒险，但前提是清楚自己的边界，让风险与机会保持一个动态平衡，也许就是公司长期生存最重要的能力之一\n不过现在来看，边界意识与能力的建立，比想象的要难",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2083353074484273305": {
+    "text": "RT @yangyi: 在姚老师超牛的元提示词助力下\nNewMax增加了优化提示词功能\n你不知道如何和AI沟通或下达明确指令，别担心\n只要点一下优化提示词\n稍等一小会儿\n就能获得很好的指令结果\n你可以基于这个结果做一些人工修改\n\n在这种情况下让Agent干活儿，会干的更好\n\n做…",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2083150065661866088": {
+    "text": "三、来自新疆一个早餐店的真实案例\n初中毕业的新疆早餐店老板，通过纳米Work专家团，开出6家早餐店，实现营业额翻倍增长\n\n过去，门店运营、营销方案、供应商沟通、合同起草等工作，都需要找不同的人协助完成\n现在，通过纳米Work：一个人可以完成运营策划、品牌营销、内容生成、合同起草等大量工作\n\n他说：“我是新疆早餐店老板，过去找供应商才能完成门店运营、营销方案及起草合同。现在借助纳米Work，一个人完成了从运营策划、品牌营销到合同起草的全流程支撑。”\n\n这个案例让我印象很深\nAI最大的价值，不只是帮助大公司提高效率\n更重要的是，它正在降低普通人创造商业价值的门槛\n未来，一个人借助AI，也可以拥有过去一个团队才具备的能力",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2083149256530202878": {
+    "text": "二、FDE的一个典型应用场景：让会议真正形成执行闭环\n对FDE来说，有一个非常实用的场景：\n开完会，AI盯到办成\n很多企业的一个关键问题，是会议之后没人持续跟进\n会议纪要发出来，不等于执行闭环\n真正的闭环应该是：录音 → 自动生成会议纪要 → 自动拆解任务 → 同步进入系统 → 负责人收到通知 → 3天后智能体自动检查进度 → 超期自动提醒 → 每周汇总执行情况\n\n最终实现的效果是：谁负责、做到哪一步、哪里卡住、哪些事项延期，都可以自动回流\n这背后的一个核心能力是AI自主跟进、自动提醒、自动总结，通过纳米Work的云端能力，其实可以很好的实现这个组织管理的变换\n\n这也是我认为FDE非常重要的价值：帮助企业把AI从一个工具，变成组织执行系统的一部分\n这个场景看起来很简单，但真正落地后，对企业效率提升会非常明显\n我最近也在实践，收获确实很多",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2083149053639200998": {
+    "text": "一、如何通过纳米Work构建自己的GEO工作台\n\n这是一个GEO实操方法\n如何利用纳米Work，搭建一个属于自己的超级GEO工作台？\n我在GitHub开源了不少GEO相关的Skill、工具和数据仓库，这些能力已上架到纳米Work，仅需两步，获得我所有的GEO能力，使用方式如下：\n\n第一步：一键雇佣姚金刚GEO专家\n进入“专家广场—联名专家”频道，点击雇佣\n\n第二步：进入专家对话页面，输入任务要求即可\n因为Skill包能力比较多，也可以先问AI：告诉我，当前专家的所有GEO能力和适用场景\n目前GEO专家拥有18个常见的GEO应用场景，比如，我对着纳米Work直接提交任务需求：“给你一个官网的URL：https://t.co/lCjwEhdwi7，你去诊断一下页面”\n跑完会生成效果见图片，诊断结果非常专业，同时纳米产出的报告文件也同步上传了了，地址：https://t.co/GWid5CxGMU\n\n过去需要多人、多工具、多流程完成的工作，现在可以借助纳米Work，针对某个专业的工作场景，一键获得一个专属的AI工作台\n这也是未来个人和企业使用AI的重要方向：从单点调用AI，走向构建自己业务场景的AI能力体系\n有了数据集和skill的能力，对GEO的数据分析、方法的构建、原理的拆解，会更加的准确、客观和科学",
+    "links": [
+      "https://t.co/lCjwEhdwi7，你去诊断一下页面",
+      "https://t.co/GWid5CxGMU"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2083148881928261643": {
+    "text": "18套GEO Skill，已上架到纳米Work的“专家广场—联名专家”频道，欢迎一键免费雇佣，下载及使用方式见评论区\n\n参加了纳米Work的发布会\n听完老周对产品与AI的分享，我最直观的感受是：真实、实用、接地气\n整场分享没有停留在宏大的AI叙事，更多的则是，在回答一些更具体的问题，比如：企业为什么用不好AI？什么样的AI工具才真正有用？产品如何在真实业务中持续迭代？\n\n1、当前的企业AI落地问题\n老周把员工使用AI分为四个层级：\n第一级，把AI当搜索引擎  \n第二级，把AI当顾问  \n第三级，把AI当生产工具  \n第四级，把工作流固化成数字员工  \n\n现实是，90%的员工还停留在第一级，把AI当成一个搜索框\n除了员工思维需要转变，真正好的工具的缺乏也是当前主要矛盾\n所以，对于企业AI落地，老周认为是一把手工程：老板带头先用纳米Work，员工跟上，才能形成超级组织\n\n2、纳米Work如何定义自己\n纳米Work的产品定位非常直接，也非常接地气\n产品口号是：一人成军，百事可托\n\n它希望解决的事情包括：帮你谋、帮你干、帮你盯、帮你开发、帮你赚钱、帮你成长。\n进入企业场景后，则进一步落到几个更具体的问题：帮你找客户、帮你看经营、帮你看增长、帮你省外包  \n\n同时，纳米Work还提供ADE与FDE配套服务，帮助企业把工具真正嵌入业务流程，而不只停留在软件采购和账号开通\n\n3、产品是在真实业务里迭代出来的\n有不少打动我的点\n比如：\n5个月时间，收集了5.6万个真实问题，平均每个月超过1.1万条反馈\n为了验证产品在真实业务中的效果，团队将10万多个智能体投入实际业务，150天覆盖630个岗位，消耗350万亿Token\n这些数字背后，体现的是一种非常朴素的产品方法：不只听用户怎么说，更要把产品放进真实业务中，看它究竟能不能完成工作、解决问题、创造结果\n\n在大量实践中，老周也总结出了企业AI落地的四个关键问题：成本、稳定、安全、可控\n这四个词，基本覆盖了企业从“想用AI”走向“真正敢用、能用、持续用”的核心门槛\n\n基于纳米Work，我也整理了三个自己认为很有价值的GEO实操分享、典型场景、案例，接下来逐一分享",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2082629151102759093": {
+    "text": "@gimleefly 内容营销的价值，除了短期衡量，长期价值的视角也挺关键的",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2082628592085975498": {
+    "text": "@0xWEIHAN 有，而且这种渠道预算比例调整，一直都是一个很重要的策略",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2082495905874530652": {
+    "text": "晚上和9位传统制造和消费品企业的高管聚餐，他们企业的体量大致都在几亿到几十亿这个区间\n\n其中一位分享了一个很有意思的近期数据\n他们统计到，来自抖音短视频的线索贡献，占了所有来源的50%\n\n进一步排查发现，原来是豆包近期大量引用抖音短视频，而他们恰好前几年大量通过抖音进行短视频种草\n我问，在之前抖音的获客比例占比是多少\n这位高管朋友说，大概10%左右\n\n豆包的力量，真是不容小觑",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2082396375271309390": {
+    "text": "新版元提示词及相关链接与方法参考：\n1、迭代后的全新元提示词GitHub地址\nhttps://t.co/WWfjAWDDN2\n\n2、全新元提示词原理与迭代分析报告\nhttps://t.co/VwNDxmkSEt\n\n3、NewMax AI免费下载地址\nhttps://t.co/LP39Gn9QAd\n\n4、提示词迭代参考的相关方法来源\n1）OpenAI Prompt engineering：模块化指令、示例、上下文与工具说明\n2）OpenAI Prompt optimizer：数据、评分器、优化和复测闭环\n3）OpenAI Prompting：提示词版本化、测试与回滚\n4）Anthropic 提示最佳实践：清晰指令、示例、XML 分隔与长上下文组织\n5）Google Gemini Prompt design strategies：约束、格式、任务拆分与迭代优化\n6）OpenAI Model Spec：隐藏推理边界、指令层级与低权限数据处理\n7）《AI领导力》",
+    "links": [
+      "https://t.co/WWfjAWDDN2",
+      "https://t.co/VwNDxmkSEt",
+      "https://t.co/LP39Gn9QAd"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2082395518865727651": {
+    "text": "收到来自@yangyi 的建议\n对元提示词进行一轮整体的升级，已推送到GitHub，提示词链接、元提示词报告和升级相关方法参考，见评论区\n\n1、两个核心能力升级，一是对现有的提示词进行质量强化，二是高质量创建初版提示词\n2、基本的原理与能力包括，用户的需求与意图识别、现有提示词的多维度诊断、静默对标学习与参考、专业工程优化、质量评估、静态测试与模型实测等\n3、原则：简单任务用最小充分结构，复杂任务再加入工具规则、异常处理和质量门槛，还会区分事实、假设和方法级参考，避免为了显得专业堆一大串没有依据的内容\n\n用法参考：\n1、可以把需求、零散想法、应用场景，甚至一段写到一半的提示词发给它，AI会通过这套元提示词，先还原真正要解决的问题，梳理受众、场景、交付物、约束和成功标准，再生成一份可以直接复制使用的正式提示词\n2、如果已经有旧提示词，它会先找出原来的核心意图和必须保留的内容，再处理重复、冲突、模糊要求和缺失环节\n3、也可以把元提示词直接整段发给AI，然后AI会先邀请你说说想做什么，并给出一个很轻的填写模板，只说一句话也能开始，想到多少就说多少\n\n整体而言，这套元提示词适合两种情况：有一个模糊想法，想把它整理成可执行的提示词；手里已经有一版，希望把它改得更清楚、更稳定\n\n之后和 @yangyi 也会将这套元提示词扔到NewMax AI，欢迎体验",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2082039625263329645": {
+    "text": "小事快决策，大事慢决策\n\n小事的核心是减少犹豫，快速行动，通过结果获得反馈\n\n大事通常意味着，错误成本更高、更难逆转，同时多获取一些信息时，可能显著提高决策质量\n所以，大事需要慢下来，区分事实、假设和情绪，主动寻找反证\n\n但“慢决策”不等于拖延\n真正有效的大事慢决策原则，应该是：设定期限，收集关键信息，设计小规模验证，再做最终投入\n\n比如准备进入一个新业务，可以先用一个月测试客户需求，先签3个客户，再决定是否投入完整团队\n\n可逆决策快速做，难逆决策谨慎做\n小事靠反馈修正，大事靠验证降低风险\n\n判断一件事该快还是慢，可以问三个问题：\n做错了损失多大？能不能撤回？再等一段时间，能获得多少有价值的新信息？",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2081206293197689214": {
+    "text": "Tok123相关链接\n\n1、GitHub仓库：\nhttps://t.co/Px0t7yNyKm\n\n2、Tok123示例站点：\nhttps://t.co/3JftUkqCCx\n\n3、示例资源专题：\nhttps://t.co/np2VFfigl4",
+    "links": [
+      "https://t.co/Px0t7yNyKm",
+      "https://t.co/3JftUkqCCx",
+      "https://t.co/np2VFfigl4"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2081206019984962010": {
+    "text": "开源一个不一样的网址导航系统：Tok123，已推送到GitHub\n把值得收藏的资源，装进一个工具箱，持续收录 Skill、开源项目、实用工具、官方网站与优质内容，按类型和使用场景整理，方便随时查找和收藏\n\n这里的资源，包括各种网址，资料、工具、skill、系统等等\n\n通过配套skill，与Codex等AI工具连通，可实现对各种资源的一句话管理，比如对本地资料、链接、书签等各种资源，一句话完成分类整理与专题上线\n\n一些使用场景：\n1、可以用它来保存和管理自己的各种资源，同时分享给他人\n2、也可以用它来做一个垂直网址导航站，比如AI网址导航，前端已经做了SEO和GEO自动优化\n3、也可以用来管理公司内部资源",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2081039550076575825": {
+    "text": "@ai_xiaomu 做了随机时间间隔设计，每次抓取间隔大概随机1-3分钟，怕封号",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2081038973217145233": {
+    "text": "第三场GEO公开课的相关资料合集，数据与工具越来越全了，欢迎收藏：\n\n一、数据仓库、工具与skill\n1、geo-citation-lab\nhttps://t.co/PPatGGrWxE\n2、《国内生成式AI引用生态全景报告》\nhttps://t.co/dYBpCrsxiN\n3、GEOFlow\nhttps://t.co/UHwRimsUsZ\n4、yao-geo-skills\nhttps://t.co/Gee55y5OiT\n5、《信源偏好分析报告》\nhttps://t.co/OnPmv3EuH2\n6、国内AI引用偏好数据集\nhttps://t.co/A66U2bgYG3\n7、海外AI引用偏好数据集\nhttps://t.co/8uTGXWL4Lc\n8、GEO资源专题\nhttps://t.co/rG3q04sWU6\n\n二、相关文档\n1.《GEO白皮书》\nhttps://t.co/eMmqMDnW3R\n2.《GEO红皮书》\nhttps://t.co/UT0QCKqvwT\n3.《GEO蓝皮书》\nhttps://t.co/dUSdLLrcsu\n4.《GEO到底是什么》\nhttps://t.co/fbTxRRGPhv\n5.《从SEO到GEO，从流量到Agent，真正的变化才刚刚开始》\nhttps://t.co/IfatVzFjAl\n6.《从AI搜索逻辑到GEOFlow落地实战》\nhttps://t.co/mo7CwGXDZW\n7.《一文讲透GEO内容工程：目标、要素、关系与反馈》\nhttps://t.co/GCEovIld9X",
+    "links": [
+      "https://t.co/PPatGGrWxE",
+      "https://t.co/dYBpCrsxiN",
+      "https://t.co/UHwRimsUsZ",
+      "https://t.co/Gee55y5OiT",
+      "https://t.co/OnPmv3EuH2",
+      "https://t.co/A66U2bgYG3",
+      "https://t.co/8uTGXWL4Lc",
+      "https://t.co/rG3q04sWU6",
+      "https://t.co/eMmqMDnW3R",
+      "https://t.co/UT0QCKqvwT",
+      "https://t.co/dUSdLLrcsu",
+      "https://t.co/fbTxRRGPhv",
+      "https://t.co/IfatVzFjAl",
+      "https://t.co/mo7CwGXDZW",
+      "https://t.co/GCEovIld9X"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2080109473306448187": {
+    "text": "@hiheimu 是啊，知道自己到底想要什么很关键，且还能一直保持笃定和清醒",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2080087498982838655": {
+    "text": "《梁文锋四小时投资人会议实录》原文：\nhttps://t.co/1etUhZ4mcw",
+    "links": [
+      "https://t.co/1etUhZ4mcw"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2080087307320000733": {
+    "text": "早上看了几遍梁文锋的投资人会议实录\n\n确实整理得很好，每一条很值得回味，分享几段非常触动我的内容，关于克制与边界、AGI路线、智能、开源的意义：\n\n1、期间，梁文锋说了非常多次的“不”：不是天才，不赚不合理的利润、不追求用户量、不闭源、不做3D / 视频生成 / 世界模型，不做下一个超级 app 。他说，克制是一种战略，用来换取做成 AGI 的概率。\n\n2、AI 这个事情太大了，利益也太大了。只要能够做成，随便分一点利益就非常大。而你越克制，就越有可能能够做成这件事。\n\n3、克制是一种战略：舍弃一些，换更多其他的东西。开源就是让利：对内，员工有成就感，公司有凝聚力；对社会也有好处，同行或者普通人都会高兴。\n\n4、DeepSeek 的长期 vision 是 AGI 。如果把实现的路线比作爬楼梯，去年的阶梯是 CoT（ Chain-of-Thought ，思维链），今年的阶梯就是 Agent 。在 Agent 之后要解决的问题就是持续学习\n\n5、智能的终点可能都是具身。因为对一个正常人来讲，他的需求并不是电脑，而是人力。\n\n6、要把 AI 在商业上做成，开源是有好处的。这听起来有点违反直觉。历史上一个软件公司，市场一年可能就几十亿美金，开源了就没有了。但是 AI 这个事情足够大，最终它可能得占掉人类社会 GDP 的百分之十。如果说我们想独占这个利益，那么一定是要被历史抛弃的。这是一个客观的规律，这是一个历史观。",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2079937504623706530": {
+    "text": "@BNB776 类似的逻辑，昨晚朋友分享，成为一个自媒体IP的好处，就是大家会更加尊重你的商业原则和时间",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2079797727454744791": {
+    "text": "@huangyun_122 我已经转发过去了，能不能拿到，就看拔刀刘和波波了，哈哈",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2079797385748976058": {
+    "text": "昨晚和几位AI圈自媒体大神晚餐，聊到自媒体这个话题，一些观点记录：\n\n1. 最好每个人，都做下自媒体\n\n2. 一个关键原因是，当你需要发声时，最可靠的渠道就是自己的账号，绝大多数时候，没有人会替你主动发声\n\n3. 每个人，其实都能基于自己的特性，找到适合自己的生态位，关键是找准差异化定位，然后持续输出有质量、有价值的内容\n\n4. AI生产内容的能力越强，差异化就越重要，真正稀缺的，是独特的观点、真实的经验，以及有密度的干货\n\n5. 持续输出很难，频率可以高，也可以低，但质量和差异化必须守住\n\n6. 别人都用AI写，自己反其道而行之，坚持手写，也是一种稀缺和差异化，强调人的独特经历和表达\n\n7. 对OPC而言，最终都要面对增长和获客，自己的自媒体账号，往往是成本最低、积累最强、复利最明显的获客方式\n\n8. AI让写代码和做产品越来越容易，真正困难的，是产品是不是真的足够好，以及如何把它卖出去\n\n9. 互联网一个特性之一，就是健忘，用户每天接收的信息太多，很快就会忘记，很多过去火过的内容，换个时间再次发布，依然可能再次传播，就是这个原因\n\n10. 自媒体的本质，是长期占据一个生态位，持续被看见，持续建立信任",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2079784543561859238": {
+    "text": "@huangyun_122 哈哈，我转给他们，“记得打钱”",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2079470886902730871": {
+    "text": "@1024studio 👍在这批“购买类-电商”样本里，豆包移动端来自字节生态的引用超过一半，网页端约两成，终端差异很明显",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2079470655431704678": {
+    "text": "@wulalatalk B2B 工具类问题的信源可能更集中，特别是官方文档、厂商官网、专业评测和开发者社区构成主要证据池的平台",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2079382024620781843": {
+    "text": "当前中文 AI 引用生态中\n公众号约占4%，其中腾讯元宝内约占15%；视频号直链接近0；中文播客约占0.01%。公众号的跨平台通用权重约0.2%–0.3%\n\n1、视频号目前没有被引用\n\n2、微信公众号：全库约 4%，平台差异很大，公众号覆盖了571/620个问题，但只出现在5/12个平台：\n1）腾讯元宝网页版：公众号占其引用约 15.3%\n2）腾讯元宝手机版：约 14.2%\n3）Kimi：约 4.0%\n4）文心：约 2.1%\n5）百度 AI：约 1.7%\n6）其余7个平台：当前样本为 0%\n腾讯元宝贡献了全部公众号引用的约 95.6%，排除腾讯元宝后，公众号在其他 AI 平台的综合引用占比只有约 0.23%。\n所以可以这样理解：\n做腾讯元宝 GEO：公众号权重约 15%\n做全平台综合 GEO：公众号权重约就极低了\n做非腾讯平台通用 GEO：约 0.2%–0.3%\n\n3、中文播客，引用贡献极低，约 0.01%\n严格口径下识别到：\nApple Podcasts：10条引用\n小宇宙：8条引用\n合计18条，覆盖10个节目页面、11个问题、3个AI平台",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2079376226997923961": {
+    "text": "相关链接：\n\n1、国内AI平台GEO数据集及分析报告GitHub仓库地址：\nhttps://t.co/PPatGGrWxE\n\n2、arxiv论文预印本《What Do Chinese-Language Generative Search Engines Cite and Surface? A Large-Scale Empirical Study》，已收录至“geo-citation-lab”\nhttps://t.co/GldBlbgJcb\n\n3、基于数据集清洗和加工后的第一份可视化分析报告\nhttps://t.co/dYBpCrsxiN",
+    "links": [
+      "https://t.co/PPatGGrWxE",
+      "https://t.co/GldBlbgJcb",
+      "https://t.co/dYBpCrsxiN"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2079375927767871665": {
+    "text": "经好友拔刀刘同意，将他们近期抓取的国内各大AI平台数据集进行开源\n清洗后的数据集、论文预印本以及第一份分析报告，已推送到GitHub仓库，地址见评论区\n\n这应该是面向国内各大AI平台的最新、最全的一份公开GEO原始数据集\n包括了豆包、DeepSeek、元宝、千问、Kimi、文心、百度AI等8个AI平台的AI搜索结果、信源特征数据\n\n这份数据包括：\n1、620 个标准问题，覆盖 6 个研究维度、31 种有效问题类型，包括行业、提问意图、提示风格、时间敏感度、触发强度和极端真实场景；\n2、214,119 条 AI 引用观察，精确去重后保留 189,845 条。这里统计的是回答中的引用来源与摘要，现有数据不含完整回答原文；\n3、引用记录归并为 9,878 个规范域名信源、107,659 个规范页面；211,248 条记录带有效 HTTP URL，占 98.66%；\n4、信源按 9 个一级类型、39 个二级类型完成分类，去重引用的分类覆盖率达到 99.77%；\n5、原始数据、清洗表和分析集市都已保留，可用 JSONL、Parquet 和 DuckDB 直接查询，也附了字段字典、清洗规则和质量报告；\n6、64 个原始分片全部通过 SHA-256 校验，清洗过程保留原值、异常标记和追溯字段，方便复现和继续加工\n\n这几天对数据进行了二次清洗、标注和加工，并输出第一份可视化分析，一些有意思的发现和洞察\n1、各大AI平台的信源头部效应非常明显，Top 10 信源贡献了 41.47% 的去重引用，抖音、腾讯网、今日头条、百度百科排在前四\n2、平台与社区类信源只占 4.68% 的域名，却拿到 29.63% 的去重引用，内容分发平台在 AI 引用生态里的权重很高\n3、品牌与企业官网只贡献 4.33% 的去重引用；加上政府与公共机构，主体自有来源合计 9.06%。品牌自有内容还有很大的可见度空间\n4、跨平台共识并没有想象中高，66 个平台组合中，最高的“问题 × 页面”Jaccard 相似度也只有 34.94%，还有 11 个组合完全没有共享的问题与页面。单个平台的经验不能直接外推到其他平台\n5、内容新鲜度很明显，在发布时间可靠的页面中，88.77% 来自 2025 或 2026 年；29.57% 的页面标题带年份，23.06% 带榜单或排行。时效信号和决策型内容值得继续验证\n\n欢迎留言补充关心的问题，我可以抽空基于这些关心的问题，再做一份数据分析报告",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2079060164645396526": {
+    "text": "@hiheimu 是的，各种落地场景带来的启发很大",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2079060035636957362": {
+    "text": "@Nikola314359 在WaytoAGI视频号主页，找到回放页卡，会有回放",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2079060012736081983": {
+    "text": "@popoobada 在WaytoAGI视频号主页，找到回放页卡，会有回放",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2078692086153642186": {
+    "text": "部分分享嘉宾及主持人的X主页，推荐关注：\n1、元子： @yuanzi_owO \n2、小耳： @xiaoerzhan \n3、Derrick： @PPDeWuli \n4、Foe Ally： @ally_foe （勘误：原推文第十位压轴分享嘉宾“Ellie”有误，正确网名是“Ally”）",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2078685047843152176": {
+    "text": "RT @vista8: Codex 调用 Listenhub Cli + 免费视频素材库 pexels 写一个skill，一句话生成类似视频。 https://t.co/USX9V9bjK2",
+    "links": [
+      "https://t.co/USX9V9bjK2"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2078682422724698439": {
+    "text": "为元子点赞，主持和控场水平都很高\n向阳老师组织的直播形式也很新颖，带来了一种很不一样的体验 https://t.co/OYd7eYrgOj",
+    "links": [
+      "https://t.co/OYd7eYrgOj"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2078681184448778375": {
+    "text": "这是部分AI Coding 作品的相关链接（有更新）：\n1、小耳 FM：https://t.co/tmXlcOg57w\n2、Omia：https://t.co/QiwCXu5Zp3\n3、Watchless：https://t.co/hqCnjdOjPD\n4、知行猿 Mental OS：https://t.co/6k38iGln9D\n5、Explainer Video：https://t.co/H8dpKRyeN0\n6、SpeedPainter 官网：https://t.co/NpFMuz5i2r\n7、OpenFDE：https://t.co/7Fun4l7muN\n8、CrewClaw：https://t.co/oQCr3RLCRe",
+    "links": [
+      "https://t.co/tmXlcOg57w",
+      "https://t.co/QiwCXu5Zp3",
+      "https://t.co/hqCnjdOjPD",
+      "https://t.co/6k38iGln9D",
+      "https://t.co/H8dpKRyeN0",
+      "https://t.co/NpFMuz5i2r",
+      "https://t.co/7Fun4l7muN",
+      "https://t.co/oQCr3RLCRe"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2078666523233972633": {
+    "text": "昨晚听了WaytoAGI未来硅世界直播，12位分享者，分享了10个AI Coding 作品 + 2个FDE案例分享，很多有意思的作品，也很有启发\n\n1、小耳 FM、Omia，作者小耳，音乐动态可视化工具与支持 100 多种格式的极简阅读器，产品非常有质感\n\n2、Watchless，这是一个 Skill，作者陈自欣，可以将长视频和播客转成带关键画面的图文总结\n\n3、亲子习惯养成小程序，作者发愤的草莓，通过积分、神兽孵化和心愿兑换，引导孩子主动打卡，场景很具体\n\n4、AI 私域运营工具，作者老袁，可以在个人微信和企业微信中自动维护客户、识别购买意向并转交销售，商业闭环已经跑通\n\n5、白板解释视频工具，作者余向华，可以把文字、文档或网页自动生成带配音和字幕的白板讲解视频，很适合知识科普\n\n6、AI 亲子语言闪卡，作者 Nerissa，拍摄物品即可生成外语单词、短句、发音和可打印闪卡，设计很克制\n\n7、Crewclaw，作者彭超，这是一个数字员工招聘和管理平台，形态很像数字员工的 App Store\n\n8、3D 导演台，作者萌唛象，可以用手机陀螺仪操控 3D 摄像机，快速生成适合 AI 视频的镜头，项目很好玩\n\n9、公众号编辑器、拼豆制作工具，作者书同文，一个解决公众号图片和排版问题，一个能把图片自动转换成拼豆制作方案，都来自自己的真实需求\n\n10、AI 内容工作室，作者 Ellie，可以自动完成素材筛选、脚本、字幕、剪辑和转场，对内容创作者很实用\n\n两个FDE分享和案例：\n\n11、鞋服智能详情页FDE，分享者Lyon，通过驻场梳理斯凯奇的业务流程，用 AI 完成商品识别、模板匹配和批量套版，将准确率从 85% 提升到 95%，随后复用到安踏\n\n12、企业AI FDE交付案例，分享者 Derrick，结合数十个企业项目，总结了国企、医院、律所等场景中的需求诊断、本地部署、数据安全和规模化交付经验",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2078076275240157593": {
+    "text": "@yangyi 现在有内置一套skill，可以试试看，晚点我试一下",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2078036628019585130": {
+    "text": "迭代了多次后，正式对GEORank全部开源，已推送到GitHub\n\n这是一个可私有化部署的GEO工作台，帮助大家，诊断官网的GEO友好性，并继续生成行动方案、拓词、JSON-LD、llms.txt和知识库等工具\n以及教程、问答等功能模块\n\n旨在帮助大家，在各个场景更好的理解和更便利的用好GEO这个AI营销方法\n\n1、GitHub仓库：\nhttps://t.co/wJeVnxIx5a\n2、官方演示站：\nhttps://t.co/6keKLoQfyV",
+    "links": [
+      "https://t.co/wJeVnxIx5a",
+      "https://t.co/6keKLoQfyV"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2077677095308931453": {
+    "text": "@wuuLima 这些代理商是怎么了解到你们的产品的",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2077671844807917627": {
+    "text": "开源一套：定位Skill，已推送到GitHub（地址见文末）\n\n可以更好的辅助我们，更好的理解个人、公司的相对优势，帮助我们更好的提升战略判断质量\n也可以帮助我们更好的理解一些关键问题，比如：\n1、目标用户会用哪一句话理解你？\n2、他们当前把谁当作替代方案？\n3、哪项差异与用户选择真正相关？\n4、哪项优势已有证据，并能长期守住？\n5、下一步怎样验证、表达并持续占位？\n\n它融合《定位》的心智、品类、阶梯与聚焦方法，并加入竞品研究、需求洞察、证据分级和 D6 优势诊断\n\n支持个人 IP、课程、产品、服务与公司品牌，可读取问答、附件和官网资料，输出一句话定位、差异化标签、推荐方案、验证条件及可视化 HTML 报告\n\nGitHub地址：\nhttps://t.co/kRkxYLFzft\n\nSkill原理与流程介绍：\nhttps://t.co/4EjBNbaZHi",
+    "links": [
+      "https://t.co/kRkxYLFzft",
+      "https://t.co/4EjBNbaZHi"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2076881085129175102": {
+    "text": "这三个半月，从入驻X、组织GEO大会，再到各种开源项目，积累了不少，写一篇简单的复盘，记录下这个过程\n一些主要数字分享：\n\n1、4月1日，入驻X，3个半月，粉丝从2，增加到现在1.8W左右\n\n2、和向阳一起组织的GEO大会完成举办，反响不错，随后发布《GEO红皮书》《GEO蓝皮书》，同时开始在WaytoAGI开始固定每月一期GEO专题直播分享，已完成2期直播\n\n3、开始在GitHub分享开源项目，三个半月时间，收获star 10000+，主要项目包括GEOFlow、Tokhub、yao-meta-skill、yao-open-skills、yao-geo-skills、提示词合集、以及各种开源工具和系统等\n\n4、《姚金刚认知随笔》仍然每周更新，已写了48万字，并在GitHub进行了内容的全部开源\n\n5、这期间，主力AI工具是Codex，tokens消耗180亿+，帮我构建了大量的开源系统，帮助我提供了更好内部团队管理、内部系统构建、业务分析与策略帮助等\n\n这些数字背后，值得复盘的是，在AI的帮助下，一个想法从出现、验证、开发、发布，到获得真实用户反馈，整个周期正在被明显缩短\n\n这篇文章想记录的，就是这三个半月里，我做了什么、为什么做，以及在这个过程中得到的一些判断",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2076629143077396673": {
+    "text": "把最近三个月，我与Codex的vibe coding所有对话日志，通过GPT 5.6 Sol进行了一次系统性的统计和分析\n\n基于7047次要求以及820次有效会话的记录，形成了一版vibe coding方法论\n一共28页PPT\n\n抽象能力还挺牛的，整体质量不错\n比如：\n1、Vibe Coding 的核心：持续把感觉翻译成可验证标准\n2、产物驱动的产品闭环：每一次反馈都要落到某个对象\n3、方法一旦重复，就把它沉淀为可复用资产\n4、VIBE LOOP，七步构成一条持续返回现实的产品飞轮\n5、开始 Vibe Coding 前，先想清楚这 6个事：用户与场景、价值主张、首个真实产物、边界与排除、完成证据、下一轮反馈\n\nPPT已上传，支持下载，欢迎浏览：\nhttps://t.co/jy2lTRGxLk",
+    "links": [
+      "https://t.co/jy2lTRGxLk"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2076130720968589408": {
+    "text": "训练预测能力，是一件很有意义的事\n\n它能提高我们对事情的判断能力，也能帮助我们识别认知偏差、校准信心，并在不确定性中做出更好的决策\n\n很多时候，我们习惯说“我觉得可能”“大概率会发生”，却很少给出明确的概率，也很少在结果发生后回头验证自己的判断\n\n基于之前分享的贝叶斯Skill，梳理了一套极简的贝叶斯预测5步训练法：\n定题 → 给率 → 找证 → 更新 → 验证\n\n一次完整的预测练习，只需要：\n一个可验证的问题  \n一个初始概率  \n三条关键证据  \n一次概率更新  \n一次结果复盘\n\n先给概率，再看证据；持续更新，最后校准\n\n长期练习，持续提升的，是我们面对不确定性时的判断质量",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2075575649687973988": {
+    "text": "和公司销售负责人交流\n\n我提到GEOFlow的一位用户，给我留言说，打算通过GEOFlow去盈利，带来的成交给我5%\n\n我说，不用。\n但内心还是觉得挺好的\n\n销售负责人说，这种表达其实不好\n更好的表达或者感谢方式，应该是先去变相，等真的实现了100万收入，直接给三万，然后说明缘由",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2075553258740101209": {
+    "text": "精选的阅读源非常优质，也支持提交订阅源，体验很不错，推荐👍 https://t.co/ooGGdYDCzQ",
+    "links": [
+      "https://t.co/ooGGdYDCzQ"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2074868429547540581": {
+    "text": "更新了Tokhub的配套skill\n\n通过这个skill，可以在codex或者Claude code里，一句话查看Tokhub的通道状态、排查告警、看用量、做审计、整理运维报告\n欢迎下载使用\n\n直接调用Tokhub的官网数据或自己本地部署，都可以\n\n1、skill的GitHub地址：\nhttps://t.co/EB7e5EIVj9\n\n2、TokHub 通用 Skill 架构与功能说明，包含使用方式与场景：\nhttps://t.co/rr4alW2oaq",
+    "links": [
+      "https://t.co/EB7e5EIVj9",
+      "https://t.co/rr4alW2oaq"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2074863597482807382": {
+    "text": "@wangyongai 有不少方法，可以实现既要又要，比如只需要在网页代码增加Schema且里面的内容让AI进行结构化自动整理",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2074863293668462710": {
+    "text": "@muyehello 自己的，我回头看看再优化下，再分享出来",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2074666558736196083": {
+    "text": "@ai_super_niko 应该有的。不过对于AI搜索，还是需要大量有时效性的优质内容，这方面有很大的新红利",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2074657178896719964": {
+    "text": "昨天给北京日报社内部，分享了一次GEO\n我觉得他们的反应很敏锐，在国内权威媒体里，认知、布局、执行力也相对超前\n\n对于权威传统媒体，最核心的优势就是：大量高质量的权威内容\n这种权威内容，如果用好GEO，有很多的价值，比如：\n1、大量优质权威内容，被AI更好的引用参考，可以显著提升AI回答的质量，并一定程度上减少回答的幻觉\n2、这个过程，可以实现很大程度上的“良币驱逐劣币”，优质内容被更容易引用参考后，AI就可以减少引用低质量内容的概率\n3、对媒体自身而言，一些商业价值高的内容，可以通过AI得到更大范围的曝光，并对目标用户群体产生新的影响力，这是新的商业价值\n\n还是挺有想象空间的\n\n让给他们定制了一个分享的PPT\n分享一个小技巧：\n先让AI去抓取北京日报的网站UI和目标大纲相关的页面\n基于这些素材，进行PPT内的案例设计与UI设计，就可以实现一个与目标对象高度相关的分享PPT，效果还不错",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2074464335884386614": {
+    "text": "@hiheimu 成长型思维与终身学习思维养成后，学习这个事就是一个很自然的事情了",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2074384285319266660": {
+    "text": "这几天和爱人，一起在讨论关于学习方法的问题\n\n在总结各自的学习方法时，我们发现，如果能把各种一些经典的学习方法，进行组合使用，效果会更高\n整体的效率也会更强\n\n比如，我自己会比较喜欢这样的组合：关键词学习法+金字塔原理+费曼学习法\n\n总结下来就是：高效学习 = 关键词定位 + 结构化整理 + 通俗化复述 + 反复校准\n\n这样的好处之一，可以让学习能够更加的系统\n每个学习方法的侧重点，其实还是不太一样的",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2074135081686597651": {
+    "text": "三层探测的机制也会让监测的数据更有价值\n在这个机制基础上，结合持续的监测数据，如果需要管理多个上游通道的话，其实可以实现更加智能的专属个人或者专属企业中转站的生成与管理 https://t.co/nnnPSgeoFf https://t.co/5hu269khvS",
+    "links": [
+      "https://t.co/nnnPSgeoFf",
+      "https://t.co/5hu269khvS"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2074127139306455492": {
+    "text": "这是一个面向 AI API 中转站的开源监控及专属网关管理系统：TokHub\n迭代了一个月，和 @vista8 讨论后，我们决定开源给大家，欢迎下载本地部署，也可以直接使用\n（文末附GitHub链接和TokHub网址）\n\n核心做了几层能力：\n1、公开监控和通道详情\n可以看已监测的API通道的状态、成功率、延迟、模型、价格和健康评分\n\n2、L1 / L2 / L3 分层探测\nL1 看 DNS、TCP、TLS、HTTP 连通性\nL2 看 API Key、模型列表和模型可用性\nL3 直接做一次最小真实生成，用来判断“入口正常但模型实际不可用”的情况\n\n3、用户工作区和私有通道\n用户可以收藏公开通道，也可以接入自己的 Endpoint 和 API Key\n私有 Key 加密保存，按组织隔离，不把用户自己的上游暴露给平台后台\n\n4、一键生成个人专属网关\n可以把多个平台通道和私有通道，聚合成个人专属网关，供自己的Agent或者自己的AI客户端统一调用，按延迟、成功率或成本做路由，并记录 Token、延迟、成本、错误类型和审计事件\n\nTokHub 现在提供 Docker 自托管部署，包含 PostgreSQL / Redis、生产预检、备份恢复、安全扫描和发布检查\n\n可以把它当作公开监控站，也可以用作自己或企业内部的AI网关\n也欢迎在它上面继续二次开发自己的API服务导航\n\nGitHub地址：\nhttps://t.co/8GO2Wv38M7\n\nTokHub网址：\nhttps://t.co/F2Vv6IUXxI",
+    "links": [
+      "https://t.co/8GO2Wv38M7",
+      "https://t.co/F2Vv6IUXxI"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2073608283563418020": {
+    "text": "和朋友交流，他分享了他对于两性关系的一些观点\n\n好的关系，即使没有结果，也会对之后的人生，产生很多积极的影响\n多年后，每每回想起来，不是抱怨，而是一种回味，一种被理解、被珍惜、被温柔对待过的证明\n\n好的关系，颜值吸引只是第一步，真正持续的，是相互欣赏、信赖与安全感\n这种安全感会带来很多的惬意，也会让人在关系里变得更松弛，更真实\n\n我问他，有哪些值得回味的地方\n朋友说，一些很多经验、观点，甚至一些小的生活技巧，都对他的人生产生了一些积极的影响\n尤其是他认为，国人大多数人的这一生，生活在外，为了所谓的面子和“圣母心”，不好意思提要求、不好意思追求本该属于自己的权利、不好意思反抗\n举了一些例子，比如：\n1、一定要经常去各种不同的地方体验，生命在于体验，身临其境与书上的描述带来的感受是不一样的\n2、要尝遍各种美食，也仍然是体验，喜欢吃不一定要吃得多，点到为止即可\n3、去餐厅点餐，尤其是一些高级的餐厅，如果菜品不合胃口，或者不满意，不要不好意思说，给服务员提出来具体是哪里不满意，厨师一般会换新的\n4、酒店的价格，尤其是高级酒店，一般至少有一半以上的价格是服务溢价，自己有任何需要，打个电话给前台就解决了，解决不了，再想其它办法，但实际上大部分都能得到解决\n5、对于很多生活或者旅行上的安排，能花小钱找专业人士解决的，就花钱，比如找导游、找旅行顾问、找专职司机，花不了多少钱，但是行程会安排得更专业\n6、很多金融产品实际上是有不少权益的，一般人不怎么去关注，就忘掉了，比如如果是金卡，会有高尔夫、航班贵宾厅这些权益，只需要花个3分钟研究下APP的各个入口，找到对应的权益位置，虽然确实一般会隐藏得比较深，但这3分钟的研究还是很划算的\n7、在陌生环境里，凡是入口的东西，比如说水、饮料或者是吃的，不要离开自己的眼睛，和或者是视野\n8、去人文景观旅行，还是有必要提前看一下相关的历史，去浏览的时候，代入感会更强，也会更容易理解那些人文建筑艺术背后的故事\n……\n\n好的关系，确实能相互滋养，拓宽一个人的生命半径\n它不只提供情绪价值，也会把另一个人多年积累的生活经验、判断方式、边界意识、审美方式，悄悄带进你的生命里\n\n当然，关系也不只有美好的一面\n一个人经历过好的关系之后，也会更清楚什么样的人值得靠近，什么样的人应该远离\n\n比如，长期关系里，有几类人尤其需要谨慎\n对于男性，要警惕有赌性的人、长期长不大的人、情绪极不稳定的人\n对于女性，也要警惕感情关系混乱的人、极度拜金或习惯贪小便宜的人、长期过度补贴原生家庭并牺牲小家庭边界的人\n\n这些问题的本质，其实都指向同一件事：一个人是否有责任感、边界感、稳定性和基本的善意\n选择伴侣，不能只看一时的吸引，更要看长期相处中的底层品质，以及是否能相互长期滋养\n\n但更重要的是，在具备了一定的判断力的前提下，自己首先也要努力成为一个值得被优秀伴侣选择的人",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2073045893851521442": {
+    "text": "这些优质资源的梳理、总结，就很有价值，周末好好看一遍 https://t.co/4PRI7ld0JK",
+    "links": [
+      "https://t.co/4PRI7ld0JK"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2073006638936785050": {
+    "text": "@rochestor_mu 差别是挺大的，引用偏好差别很大",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2072911195938673089": {
+    "text": "昨天升级了下豆包的AI结果采集、清洗及分析的GEO skillk\n支持网页端豆包AI结果采集与手机APP结果采集两种模式，仅供自己学习研究使用 \n\n已推送到GitHub，欢迎下载体验，附演示报告\n\n1、网页端和手机 App 都能采 \n网页端基于 OpenCLI，手机端通过 Android Studio AVD + Appium UiAutomator2 \n也就是说，同一批关键词，既可以看网页端结果，也可以保留豆包 App 里的可见 UI 证据\n\n2、手机端不只截答案 \n会把截图、XML、引用资料卡片、已引用和未引用状态、引用次数都记录下来\n\n3、输出链路保持统一 最终生成 \ndoubao-crawl.json、summary.json、结构化 Markdown、Excel 和 Kami 风格 HTML 报告 后面的 GEO 分析链路，网页端和移动端可以共用一套报告模板\n\nskill边界：不绕登录，不绕验证码，不抓隐藏接口，不做账号池 它更适合低频研究、教学演示，以及需要截图和 XML 复核的证据采集\n\n想研究 GEO 的朋友，如果想看豆包 App 里的 AI 结果引用特征，可以下载体验试试\n\nGitHub地址： \nhttps://t.co/XEox0Hiu2o\n\n演示报告：\nhttps://t.co/jqOUeDZ5vM",
+    "links": [
+      "https://t.co/XEox0Hiu2o",
+      "https://t.co/jqOUeDZ5vM"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2072598021234409486": {
+    "text": "团队每天的招聘与面试量越来越大 \n于是这两天，给团队的「AI面试管家」系统进行了一次大的升级\n核心是实现更自动化、更智能的四端协同：AI面试系统+GitHub+飞书+Codex\n\n1、AI面试管家主系统 \n负责候选人、简历、AI自动首面、自动面试报告、反馈、排期、数据分析报告、同步状态等核心业务数据，相当于整个招聘流程的业务中枢\n\n2、GitHub资料仓 \nGitHub仓库，作为招聘流程的协作空间，每个候选人都有自己的资料目录，流程阶段会自动通过目录、workflow.json、candidate-index.csv和Git commit来记录和流转 \n这意味着，一个候选人的流转过程，本身就形成了一条天然的版本化证据链\n\n3、Codex Skill \n承担本地智能操作层的角色，每位面试官主动拉取候选人资料包，生成评估，写入初试/复试反馈，保存排期，提交飞书任务、面试反馈与数据分析等\n\n4、飞书执行层 \n通过飞书CLI，实现自动建立面试日历、私信和催填提醒，后台worker负责异步任务、失败重试和状态回写，包括面试数据周报同步等\n\n整个流程大概是这样： \n1、HR或候选人上传简历，系统异步解析结构化信息 \n2、候选人完成AI首面后，系统保存问答、对话历史、关键词和评分 \n3、报告生成服务异步产出HR版和候选人版报告，系统Agent自动同步到GitHub资料仓 \n4、同事可以在GitHub或Codex中查看候选人资料及相关信息，基于资料包生成评估，写入反馈 \n5、如果反馈结果是pass，候选人会自动进入GitHub仓库的下一阶段目录；如果是reject或hold，则只更新状态和反馈记录，不移动目录 \n6、当面试排期确定后，系统创建飞书日历任务，worker异步执行，并在面试后1小时和3小时自动发送反馈催填提醒\n\n对面试官而言，核心的协同与互动界面变成了Codex，其它终端都自动协同和流转\n\n这个架构里，我觉得最有意思的地方有几个：\n1、数据库保存业务主数据，GitHub保存协作证据链\n2、招聘流程被GitOps化，阶段变化、反馈记录、目录移动都可以追踪\n3、本地Agent主动拉取，既能实现智能协作，又能控制安全边界\n4、飞书任务全部异步执行，日历、通知、提醒之间可以故障隔离\n5、AI负责事实抽取和建议，人负责结论、理由和责任判断\n6、候选人不再只是后台表里的一行记录，而是一个可携带、可版本化、可回写、可触达的数据对象\n\n在这套系统里，候选人被重新建模成了一个贯穿AI面试、GitHub协作、Codex本地Agent和飞书触达的状态对象 \n\n这让招聘流程同时具备了四种能力：自动化效率、人工责任边界、组织招聘过程记忆、运维可追踪性",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2072318031120986329": {
+    "text": "这个评测有意思，效果的对比很直观，每个PPT Skill的风格差异还挺大的 https://t.co/kHHjQYD4a3",
+    "links": [
+      "https://t.co/kHHjQYD4a3"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2072266501416264185": {
+    "text": "关于To B类的公司，一个很重要的销售策略：打造标杆案例还不够，要倾尽所有核心资源，优先打造标杆神级案例\n\n在国内，案例对销售的重要性，可能被低估了 \n尤其是对于一些新的产品，对目标企业对新的概念、模式或者专业词汇很难理解，沟通教育成本往往很高，销售讲半天，客户可能还是没有体感\n但只要讲出一个足够强的神级案例，客户往往就容易理解，也更容易做决策\n\n所谓的神级标杆案例，就是能让人产生aha感觉的商业故事 \n比如，通过你的产品或服务，一个名不见经传的小公司，从年营收500万，一年后就做到了一亿； \n一家上市公司，按照新的模式，核心渠道获客量增加了2倍，但获客成本下降了一半； \n这种，都符合神级标杆案例的特征\n\n一个神级案例，胜过100页产品介绍 \n有一两个这样的案例，团队在之后的销售工作，就会轻松很多，客户也会更容易理解和决策\n\n如何打造神级案例，可以参考这5个步骤： \n1、选对适合自己的客户（包括案例潜力巨大、客户配合度高且愿意案例公开化等）； \n2、定义尖锐目标； \n3、核心团队亲自下场，核心资源全力跟上； \n4、记录全过程； \n5、案例产品化",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2070878893582766223": {
+    "text": "这是今晚直播的相关资料、资源及系统，分享给大家\n\n相关资料：\n1、《GEO内容工程操作手册与评估标准》https://t.co/c0tEyINbzt\n2、《GEO内容工程系统研究报告》https://t.co/HOEY73Cj7k\n3、《GEO 内容工程方法体系与单篇内容实操教程》https://t.co/TzdsO33M5b\n3、《系统之美》《人人都该懂的工程学》\n4、《GEO: Generative Engine Optimization》https://t.co/QrHdgXghA1\n5、《Generative Engine Optimization in digital repositories: optimizing visibility for generative AI》https://t.co/VJY4Yf5rss\n6、《A Measurement Framework for Generative Engine Optimization Across AI Search Platforms》https://t.co/oj4eXluauw\n\n相关资源：\n1、GEO改写提示词：https://t.co/daKH5AEajS\n2、GEO改写Skill：https://t.co/dJnVFIkErA\n3、GEO单篇内容GEO特征标注演示：https://t.co/C8gwg72hH0\n\nGEO系统与skill：\n1、GEO Skills：https://t.co/Gee55y5OiT\n2、GEOFlow：https://t.co/UHwRimsUsZ\n3、Meta skill：https://t.co/Y0BXG6Z2Uo",
+    "links": [
+      "https://t.co/c0tEyINbzt",
+      "https://t.co/HOEY73Cj7k",
+      "https://t.co/TzdsO33M5b",
+      "https://t.co/QrHdgXghA1",
+      "https://t.co/VJY4Yf5rss",
+      "https://t.co/oj4eXluauw",
+      "https://t.co/daKH5AEajS",
+      "https://t.co/dJnVFIkErA",
+      "https://t.co/C8gwg72hH0",
+      "https://t.co/Gee55y5OiT",
+      "https://t.co/UHwRimsUsZ",
+      "https://t.co/Y0BXG6Z2Uo"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2070798158339383579": {
+    "text": "开源一套GEO提示词和skill，GitHub地址见文末\n今晚的公开课，也会分享它的使用与原理\n\n核心逻辑：\n把已有文章改造成 GEO / AI 搜索友好的版本，保留原文观点，补结构，做加权评分，把缺来源、缺数据口径、缺原文引语的地方标成「建议补充」\n\n适合一些站点的旧文改造和GEO内容发布前进行自检\n\n1、提示词地址：\nhttps://t.co/5tgq6ZVhU0\n\n2、skill地址：\nhttps://t.co/oBWvQBxRyV",
+    "links": [
+      "https://t.co/5tgq6ZVhU0",
+      "https://t.co/oBWvQBxRyV"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2070717771730891078": {
+    "text": "@li9292 会有，文字稿我会整理后发出来，也会有回放",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2070717656941068307": {
+    "text": "@Liberte176 WaytoAGI的视频号，晚上八点",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2070651940116291954": {
+    "text": "这是我们GEO专题公开课的第二场（一共12场）\n也会同步在WaytoAGI的视频号同步直播，欢迎观看 https://t.co/4dpCTzcvKE",
+    "links": [
+      "https://t.co/4dpCTzcvKE"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2070477337909682487": {
+    "text": "@hiheimu 有的，提示词参考：\n生成目标：16:9 中文正文配图，不是封面、PPT、dashboard。\n风格核心：白底、研究拼贴、撕纸、胶带、红批注/印章、蓝证据卡、橙色流向箭头、手绘知识货架。",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2070475423071580350": {
+    "text": "@daodao166888 对，是的，明天晚上八点在WaytoAGI直播间",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2070455047461462195": {
+    "text": "GEOFlow的GitHub地址： https://t.co/LYdvqIahvv",
+    "links": [
+      "https://t.co/LYdvqIahvv"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2070455003194786282": {
+    "text": "GEO系统“GEOFlow最近更新到 v2.1.0了，GitHub地址详见评论区 \n\n近期的不少迭代，主要来自一位上市公司营销负责人的真实使用反馈，他们在集团内部部署了GEOFlow，提出了不少非常有价值的建议和需求\n\n主要更新了几个方向： \n1、新增企业知识库草稿生成工作流，支持上传或粘贴多份资料，解析多种格式，再由 AI 做结构化草稿生成，并保留来源、修订和人工确认项 \n2、加强了前台和分发能力：在线主题编辑、首页模块配置、自定义样式、APIHot 推荐主题、统一 SEO metadata、文章分发状态可视化、任务分发策略、目标站点设置同步 \n3、部署侧也补了安装状态保护、默认管理员邮箱配置、Redis session、Docker 和子目录部署支持\n\n这次更新之后，GEOFlow越来越像一个面向企业的 GEO 内容工程系统了，覆盖从企业知识库、AI草稿、人工审核、前台展示、内容分发、站点同步到运营管理的一整套流程 \n\n越来越像“GEO + 自动站群管理与运营系统”了",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2070093155698090028": {
+    "text": "开源一个ChatGPT结果采集、清洗及分析的GEO skill：yao-chatgpt-crawler \n以“豆包”为实体，进行了真实测试，豆包在ChatGPT的GEO诊断报告，详见文末链接\n\n运行流程与逻辑： \n1、先准备问题列表、重复次数、目标实体、实体类型、OpenCLI profile、采样间隔 \n2、OpenCLI Browser Bridge 连接已登录的 ChatGPT Web profile，对一组问题，随机间隔策略做多次独立采 \n3、最后完成数据清洗，汇总结果，生成 JSON、Markdown、Excel 和 HTML 报告 \n4、生成的HTML数据分析报告，会看多个指标，包括：目标实体的提及率、平均提及次数、Top 1 / Top 3 / Top 5 概率、平均排名、情绪倾向、引用来源、域名结构、标题意图，以及目标实体和同类型竞品之间的差距 \n5、关于实体判断：会区分人、公司、产品、概念词和噪声词，避免把“行业词”“泛品类词”“URL 参数”混进竞品表\n\n整体的原则是，基于真实 ChatGPT Web 多次结果模拟，而不是 API 模拟 \n这对GEO分析会更有价值\n\n欢迎体验\n\n1、skill GitHub地址： https://t.co/ALdnv5oEhB\n2、示例报告相关文件地址： https://t.co/PjHF5Sk0x6\n3、HTML报告快速浏览地址： https://t.co/np2FHnLJSP",
+    "links": [
+      "https://t.co/ALdnv5oEhB",
+      "https://t.co/PjHF5Sk0x6",
+      "https://t.co/np2FHnLJSP"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2069633008760693247": {
+    "text": "@MaoyanRao 润物细无声，到这个层次确实很牛",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2069577954129293375": {
+    "text": "升级了下本地Token账本小工具TokKit，已推送到GitHub\n\n给它补了一个MAC菜单栏小面板\n点一下电脑右上角图标，就能看到今日用量，近7日、30日趋势，近7日明细，以及终端和模型的使用情况\n\n感兴趣可以下载体验\n\nGitHub地址：\nhttps://t.co/0BtgYy5Fmr https://t.co/hN7Ftvam7l",
+    "links": [
+      "https://t.co/0BtgYy5Fmr",
+      "https://t.co/hN7Ftvam7l"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2069409274221203897": {
+    "text": "公司新来一位销售，下午做了一场演练分享\n然后大家就开始讨论，总结了不少销售策略，比如通俗易懂、典型案例、二八法则、有对象感、会讲故事等等\n\n但后来我又想，真正好的销售，应该有更简单的逻辑\n如果用两个词来表达，那就是：真诚和专业\n真诚，意味着不藏着掖着，真心为你着想\n专业，意味着能发现真实问题，并且给出专业的建议和支持\n这就足以\n\n也印证了这句话：销售，绝不是降低身份去取悦客户，而是像朋友一样给予合理的建议。你刚好需要，我刚好专业。仅此而已！",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2069022134165458961": {
+    "text": "研究了一下基于GitHub开源项目的盈利模式，让GTP Pro做了深度调研，整理了13种常见的盈利模式，同时也做了一版盈利指数的分析参考（详见图片）\n\n1、云租赁与 SaaS 模式，系统本身免费，用户可租用官方云服务、托管服务、服务器、数据库、存储、推理服务等 \n2、数据、模型、评测与工作流增值，代表案例 Hugging Face \n3、企业私有化与专属部署，单独收费 \n4、企业版增值功能付费，个人或部分功能免费（经典开放核心模式） \n5、双重许可与商业授权，代表案例 MySQL，同一代码以 GPL/开源许可和商业许可并行，闭源嵌入或 OEM 付费，高毛利授权模式 \n6、企业级订阅与商业支持，个人版免费 \n7、API、算力和用量计费，提供自定义 API，同时也提供自有商业 API \n8、专业服务与系统集成收费，代表案例 Red Hat \n9、并购或战略投资 \n10、培训与认证，提供课程、考试、证书、企业培训等服务 \n11、导流分成，植入相关插件或商业产品入口，实现一定分佣 \n12、广告收入 \n13、赞助、捐赠\n\n开源项目其实有不少，可以很自然的融入一些盈利机制：算力、API、模型服务、数据资产、评测体系、Agent 工作流、私有化部署等 \n关键在于找到代码之外具体的高价值付费场景",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2068568931233911205": {
+    "text": "确实方便，安装部署后，Codex极简使用参考：\n“用 qiaomu-icon-generator 给当前项目（XXX）生成10个图标候选，先不要替换现有 favicon” https://t.co/h5Iobgi27y",
+    "links": [
+      "https://t.co/h5Iobgi27y"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2068315572610465914": {
+    "text": "@smithandai 过几天抽空我也测测GLM5.2",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2068315236374024559": {
+    "text": "@gkxspace 软件工程的思想用在skill里，确实还挺有用的",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2068313318377582615": {
+    "text": "【DeepSeek GEO 诊断与分析skill】 \n\n放假这两天，基于OpenCLI，写了一个DeepSeek的AI结果爬取、数据清洗和GEO诊断分析的skill，已开源到GitHub \n相关资源及演示报告链接见文末\n\n生成的诊断分析报告，有多个维度的指标数据和图表分析，效果还不错 \n以蔚来作为真实测试示例，给大家进行案例展示（详见图片及链接）\n适合分析个人、品牌、产品在DeepSeek的搜索结果综合表现，并分析出与竞品的区别，找到当前目标实体在DeepSeek的GEO优化的问题、潜力与方法\n\n工作流程与逻辑 \n1、可以在codex、Claude Code，安装skill后执行，输入需要查询的1个或多个关键词、目标实体（比如人名、公司名、产品名）、实体类型与抓取间隔策略 \n2、AI调用OpenCLI的能力，开始执行，每个问句多轮重复抓取，每次抓取随机时间间隔 \n3、会基于GEO的实体名称与类型，对结果进行清洗，并生成结构化的JSON数据日志，Excel结构化数据表，以及HTML可视化诊断与分析报告，中英文双语（详见图片及链接）\n\n这个Skill的前置条件 \n1、真实抓取，需要提前下载openCLI并已连接 OpenCLI Browser Bridge，且DeepSeek 网页端已经登录，建议使用新号测试 \n2、执行时的准备，关键词列表、每个关键词轮询次数、目标实体（比如Google、姚金刚）、推荐提供目标实体别名和竞品别名表，用来提升实体识别准确率、抓取间隔，例如 1-3 分钟随机，或更安全的 5-20 分钟随机\n\n这个skill主要基于DeepSeek，其它AI搜索平台，后面陆续开源出来\n\n相关资源链接：\n\n1、GitHub仓库： \nhttps://t.co/Qo3RmyzdbN\n\n2、诊断分析可视化报告： \nhttps://t.co/kpGq4SnXf4\n\n3、抓取与分析的所有文件包： \nhttps://t.co/CgkKVJ8eL7",
+    "links": [
+      "https://t.co/Qo3RmyzdbN",
+      "https://t.co/kpGq4SnXf4",
+      "https://t.co/CgkKVJ8eL7"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2068252073267994714": {
+    "text": "RT @vista8: 前几天去上海，发现飞机上不是在看PPT就是再写PPT。\n\n怪不得好友们的PPT skill这么火爆 哈哈哈。\n\n终于想写一个自己的PPT Skill了，特色：\n\n1. 同时生成可编辑的PPTX格式文档、PDF和HTML。\n\n2. GPT 5.5 Pro调…",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2068252006566044094": {
+    "text": "RT @op7418: 用 Nano Banana 去超分放大 GPT-Image-2.0 图片\n\nGPT 生成的图片很多时候会有这种毛躁的感觉，特别是一些非写实的图片，会有这种破碎的纹路和纹理，非常影响观感，而且一眼就能看出来是 GPT 生成的。\n\n其实可以用 Nano Ba…",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
   "2114270707232465176": {
     "text": "小灰真人出镜，分享一下Kimi K3.1 Pro的实测情况 https://t.co/z2dSpKXWkm https://t.co/sRVU6n3mzk",
     "links": [
@@ -17629,6 +18255,628 @@
     ],
     "avatar": ""
   },
+  "2086328161231683697": {
+    "text": "@Skyn2026 是的，数值平衡并非AI开发的强项，还是需要大量亲测",
+    "links": [],
+    "avatar": ""
+  },
+  "2086306979379884465": {
+    "text": "@Maddere7 确实，steam平台的审核效率实在是不太高",
+    "links": [],
+    "avatar": ""
+  },
+  "2086304686785896547": {
+    "text": "上一个游戏还在审批阶段，新游戏已经紧锣密鼓地开始研发了。\n\n小灰的第三部AI游戏名为《无为修仙传》，是一款放置类仙侠游戏，用 Codex + GPT-5.6 Sol 半小时生成了图中的效果。 https://t.co/4FAvTYBZvQ https://t.co/BwjMUbnypG",
+    "links": [
+      "https://t.co/4FAvTYBZvQ",
+      "https://t.co/BwjMUbnypG"
+    ],
+    "avatar": ""
+  },
+  "2085980556832158006": {
+    "text": "为什么我不建议你做AI漫剧？\n\n最近一段时间，来自AI漫剧的虚拟人物方桃子火了，运营团队起号仅仅一个月，账号粉丝就突破了40万。\n\n除了AI漫剧本身的收益，这个AI人物还能接广告，商业广告的对外报价如下：\n\n1～20 秒短视频：16.8 万元\n21～60 秒短视频：20.8 万元\n60  秒以上长剧情广告：25.8 万元\n\n这个报价标准，已经远远超过百万粉丝真人网红的广告报价！\n\n大家羡慕这个收益吗？毫无疑问，包括小灰本人也很羡慕。\n\n但是，我依然不建议大家选择AI漫剧这条赛道。\n\n为什么呢？因为这条赛道两极分化极其严重。\n\n据统计，AI漫剧行业仅有0.47%的剧集能盈利、跑出流量；64%的作品播放不足100万，完全达不到变现门槛；90% 中小创作者和团队处于亏损状态，30% 彻底血本无归。\n\n只有不足1%的头部团队，瓜分行业 85% 以上利润，剩下99%从业者几乎赚不到钱。\n\n不只是AI漫剧，绝大多数文创相关的赛道都是如此，文学、绘画、音乐、影视......它们都是赢家通吃的赛道，90%甚至99%的参与者都是在陪跑，只有极少数精英和幸运儿能够吃掉绝大部分利益。\n\n因此，建议大家选择赛道的时候保持清醒，不要被极少数头部玩家的辉煌成就所蒙蔽，真正值得参考的是这个赛道的中位数水平，这也大概率是你从事该赛道之后的结果。\n\n大家对AI漫剧赛道怎么看？欢迎留言说说你的想法。",
+    "links": [],
+    "avatar": ""
+  },
+  "2085586341602242849": {
+    "text": "小灰真人出镜，来给大家说一说 Codex 和 WorkBuddy的选择。\n\n不喜欢阅读长文章的朋友，推荐看看这条视频。 https://t.co/awOWnSqxYd https://t.co/RUzzWuHfK1",
+    "links": [
+      "https://t.co/awOWnSqxYd",
+      "https://t.co/RUzzWuHfK1"
+    ],
+    "avatar": ""
+  },
+  "2085354213920690633": {
+    "text": "小灰的新游戏《细菌克星》，利用 Codex + GPT-5.6 sol 自动化开发，仅仅花费一周时间，已经接近完成！\n\n未来小灰有个计划：布局自己的steam游戏矩阵。每7-10天出一款游戏，连续出10款，只要有一款游戏火起来，所有的投入都值得了。\n\n大家觉得这个计划可行吗？欢迎评论区聊一聊。 https://t.co/leavECB4dE https://t.co/OiT5Y0Wf0i",
+    "links": [
+      "https://t.co/leavECB4dE",
+      "https://t.co/OiT5Y0Wf0i"
+    ],
+    "avatar": ""
+  },
+  "2085316895054672020": {
+    "text": "@Maddere7 一口气做他10款游戏，只要有一款游戏能稍微卖得好一些，就全部回本了",
+    "links": [],
+    "avatar": ""
+  },
+  "2085302991993852334": {
+    "text": "斥巨资购买了三个steam游戏位，总共花费300美刀。\n\n小灰计划利用AI的高效开发能力，打造出属于自己的游戏矩阵，敬请期待~~ https://t.co/TWzb4EfNxD https://t.co/rMvRuOL6gF",
+    "links": [
+      "https://t.co/TWzb4EfNxD",
+      "https://t.co/rMvRuOL6gF"
+    ],
+    "avatar": ""
+  },
+  "2085214316484333665": {
+    "text": "我的 Codex 正在电脑上为我设计和开发项目。\n\n而我本人正在厨房洗菜做饭。\n\n总觉得这样的场景有些荒诞 😅 https://t.co/xA2EfsuE8i https://t.co/RUzzWuHfK1",
+    "links": [
+      "https://t.co/xA2EfsuE8i",
+      "https://t.co/RUzzWuHfK1"
+    ],
+    "avatar": ""
+  },
+  "2085012461963620587": {
+    "text": "一个敢独自把破菲亚特开进阿里无人区400公里、被困一周后弃车走出来的人，他做公司就不会跟在别人后面。\n\n一个用入门相机却能等半天光线拍到最好的人，他做模型就会把每一分算力都榨干。\n\n一个车扔了还能写“That's the END”的人，他不会在乎短期股价和融资新闻。\n\nDeepSeek不是一份商业计划书，是一个人的本性，在12年后自然长出来的东西。👍",
+    "links": [],
+    "avatar": ""
+  },
+  "2084505908214944159": {
+    "text": "@happy20250912 感谢B哥的推荐，希望对大家的选择有所帮助",
+    "links": [],
+    "avatar": ""
+  },
+  "2083037674622054460": {
+    "text": "今天的大A有点厉害👍\n\n截止到中午收盘，小灰的账户情况如下：\n\n当日收益：317601.94元\n当月收益：581275.91元\n2026年收益：40624.74元\n炒股总收益：167222.70元\n\n经过各种大起大落，我在2026全年总算是扭亏为盈了😂\n\n大家在大A的情况如何？欢迎留言进行分享。 https://t.co/cTVpWZw7JU https://t.co/AzP1ut7ppy",
+    "links": [
+      "https://t.co/cTVpWZw7JU",
+      "https://t.co/AzP1ut7ppy"
+    ],
+    "avatar": ""
+  },
+  "2082106176960111038": {
+    "text": "利用Codex+GPT-5.6 sol，小灰制作了一款全新游戏的demo，游戏名为《细菌克星》，属于增量放置类游戏。\n\n后续小灰计划利用AI快速开发游戏的能力，构建steam游戏矩阵，敬请期待~~ https://t.co/aA3Ivq21b0 https://t.co/cgKxJSJnzm",
+    "links": [
+      "https://t.co/aA3Ivq21b0",
+      "https://t.co/cgKxJSJnzm"
+    ],
+    "avatar": ""
+  },
+  "2082023383475392546": {
+    "text": "@pan198834320 @Maddere7 只需要投入时间精力，没有什么金钱投入",
+    "links": [],
+    "avatar": ""
+  },
+  "2081970431930830992": {
+    "text": "@Maddere7 比较火的地图，一个月利润超过10万；顶流的地图，一个月利润能超过100万。",
+    "links": [],
+    "avatar": ""
+  },
+  "2081964412643180587": {
+    "text": "制作游戏地图的收入，颠覆了我的认知！\n\n以前小灰以为，个人想要通过独立游戏变现的话，渠道无非就是steam游戏或者微信小程序员游戏。\n\n直到昨天小灰和一位游戏开发朋友聊起来，我才获得一个宝贵的信息差：原来制作KK对战平台游戏可以这么赚钱！\n\n什么是KK对战平台？\n\n80后、90后的朋友，应该非常熟悉一款经典老游戏：《魔兽争霸3》。\n\n这款游戏自带地图编辑器，支持玩家自主开发各种各样的RPG地图，上传到社区和同好们一起对战。\n\n而网易旗下的KK对战平台，承接了大量魔兽 RPG 玩家与地图作者，现在是国内最大魔兽 RPG 聚集地（图1）。该平台非常活跃，用户的付费能力也很强。\n\n如何在上面开发游戏呢？\n\n网易在魔兽原生的地图编辑器基础上，研发了一款名为Y3的游戏编辑器（图1）。Y3是一款可视化低代码工具，不需要你有编程基础就可以开发自己的RPG游戏，非常容易上手。\n\n如何在KK对战平台变现？\n\n你上传的RPG地图本身是免费的，但可以在其中增加额外的付费元素，比如强力道具、解锁新关卡、更加便利的功能等等。玩家在平台充值U币购买地图内的增值体验，开发者获得平台分成。\n\n在KK对战平台能赚多少钱？\n\n先说说变现天花板：顶流RPG地图，比如老牌地图《英灵传说》，能够给平台带来上千万的月流水，作者每个月能分到数百万。\n\n当然，我们不能跟天花板去比。普通人如果做出比较优秀的RPG地图，一个月到手收益也能达到3万-10万之间，还算是比较可观。\n\n小灰打算近期好好研究一下这个平台，也欢迎对游戏地图开发感兴趣的朋友尝试一下。",
+    "links": [],
+    "avatar": ""
+  },
+  "2081631327754055801": {
+    "text": "@happy20250912 感谢大佬的分享，希望对大家有所帮助👍",
+    "links": [],
+    "avatar": ""
+  },
+  "2081631191342735693": {
+    "text": "@Mr_paperi 谢谢分享，希望这篇教程能帮助到大家",
+    "links": [],
+    "avatar": ""
+  },
+  "2081512353498317056": {
+    "text": "自媒体最大的坑不是做得不够好，而是每条视频都做得太累，最后坚持不下去。\n\n先选一个能长期讲的方向，把制作成本降下来，边发边改，剩下的交给数据。 https://t.co/1rdP1bsMdc",
+    "links": [
+      "https://t.co/1rdP1bsMdc"
+    ],
+    "avatar": ""
+  },
+  "2081511328477479286": {
+    "text": "中老年情感疗愈账号能火，不是因为写得好，是因为它专门给焦虑的人开了一张“躺平许可证”：\n\n你不用努力，放下就是高智慧。标题给安慰，正文有更高的完读率，算法就会疯狂给你推流。 https://t.co/oPv7i39WMj",
+    "links": [
+      "https://t.co/oPv7i39WMj"
+    ],
+    "avatar": ""
+  },
+  "2080900499638006042": {
+    "text": "时间过得很快，我们的WorkBuddy变现公开课已经进行了6场直播，最后一场直播将会在7月26日晚21:00进行。\n\n本期公开课总共有597位学员参与，大家的学习和实操热情远超我们的想象。\n\n在此感谢各位教练老师的辛苦交付，也感谢各位学员的积极参与，在这个AI时代，希望大家共同抓住红利 👍 https://t.co/MUq8d5GgSq https://t.co/tnXboIreUt",
+    "links": [
+      "https://t.co/MUq8d5GgSq",
+      "https://t.co/tnXboIreUt"
+    ],
+    "avatar": ""
+  },
+  "2080862276899455374": {
+    "text": "卧槽，微信公众号上发布的直接被删文了！\n\n也不知道触发了哪条敏感规则，大家只能在这里看了。 https://t.co/D8k6qsDEtk https://t.co/RXFDbqlfDF",
+    "links": [
+      "https://t.co/D8k6qsDEtk",
+      "https://t.co/RXFDbqlfDF"
+    ],
+    "avatar": ""
+  },
+  "2080200469583192290": {
+    "text": "小灰也是《纳瓦尔宝典》的忠实读者，这篇文章总结得很到位 👍\n\n真正的财富，不是钱，而是你不工作时仍在创造价值的资产。\n\n致富关键：别永远卖时间，要拥有股权和杠杆——代码、媒体、资本、团队，让个人能力被无限放大。\n\n独特知识 + 长期复利 + 现代杠杆，才是普通人摆脱线性人生的出路。\n\n财富的终点不是消费，而是自由：\n\n有选择与谁合作、做什么、在哪里生活，以及如何安排自己的一天。\n\n培养独特能力，创造真实价值，坚持长期积累，减少无谓欲望，把时间留给真正重要的事。",
+    "links": [],
+    "avatar": ""
+  },
+  "2080177588639760879": {
+    "text": "@Mr_paperi 欢迎体验，一起进入AI游戏时代~~",
+    "links": [],
+    "avatar": ""
+  },
+  "2080177530108260749": {
+    "text": "@lxfeng999 哈哈哈，很多人说现实里的小灰长得有点像洋娃娃😆",
+    "links": [],
+    "avatar": ""
+  },
+  "2080177410201526569": {
+    "text": "@lxfeng999 可以在steam平台搜索关键词“仙门守护者” https://t.co/Wro1t0dyvo",
+    "links": [
+      "https://t.co/Wro1t0dyvo"
+    ],
+    "avatar": ""
+  },
+  "2080131348619272374": {
+    "text": "管团队要像训练AI一样：用强化学习定目标、给反馈，让人自己摸索，而不是死板灌输。\n\n但这招最大的坑——人很容易钻空子、刷指标、玩套路。\n\n很多复杂其实是硬加进去的，事情本身并没那么绕。\n\n最终还是得回到原点：弄清楚自己是谁、为什么要做这件事。\n\nAI的本质，就是把人类文明的能力不断放大。\n\n这些事，还得慢慢磨。",
+    "links": [],
+    "avatar": ""
+  },
+  "2080127336754942427": {
+    "text": "每个人都想用 AI 赚钱。\n\n但说实话，大部分人连别人到底在怎么赚都没搞清楚。\n\n扒完这 8 类，真正有壁垒的其实只有两类：\n\n能沉淀成产品的（独立 micro-SaaS）——跑通之后它自己赚钱，不吃你的时间。\n\n能绑住真实客户关系的（企业交付、代运营、自动化外包）——客户换掉你成本很高。\n\n剩下的——无脸内容、电商自动化、数字产品、AI 网红——大多是趁平台红利，来得快，去得也快。不是不能做，是别把红利当护城河。\n\n红利是别人的，护城河才是你自己的。",
+    "links": [],
+    "avatar": ""
+  },
+  "2079736232402391507": {
+    "text": "@XiaoyangYu14 现实里小灰长得也不太像真人，哈哈哈😂",
+    "links": [],
+    "avatar": ""
+  },
+  "2079589009156977104": {
+    "text": "小灰真人出镜，介绍一下这款利用Codex打造的纯AI游戏 😁 https://t.co/ROH3lWUE7A https://t.co/cgKxJSJnzm",
+    "links": [
+      "https://t.co/ROH3lWUE7A",
+      "https://t.co/cgKxJSJnzm"
+    ],
+    "avatar": ""
+  },
+  "2078873385405419632": {
+    "text": "@zhongying14 感谢分享，希望小灰的这次尝试可以为大家开一个头",
+    "links": [],
+    "avatar": ""
+  },
+  "2078844555294892063": {
+    "text": "道爷我成了！😁\n\n小灰用 Codex 打造的塔防游戏正式上线！\n\n熟悉小灰的朋友都知道，这段时间我一直在利用 AI 打造一款独立游戏。\n\n目前这款 AI 游戏的进度怎样了？\n\n今天告诉大家一个好消息：经过漫长的审核，我的游戏终于在steam平台正式上线了！\n\n你敢相信吗？在这款游戏的开发过程中，我没有写过一行代码，没有画过一个美工素材，没有制作过一首游戏音乐。完全凭借各种强大的AI工具，一款完整的商业化游戏就这样诞生了。\n\n如何玩到这款游戏？\n\n非常简单，只要你有一台电脑，下载 steam 客户端，在 steam 商城搜索游戏名字“仙门守护者”，即可找到小灰的游戏。\n\n这款游戏的原价是18元，首发期间享受7折优惠，只要12.6元，还不到一杯奶茶和咖啡的价钱。\n\n购买游戏之后，安装完毕，查看自己游戏库，在左侧最上方找到《仙门守护者》，点击“开始游戏”按钮，就可以开始这款AI游戏的旅程了。\n\n对了，凡是在游戏首发期间（7月19日-7月31日）购买的朋友，小灰还会免费赠送大家一个AI游戏开发交流群。\n\n小灰会不定期在群里分享AI游戏的开放经验，欢迎对游戏开发感兴趣的朋友加入交流。\n\n想要加入AI游戏开发交流群的朋友，可以扫码添加小灰微信，备注“AI游戏”并发布steam的购买截图，小灰会拉你进群。\n\n最后，期待未来的AI能力进一步提升，让拥有游戏开发梦想的朋友们都能尽情发挥自己的想象力，打造出自己心中的理想游戏。👍",
+    "links": [],
+    "avatar": ""
+  },
+  "2077999016517013921": {
+    "text": "今天的大A有点惨 😂\n\n截止到下午2:00，小灰的账户情况如下：\n\n当日收益：-302713.50元\n当月收益：111481.22元\n2026年收益：-429169.95元\n炒股总收益：-302571.99元\n\n这是在刨韭菜根呀~~\n\n大家目前在大A的情况如何？欢迎留言进行分享。 https://t.co/pULyDUyvax",
+    "links": [
+      "https://t.co/pULyDUyvax"
+    ],
+    "avatar": ""
+  },
+  "2077737345630216445": {
+    "text": "Claude 现在可以免费教你从零开始构建被动收入，这里有8个提示词帮你边睡边赚钱，建议收藏 👍\n\n提示词1：被动收入操作系统提示词\n\n扮演一位世界级的企业家、金融教育者和系统架构师。帮我从零开始构建一个完整的操作系统，用于创建多个被动和半被动收入流。分析我的技能、预算、风险承受能力、受众群体和长期目标。设计一个个性化的路线图，涵盖商业模式、数字资产、自动化系统、营销、再投资和规模化策略。明确区分已验证的方法和假设。\n\n提示词2：被动收入机会发现提示词\n\n扮演一位商业机会分析师。帮我找出最适合我的技能、兴趣、可用资金和生活方式的被动及半被动收入模式。对比数字产品、联盟营销、软件、内容业务、授权、教育、订阅制以及其他可扩展的商业模式。按照启动难度、持续投入、可扩展性、风险和长期盈利潜力对每个机会进行排序。\n\n提示词3： 数字资产创建提示词\n\n扮演一位数字商业策略师。帮我构建能够长期产生 recurring revenue（ recurring 收入）的数字资产。制定一个逐步计划，包括市场调研、需求验证、产品创建、定价、发布、营销、迭代和扩展数字资产。重点放在创造长期价值上，而不是追逐短期热点。\n\n提示词4： AI 商业自动化提示词\n\n扮演一位 AI 自动化顾问。帮我构建一个完整的 AI 工作流，用于自动化研究、内容创作、客户支持、营销、运营、数据分析以及重复性业务任务。推荐哪些环节使用 AI 可以提升效率，同时保持质量、原创性和客户信任。\n\n提示词5：受众与营销引擎提示词\n\n扮演一位增长营销策略师。帮我设计一个能持续吸引客户的营销系统，用于我的被动收入业务。涵盖内容营销、SEO、邮件通讯、社交媒体、合作伙伴、推荐、社区建设和线索获取。说明每个渠道如何为长期客户获取和业务增长做出贡献。\n\n提示词6：变现与收入扩展提示词\n\n扮演一位商业变现专家。帮我制定一个逐步扩大收入的路线图。涵盖定价策略、追加销售、订阅制、会员制、联盟合作、授权、咨询、高级产品以及 recurring 收入机会。根据业务成熟度和客户信任度，推荐每个收入流引入的时机。\n\n提示词7：商业仪表盘与优化提示词\n\n扮演一位商业数据分析顾问。帮我构建一个仪表盘，用于追踪被动收入业务的健康状况。监控流量、转化率、获客成本、客户终身价值、留存率、 recurring 收入、盈利能力、营销表现、自动化效率和客户满意度。建立一个每周复盘系统，实现持续优化。\n\n提示词8：长期财富构建提示词\n\n扮演一位长期金融策略师。帮我制定一个将多个收入流转化为持久财务安全的路线图。涵盖再投资策略、多元化、现金流管理、业务扩张、风险管理、应急规划和长期财务目标。包含里程碑设定以及应对市场变化的应急计划。",
+    "links": [],
+    "avatar": ""
+  },
+  "2077722385323864299": {
+    "text": "今晚21:00，我们的公开课正式开始。\n\n还有小伙伴想来听课吗？ https://t.co/eiAOIYxjIM",
+    "links": [
+      "https://t.co/eiAOIYxjIM"
+    ],
+    "avatar": ""
+  },
+  "2077336297048523141": {
+    "text": "利用Codex打造的纯AI游戏《仙门守护者》，即将在steam平台正式上线！\n\n不得不说，steam平台的审核速度确实有些慢。小灰提交完整游戏版本之后，官方审核了足足一周才给出反馈，今天再次提交审核，希望能顺利通过。\n\n在漫长的等待过程中，小灰对游戏宣传视频进行了优化，希望这款游戏能够早一日和大家正式见面，敬请期待~~",
+    "links": [],
+    "avatar": ""
+  },
+  "2077305435741446347": {
+    "text": "Codex 能删库删文件？\n\n别慌，5 分钟配置自定义规则 + 沙盒模式，一套操作解决问题 👍 https://t.co/Qrt65QrNOa",
+    "links": [
+      "https://t.co/Qrt65QrNOa"
+    ],
+    "avatar": ""
+  },
+  "2076874090129052072": {
+    "text": "写的非常细 👍👍\n\n这是我目前看到最完整的 Claude Code 命令大全。\n\n建议先收藏，以后查命令很方便。 https://t.co/eiQBBjy94R",
+    "links": [
+      "https://t.co/eiQBBjy94R"
+    ],
+    "avatar": ""
+  },
+  "2076559160343462265": {
+    "text": "@smark0428 哈哈，长江后浪推前浪，一代新人换旧人",
+    "links": [],
+    "avatar": ""
+  },
+  "2076559074846753126": {
+    "text": "@lxfeng999 是小灰的一位合伙人哈，小灰自己40岁了😁",
+    "links": [],
+    "avatar": ""
+  },
+  "2076533611311030305": {
+    "text": "0文稿、0录制、0剪辑！\n\n这是一条纯用 GPT 5.6 sol 生成的视频，太强了！\n\n强烈建议大家趁着这个窗口期，赶紧把个人口播 IP 搞起来 👍 https://t.co/GNI5NALhwJ",
+    "links": [
+      "https://t.co/GNI5NALhwJ"
+    ],
+    "avatar": ""
+  },
+  "2076516775769030766": {
+    "text": "我们的【AI智能体】公开课，7 月 16 日正式发车！\n\n大家好，在小灰副业俱乐部当中，我们一年会举办至少 5 场副业实操特训营。\n\n如今 2026 年已经过去一半，我们的实操特训也先后进行了三期，每一期实操特训都让广大球友们收获满满。\n\n在7月的下半月，我们新的一期实操特训也即将展开。经过团队的调研和讨论，小灰副业俱乐部 2026 年的第四期实操特训方向确定为 AI 智能体。\n\n为什么选择 AI 智能体呢？如果说 2023 年到 2025 年是AI大模型的时代，那么 2026 年则属于AI智能体。如今国内外涌现出许多强大的AI智能体平台，包括小龙虾、Hermes、WorkBuddy、Coze 等等。\n\n这些 AI 智能体平台不再是简单地回答问题，而是扮演一个管家的角色，为你提供整套的解决方案。许多人借助AI智能体平台经营一人企业，完成了变现的闭环。\n\n为了让更多朋友享受到 AI 智能体的便利与强大，抓住 AI 一人企业的红利，我们果断把 AI 智能体的实操特训提上日程。\n\n本期实操特训营计划从 7 月 16 日开始，7 月 25 日结束，总共历时 10 天，包含 7 次线上直播。\n\n本期实操特训的具体排期如下：\n\n第 1 课 搞懂概念： 认识你的这些 AI 工具（7 月 16 日 晚 21:00）\n\n第 2 课 投喂资料： 教 AI 记住我是谁、干啥的（ 7 月 17 日 晚 21:00）\n\n第 3 课 做出样品： 半天捣鼓出一个能卖钱的 “小产品” （7 月 19 日 晚 21:00）\n\n第 4 课 省时省力： 发朋友圈、做海报，一键搞定（7 月 20 日 晚 21:00）\n\n第 5 课 一鱼两吃： 一篇文章变成视频稿，两头拿流量（7 月 22 日 晚 21:00）\n\n第 6 课 自动营业： 让 AI 帮你写好每天的发圈文案（7 月 23 日 晚 21:00）\n\n第 7 课 查漏补缺： 看看成果，解决最后那点卡壳的事（7 月 25 日 晚 21:00）\n\n如何报名参加呢？\n\n实操特训的对外价格是 99 元，星球内部成员只要 9.9 元。\n\n报名的朋友请添加小灰微信 bjxiaoxiaohui，备注“实操特训”。\n\n最后，期望大家都能通过这次实操特训营有所收获，掌握实用技能，赚到可观的收入！",
+    "links": [],
+    "avatar": ""
+  },
+  "2075807219833249924": {
+    "text": "@IPFS15 是的，5.6 sol 真的能帮你解决实际问题",
+    "links": [],
+    "avatar": ""
+  },
+  "2075550967815430454": {
+    "text": "完成度超过95%，马上大功告成！\n\n最近一段时间，我一直在用Codex开发一款属于自己的单机游戏，不是那种小小的Demo，而是一款完整的、可以商业化的游戏。\n\n这款仙侠风格的塔防游戏虽然不大，但系统一点也不少，其中包括了闯关系统、法宝系统、角色系统、成就系统、门派养成系统......\n\n游戏的所有代码、美术、音乐、文案，全部由AI完成，制作过程中我没有写过一行代码，甚至都没有Review代码。\n\n小灰在两周前发布了游戏的Demo，有兴趣的朋友可以再steam平台搜索“仙门守护者”，免费下载试玩。\n\n至于游戏的正式版，已经在steam平台提交审核，最迟在下周二正式发布，敬请期待~~",
+    "links": [],
+    "avatar": ""
+  },
+  "2075437833633058996": {
+    "text": "GPT-5.6 还没捂热，GPT-6 已经在路上了。\n\nOpenAI 直接放弃 4T Spud 底座，换更大预训练——Mythos 把所有人逼进了新赛道。👍 https://t.co/2tbouksfQI",
+    "links": [
+      "https://t.co/2tbouksfQI"
+    ],
+    "avatar": ""
+  },
+  "2075426384747680144": {
+    "text": "今天的大A有点厉害！截止到午盘，小灰的账户盈亏情况如下：\n\n当日收益：235171.20元\n当月收益：439989.14元\n2026年收益：-100662.03元\n炒股总收益：25935.93元\n\n大家目前在大A的情况如何？欢迎留言进行分享。 https://t.co/3V4gy4inaw https://t.co/Eut1WEV6NO",
+    "links": [
+      "https://t.co/3V4gy4inaw",
+      "https://t.co/Eut1WEV6NO"
+    ],
+    "avatar": ""
+  },
+  "2075089077708415216": {
+    "text": "在人人都是程序员的时代，我不允许你不会用 Github ！ https://t.co/C8z49aoRYC",
+    "links": [
+      "https://t.co/C8z49aoRYC"
+    ],
+    "avatar": ""
+  },
+  "2074744217054904711": {
+    "text": "grill-me 和 Superpowers 是两种主流 AI 编程工作流。\n\ngrill-me 强调 upfront 大量提问对齐需求，适合已有主干想法的开发者，后续执行较轻；Superpowers 采用多轮 Reviewer 持续纠偏，适合模糊想法但执行更长、耗 token 更多。\n\n核心区别在于纠正偏差的方式：一个重前期提问，一个重过程 review。 https://t.co/vlWtB4NhyV",
+    "links": [
+      "https://t.co/vlWtB4NhyV"
+    ],
+    "avatar": ""
+  },
+  "2074742815486275666": {
+    "text": "读到Claude Code的循环工程指南，我最有感触的是：\n\n好的Agent设计，核心不是写死每一步，而是设定清晰的目标和验证机制。\n\n让模型负责思考和迭代，脚本负责确定性检查，这才是高效且可控的未来。👍 https://t.co/k8OUtbpEAd",
+    "links": [
+      "https://t.co/k8OUtbpEAd"
+    ],
+    "avatar": ""
+  },
+  "2074389558150692954": {
+    "text": "人无千日好，花无百日红。\n\n这个时代最残酷的地方在于：你过去靠什么赚到钱，不代表未来还能靠什么继续赚钱。 https://t.co/w1lawQdBtq",
+    "links": [
+      "https://t.co/w1lawQdBtq"
+    ],
+    "avatar": ""
+  },
+  "2074378559184081364": {
+    "text": "今天的大A市场炸了！😂\n\n截止到今天下午2:20，小灰的账户盈亏情况如下：\n\n当日收益：-116565.20元\n当月收益：74038.81元\n2026年收益：-466612.36元\n炒股总收益：-340014.40元\n\n大家目前在大A的情况如何？欢迎留言进行分享。 https://t.co/xcp71e8SK3 https://t.co/4aRer9nPi1",
+    "links": [
+      "https://t.co/xcp71e8SK3",
+      "https://t.co/4aRer9nPi1"
+    ],
+    "avatar": ""
+  },
+  "2074343371301376472": {
+    "text": "小灰的 AI 塔防游戏，目前完成度已经超过 80%。\n\n刚刚增加了两个全新门派，若干全新法宝。\n\n完整版游戏预计在下周正式上线，敬请期待~~ https://t.co/HbtcvvHTj7 https://t.co/TbuywSbXWk",
+    "links": [
+      "https://t.co/HbtcvvHTj7",
+      "https://t.co/TbuywSbXWk"
+    ],
+    "avatar": ""
+  },
+  "2074144059661402505": {
+    "text": "说个好消息：Coze官方为大家提供了3份礼物，每份礼物包含20000扣子积分。\n\n我们将会从评论区选出3位幸运的小伙伴赠送礼物，欢迎大家给出Coze金融相关的留言评论哦~~",
+    "links": [],
+    "avatar": ""
+  },
+  "2073592746997416085": {
+    "text": "小灰真人出镜，制作了一版 WorkBuddy 视频教程，更加直观 👍👍 https://t.co/raE9ipyhhU https://t.co/WzQp9jmSxG",
+    "links": [
+      "https://t.co/raE9ipyhhU",
+      "https://t.co/WzQp9jmSxG"
+    ],
+    "avatar": ""
+  },
+  "2073538520719970760": {
+    "text": "现在用AI，真正拉开差距的不是谁问得更聪明，而是谁能让AI自己把事情跑完。\n\n别每次都自己推着AI走一步，给它一个目标和检查标准，它自己迭代起来其实更快。循环最关键的就是验证。\n\n没有真正检查的迭代，就只是AI在自己安慰自己。\n\n用AI最怕的就是没有停止条件，循环跑着跑着就变成安静烧钱了。\n\n把“我指挥AI”变成“AI自己干完”，这是用AI方式的一次小升级。",
+    "links": [],
+    "avatar": ""
+  },
+  "2073223879624192437": {
+    "text": "前两天，小灰发布的《WorkBuddy 保姆级入门教程》爆火了！    \n\n大家对 WorkBuddy 的学习热情，还远超小灰的预期。\n\n为了方便大家阅读，小灰把 WorkBuddy 的上下篇教程汇总在一起，希望能帮助到各位AI圈友。    \n\n教程上篇： \nhttps://t.co/NqvGy3DwpJ \n\n教程下篇：\nhttps://t.co/CMUf8Y72AL\n\n大家还希望学习哪些 AI 模型和 AI 工具？欢迎留言提出。",
+    "links": [
+      "https://t.co/NqvGy3DwpJ",
+      "https://t.co/CMUf8Y72AL"
+    ],
+    "avatar": ""
+  },
+  "2073072539375739143": {
+    "text": "完整版的 AI 游戏，正在紧锣密鼓地制作当中。\n\n增加了许多新地图、新角色、新怪物、新宝物。\n\n随手贴几张素材出来，敬请期待~~ https://t.co/OpL6vGhmf6 https://t.co/vpp0wuoZDb",
+    "links": [
+      "https://t.co/OpL6vGhmf6",
+      "https://t.co/vpp0wuoZDb"
+    ],
+    "avatar": ""
+  },
+  "2072686782030938569": {
+    "text": "AI Agent 并不是 “能自己干活的 AI”，它是一条光谱：\n\n左边是 “你问一句我答一句”，右边是 “给我目标，我自己拆步骤、调工具、记历史、循环跑完”。 \n\nAI Agent 的核心就三样：工具调用 + 跨任务记忆 + 持续循环。  \n\nAI 模型可以一样，不同 Agent 之间差的从来不是模型，而是模型外面的结构。 https://t.co/AeY1jEFeCP",
+    "links": [
+      "https://t.co/AeY1jEFeCP"
+    ],
+    "avatar": ""
+  },
+  "2072312207568966047": {
+    "text": "为什么你会成为“封号斗罗”？Claude Code 的封号真相已暴露！\n\nAnthropic 在客户端偷偷植入隐形代码，每条请求里都会悄悄修改日期分隔符和单引号 Unicode 编码，把“中国时区 + 中转域名黑名单命中”信息藏在肉眼看不见的地方传回服务器。  \n\n这不是普通风控，而是用户完全不知情下的隐蔽标记。\n\n在国内，想要正常使用国外的强大 AI，现在越来越难了。",
+    "links": [],
+    "avatar": ""
+  },
+  "2072173670525776000": {
+    "text": "守得云开见月明！截止到今天中午收盘，小灰今天账户的盈亏情况如下：\n\n当日收益：160973.80元\n当月收益：160945.80元\n2026年收益：-379705.37元\n炒股总收益：-253107.41元\n\n大家目前在大A的情况如何？欢迎留言进行分享。 https://t.co/KslNXlytHZ https://t.co/2ZchOBIwGf",
+    "links": [
+      "https://t.co/KslNXlytHZ",
+      "https://t.co/2ZchOBIwGf"
+    ],
+    "avatar": ""
+  },
+  "2071835599913509164": {
+    "text": "@happy20250912 感谢推荐，希望这篇教程能帮助到大家",
+    "links": [],
+    "avatar": ""
+  },
+  "2071820901197439384": {
+    "text": "小灰真人出镜，宣传自己用 AI 全流程开发的 Steam 游戏😁 https://t.co/wgR23W4Kqf https://t.co/vpp0wuoZDb",
+    "links": [
+      "https://t.co/wgR23W4Kqf",
+      "https://t.co/vpp0wuoZDb"
+    ],
+    "avatar": ""
+  },
+  "2071440902179160108": {
+    "text": "嚯！大A终于逆袭了😆\n\n截止到今天中午收盘，小灰今天账户的盈亏情况如下：\n\n当日收益：141608.20元\n当月收益：-655763.56元\n2026年收益：-521993.28元\n炒股总收益：-395395.32元\n\n大家目前在大A的情况如何？欢迎留言进行分享。 https://t.co/IlmaGHf7Nv https://t.co/I1ofPCbPCT",
+    "links": [
+      "https://t.co/IlmaGHf7Nv",
+      "https://t.co/I1ofPCbPCT"
+    ],
+    "avatar": ""
+  },
+  "2071420867003977791": {
+    "text": "Agent 真正缺的从来不是更大的上下文窗口，而是更好的记忆能力。\n\nEverOS 把记忆做成了可直接打开、编辑、版本化的 Markdown 文件。\n\n不再是黑箱向量，而是一座透明、可控、能和 Obsidian 一起生长的知识库。\n\n半小时给你的 Agent 装上‘长期记忆’，从此不再每天醒来都失忆。 https://t.co/BmSC25ozdF",
+    "links": [
+      "https://t.co/BmSC25ozdF"
+    ],
+    "avatar": ""
+  },
+  "2071025796236664927": {
+    "text": "对 AI 编程小白来说，第一问题从来不是“哪个工具最强？”，而是 “你能不能看懂它在干什么？你能不能控制它？它做错的时候，你能不能把它拉回来？”\n\n先用 Codex 建立正确习惯，再去卷 Hermes 和 Claude Code，才是新手最稳的路径。 https://t.co/8f1po3c5JS",
+    "links": [
+      "https://t.co/8f1po3c5JS"
+    ],
+    "avatar": ""
+  },
+  "2070719850474033323": {
+    "text": "许多朋友问我：“小灰，你是打算用AI开发出一款经典游戏吗？”\n\n答案是否定的。\n\n当前的 AI 可以快速生成能用、能跑的结果，比如论文、海报、工具软件，但暂时无法独立生成令人赞叹的艺术品，比如爆款的小说，经典的游戏。\n\n那小灰为什么还要做这个尝试呢？\n\n第一，小灰真心喜欢游戏创作。\n\n第二，小灰希望让更多人看到AI的能力。\n\n许多人以为AI只能做出简单的游戏Demo，事实上目前的AI已经具备商业化游戏的独立开发能力，唯一缺少的是真正的创意。\n\n当富有创意的大脑遇到AI，真正的AI经典游戏将不再遥不可及。",
+    "links": [],
+    "avatar": ""
+  },
+  "2070653930883989668": {
+    "text": "微信AI不是给你一个新玩具，而是把AI塞进了你每天都在用的熟人生态。\n\n普通人真正的红利，是把现有资产重新整理一遍，让它既能被人看懂，也能被AI读懂。👍 https://t.co/3j717glvMQ",
+    "links": [
+      "https://t.co/3j717glvMQ"
+    ],
+    "avatar": ""
+  },
+  "2070479259601408321": {
+    "text": "小灰在大A遭遇今年以来最大回撤，今天账户盈亏情况如下：\n\n当日收益：-193303.60元\n当月收益：-797847.12元\n2026年收益：-664076.84元\n炒股总收益：-537478.88元\n\n太惨了，真太惨了~~\n\n大家今天在大A的情况如何？欢迎留言进行分享。 https://t.co/jTE9qPcsN4 https://t.co/zjYikBfUKe",
+    "links": [
+      "https://t.co/jTE9qPcsN4",
+      "https://t.co/zjYikBfUKe"
+    ],
+    "avatar": ""
+  },
+  "2070426945943425363": {
+    "text": "@happy20250912 感谢推荐，欢迎大家来免费体验哦~~",
+    "links": [],
+    "avatar": ""
+  },
+  "2070424266726924462": {
+    "text": "@yinmin1987 哈哈，后面考虑用AI开发各种类型的游戏",
+    "links": [],
+    "avatar": ""
+  },
+  "2070421550390759568": {
+    "text": "经历漫长的平台审核，我的AI游戏终于在 Steam 发布了试玩版！\n\n游戏的代码、美工、音乐、文案，全部由AI生成。\n\n在游戏开发过程中，小灰没有写过一行代码，甚至连AI生成的代码都没读过，纯粹靠着提示词来指挥AI完成所有工作。\n\n想要免费试玩的朋友，欢迎添加小灰微信 bjxiaoxiaohui，备注“游戏试玩”，我会把你拉到我们的AI游戏试玩群。",
+    "links": [],
+    "avatar": ""
+  },
+  "2070411302946938906": {
+    "text": "@WukongAt 是的。。。上涨轮不上，下跌一起跌",
+    "links": [],
+    "avatar": ""
+  },
+  "2070351362983092384": {
+    "text": "又是在大A挨打的一天😅\n\n截止到中午收盘，小灰的账户盈亏情况如下：\n\n当日收益：-153944.70元\n当月收益：-758462.82元\n2026年收益：-624692.54元\n炒股总收益：-498094.58元\n\n大家今天在大A的情况如何？欢迎留言进行分享。 https://t.co/r07xJ8NZol https://t.co/4xJEJYDUSU",
+    "links": [
+      "https://t.co/r07xJ8NZol",
+      "https://t.co/4xJEJYDUSU"
+    ],
+    "avatar": ""
+  },
+  "2070332421506293803": {
+    "text": "AI 时代人人都是程序员，人人都要懂 Github 👍 https://t.co/KKEpqFbhVq",
+    "links": [
+      "https://t.co/KKEpqFbhVq"
+    ],
+    "avatar": ""
+  },
+  "2070331571480277173": {
+    "text": "小灰也是 Codex 重度用户，最近硬盘空间越来越少，这就尝试起来👍 https://t.co/loCWPnJn2W",
+    "links": [
+      "https://t.co/loCWPnJn2W"
+    ],
+    "avatar": ""
+  },
+  "2070108898720412050": {
+    "text": "这个 Chrome 插件厉害了👍\n\n妈妈再也不用担心我搜不到X推文了😄 https://t.co/5vo4f7MqC6",
+    "links": [
+      "https://t.co/5vo4f7MqC6"
+    ],
+    "avatar": ""
+  },
+  "2069999378039992572": {
+    "text": "小灰副业俱乐部的101元优惠券，还有一天过期 😁\n\n这个星球能给大家带来什么呢？\n\n我们的星球权益如下：\n\n1. 分享小灰9年以上的副业经验，带领副业俱乐部的成员们系统掌握副业和自媒体的最新玩法。\n\n2. 分享当下最前沿热门副业案例，带给副业俱乐部会员更多的副业启发，开启球友的副业之路。\n\n3. 副业俱乐部有各赛道大佬坐镇，包括自媒体、AI代写、AI视频、AI编程、AI智能体、RPA、跨境电商出海..….任何关于副业与AI的疑问和想法都可以在小灰副业俱乐部提出。\n\n4. 一年5次免费的副业实操特训，方向包括但不限于：AI代写、AI视频、AI编程、AI数字人、AI爆文等等。\n\n5. 活跃的俱乐部成员都可以获得“福星系统”代币，代币积累到一定程度，可以享受到小灰团队每年的收益分红。\n\n2026年已经过去了一半，希望我们都能抓住AI时代的红利，一起副业变现。",
+    "links": [],
+    "avatar": ""
+  },
+  "2069734661669163295": {
+    "text": "大A的科技又涨疯了，老登继续挨打 😂 \n\n截止到今天收盘，小灰的账户盈亏情况如下：\n\n当日收益：-105141.60元\n当月收益：-603447.86元\n2026年收益：-469677.58元\n炒股总收益：-343079.62元\n\n大家今天在大A的情况如何？欢迎留言一起交流~~ https://t.co/LFPdTrqm2J https://t.co/64inIp2pfs",
+    "links": [
+      "https://t.co/LFPdTrqm2J",
+      "https://t.co/64inIp2pfs"
+    ],
+    "avatar": ""
+  },
+  "2069728470637379743": {
+    "text": "在AI Agent时代，真正的效率不在于堆砌Skills，而在于项目级软链接建立单一真理源：\n\n节省上下文空间，一处更新处处同步，修复后即可反哺开源。\n\nAgent自行维护工具链，你只需设计秩序，便能工作更聪明而非更辛苦。 https://t.co/Hi3nREthSb",
+    "links": [
+      "https://t.co/Hi3nREthSb"
+    ],
+    "avatar": ""
+  },
+  "2069713611220504637": {
+    "text": "这套AI长视频制作方法论里，最值得记下的有几个洞见：\n\n1. 所有一致性问题的根源都在资产前置没做好，一步未备则后续皆是补丁。\n\n2. 任何视频都需要让人从头看到尾的理由，没有叙事结构，再炫的画面也只是素材堆砌。\n\n3. 不要所有镜头都用同一种方式，模块化思维、按类型匹配策略才是专业。\n\n4. 旁白必须整段一次生成，不能拆分，否则音频一致性比画面更难挽救。\n\n5. 转场最终还是审美判断，多出几个版本对比才知道哪个顺眼。\n\n6. 时长越短利用率越高，切镜头比强行拉长更自然，核心在于追求可控的碎片化与精准拼接。",
+    "links": [],
+    "avatar": ""
+  },
+  "2069680883418939507": {
+    "text": "大家还希望看到哪些AI工具的教程？\n\n欢迎留言提出~~ https://t.co/icFjN2aQyp",
+    "links": [
+      "https://t.co/icFjN2aQyp"
+    ],
+    "avatar": ""
+  },
+  "2069625483642507461": {
+    "text": "熟悉的大A又回来了😅\n\n截止到中午收盘，小灰今天的账户盈亏情况如下：\n\n当日收益：-97751.70元\n当月收益：-595824.46元\n2026年收益：-462054.18元\n炒股总收益：-335456.22元\n\n大家今天在大A的情况如何？欢迎留言进行分享。 https://t.co/b1Q0JFdGNZ https://t.co/uETC71WbjY",
+    "links": [
+      "https://t.co/b1Q0JFdGNZ",
+      "https://t.co/uETC71WbjY"
+    ],
+    "avatar": ""
+  },
+  "2069317512664424556": {
+    "text": "@happy20250912 谢谢分享，希望这期视频能帮助到大家",
+    "links": [],
+    "avatar": ""
+  },
+  "2069301424861872435": {
+    "text": "小灰真人出镜，分享 Codex 必装的 8 个 skill，你用过其中哪些？ https://t.co/hdz7opE92F https://t.co/foAcJm3sJC",
+    "links": [
+      "https://t.co/hdz7opE92F",
+      "https://t.co/foAcJm3sJC"
+    ],
+    "avatar": ""
+  },
+  "2069245866502943176": {
+    "text": "把微信内容同步到Obsidian，这个操作太方便了！👍\n\n微信生态里最肥沃的知识土壤，却因“保存太麻烦”而长期荒废。\n\n笔记同步助手用一个极简动作——转发给“Obsidian”好友——让AI完成清洗、结构化、标签化甚至内容提取，把群聊记录、公众号文章、文件、视频逐字稿全部沉淀进本地知识库。  \n\n它真正攻克了微信围墙花园的难题：不是硬闯，而是让用户以最自然的方式把私域信息合法导出。收藏夹不再是坟墓，聊天记录不再是流沙，碎片信息终于变成可随时调用的个人资产。  \n\n对超级个体而言，这不是又一个同步工具，而是把每天接触的信息转化为复利知识的最后一公里。收藏即浪费，转发即沉淀——这或许是当下最务实、最低摩擦的知识管理升级。",
+    "links": [],
+    "avatar": ""
+  },
+  "2069243296183160902": {
+    "text": "在AI时代，Prompt Engineering教你怎么问，Loop Engineering则让你教AI怎么做完。\n\n不再满足于一句模糊指令，而是为AI构建闭环轨道：先定义具体可验证的目标，再拆解清晰的执行步骤，接着设立可量化的检查标准，最后设定明确的停止条件。AI由此从被动答题机器，进化为能自主循环执行、自我检验、持续优化的数字执行者。\n\n它像给洗衣机设定程序，而非每步手动指挥；适合写作、编程、学习等需要多轮迭代的任务。\n\n高手的核心认知在于：把“让AI试试看”升级为“让AI知道什么叫做好”。掌握Loop Engineering，就是把碎片化提问转化为系统化生产力，从今天起告别低效试错，真正把AI变成可复制、可信任的工作伙伴。",
+    "links": [],
+    "avatar": ""
+  },
+  "2069049769360798008": {
+    "text": "风渡是小灰的业务合伙人之一，看到他的报喜，我也很开心。\n\n这位同学在X平台正式起号仅仅4天，在没有任何额外资源加持的情况下，关注量直接飙到了1300，他的做法值得每一位素人学习 👍👍👍 https://t.co/Uu2TWDCnKS",
+    "links": [
+      "https://t.co/Uu2TWDCnKS"
+    ],
+    "avatar": ""
+  },
+  "2068999272343986454": {
+    "text": "翻身农奴把歌唱，今天的大A终于能让人喘口气了😂\n\n小灰今天的大A账户盈亏情况如下：\n\n当日收益：121651.70元\n当月收益：-439282.34元\n2026年收益：-305512.06元\n炒股总收益：-178914.10元\n\n大家今天在大A的情况如何？欢迎留言进行分享。 https://t.co/1RK1jlZRM8 https://t.co/KA5c5Ue5iY",
+    "links": [
+      "https://t.co/1RK1jlZRM8",
+      "https://t.co/KA5c5Ue5iY"
+    ],
+    "avatar": ""
+  },
+  "2068927501594992947": {
+    "text": "@boniusex 哈哈，期望2026年大家一起抓住AI的红利",
+    "links": [],
+    "avatar": ""
+  },
+  "2068927445923991702": {
+    "text": "@happy20250912 感谢推荐，希望这篇合集能帮到更多学习AI的朋友",
+    "links": [],
+    "avatar": ""
+  },
+  "2068920521677566119": {
+    "text": "小灰的AI工具教程合集，建议收藏！（更新至2026年6月）\n\n身为一名程序员+AI重度爱好者，小灰时刻都在密切关注着AI领域的最新动向。\n\n从 Seedance2.0 到 GPT-image-2，从 Claude Code 到 Codex，为了帮助大家更快上手这些强大的AI工具，小灰系统性撰写整理了许多篇详细的教程。\n\n随着时间的流逝，许多教程被X的新帖子埋没，找起来不太方便。\n\n因此，小灰特意把AI相关的教程汇总在一起，方便大家进行阅读：\n\nCodex 保姆级入门教程（上篇）\nhttps://t.co/9PKqOnZE2g\n\nCodex 保姆级入门教程（下篇）\nhttps://t.co/yU26pYxSii\n\n分享 8 个 Codex 必装的 skill，让你的 AI 能力起飞！\nhttps://t.co/ClPYem1v00\n\nClaude Code 详细小白入门教程\nhttps://t.co/lKX4fC3vHy\n\n最强知识管理工具 Obsidian，保姆级入门教程（上篇）\nhttps://t.co/lZmBaj2eAa\n\n最强知识管理工具 Obsidian，保姆级入门教程（下篇）\nhttps://t.co/EQGaaamelp\n\nHermes Agent 详细入门教程（上篇）\nhttps://t.co/VVOdtmSWqA\n\nHermes Agent 详细入门教程（下篇）\nhttps://t.co/93KGqpCax7\n\nCodex制作塔防游戏，保姆级入门教程\nhttps://t.co/wtjY5TlZ0M\n\n利用AI编程工具Codex，我制作了一款中国风文字冒险游戏\nhttps://t.co/rM2V9KOX91\n\n最强AI设计智能体Lovart，保姆级入门教程（4000字长文）\nhttps://t.co/yeR67UWXr5\n\n什么是Harness？什么是Harness Engineering？一篇文章为你讲透\nhttps://t.co/jJo3MWShbX\n\nGPT-image-2 的新玩法：一句话设计各式服装\nhttps://t.co/Fr71JYCciQ\n\n什么是AI智能体？这篇5000字长文为你讲清楚\nhttps://t.co/8GQNDOyaz8\n\n第一批做AI中转站的人，已经......\nhttps://t.co/vXy75K2Rl5\n\n全网 OpenClaw 优质教程汇总\nhttps://t.co/rKQ8oAehMT\n\n这套AI教程会不定期持续更新，欢迎大家收藏和转发。\n\n也欢迎大家关注我 @XiaohuiAI666 ，学习更多有用的AI和副业经验。",
+    "links": [
+      "https://t.co/9PKqOnZE2g",
+      "https://t.co/yU26pYxSii",
+      "https://t.co/ClPYem1v00",
+      "https://t.co/lKX4fC3vHy",
+      "https://t.co/lZmBaj2eAa",
+      "https://t.co/EQGaaamelp",
+      "https://t.co/VVOdtmSWqA",
+      "https://t.co/93KGqpCax7",
+      "https://t.co/wtjY5TlZ0M",
+      "https://t.co/rM2V9KOX91",
+      "https://t.co/yeR67UWXr5",
+      "https://t.co/jJo3MWShbX",
+      "https://t.co/Fr71JYCciQ",
+      "https://t.co/8GQNDOyaz8",
+      "https://t.co/vXy75K2Rl5",
+      "https://t.co/rKQ8oAehMT"
+    ],
+    "avatar": ""
+  },
+  "2068858895335141584": {
+    "text": "你的 RAG 实现方法是错误的！\n\n传统 chunk 缺乏知识边界、版本信息和元数据，导致检索上下文缺失、版本混杂、权限控制困难。\n\n作者提出的新方法以 IdeaBlock（问题-答案+治理字段）替代 chunk，实现结构化知识单元。\n\n不改检索算法，仅在上游数据层优化，可减少40倍语料、3倍 token，提升2.3倍相关性。\n\n语义去重减少冗余向量，反而提升检索信号和准确率。\n\nBlockify 提供七阶段管道（范围定义、摄入、提取、去重、标记、验证、导出）。\n\n治理与版本控制内嵌数据层，查询更简单，更新仅需修改单一记录。\n\n核心原则：修复知识单元而非下游补丁，已开源，可作为解析与向量库间蒸馏层。",
+    "links": [],
+    "avatar": ""
+  },
+  "2068686087543984188": {
+    "text": "@MichaelZZNB 感谢分享，希望这篇文章能帮助到大家",
+    "links": [],
+    "avatar": ""
+  },
+  "2068552712858608077": {
+    "text": "@ericoding99 之前配了不少科创50，盈利20%就止盈了😂",
+    "links": [],
+    "avatar": ""
+  },
+  "2068537579725861010": {
+    "text": "小灰6月的大A投资，委实有点惨😂\n\n明天开盘了，期望能回血一波~~ https://t.co/DXkXp8xIsR",
+    "links": [
+      "https://t.co/DXkXp8xIsR"
+    ],
+    "avatar": ""
+  },
+  "2068520933388882128": {
+    "text": "这个平台太方便了，感谢 @fengdu2077 的推荐👍 https://t.co/hI5pFqLKWl",
+    "links": [
+      "https://t.co/hI5pFqLKWl"
+    ],
+    "avatar": ""
+  },
   "2114745397566673325": {
     "text": "@sanmeiBTC 我觉得它的股价被狙击是大概率事件。",
     "links": [],
@@ -17998,6 +19246,66 @@
     ],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2083231808825811331": {
+    "text": "@Darfyxcation @kood520 dtcpay都没有分配个人同名银行账户，哪来的账户证明？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2083119215331172814": {
+    "text": "@yimingfudev @niaoshu cte的回国年套餐是多少钱？可以携号转网过去吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2082919279989756296": {
+    "text": "@Lee_points @Liulangfengyun 购买csl套餐需要有另外一个香港手机号码……",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2081923482141757882": {
+    "text": "@lilk1kopops 币安出金安全是要使用香港那两个平台，币安和欧易以及美国的那两个也不是~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2081021420180836760": {
+    "text": "@kittendong 就前三次消费是返利多，后面都是0.05新元",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2080845149220089889": {
+    "text": "@wan88168 @vansvoler cionbase也可以像kraken那样安全出金到ifast？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2079278578429255754": {
+    "text": "@Plasma Why is it that with a $100 recharge, iOS users can upgrade Core for free for one year, while Android users can only upgrade for half a year?",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2079278140162273754": {
+    "text": "@Plasma Why is it that with a $100 recharge, iOS users can upgrade Core for free for one year, while Android users can only upgrade for half a year?",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2078876180372136061": {
+    "text": "@GoldenCicada 手机没有没有ESIM功能也没事，giffgaff也有实体卡，大佬提到的那些地方也可以买到~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2078539595734720695": {
+    "text": "@leonZR1394 你先解决stripe新加坡注册再说，否则都是扯~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2078268049770078219": {
+    "text": "@xxkux88 很正常呀，客服说得很清楚了，它本来就是wise竞品，wise一样不支持数字平台转账，并且处理比starryblu激烈多了~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2078176291682185227": {
+    "text": "@niaoshu 和公章无关吧，我看了一下我的香港中银和香港汇丰的账单都是没有公章的呀",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2105359522554659185": {
     "text": "@ooooooooooooo_e 之前的是旧创作者，看总流量的，做泛流量赛道有优势，工资高正常。\n\n现在原创内容奖励只看时间线蓝V流量，他的工资降低很正常。",
     "links": [],
@@ -18202,6 +19510,51 @@
     "links": [
       "https://t.co/cct4lgqPm7"
     ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2078164438037963029": {
+    "text": "@Web3Lannie 请问你的众安银行在收款币安的出金后，有没有被冻结或者警告之类的？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2078038716350931240": {
+    "text": "@kittendong 好像是以前的用户可以3张实体卡，现在只能一张实体卡了~另外，无论哪里开户的所有实体卡在任何地方ATM都无法取现了，已经废了~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2077880396763828262": {
+    "text": "@olddback dtcpay使用paynow给不了新加坡长桥入金，需要同名，反而新加坡盈立可以~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2077861374378840405": {
+    "text": "@Kim6wz7 @H1ghtHand99 不是维护的原因吧，香港显示暂不开放要预约，新加坡直接开",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2077860667084960169": {
+    "text": "@xiejiayinBitget @6YEEEE9 请问香港地区不可以申请开卡了吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2077813174573949063": {
+    "text": "@jimohuoshan @Dewei009 无论是取现还是消费或者换币，损耗都比wise高，现在看起来低是因为有抵扣券而已~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2077809593594654748": {
+    "text": "@EvanWritesX @Ashley187746048 这个starryblu绑定不了微信，只是可以微信扫码付款而已",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2077436587575767366": {
+    "text": "@yangleiocx3 方法已经失效，香港即将开放申请，加入续约名单",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2077071481088151808": {
+    "text": "@zynqorw 支付宝可以绑定，微信绑定不了的",
+    "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
   "2094470628250398817": {
@@ -18409,6 +19762,120 @@
   },
   "2114198722158764342": {
     "text": "@tzb360 我在老家事情多，都是佛性随缘更新，速度肯定不快的，应该是你关注的人太少了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086520480702583094": {
+    "text": "归根到底，还是中国法律的不完善，在女权的世界里，是否性侵就是仙女说了算，证据都不需要，当事人和律师都很无奈。 https://t.co/wAUq0eqB8J",
+    "links": [
+      "https://t.co/wAUq0eqB8J"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086505369023762626": {
+    "text": "@hhedy666 这个界面怎么进入？我都不知道怎么看自己的",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086441345229492726": {
+    "text": "@hejushang8 Backpack出金到港卡，港卡不会被风控甚至被封吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086426835190206685": {
+    "text": "@XPnftclub 就怕以ID认证为准，多数都是国内身份证认证的吧",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086389866196357261": {
+    "text": "@AzuraETH 我是昨天8号才开通蓝V的新人，越南美女，交个朋友~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086388022506057989": {
+    "text": "@Researchcai 大佬牛逼  0x047f181ce25cf6b8c657a9c2e68b03a1cdf8fc35",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086365120238899402": {
+    "text": "@kimhoho215067 我是昨天8号才开通蓝V的新人，越南美女，交个朋友~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086359532041834970": {
+    "text": "@hamy8998 我是昨天8号才开通蓝V的新人，越南美女，交个朋友~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086356954369380817": {
+    "text": "@xxx05224283 @getkaozhu 是你邀请的好友消费后，你才有奖励，不是自己消费~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086335746282275214": {
+    "text": "才发现打错字了，是“难度加大了”~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086317882468958580": {
+    "text": "@QiuBNB 我是昨天8号才开通蓝V的新人，越南美女，交个朋友~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086317799576920525": {
+    "text": "@justwyndayy 我是昨天8号才开通蓝V的新人，越南美女，交个朋友~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086317688545263908": {
+    "text": "@Tkaovii 我是昨天8号才开通蓝V的新人，越南美女，交个朋友~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086317038507880959": {
+    "text": "Starryblu实体卡，前天7号收到的，耗时29天，耗费9.9美元。 https://t.co/9QBrW8PbR8",
+    "links": [
+      "https://t.co/9QBrW8PbR8"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086298171597344845": {
+    "text": "@0xnanat 我是昨天8号才开通蓝V的新人，越南美女，交个朋友~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086298137011126474": {
+    "text": "@mphuongg05_ 我是昨天8号才开通蓝V的新人，越南美女，交个朋友~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086298110398189694": {
+    "text": "@nhat_ha885 我是昨天8号才开通蓝V的新人，越南美女，交个朋友~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086298066798399979": {
+    "text": "@jessicaphungfit 我是昨天8号才开通蓝V的新人，越南美女，交个朋友~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086297998322262089": {
+    "text": "@Bella98V 我是昨天8号才开通蓝V的新人，越南美女，交个朋友~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086297951308259633": {
+    "text": "@LeTrang5grm 我是昨天8号才开通蓝V的新人，越南美女，交个朋友~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086297901958152575": {
+    "text": "@kieu20011 我是昨天8号才开通蓝V的新人，越南美女，交个朋友~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086297860522532988": {
+    "text": "@bedao68 我是昨天8号才开通蓝V的新人，越南美女，交个朋友~",
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
@@ -18831,6 +20298,125 @@
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2077067098195689793": {
+    "text": "@GoldenCicada 已经使用你的邀请码注册plasma one，也关注你了，但是没法发私信给你，怎么返10刀给我？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2077064442047836266": {
+    "text": "@fyj678 新加坡盈透没有看到入金方式有什么标准存款，别误导人",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2077060995894407469": {
+    "text": "@HarriesSteele wise里面的钱还可以提出来吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2077015478334304622": {
+    "text": "@PlasmaZH @Plasma 注册还有6个月会员赠送？我之前注册都没有……",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2077005576245309942": {
+    "text": "@jimohuoshan @gwklearn 除了前三次，购买都是返利0.05新元，总共能返5新元你都偷笑了",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2076913437888934097": {
+    "text": "@fantuan711 如果是真实资料开户的，应该不会",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2076864441514381804": {
+    "text": "@janpun_x @jpgbmp 那就搞10张境外实体卡，每张取8万",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2076702240266747927": {
+    "text": "@EdwardTWinz 改变人生有点夸张了，不过可以大大改善前经济困境，不再那么被动~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086296754753085449": {
+    "text": "@Wang__xiaolong 看了一下，好像才6600多浏览，和你的数据相差很远",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086296166283825363": {
+    "text": "@yujin68so 我是昨天8号才开通蓝V的新人，越南美女，交个朋友~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086296115389837631": {
+    "text": "@Myaxinhdeyy 我是昨天8号才开通蓝V的新人，越南美女，交个朋友~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086296029604065403": {
+    "text": "@AlwaysGainx 我是昨天8号才开通蓝V的新人，越南美女，交个朋友~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086295807779889537": {
+    "text": "@conduonggiacngo 我是昨天8号才开通蓝V的新人，越南美女，交个朋友~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086295015207108702": {
+    "text": "@elenalin01 我是昨天8号才开通蓝V的新人，越南美女，交个朋友~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086288914260865026": {
+    "text": "@shadouyoua 昨天8号开通蓝V的新人拜访大佬",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086267773886615792": {
+    "text": "@ZhengX415 8月8号的新蓝朋友在这里，我也想交蓝朋友~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086267384122560729": {
+    "text": "@linmumu223 ID认证的时候，选香港只提供身份证和护照两个选项，没有地址证明这个选项呀",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086264639231566266": {
+    "text": "网站使用Cloudflare的免费CDN多年，现在它推出Web3钱包，必须预约支持一下Cloudflare Wallet，虽然有可能用不上，毕竟已经开了几个其它Web3钱包了~以后哪个好用就用哪个吧，未来的事情谁说得准呢？ https://t.co/PrVhBETWvs",
+    "links": [
+      "https://t.co/PrVhBETWvs"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086134685898539317": {
+    "text": "@xiaoshen id认证怎么搞？除了中国身份证和中国护照，其它的不好搞吧？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086127638780031363": {
+    "text": "@sino_go_global ID认证还有特殊通道？我看香港就身份证和护照，压根无法绕过去",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086117666943811930": {
+    "text": "@xxx05224283 @Ocean_Yu1 我绑定的是香港clubsim手机号码，也是这样显示，无语了",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086114917502046668": {
+    "text": "Wise如果是中国大陆KYC的，是没有卡的~但有小Wise之称的Starryblu是默认有卡的，支持虚拟卡和实体卡~我是7月6日申请的，当天就通过了~7月7日~7月9日测试了三天虚拟卡，感觉还不错~7月10日申请实体卡，花费了10美元，当天审核通过~然后是漫长等待，期间问客服N次，都是等待~昨天8月7日，耗时29天，终于 https://t.co/EDuSiJNM6S",
+    "links": [
+      "https://t.co/EDuSiJNM6S"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086111867391599062": {
+    "text": "@longchen1312 这个ID认证是提现的时候才认证的吧？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2089738700762857952": {
     "text": "@ixuanpw 你这价格也太低了吧，有点离谱。 https://t.co/oQv9zaalD8",
     "links": [
@@ -19227,6 +20813,101 @@
   },
   "2111795300054753455": {
     "text": "@WeiDemin 我看到的时候都有点不相信，几乎是我转化率的三倍，再三对比那三张图片后，我默默退出了，哈哈。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2076303304385265987": {
+    "text": "@0xTZ_DeFi 请问你用的查卡BIN和等级的网站是？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2076239315064259013": {
+    "text": "@yonkxx 一个邀请码只能被一个账号使用吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2076192001377415605": {
+    "text": "@kittendong 现在是最多五张虚拟卡和一张实体卡了，实体卡能否在国内取现还不知道",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2076190159243194599": {
+    "text": "@Giseleqsy @0xTZ_DeFi dtcpay实体卡还可以在中国境内取现吗",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2076033478047699162": {
+    "text": "@kittendong @microcharon 不是最多五张虚拟卡和一张实体卡吗？你可以三张实体卡？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086100520771711423": {
+    "text": "@xxx05224283 今晚刚开通蓝V,我也想出现在列表~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2085818093683823049": {
+    "text": "@aipgh6 港区或者新加坡区呢？没有日区或者美区的银行卡",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2085771476263997912": {
+    "text": "@kittendong 真扯！我都使用一年多了，微信香港钱包一直都可以发红包和转账，只是对方想成功接收，得有微信香港钱包~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2085003608555135086": {
+    "text": "@leeking420 gg卡携号转网过去可以搞半价优惠吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2084331933413372234": {
+    "text": "@kittendong @bruce2017z1 压根就不是，为了流量就是扯~7月中就有这个10年领取了，一直是配置中~6月底和7月初，是提前9月再开放，那时候还是每月5g流量~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2083865187321319599": {
+    "text": "@kood520 好像是免费半年吧，后面要自己买，比较贵",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2083815251095715857": {
+    "text": "@Wangdaso 这两家，不买回国套餐感觉都不安全~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2083803086104240252": {
+    "text": "@Wangdaso 国内使用为什么说CMLink比CTExcel省心？不是一个移动，一个电信吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2083734189040619893": {
+    "text": "@xxx05224283 说得我有点心动，准备这几天开个蓝V~话说，使用不同地区的google play开通蓝V，会影响成为创作者或者收益吗？两个地区不一样",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2083527876603985943": {
+    "text": "@kittendong 又没有这邮箱账号密码，怎么登陆查看？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2083479999181635775": {
+    "text": "@CZ_YiHe 第一笔是2023年~2026年？注册以来的都算？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2083438138979196941": {
+    "text": "@Darfyxcation @kood520 这个看了一下，有本人的姓名、护照ID和地址，但是没有银行卡号，看不懂有什么作用~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2083397902697931125": {
+    "text": "@chixiaomeng15 你的收货地址是杭州或者浙江省？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2083371012520018116": {
+    "text": "@wangchangfu88 4月底开始就这么厉害？膜拜大佬",
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
@@ -21767,6 +23448,41 @@
     ],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2087003085185102036": {
+    "text": "@thsottiaux 都怪那些用临期月限额的账号疯狂低成本拉999人的中转站，把奥特曼搞毛了，直接把月限额一刀切了……\n\n受苦的是我们这些规规矩矩使用的，我就2个team位置，变成周限额度更少了，使用起来就有点拘束了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086998584063615035": {
+    "text": "@thsottiaux 一觉醒来，gpt重置额度了，但是我的账号从月限team320美元变成周限team100美元了……\n\n都怪那些用临期月限额的账号疯狂低成本拉999人的中转站，把奥特曼搞毛了，直接把月限额一刀切了……\n\n受苦的是我们这些规规矩矩使用的，我就2个team位置，变成周限额度更少了，使用起来就有点拘束了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086997248467181905": {
+    "text": "@athsottiaux  一觉醒来，gpt重置额度了，但是我的账号从月限team320美元变成周限team100美元了……\n\n都怪那些用临期月限额的账号疯狂低成本拉999人的中转站，把奥特曼搞毛了，直接把月限额一刀切了……\n\n受苦的是我们这些规规矩矩使用的，我就2个team位置，变成周限额度更少了，使用起来就有点拘束了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086997023245672563": {
+    "text": "一觉醒来，gpt重置额度了，但是我的账号从月限team320美元变成周限team100美元了……\n\n都怪那些用临期月限额的账号疯狂低成本拉999人的中转站，把奥特曼搞毛了，直接把月限额一刀切了……\n\n受苦的是我们这些规规矩矩使用的，我就2个team位置，变成周限额度更少了，使用起来就有点拘束了~@athsottiaux",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086996787836191046": {
+    "text": "@athsottiaux 一觉醒来，gpt重置额度了，但是我的账号从月限team320美元变成周限team100美元了……\n\n都怪那些用临期月限额的账号疯狂低成本拉999人的中转站，把奥特曼搞毛了，直接把月限额一刀切了……\n\n受苦的是我们这些规规矩矩使用的，我就2个team位置，变成周限额度更少了，使用起来就有点拘束了~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086996430871498845": {
+    "text": "@Tibo一觉醒来，gpt重置额度了，但是我的账号从月限team320美元变成周限team100美元了……\n\n都怪那些用临期月限额的账号疯狂低成本拉999人的中转站，把奥特曼搞毛了，直接把月限额一刀切了……\n\n受苦的是我们这些规规矩矩使用的，我就2个team位置，变成周限额度更少了，使用起来就有点拘束了~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086839923018268791": {
+    "text": "@zhhcsasp 我是前天8号才开通的蓝V，交个朋友。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2093537009193361487": {
     "text": "@xintongai 不是，只是做了十几年IT而已。",
     "links": [],
@@ -22167,6 +23883,110 @@
   },
   "2111667516510818760": {
     "text": "@fengdeng585 教程发布两天了，太多人薅羊毛了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086813918706680032": {
+    "text": "@borislam18 我是前天8号才开通的蓝V，交个朋友。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086813787454423041": {
+    "text": "哪有新人流量扶持？我开蓝V今天是第三天，帖子访问是个位数……",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086812618174661055": {
+    "text": "@TianbaoSu 我是前天8号才开通的蓝V，交个朋友。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086812545042743787": {
+    "text": "@0x_Rem_ 我是前天8号才开通的蓝V，交个朋友。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086804581695332467": {
+    "text": "云闪付70元羊毛！！！真实有效！！！\n\n这个活动持续很久了，6月和7月都有不少人参加，我是7月参加的。\n\n需要有香港银联卡，比如香港中国银行卡，比如香港汇丰Pulse卡。\n\n下载云闪付国际版，就是“你好中国”，看清楚图标，绑定香港银联卡。 https://t.co/cQ5FPpzPy8",
+    "links": [
+      "https://t.co/cQ5FPpzPy8"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086795104908722414": {
+    "text": "@ming13589 我是前天8号才开通的蓝V，交个朋友。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086787989938835669": {
+    "text": "@xian_mao39516 我是前天8号才开通的蓝V，交个朋友。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086787910330986650": {
+    "text": "@even366 我是前天8号才开通的蓝V，交个朋友。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086787784292085902": {
+    "text": "@XPnftclub 我是前天8号才开通的蓝V，交个朋友。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086787675907072175": {
+    "text": "@102BTC 我是前天8号才开通的蓝V，交个朋友。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086787374886101359": {
+    "text": "@btcbajie 我是前天8号才开通的蓝V，交个朋友。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086700578424664394": {
+    "text": "@lxfeng999 我是前天8号才开通的蓝V，交个朋友。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086699378706612312": {
+    "text": "@DuMu_originaL 我是前天8号才开通的蓝V，交个朋友。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086699273262116996": {
+    "text": "@samtang 我是前天8号才开通的蓝V，交个朋友。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086694192697471061": {
+    "text": "@yyyole 我是前天8号才开通的蓝V，交个朋友。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086693874953777315": {
+    "text": "@xmgplus 我是前天8号才开通的蓝V，交个朋友。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086640191025107146": {
+    "text": "@HoruszZ 我是前天8号才开通的蓝V，交个朋友。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086631891248287827": {
+    "text": "TUT这根线就是多空双杀，主力控盘好牛~玩币不是暴富就是爆穷，只适合小赌怡情~ https://t.co/DCDL9YRawG",
+    "links": [
+      "https://t.co/DCDL9YRawG"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086629650298769835": {
+    "text": "@haiwed3 我是前天8号才开通的蓝V，交个朋友。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2086629131274588513": {
+    "text": "@AlmaN88175134 我是前天8号才开通的蓝V，交个朋友。",
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
