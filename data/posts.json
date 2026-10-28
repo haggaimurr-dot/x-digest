@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-28T10:51:31Z",
+  "updatedAt": "2026-10-28T10:51:47Z",
   "posts": [
     {
       "id": "2115316092302491757",
@@ -259357,6 +259357,50 @@
       ]
     },
     {
+      "id": "2049298176935690588",
+      "url": "https://x.com/yaojingang/status/2049298176935690588",
+      "author": "yaojingang",
+      "authorName": "姚金刚",
+      "publishedAt": "2026-04-29T01:22:14.000Z",
+      "title": "姚金刚与张凯发布全球第二篇GEO专项论文",
+      "industry": "人工智能",
+      "tech": "GEO、AI抓取",
+      "summary": "作者与张凯合著的GEO专项论文在全球最大论文平台完成审核并正式发布，据称是全球第二篇GEO专项论文。研究基于今年3月最新数据，包含602条Prompt、21143条引用、23745条AI抓取记录。作者表示若对大家有帮助，后续会继续抓取更多数据开展专项研究并开放成果。",
+      "steps": [],
+      "tags": [
+        "GEO",
+        "论文发布",
+        "AI搜索",
+        "数据研究",
+        "开源数据"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://t.co/kTVsezm2Cr完成审核并正式发布",
+          "name": "论文发布平台",
+          "note": "论文完成审核并正式发布的平台，原文称其为全球最大的论文平台"
+        },
+        {
+          "url": "https://t.co/LJbq9Cf0zX",
+          "name": "论文网页地址",
+          "note": "该GEO专项论文的网页查看地址"
+        },
+        {
+          "url": "https://t.co/hPwXKytFs0",
+          "name": "论文PDF",
+          "note": "该GEO专项论文的PDF下载地址"
+        },
+        {
+          "url": "https://t.co/PPatGGrWxE",
+          "name": "源数据GitHub仓库",
+          "note": "论文研究源数据的GitHub地址"
+        }
+      ]
+    },
+    {
       "id": "2049283585551847441",
       "url": "https://x.com/XiaohuiAI666/status/2049283585551847441",
       "author": "XiaohuiAI666",
@@ -260169,6 +260213,36 @@
           "url": "https://t.co/hsya5bSsPV",
           "name": "引用推文附带的链接",
           "note": "被引用推文中的链接，指向 Grok Bot 邮箱功能的相关原推文"
+        }
+      ]
+    },
+    {
+      "id": "2108735368233369733",
+      "url": "https://x.com/i/status/2108735368233369733",
+      "author": "aigclink",
+      "authorName": "AIGCLINK",
+      "publishedAt": "",
+      "title": "开源私有化算力看板 sparkDash 2.0",
+      "industry": "人工智能",
+      "tech": "vLLM、SGLang、llama.cpp、DGX Spark、GLM 5.3 Flash",
+      "summary": "作者推荐了开源项目 sparkDash 2.0，这是一个专为企业私有化 token 工厂设计的看板工具。重点解决了自建算力运营中最难的「把 GPU 当工厂管」问题，提供卡状态、产能、良率、成本、运营五大维度实时面板。支持 vLLM、SGLang 等主流引擎，可直接压测 GSM8K、MMLU 和工具调用，帮企业算清自建比调用 API 到底省多少钱。",
+      "steps": [],
+      "tags": [
+        "私有化部署",
+        "算力监控",
+        "Token工厂",
+        "开源看板",
+        "GPU运营",
+        "成本核算"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://t.co/crhpvXsfLY",
+          "name": "sparkDash 2.0 项目链接",
+          "note": "sparkDash v2.0 开源看板工具，可直接运行模型和查看实时面板"
         }
       ]
     }

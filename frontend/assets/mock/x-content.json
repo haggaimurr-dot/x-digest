@@ -18705,6 +18705,16 @@
     "links": [],
     "avatar": "avatars/yaojingang.jpg"
   },
+  "2049298176935690588": {
+    "text": "我和张凯的GEO论文，在全球最大的论文平台https://t.co/kTVsezm2Cr完成审核并正式发布\n这应该是全球第二篇与GEO有关的专项论文\n\n论文基于今年3月份最新的数据，包括602条 Prompt、21143 条引用、23745条AI抓取记录，最终形成的一版正式的GEO专项研究报告，欢迎查阅\n\n如果对大家能有帮助，我们打算后面继续抓取更多的数据，进行专项研究并开放研究成果\n\n网页地址：https://t.co/LJbq9Cf0zX\n论文PDF：https://t.co/hPwXKytFs0\n\n源数据GitHub地址：https://t.co/PPatGGrWxE",
+    "links": [
+      "https://t.co/kTVsezm2Cr完成审核并正式发布",
+      "https://t.co/LJbq9Cf0zX",
+      "https://t.co/hPwXKytFs0",
+      "https://t.co/PPatGGrWxE"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
   "2049069423395533166": {
     "text": "@enzyme_dev 是啊，其实只要吃到了抱团的价值，大家格局也就马上打开了",
     "links": [],
@@ -54387,6 +54397,11 @@
   },
   "2108834377387917608": {
     "text": "GPT-6 Intelligent UI的开源版：Open Intelligent UI，把AI生成交互界面的能力从ChatGPT搬进你自己的应用\n\n视觉风格、组件、业务数据、动作全部可以换成你真实业务场景的\n\n能根据任务动态生成图表、流程图、3D交互场景、计算器、地图等，界面边生成边展示，生成的代码在隔离的iframe中运行\n\nAgent每轮根据任务决定用哪种形式回答，是直接文本回复、原生组件、还是自写交互界面\n\n需要界面时，简单表格走A2UI，复杂的调用generateSandboxedUi按序流式产出HTML/CSS/JS \n\n另外在界面里的每次操作都会作为新一轮对话回到Agent\n\n#生成式交互界面  #OpenIntelligentUI",
+    "links": [],
+    "avatar": ""
+  },
+  "2108735368233369733": {
+    "text": "企业私有化 token 工厂的看板，有人开源了：sparkDash 2.0，对于我们这种搞私有化算力的从业者来说非常有价值。\n\n自建算力、私有部署、模型主权——这条路上的公司，买卡和下权重都不难，难的是把一堆 GPU 真正当成一座工厂来运营。\n\n工厂要有看板，产线在不在跑、产能多少、良率多少、单位成本多少，推理集群也一样：\n\n1、卡在干什么？\n每秒出多少 token，卡在 decode 还是 prefill？\n一千个 token 烧多少电、花多少钱？\n换模型、换量化、换引擎之后，质量掉没掉？\nMiaAI_lab 用自己 4 台 DGX Spark 跑 GLM 5.3 Flash 的真实需求，把这四个问题做成了一个面板 开源出来。\n\n2、产线状态\n每台机器一张卡片：GPU、CPU、统一内存、存储、网络、当前服务的模型。任何带 N 卡的 Linux 机器都能接，多卡主机每张卡一个块，从 UI 加机器不重启。\n\n3、产能\n直接读 vLLM / SGLang / llama.cpp / TensorFold / EXL3 等引擎自己的指标：实时 decode 和 prefill tok/s、KV cache 占用、运行/等待队列、TTFT、ITL p95、抢占、prefix cache 命中、MTP 接受率，这是token生产线仪表盘，不是显卡温度计。\n\n4、良率\n内置压测：Decode bench 跑 1/2/4/8 并发的总吞吐和单流吞吐，Prefill bench，Quality bench 直接跑 GSM8K 和 MMLU，Tool Eval Bench 69 个工具调用场景。\n\n每次结果都留着，换模型前后一对比，质量回退一眼看出来，私有化交付的验收环节，就靠这个。\n\n5、成本\nToken 总量按模型、按天、生成和读取分开，缓存命中率。Fleet energy 算当前功耗、24 小时耗电、电费、每千 token 多少 Wh。\n\n\"自建到底比调 API 便宜多少\"，这一页截图就是答案。\n\n6、运营\n面板上启停模型、整机群优雅关机、Wake-on-LAN、Tailnet 掉线告警、手机端可看、SSH 密码 AES-256-GCM 加密。\n\n它不是替代 DCGM + Prometheus 的万卡监控的方案，大厂方案太重，自己拼 Grafana 太费劲，它刚好面向企业私有化的小型 token 工厂：企业内部算力池、政府部门的内网部署、团队实验机群。\n\n模型主权 = 权重在自己手里 + 推理在自己机器上 + 账在自己脑子里，前两个大家都在做，但第三个一直缺工具，现在sparkDash补齐了这个。",
     "links": [],
     "avatar": ""
   },
