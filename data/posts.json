@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-28T08:42:03Z",
+  "updatedAt": "2026-10-28T08:43:26Z",
   "posts": [
     {
       "id": "2115316092302491757",
@@ -91019,6 +91019,157 @@
       ]
     },
     {
+      "id": "2106049434685698138",
+      "url": "https://x.com/mjjwiki/status/2106049434685698138",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T15:51:28.000Z",
+      "title": "HookHook 需额外付费订阅",
+      "industry": "",
+      "tech": "HookHook、GitHub",
+      "summary": "作者测试 HookHook 后发现需要另外付费订阅，并非 GitHub 合并说明中所描述的免费。对方回复也确认该工具根本用不了，显示要付费，且 CPA 的 token 与领鸡蛋领的 token 不是同一个。",
+      "steps": [],
+      "tags": [
+        "HookHook",
+        "付费订阅",
+        "GitHub",
+        "Token"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2106047580669137232",
+      "url": "https://x.com/mjjwiki/status/2106047580669137232",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T15:44:06.000Z",
+      "title": "Muse.ai 的 OAuth 与 CPA 模型接入讨论",
+      "industry": "人工智能",
+      "tech": "Muse.ai、CPA、OAuth",
+      "summary": "作者指出 Muse 最初诞生目的是为了把300亿参数模型用于编程，Muse火了后很多人想搞出来。对方表示自己在CPA上架了超过50个模型，包括反代Grok、CommandCode订阅和GPT business全接入。作者区分了Muse AI智能助手和https://Muse.ai的Muse Spark订阅模型，并询问Muse的OAuth相关情况。",
+      "steps": [],
+      "tags": [
+        "Muse.ai",
+        "CPA",
+        "AI模型",
+        "OAuth",
+        "反代"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://Muse.ai",
+          "name": "Muse.ai 官网",
+          "note": "Muse Spark 模型订阅页面"
+        }
+      ]
+    },
+    {
+      "id": "2106046897366638765",
+      "url": "https://x.com/Kay2289123/status/2106046897366638765",
+      "author": "Kay2289123",
+      "authorName": "美研芒格君",
+      "publishedAt": "2026-10-02T15:41:23.000Z",
+      "title": "让AI用ASD-STE100规范说人话",
+      "industry": "人工智能",
+      "tech": "ASD-STE100、LLM",
+      "summary": "很多人让AI解释内容后每个字都认识但整体不懂，越问越乱。Karpathy建议让LLM按ASD-STE100（航空维修手册的受控语言规范）来解释，能显著改善理解效果。作者强烈推荐大家使用这个方法来降低理解负荷。",
+      "steps": [],
+      "tags": [
+        "AI提示词",
+        "Karpathy",
+        "可控语言",
+        "解释输出",
+        "简化表达"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://t.co/Hquvms56Ua",
+          "name": "原文附带的链接",
+          "note": "ASD-STE100规范相关资源"
+        },
+        {
+          "url": "https://t.co/uMFWTcBCsl",
+          "name": "原文附带的链接",
+          "note": "ASD-STE100最初开发的航空维修手册相关背景"
+        }
+      ]
+    },
+    {
+      "id": "2106043932329275823",
+      "url": "https://x.com/mjjwiki/status/2106043932329275823",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T15:29:36.000Z",
+      "title": "ChatGPT官方认可对Magpie很重要",
+      "industry": "人工智能",
+      "tech": "ChatGPT、Magpie",
+      "summary": "作者认为Magpie是否获得ChatGPT官方认可是有区别的，这一点很重要。对方回复称其实都一样，但Magpie更帅。",
+      "steps": [],
+      "tags": [
+        "ChatGPT",
+        "Magpie",
+        "官方认可",
+        "AI模型"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2106043326290178468",
+      "url": "https://x.com/mjjwiki/status/2106043326290178468",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T15:27:12.000Z",
+      "title": "MJJ百科邀请30人注册绑定邀请码",
+      "industry": "",
+      "tech": "",
+      "summary": "MJJ百科回复用户询问300亿如何获得，称通过邀请30个人注册并绑定自己的邀请码即可。用户同时询问哪里可以付费购买。",
+      "steps": [],
+      "tags": [
+        "MJJ百科",
+        "邀请码",
+        "注册邀请",
+        "300亿"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2106042479489569009",
+      "url": "https://x.com/mjjwiki/status/2106042479489569009",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T15:23:50.000Z",
+      "title": "CPA是ChatGPT唯一承认的反代工具",
+      "industry": "人工智能",
+      "tech": "ChatGPT、CPA、Magpie",
+      "summary": "作者强调CPA是目前ChatGPT唯一承认的反代工具，放弃CPA就等于放弃使用ChatGPT。有人回复建议放弃CPA转而加入Magpie。",
+      "steps": [],
+      "tags": [
+        "ChatGPT",
+        "反代工具",
+        "CPA",
+        "Magpie"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
       "id": "2106040005407981596",
       "url": "https://x.com/miles_mazy/status/2106040005407981596",
       "author": "miles_mazy",
@@ -91068,6 +91219,27 @@
       ]
     },
     {
+      "id": "2106033526214918618",
+      "url": "https://x.com/mjjwiki/status/2106033526214918618",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T14:48:15.000Z",
+      "title": "MJJ百科称新工具刚出不到12小时暂不清楚",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复网友询问，表示某新工具上线不到12小时，目前还不清楚具体情况，建议先测试看看。",
+      "steps": [],
+      "tags": [
+        "测试观察",
+        "新工具",
+        "MJJ"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
       "id": "2106032456356749518",
       "url": "https://x.com/miles_mazy/status/2106032456356749518",
       "author": "miles_mazy",
@@ -91096,6 +91268,50 @@
       ]
     },
     {
+      "id": "2106030846029504775",
+      "url": "https://x.com/mjjwiki/status/2106030846029504775",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T14:37:36.000Z",
+      "title": "MJJ百科怂恿对方测试被封风险",
+      "industry": "",
+      "tech": "",
+      "summary": "用户@Prex_w表示被封怕了，MJJ百科回复称：你不怕的话那你去测试吧，等你反馈。",
+      "steps": [],
+      "tags": [
+        "MJJ百科",
+        "测试反馈",
+        "被封",
+        "推特互动"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2106029611108929803",
+      "url": "https://x.com/mjjwiki/status/2106029611108929803",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T14:32:42.000Z",
+      "title": "MJJ 两个微信号都不敢测试",
+      "industry": "",
+      "tech": "",
+      "summary": "作者表示自己有两个微信号，一个注册10年以上，一个5年以上，都不敢拿来测试。",
+      "steps": [],
+      "tags": [
+        "微信号",
+        "账号安全",
+        "MJJ",
+        "测试风险"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
       "id": "2106025661487780142",
       "url": "https://x.com/miles_mazy/status/2106025661487780142",
       "author": "miles_mazy",
@@ -91116,6 +91332,79 @@
       "showFlowchart": false,
       "kind": "日常闲聊",
       "resources": []
+    },
+    {
+      "id": "2106021968306942125",
+      "url": "https://x.com/mjjwiki/status/2106021968306942125",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T14:02:19.000Z",
+      "title": "MJJ百科确认不测新模型",
+      "industry": "",
+      "tech": "",
+      "summary": "MJJ百科回复@aibboss，表示不再测试新模型，因为前面几位推友已经测试过，结果完全一致。",
+      "steps": [],
+      "tags": [
+        "AI测试",
+        "模型评测",
+        "社区共识"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2106019312377147809",
+      "url": "https://x.com/mjjwiki/status/2106019312377147809",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T13:51:46.000Z",
+      "title": "CPA 已支持 Muse (Meta) OAuth 登录",
+      "industry": "人工智能",
+      "tech": "Muse AI、OAuth、CPA",
+      "summary": "最新版 CPA 已支持 Muse (Meta) 的 OAuth 登录方式，让 Muse AI 智能体的 300 亿 token 可以更灵活使用，解决了 token 不足的问题。",
+      "steps": [],
+      "tags": [
+        "Muse AI",
+        "OAuth登录",
+        "Token管理",
+        "AI智能体",
+        "Meta"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": []
+    },
+    {
+      "id": "2106019079161352222",
+      "url": "https://x.com/miu21590/status/2106019079161352222",
+      "author": "miu21590",
+      "authorName": "vechen",
+      "publishedAt": "2026-10-02T13:50:51.000Z",
+      "title": "AI用3天生成AI末日短片 无需人工干预",
+      "industry": "人工智能",
+      "tech": "GPT-6 Astra、Sonnet 5.5、Blender、ElevenLabs",
+      "summary": "作者用GPT-6 Astra和Sonnet 5.5生成AI末日主题短片，耗时3天后台运行，无任何视觉参考，所有场景、音效、音乐均由AI从零创作。灵感来自AI 2027和《疑犯追踪》，全程未打开Blender场景。对方回复展示Hugging Face事件用Fable 5.5想象的视频，全部用Blender和ElevenLabs API完成，强调这是AI想象力、创意、3D编码和讲故事的终极形式。",
+      "steps": [],
+      "tags": [
+        "AI生成视频",
+        "AI短片",
+        "AI创意",
+        "AI末日",
+        "无代码创作"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://twitter.com/chetaslua/status/2105757136219504862",
+          "name": "对方展示的Hugging Face事件AI视频",
+          "note": "用Fable 5.5生成的Hugging Face事件想象视频，展示AI完整创作流程"
+        }
+      ]
     },
     {
       "id": "2106017104348725424",
@@ -91160,6 +91449,29 @@
         "后台配置",
         "使用门槛",
         "产品使用"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2106012765827854352",
+      "url": "https://x.com/Linkc/status/2106012765827854352",
+      "author": "Linkc",
+      "authorName": "陈言Linkc-Chen /只是一个AI使用者",
+      "publishedAt": "2026-10-02T13:25:45.000Z",
+      "title": "新加坡文庆区普通人的日常生活",
+      "industry": "",
+      "tech": "",
+      "summary": "作者最近两次来新加坡都住在文庆区，之前住朋友公寓才知道那是高收入阶层的生活：体面餐馆、公园博物馆会员、有机食品和高级水果。而文庆区则是普通新加坡人的世界，有5-10元的小贩中心、已在大陆四线城市消失的裁缝铺。这里以华人为主，还有马来人和印度人，像一个独立小世界，和CBD高管完全不同，只有美光下班时才会有白领经过。",
+      "steps": [],
+      "tags": [
+        "新加坡生活",
+        "文庆区",
+        "小贩中心",
+        "本地华人",
+        "阶层差异"
       ],
       "isLong": false,
       "showFlowchart": false,
@@ -91232,6 +91544,60 @@
       "resources": []
     },
     {
+      "id": "2106010988613169303",
+      "url": "https://x.com/mjjwiki/status/2106010988613169303",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T13:18:42.000Z",
+      "title": "药水哥被封杀视频让我决定不再提那三个字",
+      "industry": "",
+      "tech": "",
+      "summary": "作者看了药水哥2019年9月25日被封杀的完整版YouTube视频，看到他沉默良久后深受触动。自己21年注册的工作微信仅被禁言一周已算幸运，因此决定以后在国内任何社交平台绝不再提“那三个字”。",
+      "steps": [],
+      "tags": [
+        "药水哥",
+        "封杀",
+        "社交平台",
+        "禁言",
+        "YouTube",
+        "敏感词"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2106009743760449768",
+      "url": "https://x.com/aigclink/status/2106009743760449768",
+      "author": "aigclink",
+      "authorName": "AIGCLINK",
+      "publishedAt": "2026-10-02T13:13:45.000Z",
+      "title": "MiniMax开源自托管OpenAI Agents API",
+      "industry": "人工智能",
+      "tech": "OpenAgentCore、OpenAI Agents API、Docker、E2B、Claude、Codex",
+      "summary": "MiniMax开源了自托管的OpenAgentCore，提供与OpenAI完全兼容的Agents API，应用代码无需修改只需更换地址即可。项目围绕agent loop打造了沙箱、模型接入、harness适配、状态管理、调度等周边设施，支持Docker、E2B、microsandbox、本机等多种沙箱，每个Session可灵活选择Codex或Claude模型。",
+      "steps": [],
+      "tags": [
+        "开源项目",
+        "Agent框架",
+        "自托管",
+        "API兼容",
+        "沙箱环境",
+        "MiniMax"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://t.co/3kNWbMHbN3",
+          "name": "OpenAgentCore 项目链接",
+          "note": "MiniMax开源的自托管OpenAI Agents API项目地址"
+        }
+      ]
+    },
+    {
       "id": "2106005527952228501",
       "url": "https://x.com/miles_mazy/status/2106005527952228501",
       "author": "miles_mazy",
@@ -91246,6 +91612,49 @@
         "OpenAI",
         "重置赠送",
         "日常疑问"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105999595381907759",
+      "url": "https://x.com/mjjwiki/status/2105999595381907759",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T12:33:25.000Z",
+      "title": "MJJ百科回应网友调侃要叫M哥",
+      "industry": "",
+      "tech": "",
+      "summary": "MJJ百科回复网友@mrchrismast_的调侃，表示别叫叔叔，叫M哥能让他显得年轻一些。对方用越南语回复刚吃完晚饭，问M哥吃了什么。",
+      "steps": [],
+      "tags": [
+        "日常闲聊",
+        "互动回复",
+        "MJJ百科"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105999242603200806",
+      "url": "https://x.com/mjjwiki/status/2105999242603200806",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T12:32:01.000Z",
+      "title": "MJJ 对 T ibo 速度仍感失望",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复用户称对 T ibo 实际体验仍很慢感到失望，本来昨晚没空测试，今晚打算忙完后再测试。",
+      "steps": [],
+      "tags": [
+        "T ibo",
+        "速度测试",
+        "MJJ百科",
+        "用户反馈"
       ],
       "isLong": false,
       "showFlowchart": false,
@@ -91279,6 +91688,126 @@
           "note": "引用内容附带的推文链接，原文未展示其具体内容。"
         }
       ]
+    },
+    {
+      "id": "2105997128808206749",
+      "url": "https://x.com/mjjwiki/status/2105997128808206749",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T12:23:37.000Z",
+      "title": "AI代充和中转站才算真正技术",
+      "industry": "人工智能",
+      "tech": "AI代充、AI中转站",
+      "summary": "作者认为目前多数AI相关操作只是资讯信息差，并非真正技术。只有涉及逻辑和代码实现的AI代充生产、AI中转站炸弹车等才算技术。但这些内容写出来后，大多数人看不懂。",
+      "steps": [],
+      "tags": [
+        "AI技术",
+        "信息差",
+        "技术路线",
+        "教程依赖"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105995765810450797",
+      "url": "https://x.com/mjjwiki/status/2105995765810450797",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T12:18:12.000Z",
+      "title": "GPT 6.1 Sol 速度比 GPT 5.6 Sol 慢一半",
+      "industry": "人工智能",
+      "tech": "GPT 6.1 Sol、GPT 5.6 Sol",
+      "summary": "作者引用他人测试数据，在相同 fast 模式下，GPT 5.6 Sol 速度为 43.1 Token/s，而 GPT 6.1 Sol 仅 23.1 Token/s，速度几乎慢一半。作者吐槽其像老奶奶上楼梯，生成一句话要等半天，计划今晚亲自测试。",
+      "steps": [],
+      "tags": [
+        "GPT",
+        "大模型速度",
+        "Token生成",
+        "性能测试"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://twitter.com/xKaka1456/status/2105970882481177029",
+          "name": "@xKaka1456 的推文",
+          "note": "原文附带的对比测试图片链接"
+        }
+      ]
+    },
+    {
+      "id": "2105994641145548930",
+      "url": "https://x.com/mjjwiki/status/2105994641145548930",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T12:13:44.000Z",
+      "title": "Muse AI一键搜索并归纳必应今日热点",
+      "industry": "人工智能",
+      "tech": "Muse AI",
+      "summary": "针对很多用户注册Muse AI后不知如何使用，作者分享一个简单实用技巧：直接在对话框输入“搜索必应今日热点新闻，整理归纳好给我”。Muse会自动搜索并按国际大事、财经要闻、科技/AI、国内/港澳、社会/其他等类别整理输出，非常适合泛流量赛道使用。作者还分享了剩余次数较多的邀请码AQ6VNB、57C6ZQ和LR4L0R供大家使用。",
+      "steps": [],
+      "tags": [
+        "Muse AI",
+        "必应热点",
+        "信息归纳",
+        "智能体使用",
+        "泛流量"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://x.com/i/article/2104186427038953472",
+          "name": "手把手教你注册 Muse AI智能体",
+          "note": "作者此前发布的注册Muse AI智能体的图文教程，包含免费获得10亿token和服务器资源的方法"
+        }
+      ]
+    },
+    {
+      "id": "2105991656764027377",
+      "url": "https://x.com/mjjwiki/status/2105991656764027377",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T12:01:53.000Z",
+      "title": "农村家庭对生活要求不高，吃饱即可",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复称，普通的农村家庭对生活要求并不高，能吃饱饭就满足了。",
+      "steps": [],
+      "tags": [
+        "农村生活",
+        "家庭观念",
+        "生活态度"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105990208386925013",
+      "url": "https://x.com/mjjwiki/status/2105990208386925013",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T11:56:07.000Z",
+      "title": "大家出去玩回来晚点吃饭很正常",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复别人说，大家都出去玩，回来晚一点吃饭很正常。",
+      "steps": [],
+      "tags": [
+        "日常聊天",
+        "生活琐事"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
     },
     {
       "id": "2105987912240189464",
@@ -91325,6 +91854,99 @@
       "resources": []
     },
     {
+      "id": "2105980790353859048",
+      "url": "https://x.com/mjjwiki/status/2105980790353859048",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T11:18:42.000Z",
+      "title": "作者称自己家庭人口比一般农村家庭少",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复别人时表示，自己家庭人口比一般的农村家庭要少一些。",
+      "steps": [],
+      "tags": [
+        "农村家庭",
+        "个人经历",
+        "日常闲聊"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105980386035814481",
+      "url": "https://x.com/mjjwiki/status/2105980386035814481",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T11:17:05.000Z",
+      "title": "微信仅聊“习近平访美”五字就被禁言一周",
+      "industry": "",
+      "tech": "微信",
+      "summary": "作者分享了自己仅在微信聊天中说了“习近平访美”五个字，就被平台以骚扰/虚假营销/欺诈为由禁言一周的经历，并贴出完整聊天记录，感慨这是“莫须有”罪名。",
+      "steps": [],
+      "tags": [
+        "微信禁言",
+        "言论审查",
+        "莫须有",
+        "聊天记录",
+        "习近平访美"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://twitter.com/mjjwiki/status/2103411067317891368",
+          "name": "作者另一条推文",
+          "note": "包含被微信禁言的聊天记录截图"
+        }
+      ]
+    },
+    {
+      "id": "2105978214833336682",
+      "url": "https://x.com/mjjwiki/status/2105978214833336682",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T11:08:28.000Z",
+      "title": "MJJ百科招募帮手仅三人愿意",
+      "industry": "",
+      "tech": "",
+      "summary": "MJJ百科表示某个问题早已解决，但愿意帮忙的人很少，最终只有三个人表态愿意协助，他选择了最早回复的那位。对方回复称这个原因敢帮忙的人确实不多。",
+      "steps": [],
+      "tags": [
+        "MJJ百科",
+        "招募",
+        "社区互助",
+        "冷门求助"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105977729904710044",
+      "url": "https://x.com/mjjwiki/status/2105977729904710044",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T11:06:32.000Z",
+      "title": "MJJ 百科称很多东西其实都是简单家常菜",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复@xfedorz，表示对方提到的很多东西看起来多，其实都是简单的家常菜。",
+      "steps": [],
+      "tags": [
+        "MJJ",
+        "日常",
+        "观点"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
       "id": "2105976336518902224",
       "url": "https://x.com/miles_mazy/status/2105976336518902224",
       "author": "miles_mazy",
@@ -91352,6 +91974,172 @@
       ]
     },
     {
+      "id": "2105974556875989416",
+      "url": "https://x.com/mjjwiki/status/2105974556875989416",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T10:53:56.000Z",
+      "title": "蓝V账号流量仅多1万多",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复@404jsh称，自己不晓得蓝V具体情况，而且开通蓝V后流量比平时只多了一万多。",
+      "steps": [],
+      "tags": [
+        "蓝V",
+        "X平台",
+        "流量",
+        "数据"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105974262716842398",
+      "url": "https://x.com/mjjwiki/status/2105974262716842398",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T10:52:45.000Z",
+      "title": "早期发教程贴8天涨300粉丝",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复别人时分享自己早期经验：发教程贴涨300粉丝花了足足8天，过程非常辛苦。",
+      "steps": [],
+      "tags": [
+        "涨粉经验",
+        "内容创作",
+        "教程贴",
+        "坚持"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105972360885264489",
+      "url": "https://x.com/mjjwiki/status/2105972360885264489",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T10:45:12.000Z",
+      "title": "120万爆款帖完全不吸粉",
+      "industry": "",
+      "tech": "",
+      "summary": "作者分享自己120万阅读的爆款帖子完全没有带来涨粉。对方回复称自己一篇100万阅读的爆款帖吸粉1000+，最近一个多月共涨粉2500。",
+      "steps": [],
+      "tags": [
+        "爆款内容",
+        "涨粉经验",
+        "X平台",
+        "内容创作"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105968560589996309",
+      "url": "https://x.com/mjjwiki/status/2105968560589996309",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T10:30:06.000Z",
+      "title": "作者认为主动关注弊大于利",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复称自己不想搞主动关注，对他来说弊远大于利。",
+      "steps": [],
+      "tags": [
+        "Twitter运营",
+        "社交媒体",
+        "个人观点"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105967798346530864",
+      "url": "https://x.com/mjjwiki/status/2105967798346530864",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T10:27:04.000Z",
+      "title": "技术博主发生活内容也正常，无需理会杠精",
+      "industry": "",
+      "tech": "",
+      "summary": "作者表示技术博主除了发教程，也可分享生活点滴和新闻资讯，不用理会经常吵架且已被封号三次的杠精苏珊。作者目前一篇技术教程最高吸粉2000+，若能天天发，一年至少可涨50万粉丝。作者认为没人能天天只发干货，杠精的质疑无需理会。",
+      "steps": [],
+      "tags": [
+        "技术博主",
+        "内容创作",
+        "X平台",
+        "粉丝增长",
+        "杠精"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://twitter.com/qianyuwing/status/2105917203258511594",
+          "name": "@qianyuwing的另一条推文",
+          "note": "原文引用的被回复推文"
+        }
+      ]
+    },
+    {
+      "id": "2105965015291592919",
+      "url": "https://x.com/mjjwiki/status/2105965015291592919",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T10:16:01.000Z",
+      "title": "X平台相对更自由公平",
+      "industry": "",
+      "tech": "",
+      "summary": "作者认为相对于其他平台，X更自由也更公平。对方回复称大家都是社畜牛马，终究逃不掉。",
+      "steps": [],
+      "tags": [
+        "X平台",
+        "社交媒体",
+        "观点讨论",
+        "社畜"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105964877135397039",
+      "url": "https://x.com/mjjwiki/status/2105964877135397039",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T10:15:28.000Z",
+      "title": "双规表面严格实为官员免死金牌",
+      "industry": "",
+      "tech": "",
+      "summary": "作者认为双规表面看是很严格的惩罚，实际上相当于一次性免死金牌。国内现实是表面民主和谐，实际官员腐败勾结极度严重，因此每个月都有双规案例。",
+      "steps": [],
+      "tags": [
+        "双规",
+        "官员腐败",
+        "国内政治",
+        "免死金牌"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://twitter.com/mjjwiki/status/2105819199235125378",
+          "name": "该推文本身",
+          "note": "原文推文链接"
+        }
+      ]
+    },
+    {
       "id": "2105963249615225314",
       "url": "https://x.com/miles_mazy/status/2105963249615225314",
       "author": "miles_mazy",
@@ -91372,6 +92160,80 @@
       "showFlowchart": false,
       "kind": "日常闲聊",
       "resources": []
+    },
+    {
+      "id": "2105960070853042215",
+      "url": "https://x.com/mjjwiki/status/2105960070853042215",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T09:56:22.000Z",
+      "title": "活得久才是王道，慢就是快",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复他人时表示，活得久才是真正的王道，有时候慢就是快，强调长期主义的重要性。",
+      "steps": [],
+      "tags": [
+        "人生感悟",
+        "长期主义",
+        "心态",
+        "慢即是快"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105958618155864127",
+      "url": "https://x.com/mjjwiki/status/2105958618155864127",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T09:50:36.000Z",
+      "title": "机场支付多为第三方空壳公司",
+      "industry": "",
+      "tech": "",
+      "summary": "作者指出目前机场所用的支付方式大多是合作的第三方甚至第四方支付，且来自空壳公司。回复中提到温州仍有专门搞机场的公司。",
+      "steps": [],
+      "tags": [
+        "机场支付",
+        "第三方支付",
+        "空壳公司",
+        "网络服务"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105955403662266609",
+      "url": "https://x.com/mjjwiki/status/2105955403662266609",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T09:37:49.000Z",
+      "title": "蓝V互关浇朋友 vs 原创技术路线涨粉对比",
+      "industry": "社交媒体",
+      "tech": "",
+      "summary": "作者对比两种涨蓝V粉丝的方式：走技术博主原创路线，13天发5篇技术教程涨400个蓝V粉丝；玩蓝V互关浇朋友1天就能涨400个。最终作者选择不走“邪修”方法，认为账号和个人IP需要长期积累。",
+      "steps": [],
+      "tags": [
+        "蓝V粉丝",
+        "涨粉方法",
+        "互关浇朋友",
+        "技术博主",
+        "账号运营",
+        "个人IP"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://t.co/iu1tNY3vom",
+          "name": "原文附带的链接",
+          "note": "推文配图或补充内容"
+        }
+      ]
     },
     {
       "id": "2105950604267061673",
@@ -91402,6 +92264,162 @@
       ]
     },
     {
+      "id": "2105947239277592713",
+      "url": "https://x.com/mjjwiki/status/2105947239277592713",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T09:05:23.000Z",
+      "title": "合法稳定的钱难赚",
+      "industry": "",
+      "tech": "",
+      "summary": "作者感慨合法稳定的钱很难赚，但某些来路不明的钱却不难赚。并回复称“谁给钱谁就是上帝”。",
+      "steps": [],
+      "tags": [
+        "赚钱",
+        "现实吐槽",
+        "观点"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105947025124782376",
+      "url": "https://x.com/mjjwiki/status/2105947025124782376",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T09:04:32.000Z",
+      "title": "90%被封号用户并非冤枉，低估算法高估自己",
+      "industry": "",
+      "tech": "",
+      "summary": "作者认为90%以上被封号的用户都不是被冤枉的，主要原因是他们低估了平台的算法，同时高估了自己的操作水平。代码开源不等于能完全掌握线上实际权重调优，算法黑箱依然存在。",
+      "steps": [],
+      "tags": [
+        "账号封禁",
+        "算法",
+        "平台规则",
+        "X平台",
+        "风险认知"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105944254078140878",
+      "url": "https://x.com/mjjwiki/status/2105944254078140878",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T08:53:31.000Z",
+      "title": "MJJ 反思自己太理想化固执",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复他人时表示，自己不算委屈，是因为太理想化、太固执导致的结果，把这次经历当作交学费。",
+      "steps": [],
+      "tags": [
+        "自我反思",
+        "理想化",
+        "交学费",
+        "心态调整"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105943634843467900",
+      "url": "https://x.com/mjjwiki/status/2105943634843467900",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T08:51:03.000Z",
+      "title": "润出去也要考虑父母养老取舍",
+      "industry": "",
+      "tech": "",
+      "summary": "作者纠正此前说法，表示自己抛不下父母，需要给他们养老送终。对方回复称总要有取舍，应以孩子和下一代为希望，老一辈思想固化，要往前看长远发展，同时提到现在润出去的政策也在一点点收紧。",
+      "steps": [],
+      "tags": [
+        "移民润学",
+        "养老",
+        "家庭取舍",
+        "长远发展"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105942928686456864",
+      "url": "https://x.com/Linkc/status/2105942928686456864",
+      "author": "Linkc",
+      "authorName": "陈言Linkc-Chen /只是一个AI使用者",
+      "publishedAt": "2026-10-02T08:48:15.000Z",
+      "title": "新加坡儿童节陪娃出门遇F1封路中暑",
+      "industry": "",
+      "tech": "",
+      "summary": "今天是新加坡儿童节，作者带孩子去滨海艺术中心参加活动。因F1赛事影响，Suntec、Marina Square、City Hall一带大面积封路或需绕行，导致出行困难，作者差点中暑。",
+      "steps": [],
+      "tags": [
+        "新加坡生活",
+        "儿童节",
+        "F1赛事",
+        "城市交通",
+        "亲子活动"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105941491390759009",
+      "url": "https://x.com/mjjwiki/status/2105941491390759009",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T08:42:32.000Z",
+      "title": "五六线小城节假日消费略贵但可接受",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复称，对于老家五六线小城市，节假日出来游玩吃喝的价格略贵，但自己平时吃得很随意，并非天天这样消费，感觉还能接受。",
+      "steps": [],
+      "tags": [
+        "生活消费",
+        "小城市",
+        "节假日",
+        "日常饮食"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105939527785496636",
+      "url": "https://x.com/mjjwiki/status/2105939527785496636",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T08:34:44.000Z",
+      "title": "微信聊天记录被实时AI监控",
+      "industry": "",
+      "tech": "大数据、AI监控",
+      "summary": "作者回复称微信不是好事，所有聊天记录都被庞大的大数据AI系统实时监控，没有秘密。体制不断强化“闭嘴”规则，表面禁言一周可能背后被打上不安分标签。",
+      "steps": [],
+      "tags": [
+        "微信监控",
+        "隐私安全",
+        "言论管控",
+        "大数据AI",
+        "网络监控"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
       "id": "2105938838644273503",
       "url": "https://x.com/miles_mazy/status/2105938838644273503",
       "author": "miles_mazy",
@@ -91427,6 +92445,161 @@
           "note": "引用内容中的文章链接，未提供文章正文。"
         }
       ]
+    },
+    {
+      "id": "2105938049922433170",
+      "url": "https://x.com/mjjwiki/status/2105938049922433170",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T08:28:52.000Z",
+      "title": "看透家乡规则后选择润出去",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复称家乡是权贵反扑和权力变现的缩影，黑势力本质是替主子冲锋的手套。看透规则后建议早点润出去。承认现在润的难度比以前大很多，但仍认为看透了就该走。",
+      "steps": [],
+      "tags": [
+        "移民润学",
+        "社会观察",
+        "权贵规则",
+        "现实无奈"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105937396240204059",
+      "url": "https://x.com/mjjwiki/status/2105937396240204059",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T08:26:16.000Z",
+      "title": "X算法规则已开源两次",
+      "industry": "社交媒体",
+      "tech": "X算法",
+      "summary": "作者指出X（Twitter）的算法规则已开源两次，是所有自媒体平台中唯一这么做的，已经非常透明。回复中提到虽然换了老板，但考核规则反而更死板。",
+      "steps": [],
+      "tags": [
+        "X平台",
+        "算法透明",
+        "开源",
+        "自媒体"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105932292623622641",
+      "url": "https://x.com/mjjwiki/status/2105932292623622641",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T08:05:59.000Z",
+      "title": "父母太节俭逼烧柴火省煤气",
+      "industry": "",
+      "tech": "",
+      "summary": "作者吐槽父母那一辈太节省，回老家后母亲总是逼他烧柴火做饭，认为煤气太贵。",
+      "steps": [],
+      "tags": [
+        "生活吐槽",
+        "父母辈",
+        "节俭习惯",
+        "城乡差异"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105931794021515344",
+      "url": "https://x.com/mjjwiki/status/2105931794021515344",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T08:04:00.000Z",
+      "title": "从面向老板编程到迎合X算法写帖",
+      "industry": "内容创作",
+      "tech": "",
+      "summary": "作者分享从以前上班面向老板编程不愿妥协最终被裁员，到现在运营X账号必须迎合平台算法和规则，才能获得一点正规收入的经历。感慨职场与平台生态的相似性。",
+      "steps": [],
+      "tags": [
+        "X平台",
+        "内容创作",
+        "算法迎合",
+        "职场经历",
+        "平台规则"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105930732388463021",
+      "url": "https://x.com/mjjwiki/status/2105930732388463021",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T07:59:47.000Z",
+      "title": "赚钱是为了让自己和家人过得更好",
+      "industry": "",
+      "tech": "",
+      "summary": "作者赞同赚钱的最终目的是让自己和家人生活得更好，不花的钱只是白纸和数字。",
+      "steps": [],
+      "tags": [
+        "消费观",
+        "财富观念",
+        "生活态度",
+        "理财"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105930439567478950",
+      "url": "https://x.com/mjjwiki/status/2105930439567478950",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T07:58:37.000Z",
+      "title": "孩子大了只会找你要钱和别人去吃",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复网友，感慨趁孩子还小要多陪伴，一旦孩子长大，就只会找你要钱然后和朋友出去玩了。",
+      "steps": [],
+      "tags": [
+        "育儿",
+        "亲子陪伴",
+        "家庭教育",
+        "孩子成长"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105930182540341711",
+      "url": "https://x.com/mjjwiki/status/2105930182540341711",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T07:57:36.000Z",
+      "title": "MJJ创作者收益328美元 不必羡慕他人",
+      "industry": "",
+      "tech": "",
+      "summary": "作者表示自己MJJ创作者收益仅328美元，很多人比他高，没必要羡慕。建议大家去看丰收做的排行榜，并以1000美元以上为目标。李新宝即使不公开收益，估计也有1600美元左右。",
+      "steps": [],
+      "tags": [
+        "创作者收益",
+        "MJJ",
+        "收益排行",
+        "目标设定"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
     },
     {
       "id": "2105928269027569751",
@@ -91472,6 +92645,96 @@
       "resources": []
     },
     {
+      "id": "2105918715741290772",
+      "url": "https://x.com/mjjwiki/status/2105918715741290772",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T07:12:02.000Z",
+      "title": "五六线城市西餐厅体验：环境美食佳但价格偏贵",
+      "industry": "",
+      "tech": "",
+      "summary": "作者国庆假期带孩子体验西餐，餐厅环境和美食都不错，但对于五六线城市来说价格有点小贵。",
+      "steps": [],
+      "tags": [
+        "西餐体验",
+        "国庆出行",
+        "亲子消费",
+        "本地生活",
+        "价格吐槽"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105917438424461397",
+      "url": "https://x.com/mjjwiki/status/2105917438424461397",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T07:06:58.000Z",
+      "title": "带孩子体验西餐避免知识盲区",
+      "industry": "",
+      "tech": "",
+      "summary": "作者认为应该带孩子去体验西餐，免得孩子被问到西餐是什么都不知道。对方回复表示这是好事，吃得真好。",
+      "steps": [],
+      "tags": [
+        "育儿",
+        "西餐",
+        "亲子体验",
+        "生活经验"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105916333120786839",
+      "url": "https://x.com/mjjwiki/status/2105916333120786839",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T07:02:34.000Z",
+      "title": "老家开车出市区仅需40分钟",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复网友，表示自己老家开车出市区大约40分钟，并解释是从山里出来的意思。",
+      "steps": [],
+      "tags": [
+        "日常生活",
+        "老家",
+        "开车",
+        "山里"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105916116392616134",
+      "url": "https://x.com/mjjwiki/status/2105916116392616134",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T07:01:42.000Z",
+      "title": "广州IT架构师月薪多年不低于20K",
+      "industry": "互联网/IT",
+      "tech": "",
+      "summary": "作者在广州从事IT工作十几年，担任过架构师和技术经理，2018年以来月薪从未低于2万，超龄裁员时为2.5万。虽然A股亏损130多万，但表示生活开支完全不需要依赖推特X的创作者收益。",
+      "steps": [],
+      "tags": [
+        "程序员薪资",
+        "IT架构师",
+        "广州就业",
+        "中年职场",
+        "财务独立"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
       "id": "2105913312072577218",
       "url": "https://x.com/Saccc_c/status/2105913312072577218",
       "author": "Saccc_c",
@@ -91491,6 +92754,28 @@
       "isLong": false,
       "showFlowchart": false,
       "kind": "技术分享",
+      "resources": []
+    },
+    {
+      "id": "2105912369797091533",
+      "url": "https://x.com/mjjwiki/status/2105912369797091533",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T06:46:49.000Z",
+      "title": "西餐在作者认知里就是肯德基和麦当劳",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复称，在自己的认知里，西餐一直都是肯德基和麦当劳。纯属日常调侃互动。",
+      "steps": [],
+      "tags": [
+        "日常吐槽",
+        "西餐认知",
+        "肯德基",
+        "麦当劳"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
       "resources": []
     },
     {
@@ -91519,6 +92804,160 @@
           "note": "所给文本未提供文章标题或正文内容。"
         }
       ]
+    },
+    {
+      "id": "2105911755067228509",
+      "url": "https://x.com/mjjwiki/status/2105911755067228509",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T06:44:23.000Z",
+      "title": "MJJ百科出山了",
+      "industry": "",
+      "tech": "",
+      "summary": "有网友问“出山是啥意思”，MJJ百科回复“哇哦m老师出山了”，以自嘲或调侃的方式回应自己回归或开始活跃。",
+      "steps": [],
+      "tags": [
+        "MJJ百科",
+        "出山",
+        "梗"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105906919437381923",
+      "url": "https://x.com/mjjwiki/status/2105906919437381923",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T06:25:10.000Z",
+      "title": "X平台新人别玩蓝V互关浇朋友",
+      "industry": "",
+      "tech": "X开源推荐算法",
+      "summary": "作者不建议X新人玩蓝V互关浇朋友，原因一是长期会降低账号权重甚至被限流，二是X开源推荐算法中有明确的冷启动探索位。作者感慨做X很难，自己每天发内容研究流量却仍在原地踏步，而同期或更晚入场的人已领到老马工资。",
+      "steps": [],
+      "tags": [
+        "X平台",
+        "账号权重",
+        "冷启动",
+        "限流",
+        "蓝V互关"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105905917770522835",
+      "url": "https://x.com/mjjwiki/status/2105905917770522835",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T06:21:11.000Z",
+      "title": "作者也买了投影仪和电脑，不想买电视",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复别人说自己也买了一台投影仪给孩子他妈用，家里还有两台电脑。和对方一样，都不想买电视，投影仪和电脑就能满足看片需求。",
+      "steps": [],
+      "tags": [
+        "投影仪",
+        "家庭设备",
+        "生活分享",
+        "不买电视"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105904791314641057",
+      "url": "https://x.com/mjjwiki/status/2105904791314641057",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T06:16:42.000Z",
+      "title": "翻墙后也不敢随意发言",
+      "industry": "",
+      "tech": "",
+      "summary": "作者指出即使翻墙到墙外，很多人依然不敢随意说话。作者本人也表示翻墙后仍不敢说什么。",
+      "steps": [],
+      "tags": [
+        "翻墙",
+        "网络安全",
+        "言论谨慎",
+        "海外网络"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105904160969298073",
+      "url": "https://x.com/mjjwiki/status/2105904160969298073",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T06:14:12.000Z",
+      "title": "微信疑似被监控 私聊也敏感",
+      "industry": "",
+      "tech": "",
+      "summary": "作者与他人私聊时提到某事，对方回复“恐怖，看来微信是真的被监控了”。作者回应可能是那几天内容敏感导致。",
+      "steps": [],
+      "tags": [
+        "微信监控",
+        "隐私安全",
+        "敏感内容",
+        "私聊"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105902926917189663",
+      "url": "https://x.com/mjjwiki/status/2105902926917189663",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T06:09:18.000Z",
+      "title": "假期只能陪家里神兽出去玩",
+      "industry": "",
+      "tech": "",
+      "summary": "作者表示每次假期都是家里神兽（宠物）的，他要出去玩，作者只能陪着。对方回复说作者都出去逛了，也让他过过眼福。",
+      "steps": [],
+      "tags": [
+        "假期生活",
+        "宠物日常",
+        "家庭趣事",
+        "神兽"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105902703113363643",
+      "url": "https://x.com/mjjwiki/status/2105902703113363643",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T06:08:24.000Z",
+      "title": "MJJ百科用无人机拍桌面",
+      "industry": "",
+      "tech": "无人机",
+      "summary": "MJJ百科分享自己用无人机拍摄桌面的照片，承认忘记使用广角摄像头。对方调侃询问是否用无人机拍桌面，他以轻松语气回应。",
+      "steps": [],
+      "tags": [
+        "无人机",
+        "拍照",
+        "桌面摄影",
+        "MJJ百科"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
     },
     {
       "id": "2105902382765011076",
@@ -91563,6 +93002,34 @@
       "resources": []
     },
     {
+      "id": "2105897895295914419",
+      "url": "https://x.com/mjjwiki/status/2105897895295914419",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T05:49:18.000Z",
+      "title": "国庆带孩子体验吃西餐",
+      "industry": "",
+      "tech": "",
+      "summary": "作者国庆假期带孩子外出玩耍，体验吃西餐。",
+      "steps": [],
+      "tags": [
+        "国庆假期",
+        "亲子出行",
+        "西餐体验",
+        "家庭生活"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://t.co/fdep6xIJbK",
+          "name": "原文附带的链接",
+          "note": "推文中配图或相关内容"
+        }
+      ]
+    },
+    {
       "id": "2105897415123607834",
       "url": "https://x.com/miles_mazy/status/2105897415123607834",
       "author": "miles_mazy",
@@ -91579,6 +93046,217 @@
         "数码产品",
         "Agent",
         "调侃"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105895384010899725",
+      "url": "https://x.com/mjjwiki/status/2105895384010899725",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T05:39:19.000Z",
+      "title": "21年注册的工作微信不加家人",
+      "industry": "",
+      "tech": "",
+      "summary": "作者表示自己2021年注册的工作微信不添加家人，保持工作与生活边界。对方惊讶询问家人也不行，作者以此回复。",
+      "steps": [],
+      "tags": [
+        "工作微信",
+        "微信使用",
+        "个人边界",
+        "生活习惯"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105884780407701996",
+      "url": "https://x.com/mjjwiki/status/2105884780407701996",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T04:57:11.000Z",
+      "title": "微信解封禁言后仅两人在线",
+      "industry": "",
+      "tech": "",
+      "summary": "作者微信因发送“习近平”三个敏感字被禁言一周，现已解封。他私下联系了三个推友、一个前同事和一个网络知己，结果只有两人在线。感谢蓝墨帮忙解封，并询问已加微信的推友是否在线可辅助验证，需要填写对方手机号码。",
+      "steps": [],
+      "tags": [
+        "微信",
+        "解封",
+        "禁言",
+        "社交",
+        "推友"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://t.co/EkPZPbPEL1",
+          "name": "原文附带的链接",
+          "note": "微信解封相关截图或说明"
+        },
+        {
+          "url": "https://t.co/esDXFVWdOH",
+          "name": "原文附带的链接",
+          "note": "微信解封求助相关截图或说明"
+        }
+      ]
+    },
+    {
+      "id": "2105879295235441032",
+      "url": "https://x.com/mjjwiki/status/2105879295235441032",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T04:35:23.000Z",
+      "title": "X平台举报可查举报人，拉黑预防",
+      "industry": "",
+      "tech": "",
+      "summary": "作者认为X平台允许被举报者看到举报人，是为了防止恶意乱举报。建议当帖子被举报且审核不符合时，直接拉黑举报人进行预防性拉黑。",
+      "steps": [],
+      "tags": [
+        "X平台",
+        "举报机制",
+        "拉黑",
+        "社区管理"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105876550260527423",
+      "url": "https://x.com/mjjwiki/status/2105876550260527423",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T04:24:29.000Z",
+      "title": "Grok和Gemini明年将超越Claude和GPT",
+      "industry": "人工智能",
+      "tech": "Grok、Gemini、Claude、GPT",
+      "summary": "作者认为Grok和Gemini明年绝对会超越Claude和GPT。X和Google手里的算力资源远超OpenAI和Anthropic，用户体量也更大，赶上来是迟早的事。",
+      "steps": [],
+      "tags": [
+        "大模型竞争",
+        "算力资源",
+        "AI预测",
+        "Grok",
+        "Gemini"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105875987930210516",
+      "url": "https://x.com/mjjwiki/status/2105875987930210516",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T04:22:15.000Z",
+      "title": "支持理性举报策略，避免乱举报",
+      "industry": "",
+      "tech": "",
+      "summary": "作者认为@lwl125提出的策略很好，能防止大家胡乱举报导致秩序混乱。",
+      "steps": [],
+      "tags": [
+        "社区治理",
+        "举报机制",
+        "平台规则",
+        "理性讨论"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105875519753630098",
+      "url": "https://x.com/mjjwiki/status/2105875519753630098",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T04:20:23.000Z",
+      "title": "晒收益易被举报，李新宝已不敢再晒",
+      "industry": "",
+      "tech": "",
+      "summary": "作者指出有些人看到别人收益好会眼红举报。李新宝曾因晒收益被举报过一次，现在已经不敢再晒了。同时提到目前很火的某某哥估计很快也会被举报。",
+      "steps": [],
+      "tags": [
+        "网络举报",
+        "收益晒单",
+        "平台生态",
+        "李新宝"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105874380786119041",
+      "url": "https://x.com/mjjwiki/status/2105874380786119041",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T04:15:52.000Z",
+      "title": "北京女记者到作者家乡后疯了",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复网友时提到，当年有北京女记者来到自己家乡，后来听说她疯了。对方询问能否举报扫黄打黑，作者未直接回应。",
+      "steps": [],
+      "tags": [
+        "家乡故事",
+        "北京记者",
+        "奇闻",
+        "网络闲聊"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105871906100625676",
+      "url": "https://x.com/mjjwiki/status/2105871906100625676",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T04:06:02.000Z",
+      "title": "Twitter举报显示具体举报人",
+      "industry": "",
+      "tech": "",
+      "summary": "作者认为Twitter新功能显示具体是谁举报了自己，这样蛮好，至少知道被谁针对。引用用户表示自己确实被某人举报了，但没造成实质影响，希望对方别再搞他。",
+      "steps": [],
+      "tags": [
+        "Twitter",
+        "举报功能",
+        "平台规则",
+        "用户体验"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105871192351752467",
+      "url": "https://x.com/mjjwiki/status/2105871192351752467",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T04:03:12.000Z",
+      "title": "作者习惯用辅助驾驶而非自动驾驶",
+      "industry": "",
+      "tech": "远程控制、UU远程控制",
+      "summary": "作者回复称自己知道远程功能，但电脑没开机。他习惯使用辅助驾驶，而不是完全的自动驾驶。对方提到开了远程会话并下载UU远程控制，用手机操控电脑很方便。",
+      "steps": [],
+      "tags": [
+        "自动驾驶",
+        "辅助驾驶",
+        "远程会话",
+        "电脑远程控制"
       ],
       "isLong": false,
       "showFlowchart": false,
@@ -91614,6 +93292,286 @@
       ]
     },
     {
+      "id": "2105870287053169026",
+      "url": "https://x.com/mjjwiki/status/2105870287053169026",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T03:59:36.000Z",
+      "title": "假期被家里神兽占用，没空碰电脑",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复说目前假期全被家里的神兽（孩子）占用，现在人在市区游乐园，没空碰电脑。对方建议定个目标让它自己干，作者未进一步回应。",
+      "steps": [],
+      "tags": [
+        "假期生活",
+        "育儿日常",
+        "家庭时间",
+        "神兽"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105869363588767812",
+      "url": "https://x.com/mjjwiki/status/2105869363588767812",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T03:55:56.000Z",
+      "title": "Codex 明天凌晨2点重置额度",
+      "industry": "人工智能",
+      "tech": "Codex、GPT-6.1 Sol",
+      "summary": "作者回复称Codex将于明天凌晨2点重置额度，建议有额度的用户赶紧使用。他自己刚用过重置卡。同时提到Tibo表示GPT-6.1 Sol的速度已恢复正常，不再是前两天的慢速。",
+      "steps": [],
+      "tags": [
+        "Codex重置",
+        "GPT-6.1",
+        "额度提醒",
+        "AI速度恢复"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://twitter.com/thsottiaux/status/2105843926221660585",
+          "name": "@thsottiaux的推文",
+          "note": "Tibo关于GPT-6.1 Sol速度恢复正常的分享"
+        }
+      ]
+    },
+    {
+      "id": "2105868321975615504",
+      "url": "https://x.com/mjjwiki/status/2105868321975615504",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T03:51:47.000Z",
+      "title": "微信因发习近平被禁言一周后求助解封",
+      "industry": "",
+      "tech": "",
+      "summary": "作者因不小心在微信发出“习近平”三个字被禁言一周，现在禁言时间已结束，正在向已加微信的推友求助辅助解封，需要对方填写手机号码。",
+      "steps": [],
+      "tags": [
+        "微信禁言",
+        "账号解封",
+        "敏感词",
+        "求助推友"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105868116064645178",
+      "url": "https://x.com/mjjwiki/status/2105868116064645178",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T03:50:58.000Z",
+      "title": "AI 风口示范影响恶劣或带坏年轻人",
+      "industry": "",
+      "tech": "",
+      "summary": "作者认为某AI风口示范影响恶劣，估计会带坏很多人，尤其担心墙内年轻人搞不清楚情况去盲目学习。",
+      "steps": [],
+      "tags": [
+        "AI风口",
+        "年轻人",
+        "墙内",
+        "示范影响",
+        "警示"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105867889530085686",
+      "url": "https://x.com/miu21590/status/2105867889530085686",
+      "author": "miu21590",
+      "authorName": "vechen",
+      "publishedAt": "2026-10-02T03:50:04.000Z",
+      "title": "Codex-ChatGPT-Web 跨平台 Launcher 支持 Zero Risk Mode",
+      "industry": "人工智能",
+      "tech": "Codex、GPT-5.6 Pro、GPT-6 Pro",
+      "summary": "作者发布了一款支持 macOS、Linux 和 Windows 的 Launcher，可在 Zero Risk Mode 下手动发送消息，同时让模型使用 Codex 工具。利用独立配额将 GPT-6 Pro 和 GPT-5.6 Pro 接入 Codex，即使 Codex 显示 0% 剩余也能使用，并支持访问文件和工具。",
+      "steps": [],
+      "tags": [
+        "Codex工具",
+        "Zero Risk Mode",
+        "GPT Pro配额",
+        "跨平台Launcher",
+        "文件访问"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://github.com/miuuyy/codex-chatgpt-web",
+          "name": "GitHub 仓库 codex-chatgpt-web",
+          "note": "Launcher 工具源码，支持 Zero Risk Mode 和跨平台使用"
+        }
+      ]
+    },
+    {
+      "id": "2105867822916411776",
+      "url": "https://x.com/mjjwiki/status/2105867822916411776",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T03:49:48.000Z",
+      "title": "微信因发习近平被禁言一周，现求助解封",
+      "industry": "",
+      "tech": "",
+      "summary": "作者因在微信发送“习近平”三个敏感字被禁言一周，现在禁言时间已结束，但仍需辅助解封。他请求已加微信的推友在线帮忙，解封过程需要填写对方的手机号码。",
+      "steps": [],
+      "tags": [
+        "微信禁言",
+        "账号解封",
+        "敏感词",
+        "求助",
+        "社交平台"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105867565989847283",
+      "url": "https://x.com/miu21590/status/2105867565989847283",
+      "author": "miu21590",
+      "authorName": "vechen",
+      "publishedAt": "2026-10-02T03:48:47.000Z",
+      "title": "Codex 限额减半后用独立配额接入 GPT-6 Pro",
+      "industry": "人工智能",
+      "tech": "GPT-6 Pro、GPT-5.6 Pro、Codex",
+      "summary": "Codex 限额被砍一半，200 美元 Pro 计划在 Web 端仍有每天 200 条 Pro 消息额度。作者开发了一个工具，利用独立配额将 GPT-6 Pro 和 GPT-5.6 Pro 接入 Codex，支持访问文件和工具，即使 Codex 显示剩余 0% 也能使用。仓库在回复中。",
+      "steps": [],
+      "tags": [
+        "Codex",
+        "GPT-6",
+        "限额绕过",
+        "AI工具",
+        "开源工具"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": []
+    },
+    {
+      "id": "2105864476113428813",
+      "url": "https://x.com/mjjwiki/status/2105864476113428813",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T03:36:30.000Z",
+      "title": "网友猜测AI博主肉身在国外或东南亚",
+      "industry": "",
+      "tech": "",
+      "summary": "作者讨论某AI博主@ai_fengshou可能肉身在国外，因此容易被开盒。评论区有人指出他是东南亚的人或在中国人在东南亚，作者认为这样他就无所谓了。",
+      "steps": [],
+      "tags": [
+        "AI博主",
+        "人肉搜索",
+        "开盒",
+        "东南亚",
+        "网络安全"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105863981575643273",
+      "url": "https://x.com/miu21590/status/2105863981575643273",
+      "author": "miu21590",
+      "authorName": "vechen",
+      "publishedAt": "2026-10-02T03:34:32.000Z",
+      "title": "Dot 可以创建宠物并设为头像",
+      "industry": "",
+      "tech": "Dot",
+      "summary": "作者回复称，可以让你的 Dot 创建一个宠物并直接设为头像，支持基于想法、图片或任意内容生成。作者分享了自己 Dot 的示例链接。",
+      "steps": [],
+      "tags": [
+        "AI头像",
+        "Dot功能",
+        "宠物生成",
+        "AI互动"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": []
+    },
+    {
+      "id": "2105863160855244850",
+      "url": "https://x.com/mjjwiki/status/2105863160855244850",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T03:31:17.000Z",
+      "title": "不敢在X上发敏感内容",
+      "industry": "",
+      "tech": "",
+      "summary": "用户询问是否能在这里发某内容，作者回复说如果在这里发，对方能看到且知道是谁，因此不敢发。",
+      "steps": [],
+      "tags": [
+        "X平台",
+        "隐私顾虑",
+        "匿名发帖"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105861397137748320",
+      "url": "https://x.com/mjjwiki/status/2105861397137748320",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T03:24:16.000Z",
+      "title": "无法说服父母时该如何选择",
+      "industry": "",
+      "tech": "",
+      "summary": "作者表示无法说服父母，又不愿抛下他们，感到为难。对方回复称这类事情对个体而言任重道远，建议“树挪死人挪活”，该走就走，因为个人日子短暂，想过得好一点。",
+      "steps": [],
+      "tags": [
+        "人生选择",
+        "家庭矛盾",
+        "独立生活",
+        "个人成长"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105861169991028957",
+      "url": "https://x.com/mjjwiki/status/2105861169991028957",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T03:23:22.000Z",
+      "title": "MJJ百科称梭哈哥早晚涉反政党风险极大",
+      "industry": "",
+      "tech": "",
+      "summary": "MJJ百科发文称@ai_fengshou是自己表弟，并表示弟弟没有这个能力，同时警告梭哈哥的行为早晚会涉及反政党，风险极大。",
+      "steps": [],
+      "tags": [
+        "梭哈哥",
+        "风险警示",
+        "政治风险",
+        "表弟"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
       "id": "2105860321336242455",
       "url": "https://x.com/miles_mazy/status/2105860321336242455",
       "author": "miles_mazy",
@@ -91637,6 +93595,35 @@
           "url": "https://x.com/i/article/2090364314687569920",
           "name": "引用内容中的 X 文章",
           "note": "烤妹儿被引用内容中的文章链接，未提供文章标题或正文。"
+        }
+      ]
+    },
+    {
+      "id": "2105851935308042412",
+      "url": "https://x.com/fantexi997/status/2105851935308042412",
+      "author": "fantexi997",
+      "authorName": "饭特稀 | Fentix",
+      "publishedAt": "2026-10-02T02:46:40.000Z",
+      "title": "推荐浏览器插件快速查看网站实时流量和广告支出",
+      "industry": "数字营销",
+      "tech": "浏览器插件",
+      "summary": "作者回复了@doooyle对Google Search Console使用体验差的吐槽，认为其获取多项目数据太繁琐。他推荐使用浏览器插件sitedata.dev，可快速查看每个网站的实时流量和广告支出数据，并实现鼠标悬停查看趋势和洞察。",
+      "steps": [],
+      "tags": [
+        "网站流量",
+        "广告支出",
+        "浏览器插件",
+        "数据监控",
+        "Google Search Console"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://sitedata.dev",
+          "name": "SiteData 浏览器插件",
+          "note": "用于实时查看网站流量和广告支出数据的浏览器插件"
         }
       ]
     },
@@ -91670,6 +93657,118 @@
       ]
     },
     {
+      "id": "2105845608179237232",
+      "url": "https://x.com/miu21590/status/2105845608179237232",
+      "author": "miu21590",
+      "authorName": "vechen",
+      "publishedAt": "2026-10-02T02:21:32.000Z",
+      "title": "建议切换到Unity开发游戏",
+      "industry": "游戏开发",
+      "tech": "Blender、Three.js、AI图像生成",
+      "summary": "作者建议@xikhar尽快切换到Unity开发。对方用Blender、图像生成AI和Three.js从零制作了夜间城市场景，结合精炼的战斗、动画和音乐，全部能在浏览器中运行。作者感慨游戏开发与AI结合已成为现实。",
+      "steps": [],
+      "tags": [
+        "游戏开发",
+        "AI辅助开发",
+        "Three.js",
+        "Blender",
+        "浏览器游戏"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105844291256103177",
+      "url": "https://x.com/miu21590/status/2105844291256103177",
+      "author": "miu21590",
+      "authorName": "vechen",
+      "publishedAt": "2026-10-02T02:16:18.000Z",
+      "title": "ChatGPT 全球重置将于明日进行",
+      "industry": "人工智能",
+      "tech": "ChatGPT、GPT-6.1 Sol",
+      "summary": "作者回复称，明天上午10点PST将对所有付费ChatGPT账户进行全球重置，这本来就是大多数人预期的重置时间。GPT-6.1 Sol因前两天大规模负载激增导致启动缓慢，现已恢复到预期速度。",
+      "steps": [],
+      "tags": [
+        "ChatGPT",
+        "全球重置",
+        "GPT-6.1",
+        "性能恢复"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105840482127647043",
+      "url": "https://x.com/mjjwiki/status/2105840482127647043",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T02:01:10.000Z",
+      "title": "建议直接拉黑阴阳政治搞流量的账号",
+      "industry": "",
+      "tech": "",
+      "summary": "作者认为遇到阴阳政治和国家来搞流量的账号，应该直接拉黑屏蔽。作者表示除了对方提到的那一个，还有好几个类似账号，看着就烦。",
+      "steps": [],
+      "tags": [
+        "社交媒体",
+        "网络行为",
+        "拉黑屏蔽",
+        "流量党"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105840378805207467",
+      "url": "https://x.com/mjjwiki/status/2105840378805207467",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T02:00:45.000Z",
+      "title": "MJJ百科已拉黑屏蔽某用户",
+      "industry": "",
+      "tech": "",
+      "summary": "MJJ百科表示自己已经将某用户拉黑屏蔽，现在刷不到对方，时间线变得干净正常许多。回复中提到之前经常能刷到此人。",
+      "steps": [],
+      "tags": [
+        "拉黑屏蔽",
+        "Twitter清理",
+        "时间线优化",
+        "个人体验"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105840214321365009",
+      "url": "https://x.com/mjjwiki/status/2105840214321365009",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T02:00:06.000Z",
+      "title": "作者回应低调建议：家乡30年命案不少",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复网友“低调点好”的建议，表示自己哪里敢高调，因为家乡这30年来发生的命案还不少。",
+      "steps": [],
+      "tags": [
+        "低调",
+        "家乡",
+        "命案",
+        "安全",
+        "闲聊"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
       "id": "2105839433563959324",
       "url": "https://x.com/miles_mazy/status/2105839433563959324",
       "author": "miles_mazy",
@@ -91693,6 +93792,182 @@
       "resources": []
     },
     {
+      "id": "2105837303734432170",
+      "url": "https://x.com/mjjwiki/status/2105837303734432170",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T01:48:32.000Z",
+      "title": "Muse AI智能体剩余邀请码分享",
+      "industry": "人工智能",
+      "tech": "Muse AI",
+      "summary": "作者分享Muse AI智能体邀请码：EDIZOT和Q8S7FJ已用完，AQ6VNB、57C6ZQ和LR4L0R剩余次数较多，欢迎使用。强调其功能强大、可玩性高，建议注册后积极使用而非闲置。引用了此前手把手注册教程，可免费获得10亿token、2核CPU、8G内存、100G磁盘的永久容器。",
+      "steps": [],
+      "tags": [
+        "Muse AI",
+        "邀请码",
+        "智能体",
+        "免费资源",
+        "AI容器"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://x.com/i/article/2104186427038953472",
+          "name": "手把手教你注册 Muse AI智能体",
+          "note": "作者此前发布的注册教程文章，包含全程免费注册方法及可获得的资源规格"
+        }
+      ]
+    },
+    {
+      "id": "2105832019032998022",
+      "url": "https://x.com/mjjwiki/status/2105832019032998022",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T01:27:32.000Z",
+      "title": "Gemini 2.5 Pro达到AI御三家水平",
+      "industry": "人工智能",
+      "tech": "Gemini 2.5 Pro",
+      "summary": "作者赞同Gemini 2.5 Pro已达到真正的AI御三家水平。回复中提到当年哈吉米（Grok）也曾风头无两。",
+      "steps": [],
+      "tags": [
+        "Gemini",
+        "大模型",
+        "AI评测",
+        "御三家"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105831778108014636",
+      "url": "https://x.com/mjjwiki/status/2105831778108014636",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T01:26:35.000Z",
+      "title": "梭哈哥为流量无底线有反贼潜质",
+      "industry": "",
+      "tech": "",
+      "summary": "作者同意引用者对梭哈哥的看法，认为其为流量完全没有底线，确实有成长为反贼的潜力。作者已将其二次拉黑屏蔽，并指出他这样下去早晚会被别人举报封号。",
+      "steps": [],
+      "tags": [
+        "梭哈哥",
+        "流量至上",
+        "拉黑屏蔽",
+        "举报封号",
+        "外网吐槽"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://twitter.com/jiangping1986/status/2105494175605211429",
+          "name": "@jiangping1986的推文",
+          "note": "被引用的原推文，指出梭哈哥有反贼潜质"
+        }
+      ]
+    },
+    {
+      "id": "2105829316399624381",
+      "url": "https://x.com/fantexi997/status/2105829316399624381",
+      "author": "fantexi997",
+      "authorName": "饭特稀 | Fentix",
+      "publishedAt": "2026-10-02T01:16:48.000Z",
+      "title": "Cloudflare 推出 cf CLI，一键管理 3000+ API",
+      "industry": "云计算",
+      "tech": "Cloudflare、cf CLI、Wrangler、AI Agent",
+      "summary": "Cloudflare 发布全新 cf CLI，取代 Wrangler 的 280 个命令路径，直接覆盖 3000+ API 操作。重点面向 AI Agent 设计，让 Claude Code、Codex 等可直接部署 Worker、管理 DNS、操作 D1/R2、配置 Access 和 WAF。安装命令为 npm i -g cf，未来或彻底取代打开 Cloudflare 后台的操作。",
+      "steps": [],
+      "tags": [
+        "Cloudflare",
+        "CLI工具",
+        "AI Agent",
+        "开发者工具",
+        "基础设施"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://t.co/NKSpQXReiJ",
+          "name": "Cloudflare cf CLI 官方发布链接",
+          "note": "原文附带的 Cloudflare cf CLI 相关公告或文档链接"
+        }
+      ]
+    },
+    {
+      "id": "2105828398358831177",
+      "url": "https://x.com/mjjwiki/status/2105828398358831177",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T01:13:09.000Z",
+      "title": "期待Gemini 4力挽狂澜",
+      "industry": "人工智能",
+      "tech": "Gemini",
+      "summary": "作者回复称很期待Gemini 4出来力挽狂澜，并怀念当年Gemini 2.5 Pro拥有御三家水平的时代。",
+      "steps": [],
+      "tags": [
+        "Gemini",
+        "大模型",
+        "Google",
+        "AI竞争"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105827848812683532",
+      "url": "https://x.com/mjjwiki/status/2105827848812683532",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T01:10:58.000Z",
+      "title": "xAI与Google Cloud合作，企业渠道价值凸显",
+      "industry": "人工智能",
+      "tech": "xAI、Google Cloud、Gemini",
+      "summary": "作者认为xAI模型虽强但缺乏企业渠道，Google Cloud拥有大量企业客户，双方合作可让xAI模型快速进入采购清单。Gemini 4 Argon测试若表现强劲，AI御三家排名可能重排，但企业智能体市场Google已率先布局。",
+      "steps": [],
+      "tags": [
+        "xAI",
+        "Google Cloud",
+        "企业AI",
+        "渠道合作",
+        "智能体"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105827303280591223",
+      "url": "https://x.com/mjjwiki/status/2105827303280591223",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T01:08:48.000Z",
+      "title": "作者建议早日逃离家乡去大城市",
+      "industry": "",
+      "tech": "",
+      "summary": "有人建议作者早日逃离家乡去大城市生活。作者回复称自己早就提议过，但父母不同意，因为他们熟悉的人都在家乡。",
+      "steps": [],
+      "tags": [
+        "生活建议",
+        "逃离家乡",
+        "大城市",
+        "父母意见"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
       "id": "2105826850706764276",
       "url": "https://x.com/miles_mazy/status/2105826850706764276",
       "author": "miles_mazy",
@@ -91708,6 +93983,74 @@
         "订阅费用",
         "县城生活",
         "家庭收入"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105825168652398996",
+      "url": "https://x.com/mjjwiki/status/2105825168652398996",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T01:00:19.000Z",
+      "title": "Grok 4.7 与 Gemini 合作，马斯克眼光毒辣",
+      "industry": "人工智能",
+      "tech": "Grok 4.7、Gemini 4 Argon",
+      "summary": "作者认为Grok 4.7与Gemini的合作是“弱者抱团取暖”，但Gemini 4 Argon测试数据表现出色，有潜力让Gemini重回AI御三家。作者高度评价马斯克此举眼光毒辣、做事果决，是第一性原理的优秀践行。",
+      "steps": [],
+      "tags": [
+        "Grok",
+        "Gemini",
+        "马斯克",
+        "AI合作",
+        "第一性原理"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105822051638616116",
+      "url": "https://x.com/mjjwiki/status/2105822051638616116",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T00:47:56.000Z",
+      "title": "底层老百姓的无奈",
+      "industry": "",
+      "tech": "",
+      "summary": "作者对底层老百姓的处境感到无奈，并表示相信对方村里的情况也是如此。",
+      "steps": [],
+      "tags": [
+        "社会吐槽",
+        "底层生活",
+        "无奈感",
+        "乡村生活"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105819199235125378",
+      "url": "https://x.com/mjjwiki/status/2105819199235125378",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-02T00:36:35.000Z",
+      "title": "作者吐槽家乡腐败黑暗30年",
+      "industry": "",
+      "tech": "",
+      "summary": "作者表示非常不喜欢自己的家乡，认为近30年来从市委书记到乡村书记都存在黑势力，腐败黑暗。这几天家里又连续发生两件不开心的事，让他敢怒不敢言，连文字、图片、视频和细节都不敢发出来。作者最后批判“解决不了问题就解决提出问题的人”，并对“法治社会”表示强烈不满。",
+      "steps": [],
+      "tags": [
+        "家乡腐败",
+        "黑势力",
+        "社会黑暗",
+        "敢怒不敢言",
+        "法治质疑"
       ],
       "isLong": false,
       "showFlowchart": false,
@@ -91739,6 +94082,210 @@
           "url": "https://x.com/i/article/2105631964476891136",
           "name": "AI岗位面试准备文章",
           "note": "从面试官角度介绍AI开发、AI算法及Agent开发等岗位的面试准备。"
+        }
+      ]
+    },
+    {
+      "id": "2105800711271514112",
+      "url": "https://x.com/mjjwiki/status/2105800711271514112",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T23:23:08.000Z",
+      "title": "60秒港片风格打戏分镜与提示词",
+      "industry": "人工智能",
+      "tech": "视频生成、提示词",
+      "summary": "作者分享了60秒打戏视频的分镜创作规则与提示词写法。核心是每10秒一个分镜片段，全程持续打斗且双方势均力敌，采用90年代港片风格。60秒被切分为6个10s片段，每个片段包含4-6个镜头，镜头时长1.5-2.5秒。",
+      "steps": [],
+      "tags": [
+        "视频生成",
+        "分镜脚本",
+        "港片风格",
+        "动作视频",
+        "提示词"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": []
+    },
+    {
+      "id": "2105799437604077719",
+      "url": "https://x.com/mjjwiki/status/2105799437604077719",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T23:18:04.000Z",
+      "title": "免费抽周边被举报后决定只在币安和OKX平台抽奖",
+      "industry": "",
+      "tech": "",
+      "summary": "作者表示自己的帖子只要可能产生利益都会标注清楚，以避免被举报。针对免费抽周边仍被举报感到不满，决定以后只在币安广场和OKX星球进行抽奖活动。",
+      "steps": [],
+      "tags": [
+        "抽奖",
+        "举报",
+        "平台选择",
+        "MJJ",
+        "周边"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105798730175971332",
+      "url": "https://x.com/mjjwiki/status/2105798730175971332",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T23:15:15.000Z",
+      "title": "MJJ 称当前流量仅为权重高峰期一半多",
+      "industry": "",
+      "tech": "",
+      "summary": "MJJ百科回复称，现在的流量只比以前权重高的时候多一半左右。对方称赞M哥厉害。",
+      "steps": [],
+      "tags": [
+        "流量数据",
+        "权重",
+        "MJJ百科",
+        "X平台"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105796985118994444",
+      "url": "https://x.com/mjjwiki/status/2105796985118994444",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T23:08:19.000Z",
+      "title": "AI可记住100万上下文的长篇小说",
+      "industry": "人工智能",
+      "tech": "大语言模型、长上下文",
+      "summary": "作者认为10万字以上即为长篇小说，在输入输出均为100万上下文的AI中可以被完整记住。针对回复中询问的长篇小说大纲是否能记住，作者持肯定态度。",
+      "steps": [],
+      "tags": [
+        "长篇小说",
+        "AI记忆",
+        "上下文长度",
+        "大纲记忆"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105726264816406597",
+      "url": "https://x.com/miu21590/status/2105726264816406597",
+      "author": "miu21590",
+      "authorName": "vechen",
+      "publishedAt": "2026-10-01T18:27:18.000Z",
+      "title": "OpenDots 与 Dots 核心差异分析",
+      "industry": "人工智能",
+      "tech": "OpenDots、Grok、ChatGPT、Codex",
+      "summary": "作者认为 OpenDots 的名字有误导性，它更接近 Grok bot 而非 Dots。Dots 的本质是与 ChatGPT 生态深度结合，包括语音模式流水线和委托任务给 Codex 等能力。缺少这些后，OpenDots 成了完全不同且吸引力较低的产品。",
+      "steps": [],
+      "tags": [
+        "OpenDots",
+        "AI Agent",
+        "自托管",
+        "语音模式",
+        "计算机使用"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://twitter.com/OpenAI/status/2104984504133918973",
+          "name": "OpenAI 官方推文",
+          "note": "原文附带的 OpenAI 相关推文链接"
+        }
+      ]
+    },
+    {
+      "id": "2105725526069694498",
+      "url": "https://x.com/Kay2289123/status/2105725526069694498",
+      "author": "Kay2289123",
+      "authorName": "美研芒格君",
+      "publishedAt": "2026-10-01T18:24:22.000Z",
+      "title": "Marvell 投资者日直播链接分享",
+      "industry": "半导体",
+      "tech": "AI、MRVL",
+      "summary": "作者分享了 Marvell 投资者日直播链接，邀请大家一起观看。他本人已投资 MRVL 三年，将于 5 天后迎来投资者日，最期待内存墙、谷歌合作及 scale up 市场相关答案，这些将指导 2027 年的投资路线。作者强调如果你相信 AI，就应该相信 MRVL。",
+      "steps": [],
+      "tags": [
+        "Marvell",
+        "投资者日",
+        "AI投资",
+        "内存墙",
+        "Scale Up",
+        "谷歌合作"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://t.co/YThCv2BvMS",
+          "name": "Marvell 投资者日直播链接",
+          "note": "Marvell 投资者日活动直播入口"
+        },
+        {
+          "url": "https://t.co/4v2P1j5OqF",
+          "name": "原文附带的链接",
+          "note": "推文配图或相关资料链接"
+        },
+        {
+          "url": "https://t.co/daeGzQTIlS",
+          "name": "原文附带的链接",
+          "note": "推文配图或相关资料链接"
+        }
+      ]
+    },
+    {
+      "id": "2105725075278512568",
+      "url": "https://x.com/Kay2289123/status/2105725075278512568",
+      "author": "Kay2289123",
+      "authorName": "美研芒格君",
+      "publishedAt": "2026-10-01T18:22:35.000Z",
+      "title": "MRVL投资者日倒计时5天，期待内存墙与谷歌合作答案",
+      "industry": "半导体",
+      "tech": "AI、MRVL",
+      "summary": "作者持有MRVL三年，即将迎来投资者日，重点期待内存墙、谷歌合作及Scale Up市场相关答案，这些将指导2027年投资路线。作者在168美元继续买入，强调不要只看点位，要理解其长期逻辑，并计划免费搭建每日更新Dashboard供大家参考。",
+      "steps": [],
+      "tags": [
+        "MRVL股票",
+        "AI投资",
+        "投资者日",
+        "内存墙",
+        "谷歌合作",
+        "Scale Up"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://t.co/4v2P1j5OqF",
+          "name": "原文附带的链接",
+          "note": "推文配图或相关说明"
+        },
+        {
+          "url": "https://t.co/daeGzQTIlS",
+          "name": "原文附带的链接",
+          "note": "推文配图或相关说明"
+        },
+        {
+          "url": "https://t.co/Ekzb0Kabq1",
+          "name": "原文附带的链接",
+          "note": "Dashboard筹划相关"
+        },
+        {
+          "url": "https://t.co/KaIMJxdbCN",
+          "name": "原文附带的链接",
+          "note": "Dashboard筹划相关"
         }
       ]
     },
@@ -91785,6 +94332,29 @@
       "resources": []
     },
     {
+      "id": "2105699072913068346",
+      "url": "https://x.com/mjjwiki/status/2105699072913068346",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T16:39:15.000Z",
+      "title": "短篇小说用大纲分章节输出更稳",
+      "industry": "",
+      "tech": "Gemini、DeepSeek",
+      "summary": "作者认为写短篇小说时先写好大纲再按章节输出效果较好，一次性生成容易跑偏。番茄平台对AI率高的小说签约难度大，Gemini直接生成是AI率最高的模型，仅次于DeepSeek。",
+      "steps": [],
+      "tags": [
+        "AI写作",
+        "小说生成",
+        "大纲写作",
+        "AI检测",
+        "番茄小说"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
       "id": "2105699008404500496",
       "url": "https://x.com/miles_mazy/status/2105699008404500496",
       "author": "miles_mazy",
@@ -91800,6 +94370,72 @@
         "独自旅行",
         "酒店式公寓",
         "指纹门锁"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105698074110881936",
+      "url": "https://x.com/mjjwiki/status/2105698074110881936",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T16:35:17.000Z",
+      "title": "时间线推送延迟太奇怪",
+      "industry": "",
+      "tech": "",
+      "summary": "作者吐槽 X（Twitter）时间线推送机制奇怪，@demonyins 早上发的推文现在才被推送到他的时间线。",
+      "steps": [],
+      "tags": [
+        "Twitter",
+        "时间线",
+        "推送延迟",
+        "平台bug"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105697170070597689",
+      "url": "https://x.com/mjjwiki/status/2105697170070597689",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T16:31:41.000Z",
+      "title": "小爆款对作者已无意义",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回应他人对其惩罚大腰砍后流量的评论，表示这只是流量惩罚而已，不需要过度吹嘘。他强调小爆款对自己来说已经没有意义，也无需装腔作势。",
+      "steps": [],
+      "tags": [
+        "流量",
+        "爆款",
+        "内容创作",
+        "MJJ百科"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105696281016562029",
+      "url": "https://x.com/mjjwiki/status/2105696281016562029",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T16:28:09.000Z",
+      "title": "MJJ百科称当年有人直接肉身出国",
+      "industry": "",
+      "tech": "",
+      "summary": "MJJ百科回复网友时表示，当年有些人直接肉身出国，而自己因为牵挂太多没有这么做。对方感慨大佬啥都干过。",
+      "steps": [],
+      "tags": [
+        "个人经历",
+        "MJJ百科",
+        "出国",
+        "闲聊"
       ],
       "isLong": false,
       "showFlowchart": false,
@@ -91834,6 +94470,27 @@
       ]
     },
     {
+      "id": "2105688480068370647",
+      "url": "https://x.com/mjjwiki/status/2105688480068370647",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T15:57:10.000Z",
+      "title": "MJJ百科给出完整数据回应质疑",
+      "industry": "",
+      "tech": "",
+      "summary": "MJJ百科针对@demonyins的质疑，发布完整数据图片作为回应，表明自己没有造假。",
+      "steps": [],
+      "tags": [
+        "数据回应",
+        "MJJ百科",
+        "推文互动"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
       "id": "2105687945412022361",
       "url": "https://x.com/miles_mazy/status/2105687945412022361",
       "author": "miles_mazy",
@@ -91856,6 +94513,97 @@
       "resources": []
     },
     {
+      "id": "2105687803409678782",
+      "url": "https://x.com/mjjwiki/status/2105687803409678782",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T15:54:28.000Z",
+      "title": "泛流量赛道博主无下限制造谣言",
+      "industry": "",
+      "tech": "",
+      "summary": "作者同意某些泛流量赛道博主完全没有下限，通过制造谣言吸引流量。针对平台是否追究谣言的问题，作者指出目前平台似乎并不追究帖子是否为谣言。",
+      "steps": [],
+      "tags": [
+        "泛流量",
+        "内容博主",
+        "谣言",
+        "平台监管",
+        "网络生态"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105687351129477358",
+      "url": "https://x.com/mjjwiki/status/2105687351129477358",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T15:52:40.000Z",
+      "title": "X平台推广VPN已成普遍违法行为",
+      "industry": "",
+      "tech": "VPN",
+      "summary": "作者指出99%上X的人已经违法，因为X上大量博主常年公开推广VPN。回复中强调这种爬墙VPN在国内本身违法，公开推引流卖节点风险极高，容易被找上门。",
+      "steps": [],
+      "tags": [
+        "VPN",
+        "爬墙",
+        "X平台",
+        "网络监管",
+        "违法推广"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105686893623169065",
+      "url": "https://x.com/Kay2289123/status/2105686893623169065",
+      "author": "Kay2289123",
+      "authorName": "美研芒格君",
+      "publishedAt": "2026-10-01T15:50:51.000Z",
+      "title": "硅谷打工人压力大，忘记享受生活",
+      "industry": "科技行业",
+      "tech": "",
+      "summary": "作者从硅谷湾区实习生一路做到带团队，发现身边伙伴压力越来越大。在追求成功的过程中，大家逐渐忘记了享受生活的美好。",
+      "steps": [],
+      "tags": [
+        "硅谷生活",
+        "职场压力",
+        "工作生活平衡",
+        "湾区打工人",
+        "职业成长"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105680547200868795",
+      "url": "https://x.com/mjjwiki/status/2105680547200868795",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T15:25:38.000Z",
+      "title": "延迟比速度更重要，30M带宽已足够",
+      "industry": "",
+      "tech": "",
+      "summary": "作者认为在网络使用中延迟比速度更重要，30M带宽其实已经足够。对方回复称自己8刀/月的线路配合静态IP，白天能跑到800-900Mbps，晚上20-30Mbps。",
+      "steps": [],
+      "tags": [
+        "网络优化",
+        "带宽选择",
+        "延迟优先",
+        "静态IP"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
       "id": "2105680524874551675",
       "url": "https://x.com/Saccc_c/status/2105680524874551675",
       "author": "Saccc_c",
@@ -91870,6 +94618,50 @@
         "插件扩展",
         "产品迭代",
         "工具评价"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105679797263487375",
+      "url": "https://x.com/mjjwiki/status/2105679797263487375",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T15:22:39.000Z",
+      "title": "农村放烟花比城市更好看",
+      "industry": "",
+      "tech": "",
+      "summary": "作者同意农村放烟花比城市更好看，认为村里天空更暗、更宽旷，烟花显得更灿烂。",
+      "steps": [],
+      "tags": [
+        "烟花",
+        "农村生活",
+        "日常观察",
+        "城乡对比"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105679284031598891",
+      "url": "https://x.com/mjjwiki/status/2105679284031598891",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T15:20:37.000Z",
+      "title": "前端开发建议用3.8 Fast和3.1 Pro结合",
+      "industry": "人工智能",
+      "tech": "Claude 3.8 Fast、Claude 3.1 Pro",
+      "summary": "作者认为搞前端开发应将Claude 3.8 Fast和3.1 Pro结合使用。有人回复称前几天单独使用3.8 Fast改前端UI，依然偷懒严重，花了两次满额才改好。",
+      "steps": [],
+      "tags": [
+        "Claude",
+        "前端开发",
+        "AI辅助编程",
+        "模型组合"
       ],
       "isLong": false,
       "showFlowchart": false,
@@ -91897,6 +94689,27 @@
       "isLong": true,
       "showFlowchart": false,
       "kind": "技术分享",
+      "resources": []
+    },
+    {
+      "id": "2105677058076746214",
+      "url": "https://x.com/mjjwiki/status/2105677058076746214",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T15:11:46.000Z",
+      "title": "MJJ百科称将测试几天后发布后续视频",
+      "industry": "",
+      "tech": "",
+      "summary": "MJJ百科回复网友，表示自己正在使用几天后会发布测试视频。对方也刷到了后续内容。",
+      "steps": [],
+      "tags": [
+        "MJJ百科",
+        "后续测试",
+        "视频更新"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
       "resources": []
     },
     {
@@ -91943,6 +94756,28 @@
       "resources": []
     },
     {
+      "id": "2105666605854453904",
+      "url": "https://x.com/mjjwiki/status/2105666605854453904",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T14:30:14.000Z",
+      "title": "爆款帖子的流量主要来自非蓝V用户",
+      "industry": "",
+      "tech": "",
+      "summary": "作者指出爆款帖子的流量绝大多数来自非蓝V用户，并非蓝V认证账号主导。",
+      "steps": [],
+      "tags": [
+        "X平台",
+        "流量分析",
+        "蓝V认证",
+        "社交媒体"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
       "id": "2105666293219074052",
       "url": "https://x.com/miles_mazy/status/2105666293219074052",
       "author": "miles_mazy",
@@ -91962,6 +94797,52 @@
       "isLong": false,
       "showFlowchart": false,
       "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105664682191364165",
+      "url": "https://x.com/mjjwiki/status/2105664682191364165",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T14:22:36.000Z",
+      "title": "120万小爆款对蓝V流量影响很小",
+      "industry": "",
+      "tech": "",
+      "summary": "作者分享最近两周总流量和蓝V流量数据，表示账号权重已恢复到被惩罚腰砍后的水平。120万阅读的小爆款对蓝V流量影响很小，除非达到500万以上才算惊喜。此前120万爆款让作者对爆款帖子祛魅。",
+      "steps": [],
+      "tags": [
+        "X平台",
+        "爆款帖子",
+        "流量分析",
+        "蓝V",
+        "账号权重"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105664536133177355",
+      "url": "https://x.com/mjjwiki/status/2105664536133177355",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T14:22:01.000Z",
+      "title": "120万小爆款对蓝V流量影响很小",
+      "industry": "社交媒体",
+      "tech": "",
+      "summary": "作者分享最近两周泛流量和蓝V流量数据，表示账号权重已恢复到首次被惩罚腰砍后的水平。120万阅读的小爆款对蓝V流量影响很小，几乎没感觉，只有500万以上爆款才算惊喜。此前以为120万是莫名其妙的小爆款，已对爆款祛魅。",
+      "steps": [],
+      "tags": [
+        "爆款帖子",
+        "蓝V流量",
+        "账号权重",
+        "X平台",
+        "流量分析"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
       "resources": []
     },
     {
@@ -92014,6 +94895,29 @@
       "resources": []
     },
     {
+      "id": "2105660590392037539",
+      "url": "https://x.com/mjjwiki/status/2105660590392037539",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T14:06:20.000Z",
+      "title": "Starryblu 最便捷的三种入金方式",
+      "industry": "跨境支付",
+      "tech": "",
+      "summary": "作者回复用户询问，指出目前Starryblu最便捷的入金方式为港卡港元入金、Wise新加坡元入金和欧元入金（后者需要资格）。银行卡无法直接转账。",
+      "steps": [],
+      "tags": [
+        "Starryblu",
+        "入金",
+        "港卡",
+        "Wise",
+        "欧元入金"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
       "id": "2105659499541393678",
       "url": "https://x.com/miles_mazy/status/2105659499541393678",
       "author": "miles_mazy",
@@ -92042,6 +94946,230 @@
       ]
     },
     {
+      "id": "2105656174226100323",
+      "url": "https://x.com/mjjwiki/status/2105656174226100323",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T13:48:47.000Z",
+      "title": "作者澄清微信仅被禁言一周",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回应称自己的微信没有被封，只是被禁言一周，对方发的消息自己依然能看到。",
+      "steps": [],
+      "tags": [
+        "微信",
+        "禁言",
+        "xjp",
+        "日常"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105653698764341733",
+      "url": "https://x.com/mjjwiki/status/2105653698764341733",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T13:38:57.000Z",
+      "title": "作者澄清自己不算信宜人",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复别人说自己不算信宜人，只是孩子和妻子在信宜上学教书，他本人只是经常过去而已。",
+      "steps": [],
+      "tags": [
+        "日常闲聊",
+        "信宜",
+        "本地生活"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105652035907719269",
+      "url": "https://x.com/keke202106/status/2105652035907719269",
+      "author": "keke202106",
+      "authorName": "HaonanPro",
+      "publishedAt": "2026-10-01T13:32:21.000Z",
+      "title": "吐槽西班牙物价太高",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复@A1A2Espanol，表示西班牙物价有点高，并调侃“万恶资本主义”。",
+      "steps": [],
+      "tags": [
+        "物价",
+        "西班牙",
+        "吐槽",
+        "资本主义"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105651323119206740",
+      "url": "https://x.com/mjjwiki/status/2105651323119206740",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T13:29:31.000Z",
+      "title": "小县城第一个用U卡买菜的男人",
+      "industry": "",
+      "tech": "U卡",
+      "summary": "作者去年在信宜用U卡买菜十几次，虽然不是本地人。他自称是自己小县城第一个用U买菜的人。",
+      "steps": [],
+      "tags": [
+        "U卡支付",
+        "买菜",
+        "信宜",
+        "本地生活",
+        "日常分享"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105649811114651976",
+      "url": "https://x.com/mjjwiki/status/2105649811114651976",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T13:23:30.000Z",
+      "title": "农村放烟花比城市自由得多",
+      "industry": "",
+      "tech": "",
+      "summary": "作者倒垃圾回来路上看到有人放烟花，感慨农村放烟花比城市自由很多。",
+      "steps": [],
+      "tags": [
+        "农村生活",
+        "烟花",
+        "日常观察"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105649266991796400",
+      "url": "https://x.com/mjjwiki/status/2105649266991796400",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T13:21:20.000Z",
+      "title": "MJJ 家鸡吃完了还剩二三十只",
+      "industry": "",
+      "tech": "",
+      "summary": "MJJ 回复说今天杀的鸡已经吃完了，目前家里还养着二三十只鸡。",
+      "steps": [],
+      "tags": [
+        "日常闲聊",
+        "养鸡",
+        "乡村生活"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105648564756185533",
+      "url": "https://x.com/mjjwiki/status/2105648564756185533",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T13:18:33.000Z",
+      "title": "Claude会员邀请码单人30亿token",
+      "industry": "人工智能",
+      "tech": "Claude",
+      "summary": "作者回复用户称，Claude会员邀请码单人可获得30亿token；若拉满额度则是900亿token，相当于三倍。",
+      "steps": [],
+      "tags": [
+        "Claude",
+        "邀请码",
+        "token额度",
+        "会员福利"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://t.co/NmxTI8EJ79",
+          "name": "原文附带的链接",
+          "note": "推文中的图片或截图"
+        }
+      ]
+    },
+    {
+      "id": "2105648323583672770",
+      "url": "https://x.com/mjjwiki/status/2105648323583672770",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T13:17:36.000Z",
+      "title": "UC浏览器曾是看小说神器",
+      "industry": "",
+      "tech": "UC浏览器、夸克浏览器、QQ浏览器",
+      "summary": "作者回忆UC浏览器以前看小说功能很强，当时仅次于QQ浏览器。自己现在主要用离线下载视频，对夸克浏览器在这方面的表现不了解。",
+      "steps": [],
+      "tags": [
+        "浏览器",
+        "UC浏览器",
+        "夸克浏览器",
+        "看小说",
+        "离线下载"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105647642101633261",
+      "url": "https://x.com/mjjwiki/status/2105647642101633261",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T13:14:53.000Z",
+      "title": "MJJ百科每餐吃两碗汤和两碗饭",
+      "industry": "",
+      "tech": "",
+      "summary": "MJJ百科回复称自己每餐差不多吃两碗汤和两碗饭。",
+      "steps": [],
+      "tags": [
+        "日常饮食",
+        "MJJ",
+        "生活分享"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105646855023661139",
+      "url": "https://x.com/mjjwiki/status/2105646855023661139",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T13:11:45.000Z",
+      "title": "MJJ百科分享开卡邀请链接及50元私人奖励",
+      "industry": "",
+      "tech": "",
+      "summary": "MJJ百科欢迎大家通过他的邀请链接或推荐码成功开卡，次月可获得其私人提供的50元奖励。对方回复表示还没操作，下次有时间再弄。",
+      "steps": [],
+      "tags": [
+        "邀请奖励",
+        "开卡福利",
+        "MJJ百科",
+        "私人奖励"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
       "id": "2105642385325621513",
       "url": "https://x.com/miles_mazy/status/2105642385325621513",
       "author": "miles_mazy",
@@ -92066,6 +95194,34 @@
           "url": "https://x.com/i/article/2105631964476891136",
           "name": "AI岗位面试准备文章",
           "note": "从面试官角度介绍AI开发、AI算法、Agent开发等岗位应如何准备面试。"
+        }
+      ]
+    },
+    {
+      "id": "2105639225194697070",
+      "url": "https://x.com/keke202106/status/2105639225194697070",
+      "author": "keke202106",
+      "authorName": "HaonanPro",
+      "publishedAt": "2026-10-01T12:41:26.000Z",
+      "title": "收老外8-20欧服务费对他们很便宜",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复称向老外收取8欧服务费，对他们来说非常便宜，20欧也同样划算。",
+      "steps": [],
+      "tags": [
+        "跨境服务",
+        "老外客户",
+        "定价策略",
+        "欧洲市场"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://t.co/svGIzDxl0D",
+          "name": "原文附带的链接",
+          "note": "推文中回复的图片或附加内容"
         }
       ]
     },
@@ -92098,6 +95254,250 @@
       ]
     },
     {
+      "id": "2105630896728748493",
+      "url": "https://x.com/mjjwiki/status/2105630896728748493",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T12:08:21.000Z",
+      "title": "作者方法仅存活3天半",
+      "industry": "",
+      "tech": "",
+      "summary": "作者分享自己提出的方法仅存活3天半，对用户的反馈表示感谢。用户回复称再次尝试时云浏览器持续报错，怀疑已被关闭。",
+      "steps": [],
+      "tags": [
+        "云浏览器",
+        "方法失效",
+        "反馈"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105629207267356859",
+      "url": "https://x.com/mjjwiki/status/2105629207267356859",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T12:01:38.000Z",
+      "title": "MJJ百科称分析报告已改版",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复称昨天的信息已过时，MJJ百科的分析报告已经改版。",
+      "steps": [],
+      "tags": [
+        "MJJ百科",
+        "信息更新",
+        "分析报告"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105626602159984942",
+      "url": "https://x.com/mjjwiki/status/2105626602159984942",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T11:51:17.000Z",
+      "title": "Claude搭配Gemini流水线各取所长",
+      "industry": "人工智能",
+      "tech": "Claude、Gemini",
+      "summary": "作者认为Claude和Gemini擅长的领域不同，搭配使用效果很好，Claude搭Gemini的流水线能各取所长。",
+      "steps": [],
+      "tags": [
+        "Claude",
+        "Gemini",
+        "AI流水线",
+        "大模型搭配",
+        "工具组合"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105626289143271741",
+      "url": "https://x.com/XiaohuiAI666/status/2105626289143271741",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-10-01T11:50:02.000Z",
+      "title": "AI游戏《无为修仙传》上线一月卖出3000多份",
+      "industry": "游戏",
+      "tech": "AI",
+      "summary": "AI游戏《无为修仙传》发布满一个月，游戏本体卖出3000多份，DLC卖出590份，净营收4723美元（约3.17万人民币）。第二部DLC已提审Steam，预计10月6日发布。作者表示将依靠天马行空的想象力继续创作更多独特游戏。",
+      "steps": [],
+      "tags": [
+        "独立游戏",
+        "AI游戏",
+        "无为修仙传",
+        "Steam",
+        "DLC",
+        "程序员创业"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://x.com/i/article/2102228304845787136",
+          "name": "作者长文",
+          "note": "原文引用的作者个人文章链接"
+        }
+      ]
+    },
+    {
+      "id": "2105626147572875506",
+      "url": "https://x.com/mjjwiki/status/2105626147572875506",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T11:49:28.000Z",
+      "title": "VIVO自带浏览器可免开爱优腾视频会员",
+      "industry": "",
+      "tech": "VIVO浏览器",
+      "summary": "作者分享使用VIVO手机自带浏览器观看影视剧时，无需开通爱奇艺、优酷、腾讯视频会员即可正常观看。有人回复询问为何必须用VIVO自带浏览器，作者未进一步解释。",
+      "steps": [],
+      "tags": [
+        "VIVO手机",
+        "浏览器",
+        "视频会员",
+        "免会员",
+        "影视资源"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105625236729373129",
+      "url": "https://x.com/mjjwiki/status/2105625236729373129",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T11:45:51.000Z",
+      "title": "家宽1元一天可随便注册账号",
+      "industry": "跨境电商",
+      "tech": "VPN机场、家宽",
+      "summary": "针对需要高纯净度、独享IP的用户，推荐使用家宽，1元买一天即可随便注册账号。多数人用VPN机场的体验套餐就够，搞跨境、解锁自媒体或养AI的用户则会选择高级或不限时套餐，因为提供跨境专线、SLA保障和固定干净的静态IP。",
+      "steps": [],
+      "tags": [
+        "家宽",
+        "IP纯净度",
+        "跨境专线",
+        "静态IP",
+        "账号注册",
+        "VPN体验"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://twitter.com/mjjwiki/status/2098603711362937262",
+          "name": "作者之前推荐VPN机场的推文",
+          "note": "介绍VPN机场体验套餐适合多数人使用"
+        }
+      ]
+    },
+    {
+      "id": "2105624334886973575",
+      "url": "https://x.com/mjjwiki/status/2105624334886973575",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T11:42:16.000Z",
+      "title": "国庆假期推荐用QQ浏览器看小说、VIVO浏览器看影视",
+      "industry": "",
+      "tech": "",
+      "summary": "作者建议国庆假期没事时通过看小说和影视放松。看小说推荐使用QQ浏览器，看影视推荐使用VIVO手机自带浏览器。懂的都懂。",
+      "steps": [],
+      "tags": [
+        "国庆假期",
+        "浏览器推荐",
+        "看小说",
+        "看影视",
+        "放松方式"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105622309948236242",
+      "url": "https://x.com/mjjwiki/status/2105622309948236242",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T11:34:13.000Z",
+      "title": "作者称未用AI写小说赚钱，不出教程",
+      "industry": "",
+      "tech": "AI",
+      "summary": "作者回复粉丝称，自己以前玩过AI写小说，但从未用它赚过钱，因此不会出相关教程，认为那样对粉丝不负责。",
+      "steps": [],
+      "tags": [
+        "AI写作",
+        "小说创作",
+        "教程请求",
+        "粉丝互动"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105621628944252971",
+      "url": "https://x.com/mjjwiki/status/2105621628944252971",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T11:31:31.000Z",
+      "title": "Gemini 3.1 Pro 写短篇创意强但长篇易断线",
+      "industry": "人工智能",
+      "tech": "Gemini 3.1 Pro",
+      "summary": "作者回复称 Gemini 3.1 Pro 能发挥天马行空的创意，适合写短篇。但长一点的内容就会出现前后文断线、完全不连贯的问题。",
+      "steps": [],
+      "tags": [
+        "Gemini",
+        "AI写作",
+        "大模型",
+        "长篇生成",
+        "创意能力"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105620932543053994",
+      "url": "https://x.com/mjjwiki/status/2105620932543053994",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T11:28:45.000Z",
+      "title": "Argon模型擅长输出百万长文",
+      "industry": "人工智能",
+      "tech": "Argon、Gray Swan",
+      "summary": "作者认为Argon模型的最大优点是能输出百万长文，这是目前其他模型暂时无法做到的。同时提到Argon主打企业级安全，一般个人用户可能用不到，并引用Gray Swan间接提示词注入基准最低0.7%的评测结果。",
+      "steps": [],
+      "tags": [
+        "大模型",
+        "长上下文",
+        "模型安全",
+        "提示词注入"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://x.com/ruofeng_x/status/2105570795946701158?s=46",
+          "name": "@ruofeng_x的推文",
+          "note": "关于Argon模型安全评测及Gray Swan基准的讨论"
+        }
+      ]
+    },
+    {
       "id": "2105616464451367172",
       "url": "https://x.com/miles_mazy/status/2105616464451367172",
       "author": "miles_mazy",
@@ -92112,6 +95512,28 @@
         "人工智能",
         "产品定位",
         "存在意义"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105615980865208321",
+      "url": "https://x.com/mjjwiki/status/2105615980865208321",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T11:09:04.000Z",
+      "title": "AI写小说早期玩家已吃肉，现在难了",
+      "industry": "人工智能",
+      "tech": "AI",
+      "summary": "作者认为早期用AI写小说的人已经吃到红利，现在再入场应该比较难了。对方回复称“你想多了”。",
+      "steps": [],
+      "tags": [
+        "AI写作",
+        "小说创作",
+        "AI红利",
+        "内容创作"
       ],
       "isLong": false,
       "showFlowchart": false,
@@ -92226,6 +95648,58 @@
       "resources": []
     },
     {
+      "id": "2105607540784726147",
+      "url": "https://x.com/mjjwiki/status/2105607540784726147",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T10:35:32.000Z",
+      "title": "为什么X平台几乎没有职业打假人？",
+      "industry": "",
+      "tech": "",
+      "summary": "抖音存在大量职业打假人，包括公域打假博主和幕后索赔团队。X平台言论更自由，却几乎看不到这类人。作者提出疑问，探讨两者平台差异背后的原因。",
+      "steps": [],
+      "tags": [
+        "职业打假",
+        "平台差异",
+        "言论自由",
+        "抖音",
+        "X平台"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105599764347650437",
+      "url": "https://x.com/mjjwiki/status/2105599764347650437",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T10:04:38.000Z",
+      "title": "Starryblu星球卡9月开通用户10月返现",
+      "industry": "跨境支付",
+      "tech": "Starryblu、OCBC",
+      "summary": "作者表示8月开通Starryblu星球卡的用户已于9月4日完成50元私人返现，9月开通的用户将在10月返现，但因小长假可能稍晚。作者微信因提及习近平被禁言至10月2日10:45，无法在此前回复私信。Starryblu为正规新加坡银行卡，支持订阅国外AI会员。",
+      "steps": [],
+      "tags": [
+        "Starryblu",
+        "新加坡银行卡",
+        "返现",
+        "微信禁言",
+        "远程开户"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://x.com/i/article/2092971897709645825",
+          "name": "X文章",
+          "note": "介绍香港以外远程开通新加坡Starryblu银行卡的方法"
+        }
+      ]
+    },
+    {
       "id": "2105598093324411328",
       "url": "https://x.com/miles_mazy/status/2105598093324411328",
       "author": "miles_mazy",
@@ -92313,6 +95787,58 @@
       "resources": []
     },
     {
+      "id": "2105576139473518863",
+      "url": "https://x.com/mjjwiki/status/2105576139473518863",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T08:30:46.000Z",
+      "title": "失业后高情商回答：帮世界首富打工",
+      "industry": "",
+      "tech": "",
+      "summary": "推文教失业者在国庆回家被问工作时，如何用高情商方式回答。低情商说法是“裁员失业，无聊玩玩推特X”，高情商说法则是“灵活就业，帮世界首富打工”。",
+      "steps": [],
+      "tags": [
+        "X平台",
+        "职场沟通",
+        "高情商",
+        "失业",
+        "幽默"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105573821801722360",
+      "url": "https://x.com/mjjwiki/status/2105573821801722360",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T08:21:33.000Z",
+      "title": "Gemini Argon 主打企业级安全底座",
+      "industry": "人工智能",
+      "tech": "Gemini 4、Gemini Argon、AI Agent",
+      "summary": "作者看中Gemini Argon能输出百万长文，但更重要的是它是Gemini 4首张牌，主打硬核的企业级工作流、软件工程和防御性网络安全。作为给Agent使用的安全底座，重点解决AI Agent操作代码和分析复杂系统时的防注入问题，定位于防御和系统审计。",
+      "steps": [],
+      "tags": [
+        "Gemini Argon",
+        "AI安全",
+        "企业级AI",
+        "防御性安全",
+        "AI Agent"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://twitter.com/ruofeng_x/status/2105520486440407058",
+          "name": "@ruofeng_x的推文",
+          "note": "原文引用的Gemini Argon相关讨论或图片"
+        }
+      ]
+    },
+    {
       "id": "2105569907572359242",
       "url": "https://x.com/miles_mazy/status/2105569907572359242",
       "author": "miles_mazy",
@@ -92340,6 +95866,139 @@
       ]
     },
     {
+      "id": "2105569512733175971",
+      "url": "https://x.com/Steve202333/status/2105569512733175971",
+      "author": "Steve202333",
+      "authorName": "队长波特er",
+      "publishedAt": "2026-10-01T08:04:26.000Z",
+      "title": "Grok Bot风格头像技能更新：可加同风格小宠物",
+      "industry": "",
+      "tech": "Grok Bot",
+      "summary": "国庆期间将爆火的Grok Bot风格头像生成技能进行了多处细节更新，眼睛不再必须是直直的胶囊形，还能加上同风格的小宠物陪伴。作者展示了三个更新后的示例：戴眼镜黑发少年头顶雪鸮、火红头发少年头顶小灰鼠、蓬松卷发少女头顶姜黄猫。",
+      "steps": [],
+      "tags": [
+        "AI头像",
+        "Grok风格",
+        "头像生成",
+        "小宠物",
+        "Midjourney"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": []
+    },
+    {
+      "id": "2105566474341597247",
+      "url": "https://x.com/mjjwiki/status/2105566474341597247",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T07:52:21.000Z",
+      "title": "MJJ 建议用图或列表对比两种流量",
+      "industry": "",
+      "tech": "",
+      "summary": "MJJ百科回复称对方写得不好，建议改用图或列表形式对比两种流量，这样会更形象直观。",
+      "steps": [],
+      "tags": [
+        "内容创作",
+        "流量对比",
+        "写作建议",
+        "MJJ百科"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105561657439404337",
+      "url": "https://x.com/mjjwiki/status/2105561657439404337",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T07:33:13.000Z",
+      "title": "Gemini擅长写作和前端设计开发",
+      "industry": "人工智能",
+      "tech": "Gemini",
+      "summary": "作者回复称Gemini在写作和前端设计开发方面表现不错。对方认为Gemini像文科生，写文章一直是其强项。",
+      "steps": [],
+      "tags": [
+        "Gemini",
+        "大模型",
+        "AI写作",
+        "前端开发"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105560407360536663",
+      "url": "https://x.com/mjjwiki/status/2105560407360536663",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T07:28:15.000Z",
+      "title": "MJJ百科采纳建议用对比图表展示",
+      "industry": "",
+      "tech": "",
+      "summary": "有读者建议MJJ百科在介绍第一种、第二种内容时，用图片或表格进行对比显示，以便更清晰。作者感谢建议并表示以后将这样对比显示。",
+      "steps": [],
+      "tags": [
+        "MJJ百科",
+        "内容优化",
+        "用户反馈",
+        "推文改进"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105560141164945422",
+      "url": "https://x.com/mjjwiki/status/2105560141164945422",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T07:27:11.000Z",
+      "title": "江湖越老胆子越小，年轻该大胆闯",
+      "industry": "",
+      "tech": "",
+      "summary": "作者感慨江湖越老胆子越小，认为年轻时确实应该大胆去闯。",
+      "steps": [],
+      "tags": [
+        "人生感悟",
+        "年轻心态",
+        "江湖经验",
+        "胆量"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105559878714687658",
+      "url": "https://x.com/mjjwiki/status/2105559878714687658",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T07:26:09.000Z",
+      "title": "Gemini 4 已有人能用？",
+      "industry": "人工智能",
+      "tech": "Gemini 4",
+      "summary": "作者询问@AndyL5cc是否已能使用Gemini 4，并猜测对方使用的是免费版。附带了对方推文截图作为上下文。",
+      "steps": [],
+      "tags": [
+        "Gemini",
+        "大模型",
+        "AI工具",
+        "免费版"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
       "id": "2105558582913634602",
       "url": "https://x.com/miles_mazy/status/2105558582913634602",
       "author": "miles_mazy",
@@ -92355,6 +96014,73 @@
         "心态",
         "内耗",
         "观点讨论"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105551691160621132",
+      "url": "https://x.com/mjjwiki/status/2105551691160621132",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T06:53:37.000Z",
+      "title": "iFAST GB和Wise客服体验良好",
+      "industry": "跨境支付",
+      "tech": "",
+      "summary": "作者认为iFAST GB和Wise的客服质量都很好。针对对方“客服包治百病”的回复，作者表达了对这两家平台客服服务的肯定。",
+      "steps": [],
+      "tags": [
+        "iFAST",
+        "Wise",
+        "跨境支付",
+        "客服体验",
+        "金融服务"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105551263496913336",
+      "url": "https://x.com/mjjwiki/status/2105551263496913336",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T06:51:55.000Z",
+      "title": "AI带做教程反而花几小时，手动五分钟搞定",
+      "industry": "",
+      "tech": "AI",
+      "summary": "作者回复称，熟手按教程手动操作五分钟左右就能完成，新手十分钟。有人分享第一次把教程喂给AI（Codex）让它带着做，结果花了三四个小时仍连不上，最后自己手动从头操作，五分钟就成功。",
+      "steps": [],
+      "tags": [
+        "AI使用",
+        "教程实操",
+        "效率经验",
+        "新手坑"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105550997158510862",
+      "url": "https://x.com/mjjwiki/status/2105550997158510862",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T06:50:51.000Z",
+      "title": "国内身份证+地址+手机号可注册 Claude",
+      "industry": "人工智能",
+      "tech": "Claude",
+      "summary": "用户询问 Claude 国内注册方式，作者回复需要提供国内身份证、国内地址（需能证明）以及国内手机号码。",
+      "steps": [],
+      "tags": [
+        "Claude注册",
+        "国内账号",
+        "实名验证",
+        "AI工具"
       ],
       "isLong": false,
       "showFlowchart": false,
@@ -92389,6 +96115,269 @@
       ]
     },
     {
+      "id": "2105545298315759704",
+      "url": "https://x.com/mjjwiki/status/2105545298315759704",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T06:28:12.000Z",
+      "title": "iFAST GB 账户无法修改地址时如何注销重开",
+      "industry": "跨境金融",
+      "tech": "",
+      "summary": "用户开户时地址填错且无法提供地址证明文件，也无法回退修改。作者建议直接写邮件至 clienthelp@ifastgb.com，说明姓名、邮箱、手机号等账号信息请求注销，注销完成后用新邮箱重新注册即可。",
+      "steps": [],
+      "tags": [
+        "iFAST",
+        "账户注销",
+        "地址验证",
+        "开户注意事项"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": []
+    },
+    {
+      "id": "2105541229874458705",
+      "url": "https://x.com/mjjwiki/status/2105541229874458705",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T06:12:02.000Z",
+      "title": "Claude 上下文100万可写短篇小说",
+      "industry": "人工智能",
+      "tech": "Claude",
+      "summary": "作者指出Claude输入输出上下文均为100万token，只要提前写好大纲并按章节分开撰写，生成短篇小说完全没有问题。",
+      "steps": [],
+      "tags": [
+        "Claude",
+        "大模型",
+        "长上下文",
+        "小说写作",
+        "提示词"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105538313230987658",
+      "url": "https://x.com/Kay2289123/status/2105538313230987658",
+      "author": "Kay2289123",
+      "authorName": "美研芒格君",
+      "publishedAt": "2026-10-01T06:00:27.000Z",
+      "title": "AI 模型分配实用经验：Opus、GPT-6 任务分工",
+      "industry": "人工智能",
+      "tech": "Claude Opus 5.5、GPT-6 Ultra Fast、GPT-6.1 Fast",
+      "summary": "作者分享自己一手积累的AI模型分配方法，作为可直接参考的实用经验。长时间放手任务分配给Opus 5.5；需要快速来回讨论的任务用GPT-6 Ultra Fast；目标明确且要尽快出结果的任务则使用GPT-6.1 Fast。",
+      "steps": [],
+      "tags": [
+        "AI模型分配",
+        "Claude使用",
+        "GPT-6",
+        "大模型实践",
+        "效率方法"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": []
+    },
+    {
+      "id": "2105538096096043020",
+      "url": "https://x.com/mjjwiki/status/2105538096096043020",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T05:59:35.000Z",
+      "title": "美国手机号国内漫游可固定出口IP为美国",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复称，使用美国手机号在国内漫游时，会消耗其1G或3G的固定流量，理论上出口IP均为美国。教程中已详细说明相关操作。",
+      "steps": [],
+      "tags": [
+        "手机漫游",
+        "美国IP",
+        "流量使用",
+        "跨境网络"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105534573941821902",
+      "url": "https://x.com/mjjwiki/status/2105534573941821902",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T05:45:36.000Z",
+      "title": "4o模型已向普通用户开放",
+      "industry": "",
+      "tech": "GPT-4o",
+      "summary": "作者表示GPT-4o模型已正式对普通用户（老百姓）开放，此前仅限政府使用。有人回复询问如何用上4模型。",
+      "steps": [],
+      "tags": [
+        "GPT-4o",
+        "AI模型",
+        "开放使用",
+        "OpenAI"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105532885424116166",
+      "url": "https://x.com/mjjwiki/status/2105532885424116166",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T05:38:53.000Z",
+      "title": "MJJ百科不断测试多个配件哪个好用",
+      "industry": "",
+      "tech": "",
+      "summary": "作者表示没办法，只能不断测试哪个配件好用，已经买了好几个。对方回复称配件多的用起来就麻烦。",
+      "steps": [],
+      "tags": [
+        "MJJ",
+        "配件测试",
+        "使用体验"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105532465775595939",
+      "url": "https://x.com/mjjwiki/status/2105532465775595939",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T05:37:13.000Z",
+      "title": "MJJ百科误以为马斯克AI运营出问题",
+      "industry": "",
+      "tech": "",
+      "summary": "作者看到某动态后第一时间以为X平台要无差别封号，吓了一跳。后来发现是自己误会，还以为是马斯克的AI运营出故障了。",
+      "steps": [],
+      "tags": [
+        "X平台",
+        "马斯克",
+        "AI运营",
+        "误会"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105532207796551935",
+      "url": "https://x.com/mjjwiki/status/2105532207796551935",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T05:36:11.000Z",
+      "title": "不同模型需结合使用发挥各自优势",
+      "industry": "人工智能",
+      "tech": "大语言模型",
+      "summary": "作者认为每个模型擅长的领域不同，应该结合使用以发挥各自优势。这种分工思路比单一使用一个模型更高效。",
+      "steps": [],
+      "tags": [
+        "多模型协作",
+        "LLM分工",
+        "模型优势",
+        "AI使用经验"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105532056453443614",
+      "url": "https://x.com/mjjwiki/status/2105532056453443614",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T05:35:35.000Z",
+      "title": "Gemini 4 Argon 普通用户还无法使用",
+      "industry": "人工智能",
+      "tech": "Gemini 4 Argon",
+      "summary": "作者回复网友询问，表示 Gemini 4 Argon 目前仅政府先用，普通小老百姓暂时还无法使用。",
+      "steps": [],
+      "tags": [
+        "Gemini",
+        "谷歌AI",
+        "模型发布",
+        "等待使用"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105531823774449691",
+      "url": "https://x.com/mjjwiki/status/2105531823774449691",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T05:34:40.000Z",
+      "title": "MJJ百科发文后很多人看不懂",
+      "industry": "",
+      "tech": "",
+      "summary": "MJJ百科发了一篇推文后表示好像很多人看不懂，并@biuzai339询问这篇怎么样。对方回复期待更多干货。",
+      "steps": [],
+      "tags": [
+        "MJJ百科",
+        "内容反馈",
+        "干货分享"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105529167022321746",
+      "url": "https://x.com/mjjwiki/status/2105529167022321746",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T05:24:06.000Z",
+      "title": "掉头发无法完全避免，只能控制多少",
+      "industry": "",
+      "tech": "",
+      "summary": "作者认为掉头发是无法避免的，只能是掉多掉少的问题。即使是寸头，也一样会堵下水道。",
+      "steps": [],
+      "tags": [
+        "掉头发",
+        "脱发",
+        "生活经验",
+        "健康常识"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105521602029068340",
+      "url": "https://x.com/mjjwiki/status/2105521602029068340",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T04:54:03.000Z",
+      "title": "MJJ百科否认玩梗伪需求",
+      "industry": "",
+      "tech": "",
+      "summary": "MJJ百科回复网友，明确表示自己和其他博主不同，不会玩梗制造伪需求。",
+      "steps": [],
+      "tags": [
+        "MJJ百科",
+        "推文回应",
+        "真实需求"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
       "id": "2105521245504872741",
       "url": "https://x.com/miles_mazy/status/2105521245504872741",
       "author": "miles_mazy",
@@ -92416,6 +96405,95 @@
       ]
     },
     {
+      "id": "2105520945553379436",
+      "url": "https://x.com/mjjwiki/status/2105520945553379436",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T04:51:26.000Z",
+      "title": "柴火烧的比煤气灶更有味道",
+      "industry": "",
+      "tech": "",
+      "summary": "作者表示自己多次对比后，认为柴火烧的比煤气灶更有味道，但想不通原因。对方回复称柴火烧的有味，好吃。",
+      "steps": [],
+      "tags": [
+        "柴火烹饪",
+        "生活对比",
+        "味道差异",
+        "日常观察"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105520108995289204",
+      "url": "https://x.com/mjjwiki/status/2105520108995289204",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T04:48:07.000Z",
+      "title": "测试粉丝推荐的卫生间防毛发地漏",
+      "industry": "",
+      "tech": "",
+      "summary": "作者因熬夜掉头发导致卫生间地漏经常被堵，向粉丝求助后收到推荐，已购买防毛发地漏产品并在今天进行实际测试。核心是听取建议解决日常排水堵塞问题。",
+      "steps": [],
+      "tags": [
+        "防毛发地漏",
+        "卫生间改造",
+        "掉发问题",
+        "生活用品",
+        "粉丝推荐"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105520003781120196",
+      "url": "https://x.com/mjjwiki/status/2105520003781120196",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T04:47:42.000Z",
+      "title": "测试粉丝推荐的防毛发地漏",
+      "industry": "",
+      "tech": "",
+      "summary": "作者因熬夜掉头发导致卫生间地漏经常堵塞，听取两位粉丝推荐购买了防毛发地漏，今天收到后进行测试。之前曾发帖求助好办法，此次主要分享实际使用效果。",
+      "steps": [],
+      "tags": [
+        "防毛发地漏",
+        "掉头发",
+        "生活经验",
+        "家居用品"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105517472195682660",
+      "url": "https://x.com/mjjwiki/status/2105517472195682660",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T04:37:38.000Z",
+      "title": "农村乡镇超市难买到椰子",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复网友说农村乡镇的超市不一定能买到椰子，没买到。",
+      "steps": [],
+      "tags": [
+        "日常生活",
+        "农村超市",
+        "椰子鸡",
+        "吐槽"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
       "id": "2105514542734487642",
       "url": "https://x.com/miles_mazy/status/2105514542734487642",
       "author": "miles_mazy",
@@ -92438,6 +96516,249 @@
       "resources": []
     },
     {
+      "id": "2105514497180147810",
+      "url": "https://x.com/mjjwiki/status/2105514497180147810",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T04:25:49.000Z",
+      "title": "MJJ 回应网友质疑：朋友圈随便发",
+      "industry": "",
+      "tech": "",
+      "summary": "MJJ百科回复网友@navy209988的质疑，表示自己就把这条推文当朋友圈发，别人管不着自己说什么或曾经做过什么。",
+      "steps": [],
+      "tags": [
+        "MJJ百科",
+        "朋友圈",
+        "回应质疑",
+        "日常"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105514139431157786",
+      "url": "https://x.com/mjjwiki/status/2105514139431157786",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T04:24:24.000Z",
+      "title": "成家后作者选择收敛不再冒险",
+      "industry": "",
+      "tech": "",
+      "summary": "作者表示有家庭责任后就要收敛，当年成家时存款已过百万、正经工作月薪25K，完全没有必要继续冒险。",
+      "steps": [],
+      "tags": [
+        "家庭责任",
+        "人生选择",
+        "财务自由",
+        "个人经历"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105513667848794337",
+      "url": "https://x.com/mjjwiki/status/2105513667848794337",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T04:22:31.000Z",
+      "title": "年轻一人缺钱时这个想法没问题",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复称，如果一个人年轻、单身且缺钱，那么某个想法是合理的、没毛病的。",
+      "steps": [],
+      "tags": [
+        "人生建议",
+        "个人观点",
+        "生活状态"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105511990844338264",
+      "url": "https://x.com/mjjwiki/status/2105511990844338264",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T04:15:51.000Z",
+      "title": "国庆假期表演柴火煲土鸡汤",
+      "industry": "",
+      "tech": "",
+      "summary": "作者表示国庆假期主要陪伴家里神兽，很难抽空写技术教程干货帖，只能尽量。分享了自己表演柴火煲土鸡汤的过程，预祝大家国庆假期事事顺利，人生像柴火一样旺。",
+      "steps": [],
+      "tags": [
+        "国庆假期",
+        "柴火煲汤",
+        "生活分享",
+        "土鸡汤"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105502996457214103",
+      "url": "https://x.com/mjjwiki/status/2105502996457214103",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T03:40:07.000Z",
+      "title": "有了孩子后顾虑明显增多",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复他人时表示，有了孩子之后顾虑就多了，需要考虑老婆和孩子的感受以及影响。",
+      "steps": [],
+      "tags": [
+        "育儿",
+        "生活感悟",
+        "家庭责任",
+        "为人父母"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105502183584411696",
+      "url": "https://x.com/mjjwiki/status/2105502183584411696",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T03:36:53.000Z",
+      "title": "表弟买30万新车内幕让我重操旧业",
+      "industry": "",
+      "tech": "",
+      "summary": "作者弟弟从广州回来，讲述表弟买30多万新车的内幕，并建议作者重操旧业。作者承认自己当年也搞过不干净的第一桶金，但如今已成家有老婆孩子，顾虑和恐惧远大于当年。作者认为一旦做大必然会被盯上，因此不敢再冒险。",
+      "steps": [],
+      "tags": [
+        "第一桶金",
+        "家庭顾虑",
+        "重操旧业",
+        "风险意识",
+        "人生选择"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105500729935122432",
+      "url": "https://x.com/mjjwiki/status/2105500729935122432",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T03:31:06.000Z",
+      "title": "MJJ 熟手安装面板只需5分钟",
+      "industry": "",
+      "tech": "MJJ面板",
+      "summary": "作者回复称自己安装MJJ面板熟手一般只需5分钟左右，最多十几分钟。对方进一步表示其实5分钟以内就能完成，只需一条安装命令，之后简单配置密码、端口映射即可。",
+      "steps": [],
+      "tags": [
+        "MJJ",
+        "面板安装",
+        "效率分享",
+        "服务器运维"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105500396206837931",
+      "url": "https://x.com/mjjwiki/status/2105500396206837931",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T03:29:47.000Z",
+      "title": "三大邪修方法之一已流传半年",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复称某方法是“三大邪修方法之一”，已流传至少半年。",
+      "steps": [],
+      "tags": [
+        "邪修",
+        "MJJ",
+        "Midjourney",
+        "AI绘画"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105500131693043778",
+      "url": "https://x.com/mjjwiki/status/2105500131693043778",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T03:28:44.000Z",
+      "title": "MJJ 还有重置卡准备这几天用完",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复称自己还有一个重置卡，准备这几天用完，避免浪费。上下文提到对方有两个重置卡（3号和4号）即将到期。",
+      "steps": [],
+      "tags": [
+        "MJJ",
+        "重置卡",
+        "账号管理",
+        "资源利用"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105499440668897695",
+      "url": "https://x.com/mjjwiki/status/2105499440668897695",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T03:25:59.000Z",
+      "title": "用Claude/GPT做大纲 Gemini负责写作",
+      "industry": "人工智能",
+      "tech": "Claude、GPT、Gemini",
+      "summary": "作者分享了自己用AI写作小黄文的个人经验：让Claude或GPT负责逻辑性强的大纲和剧情设计工作，由Gemini执行最终写作。认为Gemini文字能力一直顶级，即使3.x版本在文字处理上也很受欢迎。",
+      "steps": [],
+      "tags": [
+        "大模型分工",
+        "Gemini写作",
+        "AI写作",
+        "提示词技巧",
+        "内容创作"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105499168714453284",
+      "url": "https://x.com/mjjwiki/status/2105499168714453284",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T03:24:54.000Z",
+      "title": "Midjourney 5小时限额解决办法",
+      "industry": "人工智能",
+      "tech": "Midjourney",
+      "summary": "用户提到两个项目推进受5小时限额困扰，作者建议要么升级套餐，要么多注册几个账号来解决限额问题。",
+      "steps": [],
+      "tags": [
+        "Midjourney",
+        "MJ限额",
+        "多账号",
+        "套餐升级"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
       "id": "2105498436506448290",
       "url": "https://x.com/miles_mazy/status/2105498436506448290",
       "author": "miles_mazy",
@@ -92456,6 +96777,186 @@
       "isLong": false,
       "showFlowchart": false,
       "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105497454997389551",
+      "url": "https://x.com/mjjwiki/status/2105497454997389551",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T03:18:06.000Z",
+      "title": "新焚决即将上线，Excel焚绝已被修复",
+      "industry": "",
+      "tech": "",
+      "summary": "作者表示会有新的焚决版本上线，并认为网上人才众多。回复中提到Excel焚绝已被修复，同时吐槽降智太难受。",
+      "steps": [],
+      "tags": [
+        "焚决",
+        "游戏更新",
+        "Excel",
+        "修复"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105494724480237646",
+      "url": "https://x.com/mjjwiki/status/2105494724480237646",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T03:07:15.000Z",
+      "title": "X Premium数据分析改版，Followers支持按小时查看",
+      "industry": "社交媒体",
+      "tech": "X Premium",
+      "summary": "作者发现X Premium的数据分析功能进行了改版。Followers指标被独立成一栏，现在可以直接按小时粒度查看数据。之前曾因无法查看而猜测是在维护。",
+      "steps": [],
+      "tags": [
+        "X平台",
+        "数据分析",
+        "Followers",
+        "功能更新",
+        "Premium"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105490728063525037",
+      "url": "https://x.com/mjjwiki/status/2105490728063525037",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T02:51:22.000Z",
+      "title": "三大邪修方法之一",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复网友，指出某人帖子内容属于“三大邪修方法之一”。",
+      "steps": [],
+      "tags": [
+        "邪修",
+        "修仙",
+        "网络梗"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105490552074764446",
+      "url": "https://x.com/mjjwiki/status/2105490552074764446",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T02:50:40.000Z",
+      "title": "Google Play 套 StaryBlu 付款需美国时区和固定IP",
+      "industry": "",
+      "tech": "Google Play、StaryBlu",
+      "summary": "作者回复他人，确认自己遇到的问题可能是时区导致的。对方分享了 Google Play 套 StaryBlu 付款的具体做法：必须使用美国时区、固定美国IP，通过 Windows 防火墙规则设定代理，绝不裸连也不换IP。",
+      "steps": [],
+      "tags": [
+        "Google Play",
+        "StaryBlu",
+        "时区设置",
+        "固定IP",
+        "防火墙代理"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2105490154299551804",
+      "url": "https://x.com/mjjwiki/status/2105490154299551804",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T02:49:05.000Z",
+      "title": "邪修方法与时间线无关但会影响账号权重",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复称，邪修方法和时间线没有关系，但会影响账号权重。严重情况下可能暂停原创内容奖励甚至导致封号。目前平台算法能力似乎还比较有限。",
+      "steps": [],
+      "tags": [
+        "平台算法",
+        "账号权重",
+        "内容奖励",
+        "封号风险"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105489742389506354",
+      "url": "https://x.com/yaojingang/status/2105489742389506354",
+      "author": "yaojingang",
+      "authorName": "姚金刚",
+      "publishedAt": "2026-10-01T02:47:27.000Z",
+      "title": "用Claude Opus 5.5为老人定制祝福短视频",
+      "industry": "人工智能",
+      "tech": "Claude Opus 5.5",
+      "summary": "作者使用Claude Opus 5.5，根据老人的喜好，依次为家里几位老人生成了定制祝福短视频，实际效果很好。",
+      "steps": [],
+      "tags": [
+        "Claude",
+        "AI视频",
+        "定制祝福",
+        "短视频",
+        "老人关怀"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": []
+    },
+    {
+      "id": "2105489212556615809",
+      "url": "https://x.com/mjjwiki/status/2105489212556615809",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T02:45:21.000Z",
+      "title": "Claude Max5X 固定原生IP仍被封号",
+      "industry": "人工智能",
+      "tech": "Claude",
+      "summary": "作者使用固定原生IP且纯净度尚可，但在 Claude Max5X 上仍被连续封禁两个账号。作者对此感到困惑，向 @ai_fengshou 求助。",
+      "steps": [],
+      "tags": [
+        "Claude",
+        "账号封禁",
+        "原生IP",
+        "IP纯净度",
+        "反封号"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2105488731742654541",
+      "url": "https://x.com/mjjwiki/status/2105488731742654541",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-01T02:43:26.000Z",
+      "title": "用户分享用Claude Opus 5.5防封号经验",
+      "industry": "人工智能",
+      "tech": "Claude Opus 5.5",
+      "summary": "用户询问如何防止Claude账号被封，作者回复自己已使用Claude Opus 5.5，称其又聪明又快，额度还高，提速一倍但仍觉得慢。",
+      "steps": [],
+      "tags": [
+        "Claude",
+        "防封号",
+        "大模型",
+        "Opus",
+        "账号安全"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
       "resources": []
     },
     {
