@@ -33,6 +33,13 @@
                 <input type="date" class="field" style="flex:1;min-width:0" v-model="dateTo" :aria-label="t('index.dateToAria')" />
               </div>
             </div>
+            <div class="cond">
+              <label class="cond-label">{{ t('index.minChars') }}</label>
+              <select class="field" style="width:100%" v-model.number="minChars" :aria-label="t('index.minChars')">
+                <option :value="0">{{ t('index.minCharsAny') }}</option>
+                <option v-for="n in [50, 100, 200, 500, 1000]" :key="n" :value="n">{{ t('index.minCharsAbove', { n }) }}</option>
+              </select>
+            </div>
           </div>
           <div v-if="kindCounts.length" style="margin-top:8px">
             <div class="chip-group-title">帖子类型</div>
@@ -331,6 +338,7 @@ const selectedAuthors = ref<Set<string>>(new Set())
 const selectedTags = ref<Set<string>>(new Set())
 const selectedUserTags = ref<Set<string>>(new Set())
 const selectedCats = ref<Set<string>>(new Set())
+const minChars = ref(0)
 const filtersCollapsed = ref(false)
 const expandedOriginal = ref<Set<string>>(new Set())
 const failedAvatars = ref<Set<string>>(new Set())
@@ -407,7 +415,17 @@ function passesNonAuthor (p: Post): boolean {
   if (!matchesDate(p)) return false
   if (!matchesTags(p)) return false
   if (!matchesKeyword(p)) return false
+  if (!matchesChars(p)) return false
   return true
+}
+// 帖子字数：优先用原文长度；没原文的旧帖用摘要，再没有就用标题。
+function postChars (p: Post): number {
+  const s = (p.text || '').trim() || (p.summary || '').trim() || (p.title || '').trim()
+  return [...s].length
+}
+function matchesChars (p: Post): boolean {
+  if (!minChars.value) return true
+  return postChars(p) >= minChars.value
 }
 function matchesCats (p: Post): boolean {
   if (!selectedCats.value.size) return true
@@ -487,7 +505,7 @@ watch(() => filtered.value.length, () => { if (page.value > pageCount.value) pag
 watch([keyword, dateFrom, dateTo, kindFilter, selectedAuthors, selectedTags, selectedUserTags, selectedCats], () => { page.value = 1 })
 const activeFilterCount = computed(() =>
   selectedTags.value.size + selectedUserTags.value.size + selectedCats.value.size +
-  (keyword.value.trim() ? 1 : 0) + (dateFrom.value || dateTo.value ? 1 : 0) + (kindFilter.value ? 1 : 0))
+  (keyword.value.trim() ? 1 : 0) + (dateFrom.value || dateTo.value ? 1 : 0) + (kindFilter.value ? 1 : 0) + (minChars.value ? 1 : 0))
 const firstSnippet = computed(() => {
   if (!keyword.value.trim() || !filtered.value.length) return ''
   return firstHitSnippet(filtered.value[0], plainKeyword.value || keyword.value.trim())
@@ -516,7 +534,7 @@ const catOptions = computed(() => [
   { value: '__uncat', label: t('index.uncategorized'), count: catCounts.__uncat || 0 }
 ])
 function clearAll () {
-  keyword.value = ''; dateFrom.value = ''; dateTo.value = ''; kindFilter.value = ''
+  keyword.value = ''; dateFrom.value = ''; dateTo.value = ''; kindFilter.value = ''; minChars.value = 0
   selectedTags.value = new Set(); selectedUserTags.value = new Set(); selectedCats.value = new Set()
   selectedAuthors.value = new Set()
   persistSelection()
