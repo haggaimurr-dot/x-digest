@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-28T05:49:38Z",
+  "updatedAt": "2026-10-28T05:50:10Z",
   "posts": [
     {
       "id": "2115313586105192884",
@@ -148,6 +148,27 @@
           "note": "原文未说明链接的具体内容或用途。"
         }
       ]
+    },
+    {
+      "id": "2115273946581090514",
+      "url": "https://x.com/0xlangeai/status/2115273946581090514",
+      "author": "0xlangeai",
+      "authorName": "蓝哥AI",
+      "publishedAt": "2026-10-28T02:46:23.000Z",
+      "title": "认可VPS一手测试与踩坑经验",
+      "industry": "云计算",
+      "tech": "VPS",
+      "summary": "蓝哥AI回应推友，认可其分享的是实打实的VPS一手测试和踩坑经验。",
+      "steps": [],
+      "tags": [
+        "VPS测试",
+        "踩坑经验",
+        "推友互动"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
     },
     {
       "id": "2115271143804534878",
@@ -2265,6 +2286,28 @@
         "知识分享",
         "视频分享",
         "内容偏好"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2114489553415520453",
+      "url": "https://x.com/xiaohuiyuan/status/2114489553415520453",
+      "author": "xiaohuiyuan",
+      "authorName": "晓辉博士",
+      "publishedAt": "2026-10-25T22:49:29.000Z",
+      "title": "早起实验第13天：睡眠债累积",
+      "industry": "",
+      "tech": "",
+      "summary": "4:30早起实验进行到第13天，昨晚22:04入睡，早晨4:38醒来，躺到5:00起床，记录睡眠时间6.5小时、手环评分86分。因近日奔波忙碌、睡眠债有所积累，醒来后想再补一会儿觉，身体仍略有困意，胃也有些不舒服。原文提出要聊睡眠评分和睡眠债，但所给内容尚未展开。",
+      "steps": [],
+      "tags": [
+        "早起实验",
+        "睡眠记录",
+        "睡眠债",
+        "身体感受"
       ],
       "isLong": false,
       "showFlowchart": false,
@@ -12399,6 +12442,30 @@
       ]
     },
     {
+      "id": "2112736420733591678",
+      "url": "https://x.com/aigclink/status/2112736420733591678",
+      "author": "aigclink",
+      "authorName": "AIGCLINK",
+      "publishedAt": "2026-10-21T02:43:10.000Z",
+      "title": "Google AI Edge Foresight：本地AI会议助手实时关联资料",
+      "industry": "人工智能",
+      "tech": "EmbeddingGemma 2、Gemma 4、Google AI Edge Foresight",
+      "summary": "Google推出AI Edge Foresight本地会议助手，基于EmbeddingGemma 2实现实时从电脑文档、图片、历史会议记录中检索关联内容，辅助回忆讨论和决策；Gemma 4则负责笔记补全、总结和问答。目前可免费使用。",
+      "steps": [],
+      "tags": [
+        "本地AI",
+        "会议助手",
+        "语义检索",
+        "EmbeddingGemma",
+        "实时笔记",
+        "Mac工具"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": []
+    },
+    {
       "id": "2112734424815239226",
       "url": "https://x.com/XiaohuiAI666/status/2112734424815239226",
       "author": "XiaohuiAI666",
@@ -13796,6 +13863,27 @@
           "note": "被引用内容附带的文章链接，给出的原文未展开文章内容。"
         }
       ]
+    },
+    {
+      "id": "2112402595285463304",
+      "url": "https://x.com/xiaohuiyuan/status/2112402595285463304",
+      "author": "xiaohuiyuan",
+      "authorName": "晓辉博士",
+      "publishedAt": "2026-10-20T04:36:39.000Z",
+      "title": "学校变革太慢，难靠其适应AI时代",
+      "industry": "教育",
+      "tech": "",
+      "summary": "针对学校教育能否帮助孩子获得应对AI时代能力的疑问，晓辉博士认为，如果跟着学校走，估计比较难。他的理由是学校变革太慢。",
+      "steps": [],
+      "tags": [
+        "学校教育",
+        "教育变革",
+        "AI时代"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
     },
     {
       "id": "2112396389061710085",
@@ -15944,6 +16032,38 @@
           "url": "https://twitter.com/rhea0xweb3/status/2110211710812606748",
           "name": "@Rhea0xWeb3 的推文",
           "note": "回复上下文中附带的推文链接，具体内容未展开。"
+        }
+      ]
+    },
+    {
+      "id": "2111862006919946718",
+      "url": "https://x.com/miu21590/status/2111862006919946718",
+      "author": "miu21590",
+      "authorName": "vechen",
+      "publishedAt": "2026-10-18T16:48:33.000Z",
+      "title": "对ChatGPT少女化回复感到诡异",
+      "industry": "人工智能",
+      "tech": "ChatGPT",
+      "summary": "针对对方所说的“提示词多加一个字母，就让 ChatGPT 变得像少女”的现象，vechen 简短回应，觉得看起来有些诡异。",
+      "steps": [],
+      "tags": [
+        "聊天机器人",
+        "回复风格",
+        "互动评论"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://t.co/D89zRFz68n",
+          "name": "原文附带的链接",
+          "note": "随作者的简短评论附上，具体内容不明。"
+        },
+        {
+          "url": "https://t.co/10RvvBuUSx",
+          "name": "原文附带的链接",
+          "note": "出现在被回复内容中，具体内容不明。"
         }
       ]
     },
