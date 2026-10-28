@@ -10126,7 +10126,7 @@
       "kind": "工具资源推荐",
       "resources": [
         {
-          "url": "https://news.qq.com/rain/a/20260603A07TIY00?id=20260603A07TIY00\u0026path=a\u0026app=news\u0026suid=\u0026redirect_pc=1",
+          "url": "https://news.qq.com/rain/a/20260603A07TIY00?id=20260603A07TIY00&path=a&app=news&suid=&redirect_pc=1",
           "name": "报告《从超级个体到超级团队》",
           "note": "作者推荐的团队报告链接。"
         }
@@ -11021,7 +11021,7 @@
       "title": "两款技能助力浏览器操作与内容分发",
       "industry": "人工智能",
       "tech": "BrowserSkill、Content Repurposer、WorkBuddy、Chrome、Edge",
-      "summary": "推荐 BrowserSkill 和 Content Repurposer 两款技能，分别用于浏览器自动操作和内容一稿多用。BrowserSkill 可复用本机 Chrome/Edge 的登录状态，在独立 Agent 窗口中搜索、点击、填表、截图和上传，不影响正在使用的浏览器窗口，适合运营后台操作及登录后资料收集。Content Repurposer 采用 Hub \u0026 Spoke 思路，先提取长文的核心论点、要点、故事和数据，再按目标平台改编为原生短内容包，而非简单缩写。安装时可让 WorkBuddy 按附带链接配置 browser-skill，或直接要求其安装 content-repurposer，也可提供对应的 GitHub 链接。",
+      "summary": "推荐 BrowserSkill 和 Content Repurposer 两款技能，分别用于浏览器自动操作和内容一稿多用。BrowserSkill 可复用本机 Chrome/Edge 的登录状态，在独立 Agent 窗口中搜索、点击、填表、截图和上传，不影响正在使用的浏览器窗口，适合运营后台操作及登录后资料收集。Content Repurposer 采用 Hub & Spoke 思路，先提取长文的核心论点、要点、故事和数据，再按目标平台改编为原生短内容包，而非简单缩写。安装时可让 WorkBuddy 按附带链接配置 browser-skill，或直接要求其安装 content-repurposer，也可提供对应的 GitHub 链接。",
       "steps": [],
       "tags": [
         "智能体技能",
@@ -27229,7 +27229,7 @@
       "title": "MJJ百科介绍Pro/Max/Ultra三档线路及入门价",
       "industry": "跨境电商",
       "tech": "CN2 GIA、CMIN2、9929线路",
-      "summary": "作者详细介绍了MJJ百科的三档线路：Pro为联通9929高级线路100M带宽，Max为移动CMIN2\u0026联通9929高端线路500M带宽，Ultra为CN2GIA\u0026CMIN2\u00269929三网顶级线路1000M带宽。其中3.9美元的Pro最低价套餐适合新手入门。用户回复表示先用一段再升级对比。",
+      "summary": "作者详细介绍了MJJ百科的三档线路：Pro为联通9929高级线路100M带宽，Max为移动CMIN2&联通9929高端线路500M带宽，Ultra为CN2GIA&CMIN2&9929三网顶级线路1000M带宽。其中3.9美元的Pro最低价套餐适合新手入门。用户回复表示先用一段再升级对比。",
       "steps": [],
       "tags": [
         "服务器线路",
@@ -34001,8 +34001,8 @@
       "publishedAt": "2026-10-17T07:36:46.000Z",
       "title": "两款技能让AI记住偏好、复用内容",
       "industry": "人工智能",
-      "tech": "WorkBuddy、self-improvement、self-improving-agent、content-repurposer、Hub \u0026 Spoke",
-      "summary": "推荐两类适用于 WorkBuddy 的技能：自我进化技能和内容再加工技能。前者将用户纠正、偏好及成败经验分层存储，支持跨对话甚至跨项目复用，减少重复犯错和返工。后者采用 Hub \u0026 Spoke 思路，提取长文的核心论点、要点、故事与数据，再适配为社交帖、要点卡片、视频脚本等，而非简单摘要。两类技能均可通过向 WorkBuddy 发出安装指令或搜索技能市场获取；内容再加工技能也可提供 GitHub 链接安装，安装前建议查看 SKILL.md，确认来源和权限。",
+      "tech": "WorkBuddy、self-improvement、self-improving-agent、content-repurposer、Hub & Spoke",
+      "summary": "推荐两类适用于 WorkBuddy 的技能：自我进化技能和内容再加工技能。前者将用户纠正、偏好及成败经验分层存储，支持跨对话甚至跨项目复用，减少重复犯错和返工。后者采用 Hub & Spoke 思路，提取长文的核心论点、要点、故事与数据，再适配为社交帖、要点卡片、视频脚本等，而非简单摘要。两类技能均可通过向 WorkBuddy 发出安装指令或搜索技能市场获取；内容再加工技能也可提供 GitHub 链接安装，安装前建议查看 SKILL.md，确认来源和权限。",
       "steps": [],
       "tags": [
         "技能推荐",
@@ -44265,7 +44265,7 @@
       "kind": "观点讨论",
       "resources": [
         {
-          "url": "https://www.cnbc.com/2026/10/14/anthropic-mythos-bank-of-america-hiring-cost.html?taid=6acfcec29334400001313a6d\u0026utm_campaign=trueanthem\u0026utm_content=main\u0026utm_medium=social\u0026utm_source=twitter",
+          "url": "https://www.cnbc.com/2026/10/14/anthropic-mythos-bank-of-america-hiring-cost.html?taid=6acfcec29334400001313a6d&utm_campaign=trueanthem&utm_content=main&utm_medium=social&utm_source=twitter",
           "name": "CNBC 报道",
           "note": "详细报道美国银行因Mythos暴露漏洞而雇佣1000名承包商及AI项目节省成本的相关内容"
         }
@@ -58708,8 +58708,8 @@
       "publishedAt": "2026-10-11T23:48:11.000Z",
       "title": "GPT-6.1 Sol 默认上下文长度提升至 500k",
       "industry": "人工智能",
-      "tech": "GPT-6.1 Sol、Codex \u0026 Work",
-      "summary": "作者宣布 GPT-6.1 Sol 通过 Codex \u0026 Work 使用时，默认上下文长度从 272k 提升至 500k，增幅约 80%。此调整可减少 compaction 发生频率，并更好地支持需要保留大量上下文的任务。未来还会继续提升长度。",
+      "tech": "GPT-6.1 Sol、Codex & Work",
+      "summary": "作者宣布 GPT-6.1 Sol 通过 Codex & Work 使用时，默认上下文长度从 272k 提升至 500k，增幅约 80%。此调整可减少 compaction 发生频率，并更好地支持需要保留大量上下文的任务。未来还会继续提升长度。",
       "steps": [],
       "tags": [
         "GPT-6.1",
@@ -64622,7 +64622,7 @@
       "title": "GRPO：大模型后训练最主流强化学习方法",
       "industry": "人工智能",
       "tech": "GRPO、LLM 强化学习、后训练",
-      "summary": "作者认为软件开发已被 AI 大幅蚕食，最有价值的方向是后训练算法或数据。重点讲解 DeepSeek 2024 年提出的 GRPO 算法：让模型对同一任务多次尝试，通过组内比较生成结果优劣产生学习信号，更新参数让好行为更容易出现。用 Qwen3.8-27B-Medium 在 500 道软件工程任务上训练 15 次后，DeepSWE 成功率从 27.8% 提升至 39.1%。强调人类在任务设计和奖励（rubrics \u0026 alignment）上仍不可替代。",
+      "summary": "作者认为软件开发已被 AI 大幅蚕食，最有价值的方向是后训练算法或数据。重点讲解 DeepSeek 2024 年提出的 GRPO 算法：让模型对同一任务多次尝试，通过组内比较生成结果优劣产生学习信号，更新参数让好行为更容易出现。用 Qwen3.8-27B-Medium 在 500 道软件工程任务上训练 15 次后，DeepSWE 成功率从 27.8% 提升至 39.1%。强调人类在任务设计和奖励（rubrics & alignment）上仍不可替代。",
       "steps": [
         {
           "text": "准备任务和评分规则，让同一模型对同一任务尝试多次（如8次）",
@@ -76153,14 +76153,14 @@
       "author": "mjjwiki",
       "authorName": "MJJ百科",
       "publishedAt": "2026-10-06T21:08:54.000Z",
-      "title": "AT\u0026T 被认为比其他运营商更好",
+      "title": "AT&T 被认为比其他运营商更好",
       "industry": "",
       "tech": "",
-      "summary": "作者回复称，价格从低到高排行已经暗示了答案，并明确表示 AT\u0026T 更好。",
+      "summary": "作者回复称，价格从低到高排行已经暗示了答案，并明确表示 AT&T 更好。",
       "steps": [],
       "tags": [
         "运营商",
-        "AT\u0026T",
+        "AT&T",
         "价格排序",
         "电信"
       ],
@@ -90508,7 +90508,7 @@
       "title": "AI视频通话通过图灵测试，诈骗风险大增",
       "industry": "人工智能",
       "tech": "AI视频生成、Turing Test、全双工AI视频",
-      "summary": "TAVUS发布Griffin模型，首次通过视频图灵测试，48%真人对话者认为它是真人，远超此前系统\u003c3%的通过率。它是首个Human Interaction Model（HIM），在NVIDIA全双工AI视频基准中排名第一。作者警告该技术成熟后极可能助推灰黑产诈骗，尤其是对AI不熟悉的人很容易上当。",
+      "summary": "TAVUS发布Griffin模型，首次通过视频图灵测试，48%真人对话者认为它是真人，远超此前系统<3%的通过率。它是首个Human Interaction Model（HIM），在NVIDIA全双工AI视频基准中排名第一。作者警告该技术成熟后极可能助推灰黑产诈骗，尤其是对AI不熟悉的人很容易上当。",
       "steps": [],
       "tags": [
         "AI诈骗",
@@ -104955,7 +104955,7 @@
       "title": "视频聊超级个体与超级团队",
       "industry": "人工智能",
       "tech": "",
-      "summary": "5月，余一与晓辉博士在腾讯研究院AI\u0026Society香港论坛发布《从超级个体到超级团队》报告，收录一年多访谈调研案例。4个多月后，两人状态出现新调整，晓辉博士成为更独立的超级个体，余一产生新思考与期待。这期视频围绕超级个体、超级团队和大厂命题分享近期真实想法。",
+      "summary": "5月，余一与晓辉博士在腾讯研究院AI&Society香港论坛发布《从超级个体到超级团队》报告，收录一年多访谈调研案例。4个多月后，两人状态出现新调整，晓辉博士成为更独立的超级个体，余一产生新思考与期待。这期视频围绕超级个体、超级团队和大厂命题分享近期真实想法。",
       "steps": [],
       "tags": [
         "超级个体",
@@ -105879,15 +105879,15 @@
       "publishedAt": "2026-09-29T07:15:22.000Z",
       "title": "家宽套餐设置复杂且分档不同",
       "industry": "电信宽带",
-      "tech": "Verizon、AT\u0026T家宽",
-      "summary": "作者称相关家宽套餐每款都不一样，套餐设置比较复杂。其提到套餐有三档，每档对应不同套餐，同一套餐还存在不同量级。上下文涉及 Verizon 和 AT\u0026T 家宽价格与协议，但作者未具体说明。",
+      "tech": "Verizon、AT&T家宽",
+      "summary": "作者称相关家宽套餐每款都不一样，套餐设置比较复杂。其提到套餐有三档，每档对应不同套餐，同一套餐还存在不同量级。上下文涉及 Verizon 和 AT&T 家宽价格与协议，但作者未具体说明。",
       "steps": [],
       "tags": [
         "宽带",
         "家宽",
         "套餐",
         "Verizon",
-        "AT\u0026T",
+        "AT&T",
         "套餐分档"
       ],
       "isLong": false,
@@ -112324,7 +112324,7 @@
       "title": "Grok证实X平台存在新作者冷启动机制",
       "industry": "社交媒体",
       "tech": "X平台算法",
-      "summary": "作者感谢Grok根据开源代码证实X平台存在新作者冷启动机制：粉丝≤1000的账号发原创帖，在Home曝光\u003c1000且帖子较新时，有机会被推到时间线约15-16位，获得探索机会。但不等于固定曝光或必爆款，最终取决于内容质量与互动。互关过猛可能影响账号信号。",
+      "summary": "作者感谢Grok根据开源代码证实X平台存在新作者冷启动机制：粉丝≤1000的账号发原创帖，在Home曝光<1000且帖子较新时，有机会被推到时间线约15-16位，获得探索机会。但不等于固定曝光或必爆款，最终取决于内容质量与互动。互关过猛可能影响账号信号。",
       "steps": [],
       "tags": [
         "X算法",
@@ -120246,7 +120246,7 @@
       "title": "Muse账号注册方法与邀请码",
       "industry": "人工智能",
       "tech": "Muse、Browser Use、Visa、Mastercard",
-      "summary": "分享一条目前仍可使用的 Muse 账号注册方法：打开指定网站，点击右上角“Launch \u0026 open”，在弹出的浏览器窗口中访问 Muse。随后通过邮箱验证码登录，并使用 Visa 或 Mastercard 卡验证。作者表示自己有 ADHD，非常需要私人助手，并附上邀请码 WHG7RU。",
+      "summary": "分享一条目前仍可使用的 Muse 账号注册方法：打开指定网站，点击右上角“Launch & open”，在弹出的浏览器窗口中访问 Muse。随后通过邮箱验证码登录，并使用 Visa 或 Mastercard 卡验证。作者表示自己有 ADHD，非常需要私人助手，并附上邀请码 WHG7RU。",
       "steps": [
         {
           "text": "打开 https://t.co/DEdaOvvRsa 并登录网站。",
@@ -120255,7 +120255,7 @@
           "prep": ""
         },
         {
-          "text": "点击右上角橘色的“Launch \u0026 open”按钮，打开浏览器窗口。",
+          "text": "点击右上角橘色的“Launch & open”按钮，打开浏览器窗口。",
           "tools": "Browser Use",
           "tech": "启动浏览器窗口",
           "prep": "已登录网站"
@@ -120286,7 +120286,7 @@
         {
           "url": "https://t.co/DEdaOvvRsa",
           "name": "注册流程起始网站链接",
-          "note": "作者要求首先打开并登录此网站，再点击“Launch \u0026 open”。"
+          "note": "作者要求首先打开并登录此网站，再点击“Launch & open”。"
         },
         {
           "url": "https://t.co/LxlfT9JDys",
@@ -184512,7 +184512,7 @@
       "title": "开源网站 GEO 诊断 Skill",
       "industry": "人工智能",
       "tech": "GitHub、GEO诊断、CLI、robots.txt、站点地图",
-      "summary": "发布了一个开源的网站 GEO 诊断 Skill，并提供 GitHub 仓库、示例诊断报告及部署使用说明。部署后可直接让 AI 对指定网站进行 GEO 诊断，也可通过 `geo-seo-hub site-diagnose --url \u003cURL\u003e --output runs` 命令运行。其抓取逻辑从首页出发，读取 robots.txt、最多 5 个站点地图和首页导航，生成最多 500 条规范化 URL 候选清单。",
+      "summary": "发布了一个开源的网站 GEO 诊断 Skill，并提供 GitHub 仓库、示例诊断报告及部署使用说明。部署后可直接让 AI 对指定网站进行 GEO 诊断，也可通过 `geo-seo-hub site-diagnose --url <URL> --output runs` 命令运行。其抓取逻辑从首页出发，读取 robots.txt、最多 5 个站点地图和首页导航，生成最多 500 条规范化 URL 候选清单。",
       "steps": [
         {
           "text": "获取 GitHub 仓库并部署项目。",
@@ -184521,13 +184521,13 @@
           "prep": "访问项目仓库链接"
         },
         {
-          "text": "部署完成后，向 AI 发送“对网站进行GEO诊断：\u003c网站URL\u003e”执行诊断。",
+          "text": "部署完成后，向 AI 发送“对网站进行GEO诊断：<网站URL>”执行诊断。",
           "tools": "AI",
           "tech": "GEO网站诊断",
           "prep": "已完成项目部署"
         },
         {
-          "text": "也可在命令行运行 geo-seo-hub site-diagnose --url \u003cURL\u003e --output runs。",
+          "text": "也可在命令行运行 geo-seo-hub site-diagnose --url <URL> --output runs。",
           "tools": "CLI、geo-seo-hub",
           "tech": "命令行诊断",
           "prep": "已安装并可运行 geo-seo-hub"
@@ -222435,7 +222435,7 @@
       "title": "前端模型实测排序与K3强项",
       "industry": "人工智能",
       "tech": "fable 5、opus 5、Kimi K3、5.6 sol",
-      "summary": "在网页前端测试中，Sac 给出的个人排序是：fable 5 \u003e opus 5 \u003e K3 \u003e 5.6 sol。他个人感觉，K3 在 3D 和视频方面更强。",
+      "summary": "在网页前端测试中，Sac 给出的个人排序是：fable 5 > opus 5 > K3 > 5.6 sol。他个人感觉，K3 在 3D 和视频方面更强。",
       "steps": [],
       "tags": [
         "模型对比",
@@ -224554,7 +224554,7 @@
       "kind": "工具资源推荐",
       "resources": [
         {
-          "url": "https://open-design.ai/plugins/humanize-ppt/?utm_source=twitter\u0026utm_medium=organic_social\u0026utm_campaign=202607_humanize_ppt\u0026utm_content=official_launch",
+          "url": "https://open-design.ai/plugins/humanize-ppt/?utm_source=twitter&utm_medium=organic_social&utm_campaign=202607_humanize_ppt&utm_content=official_launch",
           "name": "Open Design 的 Humanize PPT 插件页面",
           "note": "用于了解和试用活人感PPT技能。"
         },
@@ -225435,8 +225435,8 @@
       "publishedAt": "2026-07-21T16:39:10.000Z",
       "title": "Claude录屏技能被调侃撞车Codex",
       "industry": "人工智能",
-      "tech": "Claude Cowork、Claude桌面应用、Codex Record \u0026 replay",
-      "summary": "卡尔以“我记得这个功能明明叫 Codex Record \u0026 replay”调侃 Claude Cowork 新功能，暗指两者功能相似。引用的官方介绍称，用户可以边录屏操作边讲解，让 Claude 将任务转成可再次执行的技能。该功能位于 Claude 桌面应用“+”菜单的“Record a skill”中，面向 Pro、Max 和 Team 套餐开放。",
+      "tech": "Claude Cowork、Claude桌面应用、Codex Record & replay",
+      "summary": "卡尔以“我记得这个功能明明叫 Codex Record & replay”调侃 Claude Cowork 新功能，暗指两者功能相似。引用的官方介绍称，用户可以边录屏操作边讲解，让 Claude 将任务转成可再次执行的技能。该功能位于 Claude 桌面应用“+”菜单的“Record a skill”中，面向 Pro、Max 和 Team 套餐开放。",
       "steps": [],
       "tags": [
         "录屏技能",
@@ -246137,7 +246137,7 @@
       "title": "Codex /goal 命令的使用误区",
       "industry": "人工智能",
       "tech": "Codex、/goal 命令",
-      "summary": "推文认为，99% 的人错误使用了 Codex 的 /goal 命令，并将“/goal，帮我完成xx任务”列为常见误用。正确用法通过配图展示，其中 \u003c\u003e 表示用户需要撰写的文字；给出的文本未包含配图中的具体写法。",
+      "summary": "推文认为，99% 的人错误使用了 Codex 的 /goal 命令，并将“/goal，帮我完成xx任务”列为常见误用。正确用法通过配图展示，其中 <> 表示用户需要撰写的文字；给出的文本未包含配图中的具体写法。",
       "steps": [],
       "tags": [
         "Codex",
@@ -247062,10 +247062,10 @@
       "author": "XiaohuiAI666",
       "authorName": "程序员小灰",
       "publishedAt": "2026-05-21T03:00:01.000Z",
-      "title": "Q\u0026A自动转化为知识库更新机制",
+      "title": "Q&A自动转化为知识库更新机制",
       "industry": "人工智能",
       "tech": "知识库",
-      "summary": "作者赞同将日常Q\u0026A转化为自动知识更新的1.0到2.0转变，认为这能让知识库维护从手动负担变成免费发生。双方都认为手动维护知识库效率低下，而让真实问答自然驱动更新是重大变革。",
+      "summary": "作者赞同将日常Q&A转化为自动知识更新的1.0到2.0转变，认为这能让知识库维护从手动负担变成免费发生。双方都认为手动维护知识库效率低下，而让真实问答自然驱动更新是重大变革。",
       "steps": [],
       "tags": [
         "知识管理",
@@ -247173,13 +247173,13 @@
       "title": "发现Lucius：社区知识库从1.0升级到2.0",
       "industry": "人工智能",
       "tech": "Lucius、Discord、飞书、Telegram",
-      "summary": "作者长期亲自管理社区，使用知识库辅助运营却发现容易陷入低效循环。传统1.0知识库核心是让AI自动回答问题，但内容易过时，更新需手动改prompt或文档，导致AI经常幻觉或无法回答，新问题仍需人工反复同步。Lucius作为2.0产品可直接集成Discord、飞书、Telegram，自动从群聊对话中捕捉人类回答并更新组织知识，下次相同问题即可用最新逻辑回复。作者认为这能大幅解放运营者时间，推荐注册免费版把重复Q\u0026A交给AI。",
+      "summary": "作者长期亲自管理社区，使用知识库辅助运营却发现容易陷入低效循环。传统1.0知识库核心是让AI自动回答问题，但内容易过时，更新需手动改prompt或文档，导致AI经常幻觉或无法回答，新问题仍需人工反复同步。Lucius作为2.0产品可直接集成Discord、飞书、Telegram，自动从群聊对话中捕捉人类回答并更新组织知识，下次相同问题即可用最新逻辑回复。作者认为这能大幅解放运营者时间，推荐注册免费版把重复Q&A交给AI。",
       "steps": [],
       "tags": [
         "社区运营",
         "知识库",
         "AI记忆更新",
-        "自动化Q\u0026A",
+        "自动化Q&A",
         "组织上下文"
       ],
       "isLong": true,
@@ -259879,7 +259879,7 @@
       "url": "https://x.com/i/status/2108005214813040906",
       "author": "xiaohuiyuan",
       "authorName": "晓辉博士",
-      "publishedAt": "",
+      "publishedAt": "2026-10-08T01:23:02Z",
       "title": "与AI协作两三天打磨出一套访谈剪辑工作流",
       "industry": "内容创作",
       "tech": "AI剪辑工作流、字幕生成、AI封面制作",
@@ -259902,7 +259902,7 @@
       "url": "https://x.com/i/status/2107501429774815237",
       "author": "xiaohuiyuan",
       "authorName": "晓辉博士",
-      "publishedAt": "",
+      "publishedAt": "2026-10-06T16:01:10Z",
       "title": "两个快速入睡法：肌肉紧张后放松",
       "industry": "",
       "tech": "",
@@ -259931,7 +259931,7 @@
       "url": "https://x.com/i/status/2106534633181708539",
       "author": "xiaohuiyuan",
       "authorName": "晓辉博士",
-      "publishedAt": "",
+      "publishedAt": "2026-10-03T23:59:28Z",
       "title": "把6万字日记交给AI做月度行为洞察分析",
       "industry": "人工智能",
       "tech": "AI 日记分析",
@@ -259954,7 +259954,7 @@
       "url": "https://x.com/i/status/2109642881514225737",
       "author": "aigclink",
       "authorName": "AIGCLINK",
-      "publishedAt": "",
+      "publishedAt": "2026-10-12T13:50:32Z",
       "title": "微软大规模部署自研Maia AI芯片",
       "industry": "人工智能",
       "tech": "Maia 300、Maia 200",
@@ -259983,7 +259983,7 @@
       "url": "https://x.com/i/status/2109428679575286251",
       "author": "aigclink",
       "authorName": "AIGCLINK",
-      "publishedAt": "",
+      "publishedAt": "2026-10-11T23:39:23Z",
       "title": "用Claude把技术概念变成可交互3D演示",
       "industry": "人工智能",
       "tech": "Claude、React/Next.js、SVG、HTML",
@@ -260006,7 +260006,7 @@
       "url": "https://x.com/i/status/2109563371460977151",
       "author": "aigclink",
       "authorName": "AIGCLINK",
-      "publishedAt": "",
+      "publishedAt": "2026-10-12T08:34:36Z",
       "title": "Hugging Face开源数学RL训练环境，369个任务可刷题",
       "industry": "人工智能",
       "tech": "Hugging Face、Lean、强化学习、形式化数学",
@@ -260029,7 +260029,7 @@
       "url": "https://x.com/i/status/2109581489725944002",
       "author": "aigclink",
       "authorName": "AIGCLINK",
-      "publishedAt": "",
+      "publishedAt": "2026-10-12T09:46:35Z",
       "title": "百度推出Unlimited OCR，解决长文档OCR速度衰减和显存膨胀",
       "industry": "人工智能",
       "tech": "OCR、MoE、R-SWA、DeepSeek-OCR",
@@ -260053,7 +260053,7 @@
       "url": "https://x.com/i/status/2109148090792124639",
       "author": "aigclink",
       "authorName": "AIGCLINK",
-      "publishedAt": "",
+      "publishedAt": "2026-10-11T05:04:25Z",
       "title": "1040+ AI用例网站 可直接抄作业",
       "industry": "人工智能",
       "tech": "Grok、Muse、Hark、Dots、Hermes、Agent",
@@ -260076,7 +260076,7 @@
       "url": "https://x.com/i/status/2109469199869583676",
       "author": "aigclink",
       "authorName": "AIGCLINK",
-      "publishedAt": "",
+      "publishedAt": "2026-10-12T02:20:23Z",
       "title": "AI完全取代测试环节：多机协同测试全交给Codex和Claude",
       "industry": "人工智能",
       "tech": "Codex、Claude Code",
@@ -260100,7 +260100,7 @@
       "url": "https://x.com/i/status/2109105805563990133",
       "author": "aigclink",
       "authorName": "AIGCLINK",
-      "publishedAt": "",
+      "publishedAt": "2026-10-11T02:16:23Z",
       "title": "DeepSeek-Bot打造本地AI团队",
       "industry": "人工智能",
       "tech": "DeepSeek-Bot、DeepSeek Harness、多Bot协作、长期记忆、插件架构",
@@ -260130,7 +260130,7 @@
       "url": "https://x.com/i/status/2108695209068670988",
       "author": "aigclink",
       "authorName": "AIGCLINK",
-      "publishedAt": "",
+      "publishedAt": "2026-10-09T23:04:50Z",
       "title": "微软上新决策模型 Decision-1",
       "industry": "人工智能",
       "tech": "Microsoft-Decision-1、Qwen3.5-9B、决策模型、Agent工作流",
@@ -260159,7 +260159,7 @@
       "url": "https://x.com/i/status/2108834377387917608",
       "author": "aigclink",
       "authorName": "AIGCLINK",
-      "publishedAt": "",
+      "publishedAt": "2026-10-10T08:17:50Z",
       "title": "Open Intelligent UI：GPT-6智能UI开源版",
       "industry": "人工智能",
       "tech": "Open Intelligent UI、A2UI、generateSandboxedUi、iframe沙箱、生成式UI、Agent",
@@ -260182,7 +260182,7 @@
       "url": "https://x.com/i/status/2108718693740134703",
       "author": "aigclink",
       "authorName": "AIGCLINK",
-      "publishedAt": "",
+      "publishedAt": "2026-10-10T00:38:09Z",
       "title": "Grok Bot 专属邮箱一句话即可申请",
       "industry": "人工智能",
       "tech": "Grok Bot、AI 邮箱",
@@ -260221,7 +260221,7 @@
       "url": "https://x.com/i/status/2108735368233369733",
       "author": "aigclink",
       "authorName": "AIGCLINK",
-      "publishedAt": "",
+      "publishedAt": "2026-10-10T01:44:24Z",
       "title": "开源私有化算力看板 sparkDash 2.0",
       "industry": "人工智能",
       "tech": "vLLM、SGLang、llama.cpp、DGX Spark、GLM 5.3 Flash",
