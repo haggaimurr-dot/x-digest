@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-28T05:47:32Z",
+  "updatedAt": "2026-10-28T05:48:02Z",
   "posts": [
     {
       "id": "2115282491523424538",
@@ -51,6 +51,38 @@
       "showFlowchart": false,
       "kind": "技术分享",
       "resources": []
+    },
+    {
+      "id": "2115281750645686370",
+      "url": "https://x.com/0xlangeai/status/2115281750645686370",
+      "author": "0xlangeai",
+      "authorName": "蓝哥AI",
+      "publishedAt": "2026-10-28T03:17:24.000Z",
+      "title": "调侃 Tibo 重置，追问剩余进度",
+      "industry": "",
+      "tech": "",
+      "summary": "调侃 Tibo“现在只会玩重置”，催促其赶紧“蹬起来”，并追问剩余 73% 能否完成，未说明具体事项。",
+      "steps": [],
+      "tags": [
+        "互动调侃",
+        "重置",
+        "进度追问"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://t.co/FBGAxGl3VQ",
+          "name": "原文附带的链接",
+          "note": "原文未说明链接的具体内容或用途。"
+        },
+        {
+          "url": "https://t.co/pjgfYJcmM5",
+          "name": "原文附带的链接",
+          "note": "原文未说明链接的具体内容或用途。"
+        }
+      ]
     },
     {
       "id": "2115241355849125981",
@@ -4605,6 +4637,33 @@
       "showFlowchart": false,
       "kind": "观点讨论",
       "resources": []
+    },
+    {
+      "id": "2113988314072219978",
+      "url": "https://x.com/miu21590/status/2113988314072219978",
+      "author": "miu21590",
+      "authorName": "vechen",
+      "publishedAt": "2026-10-24T13:37:44.000Z",
+      "title": "分享连接工具的类似替代方案",
+      "industry": "",
+      "tech": "OAuth",
+      "summary": "针对回复中关于 OAuth 连接和订阅接入的问题，提到有一个类似的替代方案，并附上链接。原文未说明该方案的名称或具体支持能力。",
+      "steps": [],
+      "tags": [
+        "授权连接",
+        "订阅接入",
+        "替代方案"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://t.co/4DFELAh3Ns",
+          "name": "原文附带的链接",
+          "note": "随类似替代方案的介绍附上，具体内容无法从原文确认。"
+        }
+      ]
     },
     {
       "id": "2113977447817552255",
@@ -12678,6 +12737,44 @@
       "showFlowchart": false,
       "kind": "日常闲聊",
       "resources": []
+    },
+    {
+      "id": "2112498448037798291",
+      "url": "https://x.com/aigclink/status/2112498448037798291",
+      "author": "aigclink",
+      "authorName": "AIGCLINK",
+      "publishedAt": "2026-10-20T10:57:32.000Z",
+      "title": "DeepSeek推理框架开源仓库汇总",
+      "industry": "人工智能",
+      "tech": "DeepInfer、deepseek-recipe、DeepSeek V4.1 Flash",
+      "summary": "分享了 DeepSeek 的 DeepInfer 与 deepseek-recipe 两个开源仓库链接。回复上下文介绍，DeepInfer 是支撑 DeepSeek V4.1 Flash 高吞吐、低延迟大规模推理服务的内部推理框架，支持分布式推理、推测解码、SWA Bounded Replay 和结构化输出，兼容英伟达与华为昇腾平台。",
+      "steps": [],
+      "tags": [
+        "开源仓库",
+        "推理框架",
+        "大模型推理",
+        "DeepSeek"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://github.com/deepseek-ai/DeepInfer",
+          "name": "GitHub 仓库 DeepInfer",
+          "note": "DeepSeek 开源推理框架仓库。"
+        },
+        {
+          "url": "https://github.com/deepseek-ai/deepseek-recipe",
+          "name": "GitHub 仓库 deepseek-recipe",
+          "note": "原文分享的开源仓库，未进一步说明具体内容。"
+        },
+        {
+          "url": "https://twitter.com/deepseek_ai/status/2112476496283775135",
+          "name": "@deepseek_ai 的推文",
+          "note": "回复上下文附带的链接，用于了解 DeepInfer 开源及相关推理能力。"
+        }
+      ]
     },
     {
       "id": "2112492019486503228",
