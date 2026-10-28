@@ -1,6 +1,38 @@
 {
-  "updatedAt": "2026-10-28T05:49:04Z",
+  "updatedAt": "2026-10-28T05:49:38Z",
   "posts": [
+    {
+      "id": "2115313586105192884",
+      "url": "https://x.com/0xlangeai/status/2115313586105192884",
+      "author": "0xlangeai",
+      "authorName": "蓝哥AI",
+      "publishedAt": "2026-10-28T05:23:54.000Z",
+      "title": "看懂 tibo 玩梗并感叹尺度大",
+      "industry": "",
+      "tech": "",
+      "summary": "作者感叹 tibo 这次玩梗玩得很大，并表示自己看懂了；原文未说明梗的具体内容。",
+      "steps": [],
+      "tags": [
+        "玩梗",
+        "推文互动",
+        "个人感想"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://t.co/felSJHjkC3",
+          "name": "原文附带的链接",
+          "note": "作者随感叹附上的链接，具体内容无法从原文判断。"
+        },
+        {
+          "url": "https://t.co/Fgy0dBAHsJ",
+          "name": "原文附带的链接",
+          "note": "出现在引用 @thsottiaux 的内容中，对方称其已到来，具体所指不明。"
+        }
+      ]
+    },
     {
       "id": "2115300040701096272",
       "url": "https://x.com/0xlangeai/status/2115300040701096272",
@@ -700,6 +732,33 @@
       "showFlowchart": false,
       "kind": "",
       "resources": null
+    },
+    {
+      "id": "2114746707816894901",
+      "url": "https://x.com/KaterJLi/status/2114746707816894901",
+      "author": "KaterJLi",
+      "authorName": "姜老师AI历险记",
+      "publishedAt": "2026-10-26T15:51:19.000Z",
+      "title": "想试试界面花哨的彩虹平台",
+      "industry": "",
+      "tech": "",
+      "summary": "作者在回复中询问对方使用的是什么“彩虹平台”，调侃其界面花里胡哨，并表示自己也想试试。",
+      "steps": [],
+      "tags": [
+        "平台体验",
+        "界面设计",
+        "互动交流"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://t.co/0OT2V1QIX7",
+          "name": "原文附带的链接",
+          "note": "链接出现在被回复的推文中，具体内容无法从原文确定。"
+        }
+      ]
     },
     {
       "id": "2114745397566673325",
@@ -11835,6 +11894,27 @@
       "resources": []
     },
     {
+      "id": "2112790191371121027",
+      "url": "https://x.com/mjjwiki/status/2112790191371121027",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-21T06:16:50.000Z",
+      "title": "Claude Pro使用额度是否增加？",
+      "industry": "人工智能",
+      "tech": "Claude Pro",
+      "summary": "针对对方反映Claude Pro使用额度不多，作者追问其额度是否已经比以前增加，未给出具体额度或结论。",
+      "steps": [],
+      "tags": [
+        "使用额度",
+        "订阅服务",
+        "互动讨论"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
       "id": "2112785475039527168",
       "url": "https://x.com/mjjwiki/status/2112785475039527168",
       "author": "mjjwiki",
@@ -13801,6 +13881,30 @@
       ]
     },
     {
+      "id": "2112359262680989760",
+      "url": "https://x.com/aigclink/status/2112359262680989760",
+      "author": "aigclink",
+      "authorName": "AIGCLINK",
+      "publishedAt": "2026-10-20T01:44:28.000Z",
+      "title": "SKY-001工程世界模型发布，CAD/BIM超GPT-6 Astra",
+      "industry": "人工智能",
+      "tech": "SKY-001、CAD、BIM、3D几何生成",
+      "summary": "AIGCLINK介绍新发布的SKY-001工程世界模型，在CAD和BIM任务上超越GPT-6 Astra，速度快51-118倍、成本降低150-186倍。核心不走语言到Blender脚本路线，而是直接在视觉/几何空间规划生成设计，解决LLM难以处理成千上万部件空间一致性的问题。官方数据显示3D CAD几何IoU达79.7%（GPT-6 Astra为79.1%），BIM几何IoU达43.6%（GPT-6 Astra为40.6%）。未来可改变机械设计、工业研发、建筑BIM和制造业的研发范式。",
+      "steps": [],
+      "tags": [
+        "工程世界模型",
+        "CAD大模型",
+        "BIM",
+        "AI设计",
+        "空间一致性",
+        "制造预演"
+      ],
+      "isLong": true,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": []
+    },
+    {
       "id": "2112352348769235268",
       "url": "https://x.com/miles_mazy/status/2112352348769235268",
       "author": "miles_mazy",
@@ -15455,6 +15559,27 @@
         "视频风格",
         "背景音乐",
         "效果复刻"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2112043147870245053",
+      "url": "https://x.com/mjjwiki/status/2112043147870245053",
+      "author": "mjjwiki",
+      "authorName": "MJJ百科",
+      "publishedAt": "2026-10-19T04:48:20.000Z",
+      "title": "日抛子号与另一款子号的价格讨论",
+      "industry": "",
+      "tech": "K12子号",
+      "summary": "作者了解到，K12日抛子号的价格为十几元。对于正在讨论的另一款子号，作者判断应该不是日抛，并称听说其成本要50多元。",
+      "steps": [],
+      "tags": [
+        "子号价格",
+        "日抛子号",
+        "成本讨论"
       ],
       "isLong": false,
       "showFlowchart": false,
