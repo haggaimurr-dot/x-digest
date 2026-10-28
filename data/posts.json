@@ -1,6 +1,83 @@
 {
-  "updatedAt": "2026-10-27T08:06:16.109854+00:00",
+  "updatedAt": "2026-10-28T01:46:56Z",
   "posts": [
+    {
+      "id": "2115159844173050305",
+      "url": "https://x.com/Saccc_c/status/2115159844173050305",
+      "author": "Saccc_c",
+      "authorName": "Sac",
+      "publishedAt": "2026-10-27T19:12:59.000Z",
+      "title": "AI短片《Inside AI》全面开源",
+      "industry": "人工智能",
+      "tech": "Inside AI",
+      "summary": "Sac 转发了 Higgsfield AI 的新短片《Inside AI》，以“如何约女孩出去且不犯错”为引子，呈现向 AI 提问时其内部发生的故事。原帖宣布短片已 100% 开源，全部提示词和素材均已公开。",
+      "steps": [],
+      "tags": [
+        "AI短片",
+        "开源资源",
+        "提示词",
+        "创作素材"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": []
+    },
+    {
+      "id": "2114998180211491098",
+      "url": "https://x.com/Saccc_c/status/2114998180211491098",
+      "author": "Saccc_c",
+      "authorName": "Sac",
+      "publishedAt": "2026-10-27T08:30:35.000Z",
+      "title": "惊喜发现蜗牛老师也来X了",
+      "industry": "",
+      "tech": "X",
+      "summary": "Sac 惊喜地向 @woniuxuezhang 打招呼，感叹蜗牛老师也来 X 了。",
+      "steps": [],
+      "tags": [
+        "互动寒暄",
+        "熟人招呼",
+        "社交平台"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://x.com/i/article/2114620497447284736",
+          "name": "X 文章链接",
+          "note": "回复上下文附带的文章链接，原文未提供文章具体内容。"
+        }
+      ]
+    },
+    {
+      "id": "2114997864359510387",
+      "url": "https://x.com/Saccc_c/status/2114997864359510387",
+      "author": "Saccc_c",
+      "authorName": "Sac",
+      "publishedAt": "2026-10-27T08:29:20.000Z",
+      "title": "关注文心开源的Unlimited OCR 2",
+      "industry": "人工智能",
+      "tech": "Unlimited OCR 2、OCR、稀疏注意力",
+      "summary": "Sac 感谢 @berryxia 的实测，并推荐关注 Unlimited OCR 2。引用内容介绍，这款百度文心开源的 OCR 模型用稀疏注意力替代全局注意力，显存占用从 47GB 降至 1.77GB。引用内容还提到，模型全权重已在 GitHub 和 HuggingFace 开源。",
+      "steps": [],
+      "tags": [
+        "文字识别",
+        "开源模型",
+        "稀疏注意力",
+        "显存优化"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://x.com/i/article/2101989929412857856",
+          "name": "Unlimited OCR 2 相关文章",
+          "note": "引用内容附带的 X 文章链接，用于进一步了解该模型及实测信息。"
+        }
+      ]
+    },
     {
       "id": "2114885540864815135",
       "url": "https://x.com/miles_mazy/status/2114885540864815135",
@@ -18,7 +95,9 @@
         "互动"
       ],
       "isLong": false,
-      "showFlowchart": false
+      "showFlowchart": false,
+      "kind": "",
+      "resources": null
     },
     {
       "id": "2114883306059948348",
@@ -36,7 +115,9 @@
         "互动"
       ],
       "isLong": false,
-      "showFlowchart": false
+      "showFlowchart": false,
+      "kind": "",
+      "resources": null
     },
     {
       "id": "2114876940339335217",
@@ -55,7 +136,9 @@
         "互动"
       ],
       "isLong": false,
-      "showFlowchart": false
+      "showFlowchart": false,
+      "kind": "",
+      "resources": null
     },
     {
       "id": "2114872706071953477",
@@ -74,7 +157,9 @@
         "定制服务"
       ],
       "isLong": false,
-      "showFlowchart": false
+      "showFlowchart": false,
+      "kind": "",
+      "resources": null
     },
     {
       "id": "2114759135250051313",
@@ -93,7 +178,9 @@
         "替代方案"
       ],
       "isLong": false,
-      "showFlowchart": false
+      "showFlowchart": false,
+      "kind": "",
+      "resources": null
     },
     {
       "id": "2114758503743053851",
@@ -112,7 +199,9 @@
         "互动"
       ],
       "isLong": false,
-      "showFlowchart": false
+      "showFlowchart": false,
+      "kind": "",
+      "resources": null
     },
     {
       "id": "2114751555811541498",
@@ -131,7 +220,9 @@
         "感想"
       ],
       "isLong": false,
-      "showFlowchart": false
+      "showFlowchart": false,
+      "kind": "",
+      "resources": null
     },
     {
       "id": "2114751493467410708",
@@ -150,7 +241,9 @@
         "互动"
       ],
       "isLong": false,
-      "showFlowchart": false
+      "showFlowchart": false,
+      "kind": "",
+      "resources": null
     },
     {
       "id": "2114751036367753679",
@@ -169,7 +262,9 @@
         "互动"
       ],
       "isLong": false,
-      "showFlowchart": false
+      "showFlowchart": false,
+      "kind": "",
+      "resources": null
     },
     {
       "id": "2114750779127173489",
@@ -188,7 +283,9 @@
         "互动"
       ],
       "isLong": false,
-      "showFlowchart": false
+      "showFlowchart": false,
+      "kind": "",
+      "resources": null
     }
   ]
 }
