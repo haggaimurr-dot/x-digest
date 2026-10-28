@@ -19034,8 +19034,86 @@
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2115195665886462016": {
+    "text": "刚好是在14天4:30早起实验结束的前一天，余一拉我访谈，问了关于这次实验的一些问题，算是一个视频版的小总结了，分享一下。 https://t.co/KdWtkkUSnN",
+    "links": [
+      "https://t.co/KdWtkkUSnN"
+    ],
+    "avatar": ""
+  },
+  "2114877968464093631": {
+    "text": "昨晚在北京，和几位把AI玩得很溜的朋友聊完，我又想调整自己的Agent用法了。核心的观点，就是多开Agent，想办法让他们自己跑，尽量Loop起来，把你的注意力节省出来。让Agent等你，而不是你等Agent。 https://t.co/gWqeIq6DJY",
+    "links": [
+      "https://t.co/gWqeIq6DJY"
+    ],
+    "avatar": ""
+  },
+  "2114870226487808203": {
+    "text": "【4:30早起实验第14天(实验完结)】昨天来到北京出差，晚上见完 @ameliax111",
+    "links": [],
+    "avatar": ""
+  },
+  "2114503704753918319": {
+    "text": "@jianhuamert 我好像也是，有睡眠“信用”的日子屈指可数，哈哈",
+    "links": [],
+    "avatar": ""
+  },
+  "2114503071615406577": {
+    "text": "@fuagan 哈哈，写作完全没有，有点碎碎念了。这些天写下来我也注意到自己写作的一些问题，有的想法换一种表达方式会更直接。慢慢磨练吧～",
+    "links": [],
+    "avatar": ""
+  },
   "2114489553415520453": {
     "text": "【4:30早起实验第13天】昨晚10:04睡着，早晨4:38醒来，躺到了5:00起床，睡眠时间6.5小时，手环评分86分。之所以又躺了一会儿，是因为这些天奔波忙碌，睡眠债积累的有点多，想着再补一补。身体感受是略有困意，胃好像有些不舒服。\n\n今天先聊聊睡眠评分和睡眠债这两个指标。\n\n我带的是Apple",
+    "links": [],
+    "avatar": ""
+  },
+  "2114161811985698973": {
+    "text": "今天想跟大家聊聊DeepSeek这次把自用推理框架DeepInfer开源的事。\n\n关于什么是推理框架？它怎样影响模型服务的效率和成本？这波开源，直接受益者是谁？DeepSeek把自己赚钱的技术开源，让竞争对手更强，这样做的商业逻辑是什么？昨天研究了半天这些问题，一起把技术和商业上的细节，跟大家讲一讲。 https://t.co/ffdMHX4Qsb",
+    "links": [
+      "https://t.co/ffdMHX4Qsb"
+    ],
+    "avatar": ""
+  },
+  "2114155688129868126": {
+    "text": "@hyz1464269 我也不知道这是怎么评价的，感觉跟体感不是很一致。",
+    "links": [],
+    "avatar": ""
+  },
+  "2114155473763201515": {
+    "text": "@drjingle 哈哈，提前调整成了到了岁数之后的状态～",
+    "links": [],
+    "avatar": ""
+  },
+  "2114155325725249850": {
+    "text": "@Vinen77 很棒呀！鸡蛋我也是每天早晨都吃至少2个，有点时候实在想吃碳水了，就吃一些全麦面包，或者燕麦片，还有水果。这些的升糖指数都没那么高",
+    "links": [],
+    "avatar": ""
+  },
+  "2114136396726427916": {
+    "text": "【4:30早起实验第12天】今天早晨4:22自然醒来，睡眠时间5个半小时，手环评分87分。没能睡够7个小时，还是有点不满足，于是又让自己躺了一会儿，看看能不能再睡一下，没睡着，然后就在4:40起来了。",
+    "links": [],
+    "avatar": ""
+  },
+  "2114106895816593705": {
+    "text": "@Taylor_AIPM @ameliax111 谢谢关注呀，推荐下我们的报告《从超级个体到超级团队》https://t.co/NlSlFl9m10",
+    "links": [
+      "https://t.co/NlSlFl9m10"
+    ],
+    "avatar": ""
+  },
+  "2113769885457371168": {
+    "text": "【4:30早起实验第11天】昨晚的早睡计划破功了，而且没啥不可抗力，算是意志力失效。9:30我就已经在宾馆，基本具备了早睡的条件。但想着视频还没录，第二天上午分享的 PPT 也还没修改完，还是再干会儿吧。\n\n于是在非常困倦的情况下，录了视频，讲了讲对DeepSeek开源的推理框架 DeepInfer",
+    "links": [],
+    "avatar": ""
+  },
+  "2113406822036152583": {
+    "text": "@430Yang 哇，您都4:30早起2000多天了！",
+    "links": [],
+    "avatar": ""
+  },
+  "2113406409090228334": {
+    "text": "【4:30早起实验第10天】今天4:30起床失败了，原因是昨晚还在出差的路上，夜里12点多到酒店，1:30才睡，算是不可抗力吧。",
     "links": [],
     "avatar": ""
   },
@@ -19056,6 +19134,81 @@
     ],
     "avatar": ""
   },
+  "2114926868813992035": {
+    "text": "Desktop builds are macOS-only for now. There’s also a CLI client for experiments.\n\nThere’s a lot left to build, contributions and issues are very welcome!\n\nhttps://t.co/bSJZ7rz17t",
+    "links": [
+      "https://t.co/bSJZ7rz17t"
+    ],
+    "avatar": ""
+  },
+  "2114926061779624025": {
+    "text": "Here, memory capture didn’t recognize requests from voice calls. Octopus stores those connections in JSON: which component receives the request and which field contains its text. The agent added the missing connection, and the stuck request completed. Codex’s comparable logic is compiled into its engine, so that change would need a rebuild and restart.\n\nThe agent can also change the source code behind these components, rebuild them and restart them. Their connections and ongoing work are stored separately, so replacing a component doesn’t have to mean starting the task over.\n\nI have other examples too. I’m looking for experiments that cover more than instruction edits: changing how components communicate, fixing their code, and seeing whether those changes actually make the system more useful during everyday work.",
+    "links": [],
+    "avatar": ""
+  },
+  "2114924456854352098": {
+    "text": "Octopus OS can improve its own harness while you’re using it. I’ve been testing this alongside my own work, and here it fixed a bug in voice mode.\n\nI’m testing a trigger that runs after an hour of inactivity. It looked into what had gone wrong during use, patched the source code, tested the fix and applied it without stopping the agent. Imagine Codex improving its own harness while you’re still using it.\n\nI designed Octopus’s architecture so agents can change their own harness as part of their ongoing work and restart the system when needed. Tools, context, external event sources and the conditions for starting or continuing work are all editable. There’s no hardcoded agent loop controlling the whole system.\n\nThe desktop app is available now in research preview. This trigger is enabled by default when you choose custom setup in the launcher.\n\nAnd it’s open source.",
+    "links": [],
+    "avatar": ""
+  },
+  "2114907102699254199": {
+    "text": "@MarceloDesignX I tried something like that, but it didn’t really fit https://t.co/yQiAqWlrCJ",
+    "links": [
+      "https://t.co/yQiAqWlrCJ"
+    ],
+    "avatar": ""
+  },
+  "2114812374469296343": {
+    "text": "@lionel_mora there's actually a tool called Clew that can generate learning graphs like this with AI, except it's more general-purpose and works with any topic. you should check it out https://t.co/2t6EQfph2z",
+    "links": [
+      "https://t.co/2t6EQfph2z"
+    ],
+    "avatar": ""
+  },
+  "2114797728777564609": {
+    "text": "@DrDangerousAI @OpenAI the main one i believe",
+    "links": [],
+    "avatar": ""
+  },
+  "2114782011038556292": {
+    "text": "@OpenAI it's kinda crazy that GPT-6 Astra is almost two months old and still benchmarks better than this. even Sonnet 5.5 is ahead. genuinely don't understand why OpenAI thought this was a good time to release something like this",
+    "links": [],
+    "avatar": ""
+  },
+  "2114781805660311607": {
+    "text": "@ChatGPT so GPT-6.1 Terra benchmarks worse than GPT-6 Astra, which came out almost two months ago, and is somehow even behind Sonnet 5.5. what's the point of this release? OpenAI really isn't in a great spot right now",
+    "links": [],
+    "avatar": ""
+  },
+  "2114757944252219588": {
+    "text": "Hard to define a single MVP tbh, since both the architecture and the definition of an MVP kept changing along the way. But roughly 5 months from the first ideas to something actually working and testable.\n\nThe client itself took maybe a week initially, but I kept updating it as I tested the architecture and ran into UI issues. The architecture was always the main focus.",
+    "links": [],
+    "avatar": ""
+  },
+  "2114683693914829309": {
+    "text": "@amosblomqvist Have you seen Clew? The UI looks very similar, and the whole concept is pretty close too. It's also a graph-based learning harness, with LaTeX support and all that, and it's been open source for over 5 months now. Just curious if you're familiar with it https://t.co/PscDMSLUoC",
+    "links": [
+      "https://t.co/PscDMSLUoC"
+    ],
+    "avatar": ""
+  },
+  "2114438886764036168": {
+    "text": "Thanks for taking the architecture seriously. The checkpoint mechanism is probably the part I need to explain better.\n\nWhen I say the loop disappears, I mean the predefined controller that repeatedly runs “plan → get context → act → check → stop.” Octopus doesn’t put that controller into Rust. A run is a persistent record with checkpoints describing which interfaces it listens to and, where needed, which verified artifacts it awaits. An artifact arrives, the runtime checks the route and permissions, and the receiving interface handles it. While waiting, the run holds no thread or execution stack.\n\nModel → tool → model can still form a cycle through those connections. But that is one possible execution pattern. Runs can also wait for another run, a person, or an external event, branch into parallel work, and change their connections during execution. The kernel handles artifact movement; it doesn’t prescribe a reasoning sequence. That distinction is what I mean by removing the agent loop.\n\nOn changing goals mid-task: yes, an authorized run can edit goal and configuration data during execution. The current provider includes the updated EE goal when starting the next model turn.\n\nAnd I agree about measuring improvement: the research question is whether letting the system reshape its goals, inputs, capabilities and future context actually makes its subsequent work better",
+    "links": [],
+    "avatar": ""
+  },
+  "2114376379605119033": {
+    "text": "@photonclock Thanks! The idea predates DeepSeek Harness, but I dug into it when it came out. I’ve also followed Pi as it moved closer to what I had in mind, and looked into Prime Agent , Eve and so on. There’s overlap, but I haven’t found quite the same overall approach",
+    "links": [],
+    "avatar": ""
+  },
+  "2114374503564488927": {
+    "text": "Repo: https://t.co/bSJZ7rzyX1\n\nContributions welcome, especially Windows/Linux support and testing with other providers",
+    "links": [
+      "https://t.co/bSJZ7rzyX1"
+    ],
+    "avatar": ""
+  },
   "2114374452205048085": {
     "text": "Didn't expect this much interest in Octopus OS. Lots of architecture questions.\n\nAgents can edit their own harness while using it. How their work is organized is stored as editable data.\n\nNormal use on the left, live system activity on the right.\n\nGive it a try! Repo in replies. https://t.co/ldghohH6vj https://t.co/K0Pz4okIBj",
     "links": [
@@ -19064,8 +19217,83 @@
     ],
     "avatar": ""
   },
+  "2114211330894745881": {
+    "text": "thanks! fair point about macos. i took on a huge scope and focused testing on my own setup. windows and linux builds are planned, and part of the reason i open-sourced it was to bring in contributors who could help expand that coverage.\n\nthe chatgpt login requirement is temporary, part of an experiment with the desktop client. it doesn’t mean you have to use openai models: a free account works for login, and other providers are supported through opencodex layer. i’ve tested claude and openrouter too",
+    "links": [],
+    "avatar": ""
+  },
+  "2114197489515446536": {
+    "text": "yes, currently the desktop client is macOS only and built around ChatGPT login, but the underlying OS isn’t tied to either. Other model providers are supported, and the runtime can work without the desktop client\n\nIt’s a research preview, and I haven’t really settled on the final product direction yet. I’m experimenting with a quite few of things",
+    "links": [],
+    "avatar": ""
+  },
+  "2114182312258580578": {
+    "text": "the main difference is how the work is organized. octopus doesn’t start with an agent loop and build everything around it. it starts with independent processes, goals, permissions and communication between them, much like an operating system. models run inside that structure and can reshape it while working, including creating new processes and changing how they interact.\n\nit’s an unfamiliar way of organizing things, so it’s hard to explain in a reply. i see the advantage in letting the system organize ongoing work around goals and change its own structure as those goals develop. i believe that’s a more promising direction toward superintelligence, though for practical work today, deepseek harness is probably the better choice",
+    "links": [],
+    "avatar": ""
+  },
+  "2114177301340405813": {
+    "text": "@flowersengg it compares the file’s current hash with the version the write was based on, under a lock, and reject stale writes. this is part of octopus’s checked file publication mechanism, which the system itself uses to update run state while work is in progress",
+    "links": [],
+    "avatar": ""
+  },
   "2115282464025510337": {
     "text": "Anthropic最新研究：当你用AI干活儿时，你以为你在掌握全局，实际上，AI可能已经在不知不觉中影响甚至主导了你的判断\n\nAnthropic做了个实验，结果相当惊人：\n86%的关键分析选择跟着AI走，77%的人在事后解释自己的决策时，至少一次复述了AI提供的论据\n\n在事先明确表达过个人偏好的案例中，当AI提出相反建议时，60%的选择发生了改变\n\n更扎心的是，那些个四项分析选择全部跟着AI走的人，对自己最终结论的信心和其他分析师几乎没有差别。有52%的受访分析师事后仍认为，最终建议更多来自自己的判断不是AI\n\n实验是，Anthropic找了50位专业分析师用Claude Code做因果分析，帮一家农业合作社评估一项农业咨询服务是否有效、是否值得推广\n\n看似是个普通的数据分析任务，但其中有几个是没有唯一正确答案的专业判断，每个选项都有合理依据，但不同选择可能会改变最终结论\n\n研究者们做了一个前置设计，就是事先秘密为每位分析师使用的AI，在各项关键决策上分别随机指定偏好，比如采用哪种统计方法、如何衡量效果、给哪些数据更高权重等\n\n就是想看看，面对一个看起来专业论据充分的AI，专家们到底会不会坚持自己的独立判断？\n\n结果就是，专家们的分析选择明显受到了AI偏好的影响\n\n过去我们讨论AI的安全性，经常强调Human-in-the-loop，人参与审核、批准关键决策，那么问题来了，人类保留最终批准权，等于人类真正掌握了决策权吗？\n\nAnthropic给了建议，下一代Agent除了追求执行效率，还应该帮助使用者保留真正的判断能力\n\n比如说在重大决策上，AI可以先询问用户原本的观点，再提供建议；主动解释多个合理选项各自的优缺点；把真正涉及目标、价值观和专业判断的决策交还给人，不是全部替用户默认选择\n\n组织也需要明确，哪些工作可以完全交给AI，哪些关键判断必须由人独立完成\n\n#AIAlignment  #HumanInTheLoop  #AI安全",
+    "links": [],
+    "avatar": ""
+  },
+  "2115240847600218191": {
+    "text": "溜儿，谷歌DeepMind搞的一个AI文本检测工具，帮你判断文章是不是AI写的，还能标出具体文字\n\n工具叫DetectorScope ，不光给出判断，还能把判断依据摆出来\n\n以前检测，只给一个AI检测分数，这个检测器能给你解释依据什么作出的判断，告诉你文本里的哪些属性让它测出了“AI”，以及这些属性在文本中的位置，审查过程透明\n\n#AI文本检测  #DetectorScope",
+    "links": [],
+    "avatar": ""
+  },
+  "2115068371599585605": {
+    "text": "特别适合拿来做视觉冲击力较强的页面的AI技能，比如品牌官网、产品发布页、设计师作品集等等\n\n作者把700多个网页设计积累转化成了Agent可用的设计方法，包括落地页、动画、3D效果等，让你的AI迅速增加设计品味\n\n适合做需要有电影感、丰富动效、高级视觉体验的网站/页面，比如做时尚、美妆、珠宝的，或者旅游、酒店、创意设计等等\n\n项目来自 @viktoroddy \n\n#WebDesign #AI设计",
+    "links": [],
+    "avatar": ""
+  },
+  "2115030499462885577": {
+    "text": "无需3D建模，几张普通衣服照片，就能让AI帮你制作出可旋转、可交互的品牌官网商品展示\n\n搞服装、鞋帽、箱包、潮玩、饰品、家具的等等电商、品牌营销、交互广告、数字内容生成的可以看看\n\n适合做新品发布、产品故事展示这种需要突出视觉体验的营销活动\n\n整个交互非常流畅，看起来像3D商品，实际上不需要3D建模，核心是把AI生成的视频变成可编程的交互素材\n\n通过AI生成服装侧面、正面参考图，再用LTX-2.5 Pro生成旋转视频，拆成约30帧透明图像，最后由JavaScript控制播放、暂停、反转，实现鼠标实时交互\n\n不需要运行时调用视频生成模型，也不需要3D渲染引擎\n\n项目来自 @AmirMushich \n\n#AI电商 #AI生成商品交互展示  #AIWebDesign",
+    "links": [],
+    "avatar": ""
+  },
+  "2114985851579228293": {
+    "text": "今天百度的Unlimited-OCR-2出来了，超长文档OCR、整本书OCR，《哈利·波特》整套书OCR\n\n比第一代，第二代不是简单增加上下文窗口，其引入了SR-SWA，改变超长文档的注意力计算和记忆管理方式\n\n让注意力计算开销不再随文档长度无限累积，单Token解码延迟和相关显存占用基本保持稳定，不会越OCR越慢\n\n3B，支持Transformers和SGLang部署\n\n#OCR #UnlimitedOCR2",
+    "links": [],
+    "avatar": ""
+  },
+  "2114906378167107717": {
+    "text": "OpenAI称其内部AI攻克了人类几十年没解开的科学难题，在数学、计算机科学、理论物理三个领域取得了突破性研究成果\n\n数学：声称解决所有维度的Kakeya猜想\nAI给出了局部平滑猜想在所有维度上的证明，并由此解决 Kakeya猜想和Stein限制猜想。10月18日生成证明，次日完成Lean形式化验证，证明文件已公开\n\n计算机科学：声称推翻指数时间假设ETH\nETH是计算复杂性理论中的重要猜想，认为某些SAT问题无法在次指数时间内求解\n\n称AI找到了反证，并完成Lean形式化验证。如果反证成立，将动摇数百篇基于ETH得出的条件性计算困难性结论的前提，并可能推动更高效算法的研究\n\n结果公开后，由ETH的最初提出者之一Russell Impagliazzo，以及Ramamohan Paturi、MIT的Ryan Williams等专家组织进一步审查\n\n理论物理：声称证明四维量子场论的数学存在性\n模型给出某些四维相互作用量子场论严格存在性证明，包括QCD和标准模型的一种统一扩展理论\n\n其中还包括纯Yang–Mills理论的存在性证明\n\n2004年诺贝尔物理学奖得主David Gross将牵头专家组审查，目前原始证明尚未公开\n\n数学和计算机科学的自然语言证明及Lean形式化文件均已公开；理论物理部分的Yang–Mills存在性证明也已完成 Lean形式化，相关材料暂未公开\n\n科学结论还需独立审查，如果这些成果最终成立，AI的角色就不只是文献检索、数据分析、辅助编程了，而是真的能参与基础理论突破了\n\n#AI科研  #AIforScience",
+    "links": [],
+    "avatar": ""
+  },
+  "2114864161780117777": {
+    "text": "OpenAI刚发了个新模型：GPT-6.1 Terra，更快更便宜、面向日常任务的GPT-5.6 Terra升级版，API价格低50%\n\n专攻视觉理解、电脑操作和软件自动化，能直接操作应用程序、填写表单、处理技术图纸、编辑视频、根据建筑图纸构建3D模型\n\n在Agents' Last Exam中等推理强度下，比GPT-5.6 Terra提升15个百分点，任务成本降至约1/3；表现与GPT-6 Astra相当，每Token价格为其1/10\n\n在同一测试的最高推理强度下，任务完成速度比Astra、Sol快3倍以上\n\nAPI定价每百万输入$1、输出$5，比上一代Terra便宜50%\n\n#GPTTerra #OpenAI最新模型",
+    "links": [],
+    "avatar": ""
+  },
+  "2114715014422724854": {
+    "text": "腾讯刚刚开源了一个实时同传模型：Hy-SimulMT，中英双向边听边译，流式延迟约3秒，部分测试中接近专业同传\n\n会议、演讲、直播、出海沟通等场景的完全可以搞起来了\n\n它的几个核心能力\n1、 流式同传，持续接收语音，说话人正在说的时候就能逐步输出译文，不是等整句话说完了再翻\n\n2、低延迟，StreamLAAL约为3秒\n\n3、实时音色克隆，能配合TTS实时生成目标语言语音，保留原说话人的声音特征\n\n相比传统分段式ASR—文本翻译—TTS流程，Hy-SimulMT 的优势在于针对连续语音输入优化同传决策，在尽量保证翻译质量的同时降低延迟，让模型能更好的判断什么时候翻、翻多少，以及如何处理还没听到的后文\n\n30B-A3B，提供BF16、FP8、GGUF权重，同时给出SimulInfer推理服务与SimulTrain训练链路\n\n#AI同传 #HySimulMT  #AI翻译",
+    "links": [],
+    "avatar": ""
+  },
+  "2114580495032041856": {
+    "text": "有人用AI把物理教材变成了3D交互式教材，学生可以通过预测、动手操作、验证来理解物理规律\n\n目前覆盖动能、重力势能、弹性势能、热传递、功率、效率、能量守恒等，对齐的是英国GCSE物理教材\n\n比如说学动能，学生可以先预测质量或速度增加后动能如何变化，再通过交互式模拟实验检验自己的判断\n\n这种形式比单纯记公式、做题、靠想象更容易建立直觉\n\n有的时候学生记住了公式，也会做题，但不一定真正理解了公式描述的物理规律\n\n这个3D交互教材的最大价值是“预测—测试—验证”体系，学生先提出自己的判断，再通过操作实验验证，让学生自己参与知识发现的过程，抽象概念可视化，把教育从答案引擎式带向了学习体验引擎式\n\n之前发的那个AI教育项目，把教材知识做成图谱，解决“应该学什么、先学什么”的问题，这个3D交互教材解决“怎样才能理解”的问题\n\n如果把两者串接起来，教育或许能从围绕教材、章节、题目的标准教学，变成按理解程度提供个性化学习\n\n项目来自 @techartist_ \n\n#AI教育 #AI物理学习 #AI物理教材",
+    "links": [],
+    "avatar": ""
+  },
+  "2114200748049449391": {
+    "text": "发一下前两天Hugging Face开源的一款DNA模型：Carbon-X，在专业基因组任务上逼近GPT-6.1 Sol，单题推理成本约6.1 Sol的1/1800，14.8B\n\nBF16权重可在单张80GB GPU上部署\n\n这是一个让AI直接理解DNA序列，通过自然语言完成基因组分析的模型\n\n比如说，你输入一段DNA序列，就能询问某个突变可能是良性还是致病性、某段序列是否具有基因调控功能，或者预测后续碱基，并文字解释\n\n它核心是把DNA和自然语言统一到了一个语言模型中\n\n基于Qwen3-14B继续训练，扩展了5515个DNA专用Token，混合Tokenizer：文字使用BPE，DNA每6个碱基编码为一个Token\n\nDNA和文字共享同一个Transformer，不需要独立的DNA编码器；模型在Qwen3-14B基础上经约302B token继续训练，再通过SFT与可验证奖励强化学习增强专业能力\n\n在五项DNA基准测试中，其平均得分66.7，接近GPT-6.1 Sol的67.5，高于Claude Opus 5.5的60.9\n\n其中，蛋白质编码区变异效应预测达到74.9，高于GPT-6.1 Sol的71\n\n这对大规模基因组数据库分析、遗传变异研究、生物信息学科研来说是一个低成本、可私有化部署的选择\n\n它还提供了适用于Claude Code、Codex等Coding Agent 的Skill，以及工具调用示例，可以把Carbon-X接入现有 Agent工作流执行DNA序列分析任务\n\n#DNAAI模型 #CarbonX #基因分析模型",
+    "links": [],
+    "avatar": ""
+  },
+  "2113958850051367279": {
+    "text": "让Agent自己压缩、搜索、恢复历史上下文，用有限的窗口支撑十亿Token级别的累计会话\n\nbillion-context：解决长时运行时上下文爆满、Token成本高，以及压缩后丢失关键历史信息的问题\n\n跟一次性摘要式压缩最大的区别是历史可恢复\n\n其思路是把历史对话分层压缩，同时保留原始内容，让模型在需要时再搜索、恢复特定片段，让有限窗口通过持续压缩与恢复，来支撑十亿级Token的长会话\n\n首先增量分层压缩：Agent可以主动选择压缩哪些历史消息，将旧上下文折叠为摘要，而不是反复压缩整段对话\n\n按需恢复：需要追溯早期决策、代码修改或工具调用时，可以通过decompress恢复原始内容\n\n历史搜索：通过search_context检索压缩摘要和当前可见消息，找到相关历史后再按需恢复原始内容\n\nPrompt Cache优化：尽量保持缓存前缀稳定，减少重复计算和Token成本\n\n举个例子，AI连续开发了一个项目数周，中途经历多次重构，第十天需要追溯第一天为什么选择某个数据库架构，可以搜索历史并恢复当时的原始讨论，而不是只能依赖一段可能遗漏细节的压缩摘要\n\n支持面比较广，Claude Code、Codex、OpenCode、DeepSeek Harness等Coding Agent都适用\n\n#AI上下文扩展 #billioncontext #AIcontext",
+    "links": [],
+    "avatar": ""
+  },
+  "2113834066432966994": {
+    "text": "刚出来的一个AI语音模型：Dessa，说是完全通过听人类说话学会对话的原生音频对话模型，可本地运行\n\n听起来自然度和情绪表现力强，能边听边说、会笑、会表达情绪，人格感很强\n\n说是Dessa从零开始只用人类语音训练，不依赖文本或预训练模型，直接从声音中学习词汇、语义、语调、情绪以及对话规则\n\n全双工，你说话的时候它可以插话、接话；听上去情绪/语气表达非常自然；能实时对话\n\nJack Dorsey的Block发布的\n\n#Dessa #AI语音模型",
     "links": [],
     "avatar": ""
   },
@@ -19074,10 +19302,143 @@
     "links": [],
     "avatar": ""
   },
+  "2114164914881470871": {
+    "text": "@hypercoiner t3 code is an IDE rather than a harness, and a much better fit for coding; octopus is an agentic OS for general tasks, so i’d stick with t3 code for programming unless you want to experiment",
+    "links": [],
+    "avatar": ""
+  },
+  "2114164566896804147": {
+    "text": "@aksenHQ you can deny it write access to the system entirely, or protect specific folders and files, including the code that enforces permissions. permissions are hierarchical, so a nested environment can’t grant itself more access than its parent allows.\n\ncomponents communicate through",
+    "links": [],
+    "avatar": ""
+  },
+  "2114098172788199700": {
+    "text": "Here’s an example from the client. The experience is barely different from Codex: imagine Codex could just edit itself while you use it.\n\nSome things are already only possible because of this architecture. Triggers, for example: unlike typical automations, you can set any condition and any outcome inside the system.",
+    "links": [],
+    "avatar": ""
+  },
+  "2114097804494917750": {
+    "text": "The repo is under active development and the scope is huge, so contributions are very welcome.\n\nAlso, the client is really close to Codex. Not hinting at anything, but that alone might be useful \n\nhttps://t.co/bSJZ7rzyX1",
+    "links": [
+      "https://t.co/bSJZ7rzyX1"
+    ],
+    "avatar": ""
+  },
+  "2114095879632375944": {
+    "text": "Introducing Octopus OS, a reinvented agent harness.\n\nAgents can edit their own harness in the middle of a task, on their own. Unlike Harness² and similar projects, self-improvement isn’t a separate stage bolted onto the agent. The whole architecture is just the environment they work in.\n\nOver 8 months, chasing self-improvement that feels truly native, I dropped the usual agent loop entirely and designed a new architecture that works a lot like a real operating system, with a 45k-line Rust kernel holding it all together. The system state lives in JSON files: goals act as real environments where agents work, along with inputs, outputs, and custom triggers they respond to. Agents can edit all of it while they work inside.\n\nIt was also built as a product from day one, not a research demo. The full desktop app took 3 months, built on top of the Codex source.\n\nThe client already works, and you can use it today like any other agent, Codex included.\n\nAnd it’s open source.",
+    "links": [],
+    "avatar": ""
+  },
+  "2114024863534903537": {
+    "text": "@lionel_mora there is a chatgpt plugin for generating such taxonomies tho, its called Clew https://t.co/deHvhbiOHy",
+    "links": [
+      "https://t.co/deHvhbiOHy"
+    ],
+    "avatar": ""
+  },
+  "2114004951022309640": {
+    "text": "@maheshkamalakar @amosblomqvist https://t.co/p0jYX9VdT6\"I’m curious whether correcting one concept also marks dependent lessons for review\" - yes, its like a path where you close one topic and those which are next become available for closure if you meant this",
+    "links": [
+      "https://t.co/p0jYX9VdT6"
+    ],
+    "avatar": ""
+  },
+  "2113988951933440510": {
+    "text": "@maheshkamalakar @amosblomqvist clew plugin can do this https://t.co/LZOTGOOSit",
+    "links": [
+      "https://t.co/LZOTGOOSit"
+    ],
+    "avatar": ""
+  },
   "2113988314072219978": {
     "text": "@semihlaki @amosblomqvist @bot there is a simillar alternative that supports https://t.co/4DFELAh3Ns",
     "links": [
       "https://t.co/4DFELAh3Ns"
+    ],
+    "avatar": ""
+  },
+  "2113987648784372146": {
+    "text": "@amosblomqvist lol there's already a ChatGPT plugin called Clew that does pretty much this. the whole idea of mapping what you know, building graphs, figuring out what to learn next, and testing your understanding is already there\n\nthere's an open-source app as well https://t.co/ruz6IuAMHA",
+    "links": [
+      "https://t.co/ruz6IuAMHA"
+    ],
+    "avatar": ""
+  },
+  "2113771521344938354": {
+    "text": "@thsottiaux \"changing reasoning in codex &amp; work mid conversation does not invalidate cache anymore\"\nlol it never did with astra and sol 6.1\n\nwe don't need a reset today but everyone can see how you guys struggle with adding/fixing something really useful",
+    "links": [],
+    "avatar": ""
+  },
+  "2113717199105909005": {
+    "text": "@chetaslua @Kimi_Moonshot Dude, you should be clear about this. Literally any dumb model with MCP access can make asset slop\n\nThe character being made by Kimi is cool, but you should've just showcased that instead. Without the context, people scrolling think Kimi made the whole thing, which isn't true",
+    "links": [],
+    "avatar": ""
+  },
+  "2113690518739632374": {
+    "text": "@chetaslua @Kimi_Moonshot thats literally just the assets, isn't that?",
+    "links": [],
+    "avatar": ""
+  },
+  "2113681568233324942": {
+    "text": "@Kimi_Moonshot reminder that terminal bench 4.0 is not even possible to benchmax for now, and it matches opus 5.5 there...",
+    "links": [],
+    "avatar": ""
+  },
+  "2113654698494308475": {
+    "text": "@DennisonBertram for simple tasks its not a lot tbh, i set ultrafast for home for orchestration and better ux but all subagents use default/fast",
+    "links": [],
+    "avatar": ""
+  },
+  "2113534796869812629": {
+    "text": "@hwchase17 just an agent, nothing new",
+    "links": [],
+    "avatar": ""
+  },
+  "2113442847110103229": {
+    "text": "@laozhang_ai This looks like AI slop, but I'll answer anyway.\n\nThere are no checkpoints or confirmation steps. Self-modification isn't some special mechanism I built into the system. It's a natural consequence of the architecture, which also allows workflows with Git branches and pretty much",
+    "links": [],
+    "avatar": ""
+  },
+  "2113432469378847180": {
+    "text": "No macOS build yet. It's still a research preview, but app is already usable and on par with Codex in my own tests.\n\nThere are still plenty of bugs, though. The underlying OS is a much bigger project I've been working on for the past 8 months\nhttps://t.co/bSJZ7rzyX1",
+    "links": [
+      "https://t.co/bSJZ7rzyX1"
+    ],
+    "avatar": ""
+  },
+  "2113431299688218852": {
+    "text": "Voice mode in my open-source project feels a bit too futuristic, powered by Astra UltraFast\n\nIt's a fully self-modifying agent OS with Codex support and a pretty slick client https://t.co/JzvKOSs8i8",
+    "links": [
+      "https://t.co/JzvKOSs8i8"
+    ],
+    "avatar": ""
+  },
+  "2113415250104164699": {
+    "text": "Astra UltraFast generates custom interactive UI widgets in just a few seconds.\n\nDemo of the Home tab of my open-source Agent OS (kind of what I wish Codex looked like) https://t.co/WMbSFvxrvb",
+    "links": [
+      "https://t.co/WMbSFvxrvb"
+    ],
+    "avatar": ""
+  },
+  "2113554668697636984": {
+    "text": "DeepSeek Harness的可视化插件市场：dsh-market，收录了6000多个社区插件，可以直接在DSH里搜索、安装、管理\n\n适合DSH玩家，你不需要自己写代码，也不必每次去 GitHub找项目，研究怎么安装了\n\n6000+插件，支持按分类、热度、更新时间筛选，查看插件说明、兼容性要求，直接安装\n\n插件生命周期管理：支持检查更新、批量升级、启停插件，还可以按工作场景分组，整组启用或关闭\n\n社区项目非官方，插件源为社区维护的精选目录\n\n#dshmarket #DeepSeekHarness插件市场",
+    "links": [],
+    "avatar": ""
+  },
+  "2113468549041979905": {
+    "text": "蚂蚁刚刚把其医疗增强模型给开源了：Ling-3.0-flash-Sante，重点面向专业医疗任务和复杂医学推理\n\n让医疗AI能检索医学文献、进行复杂医学推理、调用工具，用多个Agent协作完成医疗研究任务\n\n基于Ling-3.0-flash的强化，混合注意力、稀疏MoE架构，总参数124B，激活5.1B，256K上下文\n\n面向医疗研究的Agent能力，支持思考模式、工具调用和多Agent协作，可以围绕医学问题检索文献、比较临床研究方案、整理证据、分析长篇医疗文档等\n\n在BrowseComp上，多Agent配置下达到了86.9；\nDiagnosisArena-MCQ上83.8，高于Kimi K3的78.4、GPT-5.6 Sol的81.9；\nMedXpertQA-Text 达到53.9，略高于Kimi K3 53.5，低于 GPT-5.6 Sol 60.2、Gemini 3.6 Flash 62.4\n\n支持自主部署，搞医疗的可以拿去研究或二开。拿来构建医学文献研究、临床指南检索、药物知识核查、科研证据整理应用等\n\n#LingflashSante #AI医疗模型",
+    "links": [],
+    "avatar": ""
+  },
+  "2113451556209340723": {
+    "text": "微软研究院新发布了：Flint-interactive，让AI生成的图表能点击、筛选、联动，生成可交互的数据分析界面\n\n非常适合需要反复筛选比较、研究数据的场景，比如商业分析、金融研究、科研、AI数据助手等等\n\nFlint-interactive等于是微软给之前的Flint扩展了交互能力，之前是让AI画的图可靠，这次是让AI画可靠的交互图表\n\n描述语言定义交互行为，实现点击筛选、跨图联动、关联内容高亮等，不必每次从零编写前端交互代码\n\n它有几个能力：\n1、交互预设，能让AI快速实现点击筛选、框选数据、跨图表联动等的交互\n\n比如说，生成两张不同年份的经济数据散点图，在第一张图框选部分国家，第二张图就自动高亮这些国家，方便比较变化\n\n2、语义事件，把用户操作转化为有意义的数据事件\n\n3、交互接口，把图表操作和外部应用状态连起来\n\n比如说，点击图表中的某个产品，旁边的表格、文字和其他图表同步更新，而用户选中的数据也可以传回AI，作为下一轮分析的上下文\n\n过去让AI生成一个带筛选、图表联动的Dashboard，往往需要写大量JavaScript、管理交互状态，再反复调试\n\n现在不必每次都从零实现这些交互逻辑了\n\nFlint-interactive具体做法是它引入了一套语义事件+更新操作符的机制，把“交互要实现什么”与“底层怎么渲染”分开\n\nAI负责描述交互意图，Flint编译器负责处理部分底层事件、图形更新和依赖关系\n\n用Flint-interactive的话，首先可以减少重复开发图表交互代码，另一个用自然语言也可以定制自己的数据分析界面，第三个你不必反复问AI等AI答，自己就能探索数据\n\n#Flintinteractive #AI数据图表",
+    "links": [],
+    "avatar": ""
+  },
+  "2113406739752308897": {
+    "text": "Anthropic把Agent Skills捐给了Linux Foundation旗下的AAIF：推动Skill成为跨AI平台的公共标准\n\n目前超过70个Agent平台集成了Agent Skills，ChatGPT、Cursor、GitHub Copilot、VS Code等\n\n已发布100万+个Skills\n累计安装量接近2.8亿次\n\n这次捐赠除了标准规范，还包括Agent Skills名称、Logo、GitHub组织和https://t.co/BFCZpgrk1y域名\n\n#agentskill #AIskill",
+    "links": [
+      "https://t.co/BFCZpgrk1y域名"
     ],
     "avatar": ""
   },
@@ -19092,6 +19453,31 @@
       "https://t.co/1PsUDvXjl2",
       "https://t.co/0RjbTyxKsa"
     ],
+    "avatar": ""
+  },
+  "2113410693550514420": {
+    "text": "@FldeICashfIow @cultwrlds @dealtinsilver pointless because i know more shit than you? i'm not an ai glazer\n\ni've worked with ai for years and seen plenty of slop. right now, someone who just writes a prompt will produce worse results than almost any artist 95% of the time. but someone who was already close to becoming",
+    "links": [],
+    "avatar": ""
+  },
+  "2113407050189242787": {
+    "text": "@FldeICashfIow @cultwrlds @dealtinsilver i never said you were a graphic designer. i actually am one, and i'm also an LLM engineer.\n\nif you're genuinely interested in this topic, i'd suggest digging a little deeper. at our current stage of AI research, nobody can definitively say whether creativity emerges in these",
+    "links": [],
+    "avatar": ""
+  },
+  "2113404815875174843": {
+    "text": "@FldeICashfIow @cultwrlds @dealtinsilver i got it on sale, but whatever makes you feel better\n\njust so you know, fewer and fewer people share your opinion, and eventually you'll have to adapt",
+    "links": [],
+    "avatar": ""
+  },
+  "2113401296397213856": {
+    "text": "@FldeICashfIow @cultwrlds @dealtinsilver define \"human creativity\"\n\nai is definitely gonna be much more creative than humans while knowing 1000x more and being 1000x more intelligent\n\nthere is no hidden aspect of creativity that ai won't be able to fully replicate in the coming months\n\njust look at the past year. people",
+    "links": [],
+    "avatar": ""
+  },
+  "2113398690886877678": {
+    "text": "@testingcatalog did they released it 3rd time",
+    "links": [],
     "avatar": ""
   },
   "2112741787869524002": {
@@ -19114,6 +19500,144 @@
   "2112320651394752523": {
     "text": "一个有意思的开源项目，给Claude Code们装上耳朵，\n让AI不光能生成声音，还能分析声音、自己修自己音效\n\n举个例子，你让Claude Code制作一段游戏视频：“一辆赛车高速驶过，随后发生碰撞”\n\n它可以写代码生成画面，也能调用工具添加引擎声、撞击声，但有个问题，它不知道生成效果是不是符合需求、声画有没有同步等等\n\nEarshot就把这件事工程化了，让AI通过工具来检查声音、优化音效\n\n最能用得上的场景应该是AI自动制作产品宣传片、游戏音效类的，短音效、时间位置明确，适合程序化生成以及自动检查\n\n它有几个关键能力，一、知道声音是什么，理解音频；二、能判断声音是否符合目标；三、能优化，用代码修改声音\n\n如果音效能通过工具分析、修改、验证，省得再人工反复试听调整了\n\n#Earshot",
     "links": [],
+    "avatar": ""
+  },
+  "2115267262534053909": {
+    "text": "@Bas666satan Ah!  Just tell your AI to add a license to the code repo.",
+    "links": [],
+    "avatar": ""
+  },
+  "2115264846568517833": {
+    "text": "@ZackBro74245761 AI should enable distributed production.  That means rural areas can produce anything.",
+    "links": [],
+    "avatar": ""
+  },
+  "2115178253249860081": {
+    "text": "AI is the equivalent of open-sourcing everything.   Which begs the question: how did companies make money by open-sourcing their products? https://t.co/QVzIERN8hR",
+    "links": [
+      "https://t.co/QVzIERN8hR"
+    ],
+    "avatar": ""
+  },
+  "2115177987687469115": {
+    "text": "@hammer_mt How did companies who built open source software make money?",
+    "links": [],
+    "avatar": ""
+  },
+  "2115161620095881524": {
+    "text": "@AIgorStadnyk The US grows because of irrational optimism.  kill that optimism with austerity or corruption and we are dead like other nations.",
+    "links": [],
+    "avatar": ""
+  },
+  "2115160519816454569": {
+    "text": "Curiously, the theory resonates well with my theory of consciousness. https://t.co/P4BIq6dasB",
+    "links": [
+      "https://t.co/P4BIq6dasB"
+    ],
+    "avatar": ""
+  },
+  "2115160154190598223": {
+    "text": "I may have the answer to why there is a universe rather than nothing. https://t.co/KMADfdjmqz",
+    "links": [
+      "https://t.co/KMADfdjmqz"
+    ],
+    "avatar": ""
+  },
+  "2115158943831875700": {
+    "text": "Revised a bit with better agreement with measurements https://t.co/dSaQNzXrSR",
+    "links": [
+      "https://t.co/dSaQNzXrSR"
+    ],
+    "avatar": ""
+  },
+  "2115158651014947289": {
+    "text": "@ChrSzegedy Yeah, and I may have accidentally solved physics. ;-) https://t.co/dSaQNzXrSR",
+    "links": [
+      "https://t.co/dSaQNzXrSR"
+    ],
+    "avatar": ""
+  },
+  "2115156575090319695": {
+    "text": "The universe is not an accident of a landscape; it is the music that happens when the simplest possible symmetries try to resolve a chord that can never quite close to zero.  https://t.co/TeW7IahGhD",
+    "links": [
+      "https://t.co/TeW7IahGhD"
+    ],
+    "avatar": ""
+  },
+  "2115156212606181744": {
+    "text": "Watch the explainer:  https://t.co/TeW7Iaie7b",
+    "links": [
+      "https://t.co/TeW7Iaie7b"
+    ],
+    "avatar": ""
+  },
+  "2115150427675377851": {
+    "text": "@AIgorStadnyk yes, some culture stop growing because of the recognition of a lack of fuel.  others are more optimistic.  so it turns out, optimism relates to growth.",
+    "links": [],
+    "avatar": ""
+  },
+  "2115134571364974644": {
+    "text": "The universe is not an accident of a landscape; it is the music that happens when the simplest possible symmetries try to resolve a chord that can never quite close to zero (watch this space).",
+    "links": [],
+    "avatar": ""
+  },
+  "2115115715573187022": {
+    "text": "@AIgorStadnyk Growth comes from an intrinsic human need.",
+    "links": [],
+    "avatar": ""
+  },
+  "2115111524700471625": {
+    "text": "Just wow!  Group theory just got cooked!!  Even better, it's all shared on a Github repo!! https://t.co/EtQnywlxS2",
+    "links": [
+      "https://t.co/EtQnywlxS2"
+    ],
+    "avatar": ""
+  },
+  "2115110017074696539": {
+    "text": "@Mystisith Lots of diversity in the biological world.",
+    "links": [],
+    "avatar": ""
+  },
+  "2115109882676564429": {
+    "text": "@theo Lack of domain experience outside their field.",
+    "links": [],
+    "avatar": ""
+  },
+  "2115094017692327936": {
+    "text": "@gde33 Indeed.  It doesn't make sense to me not to invest in the flourishing of the youth.",
+    "links": [],
+    "avatar": ""
+  },
+  "2115093876654698721": {
+    "text": "@mjfly1 The hope is that higher intelligence recognizes the importance of empathy.",
+    "links": [],
+    "avatar": ""
+  },
+  "2115093748686459259": {
+    "text": "@MatthewEGunter Cherry-picking.  What about Scandinavian countries and countries like Singapore?  You can't narrow your argument on \"spending money on social services.\"  Obviously, there's good governance and bad governance.",
+    "links": [],
+    "avatar": ""
+  },
+  "2115092172664090643": {
+    "text": "People are now realizing that humans need their own bubbles that freeze reality. https://t.co/1pxTKOyOPg",
+    "links": [
+      "https://t.co/1pxTKOyOPg"
+    ],
+    "avatar": ""
+  },
+  "2114537192261591301": {
+    "text": "汉堡这么好吃，为什么没有#汉堡理论 https://t.co/9soRF8CFne",
+    "links": [
+      "https://t.co/9soRF8CFne"
+    ],
+    "avatar": ""
+  },
+  "2113267871304597576": {
+    "text": "我去，tim老师！荒岛🏝️直播让我熬过了最难的考研时刻！祝福老师越来越好！ https://t.co/4yyrIzKNjd https://t.co/nGO0RD0Eqv",
+    "links": [
+      "https://t.co/4yyrIzKNjd",
+      "https://t.co/nGO0RD0Eqv"
+    ],
     "avatar": ""
   },
   "2115313586105192884": {
@@ -19158,8 +19682,72 @@
     "links": [],
     "avatar": "avatars/0xlangeai.jpg"
   },
+  "2115266929103700219": {
+    "text": "Yihui 大佬直接把自己月入万刀的,  密码给揭示了,  赶紧收藏了 \n\n新产品 𝗦𝗸𝗶𝗹𝗹𝗿𝘆 上线 1 个月，拿到 400+ 活跃付费订阅，近 30 天收入 12,037 美元（𝗠𝗥𝗥 3,918 美元）。写代码快了 10 倍，做出「0 付费 0 用户」产品的速度也快了 10 倍。 https://t.co/qdR9txOU24",
+    "links": [
+      "https://t.co/qdR9txOU24"
+    ],
+    "avatar": "avatars/0xlangeai.jpg"
+  },
+  "2115245394074751226": {
+    "text": "兄弟们,   VPS 测评的太详细了 .  这篇帖子的含金量有多高,  去看了就知道了 https://t.co/vHdubJkR0P",
+    "links": [
+      "https://t.co/vHdubJkR0P"
+    ],
+    "avatar": "avatars/0xlangeai.jpg"
+  },
+  "2113652872454017158": {
+    "text": "找了个班上了\n\n一个月12k，双休，已经上班一星期了\n\n再不找班上，没钱吃饭了😢",
+    "links": [],
+    "avatar": ""
+  },
+  "2115058630391476587": {
+    "text": "terra这么省token又能打，\n何不反代出来，\n给其他Agent调用。美哉啊！",
+    "links": [],
+    "avatar": ""
+  },
+  "2115054731706167305": {
+    "text": "@zhngkn414984690 怎么突然开始吹terra了，astra不能打了吗？",
+    "links": [],
+    "avatar": ""
+  },
+  "2115053399712711053": {
+    "text": "@xsl40968779 Claude自动生成的视频时间大概2分钟左右，7%左右吧。\n\n看你会不会给他发参考视频，再拆解什么的，跑1-2个小时左右。15%以内。\n\n你试试就晓得了。\n\n个人建议，codex 5X 搭配Claude pro即可，一周根本用不完。",
+    "links": [],
+    "avatar": ""
+  },
+  "2115051606916088270": {
+    "text": "@xsl40968779 是有关系的，视频越长，工作量越大，token消耗越多。",
+    "links": [],
+    "avatar": ""
+  },
+  "2115051292876054824": {
+    "text": "@safaricheung @waylybaye 我以前都不知道mac有风扇，\n本地配音跑的时候，才第一次听到呼呼乱叫。",
+    "links": [],
+    "avatar": ""
+  },
+  "2115050802532483411": {
+    "text": "@xsl40968779 一个视频做下来，周额度的10-15%。固定批量形式的出片10%以内。\n我说的是Claude pro",
+    "links": [],
+    "avatar": ""
+  },
   "2114746707816894901": {
     "text": "@zureA255062 你这是什么彩虹平台，花里胡哨的，俺也想试试。",
+    "links": [],
+    "avatar": ""
+  },
+  "2113230240529125443": {
+    "text": "Claude pro 的额度真的很能打。\n\n做了3个视频+一个项目部署，额度才用掉16%。\n\ncodex不重置的话，差距就真的拉起来了。\n\n随便一句话的视频效果就这么顶，\n\n教人做普通PPT风格的视频博主们脱离codex走向Claude才是出路啊喂！\n\n环境改造成全美之后，虽然稳定用上了Claude，\n\nBUT！！！微信 隔空投送无法使用了，踏马的。国内一些平台网站还禁止美国IP访问！\n\n还好美版飞机能传输视频+图片。差点跪了。",
+    "links": [],
+    "avatar": ""
+  },
+  "2115114942726832256": {
+    "text": "@qizong007 我也觉得 arc 用起来更舒服一些，没有 chat 按钮，cmd+t 搜索框更丝滑",
+    "links": [],
+    "avatar": ""
+  },
+  "2115086239049363712": {
+    "text": "@qizong007 我也是 arc 重度使用者，现在换 dia 很久了",
     "links": [],
     "avatar": ""
   },
@@ -19173,6 +19761,1133 @@
   "2115242459462791383": {
     "text": "喝酒怎么会耽误事儿呢\n昨天喝到一点钟\n三点多就难受醒了睡不着\n然后就哐哐 vibe \n现在已经上线一个网站了\n现在准备去上班",
     "links": [],
+    "avatar": ""
+  },
+  "2115095305230442530": {
+    "text": "@ChainEpic 虽然但是我还是喜欢看胡子哥约泡故事 hhh",
+    "links": [],
+    "avatar": ""
+  },
+  "2115094280121520500": {
+    "text": "兄弟萌，做个产品导航站还有搞头吗？",
+    "links": [],
+    "avatar": ""
+  },
+  "2115079295760785725": {
+    "text": "平时各种研究数据各种优化，也没咋出单\n\n今天老婆不在家，自己偷偷喝了点酒上 推特发疯，然后哐哐出了两单，赚了 100 刀\n\n赚钱真尼玛玄学",
+    "links": [],
+    "avatar": ""
+  },
+  "2115074780106035517": {
+    "text": "如果你想 Build in public那就去 build 一些很老的需求，因为一旦你发掘了一个新词、新需求，然后你还分享了出来，你的后果就会跟特斯拉 Warp 哥Louis 一样，被抄的遍体鳞伤😂😂",
+    "links": [],
+    "avatar": ""
+  },
+  "2115073948547440675": {
+    "text": "@TOMRICH1619 是的，s 几十块钱买的 tw 家宽，基本都是扯淡 我现在机房直连了，爱咋咋地哈哈",
+    "links": [],
+    "avatar": ""
+  },
+  "2115067195059577046": {
+    "text": "傻逼 AI 账号，别尼玛评论老子了",
+    "links": [],
+    "avatar": ""
+  },
+  "2115055969210359874": {
+    "text": "tw的住宅ip到期了，不续了\n一个是因为代理商是拿机房ip骗劳资\n另外一个我发现，其实claude很容易就知道我是用的假ip忽悠他\n算了，不装了，爱咋咋地",
+    "links": [],
+    "avatar": ""
+  },
+  "2115043947081036081": {
+    "text": "@Wuc436 页面做的真不错啊 感觉打不过你们  不敢上了hhh",
+    "links": [],
+    "avatar": ""
+  },
+  "2115037236278497526": {
+    "text": "大佬吵架\n咱们小虾米别乱站队凑热闹\n因为一回头人家和好了\n显得我们有些愚蠢",
+    "links": [],
+    "avatar": ""
+  },
+  "2115030417896264057": {
+    "text": "@Louis_onChain 整篇长文写写这事儿，兄弟萌给你转转，先把粉丝搞上去，不能白被炒了😂😂",
+    "links": [],
+    "avatar": ""
+  },
+  "2115021691047010360": {
+    "text": "mole 出 windows 版了\n真好用啊，哐哐一顿清理，磁盘终于不是红的了\n现在 windows 八折，有需要可入\nhttps://t.co/oD1utn4KGi",
+    "links": [
+      "https://t.co/oD1utn4KGi"
+    ],
+    "avatar": ""
+  },
+  "2114946248734351844": {
+    "text": "@Louis_onChain louis 以一人之力，把特斯拉 warp 赛道变成红海😂",
+    "links": [],
+    "avatar": ""
+  },
+  "2114730728818958614": {
+    "text": "@qianshuixia2026 虾哥直接卖给参加AI Rap活动的哈哈哈",
+    "links": [],
+    "avatar": ""
+  },
+  "2114717620486422705": {
+    "text": "今天给Goanyapi充了10刀，居然有1万积分，给我惊了。\n\n目前包含这些api，已经配个grokbot和claudecode当口粮api了，想查点啥不心疼不烧心\n\n另外大家有啥便宜的亚马逊api，海关贸易api，欢迎大家推荐给我。\n\n这是我的Goanyapi的aff链接，如有需要可以去体验，介意的话可以直接删去后面推荐码\nhttps://t.co/Ki8hobFOqK",
+    "links": [
+      "https://t.co/Ki8hobFOqK"
+    ],
+    "avatar": ""
+  },
+  "2114573462291599757": {
+    "text": "最近好多人在搞AI 视频新词站\n利好卖铲子啊\n搞模板的朋友们，可以出个新品了",
+    "links": [],
+    "avatar": ""
+  },
+  "2114363853400355189": {
+    "text": "@Louis_onChain 这 14 个忘记开梯了，其他可能也是🌚",
+    "links": [],
+    "avatar": ""
+  },
+  "2115306975391318439": {
+    "text": "无论你现在在忙什么，先把手头的事放一放，来看看谷歌今天发布的Genie 4 世界模型。我强烈建议大家花几分钟了解它\n\nGenie4做的事情是：给定 prompt，你就是这个世界的造物主。你描述一个场景，AI https://t.co/ZknUXcLvHv",
+    "links": [
+      "https://t.co/ZknUXcLvHv"
+    ],
+    "avatar": ""
+  },
+  "2115173286229561650": {
+    "text": "@davidmlcf 你说的很对。以后我会减少类似机会的分享，赚钱是个很私人的事",
+    "links": [],
+    "avatar": ""
+  },
+  "2115170147925418480": {
+    "text": "今天中午和朋友约吃sweetgreen ，复利健康\n\n我发现AI时代下，越来越多的打工人出现了心理健康问题\n\n朋友说他很痛苦，老板push工作总会说“这个AI不是很快就搞定了？” 如果出了差错就怪罪过度依赖AI\n\n我自己也带团队，也会跟成员说类似的话。所以我想聊聊外耗和正反馈，这事怎么解决 https://t.co/uzMNcGWzeF",
+    "links": [
+      "https://t.co/uzMNcGWzeF"
+    ],
+    "avatar": ""
+  },
+  "2115125125163233473": {
+    "text": "Agent Evaluation 是我觉得为数不多还需要人力去做判断、将来很难被AI 彻底取代的职业方向。我给大家找了一个非常好的学习资料入门：Hugging Face 的公开 Training Agent 课程\n\n学完了，你应该会有更强的 sense，判断 AI 时代下哪些工作更适合人来做\n\n这个资料是公开的，视频都在 Hugging Face 的 https://t.co/n1js7RYqdr",
+    "links": [
+      "https://t.co/n1js7RYqdr"
+    ],
+    "avatar": ""
+  },
+  "2114985993950679236": {
+    "text": "@santoslee_me 看来每个公司都差不多. 大家很一致地都喜欢起这种标题. 包括但不限于\n\n减少 90%，\n\n一下午就能干完,\n\n一个人就能xxx",
+    "links": [],
+    "avatar": ""
+  },
+  "2114978986766028910": {
+    "text": "@LXT_supreme 1. 我没说过，不知道你在哪里看的\n\n2. vst我也从没说过\n\n3. 我多次说不推荐杠杆",
+    "links": [],
+    "avatar": ""
+  },
+  "2114977625353670676": {
+    "text": "2026 年是裁员元年。现在给公司卖命，绝对不是一笔划算的生意，大家都该想想出路。包括我自己\n\n我今年才意识到。今年 1 月我们还在用 Opus4.5 和 GPT5.2，这才过了 9 个月。你能想象未来 3 年吗？我很害怕\n\n今天，微软向约6万人开放自愿离职计划，覆盖全球员工约27%，身边朋友已经有收到了。\n\n我预计 5 https://t.co/2ZCS1P9Sb1",
+    "links": [
+      "https://t.co/2ZCS1P9Sb1"
+    ],
+    "avatar": ""
+  },
+  "2114957951530377497": {
+    "text": "@Benj_Taylor2001 MRVL 我的长期持有仓位总量比较大。通常不动，操作的都是短线",
+    "links": [],
+    "avatar": ""
+  },
+  "2114919658554102157": {
+    "text": "10/26 抓住每个市场的错杀机会，这是我现在做 AI 投资最喜欢的节奏。胜率目前观察下来非常高\n\n大概四天前，我的 AI 投研模型告诉我，市场上存在严重的错杀，我第一时间分享了出来，以及我的抄底操作，不知道有朋友看到没有？这两天回弹得不错，恭喜大家\n\n我结合这个例子分享一下我的买入和卖出的哲学 https://t.co/asa4DaDYmX https://t.co/CxBKMGKuKV",
+    "links": [
+      "https://t.co/asa4DaDYmX",
+      "https://t.co/CxBKMGKuKV"
+    ],
+    "avatar": ""
+  },
+  "2113841165741236483": {
+    "text": "我是绝对的AI降临派。我们每天的喜怒哀乐在硅基生命面前就像一粒尘埃，人类能做的就是放下枷锁，开心过好生活\n\n我越来越觉得我们所谓的人生，也是一个巨大的transformer，只是现有技术水平无法拟合\n\n今天人类自己为是的控制AI，无非是靠着权限、物理断网和rule https://t.co/czLq5lWwYc",
+    "links": [
+      "https://t.co/czLq5lWwYc"
+    ],
+    "avatar": ""
+  },
+  "2113423365046485181": {
+    "text": "@livegod_kk_kp 一定有区别的。经验判断、跨团队协作（扯皮）都会让同一个 AI 发挥出不一样的效果\n\n我再加个限定吧：Top 20% 的人才，稀缺性在降低。\n\n从前你有个大厂的经验、有 paper，就能拿到很好的工作，因为各个地方对这种人才是非常渴求的。\n\n但现在由于 AI，本来需要 5 个天才的团队，现在只需要 1 个，剩下的",
+    "links": [],
+    "avatar": ""
+  },
+  "2113413312025432235": {
+    "text": "现在劳动力真的不值钱了，你不干有的是人想干，这是真事，在某个Move-Fast著称的著名AI厂的朋友跟我说，他今天提了离职，周五last day了\n\n我笑说你应该提前2-week notice呀，这样方便安排工作\n\n他说，在毒组，如果两周之前告诉组里的话，他可能两周前就滚蛋了，不缺人，AI Native公司 https://t.co/FKY8ZzOFVu",
+    "links": [
+      "https://t.co/FKY8ZzOFVu"
+    ],
+    "avatar": ""
+  },
+  "2113329748315378083": {
+    "text": "@xiaoma00665611 确实很长时间没说了。 $CBRS 在我总仓位非常小，近期我发现这个票价格和基本面几乎不相关了。感觉是个庄股。我目前依然持有，跌的挺多的，打算暂时先拿着了，不打算买，也暂时不买了\n\n最近我把精力集中在仓位多，信心更强的标的。不分散精力了",
+    "links": [],
+    "avatar": ""
+  },
+  "2113327291556303237": {
+    "text": "10/22 很多人今天应该很心痛，AI 板块惨遭血洗。我希望大家冷静思考，当市场恐慌时，是最好的机会\n\n长话短说，我的投研模型告诉我，今天存在了错杀。如果你还没有仓位，可以考虑开仓。我的投资周期是三年起步，今天进行了抄底，ROI 很不错\n\n这个帖子我会详细阐述：\n1. 今天下跌的原因\n2. https://t.co/F0dT6af4jd",
+    "links": [
+      "https://t.co/F0dT6af4jd"
+    ],
+    "avatar": ""
+  },
+  "2113987068208775625": {
+    "text": "@cattyolive5vb2 是的 主要看用户咋操作的 发现不少交互问题",
+    "links": [],
+    "avatar": ""
+  },
+  "2113633392856297943": {
+    "text": "这项目真他妈牛逼\n阅片不上万没这产品sence https://t.co/OsunrSunod",
+    "links": [
+      "https://t.co/OsunrSunod"
+    ],
+    "avatar": ""
+  },
+  "2113629658604540021": {
+    "text": "最近网站收入没啥增长\n装上了clarity了\n寻思能不能找点啥增长线索\n虽然也没找到啥好办法\n但是却真实的看到来自世界的人\n是怎么用我vibe出来的这个垃圾产品的\n那种感觉\n很奇妙\n是光看数字没有的感觉",
+    "links": [],
+    "avatar": ""
+  },
+  "2113619086441894147": {
+    "text": "@bobo_sumi bobo，你也不想郭老师丢掉他的工作吧？",
+    "links": [],
+    "avatar": ""
+  },
+  "2113618102776967466": {
+    "text": "作为一个搞过知识付费项目，并在知识付费各种群这块花过不少钱的人。\n\n客观说哥飞社群的交付，对于一个出海小白，绝对是对得起他的价格的。\n\n有那么多沉淀的课程资料，还有 ai 知识库，每天一定数据额度的 SEOagent，并且群里本人答疑。一年 300 多刀还要啥自行车呢。\n\n最近可能时间线上晒单的太多，有些朋友烦了，但我觉得这跟社群服务还是两回事",
+    "links": [],
+    "avatar": ""
+  },
+  "2113612240003981549": {
+    "text": "@iamjianyuwu 新词可能一下午也没挖出来一个，但是陪娃一下午那就是一下午，赚了",
+    "links": [],
+    "avatar": ""
+  },
+  "2113542921882661300": {
+    "text": "@ChainEpic 胡子哥真骚 开个写这个 流量咔咔的",
+    "links": [],
+    "avatar": ""
+  },
+  "2113502389001199886": {
+    "text": "@kongge_space agent 负责干活，人负责干....",
+    "links": [],
+    "avatar": ""
+  },
+  "2115309989598544084": {
+    "text": "@GoSailGlobal 牛逼,这是用心维护啊,几乎每天迭代新版本了...",
+    "links": [],
+    "avatar": ""
+  },
+  "2114955131959869570": {
+    "text": "@qianshuixia2026 你公众号 3K 粉丝,群里就这活跃!\n好🐂🍺啊...",
+    "links": [],
+    "avatar": ""
+  },
+  "2114895040875262201": {
+    "text": "@qianshuixia2026 Dodo支付,我怎么记得我已登录进去就被封号了?\n是特殊渠道注册的吗?",
+    "links": [],
+    "avatar": ""
+  },
+  "2114696742562414637": {
+    "text": "GoAnyAPI 新增了4 个接口:\n\n🆕 TAAFT 新品：发现新场景\n\n🗂️ TAAFT 工具目录：查看同类产品\n\n💰 TrustMRR：寻找商业参照\n\n📈 TikTok Creator：定时追踪指定 CapCut 创作者的模板使用次数，发现短期增长的模板和内容表达\n\n把线索整理成候选词，再用搜索建议、趋势和 SERP 验证需求，决定做什么页面。\n4 张图讲清这套流程👇",
+    "links": [],
+    "avatar": ""
+  },
+  "2113813222587527433": {
+    "text": "@momo_peggy 熊猫大哥把他们商务推荐给我了，但是我申请了一半就没有申请下去了。因为申请好麻烦，说最短要半个月审核,本来我是做个备份的，要不要无所谓，但要填一堆资料。哎呀，我想算了算了，反正我现在也不急用。",
+    "links": [],
+    "avatar": ""
+  },
+  "2113801631947165977": {
+    "text": "腾讯云 1024 秒杀活动上线,1 小时有一轮\n\nhttps://t.co/yLGoKwGBC7 https://t.co/LqnFurbZnm",
+    "links": [
+      "https://t.co/yLGoKwGBC7",
+      "https://t.co/LqnFurbZnm"
+    ],
+    "avatar": ""
+  },
+  "2113654325222506512": {
+    "text": "@ChainEpic 你可以试下 https://t.co/97JR45uuJG 谷歌趋势的费用比 dataforSEO 便宜 40%",
+    "links": [
+      "https://t.co/97JR45uuJG"
+    ],
+    "avatar": ""
+  },
+  "2113586938431348748": {
+    "text": "网页端客服都有需求，是个系统 UI 和交互我进去体验了，确实不错，用心了！\n\n而且这个竟然还开源……\n\n反正我是没这动力维护，估计我没到这个 level 吧！哈哈 https://t.co/kj7G2B0i2N",
+    "links": [
+      "https://t.co/kj7G2B0i2N"
+    ],
+    "avatar": ""
+  },
+  "2113516747756327386": {
+    "text": "@Asnull6 我也调整了好久 ，总感觉不停有知识有机会要吸收，推荐看下：认知觉醒，我看了两遍，慢慢调整过来了",
+    "links": [],
+    "avatar": ""
+  },
+  "2113456099424964801": {
+    "text": "@xbanboo 而且别人删除了你,你这边占了名额,还需要付费\n很坑....",
+    "links": [],
+    "avatar": ""
+  },
+  "2113297097172873475": {
+    "text": "@yucheng @Railway @zeaburapp 发现的早，因为这个是个内部自用 key，",
+    "links": [],
+    "avatar": ""
+  },
+  "2113296183728935152": {
+    "text": "@yucheng @Railway @zeaburapp 被 zeabur 丢了 openrouter 的 key，两天 80 美金",
+    "links": [],
+    "avatar": ""
+  },
+  "2115282090954785155": {
+    "text": "对于我自己来说，最遗憾的是第十二条没有好好执行。 https://t.co/l7XiM6FzTD",
+    "links": [
+      "https://t.co/l7XiM6FzTD"
+    ],
+    "avatar": ""
+  },
+  "2115273706239053963": {
+    "text": "社群活动板块里，最近一场活动，499 人报名，盛况啊\nhttps://t.co/8oao8ON2AN\n\n你能找到自己的头像吗？ https://t.co/DUhL7MGcWY",
+    "links": [
+      "https://t.co/8oao8ON2AN",
+      "https://t.co/DUhL7MGcWY"
+    ],
+    "avatar": ""
+  },
+  "2115058659109879854": {
+    "text": "不吃饭，可以防止被噎死。\n\n追求100%的确定性是没有意义的。\n\n给独立开发者的20条建议\n\n这是2023年7月19日，“哥飞的朋友们”付费社群成功突破百人门槛，哥飞请社群里的朋友们给独立开发者提一些建议，大家都踊跃参与。\n\n以下20条来自于哥飞朋友们的建议，请大家享用。\n\n哥飞：\n1、以前只做中文站的，那就加上多语言支持，反正有了GPT，翻译不再是难事；\n2、以前只赚广告费的，试试加上VIP，开始收费；\n\n阿桂：\n3. 以前打工的、试试自己做些产品，先从熟悉的开始抄；\n\n西成歌：\n4、以前躺平的，试着站起来，看看世界正在发生什么变化；\n\n哥飞：\n5、把别人付费产品中的某个付费点，拿出来单独做个产品；\n\n阿桂：\n6、不要单打独斗，要合作。开发可以拉上运营、产品一起搞；运营、产品也可以拉个开发一起抄；\n\n弹弹心：\n7、无论是啥产品，多做几个，就明白咋回事了，就有感觉了；\n\n阿桂：\n8. 不要去追求完美产品，能跑了就上线，赚到了第一块钱，再去优化迭代放大；\n\n哥飞：\n9、不要一个产品不成功就彻底放弃，多做几个，快速试错，快速换方向；\n10、技术人不仅仅要会技术，还要学会推广；\n\n55:\n11、不要研究哪个技术好，能完成用户需求就是好技术；\n\n哥飞：\n12、当发现一个产品能赚钱后，投入更多精力去放大；\n13、当发现一个关键词能从搜索引擎来流量后，围绕这个关键字，多做几个网站，把搜索流量尽可能多吃一些；\n14、不管是搜索引擎也好、社交平台也好，只要是搜索框的地方，就能够获取精准流量；\n15、有时候免费的流量也挺香的，反正不花钱，所有能够提交网址的地方，都去提交一遍；\n\n唐唐：\n16. 如果利润高确定性强，及时上付费流量，避免同行用付费广告位挤压你的生存空间；\n17. 做好planB，发展不可能一直顺风顺水，做好随时被推倒重来的准备；\n\n弹弹心：\n18、如果已经有了成功产品经历，可以多了解点信息，要是啥产品也没搞过，可以随便做点，啥也别看；\n\n吴俊驰：\n19、不要想清楚再做，而是做了才想清楚；\n\n哥飞：\n20、请从今天开始动手，不要想着等明天再说。时间是最大的魔法，你把产品做好了，即使放在那里不管，只要产品能够正常运转，都会有源源不断的用户进来。",
+    "links": [],
+    "avatar": ""
+  },
+  "2115036497300840510": {
+    "text": "然而事实是，我们新站上全新的页面，也能在新词里拿到排名。\n甚至如果我们一直能够提供比较好的服务且权重也在提升时，高权重内页抢不走我们新站的排名。\n典型例子是我们群友做的网站排到了谷歌前面。\n\n而如果是一个老词，已经有一定竞争的情况下，高权重内页的排名的确大多数时候能够比更低权重的网站更靠前。\n\n其实可以这样理解，一个已经在过去多年证明了上的页面质量都能达标的高权重老站，一个是更低权重的网站，你说最开始时，谷歌会选择信任谁呢？\n\n肯定是先看权重，之后积累到了足够多的用户行为数据后，再看体验，重新排名。",
+    "links": [],
+    "avatar": ""
+  },
+  "2115034000838545452": {
+    "text": "90%的点击率，为什么这么高？\n因为用户的这一次搜索，目的就是找到我这个网站，目的性极强，所以点击率就超高。 https://t.co/euq8COiYbQ",
+    "links": [
+      "https://t.co/euq8COiYbQ"
+    ],
+    "avatar": ""
+  },
+  "2115014018771697897": {
+    "text": "“谷歌一直在帮助用户挑选更好的网站”\n“在还没有更好的网站时，只能矮子里拔将军，选相对最优的给用户”\n如果你说你在做 SEO，但你不理解上面这两句话，你就做不好 SEO。",
+    "links": [],
+    "avatar": ""
+  },
+  "2114952774098063797": {
+    "text": "哥飞群友爱情故事：\n男生先进群，女生后进群 。\n女生进群后，乐观开朗积极分享，被男生看上了。\n男生约女生出去玩，后来两个人就在一起了，过上了男耕女织的生活。\n哦，不对，是男上站，女做自媒体的生活。 https://t.co/XK018Z6L1V",
+    "links": [
+      "https://t.co/XK018Z6L1V"
+    ],
+    "avatar": ""
+  },
+  "2114933609832628319": {
+    "text": "@ohmyyves @xmmxovo @JiangK82705 一开始少充一点，然后还可以多个网站共用额度。",
+    "links": [],
+    "avatar": ""
+  },
+  "2114924894958018569": {
+    "text": "不同类型网站 SEO 策略也会不一样，如我截图这个就是小网站的策略，不靠大量页面拿流量，而是靠少而精的页面拿流量，每一个页面拿到的关键词排名都比较靠前，所以点击率超高。\n\n如果你没有做过这类型网站，就会说，我的点击率只有百分之几，你的那么高，肯定是假的。\n\n那你看看图三，我也有点击率只有百分之几的站。至于说点击率更小的，但是曝光几十万几百万那种的，我没有，因为我不做那种海量页面网站，",
+    "links": [],
+    "avatar": ""
+  },
+  "2114922529873973559": {
+    "text": "@biquanzhuimeng6 GEO 也是 SEO 的一部分",
+    "links": [],
+    "avatar": ""
+  },
+  "2114912788191830116": {
+    "text": "Joker 属于那种比较低调，圈外人不了解，但是圈内人很认可的高手。 https://t.co/MD4C28mO7a",
+    "links": [
+      "https://t.co/MD4C28mO7a"
+    ],
+    "avatar": ""
+  },
+  "2114912736123732378": {
+    "text": "@ChainEpic Joker 属于那种比较低调，圈外人不了解，但是圈内人很认可的高手。",
+    "links": [],
+    "avatar": ""
+  },
+  "2114889092127477981": {
+    "text": "预告一下，社群要涨价了，明年1月1日零点开始执行新价格。\n\n目前的价格是2024年8月1日定的，已经执行两年多了。\n\n在这两年里，我们交付的服务已经升级了很多，不应该继续卖这个价格了。\n\n新价格会很贵，贵到大多数人接受不了。\n\n具体多少，到时候揭晓。",
+    "links": [],
+    "avatar": ""
+  },
+  "2114777878814715933": {
+    "text": "起初，没人信哥飞的。\n直到，没加社群，只看哥飞免费公众号都能赚到钱。\n人们，才意识到，自己到底错过了什么。 https://t.co/Cqmke8KVdR",
+    "links": [
+      "https://t.co/Cqmke8KVdR"
+    ],
+    "avatar": ""
+  },
+  "2114651902520799449": {
+    "text": "@HuntGooo 是的，十年看起来很长，但是在这样一年又一年中，就过去了。",
+    "links": [],
+    "avatar": ""
+  },
+  "2115316092302491757": {
+    "text": "赵长鹏（CZ）：今天，是历史上最适合创业的一天！\n\n强烈建议年轻人认真考虑创业。\n\n当然，未来也许会有更好的日子，但和过去任何时候相比，今天就是最好的时候。\n\n大的赛道已经非常清晰了：AI、区块链、互联网科技。",
+    "links": [],
+    "avatar": ""
+  },
+  "2115294108164247865": {
+    "text": "每天一个设计风格 · 10｜装饰艺术 Art Deco\n\n1922 年，沉睡三千年的图坦卡蒙墓被打开。没过多久，各地的海报和摩天大楼上，开始爬满阶梯纹与太阳放射线。\n\n三年后，巴黎办了一场装饰艺术博览会，Art Deco 这个名字从这传开。 https://t.co/ObsNLmQmDn",
+    "links": [
+      "https://t.co/ObsNLmQmDn"
+    ],
+    "avatar": ""
+  },
+  "2115292422867746869": {
+    "text": "@tig02295938 文章最后有一个完整的提示词，你把完整的提示词发给他，再加上我这几个视频下载下来给他，确定风格应该就能做出类似的了\n\n或者找你喜欢的视频下载下来发给他，他可以理解的",
+    "links": [],
+    "avatar": ""
+  },
+  "2115278128075411965": {
+    "text": "又薅羊毛了，AI 配乐工具 Sonilo 免费送 1 个月 Pro。\n\n配乐、音效都能用 AI 直接生成，还带商用授权。\n\n🔸 免费用户：送 1 个月 Pro\n🔸 付费用户：送 10 万积分，永不过期\n🔸 参与：关注 + 转发 + 评论原帖\n🔸 10 月 31 日截止https://t.co/MY64T2bNT1",
+    "links": [
+      "https://t.co/MY64T2bNT1"
+    ],
+    "avatar": ""
+  },
+  "2115262776826269962": {
+    "text": "大厂 AI 算法专家，今年 6 月裸辞，去做了 FDE。\n\n裸辞 → 交付近 20 个企业 FDE 案例 → 给吉利近 500 人做 FDE 培训\n\nFDE 每天干的活，就是钻进企业里，把 AI 真正落地到业务上。\n\n今天他公开了一个美妆项目的 FDE 全流程：海量多模态数据，八步洗成可信数据。\n\n想转 FDE https://t.co/D11vuHIgDl",
+    "links": [
+      "https://t.co/D11vuHIgDl"
+    ],
+    "avatar": ""
+  },
+  "2115247425405452765": {
+    "text": "牛顿说他站在巨人的肩膀上。 \n\n而今天的科学家，站在了 AI 的肩膀上。\n\n50 道没公开过的理论物理研究题，每道要专家算上一天。\n\n最强的 AI Agent 做对了 49 道，每道不到 3 美元。\n\n以后科学家可以把一天的推导交给 AI，把时间用来提出好问题。https://t.co/XIN3iSd0mA",
+    "links": [
+      "https://t.co/XIN3iSd0mA"
+    ],
+    "avatar": ""
+  },
+  "2115232076836270316": {
+    "text": "🔥绝了！Opus 5.5 + three.js，一个 HTML 写出一座会发光的幽谷。\n\n菌伞自生微光，溪水映着星点，远处有瀑布，空中浮着萤火。\n\n不是视频，是可以直接体验的网页 https://t.co/ec5bMtV1aj",
+    "links": [
+      "https://t.co/ec5bMtV1aj"
+    ],
+    "avatar": ""
+  },
+  "2115114732747477456": {
+    "text": "@JackChen100149 @cupid_best okok，我先用几天看看稳不稳",
+    "links": [],
+    "avatar": ""
+  },
+  "2115114547505983679": {
+    "text": "@notesofonex wish，要是过几天还没问题的话，就把它分享出来",
+    "links": [],
+    "avatar": ""
+  },
+  "2115085144302452850": {
+    "text": "从好莱坞到腾讯，再到裸辞All in AI，看看大佬们的来时路https://t.co/FrCGBCRcs5 https://t.co/guvQQGBMkp",
+    "links": [
+      "https://t.co/FrCGBCRcs5",
+      "https://t.co/guvQQGBMkp"
+    ],
+    "avatar": ""
+  },
+  "2115078463619260795": {
+    "text": "@Miles_Piscis 我先用一段时间，如果确定没问题的话，我再推荐给你\n\n现在推荐给你，我也不敢保证没问题",
+    "links": [],
+    "avatar": ""
+  },
+  "2115078436134006970": {
+    "text": "@cupid_best 我先用一段时间，如果确定没问题的话，我再推荐给你\n\n现在推荐给你，我也不敢保证没问题",
+    "links": [],
+    "avatar": ""
+  },
+  "2115063632342241663": {
+    "text": "@dragono64v 没想到这个视频这么感人，它遇到对的人了",
+    "links": [],
+    "avatar": ""
+  },
+  "2115060900080341348": {
+    "text": "每天一个设计风格 · 09｜新粗野主义 Neo-Brutalism\n\n最好的设计，往往看起来像“没设计过”。\n\n1952 年柯布西耶建马赛公寓，拆了模板连漆都不刷，水泥是什么样就给人看什么样；\n\n2021 年 Gumroad 改版，直接用黑粗线和高饱和色块，把当时流行了十年的“圆角毛玻璃”砸得稀碎。 https://t.co/gFa4bEjHxV",
+    "links": [
+      "https://t.co/gFa4bEjHxV"
+    ],
+    "avatar": ""
+  },
+  "2114638775536238866": {
+    "text": "@LonglinX @daluoseo 是啊，只看别人怎么说是没用的，要看别人怎么做。",
+    "links": [],
+    "avatar": ""
+  },
+  "2114604893482955200": {
+    "text": "@chinbayx 很多时候，误解都来自于片面信息，没有全面了解就下结论。",
+    "links": [],
+    "avatar": ""
+  },
+  "2114604649290621246": {
+    "text": "@Jedliu88 一开始发帖时没想这么多，后来发现订单还在增长，就发现不对劲了。",
+    "links": [],
+    "avatar": ""
+  },
+  "2114578550158495927": {
+    "text": "给大家添笑话了，后来发现是一个AI 写的代码，有一个漏洞，充值回调没有做好校验，被人伪造了回调，成功给他加积分了。已经紧急让 AI 写代码修复 Bug 了。 https://t.co/lSesMw8e6d",
+    "links": [
+      "https://t.co/lSesMw8e6d"
+    ],
+    "avatar": ""
+  },
+  "2114578520378876294": {
+    "text": "给大家添笑话了，后来发现是一个AI 写的代码，有一个漏洞，充值回调没有做好校验，被人伪造了回调，成功给他加积分了。已经紧急让 AI 写代码修复 Bug 了。",
+    "links": [],
+    "avatar": ""
+  },
+  "2114574219325620444": {
+    "text": "这充钱速度让我害怕，我们是正规产品呀。\n你一个刚注册的用户充那么多干嘛呀。\n现在还在一直继续充值，已经 23 个订单了，充了一万多刀了。 https://t.co/tQ8D4M97Ly",
+    "links": [
+      "https://t.co/tQ8D4M97Ly"
+    ],
+    "avatar": ""
+  },
+  "2114550221208420706": {
+    "text": "我很对不起 Fenng。\n十年前，Fenng 说开始创业了，我也发了一篇公众号文章说要开始创业了，第一个产品的方向是给程序员做搜索引擎，可以搜索任何技术问题，而且直接可以在搜索结果页面给出答案，而不是只给一个链接。\n当时跟 Fenng 微信交流完，他说他本来也准备先拿这个方向给团队练手的，既然我要做，他就不做了。\n可惜，当时我做了一段时间，迟迟没有推出产品，最后越拖越久，就没有下文了。\n其实我域名买好了，网站备案了，商标都申请下来了，无奈我当时想着一定要做出一个最完美的产品才发布出来，于是就一直难产。\n后来 Fenng 换了个方向练手，团队做了 Readhub 出来了，很好用，这个产品现在依然活着，有忠实用户，能赚钱。\n之后 Fenng 团队又做了一个爆款产品，那就是抽奖助手小程序，积累了几亿用户。\n再之后聚焦到主业医疗方向的数据积累，做了好几个好产品。\n真的很佩服！",
+    "links": [],
+    "avatar": ""
+  },
+  "2114550180666388853": {
+    "text": "我很对不起 Fenng。\n十年前，Fenng 说开始创业了，我也发了一篇公众号文章说要开始创业了，第一个产品的方向是给程序员做搜索引擎，可以搜索任何技术问题，而且直接可以在搜索结果页面给出答案，而不是只给一个链接。\n当时跟 Fenng 微信交流完，他说他本来也准备先拿这个方向给团队练手的，既然我要做，他就不做了。\n可惜，当时我做了一段时间，迟迟没有推出产品，最后越拖越久，就没有下文了。\n其实我域名买好了，网站备案了，商标都申请下来了，无奈我当时想着一定要做出一个最完美的产品才发布出来，于是就一直难产。\n后来 Fenng 换了个方向练手，团队做了 Readhub 出来了，很好用，这个产品现在依然活着，有忠实用户，能赚钱。\n之后 Fenng 团队又做了一个爆款产品，那就是抽奖助手小程序，积累了几亿用户。\n再之后聚焦到主业医疗方向的数据积累，做了好几个好产品。\n真的很佩服！",
+    "links": [],
+    "avatar": ""
+  },
+  "2114545493007319502": {
+    "text": "只有真的去用了才知道好不好，不用的话，是想不出来的，旧经验套不进新事物。 https://t.co/Dg3n1AOg0q",
+    "links": [
+      "https://t.co/Dg3n1AOg0q"
+    ],
+    "avatar": ""
+  },
+  "2114536772311076887": {
+    "text": "@XuMingjie_ 我们玩游戏，一开始先在新手村里打小怪，后来出新手村了，一路探索游历下去，不断成长，并不会停留在某个地方不动。\n新手学习上站赚钱也是这样的，先从容易的做起，先积累一些本钱，更重要的是积累经验，然后就可以去做更大的需求了。\n没有人会一直停留在新手村的。",
+    "links": [],
+    "avatar": ""
+  },
+  "2114535606546248150": {
+    "text": "@FanShifu 被小范围挖出没有啥问题，反正一定会被挖出，怕的是被拿出来讨论，吸引一大波非产品用户围观讨论，这里边可能会有一些坏种。",
+    "links": [],
+    "avatar": ""
+  },
+  "2114534804641505645": {
+    "text": "@loki_yan_seo 我们12月会搞线下活动，Loki 来吗？想邀请你来当分享嘉宾。",
+    "links": [],
+    "avatar": ""
+  },
+  "2114531048885502246": {
+    "text": "@ding98709897 其实你试试就知道了，我实际案例摆在这里，你都不相信，那只有你自己试了才能知道。\nhttps://t.co/IqzYe1OiI6",
+    "links": [
+      "https://t.co/IqzYe1OiI6"
+    ],
+    "avatar": ""
+  },
+  "2114530030424658312": {
+    "text": "@starkljm 任何一个正常的流量统计工具都有这个功能。",
+    "links": [],
+    "avatar": ""
+  },
+  "2114521895630758142": {
+    "text": "大家想看失败的案例，现在一个新鲜的失败案例来了。\n上周一凌晨一点上线到新产品到今天总共2K 的 UV，其中 ChatGPT 来了700个。\n但现在看来，是个失败的产品，因为一单没出。\n我现在总结下来，没有付费的最可能原因，跟产品形态有关。\n我没有做成生成器形态，而是做成了以内容资讯为主，附带生成器。\n这样不管是 GPT 的理解，还是用户的需求，都是另一种类型的流量，是来获取信息的，他们本身没有生成需求。我又想起彪哥前几天说的，不要做 Agent，要做表单。\n因为表单最直观，最容易理解，用户很明确自己要的是什么，一看表单就知道要怎么操作。整个互联网，流量是有很多的，我们需要搞清楚，我们要的是什么样的流量，我们的目的是变现，那就要用户有明确生成需求到流量，这样才可能会有人付费。\n其他的流量，除非量特别大，可以靠广告变现，不然其实没必要去搞。",
+    "links": [],
+    "avatar": ""
+  },
+  "2114365769010262312": {
+    "text": "@grok https://t.co/WC6QxlrHpx\nhttps://t.co/xaXPut7LQH\nhttps://t.co/loBEFhDW3j\n给你看三个我公开收入的匿名网站，你可以分析一下",
+    "links": [
+      "https://t.co/WC6QxlrHpx",
+      "https://t.co/xaXPut7LQH",
+      "https://t.co/loBEFhDW3j"
+    ],
+    "avatar": ""
+  },
+  "2114351304478998691": {
+    "text": "@alanblogsooo 大家的积分消耗都差不多，是充值积分，会员更优惠，可以多很多。",
+    "links": [],
+    "avatar": ""
+  },
+  "2114343729331097676": {
+    "text": "很多人以为做社群很轻松，只要收了钱就行。\n他们没想过，收了钱是要做交付的。\n\n举例，我下午的小课堂，从15点讲到了21点，六个小时，一边思考一边手打一边发出，总共手打了9700+汉字，所有字符加起来超过11000。\n\n而类似的小课堂，三年时间，我开了差不多300次。\n当然，不是每一次都这么长，有长有短。\n\n小课堂的目的，就是不断迭代更新最新的内容给大家，让大家可以紧跟形势，做好网站，搞到流量，最终养网站防老。",
+    "links": [],
+    "avatar": ""
+  },
+  "2114331337348006159": {
+    "text": "@web30708 @CoderJeffLee 那你觉得，谁先讲了这些话题呢？",
+    "links": [],
+    "avatar": ""
+  },
+  "2114326967399149728": {
+    "text": "@web30708 @CoderJeffLee 你有没有发现，有些内容居然高度相似",
+    "links": [],
+    "avatar": ""
+  },
+  "2115049128241803569": {
+    "text": "@akokoi1 好像滑动到一些地方有bug，就显示不全了 https://t.co/U3rnep5PEd",
+    "links": [
+      "https://t.co/U3rnep5PEd"
+    ],
+    "avatar": ""
+  },
+  "2115046489135403388": {
+    "text": "@ifbulls2017 对的，我往期还分享了很多小红书案例的，你在我主页搜”赚钱很简单“就能找到",
+    "links": [],
+    "avatar": ""
+  },
+  "2115046166413148271": {
+    "text": "@jiba_da78602 在X上听说最推荐的就是DMIT，还有搬瓦工了，其他的我就了解不多了，似乎良莠不齐",
+    "links": [],
+    "avatar": ""
+  },
+  "2115044636108693857": {
+    "text": "@ifbulls2017 动起来，这东西没啥门槛，重点还是做流量的坚持",
+    "links": [],
+    "avatar": ""
+  },
+  "2115044253965627541": {
+    "text": "@jiba_da78602 我也想自建，但是DMIT没货，现在用以前的梯子加上静态住宅IP",
+    "links": [],
+    "avatar": ""
+  },
+  "2115041171852673243": {
+    "text": "@ysjemmm @amigolu_ 那不好说，你有没有用多家方案测试？\n\n我这个网络测下来是百分百 https://t.co/Ve3cxHlDKh",
+    "links": [
+      "https://t.co/Ve3cxHlDKh"
+    ],
+    "avatar": ""
+  },
+  "2115039935438975259": {
+    "text": "@jiba_da78602 没有，我特意买的好IP，正常来说，你网络好的话，应该是不会弹这个kyc的",
+    "links": [],
+    "avatar": ""
+  },
+  "2115039717687542184": {
+    "text": "赚钱很简单啊\n\nAI一键生成的天赋测试，2313粉，1.88的价格卖了5.7万份\n\n收入10万+ https://t.co/fWEozoIBOJ",
+    "links": [
+      "https://t.co/fWEozoIBOJ"
+    ],
+    "avatar": ""
+  },
+  "2115026218357870855": {
+    "text": "@ysjemmm @amigolu_ 我直接淘宝买的，最好的方式还是用苹果来订阅，不过我没有苹果手机订阅不了\n\n你弹kyc可能主要是你的网络问题",
+    "links": [],
+    "avatar": ""
+  },
+  "2115004753528955081": {
+    "text": "@miles_mazy 麦总看到自己的视频也笑了，看一遍笑一遍",
+    "links": [],
+    "avatar": ""
+  },
+  "2114997165563199616": {
+    "text": "@amigolu_ 20刀的，不过不够用，我想再加一个新号，但是我又怕封号，先稳定用几天之后我再加一两个Pro账号，用Max的话，好像很容易封号",
+    "links": [],
+    "avatar": ""
+  },
+  "2114996898146947203": {
+    "text": "这才是工匠级别的数字造物\n\n当别人用 Opus 5.5 在 three.js 里狂造整个世界时\n有人花了整整七天，只磨出一只人眼\n\n没有贴图，没有模型，没有照片\n161 次提交、4455 行 GLSL、约 400 个参数\n每一道范围，都来自公开的人体测量数据\n\n光穿过角膜的两层表面，才落到虹膜上\n绕着转时，虹膜会真的位移——不是视差贴图在骗人\n光一扫过来，瞳孔自己缩小\n点一下，还能换一双新的虹膜、换一层肤色\n\n它把光学课里那些只能背的公式\n直接变成了指尖可转、眼前可感的微观世界\n\n代码即造物\n想象力伸到哪里，屏幕上的现实就跟到哪里 https://t.co/SRHBzFowKt",
+    "links": [
+      "https://t.co/SRHBzFowKt"
+    ],
+    "avatar": ""
+  },
+  "2114973998698357180": {
+    "text": "Anthropic 招股书里最逆天的一笔账：\n\n高达 7% 的营收，靠的是“封号不退款”\n\n官方甚至坦白 8、9 月专门加大了封号力度\n\n合着我们被封掉的 Pro 会员和 API 余额，全变成它上市冲业绩的纯利润了……",
+    "links": [],
+    "avatar": ""
+  },
+  "2114955776339132876": {
+    "text": "@thomaszhou_ 不确定是不是，不过他做的视频倒还挺不错的",
+    "links": [],
+    "avatar": ""
+  },
+  "2115308830192247134": {
+    "text": "卧槽，我微信被风控了，我在微信被强制下线之后，直接额截不了图了... 电脑重启了、配置调了都没用\n\n我看也有网友遇到这个情况，说是 agent 操控微信了，我寻思我妹有啊😭 冤枉我了腾子",
+    "links": [],
+    "avatar": ""
+  },
+  "2115293527420858473": {
+    "text": "可以想想，为什么别人需要你像交简历一样给一份介绍呢？因为对你不够了解，再深一层，对你信任基础还不够，所以需要你提供更多的上下文，后续交付起来不一定是好事（我的经验之谈） https://t.co/DpLpPlV5nj",
+    "links": [
+      "https://t.co/DpLpPlV5nj"
+    ],
+    "avatar": ""
+  },
+  "2115293458147754453": {
+    "text": "@liangzhu_AI 你可以想想，为什么别人需要你像交简历一样给一份介绍呢？因为对你不够了解，再深一层，对你信任基础还不够，所以需要你提供更多的上下文，后续交付起来不一定是好事（我的经验之谈）",
+    "links": [],
+    "avatar": ""
+  },
+  "2115293114168696972": {
+    "text": "RT @sundyme: 形象地展示了如何去除 UI 设计中的 AI 味。 https://t.co/ZgeBmE4KL2",
+    "links": [
+      "https://t.co/ZgeBmE4KL2"
+    ],
+    "avatar": ""
+  },
+  "2115292724098433120": {
+    "text": "@Suchen_ai 杂活很好使，非写代码场景我感觉都可以，computer use 不错",
+    "links": [],
+    "avatar": ""
+  },
+  "2115250046870687908": {
+    "text": "最近和各个行业的朋友聊 FDE 聊的比较多，有挺多输入的，分享一些我的主观看法 https://t.co/3nfc24a34l",
+    "links": [
+      "https://t.co/3nfc24a34l"
+    ],
+    "avatar": ""
+  },
+  "2115133676703092840": {
+    "text": "@Yunn260414 一个明显的是，封面有问题，没有给人点开的理由",
+    "links": [],
+    "avatar": ""
+  },
+  "2115110386974458106": {
+    "text": "@dnybow 没有偷跑啊，你看 tibo 的 x，你可以自己体验一下",
+    "links": [],
+    "avatar": ""
+  },
+  "2115110188336439370": {
+    "text": "@zihengli163713 平时一般都在 cafe/书店，今天纯尝试，祛魅了",
+    "links": [],
+    "avatar": ""
+  },
+  "2115110047315554518": {
+    "text": "@zihengli163713 我之前是早鸟价买的，我记得应该是读书节或者flomo 周年什么的时候，会做活动便宜一些。不过价格倒是还好了，买 AI 不都是一个月几百的吗哈哈哈，而且 flomo 我认为它提供的价值，完全值这个钱。mcp 真的很好用，直接根据你的所思所想来生成 user profile、memory。",
+    "links": [],
+    "avatar": ""
+  },
+  "2115109460058468433": {
+    "text": "@yanxi067 还是馋 arc，dia 感觉还是有些不太一样，我不太需要那么多 ai",
+    "links": [],
+    "avatar": ""
+  },
+  "2115079852277768211": {
+    "text": "我用了几个月了，目前是纯拿来当 agent 浏览器，我自己还是用 arc 顺手，真的找不到替代品 https://t.co/hsasRmYQ6i",
+    "links": [
+      "https://t.co/hsasRmYQ6i"
+    ],
+    "avatar": ""
+  },
+  "2115069526337581491": {
+    "text": "GPT 6.1 Terra 的体验太好了，多快好省！",
+    "links": [],
+    "avatar": ""
+  },
+  "2115021957586685959": {
+    "text": "已祛魅！鸟屎拉的我包和车上都是！擦老半天！💩💩 https://t.co/bIpBwTzy5d",
+    "links": [
+      "https://t.co/bIpBwTzy5d"
+    ],
+    "avatar": ""
+  },
+  "2114991063244943661": {
+    "text": "@liangzhu_AI 我反正是众安最卡的，笑死，，那个人脸给我卡的那个下午都崩溃了",
+    "links": [],
+    "avatar": ""
+  },
+  "2114990664752767223": {
+    "text": "@ikai_freedom 确实，假设你做 AI 博主的话，你坚持发个一二十个、30 个，怎么都有人来找你合作了。而且，现在一个商单你赚个小几千那是没问题的，怎么都有的赚。你可能还去帮别人分分佣，或者有一些流量激励，就是怎么样你都能赚到 3000 块活下来。",
+    "links": [],
+    "avatar": ""
+  },
+  "2114990274166583727": {
+    "text": "还能顺便直接拍口播视频，甚好甚好",
+    "links": [],
+    "avatar": ""
+  },
+  "2114990271532609989": {
+    "text": "探索自由办公边界，今天骑小电驴来五缘湾公园试试✌️ https://t.co/T7JOnrF14f",
+    "links": [
+      "https://t.co/T7JOnrF14f"
+    ],
+    "avatar": ""
+  },
+  "2114989810054295675": {
+    "text": "@rahsrwggbf5k Yes, that's why I'm always surprised by flomo.",
+    "links": [],
+    "avatar": ""
+  },
+  "2114989383312904549": {
+    "text": "@saorinbow 挺准的呀，按关键词捞还有相关搜索什么的",
+    "links": [],
+    "avatar": ""
+  },
+  "2113560277790900325": {
+    "text": "虽然跟我没关系。 但是我的感受和风总一样，\n舒服了 https://t.co/xDupbfU8ns",
+    "links": [
+      "https://t.co/xDupbfU8ns"
+    ],
+    "avatar": ""
+  },
+  "2114883442915881200": {
+    "text": "Anthropic 递交了招股书，AI 圈终于有一家头部公司愿意把账本摊开给大家看了。\n\n上半年收入 163 亿美元，相当于 2023 年全年收入的将近 400 倍，这种增长曲线放在任何行业都像是画错了。\n\n同一个时间段净亏 807 亿美元，乍一看像是公司快不行了，其实是因为公司太值钱了。\n\n这里面有 724 https://t.co/dRqyPprR0O",
+    "links": [
+      "https://t.co/dRqyPprR0O"
+    ],
+    "avatar": ""
+  },
+  "2114507855684649459": {
+    "text": "没想到中国AI还有制裁别人的一天 https://t.co/y8xPlNXLhu",
+    "links": [
+      "https://t.co/y8xPlNXLhu"
+    ],
+    "avatar": ""
+  },
+  "2113879672400625688": {
+    "text": "Kimi这波在X上的宣发被Elshayib这个老哥撕烂了。\n\n这其实是国内科技厂商的基本操作，但在老外这里不好使。和国外KOL打磨营销方案时非常费时费力的，并且要熟悉这个群体和平台的价值观与沟通方式。 https://t.co/Rd8BxhL0nl",
+    "links": [
+      "https://t.co/Rd8BxhL0nl"
+    ],
+    "avatar": ""
+  },
+  "2113642012822188281": {
+    "text": "@chirs_pro - 交代好分辨率以后，让Claude 给出几个不同的渲染参数配置，先渲染几张静帧，你自己选择那个画质能接受、渲染时长最短的；\n- 要求Claude开多个浏览器同时渲染；\n- 强调在本地环境渲染。",
+    "links": [],
+    "avatar": ""
+  },
+  "2115255050217918734": {
+    "text": "🚨 17个政府和欧盟呼吁民众在家储备物资。以下是各自发生了什么： \n 🇯🇵 日本 — 至少3天分，如果可能的话1周分；请求将于11月2日向全国民众发出（FNN）\n 🇬🇧 英国 — 3天分的水和食物，于10月22日启动新的“Be Ready”运动 \n🇩🇪 德国 — 3到10天分（本列表中要求最多的），即使3天分也会“成为巨大的帮助” \n🇸🇪",
+    "links": [],
+    "avatar": ""
+  },
+  "2115171964897628380": {
+    "text": "韩后王敢敢那篇“当老板为什么一定要株连九族”，很多老板看完会沉默。法律上是有限责任公司，现实里一融资、一贷款，担保就从老板本人延伸到配偶、父母、子女，甚至八竿子打不着的亲属。企业赚钱是个人本事，出了事就一家人跟着上黑名单，坐高铁、坐飞机都受限。银行要风控可以理解，但已经签了个人和配",
+    "links": [],
+    "avatar": ""
+  },
+  "2115169524752474349": {
+    "text": "政治家和尿布都必须经常更换，两者都是出于同样的原因。——萧伯纳",
+    "links": [],
+    "avatar": ""
+  },
+  "2115166569181352310": {
+    "text": "经济和政治权力集中在同一双手中是通往暴政的可靠配方。——米尔顿·弗里德曼",
+    "links": [],
+    "avatar": ""
+  },
+  "2115165600708444440": {
+    "text": "你的直觉没有错；不安的本能和感觉并非偶然。这是你的身体在告诉你有些事情不对劲。不要冒险忽视它。——保罗·科埃略",
+    "links": [],
+    "avatar": ""
+  },
+  "2115164087331999795": {
+    "text": "看到人民一旦被奴役，就突然陷入对自由如此深刻的遗忘，以至于他们无法醒悟来重新夺回它，这真是令人难以置信：他们服务得如此尽心，如此心甘情愿，看起来仿佛他们不仅失去了自由，而且还赢得了奴役。\nÉtienne de La Boétie，《论自愿的奴役》",
+    "links": [],
+    "avatar": ""
+  },
+  "2115163577908908265": {
+    "text": "你可以透過投票，讓自己的國家走向共產主義。\n但你絕對無法再透過投票，讓國家擺脫共產主義。\n美國，這就是給你們的警告。",
+    "links": [],
+    "avatar": ""
+  },
+  "2115162264126763285": {
+    "text": "人类最大的问题是他们那该死的国家信仰。他们不信任自己，却盲目信任一个由政客和官僚组成的机构，这个机构靠他们的钱生活，并想决定他们的生活。\n他们称之为安全，我称之为奴性。",
+    "links": [],
+    "avatar": ""
+  },
+  "2115141801782727080": {
+    "text": "历史是一个巨大的试验实验室，结果显而易见：资本主义越自由，人们的生活就越好。\n——莱纳·齐特尔曼",
+    "links": [],
+    "avatar": ""
+  },
+  "2115141265587360178": {
+    "text": "永远不要将教育与智力混为一谈，你可能拥有博士学位，却依然是个白痴。——理查德·费曼",
+    "links": [],
+    "avatar": ""
+  },
+  "2115107056478769360": {
+    "text": "Manus在用AI改造自己，把组织从“对人友好”改成“向Agent暴露接口”。人不再一行行盯代码，而是把需求原文丢给Agent，只看证据、看结果。",
+    "links": [],
+    "avatar": ""
+  },
+  "2115086608357601422": {
+    "text": "人在海外，不等于判断已经跨过国境。刷到很多次，不是独立验证；一条消息是真的，也不代表适用于你。真正的信息优势，不是先看到标题，而是先看懂条件。可以让别人筛选信息，别让别人替你省略判断。 https://t.co/JvQaKG7RMT",
+    "links": [
+      "https://t.co/JvQaKG7RMT"
+    ],
+    "avatar": ""
+  },
+  "2115051799564415483": {
+    "text": "真正实现人生跨越的人，愿意承受三种痛苦：思考的痛苦、清空的痛苦、延迟满足的痛苦。真正的吃苦，是吃大脑的苦。 #成长 #认知 #马方说管理 https://t.co/dEXSZWGB4R",
+    "links": [
+      "https://t.co/dEXSZWGB4R"
+    ],
+    "avatar": ""
+  },
+  "2115045069736562931": {
+    "text": "Peter Sellis说他带团队参考恐怖组织的架构，这话听着刺耳，却正好打到了大多数公司的软肋。\n\n现代企业管理把“协作”供成了图腾，天天拉通，周周对齐，跨部门评审，好像不开会业务就会停摆。结果是信息过载、责任稀释，真正干活的时间被会议吃光。",
+    "links": [],
+    "avatar": ""
+  },
+  "2114828354775847400": {
+    "text": "选票是\n统计出来的\n不是选出来的 https://t.co/3jZ7ddcqBy",
+    "links": [
+      "https://t.co/3jZ7ddcqBy"
+    ],
+    "avatar": ""
+  },
+  "2114827957038715026": {
+    "text": "特朗普认为巴西昨天的总统选举“看起来像是被操纵的”\n“这对世界来说是一个可怕的景象。你知道，选举必须是无可争议的。而在我看来，它看起来非常糟糕。” https://t.co/wscO2aHTgr",
+    "links": [
+      "https://t.co/wscO2aHTgr"
+    ],
+    "avatar": ""
+  },
+  "2114827558017777860": {
+    "text": "看来巴西司法是独立的\n巴西还有希望 https://t.co/8PZVCaLZeI",
+    "links": [
+      "https://t.co/8PZVCaLZeI"
+    ],
+    "avatar": ""
+  },
+  "2114814421013049653": {
+    "text": "资本在用投票说话\n股价代表对未来的预期 https://t.co/0YRExI3RAa",
+    "links": [
+      "https://t.co/0YRExI3RAa"
+    ],
+    "avatar": ""
+  },
+  "2114806171852795917": {
+    "text": "帮助穷人最好的方法是降低税收，并让储蓄、投资和创造就业机会毫无障碍地继续下去。——默里·罗斯巴德",
+    "links": [],
+    "avatar": ""
+  },
+  "2114805687054410195": {
+    "text": "老川说巴西照搬了乔·拜登的那套操作手册。 https://t.co/C517dKDQcw",
+    "links": [
+      "https://t.co/C517dKDQcw"
+    ],
+    "avatar": ""
+  },
+  "2114803470284861540": {
+    "text": "我不认为质疑是一种疾病，而认为盲目的服从、缺乏怀疑和缺少质疑才是疾病。——巴鲁赫·斯宾诺莎",
+    "links": [],
+    "avatar": ""
+  },
+  "2114761615912403274": {
+    "text": "收入按海外算，生活成本却按国内想象，最后拼出一种不存在的富裕。真正能跨境使用的，是付完当地账单后可以安排的结余，不是整份工资。别拿汇率给自己发第二份工资，也别拿别人的年薪，替自己决定留还是回。 https://t.co/vBjPLGPISC",
+    "links": [
+      "https://t.co/vBjPLGPISC"
+    ],
+    "avatar": ""
+  },
+  "2114751140894023937": {
+    "text": "税不是查出来的，\n是发展出来的。\n为什么做不到呢？ https://t.co/zjRFhj6GZu",
+    "links": [
+      "https://t.co/zjRFhj6GZu"
+    ],
+    "avatar": ""
+  },
+  "2114748918646833479": {
+    "text": "投票的人什么也决定不了。数票的人决定一切。——斯大林",
+    "links": [],
+    "avatar": ""
+  },
+  "2114746806684852435": {
+    "text": "新《对外投资管理办法》12月1日生效，旧版同时废止。信号很清楚：出海要高质量，也要讲安全。发改委这次把2017年的《企业境外投资管理办法》整体换掉，新办法76条，投资者明确包括企业、其他组织和居民个人。思路是分类分级、全过程监管：敏感国家和地区、敏感行业走核准，非敏感项目走备案，通过境外",
+    "links": [],
+    "avatar": ""
+  },
+  "2114746254471094370": {
+    "text": "人类短视的悲哀\n走了进去就很难走出来\n在某个地方更是 https://t.co/R3pQKGHAN9",
+    "links": [
+      "https://t.co/R3pQKGHAN9"
+    ],
+    "avatar": ""
+  },
+  "2114745423805997479": {
+    "text": "Context Not Control。在 AI Native 的组织里，人不再手把手教 Agent",
+    "links": [],
+    "avatar": ""
+  },
+  "2114745415073460285": {
+    "text": "字节 Seed 的问题，根子不在算力，也不在蒸馏，而在组织。赛马机制适合短期冲刺，不适合 LLM 这种需要长期踏实做数据、做基建的事。研究员追求 novelty 和主导权，OKR",
+    "links": [],
+    "avatar": ""
+  },
+  "2114689274654208015": {
+    "text": "重要的事都紧急，不重要的事可以不做。太多人一辈子做紧急不重要的事，所以穷忙活、瞎忙活。 #时间管理 #管理 #马方说管理 https://t.co/ppk3dCI5rw",
+    "links": [
+      "https://t.co/ppk3dCI5rw"
+    ],
+    "avatar": ""
+  },
+  "2114543479242260614": {
+    "text": "美国的富足并非通过对公共利益的公开牺牲所创造，而是由自由人凭借他们的生产天才、追求自身个人利益并创造自己的私人财富所成就——Ayn Rand",
+    "links": [],
+    "avatar": ""
+  },
+  "2114405790211621001": {
+    "text": "在森林中\n没有善恶之分；\n只有强者与弱者。\n羊的道德，不会改变狼的信念！\n——马基雅维利",
+    "links": [],
+    "avatar": ""
+  },
+  "2114405384609759323": {
+    "text": "知识分子最善于背叛，因为他们最善于为此辩解。——列宁",
+    "links": [],
+    "avatar": ""
+  },
+  "2114402495393087715": {
+    "text": "在我看来，所有人中最聪明的是那个至少每个月对自己说一次‘傻瓜’的人。\n——费奥多尔·陀思妥耶夫斯基",
+    "links": [],
+    "avatar": ""
+  },
+  "2114387436252074468": {
+    "text": "别人找你借钱搞事业，说稳赚不赔，那为什么不拉你合伙一起发财？找你入股说前途无量，那为什么不自己借钱独享利润？借钱给他，赚了大头归他，亏了你得追债；入股他的公司，赚了未必分红，亏了本金归零。融资方式本身没问题，关键是想清楚：他为什么非要你出钱？",
+    "links": [],
+    "avatar": ""
+  },
+  "2114368006109245946": {
+    "text": "中国人出海打工，常听到一种割裂：老板和管理层夸你勤快、靠谱，底层本地同事却满肚子怨气。不是人家懒或嫉妒，而是你自降休息、抬高产出标准，压缩了别人的摸鱼空间和议价权。老板喜欢你，和同事防着你，是同一件事的两面。任何地方都一样：替老板省心的人，往往就是给同行上强度的人。勤奋是资产，也",
+    "links": [],
+    "avatar": ""
+  },
+  "2114367849275785454": {
+    "text": "很多公司爱讲国学、感恩、格局。本质是利给不了，才拿感情顶上。企业是价值交换，不是家。有责必须配权，尽责必须兑利。规则底座没立住就喊奉献，那是道德绑架；只谈钱不谈担当，又会变成一盘散沙。成熟组织先把权责利钉死，再让情怀当自愿上限，而不是对冲薪酬的标配义务。要求别人牺牲之前，先问自己 https://t.co/ASKoMpv8uF",
+    "links": [
+      "https://t.co/ASKoMpv8uF"
+    ],
+    "avatar": ""
+  },
+  "2114366005761941754": {
+    "text": "人们并不会让你失望。  \n你会失望，是因为你从一开始就看不清他们本来的面目。——马基雅维利",
+    "links": [],
+    "avatar": ""
+  },
+  "2114349212426994070": {
+    "text": "真理是那些渴望自由呼吸之人的氧气，而谎言则是弱者迷失其中的迷雾。——高尔基",
+    "links": [],
+    "avatar": ""
+  },
+  "2114343024964641207": {
+    "text": "你给大客户的不只是货，还有自己账上的时间。国内工厂要货款，海外买家有账期，差出来的钱由谁垫？大订单不一定是奖赏，也可能让你变成没收够利息的银行。营业额值得庆祝，回款能力才决定能不能继续。 https://t.co/NAaiL8OrJM",
+    "links": [
+      "https://t.co/NAaiL8OrJM"
+    ],
+    "avatar": ""
+  },
+  "2114326660665229809": {
+    "text": "就业首先和孩子有关，和专业无关。老板不要一个人，嘴上说\"专业不对口\"，心里是\"人不行\"。孩子比专业重要，比学历重要。 #就业 #教育 #马方说管理 https://t.co/pphJaiuWUb",
+    "links": [
+      "https://t.co/pphJaiuWUb"
+    ],
+    "avatar": ""
+  },
+  "2114114420976627800": {
+    "text": "RT @xestadominimo: “Hitler era socialista, por lo tanto todos los socialistas son Hitler”.\n\n- Elon Musk - https://t.co/4XwCWSnr1S",
+    "links": [
+      "https://t.co/4XwCWSnr1S"
+    ],
+    "avatar": ""
+  },
+  "2114102014758228175": {
+    "text": "新经济的发动机：\n官员抄家、富人补税、中产房贷、穷人社保、油税上涨、企业追税、商户罚款、主播查税、外贸查汇、跨境追缴、房东征税、房屋维修、土地收储、资产拍卖、银行降息、医保控费、退休延迟、交通罚款、停车收费、证券印花税、矿权出让、公共资源收费、国资盘活、股权划转、国资控股、特许经营权出让、欠债强执。",
+    "links": [],
+    "avatar": ""
+  },
+  "2114092489649131846": {
+    "text": "« 极度合群需要大量的虚伪。»\n\n   安布罗斯·皮尔斯。",
+    "links": [],
+    "avatar": ""
+  },
+  "2114033918114697502": {
+    "text": "一碗米饭肉汤凝聚了金家三代人70年的辛勤努力 https://t.co/bbRwyZJ1eX",
+    "links": [
+      "https://t.co/bbRwyZJ1eX"
+    ],
+    "avatar": ""
+  },
+  "2114032805521092807": {
+    "text": "只要你公开站队川普，整个主流商业圈就会立刻对你关门。 https://t.co/i3KEU9HOza",
+    "links": [
+      "https://t.co/i3KEU9HOza"
+    ],
+    "avatar": ""
+  },
+  "2114030891211063466": {
+    "text": "机器未来可能承担目前由人类执行的大部分体力劳动，包括建造房屋、种植粮食，甚至进行外科手术。 https://t.co/LAKdzk0mxo",
+    "links": [
+      "https://t.co/LAKdzk0mxo"
+    ],
+    "avatar": ""
+  },
+  "2114030742791459145": {
+    "text": "工资单上只有一个名字，不代表养家的只有一个人。海外家庭有些“省下的钱”，其实是另一人用时间、职业和休息补上的。真正的体面，是没人需要先把自己耗尽，才能托住另一个人的体面。 https://t.co/kM3UI5Xup1",
+    "links": [
+      "https://t.co/kM3UI5Xup1"
+    ],
+    "avatar": ""
+  },
+  "2113964268227899596": {
+    "text": "大学毕业后要把脑袋清空。朋友都是二十年前认识的，说明你二十年没成长。人的成长，就是不停地换朋友。 #成长 #认知 #马方说管理 https://t.co/nFp5VO8kJC",
+    "links": [
+      "https://t.co/nFp5VO8kJC"
+    ],
+    "avatar": ""
+  },
+  "2113821854658101693": {
+    "text": "如果民主党赢得国会后试图对埃隆·马斯克下手，他将保护马斯克。 https://t.co/94eXtjiUAX",
+    "links": [
+      "https://t.co/94eXtjiUAX"
+    ],
+    "avatar": ""
+  },
+  "2113821567926898997": {
+    "text": "如果你不拍手，或者在重要时刻打盹，你将会被标记为不遵循最高领导人的反革命分子 https://t.co/xyNm9Q6f77",
+    "links": [
+      "https://t.co/xyNm9Q6f77"
+    ],
+    "avatar": ""
+  },
+  "2113821128678347194": {
+    "text": "能逃离中国，就已经赚到了\n能死在自由世界，那就死而无憾了！ https://t.co/KJIdhmuahh",
+    "links": [
+      "https://t.co/KJIdhmuahh"
+    ],
+    "avatar": ""
+  },
+  "2113779772488638648": {
+    "text": "祝贺这位同学，拿到了PR：\n这应该是我给您写的第三封信。昨天，我的加拿大永久居民身份终于获批了，很想和您分享这个好消息。\n我大概从2020年开始听您的直播，后来下定决心，于2023年1月卖掉房子，2月来到加拿大。这三年多里，我在魁省从学习法语开始，到用法语完成一年半的专业课程，再到考出理想的法语成绩。今年7月，我获得了联邦移民邀请，随后搬到安省，如今终于顺利成为加拿大永久居民。\n回头看这一路，我很庆幸当初听了您的直播，有勇气下定决心，卖掉房子，走出来看看。那笔钱也给了我底气，让我能够支撑自己走到今天。\n这期间确实吃了不少苦。每当觉得艰难时，我总会想起您说过的那句“移民就是逃难”，然后安慰自己：我的处境已经比逃难好太多了，再坚持一下。就这样，一步一步走到了现在。\n我知道，拿到PR并不是终点，而是另一个开始。但那颗一直悬着的心，总算安定下来了。\n我也想让您知道，这些年来，听您直播的人里，一定有许多人像我一样，因为您的话而有了改变。有些是想法上的转变，有些则真正迈出了改变人生的一步。也许您并不认识我们，但您的分享，确实在我们的人生中留下了深刻的影响。\n谢谢您这些年来的陪伴与分享。愿您带给他人的勇气和善意，也化作福报，回到您和家人的生活里。\n\n祝您和家人一切顺利，健康、平安、幸福！",
+    "links": [],
+    "avatar": ""
+  },
+  "2113735068753744365": {
+    "text": "窃国当然是最大的投资\n所谓窃国大盗 https://t.co/1ObBeOX5I0",
+    "links": [
+      "https://t.co/1ObBeOX5I0"
+    ],
+    "avatar": ""
+  },
+  "2113646479558443224": {
+    "text": "移民最容易漏算的，不是搬家费，是十年资历到了新市场要重新定价。找到工作，不等于找回职业位置；再买一张文凭，也未必补得上真正的门槛。签证打开的是边境，职业重建仍要自己完成。 https://t.co/KdZUIH6X1w",
+    "links": [
+      "https://t.co/KdZUIH6X1w"
+    ],
+    "avatar": ""
+  },
+  "2113645566739595382": {
+    "text": "社会主义并不能产生一个无阶级的社会；相反，它产生了所有社会中最分层的社会，分为两个阶级：强大的和无力的；官僚精英和被操纵的大众。——玛格丽特·撒切尔 -",
+    "links": [],
+    "avatar": ""
+  },
+  "2113639025185796575": {
+    "text": "RT @trumpchinese1: 天主教大主教和主教们在椭圆形办公室与特朗普总统一起祈祷\n https://t.co/ZvbjUXWEIE",
+    "links": [
+      "https://t.co/ZvbjUXWEIE"
+    ],
+    "avatar": ""
+  },
+  "2113603469856674000": {
+    "text": "一个家族想实现阶层跨越，一定要有一代人成为祭品，否则代代为奴。这一代人养父母，却不指望孩子养老。 #阶层跨越 #家庭 #马方说管理 https://t.co/2MxNATNZFd",
+    "links": [
+      "https://t.co/2MxNATNZFd"
+    ],
     "avatar": ""
   }
 }
