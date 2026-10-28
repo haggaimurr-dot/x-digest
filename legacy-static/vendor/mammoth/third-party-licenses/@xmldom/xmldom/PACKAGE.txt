@@ -1,2 +1,0 @@
-@xmldom/xmldom 0.8.15
-License: MIT

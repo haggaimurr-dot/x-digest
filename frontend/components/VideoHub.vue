@@ -109,6 +109,7 @@
           <button v-for="tab in tabs" :key="tab.key" type="button" class="chip"
             :class="{ active: activeTab === tab.key }" role="tab" :aria-selected="activeTab === tab.key"
             @click="activeTab = tab.key">{{ t(tab.label) }}（{{ tabCounts[tab.key] }}）</button>
+          <button type="button" class="chip" :class="{ active: watchLaterOnly }" :aria-pressed="watchLaterOnly" @click="watchLaterOnly = !watchLaterOnly">🕒 稍后观看（{{ watchLaterCount }}）</button>
         </div>
 
         <!-- 空状态 -->
@@ -123,7 +124,7 @@
             <span class="yt-channel-name">{{ grp.name }}</span><span class="yt-section-count">（{{ grp.videos.length }}）</span>
           </button>
           <template v-if="!collapsedChannels.has(grp.id)">
-          <article v-for="v in grp.videos" :key="v.id" class="post-card yt-video-card">
+          <article v-for="v in grp.videos" :key="v.id" class="post-card yt-video-card" :class="{ 'is-watched': !!v.watched_at }">
             <!-- 左：缩略图 + 简介；右：标题、时间、标签 -->
             <div class="yt-left">
               <a :href="v.url" target="_blank" rel="noopener" :title="t('yt.watchOnYouTube')" class="yt-thumb">
@@ -161,6 +162,10 @@
                 </li>
               </ul>
             </div>
+            <div class="yt-watch-row">
+              <button class="btn btn-sm" type="button" :aria-pressed="!!v.watched_at" @click="toggleWatched(v)">{{ v.watched_at ? '✓ 已看' : '标记已看' }}</button>
+              <button class="btn btn-sm" type="button" :aria-pressed="!!v.watch_later" @click="toggleWatchLater(v)">{{ v.watch_later ? '移出稍后观看' : '🕒 稍后观看' }}</button>
+            </div>
             <!-- AI 摘要：整行放在卡片模块下方（不在右侧栏内），点按展开/收起，默认收起。 -->
             <button v-if="videoKind(v) !== 'playlist'" class="yt-summary-toggle" type="button" :aria-expanded="openSummary.has(v.id)" @click="toggleSummary(v)">
               <span>✨ {{ openSummary.has(v.id) ? t('yt.aiSummaryHide') : t('yt.aiSummary') }}</span>
@@ -182,9 +187,14 @@
                     <ul class="yt-sum-points"><li v-for="(k, ki) in sum.key_points" :key="'k' + ki">{{ k }}</li></ul>
                   </template>
                   <h3 class="yt-sum-h">{{ t('yt.aiChapters') }}</h3>
+                  <!-- 点章节时间：在这里内嵌播放器并跳到该时间点 -->
+                  <div v-if="playerSrc[v.id]" class="yt-embed">
+                    <iframe :ref="el => setPlayerEl(v.id, el)" :src="playerSrc[v.id]" title="player" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen />
+                    <button class="btn btn-sm" type="button" @click="closePlayer(v.id)">关闭播放器</button>
+                  </div>
                   <ol v-if="sum.chapters.length" class="yt-chapters">
                     <li v-for="c in sum.chapters" :key="'c' + c.start" class="yt-chapter">
-                      <a class="yt-ch-time" :href="watchAt(v, c.start)" target="_blank" rel="noopener" :title="t('yt.aiJumpTo', { time: clock(c.start) })">{{ clock(c.start) }}</a>
+                      <a class="yt-ch-time" :href="watchAt(v, c.start)" target="_blank" rel="noopener" :title="t('yt.aiJumpTo', { time: clock(c.start) })" @click.prevent="playAt(v, c.start)">{{ clock(c.start) }}</a>
                       <div class="yt-ch-body">
                         <div class="yt-ch-title">{{ c.title }}</div>
                         <p v-if="c.summary" class="yt-ch-sum">{{ c.summary }}</p>
@@ -269,6 +279,9 @@ import { videoTags, descResources, linkParts } from '~/utils/videoTags'
 import { ApiError } from '~/composables/types'
 import { relativeTime, shanghaiTime, shanghaiDayBound, trunc40 } from '~/composables/useFormat'
 import { useScrollLock } from '~/composables/useScrollLock'
+import { followSummary } from '~/utils/summaryStream'
+import { embedUrl, seekMessage } from '~/utils/embedPlayer'
+import { apiBase } from '~/composables/useApi'
 
 const store = useStore()
 // One page for every video platform (YouTube, Bilibili): the API routes
@@ -405,7 +418,38 @@ const tabCounts = computed(() => {
   for (const v of filteredExceptKind.value) counts[videoKind(v)]++
   return counts
 })
-const filtered = computed(() => filteredExceptKind.value.filter(v => videoKind(v) === activeTab.value))
+const filtered = computed(() => filteredExceptKind.value.filter(v => videoKind(v) === activeTab.value && (!watchLaterOnly.value || v.watch_later)))
+// 章节跳转：内嵌播放器。油管已打开时用 postMessage seekTo（不重载），
+// B 站 iframe 没有跳转 API，只能带 t= 重设 src。
+const playerSrc = ref<Record<string, string>>({})
+const playerEls = new Map<string, HTMLIFrameElement>()
+function setPlayerEl (id: string, el: any) { if (el) playerEls.set(id, el as HTMLIFrameElement); else playerEls.delete(id) }
+function playAt (v: YTVideo, start: number) {
+  const el = playerEls.get(v.id)
+  if (P === 'yt' && el?.contentWindow && playerSrc.value[v.id]) {
+    el.contentWindow.postMessage(seekMessage(start), '*')
+    return
+  }
+  playerSrc.value = { ...playerSrc.value, [v.id]: embedUrl(P, v.id, start) }
+}
+function closePlayer (id: string) {
+  const next = { ...playerSrc.value }
+  delete next[id]
+  playerSrc.value = next
+}
+// 已看 / 稍后观看（PATCH /{yt|bili}/videos/{id}），乐观更新，失败回滚。
+const watchLaterOnly = ref(false)
+const watchLaterCount = computed(() => filteredExceptKind.value.filter(v => v.watch_later).length)
+async function toggleWatched (v: YTVideo) {
+  const prev = v.watched_at
+  v.watched_at = prev ? '' : new Date().toISOString()
+  try { await store.setVideoState(v.id, { watched: !prev }, P) } catch (e: any) { v.watched_at = prev; showToast(errText(e, '保存失败')) }
+}
+async function toggleWatchLater (v: YTVideo) {
+  const prev = !!v.watch_later
+  v.watch_later = !prev
+  try { await store.setVideoState(v.id, { watch_later: !prev }, P) } catch (e: any) { v.watch_later = prev; showToast(errText(e, '保存失败')) }
+}
 // Topic tags from title + description (utils/videoTags.ts), cached per
 // video text; the tag chips list every tag present, most used first.
 const tagCache = new Map<string, string[]>()
@@ -476,7 +520,20 @@ function setSummary (sum: YTSummary) { summaries.value = { ...summaries.value, [
 function failSummary (v: YTVideo, msg: string) {
   setSummary({ video_id: v.id, lang: lang.value, status: 'failed', summary: summaryOf(v.id)?.summary || '', key_points: summaryOf(v.id)?.key_points || [], chapters: summaryOf(v.id)?.chapters || [], source: summaryOf(v.id)?.source || '', transcript_lang: summaryOf(v.id)?.transcript_lang || '', model: '', error: msg })
 }
+// Pending: wait for the server push over SSE; poll every 4s only when the
+// stream fails.
+const streaming = new Set<string>()
 function schedulePoll (v: YTVideo) {
+  const key = sumKey(v.id)
+  if (streaming.has(key) || pollTimers.has(key)) return
+  const l = lang.value
+  if (!store.mock.value && followSummary(`${apiBase()}/${P}/videos/${encodeURIComponent(v.id)}/summary/stream?lang=${l}`, (sum) => { setSummary(sum); if (sum.status !== 'pending') streaming.delete(key) }, () => { streaming.delete(key); pollSummary(v) })) {
+    streaming.add(key)
+    return
+  }
+  pollSummary(v)
+}
+function pollSummary (v: YTVideo) {
   const key = sumKey(v.id)
   if (pollTimers.has(key)) return
   const l = lang.value
@@ -485,9 +542,9 @@ function schedulePoll (v: YTVideo) {
     try {
       const sum = await store.getYTSummary(v.id, l, P)
       setSummary(sum)
-      if (sum.status === 'pending' && l === lang.value) schedulePoll(v)
+      if (sum.status === 'pending' && l === lang.value) pollSummary(v)
     } catch (err: any) {
-      if (l === lang.value) schedulePoll(v)
+      if (l === lang.value) pollSummary(v)
     }
   }, 4000))
 }
@@ -674,3 +731,10 @@ onMounted(async () => {
   finally { loading.value = false }
 })
 </script>
+
+<style scoped>
+.yt-video-card.is-watched { opacity: .6; }
+.yt-embed { margin: 6px 0 10px; }
+.yt-embed iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 10px; margin-bottom: 6px; background: #000; }
+.yt-watch-row { display: flex; gap: 6px; margin: 8px 0; flex-wrap: wrap; }
+</style>

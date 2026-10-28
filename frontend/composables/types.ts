@@ -22,6 +22,8 @@ export interface Post {
   published_at: string
   is_long?: boolean
   show_flowchart?: boolean | null
+  // Manual 复刻 switch: null/undefined = automatic (kind / keyword rules).
+  replica_enabled?: boolean | null
   tags?: string[]
   steps?: Step[]
   // AI post type from cmd/digest ("" = not classified) and link explanations.
@@ -93,6 +95,8 @@ export interface YTVideo {
   description?: string | null, published_at: string, thumbnail_url?: string | null,
   url: string, created_at: string,
   kind?: 'video' | 'short' | 'live' | 'playlist', duration?: number, live_status?: string
+  // Watch state (PATCH /{yt|bili}/videos/{id}): watched_at "" = not watched.
+  watched_at?: string, watch_later?: boolean
 }
 // AI summary of one video in one language (GET/POST /api/v1/yt/videos/{id}/summary).
 export interface YTSummaryChapter { start: number, title: string, summary: string }
@@ -108,6 +112,9 @@ export interface XRefreshAccount {
   username: string
   state: 'pending' | 'running' | 'done' | 'error'
   since?: string
+  // Posts that failed (for 「重试失败」) and, on a retry job, the ids retried.
+  failed_ids?: string[]
+  retry_ids?: string[]
   found: number
   added: number
   skipped: number
@@ -124,3 +131,12 @@ export interface XRefreshJob {
   added?: number
   accounts: XRefreshAccount[]
 }
+
+// GET/POST /api/v1/repos/sync-all (background job).
+export interface RepoSyncJob {
+  running: boolean, total: number, done: number, synced: number, failed: number, rate_limited: number,
+  waiting_until?: string, started_at?: string, finished_at?: string
+}
+
+// Saved filter view of the X daily page (/api/v1/views).
+export interface SavedView { id: string, name: string, filter: unknown, sort_order: number }

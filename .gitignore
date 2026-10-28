@@ -10,3 +10,6 @@ frontend/.nuxt/
 frontend/.output/
 backend/xdigest-api
 backend/xdigest-import
+frontend/coverage/
+backend/xdigest-maint
+backend/*.exe

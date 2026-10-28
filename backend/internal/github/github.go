@@ -17,7 +17,9 @@
 //
 // Rate limiting: X-RateLimit-Remaining/Reset are read on every response.
 // A 403 with 0 remaining means the caller must keep the old row untouched
-// (Result.RateLimited == true) and, for sync-all, stop immediately.
+// (Result.RateLimited == true). Pacing, backoff and ETag revalidation live
+// in ratelimit.go; the background sync-all waits for the reset instead of
+// stopping.
 //
 // The token comes only from the GITHUB_TOKEN environment variable. It is
 // never written to disk, never logged, and never included in errors.
@@ -74,7 +76,7 @@ type Client struct {
 // NewFromEnv builds a client reading GITHUB_TOKEN from the environment.
 func NewFromEnv() *Client {
 	return &Client{
-		HTTP:    &http.Client{Timeout: requestTimeout},
+		HTTP:    &http.Client{Timeout: requestTimeout, Transport: newLimitedTransport(nil)},
 		Token:   os.Getenv("GITHUB_TOKEN"),
 		BaseURL: defaultBaseURL,
 	}

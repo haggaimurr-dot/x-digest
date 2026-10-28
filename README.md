@@ -3,7 +3,7 @@
 个人用的信息流整理站：把关注的 X 博主、GitHub 仓库、YouTube / B 站频道的内容集中起来，
 整理成可检索、可打标签、可按步骤「复刻」的中文日报。AI 摘要只在用户点击时生成，采集流程不自动生成。
 
-技术栈：**Nuxt 4（Vue 3）前端 + Go 后端 + MariaDB**。原纯静态站已于 2026-10-24 迁移，旧代码保留在 `legacy-static/`。
+技术栈：**Nuxt 4（Vue 3）前端 + Go 后端 + MariaDB**。原纯静态站已于 2026-10-24 迁移；旧代码已从工作树删除，保存在 tag `legacy-static-final`（`git show legacy-static-final:legacy-static/index.html`，或 `git checkout legacy-static-final -- legacy-static` 取回整个目录用于回滚）。
 
 ## 功能一览
 
@@ -33,7 +33,6 @@ avatars/          作者头像（前端 public/avatars 有同一份副本）
 scripts/          append_raw_posts.py：按 id 去重追加原文
 tests/            test_raw_posts_dedup.py
 deploy/           部署脚本、systemd 单元、nginx vhost
-legacy-static/    迁移前的静态站（只作参考 / 回滚）
 ```
 
 ## 本地开发
@@ -68,6 +67,13 @@ cd frontend && npm install && npm run dev   # http://127.0.0.1:18091，/api 代�
 | `GITHUB_TOKEN` | GitHub 细粒度只读 PAT（可选；未配时每小时 60 次） |
 | `YT_DLP_BIN` / `YT_HTTP_PROXY` | yt-dlp 路径 / 代理 |
 | `BILI_API_BASE` / `BILI_HTTP_PROXY` / `BILIBILI_SESSDATA` | B 站接口地址 / 代理 / 登录 Cookie（可选） |
+| `API_TOKEN` | 写接口令牌：所有 POST/PUT/PATCH/DELETE 需带 `X-API-Token`（或 `Authorization: Bearer`），否则 401；页面遇到 401 会弹框输入并存本机。未设置时不校验（仅限本地开发） |
+| `AI_DAILY_LIMIT` | 全站每日 AI 请求上限（摘要、导入、更新帖子、翻译），超出 429；0 / 未设置 = 不限 |
+| `SUMMARY_CONCURRENCY` | AI 摘要同时运行数（1–16，默认 2） |
+| `REFRESH_INTERVAL` | 自动「更新帖子」间隔（如 `6h`，最少 10m）；未设置 = 关闭 |
+| `REPO_SYNC_INTERVAL` | 仓库自动同步间隔，默认 `24h`；`0` = 关闭。发现新 Release 时顶栏铃铛提醒 |
+| `ATTACHMENT_QUOTA_MB` | 附件总容量上限，超出 413；未设置 = 不限 |
+| `COMMENTS_ENABLED` | 视频热门评论 worker 与接口，默认关闭（接口返回 410） |
 
 ## X 日报数据流
 

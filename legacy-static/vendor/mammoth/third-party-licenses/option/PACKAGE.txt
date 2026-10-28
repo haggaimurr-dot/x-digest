@@ -1,2 +1,0 @@
-option 0.2.4
-License: BSD-2-Clause

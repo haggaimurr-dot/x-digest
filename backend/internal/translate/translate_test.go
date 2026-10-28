@@ -51,7 +51,7 @@ type mockRelay struct {
 	calls    int
 	batches  int
 	singles  int
-	failNext int // number of upcoming calls that return HTTP 500
+	failNext int  // number of upcoming calls that return HTTP 500
 	batchBad bool // if true, batch calls return non-JSON content
 }
 
@@ -164,10 +164,10 @@ func TestNeedsTranslation(t *testing.T) {
 		{"", "en", false},
 		{"   ", "en", false},
 		{"hello", "en", false},       // already English
-		{"你好", "en", true},         // Chinese -> English
-		{"你好 hello", "en", true},   // mixed -> English
+		{"你好", "en", true},           // Chinese -> English
+		{"你好 hello", "en", true},     // mixed -> English
 		{"hello", "zh-CN", true},     // English -> Chinese
-		{"你好", "zh-CN", false},     // already Chinese
+		{"你好", "zh-CN", false},       // already Chinese
 		{"你好 hello", "zh-CN", false}, // mixed contains CJK -> as-is
 	}
 	for _, tc := range cases {

@@ -19,6 +19,7 @@ import (
 	"errors"
 	"log"
 	"net/http"
+	"os"
 	"strings"
 	"sync"
 	"time"
@@ -116,6 +117,27 @@ func (s *server) fetchComments(id string) bool {
 }
 
 var shanghaiTZ = time.FixedZone("CST", 8*3600)
+
+// COMMENTS_ENABLED (2026-10-28): the pages no longer show top comments, so
+// by default the comment workers do not start and /api/v1/{yt,bili}/comments
+// answer 410 Gone. Set COMMENTS_ENABLED=true to bring them back. Once it is
+// clear nobody needs them, the code and the *_video_comments tables can go.
+func commentsEnabled() bool {
+	switch strings.ToLower(os.Getenv("COMMENTS_ENABLED")) {
+	case "1", "true", "yes", "on":
+		return true
+	}
+	return false
+}
+
+func commentsHandler(h http.HandlerFunc) http.HandlerFunc {
+	if commentsEnabled() {
+		return h
+	}
+	return func(w http.ResponseWriter, r *http.Request) {
+		writeErr(w, 410, "GONE", "video comments are disabled (COMMENTS_ENABLED)")
+	}
+}
 
 func (s *server) handleYTComments(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {

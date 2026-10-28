@@ -13,8 +13,12 @@
           <template v-else>
             <img v-if="kind === 'image'" class="preview-image" :src="previewUrl" :alt="attachment.name" />
             <div v-else-if="kind === 'pdf'">
-              <p style="color:var(--text-muted);font-size:13px">{{ t('preview.pdfNote') }}</p>
-              <embed :src="previewUrl" type="application/pdf" style="width:100%;height:72vh" />
+              <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px">
+                <button class="btn btn-sm" type="button" :disabled="pdfPage <= 1" @click="pdfPage--">{{ t('preview.prevPage') }}</button>
+                <span>{{ t('preview.pageOf', { cur: pdfPage, total: pdfPages }) }}</span>
+                <button class="btn btn-sm" type="button" :disabled="pdfPage >= pdfPages" @click="pdfPage++">{{ t('preview.nextPage') }}</button>
+              </div>
+              <canvas ref="pdfCanvas" class="preview-pdf" />
             </div>
             <div v-else-if="kind === 'md'" class="rich-content" v-html="htmlContent" />
             <pre v-else-if="kind === 'text'">{{ textContent }}</pre>
@@ -69,6 +73,8 @@
 import { marked } from 'marked'
 import mammoth from 'mammoth'
 import JSZip from 'jszip'
+import { safeHtml } from '~/utils/sanitize'
+import { sortSlideNames, slideImageTargets, relsPathFor } from '~/utils/pptx'
 import type { Attachment } from '~/composables/types'
 import { IMAGE_EXTS } from '~/composables/useStore'
 import { useScrollLock } from '~/composables/useScrollLock'
@@ -89,6 +95,32 @@ const zipEntries = ref<Array<{ name: string, size?: number, url?: string }>>([])
 const xlsxRows = ref<string[][]>([])
 const xlsxTruncated = ref(false)
 const panelRef = ref<HTMLElement | null>(null)
+// PDF: rendered page by page with pdf.js into a canvas (works on mobile,
+// where <embed> shows nothing, and with the sandbox CSP on downloads).
+const pdfCanvas = ref<HTMLCanvasElement | null>(null)
+const pdfPage = ref(1)
+const pdfPages = ref(0)
+let pdfDoc: any = null
+async function loadPdf (buf: ArrayBuffer) {
+  const pdfjs: any = await import('pdfjs-dist')
+  const worker = await import('pdfjs-dist/build/pdf.worker.min.mjs?url')
+  pdfjs.GlobalWorkerOptions.workerSrc = worker.default
+  pdfDoc = await pdfjs.getDocument({ data: new Uint8Array(buf) }).promise
+  pdfPages.value = pdfDoc.numPages
+}
+async function renderPdfPage () {
+  if (!pdfDoc || !pdfCanvas.value) return
+  const page = await pdfDoc.getPage(pdfPage.value)
+  const width = Math.min(pdfCanvas.value.parentElement?.clientWidth || 900, 1200)
+  const scale = width / page.getViewport({ scale: 1 }).width
+  const viewport = page.getViewport({ scale: scale * (window.devicePixelRatio || 1) })
+  const c = pdfCanvas.value
+  c.width = viewport.width
+  c.height = viewport.height
+  c.style.width = `${width}px`
+  await page.render({ canvasContext: c.getContext('2d')!, viewport }).promise
+}
+watch(pdfPage, () => { renderPdfPage() })
 const isFullscreen = ref(false)
 
 const ext = computed(() => (props.attachment.ext || props.attachment.name.split('.').pop() || '').toLowerCase())
@@ -179,7 +211,7 @@ async function parseXlsx (buf: ArrayBuffer): Promise<{ rows: string[][], truncat
       cells[idx] = t === 's' ? (shared[Number(v)] ?? v) : v
     }
     rows.push(cells)
-    if (rows.length >= 200) { truncated = true; break }
+    if (rows.length >= 2000) { truncated = true; break }
   }
   return { rows, truncated }
 }
@@ -190,11 +222,18 @@ onMounted(async () => {
   try {
     const e = ext.value
     if (IMAGE_EXTS.includes(e)) { kind.value = 'image'; return }
-    if (e === 'pdf') { kind.value = 'pdf'; return }
+    if (e === 'pdf') {
+      await loadPdf(await fetchBytes())
+      kind.value = 'pdf'
+      loading.value = false
+      await nextTick()
+      await renderPdfPage()
+      return
+    }
     if (['rar', '7z', 'tar', 'gz', 'tgz'].includes(e)) { kind.value = 'download'; return }
     if (e === 'md') {
       const buf = await fetchBytes()
-      htmlContent.value = marked.parse(new TextDecoder().decode(buf)) as string
+      htmlContent.value = safeHtml(marked.parse(new TextDecoder().decode(buf)) as string)
       kind.value = 'md'; return
     }
     if (['txt', 'csv'].includes(e)) {
@@ -205,7 +244,7 @@ onMounted(async () => {
     if (e === 'docx') {
       const buf = await fetchBytes()
       const r = await mammoth.convertToHtml({ arrayBuffer: buf })
-      htmlContent.value = r.value
+      htmlContent.value = safeHtml(r.value)
       kind.value = 'docx'; return
     }
     if (e === 'xlsx') {
@@ -218,16 +257,19 @@ onMounted(async () => {
     if (e === 'pptx') {
       const buf = await fetchBytes()
       const zip = await JSZip.loadAsync(buf)
-      const slideNames = Object.keys(zip.files).filter(n => /^ppt\/slides\/slide\d+\.xml$/.test(n)).sort()
+      const slideNames = sortSlideNames(Object.keys(zip.files))
       const list: Array<{ text: string, images: string[] }> = []
+      const blobUrls = new Map<string, string>() // one object URL per media file
       for (const name of slideNames) {
         const xml = await zip.files[name].async('string')
         const images: string[] = []
-        // Best-effort: embed all media images on every slide (SPEC: text + images paging).
-        const media = Object.keys(zip.files).filter(n => /^ppt\/media\//.test(n))
-        for (const m of media) {
-          const blob = await zip.files[m].async('blob')
-          images.push(URL.createObjectURL(blob))
+        // Only the images this slide references (slideN.xml.rels → ../media/…).
+        const rels = zip.file(relsPathFor(name))
+        for (const target of rels ? slideImageTargets(await rels.async('string')) : []) {
+          const f = zip.file(target)
+          if (!f) continue
+          if (!blobUrls.has(target)) blobUrls.set(target, URL.createObjectURL(await f.async('blob')))
+          images.push(blobUrls.get(target)!)
         }
         list.push({ text: slideTexts(xml), images })
       }
@@ -257,6 +299,7 @@ onMounted(async () => {
   } finally { loading.value = false }
 })
 onBeforeUnmount(() => {
+  pdfDoc?.destroy()
   document.removeEventListener('fullscreenchange', onFullscreenChange)
   document.removeEventListener('keydown', onKeydown)
 })
@@ -270,6 +313,7 @@ onBeforeUnmount(() => {
 .preview-header { display: flex; gap: 8px; align-items: center; padding: 12px 14px; border-bottom: 1px solid var(--border); }
 .preview-title { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 700; }
 .preview-body { overflow: auto; padding: 14px; }
+.preview-pdf { display: block; max-width: 100%; margin: 0 auto; background: #fff; }
 .preview-image { display: block; max-width: 100%; max-height: 76vh; margin: 0 auto; object-fit: contain; }
 .preview-panel:fullscreen .preview-image { max-height: calc(100vh - 130px); }
 .preview-footer { padding: 10px 14px; border-top: 1px solid var(--border); }

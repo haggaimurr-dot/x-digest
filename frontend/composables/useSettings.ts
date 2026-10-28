@@ -17,7 +17,8 @@ export const LS = {
   chipsTagsExpanded: 'x-digest-chips-tags-expanded',
   chipsCatsExpanded: 'x-digest-chips-cats-expanded',
   filtersCollapsed: 'x-digest-filters-collapsed',
-  replicas: 'xdigest.replicas' // mock-mode only; API mode uses the server
+  replicas: 'xdigest.replicas', // mock-mode only; API mode uses the server
+  apiToken: 'xdigest.apiToken' // API_TOKEN for write requests (see useApi)
 }
 
 function read (key: string): string | null {

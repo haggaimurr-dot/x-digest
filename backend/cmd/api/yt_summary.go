@@ -35,8 +35,8 @@ import (
 )
 
 const (
-	summaryConcurrency = 2
-	summaryJobTimeout  = 10 * time.Minute
+	defaultSummaryConcurrency = 2
+	summaryJobTimeout         = 10 * time.Minute
 	// summaryHTTPTimeout is per model call; a long final call over a
 	// big transcript can take a couple of minutes.
 	summaryHTTPTimeout = 3 * time.Minute
@@ -49,6 +49,18 @@ type summaryJobs struct {
 	sem      chan struct{}
 	mu       sync.Mutex
 	inflight map[string]bool
+	// waiters are closed when the key's job ends (SSE, summary_stream.go).
+	waiters map[string][]chan struct{}
+}
+
+// summaryConcurrency: SUMMARY_CONCURRENCY (1–16), default 2. Shared by
+// video and post summaries.
+func summaryConcurrency() int {
+	n := atoiDefault(os.Getenv("SUMMARY_CONCURRENCY"), defaultSummaryConcurrency)
+	if n < 1 || n > 16 {
+		return defaultSummaryConcurrency
+	}
+	return n
 }
 
 func newSummaryJobs(yt *youtube.Client) *summaryJobs {
@@ -61,7 +73,7 @@ func newSummaryJobs(yt *youtube.Client) *summaryJobs {
 	} else {
 		llm.Model = "deepseek-v4-pro"
 	}
-	return &summaryJobs{llm: llm, yt: yt, sem: make(chan struct{}, summaryConcurrency), inflight: map[string]bool{}}
+	return &summaryJobs{llm: llm, yt: yt, sem: make(chan struct{}, summaryConcurrency()), inflight: map[string]bool{}, waiters: map[string][]chan struct{}{}}
 }
 
 func (j *summaryJobs) running(key string) bool {
@@ -84,13 +96,37 @@ func (j *summaryJobs) claim(key string) bool {
 func (j *summaryJobs) release(key string) {
 	j.mu.Lock()
 	delete(j.inflight, key)
+	ws := j.waiters[key]
+	delete(j.waiters, key)
 	j.mu.Unlock()
+	for _, w := range ws {
+		close(w)
+	}
+}
+
+// done returns a channel closed when key's job ends (already closed when
+// none is running).
+func (j *summaryJobs) done(key string) <-chan struct{} {
+	ch := make(chan struct{})
+	j.mu.Lock()
+	defer j.mu.Unlock()
+	if !j.inflight[key] {
+		close(ch)
+		return ch
+	}
+	j.waiters[key] = append(j.waiters[key], ch)
+	return ch
 }
 
 func (s *server) handleYTVideoSub(w http.ResponseWriter, r *http.Request) {
 	rest := strings.TrimPrefix(r.URL.Path, "/api/v1/yt/videos/")
 	parts := strings.Split(rest, "/")
-	if len(parts) != 2 || parts[0] == "" || parts[1] != "summary" {
+	if len(parts) == 1 && parts[0] != "" {
+		patchVideoState(w, r, s.st, "yt", parts[0]) // see video_state.go
+		return
+	}
+	stream := len(parts) == 3 && parts[2] == "stream"
+	if (len(parts) != 2 && !stream) || parts[0] == "" || parts[1] != "summary" {
 		writeErr(w, 404, "NOT_FOUND", "not found")
 		return
 	}
@@ -110,6 +146,10 @@ func (s *server) handleYTVideoSub(w http.ResponseWriter, r *http.Request) {
 	}
 	if err != nil {
 		writeErr(w, 500, "DB_ERROR", err.Error())
+		return
+	}
+	if stream {
+		serveSummaryStream(w, r, s.sum, video.ID+"|"+lang, func() (model.YTSummary, error) { return s.currentSummary(id, lang) })
 		return
 	}
 	switch r.Method {

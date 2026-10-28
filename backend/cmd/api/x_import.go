@@ -2,6 +2,8 @@ package main
 
 import (
 	"context"
+	"database/sql"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"log"
@@ -28,6 +30,15 @@ import (
 //	     since its newest stored one, then each new post is imported as above.
 //	     202 job status, 409 when one is running.
 //	GET  /api/v1/x/refresh      job status (poll).
+//	POST /api/v1/x/refresh/retry re-import only the posts that failed in the
+//	     last job (no Grok call).
+//
+//	REFRESH_INTERVAL  automatic whole-watchlist refresh, e.g. "6h" (Go
+//	                  duration, at least 10m; unset = off).
+//
+// Jobs are saved to refresh_jobs after every account (refreshJobStore), so a
+// restart resumes a running job without asking Grok again for the accounts
+// already done, and GET still shows the last job after a restart.
 //
 // Short replies (< xpost.MinChars) are skipped by the refresh, like the
 // batch digest; an explicit single import always goes in.
@@ -35,12 +46,21 @@ import (
 //	DIGEST_MODEL     model for the AI fields (default TRANSLATE_MODEL)
 //	X_REFRESH_DAYS   look-back for an account with no stored post (default 30)
 
+// refreshJobStore persists refresh jobs (store.Store; a fake in tests).
+type refreshJobStore interface {
+	SaveRefreshJob(id string, running bool, state []byte) error
+	LatestRefreshJob() ([]byte, error)
+}
+
 type xImporter struct {
-	st  *store.Store
-	fx  *xpost.Fetcher
-	gk  *xpost.Finder
-	llm *translate.Client
-	fb  *translate.Client // Grok fallback when llm refuses a post
+	st   *store.Store
+	jobs refreshJobStore
+	// doAccount processes one account (refreshAccount; swapped in tests).
+	doAccount func(*refreshAccount)
+	fx        *xpost.Fetcher
+	gk        *xpost.Finder
+	llm       *translate.Client
+	fb        *translate.Client // Grok fallback when llm refuses a post
 
 	mu  sync.Mutex
 	job *refreshJob
@@ -52,12 +72,18 @@ func newXImporter(st *store.Store) *xImporter {
 	if m := os.Getenv("DIGEST_MODEL"); m != "" {
 		llm.Model = m
 	}
-	return &xImporter{st: st, fx: xpost.NewFetcherFromEnv(), gk: xpost.NewFinderFromEnv(), llm: llm, fb: xpost.NewGrokChatFromEnv()}
+	x := &xImporter{st: st, jobs: st, fx: xpost.NewFetcherFromEnv(), gk: xpost.NewFinderFromEnv(), llm: llm, fb: xpost.NewGrokChatFromEnv()}
+	x.doAccount = x.refreshAccount
+	return x
 }
 
 func (x *xImporter) register(mux *http.ServeMux) {
 	mux.HandleFunc("/api/v1/posts/import", x.handleImport)
 	mux.HandleFunc("/api/v1/x/refresh", x.handleRefresh)
+	mux.HandleFunc("/api/v1/x/refresh/retry", x.handleRetry)
+	if d, err := time.ParseDuration(os.Getenv("REFRESH_INTERVAL")); err == nil && d >= 10*time.Minute {
+		go x.scheduleRefresh(d, time.NewTicker(d).C)
+	}
 }
 
 // importRaw analyses one fetched post and stores it with its author.
@@ -153,9 +179,14 @@ type refreshAccount struct {
 	Skipped  int    `json:"skipped"`
 	Failed   int    `json:"failed"`
 	Error    string `json:"error,omitempty"`
+	// FailedIDs: posts whose fetch/import failed (for "retry failed").
+	FailedIDs []string `json:"failed_ids,omitempty"`
+	// RetryIDs: set on a retry job — only these posts are processed.
+	RetryIDs []string `json:"retry_ids,omitempty"`
 }
 
 type refreshJob struct {
+	ID         string            `json:"id"`
 	Running    bool              `json:"running"`
 	StartedAt  string            `json:"started_at"`
 	FinishedAt string            `json:"finished_at,omitempty"`
@@ -177,6 +208,104 @@ func (x *xImporter) snapshot() map[string]any {
 	}
 	return map[string]any{"running": x.job.Running, "started_at": x.job.StartedAt, "finished_at": x.job.FinishedAt,
 		"total": x.job.Total, "done": x.job.Done, "added": x.job.Added, "accounts": accs, "configured": x.gk.Configured()}
+}
+
+// startJob launches a refresh job over the given accounts (deduplicated,
+// "@" trimmed); false when one is already running.
+func (x *xImporter) startJob(accs []*refreshAccount) bool {
+	x.mu.Lock()
+	if x.job != nil && x.job.Running {
+		x.mu.Unlock()
+		return false
+	}
+	job := &refreshJob{ID: store.NewID("rj_"), Running: true, StartedAt: time.Now().UTC().Format(time.RFC3339)}
+	seen := map[string]bool{}
+	for _, a := range accs {
+		n := strings.TrimPrefix(strings.TrimSpace(a.Username), "@")
+		if n != "" && !seen[strings.ToLower(n)] {
+			seen[strings.ToLower(n)] = true
+			job.Accounts = append(job.Accounts, &refreshAccount{Username: n, State: "pending", Since: a.Since, RetryIDs: a.RetryIDs})
+		}
+	}
+	job.Total = len(job.Accounts)
+	x.job = job
+	x.mu.Unlock()
+	x.persist(job)
+	go x.runRefresh(job)
+	return true
+}
+
+// failedOfLastJob: accounts of the last finished job that have failed posts,
+// carrying those ids (and the original since) for a retry job.
+func (x *xImporter) failedOfLastJob() []*refreshAccount {
+	x.mu.Lock()
+	defer x.mu.Unlock()
+	var out []*refreshAccount
+	if x.job == nil || x.job.Running {
+		return nil
+	}
+	for _, a := range x.job.Accounts {
+		if len(a.FailedIDs) > 0 {
+			out = append(out, &refreshAccount{Username: a.Username, Since: a.Since, RetryIDs: append([]string{}, a.FailedIDs...)})
+		}
+	}
+	return out
+}
+
+// POST /api/v1/x/refresh/retry → 202 job re-importing the failed posts of
+// the last job; 422 NOTHING_TO_RETRY; 409 when a job is running.
+func (x *xImporter) handleRetry(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only POST")
+		return
+	}
+	if x.running() {
+		writeErr(w, 409, "CONFLICT", "已有更新任务在运行")
+		return
+	}
+	accs := x.failedOfLastJob()
+	if len(accs) == 0 {
+		writeErr(w, 422, "NOTHING_TO_RETRY", "上一次任务没有失败的帖子")
+		return
+	}
+	if x.llm == nil || !x.llm.Configured() {
+		writeErr(w, 503, "AI_NOT_CONFIGURED", "AI 未配置：服务器需要设置 TRANSLATE_API_KEY")
+		return
+	}
+	if !x.startJob(accs) {
+		writeErr(w, 409, "CONFLICT", "已有更新任务在运行")
+		return
+	}
+	writeJSON(w, 202, x.snapshot())
+}
+
+func (x *xImporter) running() bool {
+	x.mu.Lock()
+	defer x.mu.Unlock()
+	return x.job != nil && x.job.Running
+}
+
+// scheduleRefresh runs a whole-watchlist refresh every interval
+// (REFRESH_INTERVAL, e.g. "6h"; unset/0 = off). A tick while a job is
+// running is skipped.
+func (x *xImporter) scheduleRefresh(interval time.Duration, tick <-chan time.Time) {
+	for range tick {
+		if !x.gk.Configured() || !x.llm.Configured() {
+			continue
+		}
+		names, err := x.st.WatchUsernames()
+		if err != nil {
+			log.Printf("scheduled x refresh: %v", err)
+			continue
+		}
+		accs := make([]*refreshAccount, len(names))
+		for i, n := range names {
+			accs[i] = &refreshAccount{Username: n}
+		}
+		if x.startJob(accs) {
+			log.Printf("scheduled x refresh started (%d accounts, every %s)", len(accs), interval)
+		}
+	}
 }
 
 func (x *xImporter) handleRefresh(w http.ResponseWriter, r *http.Request) {
@@ -207,25 +336,14 @@ func (x *xImporter) handleRefresh(w http.ResponseWriter, r *http.Request) {
 			}
 			names = all
 		}
-		x.mu.Lock()
-		if x.job != nil && x.job.Running {
-			x.mu.Unlock()
+		accs := make([]*refreshAccount, 0, len(names))
+		for _, n := range names {
+			accs = append(accs, &refreshAccount{Username: n})
+		}
+		if !x.startJob(accs) {
 			writeErr(w, 409, "CONFLICT", "已有更新任务在运行")
 			return
 		}
-		job := &refreshJob{Running: true, StartedAt: time.Now().UTC().Format(time.RFC3339), Total: len(names)}
-		seen := map[string]bool{}
-		for _, n := range names {
-			n = strings.TrimPrefix(strings.TrimSpace(n), "@")
-			if n != "" && !seen[strings.ToLower(n)] {
-				seen[strings.ToLower(n)] = true
-				job.Accounts = append(job.Accounts, &refreshAccount{Username: n, State: "pending"})
-			}
-		}
-		job.Total = len(job.Accounts)
-		x.job = job
-		x.mu.Unlock()
-		go x.runRefresh(job)
 		writeJSON(w, 202, x.snapshot())
 	default:
 		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only GET, POST")
@@ -237,6 +355,8 @@ const (
 	refreshPostWorkers    = 3
 )
 
+// runRefresh processes the job's accounts that are not finished yet
+// (pending, or running when a restart cut them off).
 func (x *xImporter) runRefresh(job *refreshJob) {
 	queue := make(chan *refreshAccount)
 	var wg sync.WaitGroup
@@ -245,16 +365,19 @@ func (x *xImporter) runRefresh(job *refreshJob) {
 		go func() {
 			defer wg.Done()
 			for a := range queue {
-				x.refreshAccount(a)
+				x.doAccount(a)
 				x.mu.Lock()
 				job.Done++
 				job.Added += a.Added
 				x.mu.Unlock()
+				x.persist(job)
 			}
 		}()
 	}
 	for _, a := range job.Accounts {
-		queue <- a
+		if a.State == "pending" || a.State == "running" {
+			queue <- a
+		}
 	}
 	close(queue)
 	wg.Wait()
@@ -262,7 +385,59 @@ func (x *xImporter) runRefresh(job *refreshJob) {
 	job.Running = false
 	job.FinishedAt = time.Now().UTC().Format(time.RFC3339)
 	x.mu.Unlock()
+	x.persist(job)
 	log.Printf("x refresh: %d accounts, %d new posts", job.Total, job.Added)
+}
+
+// persist saves the job; a failed save only costs resumability.
+func (x *xImporter) persist(job *refreshJob) {
+	if x.jobs == nil {
+		return
+	}
+	x.mu.Lock()
+	b, err := json.Marshal(job)
+	running := job.Running
+	x.mu.Unlock()
+	if err == nil {
+		err = x.jobs.SaveRefreshJob(job.ID, running, b)
+	}
+	if err != nil {
+		log.Printf("x refresh: save job %s: %v", job.ID, err)
+	}
+}
+
+// resume loads the newest saved job at start-up. One still marked running
+// was cut off by a restart: its unfinished accounts start over (their
+// already-stored posts are skipped by PostExists), the done ones are kept.
+func (x *xImporter) resume() {
+	if x.jobs == nil {
+		return
+	}
+	b, err := x.jobs.LatestRefreshJob()
+	if err != nil {
+		if !errors.Is(err, sql.ErrNoRows) {
+			log.Printf("x refresh: load last job: %v", err)
+		}
+		return
+	}
+	var job refreshJob
+	if err := json.Unmarshal(b, &job); err != nil || job.ID == "" {
+		log.Printf("x refresh: bad saved job: %v", err)
+		return
+	}
+	x.mu.Lock()
+	x.job = &job
+	x.mu.Unlock()
+	if !job.Running {
+		return
+	}
+	for _, a := range job.Accounts {
+		if a.State == "running" {
+			a.State = "pending"
+		}
+	}
+	log.Printf("x refresh: resuming job %s (%d/%d accounts done)", job.ID, job.Done, job.Total)
+	go x.runRefresh(&job)
 }
 
 func (x *xImporter) set(f func()) {
@@ -272,6 +447,10 @@ func (x *xImporter) set(f func()) {
 }
 
 func (x *xImporter) refreshAccount(a *refreshAccount) {
+	if len(a.RetryIDs) > 0 {
+		x.retryAccount(a)
+		return
+	}
 	x.set(func() { a.State = "running" })
 	since, ok, err := x.st.LatestPostTime(a.Username)
 	if err != nil {
@@ -291,7 +470,24 @@ func (x *xImporter) refreshAccount(a *refreshAccount) {
 		return
 	}
 	x.set(func() { a.Found = len(ids) })
-	// Posts of one account go through a few at a time (fetch + AI ≈ 10 s each).
+	x.importIDs(ctx, a, ids, since)
+	x.set(func() { a.State = "done" })
+}
+
+// retryAccount re-imports only the posts that failed last time (no Grok
+// call): a.RetryIDs, with the same checks as a normal refresh.
+func (x *xImporter) retryAccount(a *refreshAccount) {
+	x.set(func() { a.State = "running"; a.Found = len(a.RetryIDs) })
+	since, _ := time.Parse(time.RFC3339, a.Since)
+	ctx, cancel := context.WithTimeout(context.Background(), 20*time.Minute)
+	defer cancel()
+	x.importIDs(ctx, a, a.RetryIDs, since)
+	x.set(func() { a.State = "done" })
+}
+
+// importIDs fetches, checks and imports the given post ids of one account,
+// a few at a time (fetch + AI ≈ 10 s each). Failures land in a.FailedIDs.
+func (x *xImporter) importIDs(ctx context.Context, a *refreshAccount, ids []string, since time.Time) {
 	sem := make(chan struct{}, refreshPostWorkers)
 	var wg sync.WaitGroup
 	for _, id := range ids {
@@ -326,12 +522,11 @@ func (x *xImporter) refreshAccount(a *refreshAccount) {
 				x.set(func() { a.Skipped++ })
 			default:
 				log.Printf("x refresh %s %s: %v", a.Username, id, err)
-				x.set(func() { a.Failed++; a.Error = err.Error() })
+				x.set(func() { a.Failed++; a.Error = err.Error(); a.FailedIDs = append(a.FailedIDs, id) })
 			}
 		}(id)
 	}
 	wg.Wait()
-	x.set(func() { a.State = "done" })
 }
 
 var errSkip = errors.New("skip")

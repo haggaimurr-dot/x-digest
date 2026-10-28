@@ -73,26 +73,30 @@ func (s *server) handlePostSummary(w http.ResponseWriter, r *http.Request, id st
 		}
 		// The stored original text wins; the body (page-side x-content.json)
 		// only fills in for posts imported before posts.text existed.
-		text, links := post.Text, post.Links
-		if strings.TrimSpace(text) == "" {
-			text, links = body.Text, body.Links
-		}
-		in := ytsummary.PostInput{Title: post.Title, Author: post.Author, Text: text, DigestSummary: post.Summary}
-		for _, l := range links {
-			if l = strings.TrimSpace(l); strings.HasPrefix(l, "http://") || strings.HasPrefix(l, "https://") {
-				in.Links = append(in.Links, l)
-			}
-		}
-		for _, st := range post.Steps {
-			in.Steps = append(in.Steps, st.Text)
-		}
-		s.startPostSummary(w, id, lang, in, r.URL.Query().Get("force") == "1")
+		s.startPostSummary(w, id, lang, postSummaryInput(post, body.Text, body.Links), r.URL.Query().Get("force") == "1")
 	default:
 		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only GET, POST")
 	}
 }
 
 func postJobKey(id, lang string) string { return "x:" + id + "|" + lang }
+
+// GET /api/v1/posts/{id}/summary/stream?lang=… (summary_stream.go).
+func (s *server) handlePostSummaryStream(w http.ResponseWriter, r *http.Request, id string) {
+	lang := r.URL.Query().Get("lang")
+	if lang == "" {
+		lang = translate.TargetZh
+	}
+	if !translate.ValidTarget(lang) {
+		writeErr(w, 422, "VALIDATION", "lang must be zh-CN or en")
+		return
+	}
+	if r.Method != http.MethodGet {
+		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only GET")
+		return
+	}
+	serveSummaryStream(w, r, s.sum, postJobKey(id, lang), func() (model.YTSummary, error) { return s.currentPostSummary(id, lang) })
+}
 
 func (s *server) currentPostSummary(id, lang string) (model.YTSummary, error) {
 	sum, ok, err := s.st.GetPostSummary(id, lang)
@@ -114,40 +118,130 @@ func (s *server) startPostSummary(w http.ResponseWriter, id, lang string, in yts
 		writeErr(w, 503, "AI_NOT_CONFIGURED", "AI 未配置：服务器需要设置 TRANSLATE_API_KEY")
 		return
 	}
-	reply := func(status int) {
-		cur, err := s.currentPostSummary(id, lang)
-		if err != nil {
-			writeErr(w, 500, "DB_ERROR", err.Error())
-			return
-		}
-		if cur.Status == "done" && status == 202 {
-			status = 200
-		}
-		writeJSON(w, status, map[string]any{"summary": cur})
+	status, err := s.queuePostSummary(id, lang, in, force)
+	if err != nil {
+		writeErr(w, 500, "DB_ERROR", err.Error())
+		return
 	}
+	cur, err := s.currentPostSummary(id, lang)
+	if err != nil {
+		writeErr(w, 500, "DB_ERROR", err.Error())
+		return
+	}
+	code := 202
+	if cur.Status == "done" && status != "started" {
+		code = 200
+	}
+	writeJSON(w, code, map[string]any{"summary": cur})
+}
+
+// queuePostSummary starts a background job unless none is needed: returns
+// "exists" (done or pending, without force), "running" (another request
+// holds the key) or "started".
+func (s *server) queuePostSummary(id, lang string, in ytsummary.PostInput, force bool) (string, error) {
 	if !force {
 		cur, err := s.currentPostSummary(id, lang)
 		if err != nil {
-			writeErr(w, 500, "DB_ERROR", err.Error())
-			return
+			return "", err
 		}
 		if cur.Status == "done" || cur.Status == "pending" {
-			reply(202)
-			return
+			return "exists", nil
 		}
 	}
 	key := postJobKey(id, lang)
 	if !s.sum.claim(key) {
-		reply(202)
-		return
+		return "running", nil
 	}
 	if err := s.st.StartPostSummary(id, lang); err != nil {
 		s.sum.release(key)
-		writeErr(w, 500, "DB_ERROR", err.Error())
-		return
+		return "", err
 	}
 	go s.runPostSummary(id, lang, key, in)
-	reply(202)
+	return "started", nil
+}
+
+// postSummaryInput builds the model input from the stored post: the text
+// from posts.text wins; the request body only fills in when it is empty.
+func postSummaryInput(post *model.Post, bodyText string, bodyLinks []string) ytsummary.PostInput {
+	text, links := post.Text, post.Links
+	if strings.TrimSpace(text) == "" {
+		text, links = bodyText, bodyLinks
+	}
+	in := ytsummary.PostInput{Title: post.Title, Author: post.Author, Text: text, DigestSummary: post.Summary}
+	for _, l := range links {
+		if l = strings.TrimSpace(l); strings.HasPrefix(l, "http://") || strings.HasPrefix(l, "https://") {
+			in.Links = append(in.Links, l)
+		}
+	}
+	for _, st := range post.Steps {
+		in.Steps = append(in.Steps, st.Text)
+	}
+	return in
+}
+
+// POST /api/v1/posts/summary/batch {ids: [...], lang, force}
+//
+//	→ 202 {queued, skipped, missing, results: {id: "started"|"exists"|"running"|"missing"}}
+//
+// Queues one summary job per post on the shared pool (SUMMARY_CONCURRENCY);
+// posts that already have a summary are skipped unless force. AI_DAILY_LIMIT
+// counts requests, so one batch is capped at maxBatchSummaries posts.
+const maxBatchSummaries = 30
+
+func (s *server) handlePostSummaryBatch(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only POST")
+		return
+	}
+	var body struct {
+		IDs   []string `json:"ids"`
+		Lang  string   `json:"lang"`
+		Force bool     `json:"force"`
+	}
+	if !decodeBody(w, r, &body) {
+		return
+	}
+	ids := splitList(strings.Join(body.IDs, ","))
+	if body.Lang == "" {
+		body.Lang = translate.TargetZh
+	}
+	switch {
+	case len(ids) == 0 || len(ids) > maxBatchSummaries:
+		writeErr(w, 422, "VALIDATION", "ids: 1 to 30 post ids")
+		return
+	case !translate.ValidTarget(body.Lang):
+		writeErr(w, 422, "VALIDATION", "lang must be zh-CN or en")
+		return
+	case !s.sum.llm.Configured():
+		writeErr(w, 503, "AI_NOT_CONFIGURED", "AI 未配置：服务器需要设置 TRANSLATE_API_KEY")
+		return
+	}
+	results := map[string]string{}
+	queued, skipped, missing := 0, 0, 0
+	for _, id := range ids {
+		post, err := s.st.GetPost(id)
+		if errors.Is(err, sql.ErrNoRows) {
+			results[id] = "missing"
+			missing++
+			continue
+		}
+		if err != nil {
+			writeErr(w, 500, "DB_ERROR", err.Error())
+			return
+		}
+		st, err := s.queuePostSummary(id, body.Lang, postSummaryInput(post, "", nil), body.Force)
+		if err != nil {
+			writeErr(w, 500, "DB_ERROR", err.Error())
+			return
+		}
+		results[id] = st
+		if st == "started" {
+			queued++
+		} else {
+			skipped++
+		}
+	}
+	writeJSON(w, 202, map[string]any{"queued": queued, "skipped": skipped, "missing": missing, "results": results})
 }
 
 func (s *server) runPostSummary(id, lang, key string, in ytsummary.PostInput) {

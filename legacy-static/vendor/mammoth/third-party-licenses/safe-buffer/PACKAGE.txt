@@ -1,2 +1,0 @@
-safe-buffer 5.1.2
-License: MIT

@@ -1,0 +1,53 @@
+# CI (2026-10-28): Go vet/test against a throwaway MariaDB (so the
+# XDIGEST_TEST_DSN store/API tests run instead of skipping), and the Nuxt
+# build + unit tests. The bot's posts.json commits (data/**) do not trigger it.
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+    paths-ignore: ['data/**', 'docs/**', '**/*.md']
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    services:
+      mariadb:
+        image: mariadb:10.11
+        env:
+          MARIADB_ROOT_PASSWORD: ci
+        ports: ['3306:3306']
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-interval=5s --health-timeout=5s --health-retries=20
+    defaults:
+      run:
+        working-directory: backend
+    env:
+      XDIGEST_TEST_DSN: root:ci@tcp(127.0.0.1:3306)/?parseTime=true&multiStatements=true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: backend/go.mod
+          cache-dependency-path: backend/go.sum
+      - run: go vet ./...
+      - run: test -z "$(gofmt -l cmd internal)" || (gofmt -l cmd internal; exit 1)
+      - run: go test ./...
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npm test
+      - run: npm run build

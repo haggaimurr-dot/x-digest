@@ -226,13 +226,17 @@ func (h *HubStore) ListVideos(f YTVideoFilter) ([]model.YTVideo, error) {
 	if f.DateTo != "" {
 		conds, args = append(conds, "v.published_at<DATE_ADD(?, INTERVAL 1 DAY)"), append(args, f.DateTo)
 	}
+	if f.WatchLater {
+		conds = append(conds, "v.watch_later=1")
+	}
 	where := ""
 	if len(conds) > 0 {
 		where = "WHERE " + strings.Join(conds, " AND ")
 	}
 	rows, err := h.DB.Query(h.q(`SELECT v.id,v.channel_id,COALESCE(c.name,''),v.kind,v.title,COALESCE(v.description,''),
 		DATE_FORMAT(v.published_at,'%Y-%m-%d %H:%i:%s'),v.duration,v.live_status,v.thumbnail_url,v.url,
-		DATE_FORMAT(v.created_at,'%Y-%m-%d %H:%i:%s')
+		DATE_FORMAT(v.created_at,'%Y-%m-%d %H:%i:%s'),
+		COALESCE(DATE_FORMAT(v.watched_at,'%Y-%m-%d %H:%i:%s'),''),v.watch_later
 		FROM {p}_videos v LEFT JOIN {p}_channels c ON c.channel_id=v.channel_id `+
 		where+` ORDER BY v.published_at DESC, v.id DESC LIMIT ?`), append(args, limit)...)
 	if err != nil {
@@ -245,7 +249,8 @@ func (h *HubStore) ListVideos(f YTVideoFilter) ([]model.YTVideo, error) {
 		var publishedAt sql.NullString
 		var duration sql.NullInt64
 		if err := rows.Scan(&v.ID, &v.ChannelID, &v.ChannelName, &v.Kind, &v.Title, &v.Description,
-			&publishedAt, &duration, &v.LiveStatus, &v.ThumbnailURL, &v.URL, &v.CreatedAt); err != nil {
+			&publishedAt, &duration, &v.LiveStatus, &v.ThumbnailURL, &v.URL, &v.CreatedAt,
+			&v.WatchedAt, &v.WatchLater); err != nil {
 			return nil, err
 		}
 		v.PublishedAt = publishedAt.String

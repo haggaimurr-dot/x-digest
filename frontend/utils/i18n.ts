@@ -52,6 +52,25 @@ export const DICT: Record<string, { zh: string, en: string }> = {
   'api.networkFailed': { zh: '网络请求失败', en: 'Network request failed' },
   'api.requestFailed': { zh: '请求失败 ({status})', en: 'Request failed ({status})' },
   'api.uploadFailed': { zh: '上传失败', en: 'Upload failed' },
+  'index.catRename': { zh: '改名', en: 'Rename' },
+  'index.catDelete': { zh: '删除类别', en: 'Delete category' },
+  'index.catRenamePrompt': { zh: '新的类别名称：', en: 'New category name:' },
+  'index.catNameTaken': { zh: '类别名称已存在', en: 'A category with this name already exists' },
+  'index.catRenameFailed': { zh: '改名失败', en: 'Rename failed' },
+  'index.catDeleted': { zh: '已删除类别「{name}」', en: 'Deleted category "{name}"' },
+  'index.catDeleteFailed': { zh: '删除失败', en: 'Delete failed' },
+  'index.catRestoreFailed': { zh: '撤销失败', en: 'Undo failed' },
+  'index.views': { zh: '筛选视图', en: 'Saved views' },
+  'index.viewsPick': { zh: '选择视图…', en: 'Pick a view…' },
+  'index.viewSave': { zh: '保存为视图', en: 'Save as view' },
+  'index.viewDelete': { zh: '删除视图', en: 'Delete view' },
+  'index.viewNamePrompt': { zh: '视图名称：', en: 'View name:' },
+  'index.viewSaved': { zh: '已保存视图「{name}」', en: 'Saved view "{name}"' },
+  'index.viewNameTaken': { zh: '视图名称已存在', en: 'A view with this name exists' },
+  'index.viewSaveFailed': { zh: '保存视图失败', en: 'Saving the view failed' },
+  'index.viewDeleteConfirm': { zh: '删除视图「{name}」？', en: 'Delete view "{name}"?' },
+  'index.undo': { zh: '撤销', en: 'Undo' },
+  'api.tokenPrompt': { zh: '此操作需要 API Token（服务器 API_TOKEN），请输入：', en: 'This action needs the API token (server API_TOKEN):' },
 
   // ---- settings (useSettings) ----
   'settings.webhookNotConfigured': { zh: '请先在设置中配置 Webhook URL 与 key', en: 'Configure the Webhook URL and key in Settings first' },
@@ -240,6 +259,8 @@ export const DICT: Record<string, { zh: string, en: string }> = {
   'repos.deleteFailed': { zh: '删除失败', en: 'Failed to delete' },
   'repos.refreshed': { zh: '{name} 已刷新', en: '{name} refreshed' },
   'repos.syncAllDone': { zh: '同步完成：成功 {ok}，失败 {fail}，限流 {limited}（共 {total}）', en: 'Sync done: {ok} succeeded, {fail} failed, {limited} rate-limited (total {total})' },
+  'repos.syncProgress': { zh: '已同步 {n}/{total}', en: 'Synced {n}/{total}' },
+  'repos.syncWaiting': { zh: '，等待限流至 {time}', en: ', waiting for rate limit until {time}' },
   'repos.syncAllFailed': { zh: '同步全部失败，已保留旧数据', en: 'Sync all failed, old data kept' },
   'repos.addGroupFailed': { zh: '新增分组失败', en: 'Failed to add group' },
   'repos.deleteGroupConfirm': { zh: '删除分组「{name}」？组内仓库将归入未分组。', en: 'Delete group “{name}”? Its repos will become ungrouped.' },
@@ -486,7 +507,10 @@ export const DICT: Record<string, { zh: string, en: string }> = {
 
   // ---- note editor ----
   'note.plainText': { zh: '纯文本 · 自动保存', en: 'Plain text · autosaves' },
-  'note.ph': { zh: '写点备注…（纯文本）', en: 'Write a note… (plain text)' },
+  'note.markdown': { zh: 'Markdown · 自动保存', en: 'Markdown · autosaves' },
+  'note.preview': { zh: '预览', en: 'Preview' },
+  'note.edit': { zh: '编辑', en: 'Edit' },
+  'note.ph': { zh: '写点备注…（支持 Markdown，可预览）', en: 'Write a note… (Markdown, previewable)' },
   'note.aria': { zh: '步骤备注', en: 'Step note' },
   'note.groupAria': { zh: '备注', en: 'Note' }
 }

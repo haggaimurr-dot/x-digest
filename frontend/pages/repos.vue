@@ -132,6 +132,9 @@
                     </div>
                   </div>
                 </div>
+                <div v-if="(details[r.full_name]!.repo.tutorial_steps || []).length" style="margin-top:8px">
+                  <button class="btn btn-sm btn-primary" type="button" @click="replicateRepo(r.full_name)">按这些步骤建复刻</button>
+                </div>
                 <p v-else style="color:var(--text-muted)">{{ t('repos.noTutorial') }}</p>
 
                 <h3>{{ t('repos.iterationLog') }} <span style="color:var(--text-muted);font-size:13px;font-weight:400">{{ t('repos.versions', { n: detailReleases(r).length }) }}</span></h3>
@@ -453,17 +456,39 @@ async function doSync (r: Repo) {
     const s = new Set(syncing.value); s.delete(r.full_name); syncing.value = s
   }
 }
+// README 里解析出的上手步骤 → 复刻清单（同一仓库只建一次，已有则直接跳转）。
+async function replicateRepo (fullName: string) {
+  try {
+    await store.createReplicaFromRepo(fullName)
+    await navigateTo('/fuke')
+  } catch (err: any) { syncAllMsg.value = errText(err, '建复刻失败') }
+}
+// 同步全部是后台任务：POST 启动，之后每 3 秒查进度（已同步 n/N，限流时显示等待到几点）。
 async function syncAll () {
   if (syncAllBusy.value) return
   syncAllBusy.value = true
   syncAllMsg.value = ''
   try {
-    const res = await store.syncAllRepos()
-    syncAllMsg.value = t('repos.syncAllDone', { ok: res.synced, fail: res.failed, limited: res.rate_limited, total: res.total })
+    let st = await store.syncAllRepos().catch(async (err: any) => {
+      if (err?.status === 409) return await store.getRepoSyncStatus() // already running: follow it
+      throw err
+    })
+    while (st.running) {
+      syncAllMsg.value = syncProgressText(st)
+      await new Promise(r => setTimeout(r, 3000))
+      st = await store.getRepoSyncStatus()
+    }
+    syncAllMsg.value = t('repos.syncAllDone', { ok: st.synced, fail: st.failed, limited: st.rate_limited, total: st.total })
     await reload()
   } catch (err: any) {
     syncAllMsg.value = errText(err, t('repos.syncAllFailed'))
   } finally { syncAllBusy.value = false }
+}
+function syncProgressText (st: { done: number, total: number, waiting_until?: string }): string {
+  const base = t('repos.syncProgress', { n: st.done, total: st.total })
+  if (!st.waiting_until) return base
+  const hhmm = new Date(st.waiting_until).toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Shanghai' })
+  return `${base}${t('repos.syncWaiting', { time: hhmm })}`
 }
 async function doAddGroup () {
   if (!newGroupName.value.trim()) return

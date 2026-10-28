@@ -24,7 +24,7 @@
         </div>
       </div>
       <p v-if="(step.note || '').trim() && tr(step.note || '') !== (step.note || '')" class="note-translated"><span class="note-translated-label">{{ t('node.noteTranslation') }}</span>{{ tr(step.note || '') }}</p>
-      <NoteEditor :model-value="step.note || ''" @update:model-value="step.note = $event" @save="saveNote($event)" />
+      <NoteEditor :model-value="step.note || ''" :upload-image="uploadPastedImage" @update:model-value="step.note = $event" @save="saveNote($event)" />
       <div style="margin-top:8px;display:flex;align-items:center;gap:6px">
         <div class="node-menu-wrap">
           <button class="btn btn-sm btn-quiet node-menu-btn" type="button" @click="toggleMenu('upload')" :aria-label="t('node.uploadMenu')" aria-haspopup="menu" :aria-expanded="openMenu === 'upload'">☰</button>
@@ -113,7 +113,7 @@
             </div>
           </div>
           <p v-if="(step.note || '').trim() && tr(step.note || '') !== (step.note || '')" class="note-translated"><span class="note-translated-label">{{ t('node.noteTranslation') }}</span>{{ tr(step.note || '') }}</p>
-          <NoteEditor :model-value="step.note || ''" @update:model-value="step.note = $event" @save="saveNote($event)" />
+          <NoteEditor :model-value="step.note || ''" :upload-image="uploadPastedImage" @update:model-value="step.note = $event" @save="saveNote($event)" />
           <div style="margin-top:8px;display:flex;align-items:center;gap:6px">
             <div class="node-menu-wrap">
               <button class="btn btn-sm btn-quiet node-menu-btn" type="button" @click="toggleMenu('upload')" :aria-label="t('node.uploadMenu')" aria-haspopup="menu" :aria-expanded="openMenu === 'upload'">☰</button>
@@ -246,6 +246,15 @@ async function toggleChildStatus () {
   const next = props.step.status === 'done' ? 'idle' : 'done'
   props.step.status = next
   try { await store.patchReplicaSteps(props.replica.id, [{ idx: props.step.idx, status: next }]) } catch (e: any) { showToast(e?.message || t('node.statusSaveFailed')) }
+}
+// A pasted screenshot becomes an attachment of this step; the note links
+// it inline (?inline=1 so the preview renders the image).
+async function uploadPastedImage (file: File): Promise<string> {
+  const made = await store.uploadAttachments(props.replica.id, props.step.idx, [file])
+  props.step.attachments = [...(props.step.attachments || []), ...made]
+  const att = made[0]
+  if (!att) throw new Error('上传失败')
+  return `${att.download_url}${att.download_url.includes('?') ? '&' : '?'}inline=1`
 }
 async function saveNote (note: string) {
   try { await store.patchReplicaSteps(props.replica.id, [{ idx: props.step.idx, note }]) } catch (e: any) { showToast(e?.message || t('node.noteSaveFailed')) }

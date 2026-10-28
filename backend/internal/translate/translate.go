@@ -150,10 +150,21 @@ func targetName(target string) string {
 	return "Simplified Chinese"
 }
 
+// CallHook, when set, is told about every model call (metrics: AI call and
+// failure counts). Set once at start-up.
+var CallHook func(model string, err error)
+
 // chat performs one chat completion and returns the assistant's content.
 // The API key is sent only in the Authorization header, never in the URL,
 // body, logs, or returned errors.
-func (c *Client) chat(ctx context.Context, messages []chatMessage) (string, error) {
+func (c *Client) chat(ctx context.Context, messages []chatMessage) (out string, err error) {
+	if CallHook != nil {
+		defer func() { CallHook(c.Model, err) }()
+	}
+	return c.doChat(ctx, messages)
+}
+
+func (c *Client) doChat(ctx context.Context, messages []chatMessage) (string, error) {
 	body, err := json.Marshal(chatRequest{Model: c.Model, Messages: messages, Temperature: 0})
 	if err != nil {
 		return "", err
@@ -395,6 +406,8 @@ func (s *Service) Translate(ctx context.Context, texts []string, target string) 
 			uncachedTexts = append(uncachedTexts, texts[i])
 		}
 	}
+	// One line per request: how many texts the cache answered (hit rate).
+	log.Printf("translate %s: %d texts, %d cache hit, %d to relay", target, len(miss), len(miss)-len(uncached), len(uncached))
 	if len(uncached) == 0 {
 		return out, nil
 	}

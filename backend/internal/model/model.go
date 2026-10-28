@@ -40,6 +40,9 @@ type Post struct {
 	// 日常闲聊; "" = not classified). Resources explain each link.
 	Kind      string         `json:"kind"`
 	Resources []PostResource `json:"resources"`
+	// ReplicaEnabled is the manual 复刻 switch: nil = decided by the page's
+	// heuristic (kind / keyword rules), true/false = forced on/off.
+	ReplicaEnabled *bool `json:"replica_enabled"`
 }
 
 // PostResource is one link of a post with what it is (from cmd/digest).
@@ -213,6 +216,9 @@ type YTVideo struct {
 	ThumbnailURL string `json:"thumbnail_url"`
 	URL          string `json:"url"`
 	CreatedAt    string `json:"created_at"`
+	// Watch state: WatchedAt "" = not watched (Shanghai wall time otherwise).
+	WatchedAt  string `json:"watched_at"`
+	WatchLater bool   `json:"watch_later"`
 }
 
 // YTSummaryChapter is one AI summary chapter (Start in whole seconds).

@@ -62,8 +62,10 @@ func (h *videoHub) register(mux *http.ServeMux) {
 	mux.HandleFunc(base+"/sync", h.handleSyncAll)
 	mux.HandleFunc(base+"/groups", h.handleGroups)
 	mux.HandleFunc(base+"/groups/", h.handleGroup)
-	mux.HandleFunc(base+"/comments", h.handleComments)
-	go h.runCommentWorker()
+	mux.HandleFunc(base+"/comments", commentsHandler(h.handleComments))
+	if commentsEnabled() {
+		go h.runCommentWorker()
+	}
 }
 
 // ---- channels ----
@@ -297,7 +299,7 @@ func (h *videoHub) handleVideos(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	videos, err := h.st.ListVideos(store.YTVideoFilter{ChannelID: q.Get("channel_id"), Q: q.Get("q"),
-		DateFrom: q.Get("date_from"), DateTo: q.Get("date_to"), Kind: kind, Limit: limit})
+		DateFrom: q.Get("date_from"), DateTo: q.Get("date_to"), Kind: kind, Limit: limit, WatchLater: q.Get("watch_later") == "1"})
 	if err != nil {
 		writeErr(w, 500, "DB_ERROR", err.Error())
 		return
@@ -389,7 +391,12 @@ func (h *videoHub) handleGroup(w http.ResponseWriter, r *http.Request) {
 
 func (h *videoHub) handleVideoSub(w http.ResponseWriter, r *http.Request) {
 	parts := strings.Split(strings.TrimPrefix(r.URL.Path, "/api/v1/"+h.prefix+"/videos/"), "/")
-	if len(parts) != 2 || parts[0] == "" || parts[1] != "summary" {
+	if len(parts) == 1 && parts[0] != "" {
+		patchVideoState(w, r, h.st, h.prefix, parts[0]) // see video_state.go
+		return
+	}
+	stream := len(parts) == 3 && parts[2] == "stream"
+	if (len(parts) != 2 && !stream) || parts[0] == "" || parts[1] != "summary" {
 		writeErr(w, 404, "NOT_FOUND", "not found")
 		return
 	}
@@ -408,6 +415,10 @@ func (h *videoHub) handleVideoSub(w http.ResponseWriter, r *http.Request) {
 	}
 	if err != nil {
 		writeErr(w, 500, "DB_ERROR", err.Error())
+		return
+	}
+	if stream {
+		serveSummaryStream(w, r, h.sum, h.jobKey(video.ID, lang), func() (model.YTSummary, error) { return h.currentSummary(video.ID, lang) })
 		return
 	}
 	switch r.Method {

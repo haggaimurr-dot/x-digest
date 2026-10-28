@@ -475,3 +475,77 @@ CREATE TABLE IF NOT EXISTS translations (
   PRIMARY KEY (source_hash, target_lang),
   INDEX idx_translations_created (created_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---------------------------------------------------------------------------
+-- X account refresh jobs (2026-10-28). The whole job state (accounts with
+-- their pending/running/done/error status, counts and failed post ids) is
+-- one JSON document, saved after every account. A job still marked running
+-- at start-up was cut off by a restart and is resumed: accounts already done
+-- are not sent to Grok again. Only the newest job matters to the page.
+CREATE TABLE IF NOT EXISTS refresh_jobs (
+  id          VARCHAR(40)  NOT NULL PRIMARY KEY,
+  running     TINYINT(1)   NOT NULL DEFAULT 1,
+  state       MEDIUMTEXT   NOT NULL,
+  started_at  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX idx_refresh_jobs_started (started_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Categories soft delete (2026-10-28): DELETE /categories/{id} sets
+-- deleted_at; POST /categories/{id}/restore clears it (page undo toast);
+-- rows deleted more than 7 days ago are purged at API start-up and daily.
+ALTER TABLE categories ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMP NULL DEFAULT NULL;
+
+-- Manual 复刻 switch per post (2026-10-28): NULL = the page decides from the
+-- post type / keyword rules, 1 = always offer 复刻, 0 = never.
+ALTER TABLE posts ADD COLUMN IF NOT EXISTS replica_enabled TINYINT(1) NULL DEFAULT NULL;
+
+-- Saved filter combinations on the X daily page (2026-10-28). filter_json
+-- is the page's filter state ({keyword, date_from, date_to, kind, authors,
+-- tags, user_tags, categories}); the API only checks it is a JSON object.
+CREATE TABLE IF NOT EXISTS saved_views (
+  id          VARCHAR(40)  NOT NULL PRIMARY KEY,
+  name        VARCHAR(64)  NOT NULL,
+  filter_json TEXT         NOT NULL,
+  sort_order  INT          NOT NULL DEFAULT 0,
+  created_at  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE KEY uq_saved_views_name (name)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- User-tag aliases (2026-10-28): alias (e.g. cc) → canonical tag
+-- (claude-code). Applied when tags are written and to 标签:xxx searches.
+CREATE TABLE IF NOT EXISTS user_tag_aliases (
+  alias     VARCHAR(128) NOT NULL PRIMARY KEY,
+  canonical VARCHAR(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Notifications (2026-10-28): the top-bar bell; written when a repo sync
+-- finds a new release.
+CREATE TABLE IF NOT EXISTS notifications (
+  id         VARCHAR(40)   NOT NULL PRIMARY KEY,
+  kind       VARCHAR(32)   NOT NULL,
+  title      VARCHAR(512)  NOT NULL,
+  url        VARCHAR(1024) NOT NULL DEFAULT '',
+  created_at DATETIME      NOT NULL,
+  read_at    DATETIME      NULL DEFAULT NULL,
+  INDEX idx_notifications_created (created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Where a replica came from (2026-10-28): post (default) or repo (README
+-- steps; post_id then holds "repo:owner/name").
+ALTER TABLE replicas ADD COLUMN IF NOT EXISTS source VARCHAR(16) NOT NULL DEFAULT 'post';
+
+-- Video watch state (2026-10-28): 已看 (watched_at) and 稍后观看
+-- (watch_later), set from the video cards via PATCH /{yt|bili}/videos/{id}.
+ALTER TABLE yt_videos ADD COLUMN IF NOT EXISTS watched_at DATETIME NULL DEFAULT NULL;
+ALTER TABLE yt_videos ADD COLUMN IF NOT EXISTS watch_later TINYINT(1) NOT NULL DEFAULT 0;
+ALTER TABLE bili_videos ADD COLUMN IF NOT EXISTS watched_at DATETIME NULL DEFAULT NULL;
+ALTER TABLE bili_videos ADD COLUMN IF NOT EXISTS watch_later TINYINT(1) NOT NULL DEFAULT 0;
+
+-- Settings cloud sync (2026-10-28): one row per API token (sha256 hex of
+-- the token; "default" when the server has no API_TOKEN).
+CREATE TABLE IF NOT EXISTS user_settings (
+  token_hash  VARCHAR(64)  NOT NULL PRIMARY KEY,
+  json        TEXT         NOT NULL,
+  updated_at  DATETIME(3)  NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

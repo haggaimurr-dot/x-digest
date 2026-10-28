@@ -9,6 +9,7 @@
           <NuxtLink to="/fuke">{{ t('nav.fuke') }}</NuxtLink>
           <NuxtLink to="/youtube">{{ t('nav.youtube') }}</NuxtLink>
           <NuxtLink to="/bilibili">{{ t('nav.bilibili') }}</NuxtLink>
+          <NotificationBell />
           <div class="appearance-wrap">
             <button class="btn btn-sm lang-toggle" type="button" :aria-expanded="showAppearance" aria-haspopup="dialog" @click.stop="showAppearance = !showAppearance">Aa {{ t('settings.appearance') }}</button>
             <div v-if="showAppearance" class="appearance-pop" role="dialog" :aria-label="t('settings.appearance')" @click.stop>
@@ -40,14 +41,24 @@
 </template>
 
 <script setup lang="ts">
+import { useSettingsSync } from '~/composables/useSettingsSync'
 // 外观（主题 / 字号 / 字体）是全站设置：在顶栏统一修改，存本机，所有页面生效。
 const { load, theme, fontSize, fontFamily, setTheme, setFontSize, setFontFamily } = useSettings()
 const { t, lang, toggleLang, loadLang } = useLang()
 const showAppearance = ref(false)
 function closeAppearance () { showAppearance.value = false }
 function onKey (e: KeyboardEvent) { if (e.key === 'Escape') closeAppearance() }
-onMounted(() => {
+// Settings cloud sync: pull a newer server copy at start-up, push after any
+// change of theme / font / language (debounced).
+// Only user changes after start-up are pushed (load() itself sets the refs).
+let syncReady = false
+const sync = useSettingsSync(() => { load(); loadLang() })
+watch([theme, fontSize, fontFamily, lang], () => { if (syncReady) sync.push() })
+onMounted(async () => {
   load(); loadLang()
+  await sync.pull()
+  await nextTick()
+  syncReady = true
   document.addEventListener('click', closeAppearance)
   document.addEventListener('keydown', onKey)
 })

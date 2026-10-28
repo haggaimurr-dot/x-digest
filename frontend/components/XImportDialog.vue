@@ -4,12 +4,18 @@
       <!-- single post -->
       <template v-if="mode === 'post'">
         <h2>导入单帖</h2>
-        <label>帖子链接</label>
-        <input ref="urlEl" class="field" v-model="url" placeholder="https://x.com/用户名/status/…" :disabled="importing" @keyup.enter="doImport()" />
+        <label>帖子链接（可一次粘贴多条，每行一条）</label>
+        <textarea ref="urlEl" class="field" v-model="url" rows="4" placeholder="https://x.com/用户名/status/…" :disabled="importing" @keydown.ctrl.enter="doImport()" />
         <p style="color:var(--text-muted);font-size:13px;margin:6px 0 0">
           拉取原文后用中转站 AI 解析（标题、类型、标签、资源说明），帖子作者不在关注列表时会自动加入「默认」分组。约 5–30 秒。
         </p>
         <p v-if="importMsg" class="xi-msg" :class="{ 'xi-err': importErr }">{{ importMsg }}</p>
+        <ul v-if="batchRows.length" class="xi-rows">
+          <li v-for="(r, i) in batchRows" :key="i" :class="'xi-' + r.state">
+            <span class="xi-name" :title="r.url">{{ r.url }}</span>
+            <span class="xi-state">{{ r.text }}</span>
+          </li>
+        </ul>
         <div class="modal-actions">
           <button v-if="existedId" class="btn" type="button" :disabled="importing" @click="doImport(true)">重新解析</button>
           <button class="btn" type="button" @click="$emit('close')">关闭</button>
@@ -49,6 +55,7 @@
         <p v-if="refreshMsg" class="xi-msg" :class="{ 'xi-err': refreshErr }">{{ refreshMsg }}</p>
         <div class="modal-actions">
           <button class="btn" type="button" @click="$emit('close')">{{ job.running ? '后台继续' : '关闭' }}</button>
+          <button v-if="!job.running && failedCount" class="btn" type="button" :disabled="starting" @click="doRetry">重试失败（{{ failedCount }} 帖）</button>
           <button v-if="!job.running" class="btn btn-primary" type="button" :disabled="starting" @click="doRefresh">
             {{ selected.size ? `更新所选 ${selected.size} 个账号` : '更新全部账号' }}
           </button>
@@ -60,6 +67,7 @@
 
 <script setup lang="ts">
 import type { WatchlistAccount as Account, XRefreshAccount, XRefreshJob } from '~/composables/types'
+import { parseImportLinks } from '~/utils/importLinks'
 
 // Two dialogs of the X daily page: import one post by link, and refresh
 // selected (or all) watchlist accounts up to their newest posts. Emits
@@ -68,15 +76,20 @@ const props = defineProps<{ mode: 'post' | 'refresh', accounts: Account[] }>()
 const emit = defineEmits<{ (e: 'close'): void, (e: 'changed'): void }>()
 const store = useStore()
 
-// ---- single post ----
+// ---- single post (one link, or several pasted at once) ----
 const url = ref('')
-const urlEl = ref<HTMLInputElement | null>(null)
+const urlEl = ref<HTMLTextAreaElement | null>(null)
+// Per-link result of a batch import: 成功 / 已存在 / 格式错误 / 失败.
+const batchRows = ref<Array<{ url: string, state: 'pending' | 'running' | 'done' | 'error', text: string }>>([])
 const importing = ref(false)
 const importMsg = ref('')
 const importErr = ref(false)
 const existedId = ref('')
 async function doImport (force = false) {
   if (!url.value.trim() || importing.value) return
+  const parsed = parseImportLinks(url.value)
+  if (parsed.posts.length + parsed.duplicates.length + parsed.invalid.length > 1) return doBatchImport(parsed)
+  batchRows.value = []
   importing.value = true; importErr.value = false; importMsg.value = ''; existedId.value = ''
   try {
     const r = await store.importXPost(url.value, force)
@@ -92,6 +105,35 @@ async function doImport (force = false) {
     importErr.value = true
     importMsg.value = err?.message || '导入失败'
   } finally { importing.value = false }
+}
+
+// Several links: imported one after another (each is a fetch + AI call),
+// each row shows its own outcome; duplicates and malformed lines are
+// reported without a request.
+async function doBatchImport (parsed: ReturnType<typeof parseImportLinks>) {
+  importing.value = true; importErr.value = false; importMsg.value = ''; existedId.value = ''
+  const rows = [
+    ...parsed.posts.map(p => ({ url: p.url, state: 'pending' as const, text: '等待' })),
+    ...parsed.duplicates.map(u => ({ url: u, state: 'error' as const, text: '重复链接，已跳过' })),
+    ...parsed.invalid.map(u => ({ url: u, state: 'error' as const, text: '格式错误：不是 X 帖子链接' }))
+  ]
+  batchRows.value = rows
+  let added = 0
+  for (let i = 0; i < parsed.posts.length; i++) {
+    const row = batchRows.value[i]!
+    row.state = 'running'; row.text = '导入中…'
+    try {
+      const r = await store.importXPost(row.url, false)
+      row.state = 'done'
+      row.text = r.existed ? '已存在' : `成功：${r.post.title || r.post.id}`
+      if (!r.existed) added++
+    } catch (err: any) {
+      row.state = 'error'; row.text = err?.message || '导入失败'
+    }
+  }
+  importMsg.value = `完成：新增 ${added} 条，共 ${rows.length} 行`
+  if (added) emit('changed')
+  importing.value = false
 }
 
 // ---- account refresh ----
@@ -138,6 +180,20 @@ async function doRefresh () {
   } catch (err: any) {
     refreshErr.value = true
     refreshMsg.value = err?.message || '启动失败'
+  } finally { starting.value = false }
+}
+
+const failedCount = computed(() => job.value.accounts.reduce((n, a) => n + (a.failed_ids?.length || 0), 0))
+async function doRetry () {
+  starting.value = true; refreshErr.value = false; refreshMsg.value = ''
+  try {
+    job.value = await store.retryXRefresh()
+    lastAdded = 0
+    if (timer) clearTimeout(timer)
+    timer = setTimeout(poll, 2000)
+  } catch (err: any) {
+    refreshErr.value = true
+    refreshMsg.value = err?.message || '重试失败'
   } finally { starting.value = false }
 }
 

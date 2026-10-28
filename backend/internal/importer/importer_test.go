@@ -55,3 +55,24 @@ func TestRawExpandedURLsAndReferencedText(t *testing.T) {
 		t.Errorf("old raw format should import unchanged: %+v", old)
 	}
 }
+
+func TestCheckPost(t *testing.T) {
+	cases := []struct {
+		p      legacyPost
+		reason string
+	}{
+		{legacyPost{ID: "1", Author: "a", PublishedAt: "2026-10-01T08:00:00+08:00"}, ""},
+		{legacyPost{ID: "", Author: "a", PublishedAt: "2026-10-01T08:00:00+08:00"}, "missing id"},
+		{legacyPost{ID: "2", Author: " ", PublishedAt: "2026-10-01T08:00:00+08:00"}, "missing author"},
+		{legacyPost{ID: "3", Author: "a", PublishedAt: "not a date"}, "bad publishedAt"},
+	}
+	for _, c := range cases {
+		pub, reason := checkPost(c.p)
+		if c.reason == "" && (reason != "" || pub == "") {
+			t.Errorf("%+v: unexpected failure %q", c.p, reason)
+		}
+		if c.reason != "" && !strings.HasPrefix(reason, c.reason) {
+			t.Errorf("%+v: reason %q, want prefix %q", c.p, reason, c.reason)
+		}
+	}
+}

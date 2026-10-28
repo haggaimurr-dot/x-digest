@@ -41,6 +41,12 @@
             </div>
           </div>
           <div class="filter-row" style="margin-top:8px">
+            <select v-if="savedViews.length" class="field" style="width:auto" :aria-label="t('index.views')" :value="currentViewId" @change="applyView(($event.target as HTMLSelectElement).value)">
+              <option value="">{{ t('index.viewsPick') }}</option>
+              <option v-for="v in savedViews" :key="v.id" :value="v.id">{{ v.name }}</option>
+            </select>
+            <button class="btn btn-sm" type="button" @click="saveCurrentView">{{ t('index.viewSave') }}</button>
+            <button v-if="currentViewId" class="btn btn-sm btn-danger" type="button" @click="deleteCurrentView">{{ t('index.viewDelete') }}</button>
             <button class="btn btn-sm" type="button" @click="clearAll">{{ t('index.clearAll') }}</button>
             <span class="result-count">{{ t('index.resultCount', { n: filtered.length }) }}</span>
             <span v-if="translating" class="active-count">{{ t('common.translating') }}</span>
@@ -52,6 +58,22 @@
 
       <!-- 与油管页同一卡片样式：按作者分组（可折叠），左栏原文、右栏标题/时间/标签/操作，
            下方整行为资源与可折叠的 AI 摘要（含流程图）。 -->
+      <!-- 多选：批量归类 / 批量生成 AI 摘要 -->
+      <div class="filter-row" style="margin:8px 0">
+        <button class="btn btn-sm" :class="{ 'btn-primary': selectMode }" type="button" @click="toggleSelectMode">{{ selectMode ? '退出多选' : '多选' }}</button>
+        <template v-if="selectMode">
+          <span class="active-count">已选 {{ selectedPosts.size }} 帖</span>
+          <button class="btn btn-sm" type="button" @click="selectPage">全选本页</button>
+          <select v-model="batchCat" class="field" style="width:auto" aria-label="批量归类的类别">
+            <option value="">选择类别…</option>
+            <option v-for="c in categories.categories" :key="c.id" :value="c.id">{{ c.name }}</option>
+          </select>
+          <button class="btn btn-sm" type="button" :disabled="!batchCat || !selectedPosts.size || batchBusy" @click="batchCategory('add')">归入</button>
+          <button class="btn btn-sm" type="button" :disabled="!batchCat || !selectedPosts.size || batchBusy" @click="batchCategory('remove')">移出</button>
+          <button class="btn btn-sm btn-primary" type="button" :disabled="!selectedPosts.size || batchBusy" @click="batchSummaries">批量生成 AI 摘要</button>
+          <span v-if="batchMsg" class="active-count">{{ batchMsg }}</span>
+        </template>
+      </div>
       <section class="timeline">
         <div v-for="grp in groupedByAuthor" :key="grp.author" class="yt-channel-block">
           <button class="yt-channel-head" type="button" :aria-expanded="!collapsedAuthors.has(grp.author)" @click="toggleAuthorPosts(grp.author)">
@@ -63,12 +85,21 @@
             <span class="yt-section-count">（{{ grp.posts.length }}）</span>
           </button>
           <template v-if="!collapsedAuthors.has(grp.author)">
-          <article v-for="post in grp.posts" :key="post.id" class="post-card yt-video-card">
+          <article v-for="post in grp.posts" :key="post.id" class="post-card yt-video-card" :class="{ 'is-selected': selectedPosts.has(post.id) }">
+            <label v-if="selectMode" class="select-box"><input type="checkbox" :checked="selectedPosts.has(post.id)" @change="togglePostSelected(post.id)" /> 选择</label>
             <div class="yt-left">
               <div class="x-orig" :class="{ 'is-missing': !post.text }">
                 <div class="x-orig-label"><span>𝕏 原文</span><a class="x-orig-link" :href="post.url" target="_blank" rel="noopener">查看原帖 ↗</a></div>
                 <p v-if="post.text" class="x-orig-text" :class="{ 'yt-desc-open': expandedOriginal.has(post.id) }" :id="`original-${post.id}`"><template v-for="(part, pi) in linkParts(post.text)" :key="pi"><a v-if="part.href" class="yt-desc-link" :href="part.href" :title="part.href" target="_blank" rel="noopener noreferrer">{{ part.text.replace(/^https?:\/\/(www\.)?/, '') }}</a><span v-else v-html="highlightHtml(part.text, plainKeyword)" /></template></p>
                 <p v-else class="x-orig-text">原文暂未收录，<a :href="post.url" target="_blank" rel="noopener" style="color:var(--accent)">点击查看原推文</a>。</p>
+              </div>
+              <!-- 原文/译文对照：按段落交替显示，译文走翻译缓存 -->
+              <button v-if="post.text" class="yt-desc-more" type="button" :aria-pressed="bilingual.has(post.id)" @click="toggleBilingual(post)">{{ bilingual.has(post.id) ? '关闭对照' : '对照' }}</button>
+              <div v-if="bilingual.has(post.id)" class="bilingual">
+                <template v-for="(para, i) in paragraphsOf(post.text || '')" :key="i">
+                  <p class="bi-orig">{{ para }}</p>
+                  <p class="bi-tr">{{ tr(para) === para ? (translating ? '翻译中…' : '（与当前语言相同，无需翻译）') : tr(para) }}</p>
+                </template>
               </div>
               <button v-if="isLongText(post.text)" class="yt-desc-more" type="button" :aria-expanded="expandedOriginal.has(post.id)" :aria-controls="`original-${post.id}`" @click="toggleOriginal(post.id)">{{ expandedOriginal.has(post.id) ? '收起' : '展开' }}</button>
             </div>
@@ -89,14 +120,26 @@
                 <NuxtLink v-if="replicatedIds.has(post.id)" to="/fuke" class="btn btn-sm">{{ t('index.goFuke') }}</NuxtLink>
               </div>
               <div v-if="catMenuPost === post.id" class="cat-menu" style="margin-top:8px">
-                <label v-for="c in categories.categories" :key="c.id" class="cat-menu-item" style="display:flex;gap:6px">
-                  <input type="checkbox" :checked="catsOf(post.id).includes(c.id)" @change="togglePostCat(post.id, c.id, ($event.target as HTMLInputElement).checked)" />
-                  <span>{{ c.name }}</span>
-                </label>
+                <div v-for="c in categories.categories" :key="c.id" class="cat-menu-item" style="display:flex;gap:6px;align-items:center">
+                  <label style="display:flex;gap:6px;flex:1;min-width:0">
+                    <input type="checkbox" :checked="catsOf(post.id).includes(c.id)" @change="togglePostCat(post.id, c.id, ($event.target as HTMLInputElement).checked)" />
+                    <span>{{ c.name }}</span>
+                  </label>
+                  <button class="btn btn-sm" type="button" :title="t('index.catRename')" :aria-label="t('index.catRename')" @click="renameCat(c.id, c.name)">✎</button>
+                  <button class="btn btn-sm" type="button" :title="t('index.catDelete')" :aria-label="t('index.catDelete')" @click="removeCat(c.id, c.name)">✕</button>
+                </div>
                 <div style="display:flex;gap:6px;margin-top:6px">
                   <input class="field" v-model="newCatName" :placeholder="t('index.newCatPh')" maxlength="20" />
                   <button class="btn btn-sm btn-primary" type="button" @click="createCat(post.id)">{{ t('index.newCat') }}</button>
                 </div>
+                <label style="display:flex;gap:6px;align-items:center;margin-top:6px;font-size:13px">
+                  复刻入口
+                  <select class="field" style="width:auto" :value="post.replica_enabled === true ? 'on' : post.replica_enabled === false ? 'off' : 'auto'" @change="setReplicaMode(post, ($event.target as HTMLSelectElement).value)">
+                    <option value="auto">自动（{{ autoReplicable(post) ? '显示' : '隐藏' }}）</option>
+                    <option value="on">启用复刻</option>
+                    <option value="off">隐藏复刻</option>
+                  </select>
+                </label>
                 <div style="display:flex;justify-content:flex-end;margin-top:6px">
                   <button class="btn btn-sm" type="button" @click="catMenuPost = null">完成</button>
                 </div>
@@ -206,8 +249,18 @@
             </div>
           </div>
           <!-- 已关注作者：按分组折叠 + 搜索；点「编辑」才展开该作者的编辑项 -->
+          <!-- 一键导入：粘贴关注列表（用户名 / @用户名 / 主页链接），批量加入「默认」分组 -->
+          <details class="wl-bulk">
+            <summary>批量导入关注列表</summary>
+            <textarea class="field" v-model="bulkHandles" rows="3" placeholder="每行或用逗号分隔：alice, @bob, https://x.com/carol" />
+            <div style="display:flex;gap:8px;align-items:center;margin-top:6px">
+              <button class="btn btn-sm btn-primary" type="button" :disabled="!bulkHandles.trim() || bulkBusy" @click="doBulkAdd">导入到「默认」分组</button>
+              <span v-if="bulkMsg" class="active-count">{{ bulkMsg }}</span>
+            </div>
+          </details>
           <div class="wl-list-head">
             <span>已关注 {{ watchlist.accounts.length }} 位作者</span>
+            <label style="font-size:13px;display:flex;gap:4px;align-items:center"><input type="checkbox" v-model="sortByActivity" /> 按近 30 天发帖数排序</label>
             <input class="field wl-search" type="search" v-model="authorSearch" placeholder="搜索名字或 @用户名" />
           </div>
           <div v-for="grp in watchGroupsView" :key="grp.id" class="wl-group">
@@ -220,6 +273,7 @@
                 <div class="wl-author-line">
                   <span class="wl-author-name">{{ a.name || a.username }}</span>
                   <a class="wl-author-handle" :href="`https://x.com/${a.username}`" target="_blank" rel="noopener">@{{ a.username }}</a>
+                  <span class="chip-count" :title="'近 30 天发帖数'">30 天 {{ posts30d[a.username] ?? 0 }} 帖</span>
                   <span v-for="tg in (a.tags || [])" :key="tg" class="chip yt-tag">{{ tg }}</span>
                   <span style="flex:1" />
                   <button class="btn btn-sm" type="button" :aria-expanded="editingAuthor === a.username" @click="editingAuthor = editingAuthor === a.username ? '' : a.username">{{ editingAuthor === a.username ? '收起' : '编辑' }}</button>
@@ -262,6 +316,32 @@
             <input class="field" v-model="newVocab" :placeholder="t('settings.newUserTagPh') + '（回车添加，可用逗号一次加多个）'" @keyup.enter="addVocab" />
             <button class="btn btn-sm btn-primary" type="button" @click="addVocab">{{ t('settings.add') }}</button>
           </div>
+          <!-- 标签云：字号按使用的作者数，点击即按该标签筛选 -->
+          <div v-if="tagCloud.length" class="tag-cloud" aria-label="标签云">
+            <button v-for="c in tagCloud" :key="c.tag" type="button" class="tag-cloud-item" :style="{ fontSize: `${c.size}px` }" :title="`${c.n} 位作者`" @click="searchUserTag(c.tag)">{{ c.tag }}</button>
+          </div>
+          <!-- 标签别名：搜索「标签:别名」与写入时都映射到正式标签 -->
+          <div class="tagmgr-list" style="margin-bottom:8px">
+            <p style="color:var(--text-muted);font-size:13px;margin:0">别名（如 cc → claude-code）：</p>
+            <div v-for="a in tagAliases" :key="a.alias" class="tagmgr-row">
+              <span class="tagmgr-name">{{ a.alias }} → {{ a.canonical }}</span>
+              <span style="flex:1" />
+              <button class="btn btn-sm btn-danger" type="button" @click="removeAlias(a.alias)">删除</button>
+            </div>
+            <div class="wl-add-row" style="grid-template-columns:1fr 1fr auto">
+              <input class="field" v-model="aliasDraft.alias" placeholder="别名" />
+              <input class="field" v-model="aliasDraft.canonical" placeholder="正式标签" />
+              <button class="btn btn-sm btn-primary" type="button" @click="addAlias">添加</button>
+            </div>
+          </div>
+          <div v-if="tagDupGroups.length" class="tagmgr-list" style="margin-bottom:8px">
+            <p style="color:var(--text-muted);font-size:13px;margin:0">疑似重复（仅大小写 / 全半角不同）：</p>
+            <div v-for="g in tagDupGroups" :key="g[0]!.tag" class="tagmgr-row">
+              <span class="tagmgr-name">{{ g.map(x => `${x.tag}×${x.n}`).join(' / ') }}</span>
+              <span style="flex:1" />
+              <button class="btn btn-sm btn-primary" type="button" @click="mergeTags(g.slice(1).map(x => x.tag), g[0]!.tag)">合并为 {{ g[0]!.tag }}</button>
+            </div>
+          </div>
           <div class="tagmgr-list">
             <div v-for="tg in tagManagerRows" :key="tg.tag" class="tagmgr-row">
               <span class="tagmgr-name">{{ tg.tag }}</span>
@@ -272,6 +352,15 @@
               <button v-else class="btn btn-sm btn-danger" type="button" @click="removeVocab(tg.tag)">移出</button>
             </div>
             <p v-if="!tagManagerRows.length" style="color:var(--text-muted);font-size:13px">还没有标签。</p>
+          </div>
+        </div>
+
+        <div class="settings-section">
+          <h3>导出 / 导入设置</h3>
+          <p style="color:var(--text-muted);font-size:13px;margin:0">把主题、字体、语言、筛选记忆导出成 JSON，在另一台设备导入（不含 API Token 等密钥）。</p>
+          <div class="modal-actions" style="justify-content:flex-start">
+            <button class="btn btn-sm" type="button" @click="doExportSettings">导出设置</button>
+            <label class="btn btn-sm" style="cursor:pointer">导入设置<input type="file" accept="application/json,.json" style="display:none" @change="doImportSettings" /></label>
           </div>
         </div>
 
@@ -295,14 +384,20 @@
       </div>
     </div>
     <XImportDialog v-if="xDialog" :mode="xDialog" :accounts="watchlist.accounts" @close="xDialog = null" @changed="reloadPosts" />
-    <p v-if="toast" style="position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--bg-elevated);border:1px solid var(--border);padding:10px 16px;border-radius:9999px;z-index:200">{{ toast }}</p>
+    <p v-if="toast" style="position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--bg-elevated);border:1px solid var(--border);padding:10px 16px;border-radius:9999px;z-index:200;display:flex;gap:10px;align-items:center">{{ toast }}<button v-if="toastAction" class="btn btn-sm btn-primary" type="button" @click="runToastAction">{{ toastAction.label }}</button></p>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { Post, Watchlist, WatchlistAccount, Categories, YTSummary } from '~/composables/types'
+import type { Post, Watchlist, WatchlistAccount, Categories, YTSummary, SavedView } from '~/composables/types'
 import { LS, useSettings } from '~/composables/useSettings'
 import { canReplicatePost } from '~/utils/x-post.mjs'
+import { splitParagraphs } from '~/utils/paragraphs'
+import { cloudSizes, duplicateGroups } from '~/utils/tags'
+import { followSummary } from '~/utils/summaryStream'
+import { exportSettings, importSettings } from '~/utils/settingsTransfer'
+import { normalizeFilter, sameFilter, type FilterState } from '~/utils/filterView'
+import { apiBase } from '~/composables/useApi'
 import { avatarUrl, avatarColor, avatarInitial, relativeTime, shanghaiTime, shanghaiDayBound, highlightHtml, firstHitSnippet, shouldShowFlowchart, trunc40 } from '~/composables/useFormat'
 import { useScrollLock } from '~/composables/useScrollLock'
 import { linkParts, descResources } from '~/utils/videoTags'
@@ -359,7 +454,20 @@ const newVocab = ref('')
 const newAccount = ref({ username: '', name: '', group: 'other' })
 
 let authorsInitialised = false
-function showToast (msg: string) { toast.value = msg; setTimeout(() => { toast.value = '' }, 3000) }
+let toastTimer: any = null
+// toastAction: optional button on the toast (e.g. 撤销), shown for `ms`.
+const toastAction = ref<{ label: string, run: () => void } | null>(null)
+function showToast (msg: string, action?: { label: string, run: () => void }, ms = 3000) {
+  clearTimeout(toastTimer)
+  toast.value = msg
+  toastAction.value = action || null
+  toastTimer = setTimeout(() => { toast.value = ''; toastAction.value = null }, ms)
+}
+function runToastAction () {
+  const a = toastAction.value
+  toast.value = ''; toastAction.value = null
+  a?.run()
+}
 function persistSelection () {
   if (!import.meta.client) return
   try {
@@ -459,7 +567,16 @@ const kindCounts = computed(() => {
   return [...POST_KINDS, '未分类'].filter(k => counts.has(k)).map(k => ({ kind: k, n: counts.get(k)! }))
 })
 // 复刻：AI 判为「教程实操」才可复刻；没分类的旧帖沿用关键词规则 canReplicatePost。
-function isReplicable (p: Post): boolean { return p.kind ? p.kind === '教程实操' : canReplicatePost(p) }
+function autoReplicable (p: Post): boolean { return p.kind ? p.kind === '教程实操' : canReplicatePost(p) }
+// 手动开关（posts.replica_enabled）优先，没设置时按自动规则。
+function isReplicable (p: Post): boolean { return typeof p.replica_enabled === 'boolean' ? p.replica_enabled : autoReplicable(p) }
+async function setReplicaMode (p: Post, mode: string) {
+  const v = mode === 'on' ? true : mode === 'off' ? false : null
+  try {
+    await store.setPostReplicaEnabled(p.id, v)
+    p.replica_enabled = v
+  } catch (e: any) { showToast(e?.message || '保存失败') }
+}
 // ---- 分页：每页 10 / 20 / 50 条（记在本机），筛选变化回到第 1 页 ----
 const PAGE_SIZES = [10, 20, 50]
 const PAGE_SIZE_KEY = 'x-digest-x-page-size'
@@ -500,6 +617,37 @@ function setBridge (refSet: Ref<Set<string>>, persist = false) {
     set: (v) => { refSet.value = new Set(v); if (persist) persistSelection() }
   })
 }
+// ---- 保存的筛选视图（/api/v1/views）：一键切换常用筛选组合 ----
+const savedViews = ref<SavedView[]>([])
+function currentFilter (): FilterState {
+  return normalizeFilter({
+    keyword: keyword.value, date_from: dateFrom.value, date_to: dateTo.value, kind: kindFilter.value,
+    authors: [...selectedAuthors.value], tags: [...selectedTags.value], user_tags: [...selectedUserTags.value], categories: [...selectedCats.value]
+  })
+}
+const currentViewId = computed(() => savedViews.value.find(v => sameFilter(normalizeFilter(v.filter), currentFilter()))?.id || '')
+function applyView (id: string) {
+  const v = savedViews.value.find(x => x.id === id)
+  if (!v) return
+  const f = normalizeFilter(v.filter)
+  keyword.value = f.keyword; dateFrom.value = f.date_from; dateTo.value = f.date_to; kindFilter.value = f.kind
+  selectedAuthors.value = new Set(f.authors); selectedTags.value = new Set(f.tags)
+  selectedUserTags.value = new Set(f.user_tags); selectedCats.value = new Set(f.categories)
+  persistSelection()
+}
+async function refreshViews () { try { savedViews.value = await store.loadViews() } catch { /* views are optional */ } }
+async function saveCurrentView () {
+  const name = window.prompt(t('index.viewNamePrompt'))?.trim()
+  if (!name) return
+  try { await store.createView(name, currentFilter()); await refreshViews(); showToast(t('index.viewSaved', { name })) } catch (e: any) {
+    showToast(e?.status === 409 ? t('index.viewNameTaken') : (e?.message || t('index.viewSaveFailed')))
+  }
+}
+async function deleteCurrentView () {
+  const v = savedViews.value.find(x => x.id === currentViewId.value)
+  if (!v || !window.confirm(t('index.viewDeleteConfirm', { name: v.name }))) return
+  try { await store.deleteView(v.id); await refreshViews() } catch (e: any) { showToast(e?.message || t('index.viewSaveFailed')) }
+}
 const selectedAuthorsArr = setBridge(selectedAuthors, true)
 const selectedTagsArr = setBridge(selectedTags)
 const selectedUserTagsArr = setBridge(selectedUserTags)
@@ -536,6 +684,14 @@ function toggleOriginal (id: string) {
 // the current UI language; filtering always uses the original text —
 // only display goes through tr().
 let enqueueTimer: any = null
+const bilingual = ref<Set<string>>(new Set())
+function toggleBilingual (p: Post) {
+  const s = new Set(bilingual.value)
+  if (s.has(p.id)) s.delete(p.id)
+  else { s.add(p.id); enqueue(splitParagraphs(p.text || '')) }
+  bilingual.value = s
+}
+function paragraphsOf (text: string) { return splitParagraphs(text) }
 function enqueueVisible () {
   const texts: string[] = []
   for (const p of filtered.value) {
@@ -605,7 +761,19 @@ function failSummary (p: Post, msg: string) {
   const prev = summaryOf(p.id)
   setSummary({ video_id: p.id, lang: lang.value, status: 'failed', summary: prev?.summary || '', key_points: prev?.key_points || [], chapters: [], resources: prev?.resources || [], source: prev?.source || '', transcript_lang: '', model: '', error: msg })
 }
+// 生成中：优先用 SSE 等服务端推送结果，连接失败时退回每 4 秒轮询。
+const streaming = new Set<string>()
 function schedulePoll (p: Post) {
+  const key = sumKey(p.id)
+  if (streaming.has(key) || pollTimers.has(key)) return
+  const l = lang.value
+  if (!store.mock.value && followSummary(`${apiBase()}/posts/${encodeURIComponent(p.id)}/summary/stream?lang=${l}`, (sum) => { setSummary(sum); if (sum.status !== 'pending') streaming.delete(key) }, () => { streaming.delete(key); pollSummary(p) })) {
+    streaming.add(key)
+    return
+  }
+  pollSummary(p)
+}
+function pollSummary (p: Post) {
   const key = sumKey(p.id)
   if (pollTimers.has(key)) return
   const l = lang.value
@@ -614,8 +782,8 @@ function schedulePoll (p: Post) {
     try {
       const sum = await store.getPostSummary(p.id, l)
       setSummary(sum)
-      if (sum.status === 'pending' && l === lang.value) schedulePoll(p)
-    } catch { if (l === lang.value) schedulePoll(p) }
+      if (sum.status === 'pending' && l === lang.value) pollSummary(p)
+    } catch { if (l === lang.value) pollSummary(p) }
   }, 4000))
 }
 async function generateSummary (p: Post, force = false) {
@@ -713,6 +881,59 @@ async function createCat (postId: string) {
   await refreshCategories()
 }
 async function refreshCategories () { categories.value = await store.loadCategories() }
+// ---- 多选：批量归类、批量生成摘要 ----
+const selectMode = ref(false)
+const selectedPosts = ref<Set<string>>(new Set())
+const batchCat = ref('')
+const batchBusy = ref(false)
+const batchMsg = ref('')
+function toggleSelectMode () { selectMode.value = !selectMode.value; selectedPosts.value = new Set(); batchMsg.value = '' }
+function togglePostSelected (id: string) {
+  const s = new Set(selectedPosts.value)
+  s.has(id) ? s.delete(id) : s.add(id)
+  selectedPosts.value = s
+}
+function selectPage () { selectedPosts.value = new Set([...selectedPosts.value, ...pagedPosts.value.map(p => p.id)]) }
+async function batchCategory (action: 'add' | 'remove') {
+  batchBusy.value = true
+  try {
+    const r = await store.batchCategory([...selectedPosts.value], batchCat.value, action)
+    await refreshCategories()
+    batchMsg.value = `${action === 'add' ? '归入' : '移出'}完成：${r.changed} 条变更`
+  } catch (e: any) { batchMsg.value = e?.message || '批量归类失败' } finally { batchBusy.value = false }
+}
+async function batchSummaries () {
+  const ids = [...selectedPosts.value]
+  if (ids.length > 30) { batchMsg.value = '一次最多 30 帖'; return }
+  batchBusy.value = true
+  try {
+    const r = await store.batchPostSummaries(ids, lang.value)
+    batchMsg.value = `已排队 ${r.queued} 帖，跳过 ${r.skipped} 帖（已有摘要）`
+    // Open the queued ones so their panels follow progress (SSE / poll).
+    const open = new Set(openSummary.value)
+    for (const p of posts.value) {
+      if (r.results[p.id] === 'started') { open.add(p.id); setSummary({ video_id: p.id, lang: lang.value, status: 'pending', summary: '', key_points: [], chapters: [], resources: [], source: '', transcript_lang: '', model: '', error: '' }); schedulePoll(p) }
+    }
+    openSummary.value = open
+  } catch (e: any) { batchMsg.value = e?.message || '批量生成失败' } finally { batchBusy.value = false }
+}
+async function renameCat (id: string, old: string) {
+  const name = window.prompt(t('index.catRenamePrompt'), old)?.trim()
+  if (!name || name === old) return
+  try { await store.renameCategory(id, name); await refreshCategories() } catch (e: any) {
+    showToast(e?.status === 409 ? t('index.catNameTaken') : (e?.message || t('index.catRenameFailed')))
+  }
+}
+// Soft delete with a 10-second undo (backend keeps it 7 days).
+async function removeCat (id: string, name: string) {
+  try { await store.deleteCategory(id); await refreshCategories() } catch (e: any) { showToast(e?.message || t('index.catDeleteFailed')); return }
+  showToast(t('index.catDeleted', { name }), {
+    label: t('index.undo'),
+    run: async () => {
+      try { await store.restoreCategory(id); await refreshCategories() } catch (e: any) { showToast(e?.message || t('index.catRestoreFailed')) }
+    }
+  }, 10000)
+}
 async function refreshWatchlist () {
   watchlist.value = await store.loadWatchlist()
   const ut = await store.loadUserTags()
@@ -758,11 +979,28 @@ const watchGroupsView = computed(() => {
   const match = (a: WatchlistAccount) => !q || a.username.toLowerCase().includes(q) || (a.name || '').toLowerCase().includes(q)
   const known = new Set(watchlist.value.groups.map(g => g.id))
   const groups = [...watchlist.value.groups, { id: '__none', name: '未分组' }]
-  return groups.map(g => ({
-    id: g.id, name: g.name,
-    accounts: watchlist.value.accounts.filter(a => (g.id === '__none' ? !known.has(a.group) : a.group === g.id) && match(a))
-  })).filter(g => g.accounts.length)
+  const byActivity = (x: WatchlistAccount, y: WatchlistAccount) => (posts30d.value[y.username] ?? 0) - (posts30d.value[x.username] ?? 0)
+  return groups.map(g => {
+    const accounts = watchlist.value.accounts.filter(a => (g.id === '__none' ? !known.has(a.group) : a.group === g.id) && match(a))
+    return { id: g.id, name: g.name, accounts: sortByActivity.value ? [...accounts].sort(byActivity) : accounts }
+  }).filter(g => g.accounts.length)
 })
+// 活跃度：近 30 天发帖数（GET /watchlist?with_stats=1），可按它排序。
+const posts30d = ref<Record<string, number>>({})
+const sortByActivity = ref(false)
+async function refreshActivity () { try { posts30d.value = await store.loadWatchlistActivity() } catch { /* optional */ } }
+watch(showSettings, (v) => { if (v) refreshActivity() })
+const bulkHandles = ref('')
+const bulkBusy = ref(false)
+const bulkMsg = ref('')
+async function doBulkAdd () {
+  bulkBusy.value = true; bulkMsg.value = ''
+  try {
+    const r = await store.bulkAddAccounts(bulkHandles.value)
+    bulkMsg.value = `新增 ${r.created.length}，已存在 ${r.existing.length}` + (r.invalid.length ? `，无效 ${r.invalid.length}（${r.invalid.slice(0, 3).join('、')}）` : '')
+    if (r.created.length) { bulkHandles.value = ''; await refreshWatchlist() }
+  } catch (e: any) { bulkMsg.value = e?.message || '导入失败' } finally { bulkBusy.value = false }
+}
 function isWatchGroupOpen (id: string) { return !!authorSearch.value.trim() || openWatchGroups.value.has(id) }
 function toggleWatchGroup (id: string) {
   const s = new Set(openWatchGroups.value)
@@ -821,6 +1059,29 @@ const tagManagerRows = computed(() => {
   return all.map(tag => ({ tag, n: tagUsage.value.get(tag) || 0, inVocab: userTagVocab.value.includes(tag) }))
     .sort((a, b) => b.n - a.n || a.tag.localeCompare(b.tag, 'zh'))
 })
+const tagDupGroups = computed(() => duplicateGroups(tagManagerRows.value))
+const tagCloud = computed(() => cloudSizes(tagManagerRows.value.filter(r => r.n > 0)))
+function searchUserTag (tag: string) { keyword.value = `标签:${tag}`; showSettings.value = false }
+const tagAliases = ref<Array<{ alias: string, canonical: string }>>([])
+const aliasDraft = ref({ alias: '', canonical: '' })
+async function refreshAliases () { try { tagAliases.value = await store.loadTagAliases() } catch { /* optional */ } }
+async function addAlias () {
+  const { alias, canonical } = aliasDraft.value
+  if (!alias.trim() || !canonical.trim()) return
+  try { await store.setTagAlias(alias.trim(), canonical.trim()); aliasDraft.value = { alias: '', canonical: '' }; await refreshAliases() } catch (e: any) { showToast(e?.message || '保存别名失败') }
+}
+async function removeAlias (alias: string) {
+  try { await store.deleteTagAlias(alias); await refreshAliases() } catch (e: any) { showToast(e?.message || '删除别名失败') }
+}
+watch(showSettings, (v) => { if (v) refreshAliases() })
+async function mergeTags (from: string[], to: string) {
+  if (!window.confirm(`把 ${from.join('、')} 合并为 ${to}？所有作者的这些标签都会改成 ${to}。`)) return
+  try {
+    await store.mergeUserTags(from, to)
+    await refreshWatchlist()
+    showToast(`已合并为 ${to}`)
+  } catch (e: any) { showToast(e?.message || '合并失败') }
+}
 // 作者标签只编辑一份：写到作者自带标签，并清掉旧的覆盖，避免两处不一致；
 // 新输入的标签顺手加入常用列表。
 async function saveAuthorTags (username: string, tags: string[]) {
@@ -831,6 +1092,25 @@ async function saveAuthorTags (username: string, tags: string[]) {
     if (fresh.length) await saveVocab([...userTagVocab.value, ...fresh])
     await refreshWatchlist()
   } catch (e: any) { showToast(e?.message || '保存标签失败') }
+}
+function doExportSettings () {
+  const blob = new Blob([exportSettings(localStorage)], { type: 'application/json' })
+  const a = document.createElement('a')
+  a.href = URL.createObjectURL(blob)
+  a.download = `xdigest-settings-${new Date().toISOString().slice(0, 10)}.json`
+  a.click()
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000)
+}
+async function doImportSettings (e: Event) {
+  const input = e.target as HTMLInputElement
+  const file = input.files?.[0]
+  input.value = ''
+  if (!file) return
+  try {
+    const n = importSettings(await file.text(), localStorage)
+    showToast(`已导入 ${n} 项设置，正在刷新…`)
+    setTimeout(() => location.reload(), 800)
+  } catch (err: any) { showToast(err?.message || '导入失败') }
 }
 function saveWebhookDraft () { saveWebhook(webhookUrlDraft.value.trim(), webhookKeyDraft.value); webhookMsg.value = t('settings.webhookSaved') }
 function clearWebhookDraft () { clearWebhook(); webhookUrlDraft.value = ''; webhookKeyDraft.value = ''; webhookMsg.value = t('settings.webhookCleared') }
@@ -866,9 +1146,21 @@ onMounted(async () => {
     const ut = await store.loadUserTags()
     userTagVocab.value = ut.vocabulary || []; userTagOverrides.value = ut.overrides || {}
     replicatedIds.value = new Set((reps as any[]).map(r => r.post_id))
+    refreshViews()
     replicaCount.value = (reps as any[]).length
     await refreshWatchlist()
   } catch (err: any) { loadError.value = err?.message || t('common.loadError') }
   finally { loading.value = false }
 })
 </script>
+
+<style scoped>
+.tag-cloud { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; margin: 8px 0; }
+.tag-cloud-item { border: none; background: transparent; color: var(--text); cursor: pointer; padding: 0; line-height: 1.3; }
+.tag-cloud-item:hover { color: var(--accent, #1d9bf0); text-decoration: underline; }
+.bilingual { margin: 6px 0; border-left: 3px solid var(--border); padding-left: 10px; }
+.bilingual .bi-orig { margin: 6px 0 2px; white-space: pre-wrap; }
+.bilingual .bi-tr { margin: 0 0 8px; color: var(--text-muted); white-space: pre-wrap; }
+.select-box { display: inline-flex; gap: 6px; align-items: center; font-size: 13px; color: var(--text-muted); margin-bottom: 6px; }
+.post-card.is-selected { outline: 2px solid var(--accent, #1d9bf0); }
+</style>

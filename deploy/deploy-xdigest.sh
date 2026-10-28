@@ -19,6 +19,9 @@ systemctl daemon-reload
 systemctl enable --now xdigest-api
 systemctl enable --now xdigest-web
 sleep 3
-curl -s -m 5 http://127.0.0.1:18090/healthz; echo " <- api healthz"
+# The API port comes from api.env (production: 127.0.0.1:18093; 18090 is
+# taken by chiji-dev on this box).
+API_ADDR=$(sed -n 's/^XDIGEST_ADDR=//p' /etc/xdigest/api.env | tail -1)
+curl -s -m 5 "http://${API_ADDR:-127.0.0.1:18093}/healthz"; echo " <- api healthz"
 curl -s -m 5 -o /dev/null -w "web %{http_code}\n" http://127.0.0.1:18091/
 systemctl is-active xdigest-api xdigest-web

@@ -1,2 +1,0 @@
-underscore 1.13.8
-License: MIT

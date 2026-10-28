@@ -4,6 +4,14 @@
       <p v-if="loadError" style="color:var(--danger-text)">{{ loadError }}</p>
       <p v-if="loading">{{ t('common.loading') }}</p>
       <p v-if="!loading" style="color:var(--text-muted)">{{ t('fuke.total', { n: replicas.length }) }}</p>
+      <!-- 进度看板：总数 / 进行中 / 已完成 / 未开始 / 平均完成率（按顶层节点） -->
+      <div v-if="!loading && replicas.length" class="fuke-board">
+        <div><strong>{{ board.total }}</strong><span>全部</span></div>
+        <div><strong>{{ board.inProgress }}</strong><span>进行中</span></div>
+        <div><strong>{{ board.done }}</strong><span>已完成</span></div>
+        <div><strong>{{ board.notStarted }}</strong><span>未开始</span></div>
+        <div><strong>{{ board.avgRate }}%</strong><span>平均完成率</span></div>
+      </div>
       <p v-if="translating" style="color:var(--text-muted)">{{ t('common.translating') }}</p>
       <div class="filter-row" style="margin-bottom:12px">
         <label>{{ t('fuke.sort') }}
@@ -31,6 +39,8 @@
           <div class="node-menu-wrap flow-menu-wrap">
             <button class="btn btn-sm btn-quiet node-menu-btn" type="button" @click="toggleFlowMenu(r.id)" :aria-label="t('fuke.flowMenu')" aria-haspopup="menu" :aria-expanded="openFlowMenu === r.id">⋯</button>
             <div v-if="openFlowMenu === r.id" class="node-menu" role="menu">
+              <button type="button" role="menuitem" @click="menuExport(r)">导出 Markdown</button>
+              <button type="button" role="menuitem" @click="menuClone(r)">复制为新流程</button>
               <button type="button" role="menuitem" class="danger" @click="menuDeleteFlow(r)">{{ t('fuke.deleteReplica') }}</button>
             </div>
           </div>
@@ -86,6 +96,7 @@
 </template>
 
 <script setup lang="ts">
+import { replicaBoard, replicaMarkdown } from '~/utils/replicaExport'
 import type { Replica, ReplicaStep } from '~/composables/types'
 import { shanghaiTime } from '~/composables/useFormat'
 import { useScrollLock } from '~/composables/useScrollLock'
@@ -170,6 +181,23 @@ function loadCollapsed () {
 }
 function toggleFlowMenu (id: string) { openFlowMenu.value = openFlowMenu.value === id ? null : id }
 function menuDeleteFlow (r: Replica) { openFlowMenu.value = null; askDelete(r) }
+const board = computed(() => replicaBoard(replicas.value))
+// 导出：步骤转为 - [x]/- [ ] 清单（含备注、附件链接），浏览器端生成下载。
+function menuExport (r: Replica) {
+  openFlowMenu.value = null
+  const blob = new Blob([replicaMarkdown(r, location.origin)], { type: 'text/markdown;charset=utf-8' })
+  const a = document.createElement('a')
+  a.href = URL.createObjectURL(blob)
+  a.download = `${(r.post_title || 'replica').replace(/[\\/:*?"<>|]+/g, '_').slice(0, 60)}.md`
+  a.click()
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000)
+}
+// 复制：同样的步骤结构建一个新流程，全部回到未开始，不带附件；可选复制备注。
+async function menuClone (r: Replica) {
+  openFlowMenu.value = null
+  const copyNotes = window.confirm('复制为新流程：是否同时复制各步骤的备注？（确定 = 复制备注，取消 = 不复制）')
+  try { await store.cloneReplica(r.id, copyNotes); await reload() } catch (e: any) { window.alert(e?.message || '复制失败') }
+}
 function onDocClick (e: MouseEvent) {
   if (!openFlowMenu.value) return
   if (!(e.target as HTMLElement).closest('.flow-menu-wrap')) openFlowMenu.value = null
@@ -229,3 +257,10 @@ onUnmounted(() => {
   document.removeEventListener('keydown', onKeyDown)
 })
 </script>
+
+<style scoped>
+.fuke-board { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; margin: 8px 0 12px; }
+.fuke-board > div { border: 1px solid var(--border); border-radius: 10px; padding: 8px; text-align: center; }
+.fuke-board strong { display: block; font-size: 18px; }
+.fuke-board span { font-size: 12px; color: var(--text-muted); }
+</style>

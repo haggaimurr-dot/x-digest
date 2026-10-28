@@ -29,6 +29,35 @@ type Counts struct {
 	AvatarsSeen   int `json:"avatars_seen"`
 	Categories    int `json:"categories"`
 	PostsWithStep int `json:"posts_with_steps"`
+	// Report (2026-10-28): posts newly inserted / already present and
+	// updated / skipped (duplicate id in the file) / failed validation.
+	// Failed posts are left out; the rest still go in.
+	Inserted int          `json:"inserted"`
+	Updated  int          `json:"updated"`
+	Skipped  int          `json:"skipped"`
+	Failed   []FailedPost `json:"failed"`
+}
+
+// FailedPost is one posts.json item that could not be imported.
+type FailedPost struct {
+	ID     string `json:"id"`
+	Reason string `json:"reason"`
+}
+
+// checkPost validates one posts.json item before it is written; "" = fine.
+// It returns the parsed published time for the insert.
+func checkPost(p legacyPost) (published string, reason string) {
+	if strings.TrimSpace(p.ID) == "" {
+		return "", "missing id"
+	}
+	if strings.TrimSpace(p.Author) == "" {
+		return "", "missing author"
+	}
+	published, err := store.ParsePublished(p.PublishedAt)
+	if err != nil {
+		return "", "bad publishedAt: " + err.Error()
+	}
+	return published, ""
 }
 
 type legacySubstep struct {
@@ -204,7 +233,34 @@ func Import(db *sql.DB, dataDir string) (Counts, error) {
 			updatedMeta = conv
 		}
 	}
+	existing := map[string]bool{}
+	if rows, err := tx.Query("SELECT id FROM posts"); err == nil {
+		for rows.Next() {
+			var id string
+			if rows.Scan(&id) == nil {
+				existing[id] = true
+			}
+		}
+		rows.Close()
+	}
+	c.Failed = []FailedPost{}
+	seenIDs := map[string]bool{}
 	for _, p := range postsFile.Posts {
+		published, reason := checkPost(p)
+		if reason != "" {
+			c.Failed = append(c.Failed, FailedPost{ID: p.ID, Reason: reason})
+			continue
+		}
+		if seenIDs[p.ID] {
+			c.Skipped++
+			continue
+		}
+		seenIDs[p.ID] = true
+		if existing[p.ID] {
+			c.Updated++
+		} else {
+			c.Inserted++
+		}
 		r := raw[p.ID]
 		if p.AuthorAvatar == "" {
 			p.AuthorAvatar = r.Avatar
@@ -232,10 +288,6 @@ func Import(db *sql.DB, dataDir string) (Counts, error) {
 			p.AuthorAvatar = authorAvatars[strings.ToLower(p.Author)]
 		}
 
-		published, err := store.ParsePublished(p.PublishedAt)
-		if err != nil {
-			return c, fmt.Errorf("post %s publishedAt: %w", p.ID, err)
-		}
 		// Post-only authors (e.g. a poster not on the watchlist) keep a row
 		// with NULL group so the watchlist listing stays curated, while the
 		// post itself always carries denormalised author fields.

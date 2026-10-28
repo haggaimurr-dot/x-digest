@@ -7,14 +7,15 @@ MariaDB schema 与本地导入 CLI；不含 Nuxt 前端，不改前端目录，�
 
 | 文件 | 说明 |
 |---|---|
-| `cmd/api/main.go` | HTTP API（标准库 net/http，全部接口） |
+| `cmd/api/main.go` | HTTP API 入口与路由（标准库 net/http）；各领域 handler 按文件拆分：`posts.go`、`watchlist.go`、`categories.go`、`replicas.go`、`attachments.go`、`repos.go`（+`repos_sync.go`）、`yt.go`、`hub.go`、`translate.go`、`x_import.go`、`auth.go` |
+| `cmd/maint/main.go` | 运维 CLI `xdigest-maint`（清理翻译缓存、清理软删类别） |
 | `cmd/import/main.go` | 本地导入 CLI `xdigest-import` |
 | `internal/model/model.go` | API 的 JSON 结构 |
-| `internal/store/store.go` | 全部 MariaDB 访问 |
+| `internal/store/*.go` | MariaDB 访问，按领域拆分：`posts.go`、`post_filter.go`、`categories.go`、`user_tags.go`、`replicas.go`、`repos.go`、`yt.go`、`hub.go`、`translations.go`、`refresh_jobs.go` |
 | `internal/importer/importer.go` | 旧站 JSON → DB 的幂等导入逻辑 |
 | `schema.sql` | 新库 `xdigest` 的建表语句（utf8mb4 / utf8mb4_unicode_ci） |
 | `db-user.sql` | 专用 DB 用户创建模板（密码为占位符，见下） |
-| `xdigest-api.service` | systemd 单元模板（`xdigest-api`，127.0.0.1:18090） |
+| `xdigest-api.service` | systemd 单元模板（`xdigest-api`；监听地址取自 api.env，生产为 127.0.0.1:18093） |
 | `api.env.example` | 环境变量模板（只写占位符） |
 
 ## 运行方式
@@ -32,7 +33,10 @@ XDIGEST_ATTACHMENT_DIR=/var/lib/xdigest/attachments \
 
 | 变量 | 默认值 | 说明 |
 |---|---|---|
-| `XDIGEST_ADDR` | `127.0.0.1:18090` | 内网监听地址 |
+| `XDIGEST_ADDR` | `127.0.0.1:18090` | 内网监听地址（代码默认值；生产 api.env 配为 `127.0.0.1:18093`，18090 在服务器上被 chiji-dev 占用） |
+| `API_TOKEN` | 空 | 写接口令牌，见下方「安全说明」 |
+| `SUMMARY_CONCURRENCY` | `2` | AI 摘要并发上限（1–16） |
+| `COMMENTS_ENABLED` | `false` | 视频热门评论 worker 与 `/comments` 接口；关闭时接口返回 410 |
 | `XDIGEST_DSN` | `xdigest:CHANGE_ME@tcp(127.0.0.1:3306)/xdigest` | MySQL DSN（密码只放服务器 root-only 的 `/etc/xdigest/api.env`） |
 | `XDIGEST_ATTACHMENT_DIR` | `/var/lib/xdigest/attachments` | 附件磁盘目录；DB 只存元数据 + 路径，绝不存 BLOB |
 
@@ -44,13 +48,19 @@ XDIGEST_ATTACHMENT_DIR=/var/lib/xdigest/attachments \
 - `GET /healthz`、`GET /api/v1/healthz` → `{"ok":true}`，并 ping DB，失败 503。
 - `GET /api/v1/posts?author=a,b&tag=x&category=cid&user_tag=y&q=kw&date_from=&date_to=&page=&page_size=`
   → `{"updated_at","total","page","page_size","posts":[...]}`；默认 page_size 200，上限 1000；
-  排序 `published_at DESC, id ASC`。`q` 支持 `标签:`/`tag:` 前缀只匹配用户标签。
-- `GET /api/v1/posts/{id}`（不存在 404）。
+  排序 `published_at DESC, id ASC`（`sort=oldest` 反向）。`q` 支持 `标签:`/`tag:` 前缀只匹配用户标签（子串、不分大小写）。
+  多选：`tags=a,b`、`categories=c1,__uncat`、`user_tags=x,y`（同一维度内为「或」），`kind=教程实操|未分类`。
+  响应另含 `has_more` 与 `snippet`（关键词在第一条结果中的命中片段）。
+- `GET /api/v1/posts/{id}`（不存在 404）；`PATCH /api/v1/posts/{id} {"replica_enabled": true|false|null}`（手动复刻开关）。
+- `GET /api/v1/posts/{id}/summary/stream?lang=`、`GET /api/v1/{yt|bili}/videos/{id}/summary/stream?lang=`：
+  AI 摘要的 SSE 推送（`event: summary`），生成结束即推送最终结果。
 - `GET /api/v1/watchlist`；`POST /api/v1/watchlist/groups`；`DELETE /api/v1/watchlist/groups/{id}`
   （fixed 分组删不得，422；删后该组作者归入 `other`）。
 - `POST /api/v1/watchlist/accounts`（已存在 409）；`PATCH` / `DELETE /api/v1/watchlist/accounts/{username}`。
-- `GET /api/v1/tags`（去重，按出现频次倒序）；`GET` / `PUT /api/v1/user-tags`。
-- `GET` / `POST /api/v1/categories`；`DELETE /api/v1/categories/{id}`；
+- `GET /api/v1/tags`（去重，按出现频次倒序）；`GET` / `PUT /api/v1/user-tags`（写入时归一化：全角转半角、大小写不同沿用已有写法）；
+  `GET /api/v1/user-tags/duplicates`（疑似重复分组）；`POST /api/v1/user-tags/merge {from[], to}`。
+- `GET` / `POST /api/v1/categories`（重名 409）；`PATCH /api/v1/categories/{id} {name}`（重名 409）；
+  `DELETE /api/v1/categories/{id}`（软删，7 天后清理）；`POST /api/v1/categories/{id}/restore`（撤销删除）；
   `PUT /api/v1/categories/assignments {post_id, category_ids[]}`。
 - `GET /api/v1/replicas?sort=time|progress`；`POST /api/v1/replicas {post_id}`
   （按帖子当前 steps 快照建复刻；同一帖子已存在则 200 返回已有对象并带 `existing:true`，不重复建）。
@@ -59,10 +69,12 @@ XDIGEST_ATTACHMENT_DIR=/var/lib/xdigest/attachments \
 - `POST /api/v1/replicas/{id}/attachments?step_idx=N`（multipart，字段 `file`，可多文件）；
   `GET /api/v1/replicas/{id}/attachments`；`GET` / `DELETE /api/v1/attachments/{id}`；
   `GET /api/v1/attachments/{id}/download`（`?inline=1` 时 inline，否则 attachment）。
+- `POST /api/v1/repos/sync-all` 启动后台同步（202，运行中 409）；`GET /api/v1/repos/sync-all` 查进度
+  （`{running,total,done,synced,failed,rate_limited,waiting_until}`）。
 
 附件规则：扩展名白名单 pdf doc docx xls xlsx ppt pptx txt md csv png jpg jpeg gif
 webp bmp avif svg ico；单个 ≤5MB；先全量校验再落盘，
-非法/超大返回 422 并说明是哪个文件；磁盘文件名用内部 id（防路径穿越），
+非法/超大返回 422 并说明是哪个文件；文件头与扩展名不符（如改名的 .exe）返回 400 `INVALID_FILE_CONTENT`；磁盘文件名用内部 id（防路径穿越），
 原文件名只存元数据。
 
 ## 导入（服务器本地 CLI，绝不暴露 HTTP 导入接口）
@@ -89,15 +101,15 @@ go build -o xdigest-import ./cmd/import
 5. 头像：协调人把旧站 `avatars/` 拷到 Nuxt `public/avatars`（帖子里的
    `author_avatar` 如 `avatars/ai_xiaomu.jpg` 按 `/avatars/...` 解析）。
 
-## 安全说明（无登录，如实写明）
+## 安全说明
 
-本 API **没有任何鉴权**：任何能访问到它的人都能读写关注列表、分类、复刻与附件。
-因此它只能监听内网（默认 127.0.0.1:18090），公网访问必须经 nginx 反代，
-且在生产上线前应补一层鉴权。建议后续方案（二选一，不擅自实施）：
-
-1. nginx 层 basic auth / IP 白名单（最快，适合单人调试）；
-2. 在 Go 层加 Bearer token 中间件：写接口要求 `Authorization: Bearer <token>`，
-   token 放 `api.env` 的 `XDIGEST_API_TOKEN`，读接口保持公开。
+- **写接口鉴权**（`cmd/api/auth.go`）：设置 `API_TOKEN` 后，除 GET/HEAD/OPTIONS 外的所有请求都要带
+  `X-API-Token: <token>`（或 `Authorization: Bearer <token>`），否则 401；读接口保持公开，`/healthz` 豁免。
+  前端把 token 存在浏览器 localStorage（`xdigest.apiToken`），遇到 401 弹框输入。未设置 `API_TOKEN` 时不校验（仅限本地开发）。
+- **nginx 外层**（`deploy/xdigest-18089.nginx`）：写方法 basic auth（`/etc/nginx/xdigest.htpasswd`）+ 按 IP 限流
+  （AI / 导入 / 同步 10 次/分，其他 API 10 次/秒，超出 429）。浏览器用 `X-API-Token` 而不用 `Authorization`，正是为了不覆盖 basic auth。
+- 附件上传校验文件头魔数（改扩展名的 .exe 返回 400）；下载响应带 `nosniff` 与沙箱 CSP。
+- API 只监听内网地址，公网访问必须经 nginx。
 
 ## 已知差异 / 未完成项
 

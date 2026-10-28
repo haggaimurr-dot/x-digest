@@ -2,7 +2,7 @@ import { rawAvatar } from '~/utils/x-post.mjs'
 import xContent from '~/assets/mock/x-content.json'
 // Data layer: real /api/v1 by default, mock fallback when NUXT_PUBLIC_USE_MOCK=1.
 // Pages only ever talk to this layer, never to raw fetch or raw mock data.
-import type { Post, Watchlist, Categories, Replica, ReplicaStep, Attachment, Repo, RepoGroup, RepoDetail, RepoRelease, YTChannel, YTVideo, YTSummary, XRefreshJob } from './types'
+import type { Post, Watchlist, Categories, Replica, ReplicaStep, Attachment, Repo, RepoGroup, RepoDetail, RepoRelease, RepoSyncJob, SavedView, YTChannel, YTVideo, YTSummary, XRefreshJob } from './types'
 import { ApiError } from './types'
 // Video platforms sharing the /api/v1/<p>/ routes and the VideoHub page.
 export type VideoPlatform = 'yt' | 'bili'
@@ -55,6 +55,15 @@ export function useStore () {
   async function loadWatchlist (): Promise<Watchlist> {
     if (mock.value) return mockStore.watchlist.value
     return apiFetch<Watchlist>('watchlist')
+  }
+  // Posts per account in the last 30 days (GET /watchlist?with_stats=1).
+  async function loadWatchlistActivity (): Promise<Record<string, number>> {
+    if (mock.value) return {}
+    return (await apiFetch<{ posts_30d?: Record<string, number> }>('watchlist?with_stats=1')).posts_30d || {}
+  }
+  // Paste a following list: handles / @handles / profile links → default group.
+  async function bulkAddAccounts (text: string): Promise<{ created: string[], existing: string[], invalid: string[] }> {
+    return apiFetch('watchlist/accounts/bulk', { method: 'POST', body: JSON.stringify({ text }) })
   }
   async function loadTags (): Promise<string[]> {
     if (mock.value) {
@@ -189,6 +198,70 @@ export function useStore () {
     }
     await apiFetch(`categories/${id}`, { method: 'DELETE' })
   }
+  // Top-bar notifications (new releases of tracked repos).
+  async function loadNotifications (): Promise<{ unread: number, notifications: any[] }> {
+    return apiFetch('notifications')
+  }
+  async function markNotificationsRead (ids: string[]) {
+    await apiFetch('notifications/read', { method: 'POST', body: JSON.stringify({ ids }) })
+  }
+  // Replica from a repo README's install / quick-start steps.
+  async function createReplicaFromRepo (fullName: string): Promise<Replica> {
+    return apiFetch<Replica>(`repos/${fullName}/replica`, { method: 'POST' })
+  }
+  // Copy a flow's steps into a new standalone flow (POST /replicas/{id}/clone).
+  async function cloneReplica (id: string, copyNotes = false): Promise<Replica> {
+    return apiFetch<Replica>(`replicas/${id}/clone`, { method: 'POST', body: JSON.stringify({ copy_notes: copyNotes }) })
+  }
+  // User-tag aliases (backend tag_aliases.go).
+  async function loadTagAliases (): Promise<Array<{ alias: string, canonical: string }>> {
+    if (mock.value) return []
+    return (await apiFetch<{ aliases: Array<{ alias: string, canonical: string }> }>('user-tags/aliases')).aliases
+  }
+  async function setTagAlias (alias: string, canonical: string) {
+    await apiFetch('user-tags/aliases', { method: 'POST', body: JSON.stringify({ alias, canonical }) })
+  }
+  async function deleteTagAlias (alias: string) {
+    await apiFetch(`user-tags/aliases?alias=${encodeURIComponent(alias)}`, { method: 'DELETE' })
+  }
+  // Multi-select batch actions on the X daily page.
+  async function batchCategory (postIds: string[], categoryId: string, action: 'add' | 'remove'): Promise<{ changed: number }> {
+    return apiFetch('categories/assignments/batch', { method: 'POST', body: JSON.stringify({ post_ids: postIds, category_id: categoryId, action }) })
+  }
+  async function batchPostSummaries (ids: string[], lang: string, force = false): Promise<{ queued: number, skipped: number, missing: number, results: Record<string, string> }> {
+    return apiFetch('posts/summary/batch', { method: 'POST', body: JSON.stringify({ ids, lang, force }) })
+  }
+  // Saved filter views (backend views.go).
+  async function loadViews (): Promise<SavedView[]> {
+    if (mock.value) return []
+    return (await apiFetch<{ views: SavedView[] }>('views')).views
+  }
+  async function createView (name: string, filter: unknown): Promise<SavedView> {
+    return apiFetch<SavedView>('views', { method: 'POST', body: JSON.stringify({ name, filter }) })
+  }
+  async function deleteView (id: string) {
+    await apiFetch(`views/${id}`, { method: 'DELETE' })
+  }
+  async function setPostReplicaEnabled (id: string, v: boolean | null) {
+    if (mock.value) return
+    await apiFetch(`posts/${id}`, { method: 'PATCH', body: JSON.stringify({ replica_enabled: v }) })
+  }
+  async function mergeUserTags (from: string[], to: string) {
+    if (mock.value) return
+    await apiFetch('user-tags/merge', { method: 'POST', body: JSON.stringify({ from, to }) })
+  }
+  async function renameCategory (id: string, name: string) {
+    if (mock.value) {
+      mockStore.categories.value = { ...mockStore.categories.value, categories: mockStore.categories.value.categories.map(c => c.id === id ? { ...c, name } : c) }
+      mockStore.persist()
+      return
+    }
+    await apiFetch(`categories/${id}`, { method: 'PATCH', body: JSON.stringify({ name }) })
+  }
+  async function restoreCategory (id: string) {
+    if (mock.value) return // mock delete is permanent
+    await apiFetch(`categories/${id}/restore`, { method: 'POST' })
+  }
   async function setPostCategories (postId: string, categoryIds: string[]) {
     if (mock.value) {
       mockStore.categories.value = { ...mockStore.categories.value, assignments: { ...mockStore.categories.value.assignments, [postId]: categoryIds } }
@@ -278,13 +351,17 @@ export function useStore () {
     const data = await apiFetch<any>(`repos/${fullName}/sync`, { method: 'POST' })
     return data.repo || data || null
   }
-  async function syncAllRepos (): Promise<{ synced: number, failed: number, rate_limited: number, total: number }> {
+  // Background job (backend repos_sync.go): POST starts it (202), GET polls.
+  async function syncAllRepos (): Promise<RepoSyncJob> {
     if (mock.value) {
       const total = mockStore.repos.value.length
       for (const r of mockStore.repos.value) mockStore.syncMockRepo(r.full_name)
-      return { synced: total, failed: 0, rate_limited: 0, total }
+      return { running: false, done: total, synced: total, failed: 0, rate_limited: 0, total }
     }
-    return apiFetch<{ synced: number, failed: number, rate_limited: number, total: number }>('repos/sync-all', { method: 'POST' })
+    return apiFetch<RepoSyncJob>('repos/sync-all', { method: 'POST' })
+  }
+  async function getRepoSyncStatus (): Promise<RepoSyncJob> {
+    return apiFetch<RepoSyncJob>('repos/sync-all')
   }
   async function addRepoGroup (name: string): Promise<RepoGroup> {
     if (mock.value) return mockStore.addMockRepoGroup(name)
@@ -308,6 +385,10 @@ export function useStore () {
     // server also supports q/channel_id/date_from/date_to/limit.
     const data = await apiFetch<{ videos: YTVideo[] } | YTVideo[]>(`${p}/videos?limit=500`)
     return Array.isArray(data) ? data : (data.videos || [])
+  }
+  async function setVideoState (id: string, state: { watched?: boolean, watch_later?: boolean }, p: VideoPlatform = 'yt') {
+    if (mock.value) return
+    await apiFetch(`${p}/videos/${encodeURIComponent(id)}`, { method: 'PATCH', body: JSON.stringify(state) })
   }
   async function loadYTGroups (p: VideoPlatform = 'yt'): Promise<RepoGroup[]> {
     if (mock.value) return [...mockStore.ytGroups.value]
@@ -371,6 +452,10 @@ export function useStore () {
     if (mock.value) throw new ApiError(501, 'MOCK', '演示模式不支持更新')
     return apiFetch<XRefreshJob>('x/refresh', { method: 'POST', body: JSON.stringify({ usernames }) })
   }
+  // Re-import only the posts that failed in the last refresh job.
+  async function retryXRefresh (): Promise<XRefreshJob> {
+    return apiFetch<XRefreshJob>('x/refresh/retry', { method: 'POST' })
+  }
   async function getPostSummary (id: string, lang: string): Promise<YTSummary> {
     if (mock.value) return { ...mockStore.mockYTSummary(id, lang), chapters: [] }
     const data = await apiFetch<{ summary: YTSummary }>(`posts/${encodeURIComponent(id)}/summary?lang=${lang}`)
@@ -401,13 +486,13 @@ export function useStore () {
     await apiFetch(`${p}/groups/${id}`, { method: 'DELETE' })
   }
   return {
-    loading, error, loadPosts, loadWatchlist, loadTags, loadUserTags, loadCategories,
+    mock, loading, error, loadPosts, loadWatchlist, loadWatchlistActivity, bulkAddAccounts, loadTags, loadUserTags, loadCategories,
     loadReplicas, createReplica, createStandaloneReplica, patchReplicaSteps, addReplicaStep, deleteReplicaStep, deleteReplica, uploadAttachments,
     deleteAttachment, replicaAttachments, addGroup, deleteGroup, addAccount, patchAccount,
-    deleteAccount, addCategory, deleteCategory, setPostCategories, setUserTags, setUserTagVocabulary, translateTexts,
+    deleteAccount, addCategory, deleteCategory, renameCategory, restoreCategory, mergeUserTags, setPostReplicaEnabled, loadViews, createView, deleteView, batchCategory, batchPostSummaries, loadTagAliases, setTagAlias, deleteTagAlias, cloneReplica, loadNotifications, markNotificationsRead, createReplicaFromRepo, setPostCategories, setUserTags, setUserTagVocabulary, translateTexts,
     loadRepos, loadRepoGroups, addRepo, loadRepoDetail, loadRepoCommits, loadRepoReleases,
-    patchRepo, deleteRepo, syncRepo, syncAllRepos, addRepoGroup, deleteRepoGroup, validateRepoFullName,
-    loadYTChannels, loadYTVideos, addYTChannel, updateYTChannel, deleteYTChannel, syncYTChannel, syncAllYTChannels, getYTSummary, startYTSummary, addYTVideo, getPostSummary, startPostSummary, importXPost, getXRefresh, startXRefresh,
-    loadYTGroups, addYTGroup, deleteYTGroup
+    patchRepo, deleteRepo, syncRepo, syncAllRepos, getRepoSyncStatus, addRepoGroup, deleteRepoGroup, validateRepoFullName,
+    loadYTChannels, loadYTVideos, addYTChannel, updateYTChannel, deleteYTChannel, syncYTChannel, syncAllYTChannels, getYTSummary, startYTSummary, addYTVideo, getPostSummary, startPostSummary, importXPost, getXRefresh, startXRefresh, retryXRefresh,
+    loadYTGroups, addYTGroup, deleteYTGroup, setVideoState
   }
 }
