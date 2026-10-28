@@ -1,119 +1,122 @@
-# X 博主推文日报（新版：Nuxt + Go + MariaDB）
+# x-digest · AI/技术博主内容日报
 
-原纯静态站（`legacy-static/`，index.html + app.js + fuke.html）已于 2026-10-24 全量迁移为：
+个人用的信息流整理站：把关注的 X 博主、GitHub 仓库、YouTube / B 站频道的内容集中起来，
+整理成可检索、可打标签、可按步骤「复刻」的中文日报。AI 摘要只在用户点击时生成，采集流程不自动生成。
 
-- **前端** `frontend/`：Nuxt 4（Vue 3），页面 `/` 摘要页、`/fuke` 复刻页，设置做成弹窗。
-  视觉贴近原站 styles.css（`frontend/assets/css/original.css`），深色默认、浅色可切换，移动端可用。
-- **后端** `backend/`：Go（标准库 net/http + database/sql + go-sql-driver/mysql），
-  接口全部在 `/api/v1/` 下，另有 `/healthz`。无登录（个人工具，见下文安全说明）。
-- **数据库**：MariaDB 新库 `xdigest`（与 chiji / bailiankai / bailiankai_web 隔离），
-  表结构见 `backend/schema.sql`。附件只存元数据 + 磁盘路径（默认 `/var/lib/xdigest/attachments`），不存 BLOB。
-- **旧数据**：根目录 `data/`、`config/`、`avatars/` 是迁移源（190 条推文、13 作者、75 带步骤），
-  由 `backend/cmd/import`（服务器本地 CLI）导入；`frontend/assets/mock/` 只是开发 fallback（默认关闭）。
+技术栈：**Nuxt 4（Vue 3）前端 + Go 后端 + MariaDB**。原纯静态站已于 2026-10-24 迁移，旧代码保留在 `legacy-static/`。
+
+## 功能一览
+
+顶栏五个版块（中文 / EN 切换；「Aa 外观」全站设置，深色默认、可切浅色；移动端可用）：
+
+| 页面 | 功能 |
+|---|---|
+| `/` X 日报 | 推文按作者分组展示：左栏原文（超过 120 字默认折叠）、右栏标题 / 标签 / 内容简介、提及的资源、查看原帖；按作者、标签、分类、用户标签、关键词、日期筛选并分页；点击生成 AI 摘要；「导入单帖」「更新帖子」；关注列表（分组、折叠、搜索）与标签管理 |
+| `/fuke` 复刻 | 把教程类帖子的实现步骤建成复刻清单：每步 idle / active / done 三态、Markdown 备注、附件上传与浏览器内预览 |
+| `/repos` 仓库 | 追踪 GitHub 仓库：描述、语言、星标、Fork、开放 Issue / PR、最近 10 条提交、最新 Release；分组、标签、备注；单仓刷新和全部同步 |
+| `/youtube` 油管 | 按频道同步视频 / 播放列表；可添加单个视频（同时登记所属频道）；按账号分组的视频卡片、自动标签、提及的资源；点击生成 AI 摘要（章节 + 全文） |
+| `/bilibili` B站 | 与油管同一套页面和接口 |
+
+## 目录结构
+
+```
+frontend/         Nuxt 前端（pages / components / composables）
+backend/          Go 后端
+  cmd/api/          HTTP API 服务（xdigest-api）
+  cmd/import/       导入 CLI：data/ + config/ → MariaDB（幂等）
+  cmd/digest/       批量 AI 解析：raw_posts.json → posts.json
+  internal/         store / importer / xpost / youtube / bilibili / github / translate / ytsummary
+  schema.sql        建表语句（幂等，可重复执行）
+data/             raw_posts.json（原文暂存）、posts.json（解析结果）、avatars.json、采集队列进度
+config/           watchlist.json（关注列表）、user-tags.json（用户标签词表）
+avatars/          作者头像（前端 public/avatars 有同一份副本）
+scripts/          append_raw_posts.py：按 id 去重追加原文
+tests/            test_raw_posts_dedup.py
+deploy/           部署脚本、systemd 单元、nginx vhost
+legacy-static/    迁移前的静态站（只作参考 / 回滚）
+```
 
 ## 本地开发
 
 ```bash
-# 后端（需 MariaDB，DSN 按需改）
-cd backend && go run ./cmd/api
-# 前端（开发用 mock 或指向本地 API）
-cd frontend && npm install && npm run dev   # dev 端口 18091，/api 代理到 Go（见 nuxt.config.ts）
+# 后端（需 MariaDB；先执行 backend/schema.sql）
+cd backend && go run ./cmd/api              # 默认监听 127.0.0.1:18090
+# 前端
+cd frontend && npm install && npm run dev   # http://127.0.0.1:18091，/api 代理到 Go
 ```
 
-生产启动（服务器，见 `deploy/`）：Go 监听 `127.0.0.1:18093`（18090 已被同期上线的 chiji-dev 占用，部署时核实后改定），Nuxt 监听 `127.0.0.1:18091`
-（注意：Nitro 认 `PORT`，`NUXT_PORT` 不生效），nginx 18089 代理 `/` → Nuxt（18091）、`/api/` → Go（18093）。
+- 前端 `predev` / `prebuild` 会运行 `scripts/sync-x-content.mjs`，把 `data/raw_posts.json` 的原文和头像合并成 `frontend/assets/mock/x-content.json`（帖子原文不存在 posts 表里，由页面合并）。
+- `NUXT_PUBLIC_USE_MOCK=1` 时使用 `frontend/assets/mock/` 下的数据，不调用 API。
+- `NUXT_SERVER_API_BASE` 指定 SSR / 开发代理使用的 API 地址（默认 `http://127.0.0.1:18090/api/v1`）。
 
-## 接口（摘要）
+## 环境变量（后端）
 
-- `GET /api/v1/posts?author=&tag=&category=&user_tag=&q=&date_from=&date_to=&page=&page_size=`
-  （page_size 默认 200、上限 1000；`author=` 空值 = 空列表，与原站空选中语义一致；
-  `q=标签:xxx` / `tag:xxx` 只匹配用户标签）
-- `GET /api/v1/posts/{id}`、`GET /api/v1/watchlist`（分组+账号 CRUD）、`GET /api/v1/tags`、
-  `GET/PUT /api/v1/user-tags`、`GET/POST/DELETE /api/v1/categories`（+归属）、
-  `GET/POST/PATCH/DELETE /api/v1/replicas`（步骤状态 idle/active/done 三态循环，同一帖子不重复建）、
-  `POST/GET/DELETE /api/v1/replicas/{id}/attachments`、`/api/v1/attachments/{id}/download`。
-- 附件白名单：pdf doc docx xls xlsx ppt pptx txt md csv png jpg jpeg gif webp bmp avif svg ico
-  zip rar 7z tar gz tgz；单个 ≤10MB（服务端校验，超大/非法扩展名返回 422）。
+服务器上统一放在 `/etc/xdigest/api.env`（root-only，600），模板见 `backend/api.env.example`。真实密钥和密码不得提交到仓库。
 
-## 仓库版块（GitHub，与 X 日报分开展示、顶栏切换）
+| 变量 | 说明 |
+|---|---|
+| `XDIGEST_ADDR` | 监听地址，代码默认 `127.0.0.1:18090`，生产配为 `127.0.0.1:18093` |
+| `XDIGEST_DSN` | MariaDB DSN |
+| `XDIGEST_ATTACHMENT_DIR` | 附件目录，默认 `/var/lib/xdigest/attachments` |
+| `TRANSLATE_API_BASE` / `TRANSLATE_API_KEY` / `TRANSLATE_MODEL` | OpenAI 兼容的 AI 中转站；翻译、各类 AI 摘要、帖子解析共用。未配 key 时相关接口返回 503 |
+| `DIGEST_MODEL` | 帖子解析用的模型（未设则用 `TRANSLATE_MODEL`） |
+| `YT_SUMMARY_MODEL` | 视频摘要用的模型（可选） |
+| `GROK_API_KEY` | 「更新帖子」必填，用 Grok `x_search` 找新帖 id |
+| `GROK_API_BASE` / `GROK_MODEL` / `GROK_DIGEST_MODEL` | Grok 地址（默认同 `TRANSLATE_API_BASE`）、找帖模型（默认 grok-4.3）、兜底解析模型（默认 grok-4.20-0309-non-reasoning） |
+| `X_REFRESH_DAYS` | 账号没有已入库帖子时向前找的天数，默认 30 |
+| `XPOST_API_BASE` / `X_HTTP_PROXY` | fxtwitter 接口地址 / 代理 |
+| `GITHUB_TOKEN` | GitHub 细粒度只读 PAT（可选；未配时每小时 60 次） |
+| `YT_DLP_BIN` / `YT_HTTP_PROXY` | yt-dlp 路径 / 代理 |
+| `BILI_API_BASE` / `BILI_HTTP_PROXY` / `BILIBILI_SESSDATA` | B 站接口地址 / 代理 / 登录 Cookie（可选） |
 
-- 页面 `/repos`：仓库卡片（描述、语言、星标、Fork、开放 Issue/PR 数、最后更新、链接）+ 最近提交（10 条）+ 最新 Release；添加仓库（`owner/repo`）、分组、标签、备注、删除；单仓刷新与全部同步。X 推文和仓库绝不混在同一个列表里。
-- 接口：`GET/POST /api/v1/repos`、`GET/PATCH/DELETE /api/v1/repos/{owner}/{repo}`、`GET .../commits`、`GET .../releases`、`POST .../sync`、`POST /api/v1/repos/sync-all`、`GET/POST/DELETE /api/v1/repos/groups`。新表：`repo_groups`、`repos`、`repo_tags`、`repo_commits`、`repo_releases`（见 `backend/schema.sql`，幂等追加）。
-- 同步：后端直接调 GitHub REST API（仓库信息、提交、Release、search API 分别计 Issue/PR 数，不用含 PR 的 `open_issues_count`）。数据存 DB，页面只读 DB；同步只在添加仓库和点“刷新”时触发，记 `last_synced_at`/`sync_status`。未登录每小时 60 次，限流时保留旧数据并明确提示；私有仓库未登录会报“可能是不存在或私有仓库需要 token”。
-- Token：后端读环境变量 `GITHUB_TOKEN`（有则用，无则走未登录模式）。多仓库频繁刷新需要一个 GitHub 细粒度 PAT（只读公开仓库即可），通过 Secure Vault 提供后配进服务器 `/etc/xdigest/api.env`，绝不写进仓库。
+## X 日报数据流
 
-## 油管 AI 摘要（章节 + 全文）
+```
+config/watchlist.json
+  → 采集 X 原文与头像 → data/raw_posts.json（按 id 去重追加）
+  → backend/cmd/digest（AI 解析标题、行业、技术、标签、简介，教程类加步骤）→ data/posts.json
+  → backend/cmd/import（幂等 upsert）→ MariaDB → Go API → Nuxt 页面
+```
 
-- 油管页每个视频（播放列表除外）有「✨ AI 摘要」按钮：首次点击在后台生成，之后直接读库；「重新生成」会覆盖旧结果。
-- 流程：yt-dlp 读元数据（标题、简介、作者章节、可用字幕）→ 只下载一条字幕（优先人工字幕，其次视频原语言的自动字幕）→ 调 `TRANSLATE_*` 配置的同一个 AI 中转生成全文摘要、要点和带时间点的章节。视频自带章节时保留作者的时间点；没有字幕时只根据标题和简介生成，并在页面上注明。
-- 接口：`GET/POST /api/v1/yt/videos/{id}/summary?lang=zh-CN|en[&force=1]`（POST 返回 202 后页面每 4 秒轮询）；表 `yt_video_summaries`（见 `backend/schema.sql`，幂等追加）。
-- 依赖：服务器上 `TRANSLATE_API_KEY` 必须已配置，否则返回 503；yt-dlp 走 `YT_HTTP_PROXY`，与同步相同。无登录，任何能访问页面的人都能触发 AI 调用（已生成的摘要不会重复调用）。
+- 原文采集由外部 Grok Bot routine 完成（folder id `x`，由统一调度维护，改规则时更新该 routine，不在本仓库另建一份）。`data/following_queue.txt` / `queue_progress.json` / `fetched_accounts.txt` 记录批量采集进度。
+- `posts.json` 的增量由 bot 自动提交（提交信息「posts.json：解析 bot 新拉取的帖子」）。
+- 网页上的「导入单帖」和「更新帖子」**直接写数据库**，不写 `raw_posts.json` / `posts.json`；之后再跑 `cmd/import` 不会删除这些帖子。
 
-## X 日报 AI 摘要（与油管同一逻辑）
+### 导入单帖 / 更新帖子
 
-- 卡片下方「✨ AI 摘要」：首次点击时后台调 `TRANSLATE_*` 中转站生成（全文摘要、要点、提及的资源），存入表 `post_summaries`，之后直接读库；「重新生成」覆盖。
-- 接口 `GET/POST /api/v1/posts/{id}/summary?lang=zh-CN|en[&force=1]`；原文不在 posts 表里（页面从 `x-content.json` 合并），所以 POST 体里由页面带上 `{text, links}`。没有原文的帖子只用标题、旧摘要和步骤生成，并在页面注明。
+- **导入单帖** `POST /api/v1/posts/import {url, force}`：用 fxtwitter 拉原文（长文、X 文章、引用、回复上下文、图片、头像）→ AI 解析（与 `cmd/digest` 同一提示词）→ 写库；作者不在关注列表时自动加入「默认」分组。
+- **更新帖子** `POST/GET /api/v1/x/refresh`：选账号（不选 = 全部），后台任务用 Grok `x_search` 找每个账号最新已入库帖之后的新帖 id，再逐条拉原文、解析、入库；15 字以内的短回复跳过。Grok 只提供 id，正文和作者以 fxtwitter 为准，模型编造的 id 不会入库。页面轮询进度。
+- 主模型拒绝（中转站对个别话题返回 403）时改用 Grok 重试。
 
-## X 日报：导入单帖 / 更新帖子
-
-- 「导入单帖」：贴 x.com 帖子链接 → 用 fxtwitter 公开接口拉原文（长文、X 文章、引用、回复上下文、图片、头像）→ 中转站 AI 解析（与 `cmd/digest` 同一提示词）→ 直接写库；作者不在关注列表时自动加入「默认」分组。接口 `POST /api/v1/posts/import {url, force}`。
-- 「更新帖子」：选账号（不选 = 全部），后台任务用中转站 Grok 的 `x_search` 找每个账号已入库最新帖之后的新帖 id（没有帖子的账号找最近 `X_REFRESH_DAYS`=30 天），再逐条拉原文、AI 解析、入库；15 字以内短回复跳过。Grok 只提供 id，帖子内容和作者都以 fxtwitter 为准，编造的 id 不会入库。接口 `POST/GET /api/v1/x/refresh`，页面轮询进度。
-- AI 解析默认用 `DIGEST_MODEL`（未设则 `TRANSLATE_MODEL`）；主模型拒绝（中转站对个别话题返回 403）时改用 Grok 重试。
-- 服务器环境变量（`/etc/xdigest/api.env`）：`GROK_API_KEY`（中转站 Grok 分组的 key，必填才能「更新帖子」），可选 `GROK_MODEL`（找帖，默认 grok-4.3）、`GROK_DIGEST_MODEL`（兜底解析，默认 grok-4.20-0309-non-reasoning）、`X_HTTP_PROXY`（服务器直连不了 fxtwitter 时的代理）。
-- 这两条路径直接写数据库，不写 `data/raw_posts.json` / `posts.json`；之后再跑 `cmd/import` 不会删除它们。
-
-## 视频卡片（油管 / B站共用）
-
-- 视频按账号分组显示，每个账号一块，可折叠；左栏缩略图 + 简介，右栏标题、时间、标签，下方整行是「提及的资源」和 AI 摘要。
-- 标签：按标题 + 简介关键词自动识别（Claude Code、Codex、Gemini、ChatGPT、Cursor、MCP、n8n 等，规则在 `frontend/utils/videoTags.ts`），检索条件里可按标签筛选。
-- 提及的资源：简介里的链接（去掉社交账号）+ AI 摘要识别出的工具 / 仓库 / 网站（摘要字段 `resources`）。
-- 热门评论已从页面移除（`/api/v1/<yt|bili>/comments` 接口仍在，页面不再调用）。
-
-## 数据导入（服务器本地，不要暴露成 HTTP 接口）
+### 批量解析与导入（服务器本地 CLI，不暴露成 HTTP 接口）
 
 ```bash
-# 先建库建用户：backend/schema.sql、backend/db-user.sql（密码只进 /etc/xdigest/api.env）
-/opt/xdigest/backend/xdigest-import -data-dir /opt/xdigest/data -dsn 'xdigest:PASSWORD@tcp(127.0.0.1:3306)/xdigest'
-# 期望计数：posts 190、post_steps 323、post_tags 843、作者 13、带步骤帖子 75；重复跑幂等不翻倍。
+set -a; . /etc/xdigest/api.env; set +a
+go run ./cmd/digest -data-dir /opt/xdigest -dry-run     # 只统计
+go run ./cmd/digest -data-dir /opt/xdigest              # 生成，已有的跳过、可断点续跑；-force 重新生成
+/opt/xdigest/backend/xdigest-import -data-dir /opt/xdigest -dsn 'xdigest:PASSWORD@tcp(127.0.0.1:3306)/xdigest'
 ```
 
-每日更新：原站的“立即更新”按钮仍调用户自己配置的外部更新器（Webhook URL/key 只存浏览器
-localStorage，不进服务端）。外部更新器产出新 posts.json 后，在服务器上重跑一次导入 CLI 即可；
-如需改成直连 Go 的导入接口，必须先加鉴权再做，不要直接暴露无鉴权导入。
+导入幂等：帖子按主键 upsert，steps / tags 每次重建；新帖子摘要为空，已有的用户摘要保留；同时补齐 `posts.author_avatar` 和 `authors.avatar`。
 
-## 部署与回滚（上海服务器，公网 http://42.192.114.201:18089/）
+## AI 摘要
 
-- 服务：`xdigest-api`（Go，18093）、`xdigest-web`（Nuxt，18091），均为内网监听 + systemd；
-  nginx vhost `deploy/xdigest-18089.nginx`。
-- 旧站备份：切换前 `/var/www/x-digest` 备份为 `/var/www/x-digest.bak-YYYYMMDD`，
-  旧 vhost 备份为 `/etc/nginx/sites-available/x-digest-18089.static.bak`。
-- 回滚：停掉 xdigest-api / xdigest-web，把备份目录拷回 `/var/www/x-digest`，
-  把 static.bak 拷回 vhost 并 `nginx -t && systemctl reload nginx`，即回到旧静态站；
-  新库 `xdigest` 不影响旧站（旧站只读静态文件）。
+X 帖子、油管、B 站共用同一套逻辑：首次点击时后台生成并入库，之后直接读库；「重新生成」会覆盖。接口 POST 返回 202，页面每 4 秒轮询。
 
-## 安全说明（必须读）
+- **X 帖子** `GET/POST /api/v1/posts/{id}/summary?lang=zh-CN|en[&force=1]`，表 `post_summaries`。输出全文摘要、要点、提及的资源。原文由页面在 POST 体里带上 `{text, links}`；没有原文时只用标题、旧摘要和步骤生成，并在页面注明。
+- **视频** `GET/POST /api/v1/<yt|bili>/videos/{id}/summary?lang=…[&force=1]`，表 `yt_video_summaries` / `bili_video_summaries`。yt-dlp 读元数据，只下载一条字幕（优先人工字幕，其次原语言自动字幕），生成全文摘要、要点和带时间点的章节；视频自带章节时保留作者的时间点；没有字幕时只根据标题和简介生成。播放列表不提供摘要。
 
-本项目无登录：任何能访问公网 18089 的人都能读写复刻数据（帖子本身是公开摘要，风险主要在
-复刻/附件被他人改动或上传垃圾文件）。缓解办法（后续二选一，不要直接上生产就当没这回事）：
-nginx 层加 basic auth 或 IP 白名单，或给 Go API 加 Bearer token 并让前端在请求头里带上。
-附件目录与数据库密码只放服务器 root-only 文件（`/etc/xdigest/api.env`，600），绝不进仓库。
+## 内容规则（硬规则）
 
-## 已知差异（相对原静态站，如实记录）
-
-- 备注编辑器为自研 textarea + 工具栏 + marked 预览（未用 EasyMDE）；PDF 预览用浏览器原生
-  embed（未用 pdf.js 画布）；PPTX 图片未按 slide 关系精确映射；xls 仅下载。
-- 首屏为 Nuxt SSR 外壳 + 客户端拉取帖子（SSR 直出帖子列表未接通）；筛选目前在前端执行
-  （拉 page_size=1000 后按原语义过滤），服务端过滤参数已实现但未作粗筛。
-- 分类归属与用户标签覆盖在旧文件里不存在（只存在旧浏览器 localStorage），导入后为空，
-  需在新版里重新归属；撤销删除、筛选区折叠、类别改名等次要交互未复刻。
-- 标签大小写：为与原站 JS 精确匹配一致，精确匹配与 `/tags` 去重用 `utf8mb4_bin`，
-  故 `/tags` 返回 408 个（含 `workbuddy` / `Workbuddy` 两个变体）。
-
-## 原文暂存数据
+- **原文完整**：title / summary / steps 不得用 `…` / `...` 截断；短链 API 不够时用 `note_tweet` 或 fxtwitter 取全文。长文完整入库，由 UI 折叠。
+- **中文输出**：面向用户的 title / summary / steps 必须是中文，英文原文完整理解后再译写。
+- **流程图 / 实现步骤**：只给技术 / 产品 / 工具介绍或教程生成 `steps` 并设 `showFlowchart: true`，须同时满足：① 正文点名具体产品 / 工具 / 技术；② 含使用步骤、原理拆解或搭建 / 配置流程。拿不准就不生成。观点、新闻、闲聊、吐槽、涨粉复盘、合集、盈利盘点等一律不生成，此时 `steps` 写 `[]`。
+- **复刻入口**：只对原文是教程 / 技术分享的帖子显示，不能因为模型生成了 steps / summary 或遗留了 `showFlowchart=true` 就显示。已有复刻仍可在复刻页查看。
+- **原文去重**：向 `data/raw_posts.json` 追加前必须先读出已有全部 `id`，已存在的跳过。请用 `scripts/append_raw_posts.py`；验证：`python3 tests/test_raw_posts_dedup.py`。
 
 ### raw_posts.json 字段
 
-`data/raw_posts.json` 是单个 JSON 文件，当前为空数组 `[]`。每条原文记录都应是完整对象，作者信息随记录保存，不另建作者表。字段约定如下：
+单个 JSON 数组，作者信息随每条记录保存：
 
 ```json
 {
@@ -130,70 +133,66 @@ nginx 层加 basic auth 或 IP 白名单，或给 Go API 加 Bearer token 并让
   "conversation_id": "conversation-id",
   "in_reply_to_id": null,
   "referenced_tweets": [
-    {
-      "type": "retweeted",
-      "id": "referenced-tweet-id",
-      "author_id": "original-author-id",
-      "author_username": "original_handle",
-      "author_name": "原作者显示名"
-    }
+    { "type": "quoted", "id": "referenced-tweet-id", "author_id": "...", "author_username": "...", "author_name": "...", "text": "被引用推文正文" }
   ],
-  "media": [
-    { "type": "photo", "url": "https://example.com/image.jpg" }
-  ],
-  "public_metrics": {
-    "like": 0,
-    "reply": 0,
-    "repost": 0,
-    "quote": 0,
-    "impression": 0
-  },
+  "entities": { "urls": [{ "url": "https://t.co/...", "expanded_url": "https://..." }] },
+  "media": [{ "type": "photo", "url": "https://example.com/image.jpg" }],
+  "public_metrics": { "like": 0, "reply": 0, "repost": 0, "quote": 0, "impression": 0 },
   "fetched_at": "2026-10-27T12:00:00Z",
   "source": "builtin-x"
 }
 ```
 
-`author_id`、`author_username`、`author_name` 必填且不得为空。
+- `author_id`、`author_username`、`author_name` 必填且不得为空。
+- `note_tweet` / `long_text` 有值时保存完整长文。
+- `entities.urls[].expanded_url` 用于还原 t.co 短链；引用推文的展开链接不算资源（其正文已附在原文后）。
+- `source` 为 `builtin-x` 或 `plugin`。
+- 头像读 raw / API 的 avatar / profile_image 字段，依次回退：库值 → 关注列表 → `/avatars/<用户名>.jpg` → 首字母。
 
-**写入去重（硬规则）**：向 `data/raw_posts.json` 追加前必须先读出已有全部 `id`；新帖 `id` 已存在则跳过，不得再 append。保证零重复。入库请用 `scripts/append_raw_posts.py`（或同等逻辑）。验证：`python3 tests/test_raw_posts_dedup.py`。
-`note_tweet` 或 `long_text` 有值时保存完整长文；无长文时可为 `null`。`referenced_tweets` 保存引用或转帖的原作者信息，至少包含 `author_id` 和 `author_username`，有名称时也保存 `author_name`。`media` 中每项包含 `type`、`url`；`public_metrics` 使用 `like`、`reply`、`repost`、`quote`、`impression` 五项。`source` 为 `builtin-x` 或 `plugin`。
+## 接口（摘要）
 
+全部为 JSON，前缀 `/api/v1/`，错误格式 `{"error":"CODE","message":"..."}`；另有 `/healthz`。详细说明见 `backend/README.md`。
 
-## 原文采集与摘要流程
+- **帖子** `GET /posts?author=&tag=&category=&user_tag=&q=&date_from=&date_to=&page=&page_size=`（page_size 默认 200、上限 1000；`author=` 为空时返回空列表；`q=标签:xxx` / `tag:xxx` 只匹配用户标签）、`GET /posts/{id}`、`/posts/{id}/summary`、`POST /posts/import`、`/x/refresh`
+- **关注列表与标签** `/watchlist`（分组 + 账号 CRUD）、`GET /tags`、`GET/PUT /user-tags`、`/categories`（含 `PUT /categories/assignments`）
+- **复刻** `/replicas`（同一帖子不重复建）、`/replicas/{id}/attachments`、`/attachments/{id}[/download]`
+- **仓库** `/repos`、`/repos/{owner}/{repo}[/commits|/releases|/sync]`、`POST /repos/sync-all`、`/repos/groups`
+- **视频** `/yt/*` 与 `/bili/*` 同构：`channels`、`videos`、`videos/{id}/summary`、`sync`、`groups`、`comments`（评论接口仍在，页面已不调用）
+- **翻译** `POST /translate`（结果缓存在 `translations` 表）
 
-默认流程：**X 拉取完整原文及作者头像 → 写入 `data/raw_posts.json` → 导入原文/元数据**。禁止采集、解析或 import 自动生成/写入 AI 摘要；模型生成仅由用户手动触发。X 卡片不默认渲染已有 summary。import 新帖子 summary 为空，更新帖子保留用户已有摘要。
+附件白名单：pdf doc docx xls xlsx ppt pptx txt md csv png jpg jpeg gif webp bmp avif svg ico；单个 ≤ 5MB，先全部校验再落盘，不合规返回 422。磁盘文件名用内部 id，数据库只存元数据和路径。
 
-头像读取 raw/API 的 avatar / profile_image 字段，并回退到作者映射与关注列表；import 补齐 posts.author_avatar 和 authors.avatar，API 也会回退到 authors.avatar。前端构建时同步原文和头像映射，运行时可回退关注列表头像。
+### GitHub 同步说明
 
-「复刻」只对原文中的教程/技术分享显示，不能因为模型生成了 steps、summary 或遗留 showFlowchart=true 就显示。普通赞美、感谢、效果感叹帖不显示复刻；已有复刻仍可在复刻页查看。
+后端直接调 GitHub REST API；Issue / PR 数用 search API 分别统计（不用含 PR 的 `open_issues_count`）。数据存库，页面只读库；只在添加仓库和点「刷新」时同步，记录 `last_synced_at` / `sync_status`。被限流时保留旧数据并提示；未配 token 时，私有仓库会报「可能是不存在或私有仓库需要 token」。
 
-本次上线：重新构建并发布 frontend；重新构建/重启 API 以启用作者头像回退。建议使用新 importer 重跑一次以补齐历史头像（无需改表），不会导入历史自动摘要或覆盖已存摘要。
+## 部署与回滚（上海服务器，公网 http://42.192.114.201:18089/）
 
-当前先准备好 `config/watchlist.json` 关注列表；关注列表到位后，再按最近半年窗口从 X 拉取原文并写入 `data/raw_posts.json`。**现阶段先只采集和保存原文，不做分析，也不生成或更新摘要。**
+| 组件 | 监听 | 说明 |
+|---|---|---|
+| nginx | `:18089` | `deploy/xdigest-18089.nginx`：`/` → Nuxt，`/api/` → Go |
+| `xdigest-web`（Nuxt） | `127.0.0.1:18091` | `deploy/xdigest-web.service`（Nitro 认 `PORT`，`NUXT_PORT` 不生效） |
+| `xdigest-api`（Go） | `127.0.0.1:18093` | `backend/xdigest-api.service`，`EnvironmentFile=/etc/xdigest/api.env`（18090 已被 chiji-dev 占用） |
 
-### 正文完整性与中文（硬规则）
+部署步骤：
+1. 执行 `backend/schema.sql` 建库建表，按 `backend/db-user.sql` 建专用用户，密码只写进 `/etc/xdigest/api.env`。
+2. 把二进制和 Nuxt `.output` 拷到 `/opt/xdigest`，执行 `sudo bash deploy/deploy-xdigest.sh` 安装并启动服务（脚本不改 nginx）。
+3. 切换 nginx vhost 是单独的一步。
 
-- **禁止用 `…` / `...` 截断** title / summary / steps 正文。短链 API 不够时，改用完整 `note_tweet`，或 `https://api.fxtwitter.com/{user}/status/{id}` 取全文后再写库。
-- **面向用户的 title / summary / steps 必须是中文**：英文原文先完整理解再译写，不要把英文半截句子留在 steps 里。
-- **长文可以很长**：完整写入 JSON；站点 UI 用「显示更多 / 收起」折叠，不要在数据层截断。
+回滚：停掉 `xdigest-api` / `xdigest-web`，把 `/var/www/x-digest.bak-YYYYMMDD` 拷回 `/var/www/x-digest`，把 `/etc/nginx/sites-available/x-digest-18089.static.bak` 拷回 vhost，然后 `nginx -t && systemctl reload nginx`。`xdigest` 库不影响旧站。
 
-### 流程图 / 实现步骤（硬规则）
+## 安全说明（必须读）
 
-仅对 **技术 / 产品 / 工具介绍或教程** 生成 `steps` 并设 `showFlowchart: true`。观点、新闻、闲聊、吐槽、纯涨粉复盘、合集、盈利模式盘点等 **不要** 生成流程图。
+本项目**没有登录和鉴权**：任何能访问公网 18089 的人都能读写关注列表、复刻和附件，也能触发 AI 调用（会产生中转站费用；已生成的摘要不会重复调用）。上线前应补一层鉴权，二选一：
 
-须 **同时** 满足（拿不准则不生成）：
+1. nginx 层 basic auth 或 IP 白名单；
+2. Go 层加 Bearer token 中间件（token 放 `api.env` 的 `XDIGEST_API_TOKEN`），前端在请求头里带上。
 
-1. 正文点名具体产品 / 工具 / 技术；
-2. 含使用步骤、原理拆解或搭建/配置流程。
+数据导入只通过服务器本地 CLI 完成；如要改成 HTTP 导入接口，必须先加鉴权。
 
-字段：
+## 已知差异（相对原静态站）
 
-- `showFlowchart`（boolean）：前端是否展示「实现步骤·流程图」折叠。旧数据若缺省，前端会用同一启发式推导。
-- `steps`：仅在 `showFlowchart: true` 时填写；否则写 `[]`。
-- `isLong`：仍可表示长文；**不再单独决定是否显示流程图**。
-
-无需后端。Grok Bot 日常调度 routine 的 folder id 为 `x`（由统一调度维护；改规则时用 UpdateRoutine 更新该 routine，不要在本仓库另建一份）。
-
-## GitHub Pages
-
-本仓库根目录即为站点根（`index.html`）。Pages 源：`main` 分支 `/`（root）。
+- 备注编辑器是自研 textarea + 工具栏 + marked 预览（未用 EasyMDE）；PDF 预览用浏览器原生 embed；PPTX 图片未按 slide 关系精确映射；xls 只能下载。
+- 首屏是 Nuxt SSR 外壳，帖子由客户端拉取；筛选在前端执行（拉取 page_size=1000 后按原语义过滤），服务端过滤参数已实现但未使用。
+- 旧站的分类归属和用户标签覆盖只存在浏览器 localStorage，导入后为空，需要在新版里重新设置。
+- 标签精确匹配与 `/tags` 去重用 `utf8mb4_bin`（区分大小写，如 `workbuddy` / `Workbuddy`）；关键词 `q` 的搜索不区分大小写。
