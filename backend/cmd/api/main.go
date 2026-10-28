@@ -238,8 +238,8 @@ func (s *server) handlePosts(w http.ResponseWriter, r *http.Request) {
 	if f.PageSize < 1 {
 		f.PageSize = 200
 	}
-	if f.PageSize > 1000 {
-		f.PageSize = 1000
+	if f.PageSize > 20000 {
+		f.PageSize = 20000
 	}
 	posts, total, updatedAt, err := s.st.ListPosts(f)
 	if err != nil {

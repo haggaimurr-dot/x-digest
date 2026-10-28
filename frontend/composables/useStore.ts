@@ -46,7 +46,7 @@ export function useStore () {
       })
       return { updated_at: MOCK_UPDATED_AT, total: posts.length, posts: posts.map(withXContent) }
     }
-    const data = await apiFetch<{ updated_at: string, total: number, posts: Post[] }>('posts?page=1&page_size=1000')
+    const data = await apiFetch<{ updated_at: string, total: number, posts: Post[] }>('posts?page=1&page_size=20000')
     // Client-side filtering (SPEC semantics) is applied in the page; the server
     // list is already published_at DESC, id ASC per SPEC.
     data.posts = data.posts.map(withXContent)
