@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-28T10:45:13Z",
+  "updatedAt": "2026-10-28T10:51:31Z",
   "posts": [
     {
       "id": "2115316092302491757",
@@ -256440,6 +256440,28 @@
       ]
     },
     {
+      "id": "2050915011808371030",
+      "url": "https://x.com/XiaohuiAI666/status/2050915011808371030",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-05-03T12:26:57.000Z",
+      "title": "小灰谦虚回应被夸：在X平台自己也是新人",
+      "industry": "",
+      "tech": "",
+      "summary": "网友 @isnail 夸小灰应该上大佬榜而不是新人榜，小灰谦虚回应称对于 X 平台来说自己也是新人。",
+      "steps": [],
+      "tags": [
+        "日常互动",
+        "X平台",
+        "大佬榜",
+        "自谦"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
       "id": "2050907329366048920",
       "url": "https://x.com/Saccc_c/status/2050907329366048920",
       "author": "Saccc_c",
@@ -256458,6 +256480,52 @@
       "isLong": false,
       "showFlowchart": false,
       "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2050902241851404633",
+      "url": "https://x.com/yaojingang/status/2050902241851404633",
+      "author": "yaojingang",
+      "authorName": "姚金刚",
+      "publishedAt": "2026-05-03T11:36:13.000Z",
+      "title": "地方财政能力决定补贴能否发放",
+      "industry": "",
+      "tech": "",
+      "summary": "作者认同补贴发放与地方财政能力密切相关的说法。对方在回复中补充：财政没有亏空、预算充足的地方才能发补贴；财政紧张的地方连公务员和事业单位工资都发不出，更谈不上普通老百姓的补贴。",
+      "steps": [],
+      "tags": [
+        "地方财政",
+        "财政预算",
+        "民生补贴",
+        "公务员待遇",
+        "观点讨论"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2050901874187120991",
+      "url": "https://x.com/yaojingang/status/2050901874187120991",
+      "author": "yaojingang",
+      "authorName": "姚金刚",
+      "publishedAt": "2026-05-03T11:34:45.000Z",
+      "title": "6岁女儿让AI开发赛车游戏，虚报年龄加难度",
+      "industry": "人工智能",
+      "tech": "Codex、AI编程",
+      "summary": "作者的闺女想玩赛车游戏，让AI帮忙开发，作者便打开Codex让女儿自己提需求。女儿说完要求后补了一句“适合7岁半小朋友玩”，而她实际只有6岁半——原因是想让AI给游戏增加点难度。作者感叹这个Prompt补得很精准。",
+      "steps": [],
+      "tags": [
+        "AI编程",
+        "Codex",
+        "亲子",
+        "Prompt",
+        "日常趣事"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
       "resources": []
     },
     {
@@ -256502,6 +256570,30 @@
       "isLong": false,
       "showFlowchart": false,
       "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2050874804551696406",
+      "url": "https://x.com/XiaohuiAI666/status/2050874804551696406",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-05-03T09:47:11.000Z",
+      "title": "小灰整理起号势头猛的新人账号",
+      "industry": "自媒体",
+      "tech": "AI自媒体",
+      "summary": "程序员小灰整理了第一期起号势头特别猛的新人账号，涵盖各行各业和年龄段。第一个案例是蜗牛King @isnail，3个月从0做到7k+粉丝，前期低姿态死磕评论区抱大腿蹭流量，后期切换中年焦虑共情+AI自媒体实战干货持续输出。小灰表示自己和jinchenma_ai都没上榜，要继续努力。",
+      "steps": [],
+      "tags": [
+        "账号起号",
+        "新人案例",
+        "自媒体打法",
+        "AI干货",
+        "评论区蹭流量",
+        "中年焦虑"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
       "resources": []
     },
     {
@@ -256569,6 +256661,29 @@
       "resources": []
     },
     {
+      "id": "2050776774150324605",
+      "url": "https://x.com/yaojingang/status/2050776774150324605",
+      "author": "yaojingang",
+      "authorName": "姚金刚",
+      "publishedAt": "2026-05-03T03:17:39.000Z",
+      "title": "怀柔山村老人补贴多、幸福指数高",
+      "industry": "养老民生",
+      "tech": "",
+      "summary": "五一回媳妇位于北京怀柔山区的老家，发现当地老人幸福指数很高：看山费半年约7000元，夏天新增“走亲访友”补贴每天70元，还有还山补贴、失能老人补贴、退伍老兵津贴等多种保障，村里每年还有修路、重修广场、改装空气能等预算让村民在家门口有活干。作者认为这种不直接发钱、而是让老人参与和行动的方式，既带来成就感又能持续产生收入，老人们平时看山、做村里项目、领补贴，再打打麻将、唠唠嗑。",
+      "steps": [],
+      "tags": [
+        "乡村养老",
+        "农村补贴",
+        "老年生活",
+        "五一见闻",
+        "怀柔"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
       "id": "2050767835853693318",
       "url": "https://x.com/Saccc_c/status/2050767835853693318",
       "author": "Saccc_c",
@@ -256587,6 +256702,162 @@
       "isLong": false,
       "showFlowchart": false,
       "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2050754730616586610",
+      "url": "https://x.com/XiaohuiAI666/status/2050754730616586610",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-05-03T01:50:03.000Z",
+      "title": "Vibe Coding 工具锐评表：Codex 列第三档",
+      "industry": "人工智能",
+      "tech": "Vibe Coding、Codex、GPT-image-2",
+      "summary": "作者分享了一张由 GPT-image-2 生成的 Vibe Coding 工具锐评表，把各类编程工具从「夯」到「拉」做了分级。作者点评 OpenAI 把自家产品 Codex 放在第三档，认为这个排位还挺谦虚。详细内容见推文配图及其引用的 X 文章。",
+      "steps": [],
+      "tags": [
+        "Vibe Coding",
+        "AI编程",
+        "Codex",
+        "OpenAI",
+        "工具锐评",
+        "梗图"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "http://x.com/i/article/2050461709153054720",
+          "name": "作者在 X 上发布的文章",
+          "note": "被引用的作者长文，与该锐评表相关"
+        }
+      ]
+    },
+    {
+      "id": "2050753412510441887",
+      "url": "https://x.com/XiaohuiAI666/status/2050753412510441887",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-05-03T01:44:49.000Z",
+      "title": "原图秒变儿童蜡笔画的AI提示词",
+      "industry": "人工智能",
+      "tech": "AI绘画、提示词（Prompt）、图像风格转换",
+      "summary": "作者分享了一套「蜡笔童趣风」改图提示词：把原图重绘成十岁小朋友手绘的质感，造型简约、线条略带稚拙不完美，保留儿童画的自然随性。配色摒弃原图，换成鲜亮活泼的蜡笔色彩，背景用纯白画纸底色，并加入星星、云朵、彩虹、糖果、小熊等童趣装饰元素。最终效果治愈讨喜、色彩丰富，这条推文是作者对网友求提示词的回复。",
+      "steps": [],
+      "tags": [
+        "AI绘画",
+        "提示词",
+        "蜡笔风格",
+        "儿童插画",
+        "风格转换",
+        "治愈系"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": []
+    },
+    {
+      "id": "2050749414239793401",
+      "url": "https://x.com/XiaohuiAI666/status/2050749414239793401",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-05-03T01:28:56.000Z",
+      "title": "用GPT-image-2魔改童年回忆",
+      "industry": "人工智能",
+      "tech": "GPT-image-2、Grok Imagine",
+      "summary": "作者分享 GPT-image-2 搭配 Grok Imagine 的新玩法：用 AI 把80后、90后的童年记忆魔改成越来越离谱\"邪乎\"的画风，并号召同龄人到留言区集合互动。据其引用的自己此前推文，这属于\"童话风魔改\"系列的又一波作品，提示词放在了留言区。整体是趣味娱乐向的 AI 玩法展示。",
+      "steps": [],
+      "tags": [
+        "AI绘画",
+        "童年回忆",
+        "图像生成",
+        "怀旧",
+        "趣味玩法"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://twitter.com/XiaohuiAI666/status/2050534842572722683",
+          "name": "@程序员小灰（@XiaohuiAI666）的另一条推文",
+          "note": "引用推文中附带的链接，指向作者本人更早发布的一条推文，具体内容以原推为准"
+        }
+      ]
+    },
+    {
+      "id": "2050727731919470869",
+      "url": "https://x.com/XiaohuiAI666/status/2050727731919470869",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-05-03T00:02:46.000Z",
+      "title": "征集：你最好用的 Vibe Coding 工具",
+      "industry": "人工智能",
+      "tech": "Vibe Coding",
+      "summary": "作者发起互动话题，称如今 Vibe Coding 工具百家争鸣，向读者征集大家用得最顺手的工具，欢迎在留言区分享。纯互动征集帖，作者本人未给出具体工具推荐。",
+      "steps": [],
+      "tags": [
+        "Vibe Coding",
+        "AI编程",
+        "工具讨论",
+        "互动征集"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "http://x.com/i/article/2050461709153054720",
+          "name": "作者自己的 X 文章",
+          "note": "作者引用的本人发布的 X 长文，具体内容原文未展示"
+        }
+      ]
+    },
+    {
+      "id": "2050722954363990201",
+      "url": "https://x.com/XiaohuiAI666/status/2050722954363990201",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-05-02T23:43:47.000Z",
+      "title": "小灰留个人微信号邀请网友交流",
+      "industry": "人工智能",
+      "tech": "Computer Use、Browser Use",
+      "summary": "博主在评论区留下个人微信号（bjxiaoxiaohui），邀请网友添加好友一起交流；有网友留言表示自己是非程序员，想请教 Computer Use 和 Browser Use 的实操方法。",
+      "steps": [],
+      "tags": [
+        "互动交流",
+        "AI智能体",
+        "AI实操",
+        "微信交流"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2050722635647189210",
+      "url": "https://x.com/XiaohuiAI666/status/2050722635647189210",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-05-02T23:42:31.000Z",
+      "title": "00后用AI副业4个月变现超10万",
+      "industry": "人工智能",
+      "tech": "Claude Code、Skill、Agent、Hook、SEO",
+      "summary": "博主分享一个案例：一位00后小哥用Claude Code做副业4个月，真实变现超10万元，变现渠道包括抖音图文获客、企业数据看板项目、SEO出海站广告收入、自动化工具/Skill包和教培。关键结论是并非靠AI一键致富，而是大量试错加工程化工作流（Skill/Agent/Hook），把AI当成团队提升交付效率，从卖时间转向复利模式。博主推荐这篇文章给每一位副业探索者。",
+      "steps": [],
+      "tags": [
+        "AI副业",
+        "Claude Code",
+        "副业变现",
+        "工程化工作流",
+        "SEO出海"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
       "resources": []
     },
     {
@@ -256675,6 +256946,64 @@
       "resources": []
     },
     {
+      "id": "2050559545555226978",
+      "url": "https://x.com/XiaohuiAI666/status/2050559545555226978",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-05-02T12:54:27.000Z",
+      "title": "把图片改成儿童蜡笔画的AI提示词",
+      "industry": "人工智能",
+      "tech": "GPT-image-2、AI图像生成、提示词",
+      "summary": "分享一段可直接使用的 GPT-image-2 改图提示词，能把原图重绘成十岁小朋友手绘的蜡笔风格插画：造型简约、线条稚拙，配色鲜亮活泼，背景为纯白画纸。提示词还要求加入星星、云朵、彩虹、糖果、小熊等童趣装饰元素，最终效果追求治愈讨喜、充满孩童般的想象力。作者称这是又一波 GPT-image-2 童话风魔改。",
+      "steps": [],
+      "tags": [
+        "AI绘画",
+        "提示词",
+        "GPT-image-2",
+        "蜡笔童趣风",
+        "图像风格转换"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": [
+        {
+          "url": "https://twitter.com/XiaohuiAI666/status/2050534842572722683",
+          "name": "@XiaohuiAI666 的推文链接",
+          "note": "原文附带的链接，指向作者本人在 Twitter 上发布的一条推文"
+        }
+      ]
+    },
+    {
+      "id": "2050558988685844625",
+      "url": "https://x.com/XiaohuiAI666/status/2050558988685844625",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-05-02T12:52:15.000Z",
+      "title": "GPT-image-2 游戏画面变童话风",
+      "industry": "人工智能",
+      "tech": "GPT-image-2、AI 图像生成",
+      "summary": "作者用 GPT-image-2 再度尝试「童话风魔改」，把大家熟悉的游戏画面爆改成儿童画风格，效果有趣可爱。提示词放在了推文留言区，想复现可以去评论区获取。这是他此前游戏画面改儿童画尝试之后的新一波作品。",
+      "steps": [],
+      "tags": [
+        "GPT-image-2",
+        "AI绘画",
+        "童话风",
+        "游戏魔改",
+        "提示词"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": [
+        {
+          "url": "https://twitter.com/XiaohuiAI666/status/2050481110455591242",
+          "name": "@XiaohuiAI666 的推文",
+          "note": "被引用推文中附带的链接，应为作者此前发布的游戏画面改儿童画相关推文"
+        }
+      ]
+    },
+    {
       "id": "2050538893167251791",
       "url": "https://x.com/Saccc_c/status/2050538893167251791",
       "author": "Saccc_c",
@@ -256694,6 +257023,35 @@
       "showFlowchart": false,
       "kind": "日常闲聊",
       "resources": []
+    },
+    {
+      "id": "2050534842572722683",
+      "url": "https://x.com/XiaohuiAI666/status/2050534842572722683",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-05-02T11:16:18.000Z",
+      "title": "GPT-image-2 爆改游戏图为儿童画",
+      "industry": "人工智能",
+      "tech": "GPT-image-2、AI图像生成、提示词",
+      "summary": "程序员小灰分享了最近流行的 GPT-image-2 儿童画玩法：把大家熟悉的游戏画面爆改成蜡笔风格的儿童画，还把自己的 X 账号主页换成了这种风格。核心提示词是让模型将原图重绘成十岁小朋友手绘质感的蜡笔插画，造型简约、线条稚拙不完美，保留儿童画自然随性的感觉。该玩法参考了 @mdmadeit 的推文。",
+      "steps": [],
+      "tags": [
+        "GPT-image-2",
+        "AI绘画",
+        "儿童画",
+        "蜡笔风格",
+        "提示词"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://twitter.com/mdmadeit/status/2050013641861214518",
+          "name": "@mdmadeit 的推文",
+          "note": "作者引用的原始推文，是这种蜡笔儿童画玩法的灵感来源"
+        }
+      ]
     },
     {
       "id": "2050533576039354533",
@@ -256751,6 +257109,114 @@
       ]
     },
     {
+      "id": "2050525419192082812",
+      "url": "https://x.com/XiaohuiAI666/status/2050525419192082812",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-05-02T10:38:51.000Z",
+      "title": "小灰致谢网友称赞其教程",
+      "industry": "",
+      "tech": "",
+      "summary": "程序员小灰回复网友 @yinmin1987，感谢对方分享并称赞自己的教程，希望教程能帮到更多人。属于互动致谢内容，无实质技术信息。",
+      "steps": [],
+      "tags": [
+        "互动致谢",
+        "教程分享",
+        "日常互动"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://twitter.com/xiaohuiai666/status/2050514779878674501",
+          "name": "@程序员小灰的教程推文",
+          "note": "被网友称赞的教程原文链接"
+        }
+      ]
+    },
+    {
+      "id": "2050514031509942542",
+      "url": "https://x.com/XiaohuiAI666/status/2050514031509942542",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-05-02T09:53:36.000Z",
+      "title": "《闪灵》海报改儿童画，结果反而更诡异",
+      "industry": "人工智能",
+      "tech": "GPT-image-2、AI图像生成、提示词",
+      "summary": "小灰用 GPT-image-2 尝试把恐怖片《闪灵》的海报改成可爱儿童画风，并给出了完整提示词：蜡笔质感、十岁小朋友手绘的稚拙线条、鲜亮童趣配色、纯白画纸背景，再加入星星、云朵、彩虹、糖果、小熊等童趣元素，整体追求治愈天真。但改完之后画面反而显得更加诡异了。提示词放在留言区供大家尝试。",
+      "steps": [],
+      "tags": [
+        "AI绘画",
+        "图像生成",
+        "儿童画风",
+        "闪灵海报",
+        "趣味实验"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": [
+        {
+          "url": "https://twitter.com/XiaohuiAI666/status/2050481110455591242",
+          "name": "@XiaohuiAI666 的推文链接",
+          "note": "原文附带的链接，紧接“提示词在留言区”，推测指向相关推文或提示词所在帖子"
+        }
+      ]
+    },
+    {
+      "id": "2050486415889424654",
+      "url": "https://x.com/XiaohuiAI666/status/2050486415889424654",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-05-02T08:03:52.000Z",
+      "title": "《闪灵》海报改成儿童画风反而更诡异",
+      "industry": "人工智能",
+      "tech": "GPT-image-2",
+      "summary": "博主跟风用 GPT-image-2 把恐怖片《闪灵》的海报改成蜡笔儿童画风，结果改完反而显得更诡异了。引用推文中给出了完整提示词：将原图重新绘制成蜡笔风格插画，把画面改造成十岁小朋友手绘的质感，造型简约、线条略带稚拙不完美。博主此前还用同样方法把 X 账号主页换成了可爱儿童画风，本次的提示词放在留言区。",
+      "steps": [],
+      "tags": [
+        "AI绘画",
+        "GPT-image-2",
+        "儿童画风",
+        "闪灵",
+        "提示词"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://twitter.com/mdmadeit/status/2050013641861214518",
+          "name": "@mdmadeit 的推文",
+          "note": "作者引用的推文，应为「儿童画风」提示词玩法的出处"
+        }
+      ]
+    },
+    {
+      "id": "2050481110455591242",
+      "url": "https://x.com/XiaohuiAI666/status/2050481110455591242",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-05-02T07:42:47.000Z",
+      "title": "GPT-image-2 蜡笔儿童画风提示词",
+      "industry": "人工智能",
+      "tech": "GPT-image-2、ChatGPT",
+      "summary": "小灰用 GPT-image-2 把自己的 X 账号主页头像改成了可爱的蜡笔儿童画风格，并分享了完整中文提示词。提示词核心是保留原图造型但呈现十岁小朋友手绘的稚拙质感，配色换成鲜亮蜡笔童趣色彩、纯白画纸背景，并加入星星、糖果、火箭、机器人等童趣元素。这一玩法源自 @mdmadeit 分享的 ChatGPT 头像改造趋势。",
+      "steps": [],
+      "tags": [
+        "AI绘画",
+        "GPT-image-2",
+        "提示词",
+        "蜡笔风格",
+        "头像改造"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": []
+    },
+    {
       "id": "2050445383596134424",
       "url": "https://x.com/Saccc_c/status/2050445383596134424",
       "author": "Saccc_c",
@@ -256798,6 +257264,62 @@
       "showFlowchart": false,
       "kind": "观点讨论",
       "resources": []
+    },
+    {
+      "id": "2050394849023832452",
+      "url": "https://x.com/XiaohuiAI666/status/2050394849023832452",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-05-02T02:00:01.000Z",
+      "title": "CC Switch 解决繁琐配置切换问题",
+      "industry": "人工智能",
+      "tech": "CC Switch",
+      "summary": "作者推荐 CC Switch 这款工具，称其有效解决了繁琐的配置切换问题，并强烈安利大家使用。推文引用了 @cheery9998 发布的一篇文章，具体介绍可查看原文链接。",
+      "steps": [],
+      "tags": [
+        "CC Switch",
+        "配置切换",
+        "工具推荐",
+        "开发效率"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "http://x.com/i/article/2050020194018299904",
+          "name": "@cheery9998 的 X 文章",
+          "note": "介绍 CC Switch 及其如何解决配置切换问题的内容"
+        }
+      ]
+    },
+    {
+      "id": "2050216832750256473",
+      "url": "https://x.com/yaojingang/status/2050216832750256473",
+      "author": "yaojingang",
+      "authorName": "姚金刚",
+      "publishedAt": "2026-05-01T14:12:38.000Z",
+      "title": "姚金刚盛赞 HiTw93 教程文章",
+      "industry": "",
+      "tech": "",
+      "summary": "姚金刚回复并称赞 @HiTw93 的教程文章写得很好、信息密度高，表示很喜欢 Tw 的文章，每一篇都值得反复阅读，并附上了该文章链接。",
+      "steps": [],
+      "tags": [
+        "互动",
+        "文章推荐",
+        "好文分享",
+        "HiTw93"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "http://x.com/i/article/2050180952060792832",
+          "name": "@HiTw93 的 X 文章",
+          "note": "被称赞的教程文章，作者评价其信息密度高、值得反复阅读"
+        }
+      ]
     },
     {
       "id": "2050182247396049159",
@@ -256849,6 +257371,48 @@
       "resources": []
     },
     {
+      "id": "2050176565124985007",
+      "url": "https://x.com/XiaohuiAI666/status/2050176565124985007",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-05-01T11:32:38.000Z",
+      "title": "两步用AI生成动漫角色Coser视频",
+      "industry": "人工智能",
+      "tech": "GPT-image-2、Grok Imagine",
+      "summary": "作者询问粉丝最喜欢哪个角色的视频、还想看哪些角色，并在自回复中分享了制作方法。玩法只需两步：先用 GPT-image-2 生成一张喜欢的动漫角色图片，再把图片传给 Grok Imagine，提示词为“角色变成真人，走进漫展现场，说中文”。作者称这样生成的 Coser 视频效果又好又省钱。",
+      "steps": [
+        {
+          "text": "用 GPT-image-2 生成一张你喜欢的动漫角色图片",
+          "tools": "GPT-image-2",
+          "tech": "AI文生图",
+          "prep": ""
+        },
+        {
+          "text": "把图片传给 Grok Imagine，提示词：“角色变成真人，走进漫展现场，说中文。”",
+          "tools": "Grok Imagine",
+          "tech": "图生视频",
+          "prep": "已用 GPT-image-2 生成动漫角色图片"
+        }
+      ],
+      "tags": [
+        "AI视频生成",
+        "GPT-image-2",
+        "Grok Imagine",
+        "Coser视频",
+        "AI绘画"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "教程实操",
+      "resources": [
+        {
+          "url": "https://twitter.com/XiaohuiAI666/status/2050095417065713854",
+          "name": "作者 @XiaohuiAI666 的推文",
+          "note": "原文附带的链接，指向作者本人发布的推文"
+        }
+      ]
+    },
+    {
       "id": "2050174976603427009",
       "url": "https://x.com/aiwarts/status/2050174976603427009",
       "author": "aiwarts",
@@ -256870,6 +257434,49 @@
       "showFlowchart": false,
       "kind": "观点讨论",
       "resources": []
+    },
+    {
+      "id": "2050172909319299259",
+      "url": "https://x.com/XiaohuiAI666/status/2050172909319299259",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-05-01T11:18:06.000Z",
+      "title": "两步把动漫角色变成真人Coser视频",
+      "industry": "人工智能",
+      "tech": "GPT-image-2、Grok Imagine、Seedance2.0",
+      "summary": "分享一个两步生成 Coser 视频的省钱玩法：先用 GPT-image-2 生成一张喜欢的动漫角色图片，再把图片传给 Grok Imagine，提示词为“角色变成真人，走进漫展现场，说中文”。作者还发布了第二弹，提示词追加“带中文字幕”。选 Grok Imagine 而非 Seedance2.0 的原因是性价比更高，效果又好又省钱。",
+      "steps": [
+        {
+          "text": "用 GPT-image-2 生成一张你喜欢的动漫角色图片",
+          "tools": "GPT-image-2",
+          "tech": "文生图",
+          "prep": ""
+        },
+        {
+          "text": "把图片传给 Grok Imagine，提示词：“角色变成真人，走进漫展现场，说中文。”",
+          "tools": "Grok Imagine",
+          "tech": "图生视频",
+          "prep": "已有一张动漫角色图片"
+        }
+      ],
+      "tags": [
+        "AI视频生成",
+        "GPT-image-2",
+        "Grok Imagine",
+        "Coser",
+        "动漫角色",
+        "性价比"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "教程实操",
+      "resources": [
+        {
+          "url": "https://twitter.com/XiaohuiAI666/status/2050086064992502140",
+          "name": "@XiaohuiAI666 自己的推文（“第二弹”）",
+          "note": "同一玩法的第二弹，提示词增加了“带中文字幕”，并附生成效果视频"
+        }
+      ]
     },
     {
       "id": "2050170293872693683",
@@ -256928,6 +257535,28 @@
       ]
     },
     {
+      "id": "2050145336476500385",
+      "url": "https://x.com/yaojingang/status/2050145336476500385",
+      "author": "yaojingang",
+      "authorName": "姚金刚",
+      "publishedAt": "2026-05-01T09:28:32.000Z",
+      "title": "运营团队年初全员换Mac笔记本",
+      "industry": "人工智能",
+      "tech": "Mac笔记本、Mac NEO",
+      "summary": "作者认同@huolongguodomgt\"公司AI化第一步是全员标配Mac\"的观点，透露今年年初已把运营团队所有人的电脑全部换成Mac笔记本。对方还建议公司可以批量采购Mac NEO。",
+      "steps": [],
+      "tags": [
+        "Mac",
+        "公司AI化",
+        "办公设备",
+        "团队管理"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
       "id": "2050123427193720868",
       "url": "https://x.com/Saccc_c/status/2050123427193720868",
       "author": "Saccc_c",
@@ -256983,6 +257612,119 @@
       ]
     },
     {
+      "id": "2050095417065713854",
+      "url": "https://x.com/XiaohuiAI666/status/2050095417065713854",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-05-01T06:10:11.000Z",
+      "title": "两步让动漫角色化身真人视频",
+      "industry": "人工智能",
+      "tech": "GPT-image-2、Grok Imagine、Seedance2.0",
+      "summary": "作者分享把动漫角色变成真人的两步玩法：先用 GPT-image-2 生成喜欢的动漫角色图片，再传给 Grok Imagine，提示词为“角色变成真人，走进漫展现场，说中文，带中文字幕”。选 Grok Imagine 而非 Seedance2.0 是因为性价比更高，P 会员或 P+ 会员每天都有免费生成视频的额度，不要浪费。这是该玩法的第二弹。",
+      "steps": [
+        {
+          "text": "用 GPT-image-2 生成一张喜欢的动漫角色图片",
+          "tools": "GPT-image-2",
+          "tech": "文生图",
+          "prep": ""
+        },
+        {
+          "text": "把图片传给 Grok Imagine，提示词：角色变成真人，走进漫展现场，说中文，带中文字幕",
+          "tools": "Grok Imagine",
+          "tech": "图生视频",
+          "prep": "P 会员或 P+ 会员，每天有免费视频生成额度"
+        }
+      ],
+      "tags": [
+        "AI视频",
+        "动漫",
+        "图生视频",
+        "Grok Imagine",
+        "GPT-image-2"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "教程实操",
+      "resources": [
+        {
+          "url": "https://twitter.com/XiaohuiAI666/status/2050076904074641783",
+          "name": "@XiaohuiAI666 的推文（该玩法第一弹）",
+          "note": "作者此前发布的“动漫人物化身真人”玩法首条推文"
+        }
+      ]
+    },
+    {
+      "id": "2050086064992502140",
+      "url": "https://x.com/XiaohuiAI666/status/2050086064992502140",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-05-01T05:33:01.000Z",
+      "title": "Grok Imagine新玩法：动漫人物变真人",
+      "industry": "人工智能",
+      "tech": "GPT-image-2、Grok Imagine、Seedance2.0",
+      "summary": "先用 GPT-image-2 生成喜欢的动漫角色图片，再传给 Grok Imagine，配上提示词\"角色变成真人，走进漫展现场，说中文，带中文字幕\"，就能让动漫人物化身真人。选 Grok Imagine 而非 Seedance2.0 是因为性价比：P会员或P+会员每天都有免费生成视频的额度。作者还用 GPT-image-2 生成《黑袍纠察队》九宫格分镜图，再用 Grok Imagine 生成分镜动画，认为其视频质量不错，只是被 Seedance2.0 的光芒掩盖。",
+      "steps": [
+        {
+          "text": "用 GPT-image-2 生成一张你喜欢的动漫角色图片",
+          "tools": "GPT-image-2",
+          "tech": "文生图",
+          "prep": ""
+        },
+        {
+          "text": "把图片传给 Grok Imagine，提示词：\"角色变成真人，走进漫展现场，说中文，带中文字幕\"",
+          "tools": "Grok Imagine",
+          "tech": "图生视频、提示词",
+          "prep": "P会员或P+会员，每天有免费生成视频的额度"
+        }
+      ],
+      "tags": [
+        "AI视频",
+        "Grok Imagine",
+        "GPT-image-2",
+        "动漫转真人",
+        "免费额度"
+      ],
+      "isLong": true,
+      "showFlowchart": false,
+      "kind": "教程实操",
+      "resources": [
+        {
+          "url": "https://twitter.com/XiaohuiAI666/status/2049645103350952079",
+          "name": "@XiaohuiAI666 的引用推文",
+          "note": "作者此前发的推文，提出用 GPT-image-2 + Grok Imagine 替代太贵太慢的 Seedance2.0 方案"
+        }
+      ]
+    },
+    {
+      "id": "2050076904074641783",
+      "url": "https://x.com/XiaohuiAI666/status/2050076904074641783",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-05-01T04:56:37.000Z",
+      "title": "GPT-image-2 + Grok Imagine 生成动画效果出色",
+      "industry": "人工智能",
+      "tech": "GPT-image-2、Grok Imagine",
+      "summary": "作者认为GPT-image-2 + Grok Imagine组合比Seedance2.0更便宜更快，效果同样优秀。先用GPT-image-2生成《黑袍纠察队》九宫格分镜图，再用Grok Imagine基于分镜生成动画，视频质量不错。作者同时引用了自己之前用GPT-image-2+Seedance2.0将汽车变成变形金刚的案例。",
+      "steps": [],
+      "tags": [
+        "AI生成视频",
+        "图像动画",
+        "Grok Imagine",
+        "分镜动画",
+        "AI工具对比"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://twitter.com/XiaohuiAI666/status/2047948120890527763",
+          "name": "Seedance2.0 生成的变形金刚视频",
+          "note": "原文引用的Seedance2.0变形金刚演示视频"
+        }
+      ]
+    },
+    {
       "id": "2050063554590519342",
       "url": "https://x.com/Saccc_c/status/2050063554590519342",
       "author": "Saccc_c",
@@ -257021,6 +257763,314 @@
       ]
     },
     {
+      "id": "2050052413294531010",
+      "url": "https://x.com/XiaohuiAI666/status/2050052413294531010",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-05-01T03:19:18.000Z",
+      "title": "小灰副业俱乐部破万会员，五一限时78元加入",
+      "industry": "副业自媒体",
+      "tech": "AI代写、AI视频、AI编程、AI智能体、RPA",
+      "summary": "小灰副业俱乐部成立一年半，已有10200多名会员，累计产出11000多篇副业内容和150多篇精华帖，举办7场实操特训，多名学员实现变现。星球提供9年以上副业经验分享、最前沿案例、各赛道大佬答疑、每年5次免费特训及“福星系统”代币分红权益。原价199元，现优惠价88元，五一领10元券后仅需78元，人数破万后即将涨价，欢迎扫码或加微信bjxiaoxiaohui（备注“副业”）咨询加入。",
+      "steps": [],
+      "tags": [
+        "副业俱乐部",
+        "知识星球",
+        "AI副业",
+        "实操特训",
+        "收益分红",
+        "五一福利"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": []
+    },
+    {
+      "id": "2050017194625667453",
+      "url": "https://x.com/XiaohuiAI666/status/2050017194625667453",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-05-01T00:59:21.000Z",
+      "title": "用 GPT-image-2 拆解泽拉图服装做反差设计图",
+      "industry": "人工智能",
+      "tech": "GPT-image-2",
+      "summary": "作者分享 GPT-image-2 反向玩法第三弹：上传《星际争霸》角色泽拉图的图片，让 AI 拆解其服装并生成服装设计图，再套用在普通东亚女性身上，形成反差感穿搭演示。附万能提示词：“拆解角色服装，生成服装设计图，并套用在普通东亚女性身上，3:2”。此前玩法还包括拆解街拍照片中情侣的服装生成设计图。",
+      "steps": [
+        {
+          "text": "上传角色（泽拉图）图片给 GPT",
+          "tools": "GPT-image-2",
+          "tech": "图像上传",
+          "prep": "准备角色图片"
+        },
+        {
+          "text": "输入万能提示词：“拆解角色服装，生成服装设计图，并套用在普通东亚女性身上，3:2”",
+          "tools": "GPT-image-2",
+          "tech": "提示词工程",
+          "prep": "无"
+        }
+      ],
+      "tags": [
+        "GPT-image-2",
+        "AI绘画",
+        "服装设计",
+        "提示词",
+        "星际争霸"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "教程实操",
+      "resources": [
+        {
+          "url": "https://twitter.com/XiaohuiAI666/status/2049810829701443727",
+          "name": "原文附带的链接",
+          "note": "原文附带的链接，具体内容不明"
+        }
+      ]
+    },
+    {
+      "id": "2049841130502815884",
+      "url": "https://x.com/XiaohuiAI666/status/2049841130502815884",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-04-30T13:19:44.000Z",
+      "title": "GPT-image-2拆解现实与名画生成服装设计图",
+      "industry": "人工智能",
+      "tech": "GPT-image-2",
+      "summary": "作者分享GPT-image-2的新玩法：上传街拍照片或世界名画，用固定提示词“拆解图中核心角色的穿搭，生成服装设计图，3:2”让AI提取穿搭并生成服装设计图。已演示街拍情侣服装拆解和《自由引导人民》名画角色穿搭提取。欢迎留言分享更多AI有趣玩法。",
+      "steps": [],
+      "tags": [
+        "AI生成",
+        "服装设计",
+        "图像拆解",
+        "提示词",
+        "世界名画",
+        "街拍"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://twitter.com/XiaohuiAI666/status/2049802420092653749",
+          "name": "作者前一条推文",
+          "note": "展示用《自由引导人民》名画生成服装设计图的示例"
+        }
+      ]
+    },
+    {
+      "id": "2049825679106302134",
+      "url": "https://x.com/yaojingang/status/2049825679106302134",
+      "author": "yaojingang",
+      "authorName": "姚金刚",
+      "publishedAt": "2026-04-30T12:18:20.000Z",
+      "title": "作者主力模型已切换至 GPT-5.5",
+      "industry": "人工智能",
+      "tech": "GPT-5.5、Claude",
+      "summary": "作者目前主力使用的模型是 GPT-5.5，其 UI 界面带有明显 Claude 风格，推测与引入 kami 的 UI 风格有关。对方回复称底色看起来很像 Claude，感觉是用 Claude 做出来的。",
+      "steps": [],
+      "tags": [
+        "大模型",
+        "GPT-5.5",
+        "Claude",
+        "UI风格",
+        "主力模型"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2049825426856640678",
+      "url": "https://x.com/yaojingang/status/2049825426856640678",
+      "author": "yaojingang",
+      "authorName": "姚金刚",
+      "publishedAt": "2026-04-30T12:17:20.000Z",
+      "title": "该工具可直接安装到 AI 工作台或 AI CLI 使用",
+      "industry": "人工智能",
+      "tech": "AI 工作台、AI CLI",
+      "summary": "有网友询问该工具支持哪些 AI 模型调用，并提到打算在五一假期用它给自己生成定制教程。作者回复称模型都支持，直接安装到自己的 AI 工作台或 AI CLI 即可使用。",
+      "steps": [],
+      "tags": [
+        "AI工具",
+        "AI工作台",
+        "AI CLI",
+        "模型调用"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2049825104734138753",
+      "url": "https://x.com/yaojingang/status/2049825104734138753",
+      "author": "yaojingang",
+      "authorName": "姚金刚",
+      "publishedAt": "2026-04-30T12:16:03.000Z",
+      "title": "如何用Skill深度研究一个概念并输出报告",
+      "industry": "人工智能",
+      "tech": "Skill",
+      "summary": "用户询问如何用Skill针对给定概念进行深度研究并输出报告。作者回复当前设计可行，并建议根据自身需求修改Skill来实现。",
+      "steps": [],
+      "tags": [
+        "AI研究",
+        "报告生成",
+        "概念分析",
+        "Skill定制"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2049810829701443727",
+      "url": "https://x.com/XiaohuiAI666/status/2049810829701443727",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-04-30T11:19:20.000Z",
+      "title": "GPT-image-2 拆解《自由引导人民》生成服装设计图",
+      "industry": "人工智能",
+      "tech": "GPT-image-2、AI 图像生成",
+      "summary": "作者用 GPT-image-2 拆解法国名画《自由引导人民》，提取画中核心角色的穿搭，生成服装设计图。做法是先上传名画图片，再使用提示词“拆解图中核心角色的穿搭，生成服装设计图，3:2”。此前作者还用类似提示词让生成的服装套用在普通东亚女性身上，展示穿搭效果。",
+      "steps": [
+        {
+          "text": "上传名画图片给 GPT",
+          "tools": "GPT-image-2",
+          "tech": "AI 图像理解",
+          "prep": "准备名画图片"
+        },
+        {
+          "text": "输入提示词“拆解图中核心角色的穿搭，生成服装设计图，3:2”",
+          "tools": "GPT-image-2",
+          "tech": "提示词工程",
+          "prep": "无"
+        }
+      ],
+      "tags": [
+        "GPT-image-2",
+        "AI绘画",
+        "世界名画",
+        "服装设计",
+        "提示词"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "教程实操",
+      "resources": [
+        {
+          "url": "https://twitter.com/XiaohuiAI666/status/2049780783842500885",
+          "name": "原文附带的链接",
+          "note": "作者此前关于拆解名画生成服装设计图的推文"
+        }
+      ]
+    },
+    {
+      "id": "2049803095899848919",
+      "url": "https://x.com/XiaohuiAI666/status/2049803095899848919",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-04-30T10:48:36.000Z",
+      "title": "AI还原动漫服装设计图需多张图片呈现细节",
+      "industry": "人工智能",
+      "tech": "AI图像生成",
+      "summary": "作者针对AI还原动漫服装设计图的讨论指出，如果真想落地，需要用多张图片来还原，尽量呈现细节。对方提到动漫角色复杂装饰结构、版权风险及套在真人身上的效果折扣等问题。",
+      "steps": [],
+      "tags": [
+        "AI生成",
+        "服装设计",
+        "动漫角色",
+        "图像还原",
+        "多图提示"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2049802420092653749",
+      "url": "https://x.com/XiaohuiAI666/status/2049802420092653749",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-04-30T10:45:55.000Z",
+      "title": "GPT-image-2拆解世界名画生成服装设计图",
+      "industry": "人工智能",
+      "tech": "GPT-image-2",
+      "summary": "作者演示用GPT-image-2拆解世界名画和《凡人修仙传》角色柳玉的服装，生成服装设计图并套用到普通东亚女性身上。提供万能提示词：“拆解角色服装，生成服装设计图，并套用在普通东亚女性身上，3:2”。通过上传图片即可快速实现反向玩法。",
+      "steps": [],
+      "tags": [
+        "AI生成",
+        "服装设计",
+        "提示词",
+        "名画拆解",
+        "穿搭演示"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://twitter.com/XiaohuiAI666/status/2049754176385950052",
+          "name": "原文附带的链接",
+          "note": "关联的AI生成演示推文"
+        }
+      ]
+    },
+    {
+      "id": "2049795933676900581",
+      "url": "https://x.com/XiaohuiAI666/status/2049795933676900581",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-04-30T10:20:08.000Z",
+      "title": "AI越来越强大，世界越来越离谱",
+      "industry": "",
+      "tech": "",
+      "summary": "作者感慨AI越来越强大，同时觉得世界也越来越离谱。",
+      "steps": [],
+      "tags": [
+        "人工智能",
+        "AI发展",
+        "科技感悟"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2049795493946097887",
+      "url": "https://x.com/XiaohuiAI666/status/2049795493946097887",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-04-30T10:18:23.000Z",
+      "title": "GPT-image-2拆解蜡笔小新服装生成设计图",
+      "industry": "人工智能",
+      "tech": "GPT-image-2",
+      "summary": "作者继续GPT-image-2反向玩法第三弹，拆解《蜡笔小新》中小新的服装，生成服装设计图并套用到普通东亚女性身上。使用万能提示词：“拆解角色服装，生成服装设计图，并套用在普通东亚女性身上，3:2”。先上传角色图片给GPT即可完成。",
+      "steps": [],
+      "tags": [
+        "AI生成",
+        "服装设计",
+        "角色拆解",
+        "提示词",
+        "穿搭演示",
+        "蜡笔小新"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://twitter.com/XiaohuiAI666/status/2049754176385950052",
+          "name": "原文附带的链接",
+          "note": "关联的前序推文"
+        }
+      ]
+    },
+    {
       "id": "2049794031111344385",
       "url": "https://x.com/Saccc_c/status/2049794031111344385",
       "author": "Saccc_c",
@@ -257048,6 +258098,34 @@
       ]
     },
     {
+      "id": "2049790177703608559",
+      "url": "https://x.com/yaojingang/status/2049790177703608559",
+      "author": "yaojingang",
+      "authorName": "姚金刚",
+      "publishedAt": "2026-04-30T09:57:16.000Z",
+      "title": "用AI学习能提高赚钱效率",
+      "industry": "",
+      "tech": "AI",
+      "summary": "作者回复称，用AI不一定能直接赚钱，但肯定能帮助高效学习，而高效学习对赚钱效率也有帮助。",
+      "steps": [],
+      "tags": [
+        "AI学习",
+        "高效学习",
+        "赚钱效率",
+        "个人成长"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://twitter.com/yaojingang/status/2049738370679730562",
+          "name": "作者本条推文",
+          "note": "包含对@hiyeshu的回复内容"
+        }
+      ]
+    },
+    {
       "id": "2049787069510349254",
       "url": "https://x.com/Saccc_c/status/2049787069510349254",
       "author": "Saccc_c",
@@ -257067,6 +258145,48 @@
       "showFlowchart": false,
       "kind": "观点讨论",
       "resources": []
+    },
+    {
+      "id": "2049780783842500885",
+      "url": "https://x.com/XiaohuiAI666/status/2049780783842500885",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-04-30T09:19:56.000Z",
+      "title": "用GPT-image-2拆解柳玉服装生成设计图",
+      "industry": "人工智能",
+      "tech": "GPT-image-2",
+      "summary": "作者用GPT-image-2拆解《凡人修仙传》角色柳玉的服装，生成服装设计图并套用在普通东亚女性身上做穿搭效果演示。做法是先上传角色图片，再配合万能提示词“拆解角色服装，生成服装设计图，并套用在普通东亚女性身上，3:2”。这是其GPT-image-2反向玩法系列的第二弹。",
+      "steps": [
+        {
+          "text": "上传角色图片给GPT",
+          "tools": "GPT",
+          "tech": "图像输入",
+          "prep": "准备角色服装图片"
+        },
+        {
+          "text": "输入提示词：拆解角色服装，生成服装设计图，并套用在普通东亚女性身上，3:2",
+          "tools": "GPT-image-2",
+          "tech": "图像生成",
+          "prep": ""
+        }
+      ],
+      "tags": [
+        "GPT-image-2",
+        "AI绘图",
+        "服装设计",
+        "提示词",
+        "凡人修仙传"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "教程实操",
+      "resources": [
+        {
+          "url": "https://twitter.com/XiaohuiAI666/status/2049420202535006621",
+          "name": "原文附带的链接",
+          "note": "上一条GPT-image-2反向玩法推文"
+        }
+      ]
     },
     {
       "id": "2049769051782610953",
@@ -257145,6 +258265,202 @@
       "resources": []
     },
     {
+      "id": "2049759909554851924",
+      "url": "https://x.com/yaojingang/status/2049759909554851924",
+      "author": "yaojingang",
+      "authorName": "姚金刚",
+      "publishedAt": "2026-04-30T07:56:59.000Z",
+      "title": "姚金刚假期计划学习Rey英语系列干货",
+      "industry": "",
+      "tech": "",
+      "summary": "作者表示假期准备认真学习@ReyJudgementOS的英语系列干货，并称“英语自由”是判断位的第一块积木。该文章已入选姚老师的高质量教程金榜。",
+      "steps": [],
+      "tags": [
+        "英语学习",
+        "ReyJudgementOS",
+        "高质量教程",
+        "假期学习",
+        "金榜推荐"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://twitter.com/yaojingang/status/2049738370679730562",
+          "name": "姚金刚推文",
+          "note": "作者本人发布的这条推文"
+        }
+      ]
+    },
+    {
+      "id": "2049754176385950052",
+      "url": "https://x.com/XiaohuiAI666/status/2049754176385950052",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-04-30T07:34:12.000Z",
+      "title": "用GPT-image-2拆解动漫角色服装生成设计图",
+      "industry": "人工智能",
+      "tech": "GPT-image-2",
+      "summary": "介绍 GPT-image-2 的一个反向玩法：上传动漫游戏角色图片，让 AI 拆解其服装，生成服装设计图，并套用在普通东亚女性身上演示穿搭效果，输出比例为 3:2。作者给出了万能提示词：\"拆解角色服装，生成服装设计图，并套用在普通东亚女性身上，3:2\"。",
+      "steps": [
+        {
+          "text": "上传动漫或游戏角色图片给 GPT",
+          "tools": "GPT",
+          "tech": "图像上传",
+          "prep": "准备好角色图片"
+        },
+        {
+          "text": "使用提示词：\"拆解角色服装，生成服装设计图，并套用在普通东亚女性身上，3:2\"",
+          "tools": "GPT-image-2",
+          "tech": "图像生成",
+          "prep": ""
+        }
+      ],
+      "tags": [
+        "AI绘画",
+        "GPT-image-2",
+        "服装设计",
+        "动漫角色",
+        "提示词"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "教程实操",
+      "resources": [
+        {
+          "url": "http://x.com/i/article/2049416697460002817",
+          "name": "原文附带的链接",
+          "note": "作者关联的文章链接"
+        }
+      ]
+    },
+    {
+      "id": "2049749402202571034",
+      "url": "https://x.com/XiaohuiAI666/status/2049749402202571034",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-04-30T07:15:14.000Z",
+      "title": "GPT-image-2 + Seedance2.0 把路边汽车变变形金刚",
+      "industry": "人工智能",
+      "tech": "GPT-image-2、Seedance2.0",
+      "summary": "作者演示用GPT-image-2 + Seedance2.0将路边随手拍的汽车照片瞬间变成变形金刚。给出具体提示词：“照片中的汽车是变形金刚伪装的，发挥想象展现出它的变形金刚形态。”GPT快速生成变形金刚图片。作者同时附上完整版演示视频和相关视频链接。",
+      "steps": [
+        {
+          "text": "把路边汽车照片上传给GPT",
+          "tools": "GPT-image-2",
+          "tech": "",
+          "prep": "准备好汽车照片"
+        },
+        {
+          "text": "输入提示词：照片中的汽车是变形金刚伪装的，发挥想象展现出它的变形金刚形态",
+          "tools": "GPT",
+          "tech": "提示词工程",
+          "prep": ""
+        },
+        {
+          "text": "GPT生成变形金刚形态图片",
+          "tools": "GPT-image-2",
+          "tech": "",
+          "prep": ""
+        }
+      ],
+      "tags": [
+        "AI生成图像",
+        "变形金刚",
+        "图像转换",
+        "创意玩法",
+        "GPT提示词"
+      ],
+      "isLong": false,
+      "showFlowchart": true,
+      "kind": "教程实操",
+      "resources": [
+        {
+          "url": "https://twitter.com/XiaohuiAI666/status/2047948120890527763",
+          "name": "原文附带的链接",
+          "note": "作者提供的另一个相关视频或资源"
+        }
+      ]
+    },
+    {
+      "id": "2049747856643575836",
+      "url": "https://x.com/XiaohuiAI666/status/2049747856643575836",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-04-30T07:09:06.000Z",
+      "title": "GPT-image-2 + Seedance2.0 把路边汽车变变形金刚",
+      "industry": "人工智能",
+      "tech": "GPT-image-2、Seedance2.0",
+      "summary": "作者重新上传了完整视频，演示用GPT-image-2 + Seedance2.0将路边普通汽车照片瞬间变成变形金刚。制作分两步：先上传照片给GPT，用特定提示词生成变形金刚形态图片，随后用Seedance2.0进一步处理成动态效果。作者直呼“杀疯了”。",
+      "steps": [],
+      "tags": [
+        "AI生成图像",
+        "变形金刚",
+        "提示词",
+        "GPT",
+        "创意玩法"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://twitter.com/XiaohuiAI666/status/2047948120890527763",
+          "name": "原文附带的链接",
+          "note": "推文中引用的相关视频或资源"
+        }
+      ]
+    },
+    {
+      "id": "2049738370679730562",
+      "url": "https://x.com/yaojingang/status/2049738370679730562",
+      "author": "yaojingang",
+      "authorName": "姚金刚",
+      "publishedAt": "2026-04-30T06:31:24.000Z",
+      "title": "开源教程生成Skill：AI一键定制深度教程",
+      "industry": "人工智能",
+      "tech": "Skill、GitHub、AI教程生成、PDF/Word/HTML输出",
+      "summary": "姚金刚开源了一个教程生成Skill，已打磨十几版并推到GitHub。输入任意主题和参考资料，AI会以参考资料为核心补充高质量素材（含低质量信源过滤），按章节逻辑生成定制深度教程，输出PDF、Word、HTML三种格式，并自动画图插入相关章节。教程还融入了其《课程营销学》的底层逻辑，排版借鉴了@HiTw93的kami，示例教程之一来自@ReyJudgementOS的英语干货文章。",
+      "steps": [
+        {
+          "text": "输入任意主题及参考资料，AI优先以参考资料为核心，按需补充高质量素材并过滤低质量信源",
+          "tools": "",
+          "tech": "低质量信源过滤机制",
+          "prep": "准备主题和参考资料"
+        },
+        {
+          "text": "结合教程特点和用户偏好，生成定制深度教程，输出PDF、Word、HTML三种格式",
+          "tools": "",
+          "tech": "多格式文档输出",
+          "prep": ""
+        },
+        {
+          "text": "教程按章节逻辑系统输出，并根据各章节内容自动画图插入相关模块",
+          "tools": "",
+          "tech": "自动绘图",
+          "prep": ""
+        }
+      ],
+      "tags": [
+        "开源",
+        "AI教程",
+        "Skill",
+        "GitHub",
+        "自定义学习"
+      ],
+      "isLong": false,
+      "showFlowchart": true,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://t.co/Ymc0MxAjnK",
+          "name": "教程Skill的GitHub地址",
+          "note": "作者开源的教程生成Skill仓库，可下载使用"
+        }
+      ]
+    },
+    {
       "id": "2049720471944601697",
       "url": "https://x.com/Saccc_c/status/2049720471944601697",
       "author": "Saccc_c",
@@ -257178,6 +258494,196 @@
       ]
     },
     {
+      "id": "2049709138918387882",
+      "url": "https://x.com/yaojingang/status/2049709138918387882",
+      "author": "yaojingang",
+      "authorName": "姚金刚",
+      "publishedAt": "2026-04-30T04:35:15.000Z",
+      "title": "Vibe Coding 沉迷难治",
+      "industry": "",
+      "tech": "",
+      "summary": "作者和朋友调侃沉迷 vibe coding（氛围编码），@enzyme_dev 回复说一旦沉迷就不好治了，大家以幽默方式互动。",
+      "steps": [],
+      "tags": [
+        "VibeCoding",
+        "编程文化",
+        "程序员日常",
+        "幽默"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2049707361309466643",
+      "url": "https://x.com/XiaohuiAI666/status/2049707361309466643",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-04-30T04:28:11.000Z",
+      "title": "用Flowith Agent一键生成瑜伽动作视频",
+      "industry": "内容运营",
+      "tech": "GPT-Image-2、Flowith Agent、可灵视频模型",
+      "summary": "作者介绍GPT-Image-2推出后，传统多工具生图生视频工作流被彻底淘汰。采用Flowith Agent（图像模式+GPT-Image-2+点Agent）一键生成12个清晰瑜伽动作分镜及参考图，再喂首末帧给可灵视频模型即可产出丝滑演示视频，全链路仅用一个工具。Agent还能联网生成准确日期的海报日历，帖中附3步操作和完整提示词。",
+      "steps": [
+        {
+          "text": "使用Flowith Agent（图像模式+GPT-Image-2+点Agent）一键生成12个清晰瑜伽动作分镜及人物参考图",
+          "tools": "Flowith Agent",
+          "tech": "GPT-Image-2",
+          "prep": "准备瑜伽动作相关提示词"
+        },
+        {
+          "text": "将生成的首末帧喂给可灵视频模型，产出丝滑演示视频",
+          "tools": "可灵视频模型",
+          "tech": "视频生成",
+          "prep": "已有的分镜首末帧图片"
+        },
+        {
+          "text": "让Agent联网生成日期准确的海报日历",
+          "tools": "Flowith Agent",
+          "tech": "联网搜索",
+          "prep": ""
+        }
+      ],
+      "tags": [
+        "AI生图",
+        "AI视频",
+        "内容运营",
+        "Flowith",
+        "瑜伽动作",
+        "Agent模式"
+      ],
+      "isLong": false,
+      "showFlowchart": true,
+      "kind": "教程实操",
+      "resources": []
+    },
+    {
+      "id": "2049705654437507188",
+      "url": "https://x.com/yaojingang/status/2049705654437507188",
+      "author": "yaojingang",
+      "authorName": "姚金刚",
+      "publishedAt": "2026-04-30T04:21:24.000Z",
+      "title": "姚金刚开源元 Skill 仓库",
+      "industry": "人工智能",
+      "tech": "Claude Skills",
+      "summary": "作者姚金刚在回复网友时分享了自己的元 Skill 开源地址，仓库为 GitHub 上的 yao-meta-skill，供大家查看使用。",
+      "steps": [],
+      "tags": [
+        "开源",
+        "Skill",
+        "GitHub",
+        "AI 工具"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://github.com/yaojingang/yao-meta-skill",
+          "name": "GitHub 仓库 yao-meta-skill",
+          "note": "作者的元 Skill 开源仓库"
+        }
+      ]
+    },
+    {
+      "id": "2049677150010397142",
+      "url": "https://x.com/yaojingang/status/2049677150010397142",
+      "author": "yaojingang",
+      "authorName": "姚金刚",
+      "publishedAt": "2026-04-30T02:28:08.000Z",
+      "title": "睡眠不足会让男性睾丸尺寸变小",
+      "industry": "",
+      "tech": "",
+      "summary": "作者提醒自己最近睡眠量下降需尽快补回来，并推荐TED经典演讲《睡眠才是你的超能力》。演讲开篇指出：每晚只睡五小时的男性，睾丸尺寸明显小于每晚睡七小时及以上的男性。",
+      "steps": [],
+      "tags": [
+        "睡眠健康",
+        "TED演讲",
+        "生理影响",
+        "健康科普"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://www.youtube.com/watch?v=5MuIMqhT8DM",
+          "name": "TED演讲《睡眠才是你的超能力》",
+          "note": "Matthew Walker关于睡眠重要性的顶级演讲，开篇提到睡眠对男性睾丸尺寸的影响"
+        }
+      ]
+    },
+    {
+      "id": "2049674995228619008",
+      "url": "https://x.com/yaojingang/status/2049674995228619008",
+      "author": "yaojingang",
+      "authorName": "姚金刚",
+      "publishedAt": "2026-04-30T02:19:34.000Z",
+      "title": "AI自动评论社交无益且风险高",
+      "industry": "人工智能",
+      "tech": "AI机器人",
+      "summary": "作者质疑AI机器人自动评论的行为，认为其好处可能是混脸熟或蹭流量，但风险较高。作者更期待读帖后的真人真实回复，并坚持认为社交无法被AI替代。",
+      "steps": [],
+      "tags": [
+        "AI评论",
+        "社交媒体",
+        "AI替代",
+        "真人互动",
+        "流量蹭"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2049671474173407548",
+      "url": "https://x.com/XiaohuiAI666/status/2049671474173407548",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-04-30T02:05:35.000Z",
+      "title": "小灰计划在YouTube、抖音、视频号发内容",
+      "industry": "自媒体",
+      "tech": "YouTube、抖音、视频号",
+      "summary": "这是一条互动寒暄：小灰回复网友的提醒，表示感谢，并称接下来会在 YouTube、抖音、视频号发布内容。",
+      "steps": [],
+      "tags": [
+        "日常互动",
+        "短视频",
+        "抖音",
+        "YouTube",
+        "视频号"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2049667713069731858",
+      "url": "https://x.com/yaojingang/status/2049667713069731858",
+      "author": "yaojingang",
+      "authorName": "姚金刚",
+      "publishedAt": "2026-04-30T01:50:38.000Z",
+      "title": "元Skill的价值被大大低估了",
+      "industry": "人工智能",
+      "tech": "Skill、元Skill、提示词",
+      "summary": "作者认为元Skill（生成Skill的Skill）的价值被大大低估。他和向阳两年前打磨出各自的元提示词，在提示词生成、任务拆解、方案设计中带来极大便利，今年又花时间打磨了自己的元Skill：yao-meta-skill。他提出元Skill有三层价值：个人的Skill生产系统、对AI协作方式的抽象、学习理解Skill的最佳切入点；建议每个人结合高频使用场景集中打磨一个属于自己的元Skill，过程中还能收获对Skill原理的理解、好Skill的标准、工作流梳理、任务拆解与质量控制训练、AI协作边界判断等底层能力。作者后续准备专门写一篇聊如何设计元Skill。",
+      "steps": [],
+      "tags": [
+        "元Skill",
+        "Skill",
+        "AI协作",
+        "提示词",
+        "工作流"
+      ],
+      "isLong": true,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
       "id": "2049666550345744824",
       "url": "https://x.com/Saccc_c/status/2049666550345744824",
       "author": "Saccc_c",
@@ -257193,6 +258699,105 @@
         "沉浸体验",
         "大唐场景",
         "视觉效果"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2049645103350952079",
+      "url": "https://x.com/XiaohuiAI666/status/2049645103350952079",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-04-30T00:20:47.000Z",
+      "title": "随手拍汽车变身变形金刚视频教程",
+      "industry": "人工智能",
+      "tech": "GPT-image-2、Seedance 2.0、首尾帧图生视频",
+      "summary": "作者分享用 GPT-image-2 + Seedance 2.0 把随手拍的汽车变成变形金刚视频的做法：先让 GPT 按提示词把汽车照片生成变形金刚形态图，再用 Seedance 2.0 首尾帧模式（无提示词）生成变形视频。为让画面更自然，把变形金刚图设为首帧再生成 4 秒视频（平台可设的最短长度），最后拼接两段成片。引用推文还展示了同套组合制作「和平鸽从故宫飞到东方明珠」航拍视频的提示词。",
+      "steps": [
+        {
+          "text": "把随手拍的汽车照片传给 GPT，提示词：「照片中的汽车是变形金刚伪装的，发挥想象展现出它的变形金刚形态」，生成变形金刚图片",
+          "tools": "GPT-image-2",
+          "tech": "图像生成/改图",
+          "prep": "一张随手拍的汽车照片"
+        },
+        {
+          "text": "将原图和变形金刚图一起传给 Seedance 2.0，选首尾帧模式、不加提示词，生成汽车变形视频",
+          "tools": "Seedance 2.0",
+          "tech": "首尾帧图生视频",
+          "prep": "汽车原图 + 变形金刚图"
+        },
+        {
+          "text": "为让视频更自然，再次使用 Seedance 2.0 首尾帧功能，把变形金刚图设为首帧，生成 4 秒视频（可设置的最短长度）",
+          "tools": "Seedance 2.0",
+          "tech": "首尾帧图生视频",
+          "prep": "变形金刚图片"
+        },
+        {
+          "text": "把两个视频片段衔接起来，得到最终成片",
+          "tools": "",
+          "tech": "视频拼接",
+          "prep": "两段视频素材"
+        }
+      ],
+      "tags": [
+        "AI视频",
+        "图生视频",
+        "变形金刚",
+        "首尾帧",
+        "AI玩法"
+      ],
+      "isLong": false,
+      "showFlowchart": true,
+      "kind": "教程实操",
+      "resources": [
+        {
+          "url": "https://twitter.com/XiaohuiAI666/status/2047319327452569753",
+          "name": "@XiaohuiAI666 的引用推文",
+          "note": "作者此前用 GPT-Image-2 + Seedance 2.0 制作和平鸽从北京故宫飞到上海东方明珠航拍视频的帖子"
+        }
+      ]
+    },
+    {
+      "id": "2049630422544658889",
+      "url": "https://x.com/yaojingang/status/2049630422544658889",
+      "author": "yaojingang",
+      "authorName": "姚金刚",
+      "publishedAt": "2026-04-29T23:22:27.000Z",
+      "title": "用独立新号码来电归因GEO转化",
+      "industry": "数字营销",
+      "tech": "GEO（生成式引擎优化）、独立电话号码归因",
+      "summary": "针对 @meikidd 提出的“怎么知道这几单是从 GEO 转化过来的”这一归因难题，姚金刚给出解法：单独拿一个全新电话号码，结合 GEO 优化做承接，默认打到这个新号码的接听都归因于 GEO。核心思路是用独立号码做渠道隔离，实现简单可落地的转化归因。",
+      "steps": [],
+      "tags": [
+        "GEO",
+        "AI搜索",
+        "转化归因",
+        "电话追踪",
+        "营销策略"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2049508878132617310",
+      "url": "https://x.com/yaojingang/status/2049508878132617310",
+      "author": "yaojingang",
+      "authorName": "姚金刚",
+      "publishedAt": "2026-04-29T15:19:29.000Z",
+      "title": "商业项目难有真正有价值的详细教程",
+      "industry": "",
+      "tech": "",
+      "summary": "作者回复网友求详细教程的提问，认为商业项目很难有真正有价值的详细教程。理由是实际执行时涉及不少不可复制的要素，照搬教程难以落地。",
+      "steps": [],
+      "tags": [
+        "商业项目",
+        "教程",
+        "执行经验",
+        "观点讨论"
       ],
       "isLong": false,
       "showFlowchart": false,
@@ -257241,6 +258846,27 @@
       "isLong": false,
       "showFlowchart": false,
       "kind": "技术分享",
+      "resources": []
+    },
+    {
+      "id": "2049479980275679334",
+      "url": "https://x.com/XiaohuiAI666/status/2049479980275679334",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-04-29T13:24:39.000Z",
+      "title": "程序员小灰感谢博主推荐其内容",
+      "industry": "",
+      "tech": "",
+      "summary": "程序员小灰回复 @indiehackercase，感谢对方的推荐，并表示希望自己的内容能给大家带来启发。属于纯互动寒暄，无实质内容。",
+      "steps": [],
+      "tags": [
+        "日常互动",
+        "感谢",
+        "独立开发者"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
       "resources": []
     },
     {
@@ -257325,6 +258951,30 @@
           "note": "随生成徒步路线图的推文附带，具体指向内容未说明。"
         }
       ]
+    },
+    {
+      "id": "2049418176304476552",
+      "url": "https://x.com/yaojingang/status/2049418176304476552",
+      "author": "yaojingang",
+      "authorName": "姚金刚",
+      "publishedAt": "2026-04-29T09:19:04.000Z",
+      "title": "与团队分享元提示词研究经历",
+      "industry": "人工智能",
+      "tech": "元提示词、提示词优化大师Skill、Claude Code、Cursor、Midjourney",
+      "summary": "作者回复 @vista8，表示这两天刚和团队分享了此前研究元提示词的经历。从对方内容看，这个「提示词优化大师」Skill 与作者和 vista8 合写的元 Prompt 类似，虽是纯文本，但会针对不同场景做优化：写代码时按 Claude Code、Cursor 等不同工具给出差异化提示词，生图时也会按 Midjourney 等不同平台区分。",
+      "steps": [],
+      "tags": [
+        "元提示词",
+        "提示词优化",
+        "Skill",
+        "Claude Code",
+        "Cursor",
+        "Midjourney"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
     },
     {
       "id": "2049411291727454257",
@@ -257424,6 +259074,35 @@
       "resources": []
     },
     {
+      "id": "2049368781429059696",
+      "url": "https://x.com/XiaohuiAI666/status/2049368781429059696",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-04-29T06:02:47.000Z",
+      "title": "GPT-image-2把米诺地尔设计成贵族风女装",
+      "industry": "人工智能",
+      "tech": "GPT-image-2、AI图像生成",
+      "summary": "作者继续用 GPT-image-2 玩「商品变时装」：这次以自己常用的米诺地尔泡沫剂为灵感，用提示词「以这件商品为灵感，设计一套高端大气、极具贵族风格的女装，黑色背景」生成贵族风女装设计图。其引用的往期推文显示，他用同样玩法把家里的碘伏消毒液设计成了清凉风格女装（黑色背景、3:2）。整体是分享 AI 生图的趣味玩法，附上了可复用的提示词。",
+      "steps": [],
+      "tags": [
+        "AI生图",
+        "GPT-image-2",
+        "时装设计",
+        "AI趣味玩法",
+        "提示词"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": [
+        {
+          "url": "https://twitter.com/XiaohuiAI666/status/2049283585551847441",
+          "name": "@XiaohuiAI666 的推文",
+          "note": "引用推文中附带的同作者推文链接，推测为此前同系列 GPT-image-2 玩法的内容"
+        }
+      ]
+    },
+    {
       "id": "2049366565179855045",
       "url": "https://x.com/Saccc_c/status/2049366565179855045",
       "author": "Saccc_c",
@@ -257489,6 +259168,81 @@
       "resources": []
     },
     {
+      "id": "2049352576777462233",
+      "url": "https://x.com/XiaohuiAI666/status/2049352576777462233",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-04-29T04:58:24.000Z",
+      "title": "椰子水原图可发给GPT处理",
+      "industry": "人工智能",
+      "tech": "GPT",
+      "summary": "这是一条简短的互动回复：作者建议网友把椰子水那张原图发给GPT处理。",
+      "steps": [],
+      "tags": [
+        "GPT",
+        "AI应用",
+        "图像处理",
+        "互动回复"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2049347261860368454",
+      "url": "https://x.com/yaojingang/status/2049347261860368454",
+      "author": "yaojingang",
+      "authorName": "姚金刚",
+      "publishedAt": "2026-04-29T04:37:16.000Z",
+      "title": "县城财税公司靠GEO优化月获客成交2单",
+      "industry": "财税服务",
+      "tech": "GEO优化、AI搜索推荐",
+      "summary": "作者用一个案例说明如何判断商业信号：朋友帮一家县城小型财税公司做了服务类GEO优化，因为竞争少，被AI推荐的效果非常好。一个月获取了十几条线索，成交2单，还有2单待成交，转化率很高。对一个小地方的财税服务公司来说，这样的获客能力已经很知足。",
+      "steps": [],
+      "tags": [
+        "GEO优化",
+        "AI获客",
+        "财税服务",
+        "县域市场",
+        "商业信号",
+        "线索转化"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": []
+    },
+    {
+      "id": "2049346430305972287",
+      "url": "https://x.com/XiaohuiAI666/status/2049346430305972287",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-04-29T04:33:58.000Z",
+      "title": "Obsidian Claudian插件保姆级教程",
+      "industry": "人工智能",
+      "tech": "Obsidian、Claudian、Claude Code、Codex CLI、BRAT、CC Switch、OpenRouter",
+      "summary": "推荐了@alin_zone的一篇Obsidian Claudian插件保姆级教程，可让Obsidian接入Claude与Codex双模型。核心流程五步：备好Obsidian v1.4.5+、Node.js和ChatGPT账号；用BRAT安装Claudian（老用户需更新至v2.0+）；配置Claude Code CLI（支持官方订阅、中转API或OpenRouter Ling-2.6-1T加CC Switch的免费方案）；安装Codex CLI用ChatGPT登录，打开“Enable Codex provider”开关并填CLI路径；最后在左下角切换CLAUDE组（Opus/Sonnet/Haiku）或CODEX组（GPT-5.4等）。教程对小白非常友好，适合想让Obsidian“自己动起来”的用户，建议收藏。",
+      "steps": [],
+      "tags": [
+        "Obsidian",
+        "AI编程",
+        "效率工具",
+        "教程推荐",
+        "Claude Code"
+      ],
+      "isLong": true,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "http://x.com/i/article/2049080024494661632",
+          "name": "@alin_zone 的 X 长文（Obsidian Claudian 插件保姆级教程）",
+          "note": "教程原文，包含 Claudian 安装、Claude Code 与 Codex 配置的具体操作步骤"
+        }
+      ]
+    },
+    {
       "id": "2049344784901538079",
       "url": "https://x.com/Saccc_c/status/2049344784901538079",
       "author": "Saccc_c",
@@ -257531,6 +259285,28 @@
       "resources": []
     },
     {
+      "id": "2049317756789784975",
+      "url": "https://x.com/yaojingang/status/2049317756789784975",
+      "author": "yaojingang",
+      "authorName": "姚金刚",
+      "publishedAt": "2026-04-29T02:40:02.000Z",
+      "title": "GEO 值钱的是原始样本链与方法论",
+      "industry": "人工智能",
+      "tech": "GEO",
+      "summary": "作者认同 @BTCxiaoyu1 的观点：GEO 真正值钱的是原始样本链，包括 prompt、引用和抓取记录，结论会变，但这套采样方法可以按行业持续复用。作者强调背后的逻辑与方法论才是关键。",
+      "steps": [],
+      "tags": [
+        "GEO",
+        "AI搜索优化",
+        "方法论",
+        "原始样本链"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
       "id": "2049311828229132328",
       "url": "https://x.com/Saccc_c/status/2049311828229132328",
       "author": "Saccc_c",
@@ -257549,6 +259325,129 @@
       "isLong": false,
       "showFlowchart": false,
       "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2049311472732479987",
+      "url": "https://x.com/XiaohuiAI666/status/2049311472732479987",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-04-29T02:15:04.000Z",
+      "title": "GPT-image-2新玩法：商品变女装",
+      "industry": "人工智能",
+      "tech": "GPT-image-2、AI图像生成、提示词",
+      "summary": "作者在玩 GPT-image-2 的一个新玩法：上传商品照片，配提示词“以这件商品为灵感，设计一套清凉风格女装，黑色背景，3:2”，让 AI 依据商品生成服装设计图。这次的主角是家里的碘伏消毒液；他在引用推文中还用五常大米试过同款玩法，并称这个玩法已经很火爆。",
+      "steps": [],
+      "tags": [
+        "GPT-image-2",
+        "AI绘画",
+        "AI图像生成",
+        "提示词",
+        "AI玩法"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": [
+        {
+          "url": "https://twitter.com/XiaohuiAI666/status/2049097675652645260",
+          "name": "原文附带的链接",
+          "note": "引用推文中附带的链接，原文未说明具体内容"
+        }
+      ]
+    },
+    {
+      "id": "2049283585551847441",
+      "url": "https://x.com/XiaohuiAI666/status/2049283585551847441",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-04-29T00:24:15.000Z",
+      "title": "GPT-image-2 玩法火了：用五常大米生成女装",
+      "industry": "人工智能",
+      "tech": "GPT-image-2",
+      "summary": "GPT-image-2 的新玩法火了：输入提示词“以这件商品为灵感，设计一套清凉风格女装”，就能把普通商品图变成清凉风格女装设计。作者小灰用家里的五常大米试了一下，同样生成了女装图。该玩法源自另一位网友的推文并迅速传播。",
+      "steps": [],
+      "tags": [
+        "GPT-image-2",
+        "AI绘图",
+        "提示词",
+        "AI玩法"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://twitter.com/Biantaiboooo/status/2049010130659016754",
+          "name": "原文附带的链接",
+          "note": "最早玩这个 GPT-image-2 女装生成玩法的网友推文"
+        }
+      ]
+    },
+    {
+      "id": "2049281719539532286",
+      "url": "https://x.com/XiaohuiAI666/status/2049281719539532286",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-04-29T00:16:50.000Z",
+      "title": "确认使用的是GPT-image-2模型",
+      "industry": "",
+      "tech": "GPT-image-2",
+      "summary": "作者在回复中询问对方，确定使用的是GPT-image-2模型吗？",
+      "steps": [],
+      "tags": [
+        "AI模型",
+        "图像生成",
+        "GPT",
+        "确认"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2049274011776102808",
+      "url": "https://x.com/XiaohuiAI666/status/2049274011776102808",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-04-28T23:46:12.000Z",
+      "title": "回复网友询问具体问题并请其截图",
+      "industry": "",
+      "tech": "",
+      "summary": "博主回复网友询问具体遇到了什么问题，并请对方截图说明，属于互动寒暄。",
+      "steps": [],
+      "tags": [
+        "互动",
+        "回复",
+        "日常"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2049270904430186568",
+      "url": "https://x.com/XiaohuiAI666/status/2049270904430186568",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-04-28T23:33:51.000Z",
+      "title": "推荐 @rwayne 三个月涨粉4万的视频经验",
+      "industry": "自媒体",
+      "tech": "",
+      "summary": "程序员小灰分享自己用三个月涨粉1万，而 @rwayne 三个月涨粉4万、累计1.5亿曝光，成绩是他的四倍，非常强。他推荐对方拍的这条视频，建议收藏学习，视频内容是讲述如何三个月涨粉4万的方法。",
+      "steps": [],
+      "tags": [
+        "推特涨粉",
+        "自媒体运营",
+        "视频推荐",
+        "经验分享",
+        "涨粉心得"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
       "resources": []
     },
     {
@@ -257615,6 +259514,189 @@
       "resources": []
     },
     {
+      "id": "2049120614221562343",
+      "url": "https://x.com/XiaohuiAI666/status/2049120614221562343",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-04-28T13:36:39.000Z",
+      "title": "上传矿泉水瓶照片让 GPT-image-2 设计服装",
+      "industry": "人工智能",
+      "tech": "GPT-image-2",
+      "summary": "作者上传一张矿泉水瓶的照片，用提示词“以这件商品为灵感，设计一套清凉风格女装”，GPT-image-2 就能生成一套毫无违和感的服装设计。展示了该模型以任意商品照片为灵感进行服装设计的玩法。",
+      "steps": [],
+      "tags": [
+        "GPT-image-2",
+        "AI绘图",
+        "服装设计",
+        "图像生成",
+        "提示词"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://twitter.com/Biantaiboooo/status/2049010130659016754",
+          "name": "原文附带的链接",
+          "note": "被引用的推文，即这一 GPT-image-2 新玩法的来源"
+        }
+      ]
+    },
+    {
+      "id": "2049097675652645260",
+      "url": "https://x.com/XiaohuiAI666/status/2049097675652645260",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-04-28T12:05:30.000Z",
+      "title": "GPT-image-2用商品灵感设计清凉女装",
+      "industry": "人工智能",
+      "tech": "GPT-image-2",
+      "summary": "作者分享GPT-image-2的新玩法：输入商品图片并提示“以这件商品为灵感，设计一套清凉风格女装”，即可生成对应服装设计图。引用了@Biantaiboooo用故宫文物生成小香风服装的案例，展示了AI在时尚设计领域的有趣应用。",
+      "steps": [],
+      "tags": [
+        "AI生成",
+        "服装设计",
+        "图像生成",
+        "创意玩法",
+        "GPT新功能"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": []
+    },
+    {
+      "id": "2049069423395533166",
+      "url": "https://x.com/yaojingang/status/2049069423395533166",
+      "author": "yaojingang",
+      "authorName": "姚金刚",
+      "publishedAt": "2026-04-28T10:13:15.000Z",
+      "title": "吃到抱团价值后格局会瞬间打开",
+      "industry": "",
+      "tech": "",
+      "summary": "作者赞同@enzyme_dev的观点，认为吃到抱团的价值后，人的格局会立刻打开。强调双赢远大于竞争，增量市场才是好的，而中国历史上的农耕文明让大家长期习惯存量市场思维。",
+      "steps": [],
+      "tags": [
+        "抱团合作",
+        "双赢思维",
+        "增量市场",
+        "格局打开"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2049064732523397347",
+      "url": "https://x.com/yaojingang/status/2049064732523397347",
+      "author": "yaojingang",
+      "authorName": "姚金刚",
+      "publishedAt": "2026-04-28T09:54:36.000Z",
+      "title": "为什么人们非要一较高下？",
+      "industry": "跨境电商",
+      "tech": "",
+      "summary": "一位行业大哥分享故事：两位福建老板同时竞标同一海外项目，在现场激烈竞争、寸土必争，但走出竞标室后立刻恢复好友关系，继续喝茶交流心得、聊行业机会。作者借此反思人们为什么非要一较高下。",
+      "steps": [],
+      "tags": [
+        "商业竞争",
+        "行业心态",
+        "福建老板",
+        "竞标",
+        "合作心态"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2048995614781034907",
+      "url": "https://x.com/XiaohuiAI666/status/2048995614781034907",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-04-28T05:19:57.000Z",
+      "title": "skill指导X账号运营20天涨粉6000",
+      "industry": "自媒体运营",
+      "tech": "Claude Skill",
+      "summary": "博主转发并称赞 @ai_xiaomu 用 skill 指导X账号运营全流程的经验分享。对方是35岁程序员、i人、转型OPC、从未做过自媒体，来X仅20天做到6000粉丝、600万流量，并达到老马（马斯克）的工资水平。作者认为这种方法像“用核武器碾压大刀长矛”，具体做法见对方分享的视频。",
+      "steps": [],
+      "tags": [
+        "X运营",
+        "AI skill",
+        "涨粉经验",
+        "自媒体",
+        "程序员转型"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2048978798574698628",
+      "url": "https://x.com/XiaohuiAI666/status/2048978798574698628",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-04-28T04:13:08.000Z",
+      "title": "蚂蚁百灵Ling-2.6-1T与MiniMax脑筋急转弯PK",
+      "industry": "人工智能",
+      "tech": "Ling-2.6-1T、MiniMax M2.5",
+      "summary": "蚂蚁集团发布Ling-2.6-1T旗舰模型，主打高效快思考，在降低推理成本和延迟的同时保持顶尖智能。作者让其与MiniMax M2.5进行4道脑筋急转弯对决，结果蚂蚁百灵3:1获胜。模型已在OpenRouter上可免费体验。",
+      "steps": [],
+      "tags": [
+        "蚂蚁百灵",
+        "大模型评测",
+        "脑筋急转弯",
+        "快思考",
+        "OpenRouter"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://t.co/vl6ubNYFVC",
+          "name": "OpenRouter体验链接",
+          "note": "可免费体验蚂蚁百灵Ling-2.6-1T模型"
+        },
+        {
+          "url": "https://twitter.com/XiaohuiAI666/status/2046052471223832716",
+          "name": "作者之前发布的推文",
+          "note": "关于AI生成UI容易审美疲劳的内容"
+        }
+      ]
+    },
+    {
+      "id": "2048962053118075236",
+      "url": "https://x.com/XiaohuiAI666/status/2048962053118075236",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-04-28T03:06:35.000Z",
+      "title": "GPT-image-2 新玩法：九宫格讲述前世今生",
+      "industry": "人工智能",
+      "tech": "GPT-image-2",
+      "summary": "介绍GPT-image-2的新玩法：上传任意人物或物品图片，生成九宫格来讲述其过去、现在和未来的故事。正中间为当前状态，每格跨度5年。给出具体提示词，并附上生成示例。",
+      "steps": [],
+      "tags": [
+        "GPT-image-2",
+        "九宫格生成",
+        "AI图像",
+        "时间叙事",
+        "提示词"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://twitter.com/XiaohuiAI666/status/2047319327452569753",
+          "name": "原文附带的链接",
+          "note": "作者之前发布的相关内容链接"
+        }
+      ]
+    },
+    {
       "id": "2048952911086977322",
       "url": "https://x.com/Saccc_c/status/2048952911086977322",
       "author": "Saccc_c",
@@ -257669,6 +259751,426 @@
       "showFlowchart": false,
       "kind": "教程实操",
       "resources": []
+    },
+    {
+      "id": "2048929539867463869",
+      "url": "https://x.com/XiaohuiAI666/status/2048929539867463869",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-04-28T00:57:24.000Z",
+      "title": "使用AI要知其所以然",
+      "industry": "人工智能",
+      "tech": "AI",
+      "summary": "作者强调使用AI的正确方式不仅是得到结果，更要理解其背后的原理。引用了一篇关于AI的文章，赞同“知其然，更要知其所以然”的观点。",
+      "steps": [],
+      "tags": [
+        "AI使用方法",
+        "知其所以然",
+        "程序员学习",
+        "AI思维"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "http://x.com/i/article/2048606561627717633",
+          "name": "引用文章",
+          "note": "Lonely__MH 发布的关于AI的文章"
+        }
+      ]
+    },
+    {
+      "id": "2048929372841893977",
+      "url": "https://x.com/XiaohuiAI666/status/2048929372841893977",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-04-28T00:56:44.000Z",
+      "title": "程序员小灰赞同知其然更要知其所以然",
+      "industry": "",
+      "tech": "",
+      "summary": "程序员小灰回复网友，赞同“知其然也要知其所以然”的观点，并表示自己学习了。",
+      "steps": [],
+      "tags": [
+        "学习态度",
+        "程序员成长",
+        "知其所以然"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "http://x.com/i/article/2048606561627717633",
+          "name": "原文引用的文章",
+          "note": "被回复的推文或文章"
+        }
+      ]
+    },
+    {
+      "id": "2048911258183966965",
+      "url": "https://x.com/XiaohuiAI666/status/2048911258183966965",
+      "author": "XiaohuiAI666",
+      "authorName": "程序员小灰",
+      "publishedAt": "2026-04-27T23:44:45.000Z",
+      "title": "用gpt-image-2生成角色18岁成年后样子",
+      "industry": "人工智能",
+      "tech": "gpt-image-2",
+      "summary": "推文分享了gpt-image-2的一个有趣玩法“角色时光机”。只需用一句提示词“风格内容不变，给我人物18岁成年后的形象”，就能让原角色保持风格、气质和识别点，仅让人物自然长大。反之也可让人物变小，效果非常有意思。",
+      "steps": [],
+      "tags": [
+        "AI生成",
+        "角色老化",
+        "提示词技巧",
+        "图像生成",
+        "时光机玩法"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": []
+    },
+    {
+      "id": "2108005214813040906",
+      "url": "https://x.com/i/status/2108005214813040906",
+      "author": "xiaohuiyuan",
+      "authorName": "晓辉博士",
+      "publishedAt": "",
+      "title": "与AI协作两三天打磨出一套访谈剪辑工作流",
+      "industry": "内容创作",
+      "tech": "AI剪辑工作流、字幕生成、AI封面制作",
+      "summary": "作者在假期用两三天和AI一起打磨出一套剪辑工作流，剪出了积压的几期长访谈，涵盖加字幕、校对、挑金句、加包装、做封面，人提要求、AI执行。最大感受是真正花时间的是把审美和标准讲清楚，这些判断沉淀后可复用到每一期，人的精力可放在判断结果和处理不确定性上。视频中展示了实际效果并介绍工作流的打磨过程。",
+      "steps": [],
+      "tags": [
+        "AI剪辑",
+        "工作流",
+        "视频创作",
+        "播客",
+        "AI协作"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": []
+    },
+    {
+      "id": "2107501429774815237",
+      "url": "https://x.com/i/status/2107501429774815237",
+      "author": "xiaohuiyuan",
+      "authorName": "晓辉博士",
+      "publishedAt": "",
+      "title": "两个快速入睡法：肌肉紧张后放松",
+      "industry": "",
+      "tech": "",
+      "summary": "作者分享两个自己亲测有效的快速入睡方法，一个需2分钟，一个需几十秒。核心原理是先让肌肉紧张再放松，给身体发出可以休息的信号。该方法有研究实验支持，推荐给大家尝试。",
+      "steps": [],
+      "tags": [
+        "快速入睡",
+        "睡眠技巧",
+        "肌肉放松",
+        "助眠方法",
+        "亲测有效"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://t.co/sr6b6Unekv",
+          "name": "原文附带的链接",
+          "note": "推文中提到的快速入睡相关资源或说明"
+        }
+      ]
+    },
+    {
+      "id": "2106534633181708539",
+      "url": "https://x.com/i/status/2106534633181708539",
+      "author": "xiaohuiyuan",
+      "authorName": "晓辉博士",
+      "publishedAt": "",
+      "title": "把6万字日记交给AI做月度行为洞察分析",
+      "industry": "人工智能",
+      "tech": "AI 日记分析",
+      "summary": "作者回顾9月的日记，共约6万字，交给AI做可视化版本的深度洞察，分析当月所做之事与所思所想。AI能将定性的文字转成定量的可视化表达，识别行为间关联，找出状态好坏的相关因素，并给出有益建议。作者对结果感到惊喜并推荐这种用法。",
+      "steps": [],
+      "tags": [
+        "AI日记分析",
+        "月度复盘",
+        "可视化洞察",
+        "行为模式",
+        "个人成长"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2109642881514225737",
+      "url": "https://x.com/i/status/2109642881514225737",
+      "author": "aigclink",
+      "authorName": "AIGCLINK",
+      "publishedAt": "",
+      "title": "微软大规模部署自研Maia AI芯片",
+      "industry": "人工智能",
+      "tech": "Maia 300、Maia 200",
+      "summary": "微软宣布将自研Maia AI芯片家族从2025年开始扩展至数吉瓦级部署，成为自家AI产品的主要推理基础设施。同时推出第三代Maia 300，推理能效比领先GPU高40%，相同电力下生成更多token，满配96卡机架token吞吐量最高是Maia 200的7倍。Maia 200已在美国、欧洲、澳大利亚规模化落地，支撑Teams、Copilot等产品AI能力。",
+      "steps": [],
+      "tags": [
+        "AI芯片",
+        "自研芯片",
+        "微软",
+        "推理基础设施",
+        "能效提升"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": [
+        {
+          "url": "https://t.co/L490XvOys9",
+          "name": "微软官方推文",
+          "note": "微软宣布Maia芯片大规模部署及Maia 300发布的原文"
+        }
+      ]
+    },
+    {
+      "id": "2109428679575286251",
+      "url": "https://x.com/i/status/2109428679575286251",
+      "author": "aigclink",
+      "authorName": "AIGCLINK",
+      "publishedAt": "",
+      "title": "用Claude把技术概念变成可交互3D演示",
+      "industry": "人工智能",
+      "tech": "Claude、React/Next.js、SVG、HTML",
+      "summary": "作者分享了一个用Claude把抽象技术原理变成动态可交互3D立体演示的玩法。演示可旋转、检查和探索，能呈现火焰、水、等离子体等视觉效果，各零部件还能单独旋转移动。只要给出一个概念，Claude就能构思对应实体结构，适合教育教学、概念演示、交互式科普制作等场景，支持独立HTML、SVG或React/Next.js组件输出，源码归用户所有。",
+      "steps": [],
+      "tags": [
+        "Claude",
+        "3D演示",
+        "交互式科普",
+        "教育教学",
+        "概念可视化"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": []
+    },
+    {
+      "id": "2109563371460977151",
+      "url": "https://x.com/i/status/2109563371460977151",
+      "author": "aigclink",
+      "authorName": "AIGCLINK",
+      "publishedAt": "",
+      "title": "Hugging Face开源数学RL训练环境，369个任务可刷题",
+      "industry": "人工智能",
+      "tech": "Hugging Face、Lean、强化学习、形式化数学",
+      "summary": "Hugging Face将OpenAI前两天发布的数学成果转成了开源强化学习环境。共369个任务、405道形式化数学题、214个题型，每个任务提供带sorry的Lean题面，AI补全证明后由独立沙箱中的Lean判分器自动编译验证，对1错0生成reward。目前为早期版本，verifier只认原始形式化写法，等价证明可能被误判，建议当练兵场使用。",
+      "steps": [],
+      "tags": [
+        "强化学习",
+        "开源",
+        "形式化数学",
+        "Lean",
+        "AI训练"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": []
+    },
+    {
+      "id": "2109581489725944002",
+      "url": "https://x.com/i/status/2109581489725944002",
+      "author": "aigclink",
+      "authorName": "AIGCLINK",
+      "publishedAt": "",
+      "title": "百度推出Unlimited OCR，解决长文档OCR速度衰减和显存膨胀",
+      "industry": "人工智能",
+      "tech": "OCR、MoE、R-SWA、DeepSeek-OCR",
+      "summary": "百度发布Unlimited OCR，基于3B MoE（激活5亿参数）模型，端到端文档解析，支持本地部署。通过R-SWA机制模拟人类工作记忆，固定KV cache容量，输出6000 token时比DeepSeek-OCR快约35%，显存和计算成本不随输出长度增长。每页图像压缩为256 token，32K上下文可一次性解析40+页，准确率高（Distinct-35达97%），直接输出Markdown/JSON，支持表格、公式和阅读顺序恢复。该机制还可扩展至ASR和机器翻译等长序列任务。",
+      "steps": [],
+      "tags": [
+        "OCR",
+        "文档解析",
+        "R-SWA",
+        "MoE",
+        "长序列生成",
+        "本地部署"
+      ],
+      "isLong": true,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": []
+    },
+    {
+      "id": "2109148090792124639",
+      "url": "https://x.com/i/status/2109148090792124639",
+      "author": "aigclink",
+      "authorName": "AIGCLINK",
+      "publishedAt": "",
+      "title": "1040+ AI用例网站 可直接抄作业",
+      "industry": "人工智能",
+      "tech": "Grok、Muse、Hark、Dots、Hermes、Agent",
+      "summary": "推荐一个收集了1040+个AI用例的网站，包含11个场景和27个Agent分类。每个案例提供具体用途、最终效果和可复制的Prompt。建议把网站当灵感库使用，让AI帮你找出适合自己的用例，涉及钱和账号权限的必须人工复核。",
+      "steps": [],
+      "tags": [
+        "AI用例",
+        "Agent",
+        "Prompt",
+        "灵感库",
+        "AI场景"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": []
+    },
+    {
+      "id": "2109469199869583676",
+      "url": "https://x.com/i/status/2109469199869583676",
+      "author": "aigclink",
+      "authorName": "AIGCLINK",
+      "publishedAt": "",
+      "title": "AI完全取代测试环节：多机协同测试全交给Codex和Claude",
+      "industry": "人工智能",
+      "tech": "Codex、Claude Code",
+      "summary": "作者亲自验证测试工作可被AI完全取代。在多机多用户协同测试项目中，直接让Codex和Claude交叉编写测试用例，并由它们远程管理三台真机完成测试验证，所有调度统一由一台电脑的Codex和Claude负责。过去需要人工完成的测试循环已可退出，未来人类只需专注定义问题和制定品味标准。",
+      "steps": [],
+      "tags": [
+        "AI测试",
+        "自动化测试",
+        "多机协同",
+        "Claude",
+        "Codex",
+        "人机协作"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": []
+    },
+    {
+      "id": "2109105805563990133",
+      "url": "https://x.com/i/status/2109105805563990133",
+      "author": "aigclink",
+      "authorName": "AIGCLINK",
+      "publishedAt": "",
+      "title": "DeepSeek-Bot打造本地AI团队",
+      "industry": "人工智能",
+      "tech": "DeepSeek-Bot、DeepSeek Harness、多Bot协作、长期记忆、插件架构",
+      "summary": "DeepSeek-Bot 是一个独立开源项目（非 DeepSeek 官方，来自 @Fei2411），把 DeepSeek Harness 变成跑在本地的 AI 团队：Chief 主 Bot 管理其他 Bot 和群聊，各 Bot 可配置不同模型、拥有独立记忆，支持 @ 指定 Bot 分派任务，所有数据留在本机。群聊默认只有管理员 Bot 回话，点名某个 Bot 才插话（这点与 Grok Bot 不同）；自带 API Key 可随意换模型、不绑定 DeepSeek 一家，后续会接入本地 Agent。项目延续 DSH 一切皆插件的理念，具备长期记忆和插件架构，可扩展性强。",
+      "steps": [],
+      "tags": [
+        "DeepSeek",
+        "AI Agent",
+        "本地部署",
+        "开源项目",
+        "多Bot协作",
+        "工具推荐"
+      ],
+      "isLong": true,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://t.co/KrDnCwaI2t",
+          "name": "GitHub 仓库 DeepSeek-Bot",
+          "note": "DeepSeek-Bot 项目的开源代码地址"
+        }
+      ]
+    },
+    {
+      "id": "2108695209068670988",
+      "url": "https://x.com/i/status/2108695209068670988",
+      "author": "aigclink",
+      "authorName": "AIGCLINK",
+      "publishedAt": "",
+      "title": "微软上新决策模型 Decision-1",
+      "industry": "人工智能",
+      "tech": "Microsoft-Decision-1、Qwen3.5-9B、决策模型、Agent工作流",
+      "summary": "微软上新决策模型 Microsoft-Decision-1，基于 Qwen3.5-9B 后训练，专门优化单次前向传播的决策打分，可做是非判断、多选、评分和评分卡式 AI 回答审核。其价值在于 Agent 工作流中一个任务要经过几十次串行判断（路由、分类、审核、重试、移交），每步都用 LLM 会让延迟和成本累积，例如 20 步决策每步多 100ms 整体就慢 2 秒。官方称其 P50 延迟比 GPT-6 Sol 快约 35 倍、比 Quyet-1.0-Large 快 4.5 倍，定价与 Jev 一致：输入 0.042 美元、输出免费，微软内部已在事故响应等场景测试。",
+      "steps": [],
+      "tags": [
+        "微软",
+        "决策模型",
+        "Agent工作流",
+        "模型发布",
+        "延迟优化"
+      ],
+      "isLong": true,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": [
+        {
+          "url": "https://t.co/M3fAOD90r6",
+          "name": "原文附带的链接",
+          "note": "引用推文末尾附带的链接，具体指向内容原文未说明"
+        }
+      ]
+    },
+    {
+      "id": "2108834377387917608",
+      "url": "https://x.com/i/status/2108834377387917608",
+      "author": "aigclink",
+      "authorName": "AIGCLINK",
+      "publishedAt": "",
+      "title": "Open Intelligent UI：GPT-6智能UI开源版",
+      "industry": "人工智能",
+      "tech": "Open Intelligent UI、A2UI、generateSandboxedUi、iframe沙箱、生成式UI、Agent",
+      "summary": "AIGCLINK 介绍了 GPT-6 Intelligent UI 的开源版 Open Intelligent UI，可把 AI 生成交互界面的能力集成进自己的应用，视觉风格、组件、业务数据、动作都能替换为真实业务场景。系统根据任务动态生成图表、流程图、3D交互场景、计算器、地图等，界面边生成边展示，代码在隔离 iframe 中运行。Agent 每轮自行决定回复形式：直接文本、原生组件或自写交互界面，简单表格走 A2UI，复杂界面调用 generateSandboxedUi 按序流式产出 HTML/CSS/JS。界面里的每次操作都会作为新一轮对话回传给 Agent，形成交互闭环。",
+      "steps": [],
+      "tags": [
+        "生成式交互界面",
+        "OpenIntelligentUI",
+        "开源项目",
+        "AI Agent",
+        "前端生成"
+      ],
+      "isLong": true,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": []
+    },
+    {
+      "id": "2108718693740134703",
+      "url": "https://x.com/i/status/2108718693740134703",
+      "author": "aigclink",
+      "authorName": "AIGCLINK",
+      "publishedAt": "",
+      "title": "Grok Bot 专属邮箱一句话即可申请",
+      "industry": "人工智能",
+      "tech": "Grok Bot、AI 邮箱",
+      "summary": "Grok Bot 推出了专属邮箱功能，作者体验后表示申请很简单，一句话即可完成。据引用的官方介绍，Bot 可以用这个邮箱代替用户注册各类服务、联系商家，或帮用户与他人预约时间。",
+      "steps": [],
+      "tags": [
+        "Grok Bot",
+        "AI Agent",
+        "专属邮箱",
+        "AI助手",
+        "产品更新"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://t.co/6Nr2i7LpA6",
+          "name": "原文附带的链接",
+          "note": "原文附带的链接，具体内容无法确认，可能为配图"
+        },
+        {
+          "url": "https://t.co/fugktCFntI",
+          "name": "原文附带的链接",
+          "note": "原文附带的链接，具体内容无法确认，可能为配图"
+        },
+        {
+          "url": "https://t.co/hsya5bSsPV",
+          "name": "引用推文附带的链接",
+          "note": "被引用推文中的链接，指向 Grok Bot 邮箱功能的相关原推文"
+        }
+      ]
     }
   ]
 }
