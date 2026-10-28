@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-28T02:57:59Z",
+  "updatedAt": "2026-10-28T03:00:19Z",
   "posts": [
     {
       "id": "2115159844173050305",
@@ -28465,6 +28465,153 @@
           "url": "https://t.co/mvdkjrjKou",
           "name": "原文附带的链接",
           "note": "出现在被回复内容中，具体内容无法从原文判断。"
+        }
+      ]
+    },
+    {
+      "id": "2101707685247017191",
+      "url": "https://x.com/miles_mazy/status/2101707685247017191",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-09-20T16:18:54.000Z",
+      "title": "用Codex监测高质量信息源",
+      "industry": "人工智能",
+      "tech": "Codex",
+      "summary": "Miles Ma 认可引用内容中的信息源，认为它们质量很高。他计划将这些信息源交给 Codex 进行监测，但未展开具体来源或监测方法。",
+      "steps": [],
+      "tags": [
+        "信息源推荐",
+        "信息监测",
+        "Codex"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://x.com/i/article/2101511573676376064",
+          "name": "引用推文所附的 X 文章",
+          "note": "引用内容中的文章链接，所给文本未展示文章标题或正文。"
+        }
+      ]
+    },
+    {
+      "id": "2101691947434070084",
+      "url": "https://x.com/Saccc_c/status/2101691947434070084",
+      "author": "Saccc_c",
+      "authorName": "Sac",
+      "publishedAt": "2026-09-20T15:16:22.000Z",
+      "title": "推荐Vercel与OpenRouter",
+      "industry": "人工智能",
+      "tech": "Vercel、OpenRouter",
+      "summary": "针对对方等了两天仍未拿到 jev 的情况，建议想体验的话也可以去 Vercel、OpenRouter 看看。",
+      "steps": [],
+      "tags": [
+        "平台推荐",
+        "产品体验",
+        "等待访问"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": []
+    },
+    {
+      "id": "2101685564042838053",
+      "url": "https://x.com/miles_mazy/status/2101685564042838053",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-09-20T14:51:00.000Z",
+      "title": "FDE转型风险与Echo角色价值",
+      "industry": "软件服务",
+      "tech": "Palantir",
+      "summary": "很多公司招聘FDE，实际要求一个人兼顾业务、数据、开发并独立承担项目，普通人硬转这一岗位可能是在给自己挖坑。更值得关注的是Palantir中名为Echo的那类角色：面对客户提出的“汽车营销日报”需求，继续追问数据来源、计算方式和不可更改的规则，再将需求拆解给开发，并跟进系统真正运行。",
+      "steps": [],
+      "tags": [
+        "岗位转型",
+        "需求拆解",
+        "业务理解",
+        "项目落地"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://x.com/i/article/2101286892935487488",
+          "name": "@miles_mazy的X文章",
+          "note": "原文引用的文章链接，未提供文章正文。"
+        }
+      ]
+    },
+    {
+      "id": "2101676379905630655",
+      "url": "https://x.com/miles_mazy/status/2101676379905630655",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-09-20T14:14:30.000Z",
+      "title": "只靠专业打造个人IP容易被替代",
+      "industry": "",
+      "tech": "AI Agent",
+      "summary": "只靠“专业”打造个人 IP，迟早会面临被替代的问题。很多人通过证书、项目、案例和教程证明专业，但专业能力很容易进入比较。写代码、做 AI Agent 等技能并非独有，掌握这些技能的人还会越来越多。",
+      "steps": [],
+      "tags": [
+        "个人品牌",
+        "人设定位",
+        "专业能力",
+        "同质化竞争"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2101665524652687659",
+      "url": "https://x.com/miles_mazy/status/2101665524652687659",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-09-20T13:31:22.000Z",
+      "title": "技能标准化后，客户更看业务适配",
+      "industry": "",
+      "tech": "SOP",
+      "summary": "专业技能一旦能被写成SOP、拆解成操作步骤，就容易成为可量产的商品，面临成本更低、精力更充沛的年轻人的竞争。客户只愿花500元，并不意味着不知道市场上有掌握8000元技术的人，而可能是业务规模用不上那么深的技术储备。技能深度未必能换来更高报价，客户需求与业务规模才是关键。",
+      "steps": [],
+      "tags": [
+        "专业技能",
+        "标准化交付",
+        "低成本竞争",
+        "客户需求"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2101663662226448815",
+      "url": "https://x.com/Saccc_c/status/2101663662226448815",
+      "author": "Saccc_c",
+      "authorName": "Sac",
+      "publishedAt": "2026-09-20T13:23:58.000Z",
+      "title": "决定做个人IP，邀好友一起成长",
+      "industry": "",
+      "tech": "",
+      "summary": "回应对方未能坚持做个人IP的遗憾，Sac说自己现在决定做IP，并邀对方一起成为大IP。",
+      "steps": [],
+      "tags": [
+        "个人IP",
+        "账号成长",
+        "好友互动"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://twitter.com/Khazix0918/status/2012873634109694146",
+          "name": "原文附带的链接",
+          "note": "出现在被回复内容中，具体内容未在原文展开。"
         }
       ]
     },
