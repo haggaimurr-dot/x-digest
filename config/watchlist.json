@@ -157,6 +157,14 @@
         "编程开发",
         "加密货币"
       ]
+    },
+    {
+      "username": "aiwarts",
+      "name": "卡尔的AI沃茨",
+      "avatar": "avatars/aiwarts.jpg",
+      "group": "special",
+      "tags": [],
+      "bio": ""
     }
   ]
 }
