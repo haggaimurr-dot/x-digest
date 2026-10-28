@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-28T01:46:56Z",
+  "updatedAt": "2026-10-28T01:48:10Z",
   "posts": [
     {
       "id": "2115159844173050305",
@@ -75,6 +75,129 @@
           "url": "https://x.com/i/article/2101989929412857856",
           "name": "Unlimited OCR 2 相关文章",
           "note": "引用内容附带的 X 文章链接，用于进一步了解该模型及实测信息。"
+        }
+      ]
+    },
+    {
+      "id": "2114993628603195444",
+      "url": "https://x.com/Saccc_c/status/2114993628603195444",
+      "author": "Saccc_c",
+      "authorName": "Sac",
+      "publishedAt": "2026-10-27T08:12:30.000Z",
+      "title": "期待与Kathy交流流量转化问题",
+      "industry": "",
+      "tech": "",
+      "summary": "Sac期待与Kathy交流，并表示自己最近也在思考对方提到的流量增长与转化下降问题。",
+      "steps": [],
+      "tags": [
+        "交流互动",
+        "流量转化",
+        "投放思考"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://twitter.com/maxjjiang/status/2114614808461156508",
+          "name": "@maxjjiang 的推文",
+          "note": "被回复内容中附带的推文链接，具体内容未展示。"
+        }
+      ]
+    },
+    {
+      "id": "2114991278530392446",
+      "url": "https://x.com/Saccc_c/status/2114991278530392446",
+      "author": "Saccc_c",
+      "authorName": "Sac",
+      "publishedAt": "2026-10-27T08:03:10.000Z",
+      "title": "视频仅为一种风格，具体样式可自调",
+      "industry": "",
+      "tech": "",
+      "summary": "回应剪纸层是否被 skill 锁定的提问，说明视频展示的只是其中一种风格，具体样式可以自行调整。",
+      "steps": [],
+      "tags": [
+        "视频风格",
+        "样式调整",
+        "互动答疑"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2114986915070103791",
+      "url": "https://x.com/Saccc_c/status/2114986915070103791",
+      "author": "Saccc_c",
+      "authorName": "Sac",
+      "publishedAt": "2026-10-27T07:45:49.000Z",
+      "title": "GitHub链接后续会提供",
+      "industry": "",
+      "tech": "GitHub",
+      "summary": "回应对方索要 GitHub 链接的询问，Sac 为休息几天且事情较多致歉，并表示后续会提供。",
+      "steps": [],
+      "tags": [
+        "互动回复",
+        "链接询问",
+        "后续提供"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2114952135570022689",
+      "url": "https://x.com/Saccc_c/status/2114952135570022689",
+      "author": "Saccc_c",
+      "authorName": "Sac",
+      "publishedAt": "2026-10-27T05:27:37.000Z",
+      "title": "直接复用素材，喜欢剪纸风格效果",
+      "industry": "",
+      "tech": "",
+      "summary": "回应对方对素材的夸赞，说明素材都是直接复用的，并表达了对剪纸风格效果的喜爱。",
+      "steps": [],
+      "tags": [
+        "素材复用",
+        "剪纸风格",
+        "互动交流"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2114942260353868116",
+      "url": "https://x.com/Saccc_c/status/2114942260353868116",
+      "author": "Saccc_c",
+      "authorName": "Sac",
+      "publishedAt": "2026-10-27T04:48:23.000Z",
+      "title": "用Opus 5.5制作小王子剪纸动画",
+      "industry": "人工智能",
+      "tech": "Opus 5.5、huashu-art-motion",
+      "summary": "使用 Opus 5.5 和花叔（@AlchainHust）的 huashu-art-motion skill，制作了一个《小王子》剪纸动画短片，并附上该 skill 的 GitHub 仓库。作者认为，Opus 5.5 在审美方面仍然断档领先。",
+      "steps": [],
+      "tags": [
+        "剪纸动画",
+        "人工智能创作",
+        "小王子",
+        "审美表现"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": [
+        {
+          "url": "https://github.com/alchaincyf/huashu-art-motion",
+          "name": "GitHub 仓库 huashu-art-motion",
+          "note": "本次制作《小王子》剪纸动画短片所用 skill 的仓库。"
+        },
+        {
+          "url": "https://littleprince.dev/",
+          "name": "《The Little Prince: Across the Stars》游戏网站",
+          "note": "引用推文中展示的《小王子》3D剧情游戏入口。"
         }
       ]
     },
@@ -204,6 +327,33 @@
       "resources": null
     },
     {
+      "id": "2114755292420530479",
+      "url": "https://x.com/Saccc_c/status/2114755292420530479",
+      "author": "Saccc_c",
+      "authorName": "Sac",
+      "publishedAt": "2026-10-26T16:25:26.000Z",
+      "title": "转发探讨地球归属的AI短片",
+      "industry": "人工智能",
+      "tech": "AI短片",
+      "summary": "Sac 转发了 @EHuanglu 分享的 AI 短片，未附加个人评论。原帖以“它们不属于我们的世界”引出反思：也许是人类忘记了，这颗星球同样属于它们，并称赞这部短片令人惊叹。",
+      "steps": [],
+      "tags": [
+        "AI短片",
+        "地球归属",
+        "共存思考"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://twitter.com/1712267009483022336/status/2114709051598880801",
+          "name": "@EHuanglu 的推文",
+          "note": "分享一部 AI 短片，并提出这颗星球也属于“它们”的思考。"
+        }
+      ]
+    },
+    {
       "id": "2114751555811541498",
       "url": "https://x.com/miles_mazy/status/2114751555811541498",
       "author": "miles_mazy",
@@ -286,6 +436,777 @@
       "showFlowchart": false,
       "kind": "",
       "resources": null
+    },
+    {
+      "id": "2114736811176034775",
+      "url": "https://x.com/miles_mazy/status/2114736811176034775",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-26T15:12:00.000Z",
+      "title": "推荐广州线下分享活动",
+      "industry": "",
+      "tech": "",
+      "summary": "推荐广州的朋友关注本周四的线下分享活动，分享嘉宾中有多位熟悉的大咖。本人因周四已约客户无法参加，表示下次再去。",
+      "steps": [],
+      "tags": [
+        "广州活动",
+        "线下分享",
+        "活动推荐"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2114730208381096435",
+      "url": "https://x.com/miles_mazy/status/2114730208381096435",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-26T14:45:46.000Z",
+      "title": "因客户约见错过聚会，愿帮忙宣传",
+      "industry": "",
+      "tech": "",
+      "summary": "周三、周四已约了客户，因此无法参加这次线下活动，有机会则愿意到场。向对方索要活动链接，希望帮忙宣传。",
+      "steps": [],
+      "tags": [
+        "线下活动",
+        "日程冲突",
+        "帮忙宣传"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2114723734607266146",
+      "url": "https://x.com/miles_mazy/status/2114723734607266146",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-26T14:20:02.000Z",
+      "title": "推荐供转型学习的FDE案例",
+      "industry": "",
+      "tech": "",
+      "summary": "Miles Ma 推荐了一个 FDE 案例，认为很值得学习。他建议有转型意向的人参考，但未展开介绍案例内容或具体做法。",
+      "steps": [],
+      "tags": [
+        "案例推荐",
+        "职业转型",
+        "案例学习"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://x.com/i/article/2114702907987968000",
+          "name": "X 平台文章",
+          "note": "被引用内容中的文章链接，未提供文章正文。"
+        }
+      ]
+    },
+    {
+      "id": "2114721604173541727",
+      "url": "https://x.com/aiwarts/status/2114721604173541727",
+      "author": "aiwarts",
+      "authorName": "卡尔的AI沃茨",
+      "publishedAt": "2026-10-26T14:11:34.000Z",
+      "title": "用提示语淡化代码动画的AI味",
+      "industry": "人工智能",
+      "tech": "DeepSeek、Codex、Claude Opus 5.5",
+      "summary": "分享旨在去掉DeepSeek新模型和Codex“AI味”的提示语，并探索用DeepSeek制作类似Claude Opus 5.5的代码动画。此类动画由模型用代码规定文字和图形的运动规则，再由程序逐帧生成，与网页UI共用排版、配色、留白等能力。原文提到分享6个提示语，但所给内容仅展示第一项“删重复文案”。",
+      "steps": [],
+      "tags": [
+        "提示语优化",
+        "代码动画",
+        "去AI味",
+        "界面设计"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": []
+    },
+    {
+      "id": "2114697300836573341",
+      "url": "https://x.com/miles_mazy/status/2114697300836573341",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-26T12:35:00.000Z",
+      "title": "抽两人获赠送作者手机的机会",
+      "industry": "",
+      "tech": "Grok、iPhone Duo",
+      "summary": "Miles 请 @grok 在 24 小时后从推文回复中随机抽取 2 人，开玩笑称每人将获得“送他一部全新 iPhone Duo”的机会，而非获赠手机。",
+      "steps": [],
+      "tags": [
+        "互动玩笑",
+        "随机抽选",
+        "手机"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2114686478890721345",
+      "url": "https://x.com/miles_mazy/status/2114686478890721345",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-26T11:52:00.000Z",
+      "title": "英国GG手机卡上京东，价格大降",
+      "industry": "通信",
+      "tech": "京东、GG手机卡",
+      "summary": "在京东直接搜索“英国手机卡GG”就能购买，让作者感到惊讶。几个月前GG卡还要卖大几百元，如今价格已下降不少，但原文未给出当前售价。",
+      "steps": [],
+      "tags": [
+        "英国手机卡",
+        "京东购买",
+        "价格下降"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://x.com/i/article/2114669787137892352",
+          "name": "原文附带的链接",
+          "note": "引用内容中的X文章链接，未提供文章正文。"
+        }
+      ]
+    },
+    {
+      "id": "2114677969218383975",
+      "url": "https://x.com/miles_mazy/status/2114677969218383975",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-26T11:18:11.000Z",
+      "title": "从单个客户拓展到行业产品",
+      "industry": "",
+      "tech": "FDE",
+      "summary": "在“定向做FDE”与“从一个客户拓展到整个行业出产品”之间，明确选择后者。将前者归为“公司产品思维”。",
+      "steps": [],
+      "tags": [
+        "产品思维",
+        "客户拓展",
+        "行业产品"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2114672889530028487",
+      "url": "https://x.com/miles_mazy/status/2114672889530028487",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-26T10:58:00.000Z",
+      "title": "知识付费还能退款？",
+      "industry": "知识付费",
+      "tech": "",
+      "summary": "作者对知识付费可能支持退款感到惊讶，表示自己此前并不知道。随后怀疑相关说法是否是在反串，并未确认其真实性。",
+      "steps": [],
+      "tags": [
+        "知识付费",
+        "退款",
+        "真实性质疑"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2114663326483386587",
+      "url": "https://x.com/miles_mazy/status/2114663326483386587",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-26T10:20:00.000Z",
+      "title": "调侃抽奖送手机让X快速涨粉",
+      "industry": "社交媒体",
+      "tech": "X、iPhone Duo",
+      "summary": "推文以调侃口吻说，X 起号很简单，只需抽奖送出 100 台 iPhone Duo。给出的夸张预期是一天轻松涨粉 10 万，并未展开具体操作方法。",
+      "steps": [],
+      "tags": [
+        "账号起号",
+        "抽奖涨粉",
+        "社交运营",
+        "调侃"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2114649736850362549",
+      "url": "https://x.com/miles_mazy/status/2114649736850362549",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-26T09:26:00.000Z",
+      "title": "从讲技术到讲FDE，定位带来企业关注",
+      "industry": "",
+      "tech": "FDE",
+      "summary": "经营 X 账号的最大感悟是要找对定位：以前讲技术无人关注，转向讲 FDE 后，企业接连主动找上门。技术本身没有变化，关键差别在于是否让别人知道自己具备落地能力。",
+      "steps": [],
+      "tags": [
+        "账号定位",
+        "技术落地",
+        "企业需求",
+        "内容运营"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2114638412196024712",
+      "url": "https://x.com/miles_mazy/status/2114638412196024712",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-26T08:41:00.000Z",
+      "title": "Claude防封准备齐全却一个月没敢用",
+      "industry": "人工智能",
+      "tech": "Claude、住宅IP、代理、KYC",
+      "summary": "朋友的 Claude 账号被封过好几个，重新开账号前买了纯净住宅 IP，调整时区、更换卡、单独绑定代理，还备齐美国手机号和 KYC 人证。新账号一个多月确实没被封，反转在于他每天提心吊胆，一直没敢使用，并非验证了这些准备能防封。",
+      "steps": [],
+      "tags": [
+        "账号封禁",
+        "使用焦虑",
+        "反转段子"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2114630107503767556",
+      "url": "https://x.com/miles_mazy/status/2114630107503767556",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-26T08:08:00.000Z",
+      "title": "闲鱼和拼多多只能留一个，你选谁",
+      "industry": "电子商务",
+      "tech": "闲鱼、拼多多",
+      "summary": "提出一个假设：如果闲鱼和拼多多只能存在一个，你会选择留下谁？推文邀请读者表达偏好，没有给出自己的选择或理由。",
+      "steps": [],
+      "tags": [
+        "电商平台",
+        "二选一",
+        "用户偏好"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2114627277275443473",
+      "url": "https://x.com/Saccc_c/status/2114627277275443473",
+      "author": "Saccc_c",
+      "authorName": "Sac",
+      "publishedAt": "2026-10-26T07:56:45.000Z",
+      "title": "向Frank一家推荐小王子游戏",
+      "industry": "游戏",
+      "tech": "小王子游戏",
+      "summary": "Sac转发了@GoSailGlobal的分享：对方向Frank一家推荐了Sac的小王子游戏。",
+      "steps": [],
+      "tags": [
+        "小王子",
+        "游戏推荐",
+        "转发分享"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://twitter.com/saccc_c/status/2109962425512734739",
+          "name": "@Saccc_c的推文",
+          "note": "引用内容附带的推文链接，未提供该推文的具体内容。"
+        }
+      ]
+    },
+    {
+      "id": "2114621995409379654",
+      "url": "https://x.com/Saccc_c/status/2114621995409379654",
+      "author": "Saccc_c",
+      "authorName": "Sac",
+      "publishedAt": "2026-10-26T07:35:46.000Z",
+      "title": "开源数字人教程与仓库推荐",
+      "industry": "人工智能",
+      "tech": "数字人、Skills、Renoise",
+      "summary": "推荐 @berryxia 开源的数字人教程，表示已期待很久，并对其此前的美女视频效果印象深刻。引用介绍称，升级版教程面向小白，支持自动化和稳定输出，已打包为 Skills 在 GitHub 免费开源，数字资产部分全程使用 Renoise。",
+      "steps": [],
+      "tags": [
+        "数字人",
+        "开源教程",
+        "自动化",
+        "视频生成"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://github.com/andyhuo520/digital-human-koubo",
+          "name": "GitHub 仓库 digital-human-koubo",
+          "note": "数字人教程的开源仓库，引用介绍称已将相关 Skills 打包供免费使用。"
+        },
+        {
+          "url": "https://twitter.com/berryxia/status/2114003615350423568",
+          "name": "@berryxia 的另一条推文",
+          "note": "引用内容附带的相关推文链接，未提供其正文。"
+        }
+      ]
+    },
+    {
+      "id": "2114619786676371494",
+      "url": "https://x.com/miles_mazy/status/2114619786676371494",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-26T07:26:59.000Z",
+      "title": "选工具应以解决实际问题为准",
+      "industry": "",
+      "tech": "Obsidian",
+      "summary": "Miles 赞同对方分享的 Obsidian 使用经验，强调不要为了使用工具而使用工具。是否采用某个工具，应以它能否真正解决自己的问题为判断标准。",
+      "steps": [],
+      "tags": [
+        "工具选择",
+        "问题导向",
+        "避免形式主义"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2114588427844997263",
+      "url": "https://x.com/miles_mazy/status/2114588427844997263",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-26T05:22:23.000Z",
+      "title": "收费再低也比自己烧Token便宜",
+      "industry": "人工智能",
+      "tech": "Token",
+      "summary": "面对对方关于收费便宜、手艺不佳的调侃，作者笑称，这也比自己消耗 Token 的成本便宜。",
+      "steps": [],
+      "tags": [
+        "Token成本",
+        "价格调侃",
+        "日常互动"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2114585312655479161",
+      "url": "https://x.com/miles_mazy/status/2114585312655479161",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-26T05:10:00.000Z",
+      "title": "AI视频呈现成都36年城市变迁",
+      "industry": "人工智能",
+      "tech": "AI视频、USGS Landsat 5/7/8/9",
+      "summary": "Miles Ma 转发《卫星年鉴·成都》，赞叹这是他最近见过用 AI 制作的最精美的视频之一。被引用的创作者将近36年的成都卫星影像串成影片，呈现城市长大14倍的变化，并注明城市年轮与面积测量采用 USGS Landsat 5/7/8/9 影像（Path 129 / Row 039）。",
+      "steps": [],
+      "tags": [
+        "AI视频",
+        "卫星影像",
+        "成都",
+        "城市变迁"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2114574239298683136",
+      "url": "https://x.com/miles_mazy/status/2114574239298683136",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-26T04:26:00.000Z",
+      "title": "1599美元峰会内容免费公开",
+      "industry": "半导体",
+      "tech": "",
+      "summary": "对引用推文免费公开的 CASPA 峰会洞察，Miles 以“价值1599美元”表达惊讶，并打趣询问是否担心收到主办方的律师函。",
+      "steps": [],
+      "tags": [
+        "半导体峰会",
+        "内容公开",
+        "互动调侃"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": [
+        {
+          "url": "https://x.com/i/article/2114452384223293440",
+          "name": "《华美半导体协会（CASPA）峰会洞察 01》",
+          "note": "引用推文附带的峰会洞察文章。"
+        }
+      ]
+    },
+    {
+      "id": "2114559895047418111",
+      "url": "https://x.com/miles_mazy/status/2114559895047418111",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-26T03:29:00.000Z",
+      "title": "闲鱼低价剪辑难被AI取代",
+      "industry": "视频剪辑",
+      "tech": "闲鱼、CapCut、ChatGPT、Tokens",
+      "summary": "作者认为人工剪辑不会消失，并以闲鱼的性价比为依据，认为人工剪辑比消耗 Tokens 便宜得多。这一观点回应了 CapCut 即将在 ChatGPT 中推出视频剪辑与生成插件的消息。",
+      "steps": [],
+      "tags": [
+        "人工剪辑",
+        "成本对比",
+        "人工智能",
+        "闲鱼服务"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2114551140167872599",
+      "url": "https://x.com/Saccc_c/status/2114551140167872599",
+      "author": "Saccc_c",
+      "authorName": "Sac",
+      "publishedAt": "2026-10-26T02:54:12.000Z",
+      "title": "AI让3D游戏制作迈向动嘴完成",
+      "industry": "游戏开发",
+      "tech": "AI、3D建模、贴图、骨骼绑定、蒙皮、动作捕捉",
+      "summary": "这条转推分享了AI让3D游戏制作“动嘴就能搞定”的观点。原帖认为，独立开发者过去的主要瓶颈并非代码，而是建模、贴图、骨骼绑定、蒙皮和动画制作等美术与动作环节，连小团队也可能在调整少量动作上耗费大量精力。所给内容未介绍具体工具或实现方法。",
+      "steps": [],
+      "tags": [
+        "AI游戏开发",
+        "3D游戏",
+        "独立开发",
+        "美术动画"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2114550835107529024",
+      "url": "https://x.com/miles_mazy/status/2114550835107529024",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-26T02:53:00.000Z",
+      "title": "让Grok挑出最没用的APP",
+      "industry": "人工智能",
+      "tech": "Grok",
+      "summary": "向 @grok 发起请求，希望从三个 APP 中挑出最没用的一个并删掉。",
+      "steps": [],
+      "tags": [
+        "应用取舍",
+        "人机互动",
+        "日常闲聊"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2114543285394120825",
+      "url": "https://x.com/miles_mazy/status/2114543285394120825",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-26T02:23:00.000Z",
+      "title": "万达广场附近的人去哪了？",
+      "industry": "",
+      "tech": "",
+      "summary": "推文感叹万达广场附近的人仿佛都消失了，并询问大家是否也有类似观察。",
+      "steps": [],
+      "tags": [
+        "万达广场",
+        "人流观察",
+        "日常见闻"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2114538565933920685",
+      "url": "https://x.com/miles_mazy/status/2114538565933920685",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-26T02:04:15.000Z",
+      "title": "广州黄埔堵车途中吃早餐",
+      "industry": "",
+      "tech": "",
+      "summary": "路上堵车，便先在广州黄埔随便找了家路边饭店吃早餐，并回复网友说明地点。",
+      "steps": [],
+      "tags": [
+        "广州黄埔",
+        "堵车",
+        "早餐",
+        "日常生活"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2114525417683968425",
+      "url": "https://x.com/miles_mazy/status/2114525417683968425",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-26T01:12:00.000Z",
+      "title": "不上班，送娃后悠闲吃早餐",
+      "industry": "",
+      "tech": "",
+      "summary": "分享不上班的生活乐趣：送完孩子上学后，可以慢悠悠地吃个早餐。",
+      "steps": [],
+      "tags": [
+        "日常生活",
+        "送娃上学",
+        "悠闲早餐"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2114513086388244889",
+      "url": "https://x.com/miles_mazy/status/2114513086388244889",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-26T00:23:00.000Z",
+      "title": "这才是爱看的Vibe知识大赏",
+      "industry": "",
+      "tech": "",
+      "summary": "表达对所附视频中“Vibe 知识大赏”的喜爱，未展开介绍具体内容。",
+      "steps": [],
+      "tags": [
+        "知识分享",
+        "视频分享",
+        "内容偏好"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2114394964381818979",
+      "url": "https://x.com/miles_mazy/status/2114394964381818979",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-25T16:33:37.000Z",
+      "title": "电脑端支付可避开苹果税",
+      "industry": "支付",
+      "tech": "万事达、Visa",
+      "summary": "电脑端支付可以不用交苹果税。有万事达或 Visa 的国内银行卡即可支付。",
+      "steps": [],
+      "tags": [
+        "电脑端支付",
+        "苹果税",
+        "国内银行卡"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "技术分享",
+      "resources": []
+    },
+    {
+      "id": "2114392016079732869",
+      "url": "https://x.com/miles_mazy/status/2114392016079732869",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-25T16:21:54.000Z",
+      "title": "调侃得不到Claude就要毁掉",
+      "industry": "人工智能",
+      "tech": "Claude",
+      "summary": "以“得不到 Claude，就要毁掉”配上笑脸表情开玩笑，并附了一张图片链接。",
+      "steps": [],
+      "tags": [
+        "Claude",
+        "玩笑调侃",
+        "日常互动"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2114366643447161209",
+      "url": "https://x.com/miles_mazy/status/2114366643447161209",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-25T14:41:05.000Z",
+      "title": "Grok Bot数据备份引发商机联想",
+      "industry": "信息技术",
+      "tech": "Grok Bot",
+      "summary": "过去电脑损坏后，往往需要到数码城付费恢复硬盘数据，费用动辄数百元。作者认为现在用 Grok Bot 就能搞定数据备份，并从中看到了赚钱机会；推文未提供具体操作或验证过程。",
+      "steps": [],
+      "tags": [
+        "数据备份",
+        "硬盘恢复",
+        "人工智能",
+        "变现思路"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": [
+        {
+          "url": "https://x.com/i/article/2114349036551708672",
+          "name": "X 文章链接",
+          "note": "被引用内容附带的文章链接，给出的原文未展示文章具体内容。"
+        }
+      ]
+    },
+    {
+      "id": "2114356327309005148",
+      "url": "https://x.com/miles_mazy/status/2114356327309005148",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-25T14:00:05.000Z",
+      "title": "集中查看多平台数据，减少注意力分散",
+      "industry": "自媒体",
+      "tech": "多平台账号数据工具",
+      "summary": "Miles 对引用中的工具表现出强烈兴趣，认为用它可以避免注意力被分散。引用介绍称，该工具支持每天自动留存 12 个平台的账号数据，数据全部保存在用户自己的电脑上，不上传、不代发帖、不碰密码，且开源免费、个人可用。",
+      "steps": [],
+      "tags": [
+        "自媒体工具",
+        "注意力管理",
+        "数据留存",
+        "开源免费"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "工具资源推荐",
+      "resources": [
+        {
+          "url": "https://x.com/i/article/2114320656250937344",
+          "name": "工具介绍附带的 X 文章",
+          "note": "引用推文附带的文章链接，未提供文章正文。"
+        }
+      ]
+    },
+    {
+      "id": "2114349760568025535",
+      "url": "https://x.com/miles_mazy/status/2114349760568025535",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-25T13:34:00.000Z",
+      "title": "疑惑抖音视频为何有几千万播放",
+      "industry": "短视频",
+      "tech": "抖音",
+      "summary": "对某个抖音视频获得几千万播放量感到疑惑，询问其走红原因。",
+      "steps": [],
+      "tags": [
+        "抖音",
+        "播放量",
+        "日常提问"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2114337681047994622",
+      "url": "https://x.com/miles_mazy/status/2114337681047994622",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-25T12:46:00.000Z",
+      "title": "自制宣传片，考虑闲鱼接单卖399元",
+      "industry": "",
+      "tech": "闲鱼",
+      "summary": "给自己做了一支宣传片，并展示了视频效果。提出去闲鱼接同类订单、每份定价399元的想法，询问这一价格是否可行。",
+      "steps": [],
+      "tags": [
+        "宣传片",
+        "闲鱼接单",
+        "定价讨论"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2114316792999158258",
+      "url": "https://x.com/miles_mazy/status/2114316792999158258",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-25T11:23:00.000Z",
+      "title": "TikTok与Claude谁门槛更高",
+      "industry": "互联网",
+      "tech": "TikTok、Claude",
+      "summary": "提出疑问：对中国用户而言，TikTok 和 Claude 哪个使用门槛更高？原文未展开比较，也未给出结论。",
+      "steps": [],
+      "tags": [
+        "使用门槛",
+        "中国用户",
+        "平台对比"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
+    },
+    {
+      "id": "2114307139258986623",
+      "url": "https://x.com/miles_mazy/status/2114307139258986623",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-25T10:44:38.000Z",
+      "title": "调侃各类皮书内容冗长",
+      "industry": "",
+      "tech": "",
+      "summary": "回应对方关于 AI 文字废话多、把简单事情复杂化的吐槽，调侃“所有的陈皮书、白皮书不都这样吗”。",
+      "steps": [],
+      "tags": [
+        "皮书",
+        "内容冗长",
+        "互动调侃"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "日常闲聊",
+      "resources": []
+    },
+    {
+      "id": "2114307023416471620",
+      "url": "https://x.com/miles_mazy/status/2114307023416471620",
+      "author": "miles_mazy",
+      "authorName": "Miles Ma",
+      "publishedAt": "2026-10-25T10:44:10.000Z",
+      "title": "直接用 LLM-wiki 解决链接问题",
+      "industry": "",
+      "tech": "LLM-wiki",
+      "summary": "针对 Obsidian 独特性及双向链接的讨论，Miles Ma 表示自己直接使用 LLM-wiki 也能解决链接问题。原文未展开具体做法。",
+      "steps": [],
+      "tags": [
+        "链接管理",
+        "工具选择",
+        "笔记工具"
+      ],
+      "isLong": false,
+      "showFlowchart": false,
+      "kind": "观点讨论",
+      "resources": []
     }
   ]
 }
