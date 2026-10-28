@@ -17006,6 +17006,121 @@
     "links": [],
     "avatar": "avatars/yaojingang.jpg"
   },
+  "2090747356384010268": {
+    "text": "相关链接：\n1、https://t.co/khpm6UqacQ\n2、https://t.co/2wn62s1wMF\n3、https://t.co/Sxns7tiEk9\n4、https://t.co/cIR7ZqCKhz",
+    "links": [
+      "https://t.co/khpm6UqacQ",
+      "https://t.co/2wn62s1wMF",
+      "https://t.co/Sxns7tiEk9",
+      "https://t.co/cIR7ZqCKhz"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2090746753696100617": {
+    "text": "一个海外GEO工具，最近的一个监测数据结论：ChatGPT Search开始显式选择“去具体的网站找证据”\n\n具体的表现是：\n1、带“site:”的搜索子查询占比从约 0.37% 跳到 16.8%，增长约 46 倍\n2、每次回答触发的平均搜索子查询，从约 1.08 次增加到 1.83 次",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2090453992052855087": {
+    "text": "晚上研究了下反代，用国内某大厂的AI客户端来测试，不小心把它的系统提示词也给完整“反”了出来，漏洞还挺明显的\n\n提示词还是很系统，也相对复杂，三层记忆、技能与 MCP 路由、个人文件安全、交付物展示，连运行时和连接器状态都会被塞进了上下文\n\n接近6万字符的提示词体量，也暴露了重复、规则冲突和上下文成本问题\n\n（附系统提示词大纲截图）",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2089552826527875163": {
+    "text": "元Skill相关链接：\n1、GitHub仓库\nhttps://t.co/N5kTvHNuoZ\n2、更新报告\nhttps://t.co/vpvGESoBO6",
+    "links": [
+      "https://t.co/N5kTvHNuoZ",
+      "https://t.co/vpvGESoBO6"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2089552618192580835": {
+    "text": "对元skill进行了一轮大的迭代和更新，已推送到GitHub\n更新报告及元skill链接，放在了评论区\n\n这次迭代的逻辑：\n1、对元Skill的10个核心维度，进行依次能力拆解和重构，并参考对应能力模块的优秀工程思路进行迭代，大幅提升这10个核心维度的能力，包括意图识别、上下文效率、跨平台能力、触发边界等\n2、把工程可发布、阶段一质量完成与声明拆成独立判定，避免一组局部通过被放大为全局完成\n3、做了3组一共60个skill生成盲测，新版完胜\n\n欢迎体验",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2089293234606629322": {
+    "text": "分享12篇跟DeepSeek Harness相关的高质量学习资料，包括官方文档、Harness教程、插件文档、相关论文及解读等：\n\n1、DeepSeek Harness 官方仓库，关于源码、README、示例、架构、版本变化和社区入口的权威来源  \nhttps://t.co/WNNTxGkZu0\n\n2、DeepSeek Harness官方Web UI教程，介绍安装、启动、模型配置、工作区设置和基本使用流程  \nhttps://t.co/i8IfFSilUZ\n\n3、DeepSeek Harness第一个插件教程，从最小插件开始学习 `apply`、`inject`、配置、生命周期和 patch 加载  \nhttps://t.co/JXr1mjgtq6\n\n4、面向时空可组合性的编程范式，DeepSeek Harness底层Cordis 框架的理论基础，介绍 effect、响应式依赖、动态组合和热替换  \nhttps://t.co/nIz8XscaRT\n\n5、分层自我改进：面向任务专属可演化智能体运行框架的方法，研究任务专属 Harness 的持续改进，并使用 DeepSeek-V4-Flash-Preview 进行实验  \nhttps://t.co/PhVO3U8bJZ\n\n6、二次元头像=技术大佬？DeepSeek Harness揭开AI圈隐藏规律\nhttps://t.co/Rrd8yA59Gt\n\n7、编程智能体如何工作，从模型、系统提示词、工具调用、状态和执行循环讲解Coding Agent的运行机制  \nhttps://t.co/A12zzIgbDX\n\n8、面向长时间应用开发的智能体运行框架设计，Anthropic的长任务 Harness 实践，介绍Planner、Generator、Evaluator、任务拆分和跨会话交接  \nhttps://t.co/9q5BjEJV0b\n\n9、Harness Engineering：六层检查框架、上下文管理与工程实践，中文系统教程，覆盖Harness分层、上下文管理、约束执行、观测和恢复  \nhttps://t.co/kuCWt5KXvk\n\n10、从 DeepSeek 招聘反推：Harness 研究员到底要会什么？从DeepSeek 岗位要求整理 Agent Loop、Memory、Tools、Eval、多 Agent 和自我改进能力  \nhttps://t.co/6aigt1L1rX\n\n11、智能体运行框架工程，关于Harness Engineering全景介绍，覆盖工具、上下文、Hooks、沙箱、记忆和验证\nhttps://t.co/0kCUKYlA28\n\n12、DeepSeek Harness：从入门到插件化实践，覆盖系统架构、Profile、Bundle、插件开发、工具设计、生命周期和排错方法  \nhttps://t.co/LgNOzDDxjh",
+    "links": [
+      "https://t.co/WNNTxGkZu0",
+      "https://t.co/i8IfFSilUZ",
+      "https://t.co/JXr1mjgtq6",
+      "https://t.co/nIz8XscaRT",
+      "https://t.co/PhVO3U8bJZ",
+      "https://t.co/Rrd8yA59Gt",
+      "https://t.co/A12zzIgbDX",
+      "https://t.co/9q5BjEJV0b",
+      "https://t.co/kuCWt5KXvk",
+      "https://t.co/6aigt1L1rX",
+      "https://t.co/0kCUKYlA28",
+      "https://t.co/LgNOzDDxjh"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2088277895735316989": {
+    "text": "@hiheimu 我们合作有半年了，其它的还挺多的，比如关于技术方面我觉得也挺务实的，这两天我可以再写一篇",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2088214338029166718": {
+    "text": "上午接待了一位数据公司的CEO\n这几年的一个经典战绩是，把公司从一年亏损几千万，做到一年盈利几千万\n分享了他很多关于公司管理与经营的实践干货\n很有启发\n\n其中关于销售团队的管理实践分享，印象深刻",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2087905236455399831": {
+    "text": "@Zaclijun 自己写的日常使用的，暂时还没有开源出来",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2087904880711397478": {
+    "text": "体验了下DeepSeek Harness\n还挺有意思的，先让它把自己的皮肤给改了，换的效果还不错\n\nDSH一些特点：\n1、一切皆插件\n2、模型可以真正执行任务\n3、完整记录 Agent 行为\n4、能力层可替换 https://t.co/ZNNcCB4X3N",
+    "links": [
+      "https://t.co/ZNNcCB4X3N"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2087793972903309313": {
+    "text": "@berryxia 这本书里的核心内容，是两年前写的，到现在及未来相当长一段时间，仍然适用，我们俩还挺惊喜的，哈哈",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2087793300115972458": {
+    "text": "我和 @vista8 向阳老师的新书，已上架到微信读书APP，欢迎阅读🤝 https://t.co/lY7lnFQU1b",
+    "links": [
+      "https://t.co/lY7lnFQU1b"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2087733930179084415": {
+    "text": "这两天，GEOHub完成一轮大升级，版本从 0.2.0 走到 0.5.0，已推送到GitHub，链接在文末\n这次升级的核心：把GEO Meta Skill 拆成了7个可以独立运行、互相协作的核心Skill，覆盖统一路由、发现、诊断、内容、测量、策略和知识治理\n\n系统的能力会更加完整、严谨：\n1、从意图识别进入稳定工作流\n2、 从发现、诊断和内容生产走到效果测量\n3、从策略候选走到外部发布交接和知识沉淀\n4、每一步都有结构化产物、证据状态、运行谱系和失败恢复机制\n\n这轮迭代，让GEOHub从“可以生成结果”继续走到“结果可以验证、过程可以审计、失败可以恢复、结论知道边界”\n\n按同一套内部成熟度口径复评，17 个核心模块的平均分从 58 提升到 85\nActive Skill 从 4 个增加到 7 个，JSON Schema 从 8 个增加到 24 个，发布制品从 8 个增加到 11 个，路由、触发、输出契约、安装、制品和 Meta Skill 门禁也都通过了本地确定性验证\n\n欢迎体验，提PR\n\n1、GitHub地址：\nhttps://t.co/eaJuASdoQy\n2、升级报告：\nhttps://t.co/hbCqDRiuR8",
+    "links": [
+      "https://t.co/eaJuASdoQy",
+      "https://t.co/hbCqDRiuR8"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2087731884998738335": {
+    "text": "今日资本徐新，在一期视频播客里提到：以后很多组织，真的是可能没有中层了，更多的会是这样一种形态，一个很厉害的人，可以指挥Agent干活，效率会高很多\n\n这跟我和向阳的新书《AI领导力》里的底层逻辑和观点，其实是一致的\n也就是，一个人加多个 Agent，将成为越来越常见的工作方式\n1、首先，我们对AI的态度，应该是把它视为你的数字员工及工作伙伴，把AI看成能够协作、执行和交付任务的数字员工\n2、其次，在这个视角下，当面向工作场景时，我们就有意图和动力，去实现一个人带着多个AI Agent，一起完成过去需要一个团队才能完成的复杂任务，并且随着模型能力和各种工具生态的完善，这种复杂任务的达成度还会越来越强\n3、我们在书里，也提出了1+N的工作模式，指一个人加多个AI Agent，一个人负责确定方向、提供标准和验收结果，多个 Agent 并行执行不同任务\n\n徐新所说的“一个很厉害的人”，我的理解是，这类人的核心能力，应该包括提出目标、拆解任务、组织上下文、设置标准、判断结果和承担责任\n当AI可以接管大量执行工作后，这些能力会变得更加稀缺\n同时，1+N也会放大一个人的管理水平",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2087549893569364354": {
+    "text": "整理了一份《中国 GEO 生态商业模式全景报告》\n1、报告把国内GEO生态拆成 7 层：入口、信源、数据、技术、执行、交易、治理\n2、在这个基础上，进一步梳理了19种GEO商业模式，并用“成熟度 × 商业天花板”做了一次横向比较\n3、当前，咨询与培训、GEO运营、内容分发更容易产生现金流\n4、长期比较看好的几个方向：GEO Data、GEO OS\n\n完整报告链接：\nhttps://t.co/KyaqgTgV9a",
+    "links": [
+      "https://t.co/KyaqgTgV9a"
+    ],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2087520275051266074": {
+    "text": "@thefrankdu 不是必须，但GEO官网做了会大大助力整体效果",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
+  "2087099536846283137": {
+    "text": "@yuuudiwho 这个是skill，能力上有很多相通的地方",
+    "links": [],
+    "avatar": "avatars/yaojingang.jpg"
+  },
   "2114270707232465176": {
     "text": "小灰真人出镜，分享一下Kimi K3.1 Pro的实测情况 https://t.co/z2dSpKXWkm https://t.co/sRVU6n3mzk",
     "links": [
@@ -17442,6 +17557,76 @@
   "2092258764707823847": {
     "text": "@happy20250912 哈哈，现在AI能力把游戏行业彻底颠覆了",
     "links": [],
+    "avatar": ""
+  },
+  "2090657976910766412": {
+    "text": "Agents Spec Skill 真正解决的是：\n\n把原本只存在于聊天上下文和开发者脑海里的信息，沉淀为 Agent 可以持续读取、团队可以共同维护的工程资产👍 https://t.co/eOjluYvMfD",
+    "links": [
+      "https://t.co/eOjluYvMfD"
+    ],
+    "avatar": ""
+  },
+  "2090652267565506799": {
+    "text": "说一个好消息：\n\n我的第二款AI游戏《细菌克星》已经在steam平台通过审核，8月25日将正式在steam平台上线，敬请期待~~ https://t.co/sXdO9q09g5 https://t.co/BwjMUbnypG",
+    "links": [
+      "https://t.co/sXdO9q09g5",
+      "https://t.co/BwjMUbnypG"
+    ],
+    "avatar": ""
+  },
+  "2090093845166141755": {
+    "text": "今天在大A单日亏损28万！\n\n主力为了套住我，还专门拍了一部电影😂😂 https://t.co/HtiYBM1Jbl https://t.co/ttycsv8i6J",
+    "links": [
+      "https://t.co/HtiYBM1Jbl",
+      "https://t.co/ttycsv8i6J"
+    ],
+    "avatar": ""
+  },
+  "2089922330290188304": {
+    "text": "再推荐两个好用的 WorkBuddy 技能：\n\n1. agent‑browser\n\n浏览器自动化技能，可访问网页、抓取页面信息、提取文档与竞品数据。\n\n对话框发送指令：\n查找并安装 agent‑browser 浏览器自动化 skill\n即可安装\n\n2. code‑reviewer\n\n代码审查技能，查找 bug、安全漏洞、性能隐患，给出代码重构优化建议。\n\n对话框发送指令：\n查找并安装 code‑reviewer 代码审查 skill\n即可安装",
+    "links": [],
+    "avatar": ""
+  },
+  "2089653937741910186": {
+    "text": "小灰真人出镜，推荐 15 个 WorkBuddy 的优质技能，涵盖各大应用场景，希望对大家有所帮助。 https://t.co/H7n7duv3q3 https://t.co/9qt9CjbTZu",
+    "links": [
+      "https://t.co/H7n7duv3q3",
+      "https://t.co/9qt9CjbTZu"
+    ],
+    "avatar": ""
+  },
+  "2089006901728354672": {
+    "text": "小灰也慕名观看了电影《牛来》，预祝明天A股大涨！😁😁 https://t.co/zPkg4KG1W5",
+    "links": [
+      "https://t.co/zPkg4KG1W5"
+    ],
+    "avatar": ""
+  },
+  "2088841107656565073": {
+    "text": "这篇关于 Workbuddy 技能的文章爆了，看来大家对于Workbuddy的学习热情非常高涨。\n\n今天小灰额外给大家推荐两个好用的 Workbuddy 技能：\n\n1. sql-data-analyst 数据库智能分析技能\n\n面向数据分析、后台开发、业务运营。支持自动梳理表结构、生成 SQL 查询语句、优化慢查询、执行结果解读；可直接根据自然语言需求输出可运行 SQL，自动规避语法错误。\n\n没有技能加持时，AI 写出的 SQL 经常出现字段错误、索引缺失、关联逻辑漏洞。搭配技能会强制增加执行前校验逻辑。\n\n安装方法：技能市场搜索「sql-data-analyst」\n\n2. git-workflow 标准化 Git 工程管理技能\n\n来自开源社区高频工具技能。统一规范分支管理、commit 提交注释、代码合并策略、自动生成版本更新日志。 能够一键梳理项目提交记录，生成 CHANGELOG，规范团队代码协作标准，避免提交信息混乱、分支管理无序。\n\n安装方法：导入第三方开源仓库 https://t.co/AU0xmrEVUz",
+    "links": [
+      "https://t.co/AU0xmrEVUz"
+    ],
+    "avatar": ""
+  },
+  "2088483620910678293": {
+    "text": "早在微信公众号时代，小灰就和小码哥成为了好朋友。\n\n在国内自媒体陷入瓶颈的时候，小码哥也像曾经的小灰一样，焦虑过、迷茫过。\n\n如今看到他在X平台短短一个月时间，就拿到了不错的结果，小灰真的很为他感到高兴👍👍👍 https://t.co/QgklRR0npa",
+    "links": [
+      "https://t.co/QgklRR0npa"
+    ],
+    "avatar": ""
+  },
+  "2088106094501769321": {
+    "text": "@happy20250912 感谢分享，希望这篇文章对大家有用",
+    "links": [],
+    "avatar": ""
+  },
+  "2087836118846967877": {
+    "text": "我的第三部AI游戏，上周日从0开发，仅仅5天时间已经基本完工。\n\n这次的游戏是仙侠风格的放置类游戏，名为《无为修仙传》。\n\n使用的工具依然是Codex + GPT-5.6 Sol，流程越来越丝滑，如果不是steam平台审批时间较长，一周上一款游戏根本不是问题。 https://t.co/Iescewvo4o https://t.co/YT6aUaCTme",
+    "links": [
+      "https://t.co/Iescewvo4o",
+      "https://t.co/YT6aUaCTme"
+    ],
     "avatar": ""
   },
   "2114745397566673325": {
@@ -18227,6 +18412,59 @@
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2090097855788904798": {
+    "text": "今天是七夕，发一个七夕福利，0.1美元一个月的美国CN2小鸡，不管是否熟悉nat小鸡都可以玩一下，自建自用还是可以的，起码节点IP比机场的干净吧。https://t.co/H35LBCZfkb https://t.co/MtgcxbhX4u",
+    "links": [
+      "https://t.co/H35LBCZfkb",
+      "https://t.co/MtgcxbhX4u"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090084924107960362": {
+    "text": "说个冷知识，绝大多数人都不知道。\n\n微信退群的时候，即使选择了退出但不删除群聊天记录。后面重新进群，只要你在PC端登陆的时候选择同步最近的信息，那么退出群之前的群消息你再也看不到了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2089957025451311208": {
+    "text": "手把手教你将giffgaff携号转网到lebara，成本只要1.49英镑，比CTExcel、CMLink和voxi都要好。 https://t.co/ewBf9itKwk",
+    "links": [
+      "https://t.co/ewBf9itKwk"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2089947651496391145": {
+    "text": "手把手教你将giffgaff携号转网到lebara，成本要1.49英镑。 https://t.co/WsHwzFhYnL",
+    "links": [
+      "https://t.co/WsHwzFhYnL"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2089756842541125749": {
+    "text": "@wrh122333 先携号转网，再申请退款，这样应该是最好的了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2089750934226436273": {
+    "text": "不少人应该都收到giffgaff的复活邮件了吧，登陆APP一看的确正常了。但是别好像太早，认真看看邮件的内容，个人建议还是携号转网或者退款吧。 https://t.co/EMJ9TDbOrE",
+    "links": [
+      "https://t.co/EMJ9TDbOrE"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2089747975497203773": {
+    "text": "@BlockInsight214 你得使用gemini 3.7 Flash才行 https://t.co/cqv5pdOHc0",
+    "links": [
+      "https://t.co/cqv5pdOHc0"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2089747283361554834": {
+    "text": "@Yangyangn6666 我的只有几十浏览的又怎么说？让我哭一会 https://t.co/31Ollw8RdS",
+    "links": [
+      "https://t.co/31Ollw8RdS"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2093765269139427687": {
     "text": "@vs5pqi 可以省钱，也可以挣钱。类似team优惠码申请，可以自用省钱，也可以批量申请拿去闲鱼卖挣钱，不过它比team优惠码更挣钱。",
     "links": [],
@@ -18593,6 +18831,60 @@
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2089738700762857952": {
+    "text": "@ixuanpw 你这价格也太低了吧，有点离谱。 https://t.co/oQv9zaalD8",
+    "links": [
+      "https://t.co/oQv9zaalD8"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2089729427731333540": {
+    "text": "你生活中有烦恼吗？有压力吗？面对X的新规是否想放弃？\n\n无论生活多艰难，我们都要乐观笑对生活。不经历风雨，怎么见彩虹？没有人能随随便便成功。\n\n这是我在抖音看到的一个真实可爱美少女，她这心态很值得我们学习。 https://t.co/y5Luv8VDXU",
+    "links": [
+      "https://t.co/y5Luv8VDXU"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2089720264485691619": {
+    "text": "@ziqiangchen623 我的好像每天都出现一次这个…… https://t.co/vvll38iVPR",
+    "links": [
+      "https://t.co/vvll38iVPR"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2089709451821584707": {
+    "text": "@Ocean_Yu1 努力就没有假的，你说的那叫装努力 https://t.co/W3qFJ4S8nS",
+    "links": [
+      "https://t.co/W3qFJ4S8nS"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2089701378168152127": {
+    "text": "ChatGPT免费版也可以使用Codex桌面版的全部模型，这点比Claude等其它AI免费版好太多了。是这样的，我自从习惯Codex Cli后，已经很久没有使用Codex 桌面版了。开通一个Plus和2个Team后，也很久没有登录免费的ChatGPT了。今晚心血来潮，在Codex桌面版上尝试登录免费版的ChatGPT，才发现这点。 https://t.co/y3NZV2Lm56",
+    "links": [
+      "https://t.co/y3NZV2Lm56"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2089697067836813482": {
+    "text": "@allen5951 我每个帖子只有几十个曝光，这怎么说？ https://t.co/hZHLkkRP4a",
+    "links": [
+      "https://t.co/hZHLkkRP4a"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2089684492525178925": {
+    "text": "@weichen_ink 我觉得这是名片，搞那么多张有点那个……",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2089681197542912049": {
+    "text": "@hzqsns 后端编程还得是claude和gpt，前端编程还得是gemini和kimi https://t.co/Wrp94QquIY",
+    "links": [
+      "https://t.co/Wrp94QquIY"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2093722389020639624": {
     "text": "@its_ziling 不是，我是代中转站站长收的，他需要我才收，我会挣点合理的中间辛苦费。",
     "links": [],
@@ -18936,6 +19228,41 @@
   "2111795300054753455": {
     "text": "@WeiDemin 我看到的时候都有点不相信，几乎是我转化率的三倍，再三对比那三张图片后，我默默退出了，哈哈。",
     "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2089660538767003894": {
+    "text": "@weichen_ink @guoqingfeng6 没有发帖或者评论说求关注，认真回复，只是附带下面这个图呢？ https://t.co/HLAiMpP4xZ",
+    "links": [
+      "https://t.co/HLAiMpP4xZ"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2089654429620609441": {
+    "text": "@HaibingT48420 回不来的都是没有被冤枉的，我的十几分钟就解封了 https://t.co/hbOBjERPaw",
+    "links": [
+      "https://t.co/hbOBjERPaw"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2089649806163796129": {
+    "text": "@jam91613 我被限流了5天，也限制登陆，今天才解开。 https://t.co/TtAV4d1mvl",
+    "links": [
+      "https://t.co/TtAV4d1mvl"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2089648549617418651": {
+    "text": "@FrankLeo888 真被限流，浏览量应该是2位数吧 https://t.co/vb8LFbxoJV",
+    "links": [
+      "https://t.co/vb8LFbxoJV"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2089646987843142124": {
+    "text": "@Without0thought 我经历了5天限流，今天才解开。 https://t.co/8Pq01Wd90U",
+    "links": [
+      "https://t.co/8Pq01Wd90U"
+    ],
     "avatar": "avatars/mjjwiki.jpg"
   },
   "2093690219983970668": {
@@ -19342,6 +19669,117 @@
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2089645998855598554": {
+    "text": "@MaaMicro 也许是被限流了，可以看我的置顶贴核实一下 https://t.co/72fS9AYtp3",
+    "links": [
+      "https://t.co/72fS9AYtp3"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2089643935673254148": {
+    "text": "@lmx2000 限流的话，都是不过百的。不懂的新朋友，可以看我的置顶贴。 https://t.co/retG7QZR0P",
+    "links": [
+      "https://t.co/retG7QZR0P"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2089643342087045433": {
+    "text": "前几天香港众安银行拼团免费邮寄的实体卡收到了，这是我的第五张境外银行实体卡。实体卡的好处有两个，大家都晓得就不多说了。 https://t.co/QJgIiTExgw https://t.co/Hw9l1K0EC3",
+    "links": [
+      "https://t.co/QJgIiTExgw",
+      "https://t.co/Hw9l1K0EC3"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2089598974181445696": {
+    "text": "@zippy257 对了，你还能看到我关注了你吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2089598734795743499": {
+    "text": "@zippy257 嗯，大额和返利是相冲的。dtcpay不但没有返利，还有轻微损耗，但是它支持大额消费，兼容性和稳定性也比另外两个好。日常小额消费，还是https://t.co/kkAQlHgq8V和plasma one更好。",
+    "links": [
+      "https://t.co/kkAQlHgq8V和plasma"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2089596525500387577": {
+    "text": "@Luckycat3191 @Kai202601 我发帖骂了两次X就这样了，对了，你还能看到我关注了你吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2089595931805274547": {
+    "text": "我心中起U卡排行：\ndtcpay第一，\nhttps://t.co/kkAQlHgq8V 第二，\nplasma one第三。\n\n这是综合考虑，主要考虑了稳定、兼容、大额、返利这四个要素。",
+    "links": [
+      "https://t.co/kkAQlHgq8V"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2089595668197499235": {
+    "text": "我心中起U卡排行：\ndtcpay第一，\nhttps://t.co/kkAQlHgq8V 第二，\nplasma one第三。\n\n这是综合考虑，主要考虑了稳定、兼容和返利这三个要素。",
+    "links": [
+      "https://t.co/kkAQlHgq8V"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2089593320192487695": {
+    "text": "@Kai202601 限流了，如果骂它下场就和我一样，我关注别人的数量是0了，估计别人看不到我关注他们了，比如我是关注了你，但是你估计看不到我关注了你~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2089591619628744895": {
+    "text": "@yuhan119988 @hubuhui2025star 你看一下我是否我还关注你？最近被限流，我的关注别人显示0了，但是点击进去还能看到我关注了谁，比如我知道我关注了你的，一直没有取关",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2089584002877558924": {
+    "text": "@derrickcchoi https://t.co/WatjQ9BCFg 能解决github上面这个问题吗？都2个多月了，每次更新Codex版本都会出现这个问题，虽然可以让Codex自己修复，但是浪费Token呀",
+    "links": [
+      "https://t.co/WatjQ9BCFg"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2089335682426896515": {
+    "text": "@thsottiaux Why hasn't this problem been fixed after all this time? https://t.co/WatjQ9BCFg",
+    "links": [
+      "https://t.co/WatjQ9BCFg"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2089164274728083461": {
+    "text": "1M上下文，还得看gemini，就是gemini模型的后端编程能力实在有待提高。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2089149106765856898": {
+    "text": "实际上使用Codex，超过标准256k上下文后，使用价格会增加，1m上下文没必要折腾。 https://t.co/NCMypZIOWv",
+    "links": [
+      "https://t.co/NCMypZIOWv"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2088938760465445189": {
+    "text": "@zzwinwinwin 3万粉是指币安广场的，还是指X的？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2088819732833239122": {
+    "text": "前几天ChatGPT Plus/Pro重置，但是ChatGPT Team没有重置，大家骂声一片，毕竟都是付费用户，却区别对待。今天，ChatGPT Team已经补回重置。如果不能一视同仁，那么以后还有谁开ChatGPT Team？对了，ChatGPT Team已经改为ChatGPT Business，我叫ChatGPT Team叫习惯了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2088651452537577755": {
+    "text": "听说《牛来》这部电影很不错，准备买票看看，结果发现钱包只有两毛九，有大佬赞助一张票吗？ https://t.co/yRJvu6TlOc",
+    "links": [
+      "https://t.co/yRJvu6TlOc"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2088636838923919411": {
+    "text": "@shengtang135754 宝玉同理，但数字卡兹克这个我没见过，不晓得。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2093656795785130481": {
     "text": "@Ruolinliu99 @niumoney 那是国内，你看过的claude和ChatGPT需要营销吗？国外更注重技术和产品以及售后，国内就是靠吹牛忽悠。",
     "links": [],
@@ -19693,6 +20131,140 @@
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2088630684302950489": {
+    "text": "你们有没有发现，X上有些人成功获取大量的粉丝和高收益后，就有不少号起名和他们类似，比如*富，比如*财，比如*牛。不知道是相信玄学，还是他们的小号。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2088610404897579362": {
+    "text": "@DarthKazamaAo 贴外面底部或者外面侧边都可以，它偏偏选择贴里面底部，纯膈应人。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2088608814308442207": {
+    "text": "不知道大家有没有发现，我们生活中有些问题存在了十几年都是没有改变。\n\n比如我们平时买的不锈钢盆，盆里面有个标签，撕掉后会留下一层灰白色的背胶和底纸组成的痕迹，用水和钢丝球都很难将其痕迹完全去掉，每次使用都有一种膈应的感觉。\n\n那些厂家商家麻烦出来解释一下，为什么不能贴在盆后面底部呢？ https://t.co/ZkUp2QWkfE",
+    "links": [
+      "https://t.co/ZkUp2QWkfE"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2088593825073947007": {
+    "text": "闲鱼不亏是中国境内的暗网，信用卡都可以批发，返利最好的两张U卡ether.if和plasma one就在其中。\n\n搞不懂买这些U卡的人是怎么想的，kyc都不是自己的，这不是随时都可以被找回去吗？ https://t.co/BkeP6OKBen",
+    "links": [
+      "https://t.co/BkeP6OKBen"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2088521378987466850": {
+    "text": "说个很多人都不知道的冷知识：如何高效减少甚至杜绝垃圾短信和垃圾电话的骚扰？\n\n生活中我们很多人都受过垃圾短信和垃圾电话的骚扰，多数人估计是忍了下来。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2088481465117913166": {
+    "text": "@bitget 不止 OKL， Bitget Wallet的注销功能我也找不到在哪里…… https://t.co/uwOHkaICLL",
+    "links": [
+      "https://t.co/uwOHkaICLL"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2088475880314269826": {
+    "text": "@leeking420 王长富的账号内容多数是搞个夸张的话题让大家讨论，这样引流虽然大，但是没有任何原创价值，不符合新规，我觉得他的账号早晚会被封。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2088466069669532120": {
+    "text": "这是我在X上看到最高的收益了，膜拜大佬。 https://t.co/tFprNdPD4V",
+    "links": [
+      "https://t.co/tFprNdPD4V"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2088457502082191438": {
+    "text": "说了冷知识，DeepSeek V4-Pro的价格其实已经和Gemini 3.7 Flash差不多了，不便宜了。 https://t.co/sQrDCMdmAa",
+    "links": [
+      "https://t.co/sQrDCMdmAa"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2088438178277675122": {
+    "text": "我说个事实，ChatGPT正式进入付费重置时代，免费重置以后应该很少有了。 https://t.co/gFCF3v5K9V",
+    "links": [
+      "https://t.co/gFCF3v5K9V"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2088284183504601134": {
+    "text": "@lumeroute 看第三张图，发帖9次，回复41次，是太少了吗？我怕回复太多会封号，最近看到不少人增长快速封号的",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2088252986170753231": {
+    "text": "大胆预测一下：\n\nChatGPT Business team 5X订阅的人不多，甚至很少人订阅，感觉OpenAI这是个失败的策略。 https://t.co/da8zHOedpl",
+    "links": [
+      "https://t.co/da8zHOedpl"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2088244364703416388": {
+    "text": "粉丝数终于不是三位数了，终于突破1000了，得纪念一下。 https://t.co/6i7PDEZxjT",
+    "links": [
+      "https://t.co/6i7PDEZxjT"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2088233476843790505": {
+    "text": "老实说，你们是不是也这样浪费了SuperGrok的免费试用特权？\n\n上个月就看到这个SuperGrok可以免费一周，没有欲望~后面可以免费2个月，但是4.5不咋样，还是没有欲望~现在听说4.6不错，想试试看，结果一领取却没有了，变成三个月优惠了。 https://t.co/Ue7gZ8sU4x",
+    "links": [
+      "https://t.co/Ue7gZ8sU4x"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2088197580857700793": {
+    "text": "别人帖子浏览量都是几千几万甚至几十万的，我帖子的浏览都是几十的……别人动不动每天几百粉丝增加，我每天就几十粉丝，今天更少只有十几粉丝，很想今天突破1000粉丝呀。 https://t.co/3Mlr7igIJ2",
+    "links": [
+      "https://t.co/3Mlr7igIJ2"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2088174955276210529": {
+    "text": "@A9Beacon 大概率是真的，自己对比一下就知道了。听说美区开通的，流量最大。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2088170467303825711": {
+    "text": "说个暴论：\n\n低价区开通X(Twitter)的Premium或者Premium+的，流量一般都不多。\n\n低价区包括土耳其、印度、埃及、巴基斯坦、尼日利亚、菲律宾、日本等地区。\n\n至于闲鱼、第三方小站的低价赠送开通，本质上也一样。\n\n不相信的话，对比一下自己的流量。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2088170182489305474": {
+    "text": "说个暴论：\n\n低价区开通X(Twitter)的Premium或者Premium+的，流量一般都不多。\n\n低价区包括土耳其、印度、埃及、巴基斯坦、尼日利亚、菲律宾、日本等地区。\n\n至于闲鱼、第三方小站的低价赠送开通，本质上也一样。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2088166602147778659": {
+    "text": "@TianbaoSu 你说得对，比我预期快，1小时左右，不是网传的3小时左右。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2088164669819330655": {
+    "text": "Gpt 5.6 sol写的项目前端实在是不好看，今天使用新出的Gemini 3.7 Flash修改美化一些，好看很多，Gemini的前端开发水平质量还是数一数二的。\n\n但是Pro的额度好像比以前消耗得更快了，我才修改一个页面呀，可能是因为我使用Gemini 3.7 Flash high吧。 https://t.co/1RBlZTQGgk",
+    "links": [
+      "https://t.co/1RBlZTQGgk"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2088163797618036956": {
+    "text": "Gpt 5.6 sol写的项目前端实在是不好看，今天使用新出的Gemini 3.7 Flash修改美化一些，好看很多，Gemini的前端开发水平质量还是数一数二的。\n\n但是Pro的额度好像比以前消耗得更快了，我才修复一个页面呀，可能是因为我使用Gemini 3.7 Flash high吧。 https://t.co/k7mcn4G1Ph",
+    "links": [
+      "https://t.co/k7mcn4G1Ph"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2088146653907959960": {
+    "text": "@weichen_ink 我之前不知道，这是第二次中招了……还好个人资料都修改完了，没有特殊情况以后都不会修改个人资料了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2093624957297430609": {
     "text": "@fallon0509 你知道叫什么，但是打不出来，是这个字：籺。",
     "links": [],
@@ -20041,6 +20613,132 @@
     "links": [
       "https://t.co/cSDuyH4ApY",
       "https://t.co/W8y9T8bevX"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2088144342657765560": {
+    "text": "之前一直是默认头像，今天一修改头像，又进入审核中，蓝V又暂时看不见了……以后大家要修改个人资料，尽量一次性改好，以后少动。 https://t.co/Cyoc8lTV0a",
+    "links": [
+      "https://t.co/Cyoc8lTV0a"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2088048461501653335": {
+    "text": "香港众安银行还有1000港币+500港币羊毛！！！其中1000港币是可以确定拿到的，另外500港币不清楚。\n\n前提是开通了它的投资功能，但是我去年中开通它的时候没有顺手开通它的投资功能，香港汇丰和香港中银也一样，因为我当时已经有香港长桥了，费用比银行的便宜，看不上它们，结果导致这羊毛与我无缘…… https://t.co/TJdEe8KtYt",
+    "links": [
+      "https://t.co/TJdEe8KtYt"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2088040201025405020": {
+    "text": "香港银行众安拼团成功，用户v2等级权益羊毛到手，先免费领取实体卡再说。 https://t.co/C3MU34sb3l https://t.co/Hw9l1K0EC3",
+    "links": [
+      "https://t.co/C3MU34sb3l",
+      "https://t.co/Hw9l1K0EC3"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087955584813584834": {
+    "text": "谷歌的Gemini 3.7 Flash推出了，和3.6 Flash相比，在编程重构、命令行 Agent 自动化、PDF 解析或超长文档分析上提升不小呀，而且加量不加价！Gemini这次更新还是很有诚意的，为它打Call。 https://t.co/5hanSzoHbs",
+    "links": [
+      "https://t.co/5hanSzoHbs"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087889316215464198": {
+    "text": "香港众安银行拼团成功，已经满50人，明天就会成功解锁用户v2等级权益，恭喜各位成功薅羊毛。 https://t.co/jM4EC9hhhU https://t.co/Hw9l1K0EC3",
+    "links": [
+      "https://t.co/jM4EC9hhhU",
+      "https://t.co/Hw9l1K0EC3"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087848790544007526": {
+    "text": "无意中研究出了一个方法，可以通过ChatGPT Plus 0元试用，而且可以小批量搞，但是公开的话又怕中转站滥用后方法被封，之前的月team车就是被他们搞坏了。 https://t.co/jcu0EWB01h",
+    "links": [
+      "https://t.co/jcu0EWB01h"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087832434163564948": {
+    "text": "@elonmusk Elon Musk's image really reminds me of Magneto from X-Men, with a powerful presence. What do you think?埃隆·马斯克这个画面，很有《X战警》里面的万磁王的即视感，气场强大，你们觉得呢？ https://t.co/iqBNCBFXf2",
+    "links": [
+      "https://t.co/iqBNCBFXf2"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087829562579444153": {
+    "text": "Premium+ 用户的回复会比Premium用户获得最大优先级推送，在别人帖子的回复线程中更容易被优先展示，这是真的吗？@X @grok https://t.co/nascuqAos0",
+    "links": [
+      "https://t.co/nascuqAos0"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087798069958218078": {
+    "text": "888个粉丝，是个吉利的数学，截图发帖留念一下。 https://t.co/zbYsgnUTHh",
+    "links": [
+      "https://t.co/zbYsgnUTHh"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087796882278117688": {
+    "text": "不是说X鼓励原创吗？不是说X扶持蓝V新人吗？我每天花在X上的时间大概是10小时，都是原创，也不蹭热点，但是粉丝的增长和流量的增长远不如别人，一周都没有别人一天的多。我现在的目标是粉丝每天增长突破到3位数，流量增长突破到4位数。 https://t.co/pPrZ3W5Ux0",
+    "links": [
+      "https://t.co/pPrZ3W5Ux0"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087791752220749869": {
+    "text": "@thsottiaux Why are only Plus and Pro resets today? Why hasn't Team reset?",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087774368839397677": {
+    "text": "香港众安银行羊毛！免费邮寄实体(价值35港元) + 2.5%消费返利！众安拼团还差8个人，速来！ https://t.co/Hw9l1K06Mv",
+    "links": [
+      "https://t.co/Hw9l1K06Mv"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087742188386123867": {
+    "text": "@vivian_musk7456 She pretended to be your daughter.@elonmusk https://t.co/c0ePoGwBaY",
+    "links": [
+      "https://t.co/c0ePoGwBaY"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087735655526977726": {
+    "text": "香港众安银行羊毛！免费邮寄实体(价值35港元) + 2.5%消费返利！这个是用户V2等级的权益，V2用户需要日终总结余额达到等值50万港元，但是现在可以免费体验1个月。 https://t.co/9E2tP2b1u8",
+    "links": [
+      "https://t.co/9E2tP2b1u8"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087723960997921242": {
+    "text": "估计不少人看到这个就头脑发热了，想马上去 @bitgetWallet 等交易所当BD实现暴富梦想。那么恭喜你，你成功被洗脑了。经历过传销和直销的年代的人，是不是感觉这很熟悉？ https://t.co/frxXQHyJIi",
+    "links": [
+      "https://t.co/frxXQHyJIi"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087708717311795377": {
+    "text": "gpt今天又重置了，大概一小时后生效。@thsottiaux 说是用户突破1500万的原因，还强调是几天前就突破了。我感觉这是故意的，因为今天DeepSeek V4pro 和 Grok 4.6 发布了，AI竞争激烈呀。不过我已经习惯Codex了，真心好用，如果可以在Codex Cli使用Pro就更好了，这个推理能力感觉比Claude 最强的还强。 https://t.co/AjjW5kfY8G",
+    "links": [
+      "https://t.co/AjjW5kfY8G"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087706512177418384": {
+    "text": "@santoulang 你这关注量远小于被关注量，我就不参与了，免得你事后偷偷取关 https://t.co/abvmjAN1FO",
+    "links": [
+      "https://t.co/abvmjAN1FO"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087566600983744953": {
+    "text": "DTCPAY赠送的免费ESIM流量卡，有5个G免费流量，有效期是30天，可以在全球97个国家使用。\n\n原生新加坡家宽IP，速度很快体验流畅！以前是可以免费送6个月的，现在不知道是免费送1个月还是6个月。\n\n最多可以开5张卡，有效期是10年，只有第一张有赠送免费流量，其它四张得自己买流量。 https://t.co/BS53WZH9PR",
+    "links": [
+      "https://t.co/BS53WZH9PR"
     ],
     "avatar": "avatars/mjjwiki.jpg"
   },
@@ -20499,6 +21197,75 @@
     ],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2087543371829297258": {
+    "text": "Starryblu支持港卡FPS(转数快)转账，7×24小时实时到账，0手续费。没有港卡的话，可以使用Wise，新加坡元转账，到账速度和损耗仅次于港卡。 https://t.co/jKB6vFQvoz",
+    "links": [
+      "https://t.co/jKB6vFQvoz"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087524591359107357": {
+    "text": "@kukmoon97 写好了，这下知道MJJ是什么意思了吧？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087523938951717286": {
+    "text": "你该不会以为MJJ是没鸡鸡、买鸡鸡（买服务器）的意思吧？ https://t.co/qjQqoATzF7",
+    "links": [
+      "https://t.co/qjQqoATzF7"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087518905007059298": {
+    "text": "@kukmoon97 不是，晚点我写帖详细介绍一下MJJ，估计只有70后和80后才知道了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087483225996476688": {
+    "text": "购买新的手机号码后，有时候该手机号码是系统回收号，之前被别人使用过，可能注册过一些APP，这时候我们要怎么办呢？登陆运营商APP，搜索“二次号码焕新”，按提示操作，几天就会自动解绑几百个常见APP了，非常简单高效。 https://t.co/o8h60AHkHs",
+    "links": [
+      "https://t.co/o8h60AHkHs"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087443272625270827": {
+    "text": "如何避免掉蓝朋友和增加蓝朋友？\n\n一，多发原创帖子，如果你的分享对他们有帮助，他们肯定愿意和你互动，至少不会取关你~ https://t.co/UL5PX8aGB5",
+    "links": [
+      "https://t.co/UL5PX8aGB5"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087404231972237645": {
+    "text": "听说古代的时候，和尚最喜欢的一道菜是青菜豆腐汤。 https://t.co/2SH3I1u4Sz",
+    "links": [
+      "https://t.co/2SH3I1u4Sz"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087388957873180975": {
+    "text": "@Jzx0000001 大佬牛逼，你去掉万字都比我的还多。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087382088492388715": {
+    "text": "就修改一下昵称，将小写字母mjj改为大写字母MJJ，蓝V就进入审核状态了，这样是不是别人就看不见我的蓝V了？ https://t.co/BqxTagiQ5i",
+    "links": [
+      "https://t.co/BqxTagiQ5i"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087364699302277382": {
+    "text": "@_Magicalexander 不是壁虎，壁虎身体比它肥大，尾巴比它短，身体没有那么油。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087359240008786421": {
+    "text": "给你们看个小动物，有人知道这是什么吗？ https://t.co/pxW4rWXWIp",
+    "links": [
+      "https://t.co/pxW4rWXWIp"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2093560724052488455": {
     "text": "@light121dd 看来大佬挣了好多钱了，我还在为X创作者苦苦努力。",
     "links": [],
@@ -20925,6 +21692,78 @@
     "text": "我的天呀！！！\n\n菲区ChatGPT Plus一个月成品号的价格已经卷到68元人民币了！！！\n\n还说是非黑充非盗刷，质保订阅，不质保封号。 https://t.co/c0sIABs2vV",
     "links": [
       "https://t.co/c0sIABs2vV"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087205660748566918": {
+    "text": "@yxhan2750 看你的帖子，都是说中文，怎么来到我帖子评论就说英文了？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087189812059193814": {
+    "text": "@yxhan2750 Yes, using Wise to deposit British pounds into iFAST GB is one of the best methods, almost instantly, with no fees.",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087188306106941854": {
+    "text": "可以使用国内手机+国内地址（信用卡账单做地址证明）+中国护照来注册iFAST GB，收到官方5英镑奖励后再找我要3英镑奖励，共8英镑羊毛。 https://t.co/qS7lfk6gyw",
+    "links": [
+      "https://t.co/qS7lfk6gyw"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087180131777577073": {
+    "text": "@yxhan2750 Thank you, but I probably have to wait another two months.",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087178865345200369": {
+    "text": "可以使用国内手机+国内地址+大陆护照来注册，至于是否可以使用身份证来认证我忘记了，反正护照最保险。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087176956882333726": {
+    "text": "分享刚看到一个邪修方法，可以让wise国区也有卡。我未测试，你们随意。 https://t.co/5mhCWTubI3",
+    "links": [
+      "https://t.co/5mhCWTubI3"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087169040779522236": {
+    "text": "Wise的港币账户开通真久，等待时间都超过一个月了，还是正在处理中……不过，不影响港币出入金，有点奇怪。你们的wise港币账户一般是多久成功开通的？ https://t.co/qaz08tYTDf",
+    "links": [
+      "https://t.co/qaz08tYTDf"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087167707129278769": {
+    "text": "Wise的港币账户开通真久，等待时间都超过一个月了，还是正在处理中……不过，不影响港币出入金，有点奇怪。 https://t.co/8ufUG7oqPX",
+    "links": [
+      "https://t.co/8ufUG7oqPX"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087054948429422878": {
+    "text": "知道原歌词的人应该都奔40了吧",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087047596250730995": {
+    "text": "这天气，弄点蜂蜜柠檬冰水喝，还是很舒服的~ https://t.co/wKUjgeI8DQ",
+    "links": [
+      "https://t.co/wKUjgeI8DQ"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087046883189670371": {
+    "text": "@justwyndayy 很实在的羊毛活动，70元羊毛可以喝两杯咖啡了~主要是活动持续时间长，现在8月还可以参加，听说持续到12月底~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2087007736936694045": {
+    "text": "发垃圾无意义的信息太多，人工审核被拒绝了，大家还是要注意原创呀~ https://t.co/fGTttJ6uih",
+    "links": [
+      "https://t.co/fGTttJ6uih"
     ],
     "avatar": "avatars/mjjwiki.jpg"
   },
@@ -39353,6 +40192,21 @@
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2091163082987020558": {
+    "text": "@Lt8py 我们之前不是互关的吗？还互动多次了，怎么现在变成互相不关注了？你移除了我？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2091140453798384052": {
+    "text": "@niumoney 你出现在我的时间线，但我没有出现在你的时间线，让我哭一会……",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2091137784962842954": {
+    "text": "@niumoney 可能是因为你没有去我帖子那里互动吧，哈哈~",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2094353108398940193": {
     "text": "@Seanblockc 一键三连，好像是B站的最高支持模式了。在推特X上也一样，我喜欢，谢谢你的支持。",
     "links": [],
@@ -39595,6 +40449,114 @@
   },
   "2110247395581894878": {
     "text": "@huaihezhipan 造谣 + 涉政，我也早拉黑屏蔽他了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2091137485594395026": {
+    "text": "相信不少人都遇到过这种情况：\n\n中国移动手机卡比较多，手机卡槽不够用，但是又不想错过每张卡的电话和短信，怎么办呢？\n\n其实方法很简单，安装无忧行APP，注册登陆后按提示将中国移动手机号码托管即可，这样不用插卡也可以在无忧行APP接电话和短信了。 https://t.co/YrkldsP8ub",
+    "links": [
+      "https://t.co/YrkldsP8ub"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2091130373455655196": {
+    "text": "@niumoney 你凡尔赛了，牛哥，我不嫌弃低，分三分一给我就好。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2091129114392670390": {
+    "text": "@lord3022 @grok 你很快安慰人，情绪价值蛮好的，你和你的对象相处得肯定很好。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2091128614532391265": {
+    "text": "@lord3022 @grok 借你吉言，未来就以这个为目标。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2091099983856762943": {
+    "text": "@Tz_2022 不错的设计，就是比较影响外观。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2091099222838030455": {
+    "text": "@ai_xiaomu Sol Medium流口水，最少要High才可以准确干活。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2091096291480875381": {
+    "text": "@b77rob 又刷到另外一篇，怎么你的爆款帖子那么多？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2091094826788028468": {
+    "text": "说一个冷知识：\n\n中国的人口大约是日本的11倍，但是日本的X用户数量大约是中国的X用户数量的10倍。\n\nあまり知られていない事実をご紹介しましょう。\n\n中国の人口は日本の約11倍ですが、Xのユーザー数は日本の方が中国の約10倍も多いのです。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2091090271924801870": {
+    "text": "2026年8月14日，1000粉丝。今天是2026年8月22日，1300粉丝。8天才增长了300粉丝，还有人的增粉速度比我慢的吗？@Grok https://t.co/wsR0IZ5zT8 https://t.co/aCrvq5VDto",
+    "links": [
+      "https://t.co/wsR0IZ5zT8",
+      "https://t.co/aCrvq5VDto"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2091068179925836005": {
+    "text": "@grok 坚持发有价值帖并积极回复大号会逐步改善，综合X用户的平均改善时间，一般要坚持多久？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2091067173712048409": {
+    "text": "@Grok 为什么别人都有开通前10天X会给流量蜜月期？为什么我所有的帖子流量几乎都没有超过100？是因为我是土耳其区开通的蓝V缘故吗？ https://t.co/8BDA46IziR",
+    "links": [
+      "https://t.co/8BDA46IziR"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2091065528500801584": {
+    "text": "为什么别人都有开通前10天X会给流量蜜月期？为什么我所有的帖子流量几乎都没有超过100？是因为我是土耳其区开通的蓝V缘故吗？ https://t.co/8BDA46J78p",
+    "links": [
+      "https://t.co/8BDA46J78p"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2091064844862750777": {
+    "text": "@X100Chen 为什么我没有开通前10天X会给流量  蜜月期？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2091062896860221528": {
+    "text": "这个官方接口地址就是：https://t.co/DpJJ6vK4iV  The official API address is: https://t.co/DpJJ6vK4iV",
+    "links": [
+      "https://t.co/DpJJ6vK4iV"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2091062557528514577": {
+    "text": "估计很多人都想知道自己的X账号是否违反了 X 平台规则，是否被限流或者降权等，其实有一个 X 官方接口可以直接查看，所有 X 账号都可以使用。\nMany people probably want to know if their X account has violated the X platform rules, or if it has been restricted or demoted. Actually, there is an official X interface that can be used to check this directly, and all X accounts can use it.",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2091058927383548081": {
+    "text": "本地部署的Qwen 3.8 27B Q4KM大模型，配置是7900xt显卡和48g内存，开了24k上下文，一般的活应该都可以胜任了。 https://t.co/8oE0jenemQ",
+    "links": [
+      "https://t.co/8oE0jenemQ"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2091026101627949455": {
+    "text": "@YIYONG19680604 看你这帖子流量，说明你没有被降权，只是没有高质量的帖子。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2091020726975582383": {
+    "text": "@b77rob 你这帖子流量好大呀，怎么做到的？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2091019650389958670": {
+    "text": "@Finding8964 我想起一本书，名字叫，丑陋的中国人……",
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
@@ -39913,6 +40875,114 @@
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
+  "2091019117289722333": {
+    "text": "@Pidanksez 恭喜🎉我的要求不高，不追求蓝V流量，先让我所帖子的流量过100吧，普通流量都好。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2091018141686272015": {
+    "text": "@Sookiebabe123 开20倍，活该你挣这个钱，我不眼红。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2091017721056264671": {
+    "text": "@Vincent_AINotes 很多人因为网络原因，会使用Codex对接DeepSeek而不是gpt，以前的DeepSeek真的不咋滴，听说现在好很多了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2091017069966107098": {
+    "text": "@brichwake 这类我从来不会关注，如果是关注我后取关，一律视为骗关，一律取关并且屏蔽。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2091009964357865564": {
+    "text": "也许很多人都知道，昨晚chatgpt给所有付费账号赠送了一张重置卡，有效期是1个月。但是肯定不少人都不知道下面2点细节：\n\n一，chatgpt team(chatgpt business)的重置卡有效期比plus/pro的重置卡的有效期大概晚1.5小时，所以优先使用plus/pro的重置卡，最后在使用chatgpt team(chatgpt https://t.co/CLkqvVebAj",
+    "links": [
+      "https://t.co/CLkqvVebAj"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090999850590712257": {
+    "text": "@lingsh115953 X用不了那么多流量，你是不是搞其它东西了？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090998661287379299": {
+    "text": "@dtcpay 每自从更新了dtcpay版本后，无论是手机号码登陆还是邮箱登陆，都是默认发送短信验证码，不知道是dtcpay的跨国短信验证码成本低到不要钱，还是dtcpay的产品经理和公司有仇。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090992923181736387": {
+    "text": "说个冷知识：\n\n每年稳定挣10万左右的工作是当义务兵，两年就有20万左右。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090983611512365345": {
+    "text": "@weichen_ink 原来你是NS论坛那邪修，为了卡这样搞，各有利弊。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090982261315559863": {
+    "text": "@weichen_ink wise不是有香港银行账户吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090971660845502671": {
+    "text": "@xingmeng14 今天写教程，到时候你看教程操作就可以了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090873869565559150": {
+    "text": "@Lt8py  你的个人主页已经看不到粉丝、关注和自我介绍了，小哪吒事件明天应该就有结果了。 https://t.co/cWn1UzM3U3",
+    "links": [
+      "https://t.co/cWn1UzM3U3"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090840211584688303": {
+    "text": "@weichen_ink 等我MJJ百科平台上线后帮你置顶分享。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090839417808461990": {
+    "text": "@linmumu223 很正常呀，我从来不搬运，也几乎不蹭热点（今晚例外，小哪吒），帖子几乎都是亲自实践原创手写，流量100都没有，垃圾算法。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090807301800390936": {
+    "text": "@Lt8py X Money搞难，搞个美国税号也许有机会，大概要600元，借楼诚心浇友。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090805648133099710": {
+    "text": "@Lt8py 律师我也认识不少，但是跨国的真没有，借楼诚心浇友。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090801989819228565": {
+    "text": "@Lt8py 小哪吒今晚起码500万流量，恭喜🎉~我是他的小号，有本事冲我来，我的帖子流量都是2位数……",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090789571269472353": {
+    "text": "@web3usb 这流量多只是评论的吧，不是帖子的流量多。如果帖子流量也变多，那我后面也开蓝V+。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090788985832645045": {
+    "text": "差不多三个月前谷歌邮箱就全面开放改名了，灰度测试是更早的事情，这滞后三个月的消息都能有3万多浏览量，而有些人认真原创的帖子浏览量不到100，@X 的推流算法就是垃圾，@Grok 你说是不是？ https://t.co/cjFEfR3Ynx",
+    "links": [
+      "https://t.co/cjFEfR3Ynx"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090788743225725263": {
+    "text": "差不多三个月前谷歌邮箱就全面开放改名了，灰度测试是更早的事情，这滞后三个月的消息都能有3万多浏览量，而有些人认真原创的帖子浏览量不到100，X的推流算法就是垃圾，@Grok 你说是不是？ https://t.co/cjFEfR3Ynx",
+    "links": [
+      "https://t.co/cjFEfR3Ynx"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
   "2094314780245061899": {
     "text": "中国新疆人午饭时间点又到了，今天加餐了，太子参黄芪排骨汤+阳江豆豉清蒸咸瓜五花肉+清炒小白菜。嗯，还是一个人吃……\n\n阳江豆豉是好朋友送的，他老婆娘家那边的特产，还蛮好吃的。 https://t.co/wTfvYyTTQ7",
     "links": [
@@ -40168,6 +41238,100 @@
   },
   "2110209311695863964": {
     "text": "@btcmileo 英国很多手机卡，可以换其它的。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090787860668629073": {
+    "text": "@xmglab 差不多三个月前就全面开放了，灰度测试是更早的事情，你这消息都滞后三个月了……",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090786639912304840": {
+    "text": "@Starryblu_ 你们的多币种账户有问题，英镑账户有足够的钱，还是扣新加坡元账户的，人民币账户有足够的钱，还是扣新加坡账户的，我都不知道Starryblu的多币种账户的意义何在？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090748313096323341": {
+    "text": "@xiaoxiaojiujiu 你太能水了，也许这是流量密码吧，看你帖子流量那么大。分应用设置，随便一个模式都可以解决这个问题，我是诚心浇友的。 https://t.co/DJ37JFcDK8",
+    "links": [
+      "https://t.co/DJ37JFcDK8"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090746257468010992": {
+    "text": "@Lt8py 是不是外国粉居多？之前我也有大概100粉晚上进来，都是外国的，后来我就限流了，一直到现在，包括我这条评论你都不一定可以看到，之前有大佬专门回复我说，我的评论进入垃圾评论了，无法直接看到……",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090693428061618534": {
+    "text": "sub2api多数是中转站商业使用，chatgpt被限或者被封很正常。cpa是个人使用，官方也承认过，大家还是使用cpa或者直接使用官方客户端codex吧。 https://t.co/KigUX1knaW https://t.co/9Khgnwrz8D",
+    "links": [
+      "https://t.co/KigUX1knaW",
+      "https://t.co/9Khgnwrz8D"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090693023223185695": {
+    "text": "@thsottiaux sub2api多数是中转站商业使用，被限或者被封很正常。cpa是个人使用，官方也承认过，大家还是使用cpa或者直接使用官方客户端吧。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090689283736875295": {
+    "text": "说个扎心的事实：\n\n多数人开通蓝V就是给别人凑创作收益。\n\n比如我，全部帖子的浏览量几乎都是两位数（你没看错，三位数浏览量都没有），加起来都没有别人随便一个帖子的浏览量多，别人的时间线也几乎无法看到我，新蓝朋友都不知道在哪里，实在没有动力发帖了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090658906481864789": {
+    "text": "孩子说爸爸昨晚出去喝酒，今天他也要喝酒，就去房间拿出了他这瓶“酒”。 https://t.co/NGiFbZK1b1",
+    "links": [
+      "https://t.co/NGiFbZK1b1"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090651646028362028": {
+    "text": "@ChainMaxi_Joe 那你的帖子是说，将第一段话删掉？那别人怎么看得懂？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090638201576894563": {
+    "text": "@IBKR APP客户端体验太差，起码和亚洲地区的其它券商客户端对比是这样。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090621555063885929": {
+    "text": "你这形容比较形象，我下一篇文章教程需要英国VPN节点，否则跑不通。我买了一个月机场，包含了英国VPN节点和土耳其VPN节点，免费分享给大家使用，这样大家不用额外购买。另外，我买了一台英国小鸡自建VPN节点，独享。就算分享机场英国VPN节点当天被用完流量或者被机场封了，也还有自建的英国VPN节点使用。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090615914077241550": {
+    "text": "@Grok 在X上免费分享自己自建的VPN节点或者购买的机场VPN节点给大家使用，违规吗？",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090488508045787445": {
+    "text": "手把手教你giffgaff携号转网二：17港元让你的手机支持eSIM，写入lebara。 https://t.co/HOXd1eXkCl",
+    "links": [
+      "https://t.co/HOXd1eXkCl"
+    ],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090457779228287219": {
+    "text": "刚洗完澡出来，就接到一个朋友的电话，叫出去喝酒。我说这么晚了还出去喝酒，是心情不好吗？他犹豫了一下，说他一直在追的女孩昨晚吃了别人的香蕉，喝了别人的豆浆……\n\n遇到喜欢的人就要勇敢直接，否则好女孩都被黄毛搞走了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090450857389326809": {
+    "text": "@Guannzy 只能多浇友和多发帖以及多评论互动了。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090449077133881709": {
+    "text": "@mujunchengcs 手机端回关速度快，一样有限制，诚心交友。",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090434382557577652": {
+    "text": "@weichen_ink 恭喜大佬，成功就在眼前。希望我早点不限流，我也多写原创贴，已经囤货2贴了。",
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
@@ -40470,6 +41634,11 @@
   },
   "2110203629194092635": {
     "text": "@btcmileo 登陆网页或者APP重新下载二维码",
+    "links": [],
+    "avatar": "avatars/mjjwiki.jpg"
+  },
+  "2090252012122464744": {
+    "text": "@yang02010 我每天回复就50次左右，不算活跃，应该是带有同一张图的原因。",
     "links": [],
     "avatar": "avatars/mjjwiki.jpg"
   },
