@@ -156,9 +156,16 @@
     "xu96175836": 10,
     "AnthropicAI": 10
   },
-  "open": {},
-  "raw_total": 27410,
-  "last_footer": "X reads left for this user: 27 of 30 this minute (resets at 2026-10-29T00:37:00.000Z), 771 of 1000 today (resets at 2026-10-30T00:00:00.000Z).",
+  "open": {
+    "Chilljccu": {
+      "posts_added": 997,
+      "pages": 40,
+      "next_token": "7140dibdnow9c7btwp0fs4nmnjrl3eux7g4ty68mhso4x",
+      "user_id": "2090442465950171136"
+    }
+  },
+  "raw_total": 27509,
+  "last_footer": "X reads left for this user: 29 of 30 this minute (resets at 2026-10-29T00:38:00.000Z), 767 of 1000 today (resets at 2026-10-30T00:00:00.000Z).",
   "stopped_reason": "queue_complete_latest10",
   "note": "Parent advanced qizong007 then handed to executor",
   "accounts": {
@@ -179,8 +186,8 @@
       "posts_added_l10": 8
     },
     "Chilljccu": {
-      "posts_added": 898,
-      "pages_done": 36,
+      "posts_added": 997,
+      "pages_done": 40,
       "complete": false,
       "user_id": "2090442465950171136"
     },

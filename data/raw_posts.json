@@ -1077140,5 +1077140,3550 @@
     },
     "fetched_at": "2026-10-29T00:36:35.000Z",
     "source": "builtin-x"
+  },
+  {
+    "id": "2106685035218899153",
+    "url": "https://x.com/Chilljccu/status/2106685035218899153",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T09:57:07.000Z",
+    "lang": "",
+    "text": "@xixiha12361 哈哈哈确实",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106685035218899153",
+    "in_reply_to_id": "2106675854378188837",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106675854378188837",
+        "author_id": "1778480089656868865",
+        "author_username": "xixiha12361",
+        "author_name": "Winnie",
+        "text": "@Chilljccu 幸亏他们没来X不然比不过哈哈"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 19
+    },
+    "fetched_at": "2026-10-29T00:36:44.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106685005598794090",
+    "url": "https://x.com/Chilljccu/status/2106685005598794090",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T09:57:00.000Z",
+    "lang": "",
+    "text": "@YxzRainy 冲冲冲",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106685005598794090",
+    "in_reply_to_id": "2106674451748413796",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106674451748413796",
+        "author_id": "1994485839402057728",
+        "author_username": "YxzRainy",
+        "author_name": "兴雨",
+        "text": "@Chilljccu 来了兄弟，一起速通！！"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 36
+    },
+    "fetched_at": "2026-10-29T00:36:44.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106684960908411379",
+    "url": "https://x.com/Chilljccu/status/2106684960908411379",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T09:56:49.000Z",
+    "lang": "",
+    "text": "@shulan087 打到500k之后直接公开",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106684960908411379",
+    "in_reply_to_id": "2106671946754875869",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106671946754875869"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 22
+    },
+    "fetched_at": "2026-10-29T00:36:44.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106684927949377872",
+    "url": "https://x.com/Chilljccu/status/2106684927949377872",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T09:56:41.000Z",
+    "lang": "",
+    "text": "@dao_wan73049 嘻嘻嘻",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106684927949377872",
+    "in_reply_to_id": "2106671241394315525",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106671241394315525",
+        "author_id": "1720530872125079552",
+        "author_username": "dao_wan73049",
+        "author_name": "智勇双全甜甜",
+        "text": "@Chilljccu 天才 你简直是"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 20
+    },
+    "fetched_at": "2026-10-29T00:36:44.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106684884517605472",
+    "url": "https://x.com/Chilljccu/status/2106684884517605472",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T09:56:31.000Z",
+    "lang": "",
+    "text": "@Sixtimenight 豆包是啥子",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106684884517605472",
+    "in_reply_to_id": "2106670482246504905",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106670482246504905"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 101
+    },
+    "fetched_at": "2026-10-29T00:36:44.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106684817551348165",
+    "url": "https://x.com/Chilljccu/status/2106684817551348165",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T09:56:15.000Z",
+    "lang": "",
+    "text": "@YxzRainy 确实",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106684817551348165",
+    "in_reply_to_id": "2106670286817128460",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106670286817128460",
+        "author_id": "1994485839402057728",
+        "author_username": "YxzRainy",
+        "author_name": "兴雨",
+        "text": "@Chilljccu 那就不知道了，反正至少现在来看，流量这一波吃满了"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 41
+    },
+    "fetched_at": "2026-10-29T00:36:44.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106684771413688446",
+    "url": "https://x.com/Chilljccu/status/2106684771413688446",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T09:56:04.000Z",
+    "lang": "",
+    "text": "@fly3nn 哈哈",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106684771413688446",
+    "in_reply_to_id": "2106668399204134916",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106668399204134916",
+        "author_id": "1854066640847298560",
+        "author_username": "fly3nn",
+        "author_name": "Flynn",
+        "text": "@Chilljccu 我日。。。"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 12
+    },
+    "fetched_at": "2026-10-29T00:36:44.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106665418526269821",
+    "url": "https://x.com/Chilljccu/status/2106665418526269821",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T08:39:10.000Z",
+    "lang": "",
+    "text": "@bangbuilds nb",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106665418526269821",
+    "in_reply_to_id": "2106362154911936638",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106362154911936638",
+        "author_id": "1675164990591098880",
+        "author_username": "bangbuilds",
+        "author_name": "邦法",
+        "text": "很多人要的 skill 来了。\nskill 做好后我又做了一首：苏轼《赤壁怀古》。\n72 秒的片子，50 分钟，28 万token。\nskill ：https://t.co/8D6VVEjrNr https://t.co/cVr8GEWpa5 https://t.co/dA0mVFhtTY"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 158
+    },
+    "fetched_at": "2026-10-29T00:36:44.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106665155572699456",
+    "url": "https://x.com/Chilljccu/status/2106665155572699456",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T08:38:07.000Z",
+    "lang": "",
+    "text": "@heyholly_ 没有肯德基好吃",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106665155572699456",
+    "in_reply_to_id": "2106664565136335159",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106664565136335159",
+        "author_id": "2027319017984471040",
+        "author_username": "wubuke_",
+        "author_name": "吴不可",
+        "text": "@Chilljccu 我觉得农村大席是最好吃的，不接受反驳"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 480
+    },
+    "fetched_at": "2026-10-29T00:36:44.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106665079974596806",
+    "url": "https://x.com/Chilljccu/status/2106665079974596806",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T08:37:49.000Z",
+    "lang": "",
+    "text": "@Black_GTone 真的",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106665079974596806",
+    "in_reply_to_id": "2106664437205917926",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106664437205917926",
+        "author_id": "2095493164190810112",
+        "author_username": "JunJun0321A",
+        "author_name": "李悦君",
+        "text": "@Chilljccu 肯定假的"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 4
+    },
+    "fetched_at": "2026-10-29T00:36:44.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106664245425533127",
+    "url": "https://x.com/Chilljccu/status/2106664245425533127",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T08:34:30.000Z",
+    "lang": "",
+    "text": "@Black_GTone 假的",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106664245425533127",
+    "in_reply_to_id": "2106659487088283961",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106659487088283961",
+        "author_id": "2095493164190810112",
+        "author_username": "JunJun0321A",
+        "author_name": "李悦君",
+        "text": "我艹泥马，这世界上有K罩杯的吗 https://t.co/ph6IvrgYfu"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 41
+    },
+    "fetched_at": "2026-10-29T00:36:44.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106664191017050318",
+    "url": "https://x.com/Chilljccu/status/2106664191017050318",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T08:34:17.000Z",
+    "lang": "",
+    "text": "@btcmos 吹牛逼",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106664191017050318",
+    "in_reply_to_id": "2106428314147586344",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106428314147586344",
+        "author_id": "1865722200185307136",
+        "author_username": "btcmos",
+        "author_name": "香港老雷",
+        "text": "我不懂就问：\n\n什么行业一定不会被AI替代？且有可能暴富的那种？\n普通人有可能赚到1个亿的那种体量\n\n不许说男女身体互动行业。"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 18
+    },
+    "fetched_at": "2026-10-29T00:36:44.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106664121584496960",
+    "url": "https://x.com/Chilljccu/status/2106664121584496960",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T08:34:01.000Z",
+    "lang": "",
+    "text": "@ljhbbw 接受不了",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106664121584496960",
+    "in_reply_to_id": "2106316218085061094",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106316218085061094",
+        "author_id": "2079138517276569600",
+        "author_username": "ljhbbw",
+        "author_name": "林三",
+        "text": "朋友和一个漂亮妹子谈了三个月，\n\n眼看就要谈婚论嫁，\n\n对方突然说自己是石女，\n\n我朋友当场就退了。\n\n大家能接受另一半是石女吗？"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 113
+    },
+    "fetched_at": "2026-10-29T00:36:44.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106663646227296735",
+    "url": "https://x.com/Chilljccu/status/2106663646227296735",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T08:32:07.000Z",
+    "lang": "",
+    "text": "@bangbuilds hh",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106663646227296735",
+    "in_reply_to_id": "2106663454144970819",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106663454144970819",
+        "author_id": "1675164990591098880",
+        "author_username": "bangbuilds",
+        "author_name": "邦法",
+        "text": "@Chilljccu 哈哈，优秀。"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 116
+    },
+    "fetched_at": "2026-10-29T00:36:44.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106663614757425347",
+    "url": "https://x.com/Chilljccu/status/2106663614757425347",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T08:32:00.000Z",
+    "lang": "",
+    "text": "@fly3nn 谢谢",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106663614757425347",
+    "in_reply_to_id": "2106663444368032063",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106663444368032063",
+        "author_id": "1854066640847298560",
+        "author_username": "fly3nn",
+        "author_name": "Flynn",
+        "text": "@Chilljccu 我靠，加油,国庆直接通关"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 50
+    },
+    "fetched_at": "2026-10-29T00:36:44.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106663562919960862",
+    "url": "https://x.com/Chilljccu/status/2106663562919960862",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T08:31:47.000Z",
+    "lang": "",
+    "text": "@wangchangfu88 我已找到宝藏",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106663562919960862",
+    "in_reply_to_id": "2106663405495239071",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106663405495239071",
+        "author_id": "949316104144457729",
+        "author_username": "wangchangfu88",
+        "author_name": "王长富",
+        "text": "@Chilljccu 写几个爆款，直接速通"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 50
+    },
+    "fetched_at": "2026-10-29T00:36:44.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106662563857723579",
+    "url": "https://x.com/Chilljccu/status/2106662563857723579",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T08:27:49.000Z",
+    "lang": "",
+    "text": "@dao_wan73049 就是ai",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106662563857723579",
+    "in_reply_to_id": "2106638828823790011",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106638828823790011",
+        "author_id": "1720530872125079552",
+        "author_username": "dao_wan73049",
+        "author_name": "智勇双全甜甜",
+        "text": "你们看下 我感觉这肯定是ai 我不确定 https://t.co/Wq770MDOLD"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 18
+    },
+    "fetched_at": "2026-10-29T00:36:44.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106662476628836784",
+    "url": "https://x.com/Chilljccu/status/2106662476628836784",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T08:27:28.000Z",
+    "lang": "",
+    "text": "@ljhbbw 友商是傻逼",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106662476628836784",
+    "in_reply_to_id": "2106599341280669795",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106599341280669795",
+        "author_id": "2079138517276569600",
+        "author_username": "ljhbbw",
+        "author_name": "林三",
+        "text": "你以为的商战:\n\n价格战，法律战，营销战，技术战\n\n现实中的商战 be like ↓ https://t.co/s1YvkAxgQ2"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 34
+    },
+    "fetched_at": "2026-10-29T00:36:44.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106662361285394841",
+    "url": "https://x.com/Chilljccu/status/2106662361285394841",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T08:27:01.000Z",
+    "lang": "",
+    "text": "@tart_egg25188 股股嘎嘎",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106662361285394841",
+    "in_reply_to_id": "2106660090979958930",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106660090979958930",
+        "author_id": "1804721568955912192",
+        "author_username": "tart_egg25188",
+        "author_name": "egg tart（互～回～）",
+        "text": "欺负我的人，你全家都在蛋仔岛，失望的看着你，你爸爸变成了蛋小黄，你妈妈变成了蛋小红，你哥哥变成了蛋小蓝，你姐姐变成了蛋小紫，你妹妹变成了蛋小粉，你弟弟变成了蛋小绿"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 25
+    },
+    "fetched_at": "2026-10-29T00:36:44.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106661729564500229",
+    "url": "https://x.com/Chilljccu/status/2106661729564500229",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T08:24:30.000Z",
+    "lang": "",
+    "text": "还有355K，我已找到焚决，我将花一周时间速通 https://t.co/kfeGn8vbSf",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106661729564500229",
+    "in_reply_to_id": null,
+    "referenced_tweets": [],
+    "media": [
+      {
+        "type": "photo",
+        "url": "https://pbs.twimg.com/media/HTxdgRobMAAxJRn.png"
+      }
+    ],
+    "public_metrics": {
+      "like": 14,
+      "reply": 15,
+      "repost": 0,
+      "quote": 1,
+      "impression": 2272
+    },
+    "fetched_at": "2026-10-29T00:36:44.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106661207130374362",
+    "url": "https://x.com/Chilljccu/status/2106661207130374362",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T08:22:26.000Z",
+    "lang": "",
+    "text": "@Macro_Zyaire 这是高级爆金币大法",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106661207130374362",
+    "in_reply_to_id": "2106660946567680311",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106660946567680311",
+        "author_id": "3026402591",
+        "author_username": "Macro_Zyaire",
+        "author_name": "Leesanity（减肥版）",
+        "text": "@Chilljccu 什么集合竞价机制"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 696
+    },
+    "fetched_at": "2026-10-29T00:36:44.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106661046295593041",
+    "url": "https://x.com/Chilljccu/status/2106661046295593041",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T08:21:47.000Z",
+    "lang": "",
+    "text": "国庆给大家准备了131亿，大家可自取 https://t.co/sWZI33EDWs",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106661046295593041",
+    "in_reply_to_id": null,
+    "referenced_tweets": [],
+    "media": [
+      {
+        "type": "photo",
+        "url": "https://pbs.twimg.com/media/HTxc8v5agAAgeqb.jpg"
+      }
+    ],
+    "public_metrics": {
+      "like": 4,
+      "reply": 5,
+      "repost": 0,
+      "quote": 0,
+      "impression": 2193
+    },
+    "fetched_at": "2026-10-29T00:36:44.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106660690413125934",
+    "url": "https://x.com/Chilljccu/status/2106660690413125934",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T08:20:23.000Z",
+    "lang": "",
+    "text": "超越99%的农村大席\n\n不管是价钱还是味道 https://t.co/KfuR5KgKZz",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106660690413125934",
+    "in_reply_to_id": null,
+    "referenced_tweets": [],
+    "media": [
+      {
+        "type": "photo",
+        "url": "https://pbs.twimg.com/media/HTxcj2ubMAAI-1A.jpg"
+      }
+    ],
+    "public_metrics": {
+      "like": 7,
+      "reply": 4,
+      "repost": 0,
+      "quote": 0,
+      "impression": 7967
+    },
+    "fetched_at": "2026-10-29T00:36:44.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106660297947976055",
+    "url": "https://x.com/Chilljccu/status/2106660297947976055",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T08:18:49.000Z",
+    "lang": "",
+    "text": "来个人告诉我打音游的都是这样吗？？\n\n这也太魔了吧 https://t.co/nBnys0mASk",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106660297947976055",
+    "in_reply_to_id": null,
+    "referenced_tweets": [],
+    "media": [
+      {
+        "type": "video",
+        "url": "https://pbs.twimg.com/amplify_video_thumb/2106660177214861312/img/VIrcSNoTl5lS06ko.jpg"
+      }
+    ],
+    "public_metrics": {
+      "like": 2,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 970
+    },
+    "fetched_at": "2026-10-29T00:36:44.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106658156340515168",
+    "url": "https://x.com/Chilljccu/status/2106658156340515168",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T08:10:18.000Z",
+    "lang": "",
+    "text": "@YxzRainy 自己搭一个",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106658156340515168",
+    "in_reply_to_id": "2106607999540404656",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106607999540404656",
+        "author_id": "1994485839402057728",
+        "author_username": "YxzRainy",
+        "author_name": "兴雨",
+        "text": "我他🐎怎么感觉最近又变严了！！！\n\n这几天节点和 VPN 明显不太稳定，\n动不动 X 的帖子都发不出去....\n\n每次一出问题，打开节点一看：\n\n又他🐎红了一大片🤣\n\n有没有稳定便宜的节点推荐？？？"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 230
+    },
+    "fetched_at": "2026-10-29T00:36:44.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106658040791597058",
+    "url": "https://x.com/Chilljccu/status/2106658040791597058",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T08:09:51.000Z",
+    "lang": "zh",
+    "text": "@wangchangfu88 学习宏哥保养",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106648012609200459",
+    "in_reply_to_id": "2106648012609200459",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106648012609200459",
+        "author_id": "949316104144457729",
+        "author_username": "wangchangfu88",
+        "author_name": "王长富",
+        "text": "刚看了个王力宏的实拍视频\n\n我他妈简直惊呆了\n\n怎么保养的这么好？\n\n根本不像 50 岁的人\n\n反观一些女明星，40 岁就老的没法看了"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 427
+    },
+    "fetched_at": "2026-10-29T00:36:54.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106656841749103032",
+    "url": "https://x.com/Chilljccu/status/2106656841749103032",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T08:05:05.000Z",
+    "lang": "zh",
+    "text": "师傅您是做什么工作的？？ https://t.co/K7BMAf2mwD",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106656841749103032",
+    "in_reply_to_id": null,
+    "referenced_tweets": [],
+    "media": [
+      {
+        "type": "photo",
+        "url": "https://pbs.twimg.com/media/HTxZMocbsAAAQHS.jpg"
+      }
+    ],
+    "public_metrics": {
+      "like": 1,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 609
+    },
+    "fetched_at": "2026-10-29T00:36:54.000Z",
+    "source": "builtin-x",
+    "entities": {
+      "urls": [
+        {
+          "url": "https://t.co/K7BMAf2mwD",
+          "expanded_url": "https://x.com/Chilljccu/status/2106656841749103032/photo/1",
+          "display_url": "pic.x.com/K7BMAf2mwD",
+          "start": 13,
+          "end": 36
+        }
+      ]
+    }
+  },
+  {
+    "id": "2106656555257176165",
+    "url": "https://x.com/Chilljccu/status/2106656555257176165",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T08:03:57.000Z",
+    "lang": "zh",
+    "text": "@SnozakiSakura 老一辈很多把控制欲当成关心，出了事还觉得自己是为你好。",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106562191646433340",
+    "in_reply_to_id": "2106562191646433340",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106562191646433340",
+        "author_id": "1573704119516176384",
+        "author_username": "SnozakiSakura",
+        "author_name": "草莓泡芙🍀",
+        "text": "感觉很多父母辈的都不知道自己有精神病。。。\n\n代入一下太窒息了，她还是用的自己的奖学金 https://t.co/53jsmyuF67",
+        "entities": {
+          "urls": [
+            {
+              "url": "https://t.co/53jsmyuF67",
+              "expanded_url": "https://x.com/SnozakiSakura/status/2106562191646433340/photo/1",
+              "display_url": "pic.x.com/53jsmyuF67",
+              "start": 44,
+              "end": 67
+            },
+            {
+              "url": "https://t.co/53jsmyuF67",
+              "expanded_url": "https://x.com/SnozakiSakura/status/2106562191646433340/photo/1",
+              "display_url": "pic.x.com/53jsmyuF67",
+              "start": 44,
+              "end": 67
+            }
+          ]
+        }
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 18,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 1959
+    },
+    "fetched_at": "2026-10-29T00:36:54.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106656376265298111",
+    "url": "https://x.com/Chilljccu/status/2106656376265298111",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T08:03:14.000Z",
+    "lang": "zh",
+    "text": "@Youzigoyouzigo 1000万吧",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106542316207169976",
+    "in_reply_to_id": "2106542316207169976",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106542316207169976",
+        "author_id": "1223042628641423360",
+        "author_username": "Youzigoyouzigo",
+        "author_name": "柚子狗",
+        "text": "不懂就问：\n\n要多少曝光量\n\n才能在X上得到$2000?"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 11
+    },
+    "fetched_at": "2026-10-29T00:36:54.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106656207637532822",
+    "url": "https://x.com/Chilljccu/status/2106656207637532822",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T08:02:34.000Z",
+    "lang": "zh",
+    "text": "@YxzRainy 有也是装出来的",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106653837696307611",
+    "in_reply_to_id": "2106653837696307611",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106653837696307611",
+        "author_id": "1994485839402057728",
+        "author_username": "YxzRainy",
+        "author_name": "兴雨",
+        "text": "说真的，每次看到有人说\n邵艾伦是傻 B 我就想笑🤣\n\n一个雅思口语满分，\n做了 8 年互联网，\nB 站抖音加起来 600 多万粉，\n卖课赚过钱，做产品赚过钱，\n换个平台段时间重新起号，\n到现在还能一直有流量的人。\n\n你可以觉得他像个傻 B，\n但这他🐎能真是傻 B？？？"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 1104
+    },
+    "fetched_at": "2026-10-29T00:36:54.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106656030327509096",
+    "url": "https://x.com/Chilljccu/status/2106656030327509096",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T08:01:52.000Z",
+    "lang": "zh",
+    "text": "@AndyL5cc 很难的",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106621255235543340",
+    "in_reply_to_id": "2106621255235543340",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106621255235543340",
+        "author_id": "1877387580582539270",
+        "author_username": "AndyL5cc",
+        "author_name": "Andy L",
+        "text": "AI 现在到底有没有意识？\n\n未来会不会真的产生意识？"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 36
+    },
+    "fetched_at": "2026-10-29T00:36:54.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106655667180442092",
+    "url": "https://x.com/Chilljccu/status/2106655667180442092",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T08:00:25.000Z",
+    "lang": "zh",
+    "text": "@YxzRainy 看我新发的几个",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106648822680375795",
+    "in_reply_to_id": "2106655438863245772",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106655438863245772",
+        "author_id": "1994485839402057728",
+        "author_username": "YxzRainy",
+        "author_name": "兴雨",
+        "text": "@Chilljccu 那不都是一些杀马特文案吗？🤣"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 35
+    },
+    "fetched_at": "2026-10-29T00:36:54.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106655602865025073",
+    "url": "https://x.com/Chilljccu/status/2106655602865025073",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T08:00:10.000Z",
+    "lang": "zh",
+    "text": "@xixiha12361 的确是为了自己",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106646805748634036",
+    "in_reply_to_id": "2106646805748634036",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106646805748634036",
+        "author_id": "1778480089656868865",
+        "author_username": "xixiha12361",
+        "author_name": "Winnie",
+        "text": "知道为什么运营X你再累也一直干吗\n\n因为你知道这是在给你自己打工"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 15
+    },
+    "fetched_at": "2026-10-29T00:36:54.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106654997484314830",
+    "url": "https://x.com/Chilljccu/status/2106654997484314830",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T07:57:45.000Z",
+    "lang": "zh",
+    "text": "加油还有两个月这一年就白费了🤣🤣",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106654997484314830",
+    "in_reply_to_id": null,
+    "referenced_tweets": [],
+    "media": [],
+    "public_metrics": {
+      "like": 4,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 955
+    },
+    "fetched_at": "2026-10-29T00:36:54.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106654872729014442",
+    "url": "https://x.com/Chilljccu/status/2106654872729014442",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T07:57:16.000Z",
+    "lang": "zh",
+    "text": "@AdrianPunk115 黑话没有，那专有名词算不算",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106653498918285408",
+    "in_reply_to_id": "2106654541248934250",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106654541248934250",
+        "author_id": "2047631450829471745",
+        "author_username": "AdrianPunk115",
+        "author_name": "Adrian Punk",
+        "text": "@Chilljccu 🤣黑话是没有的"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 16
+    },
+    "fetched_at": "2026-10-29T00:36:54.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106654613609013485",
+    "url": "https://x.com/Chilljccu/status/2106654613609013485",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T07:56:14.000Z",
+    "lang": "zh",
+    "text": "@tart_egg25188 有空吗？",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106644755551793372",
+    "in_reply_to_id": "2106644755551793372",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106644755551793372",
+        "author_id": "1804721568955912192",
+        "author_username": "tart_egg25188",
+        "author_name": "egg tart（互～回～）",
+        "text": "10月4号到底是什么日子，怎么这么多妹子问我有没有空"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 58
+    },
+    "fetched_at": "2026-10-29T00:36:54.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106653816359936250",
+    "url": "https://x.com/Chilljccu/status/2106653816359936250",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T07:53:04.000Z",
+    "lang": "zh",
+    "text": "@AveryMarti48726 100 位拆解计划本身有个风险：它把「还没开始写」重新包装成了一个可以无限推进的项目。拆第 3 位和第 30 位时，卡住你的问题大概率还是同一句：凭什么有人看我。与其按人数推进，不如规定每拆一位必须发布一篇自己的实测，拆解只作为附录，不作为主线。",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106389411634274712",
+    "in_reply_to_id": "2106389411634274712",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106389411634274712",
+        "author_id": "2012001261621821442",
+        "author_username": "LeonXAI_",
+        "author_name": "Leon.X",
+        "text": "https://t.co/U4IWLLaccn",
+        "entities": {
+          "urls": [
+            {
+              "url": "https://t.co/U4IWLLaccn",
+              "expanded_url": "https://x.com/i/article/2106376503449800705",
+              "display_url": "x.com/i/article/2106…",
+              "start": 0,
+              "end": 23,
+              "unwound_url": "https://x.com/i/article/2106376503449800705"
+            }
+          ]
+        }
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 24
+    },
+    "fetched_at": "2026-10-29T00:36:54.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106653498918285408",
+    "url": "https://x.com/Chilljccu/status/2106653498918285408",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T07:51:48.000Z",
+    "lang": "zh",
+    "text": "Ai行业黑话，学会直接跟大佬谈笑风生\n\n学ai小程序不可或缺的一环 https://t.co/6pU73NBzVY",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106653498918285408",
+    "in_reply_to_id": null,
+    "referenced_tweets": [
+      {
+        "type": "quoted",
+        "id": "2106319977859153935",
+        "author_id": "2047631450829471745",
+        "author_username": "AdrianPunk115",
+        "author_name": "Adrian Punk",
+        "text": "https://t.co/EmsvYVdY3h",
+        "entities": {
+          "urls": [
+            {
+              "url": "https://t.co/EmsvYVdY3h",
+              "expanded_url": "https://x.com/i/article/2106317967890042880",
+              "display_url": "x.com/i/article/2106…",
+              "start": 0,
+              "end": 23,
+              "unwound_url": "https://x.com/i/article/2106317967890042880"
+            }
+          ]
+        }
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 4,
+      "reply": 1,
+      "repost": 1,
+      "quote": 0,
+      "impression": 1026
+    },
+    "fetched_at": "2026-10-29T00:36:54.000Z",
+    "source": "builtin-x",
+    "entities": {
+      "urls": [
+        {
+          "url": "https://t.co/6pU73NBzVY",
+          "expanded_url": "https://twitter.com/AdrianPunk115/status/2106319977859153935",
+          "display_url": "x.com/AdrianPunk115/…",
+          "start": 34,
+          "end": 57
+        }
+      ]
+    }
+  },
+  {
+    "id": "2106652731792609673",
+    "url": "https://x.com/Chilljccu/status/2106652731792609673",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T07:48:45.000Z",
+    "lang": "ja",
+    "text": "小茅蜜 https://t.co/ijuE1Ncb52",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106652731792609673",
+    "in_reply_to_id": null,
+    "referenced_tweets": [],
+    "media": [
+      {
+        "type": "video",
+        "url": "https://pbs.twimg.com/amplify_video_thumb/2106652649827528705/img/_1bDOPEj_7Hn1Q_s.jpg"
+      }
+    ],
+    "public_metrics": {
+      "like": 17,
+      "reply": 1,
+      "repost": 2,
+      "quote": 0,
+      "impression": 4647
+    },
+    "fetched_at": "2026-10-29T00:36:54.000Z",
+    "source": "builtin-x",
+    "entities": {
+      "urls": [
+        {
+          "url": "https://t.co/ijuE1Ncb52",
+          "expanded_url": "https://x.com/Chilljccu/status/2106652731792609673/video/1",
+          "display_url": "pic.x.com/ijuE1Ncb52",
+          "start": 4,
+          "end": 27
+        }
+      ]
+    }
+  },
+  {
+    "id": "2106652376895733844",
+    "url": "https://x.com/Chilljccu/status/2106652376895733844",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T07:47:21.000Z",
+    "lang": "ja",
+    "text": "豆包是啥子AI？ https://t.co/Z0IEhNHo5y",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106652376895733844",
+    "in_reply_to_id": null,
+    "referenced_tweets": [],
+    "media": [
+      {
+        "type": "photo",
+        "url": "https://pbs.twimg.com/media/HTxVH0QbwAAmYAd.jpg"
+      }
+    ],
+    "public_metrics": {
+      "like": 9,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 6819
+    },
+    "fetched_at": "2026-10-29T00:36:54.000Z",
+    "source": "builtin-x",
+    "entities": {
+      "urls": [
+        {
+          "url": "https://t.co/Z0IEhNHo5y",
+          "expanded_url": "https://x.com/Chilljccu/status/2106652376895733844/photo/1",
+          "display_url": "pic.x.com/Z0IEhNHo5y",
+          "start": 9,
+          "end": 32
+        }
+      ]
+    }
+  },
+  {
+    "id": "2106652151913308435",
+    "url": "https://x.com/Chilljccu/status/2106652151913308435",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T07:46:27.000Z",
+    "lang": "zh",
+    "text": "福利姬的变现方向\n\n轻松财富自由 https://t.co/31bhqWFWWt",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106652151913308435",
+    "in_reply_to_id": null,
+    "referenced_tweets": [],
+    "media": [
+      {
+        "type": "photo",
+        "url": "https://pbs.twimg.com/media/HTxU0OLaoAADx6X.jpg"
+      }
+    ],
+    "public_metrics": {
+      "like": 8,
+      "reply": 2,
+      "repost": 0,
+      "quote": 0,
+      "impression": 15687
+    },
+    "fetched_at": "2026-10-29T00:36:54.000Z",
+    "source": "builtin-x",
+    "entities": {
+      "urls": [
+        {
+          "url": "https://t.co/31bhqWFWWt",
+          "expanded_url": "https://x.com/Chilljccu/status/2106652151913308435/photo/1",
+          "display_url": "pic.x.com/31bhqWFWWt",
+          "start": 17,
+          "end": 40
+        }
+      ]
+    }
+  },
+  {
+    "id": "2106651441872191606",
+    "url": "https://x.com/Chilljccu/status/2106651441872191606",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T07:43:38.000Z",
+    "lang": "zh",
+    "text": "@0xarthurzs 这篇要爆了，迎来新时代",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106625369268760809",
+    "in_reply_to_id": "2106625369268760809",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106625369268760809",
+        "author_id": "4143813076",
+        "author_username": "0xarthurzs",
+        "author_name": "Arthur C",
+        "text": "中文区已经被下三路内容占领，猫哥已经看吐了✈️，\n\n猫哥抓破脑袋想了十天十夜，终于决定给大家整点高质量英文信息，\n\n我整理了这份《英文X最值得关注的头部博主》。\n帮你打造一个高质量、低噪音的信息时间线。\n\n少点✈️、性压抑、薄肌，多看看英文区真正做 AI、创业、SaaS、出海、副业的人到底在干嘛。 https://t.co/nJDIJVl21z",
+        "entities": {
+          "urls": [
+            {
+              "url": "https://t.co/nJDIJVl21z",
+              "expanded_url": "https://x.com/0xarthurzs/status/2106625369268760809/photo/1",
+              "display_url": "pic.x.com/nJDIJVl21z",
+              "start": 150,
+              "end": 173
+            }
+          ]
+        }
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 1646
+    },
+    "fetched_at": "2026-10-29T00:36:54.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106651200984928500",
+    "url": "https://x.com/Chilljccu/status/2106651200984928500",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T07:42:40.000Z",
+    "lang": "zh",
+    "text": "@Macro_Zyaire 哈哈哈装上qq年轻10岁",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106648822680375795",
+    "in_reply_to_id": "2106651084995584144",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106651084995584144",
+        "author_id": "3026402591",
+        "author_username": "Macro_Zyaire",
+        "author_name": "Leesanity（减肥版）",
+        "text": "@Chilljccu chovy，那我也得用了，毕竟我才 18 岁"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 6
+    },
+    "fetched_at": "2026-10-29T00:36:54.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106650962102460437",
+    "url": "https://x.com/Chilljccu/status/2106650962102460437",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T07:41:43.000Z",
+    "lang": "zh",
+    "text": "@Macro_Zyaire 年轻的都用",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106648822680375795",
+    "in_reply_to_id": "2106650822071423295",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106650822071423295",
+        "author_id": "3026402591",
+        "author_username": "Macro_Zyaire",
+        "author_name": "Leesanity（减肥版）",
+        "text": "@Chilljccu 这年头还有人用 qq 吗"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 33
+    },
+    "fetched_at": "2026-10-29T00:36:54.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106650822713262354",
+    "url": "https://x.com/Chilljccu/status/2106650822713262354",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T07:41:10.000Z",
+    "lang": "zh",
+    "text": "@Cokexyy 七岁那会儿不懂事，现在更不敢了",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106637249685422150",
+    "in_reply_to_id": "2106637249685422150",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106637249685422150",
+        "author_id": "1734565139867910144",
+        "author_username": "Cokexyy",
+        "author_name": "Coke",
+        "text": "7岁的时候你拒绝了14岁的姐姐\n\n那现在17岁\n\n你还拒绝会一个24岁170御姐 微胖 小肚子 大长肉腿冷白皮黑长直 温柔体贴 包容 宠溺妈妈系引导型恋人 对外人很冷漠却只黏着你的大姐姐吗？"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 18
+    },
+    "fetched_at": "2026-10-29T00:36:54.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106650700965114290",
+    "url": "https://x.com/Chilljccu/status/2106650700965114290",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T07:40:41.000Z",
+    "lang": "ja",
+    "text": "@Macro_Zyaire 是的",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106648718254743710",
+    "in_reply_to_id": "2106650562473394224",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106650562473394224",
+        "author_id": "3026402591",
+        "author_username": "Macro_Zyaire",
+        "author_name": "Leesanity（减肥版）",
+        "text": "@Chilljccu 让 AI 干活就和给下属布置任务一样，越细节做的越不偏离，越宽泛那就要发挥他们自己的聪明才智了"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 44
+    },
+    "fetched_at": "2026-10-29T00:36:54.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106650628324040983",
+    "url": "https://x.com/Chilljccu/status/2106650628324040983",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T07:40:24.000Z",
+    "lang": "zh",
+    "text": "@PBDXLB 真话和真诚本来就不是一回事",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106633155969220701",
+    "in_reply_to_id": "2106633155969220701",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106633155969220701",
+        "author_id": "1915412639569891328",
+        "author_username": "PBDXLB",
+        "author_name": "漂泊的蟹老板",
+        "text": "真诚是一种感觉\n\n让你真诚的人他自己都不真诚\n\n说一些无关要紧的真话\n\n脑子灵活将自己的真实目的隐藏起来\n\n同时又能让对方感觉到你的真诚\n\n而你又能从对方话中揣摩到其他信息\n\n等什么时候你能练到这种程度\n\n再加上自身有点价值\n\n那么你在人际关系中就会很吃香"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 6
+    },
+    "fetched_at": "2026-10-29T00:36:54.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106649029052674467",
+    "url": "https://x.com/Chilljccu/status/2106649029052674467",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T07:34:02.000Z",
+    "lang": "zh",
+    "text": "@Macro_Zyaire 刚好搭配",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106607242812498292",
+    "in_reply_to_id": "2106607242812498292",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106607242812498292",
+        "author_id": "3026402591",
+        "author_username": "Macro_Zyaire",
+        "author_name": "Leesanity（减肥版）",
+        "text": "傲娇女真的很好呀，我后任就是 https://t.co/FL3yNswFsO",
+        "entities": {
+          "urls": [
+            {
+              "url": "https://t.co/FL3yNswFsO",
+              "expanded_url": "https://twitter.com/yuudecideall/status/2106406050845061527",
+              "display_url": "x.com/yuudecideall/s…",
+              "start": 15,
+              "end": 38
+            }
+          ]
+        }
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 8
+    },
+    "fetched_at": "2026-10-29T00:36:54.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106648822680375795",
+    "url": "https://x.com/Chilljccu/status/2106648822680375795",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T07:33:13.000Z",
+    "lang": "zh",
+    "text": "我辛辛苦苦在网上找半天的灵感，不如我在QQ群随便一看",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106648822680375795",
+    "in_reply_to_id": null,
+    "referenced_tweets": [],
+    "media": [],
+    "public_metrics": {
+      "like": 5,
+      "reply": 4,
+      "repost": 0,
+      "quote": 0,
+      "impression": 1035
+    },
+    "fetched_at": "2026-10-29T00:36:54.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106648718254743710",
+    "url": "https://x.com/Chilljccu/status/2106648718254743710",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T07:32:48.000Z",
+    "lang": "zh",
+    "text": "现在写AI提示词第一句不一般都是“你是XXX领域的专家”\n\n这他妈搁古代不就是请神吗？\n\n有没有一种可能笔仙其实是最早的AI？\n\n那现在干ai的人，搁古代是不是就是神官道士，都是嘴里都操着一口普通人听不懂的话，看着算出来一段数字，然后脸色大变",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106648718254743710",
+    "in_reply_to_id": null,
+    "referenced_tweets": [],
+    "media": [],
+    "public_metrics": {
+      "like": 3,
+      "reply": 2,
+      "repost": 0,
+      "quote": 0,
+      "impression": 1159
+    },
+    "fetched_at": "2026-10-29T00:36:54.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106647782513877040",
+    "url": "https://x.com/Chilljccu/status/2106647782513877040",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T07:29:05.000Z",
+    "lang": "",
+    "text": "@HklgllnaeiW 比不过拿刀普通人",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106647782513877040",
+    "in_reply_to_id": "2106647151363387768",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106647151363387768",
+        "author_id": "1908940517213405184",
+        "author_username": "HklgllnaeiW",
+        "author_name": "HklgllnaeiW",
+        "text": "@Chilljccu 那ai+愤怒程序员＞什么"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 130
+    },
+    "fetched_at": "2026-10-29T00:37:03.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106647563936125418",
+    "url": "https://x.com/Chilljccu/status/2106647563936125418",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T07:28:13.000Z",
+    "lang": "",
+    "text": "@c1qai 是的",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106647563936125418",
+    "in_reply_to_id": "2106644167061651762",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106644167061651762",
+        "author_id": "2088823846749274112",
+        "author_username": "c1qai",
+        "author_name": "禹琪",
+        "text": "@Chilljccu 我也看到过，好像是淮阴一中的"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 1479
+    },
+    "fetched_at": "2026-10-29T00:37:03.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106647527558939132",
+    "url": "https://x.com/Chilljccu/status/2106647527558939132",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T07:28:04.000Z",
+    "lang": "",
+    "text": "@PBDXLB 😂😂",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106647527558939132",
+    "in_reply_to_id": "2106636796557984147",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106636796557984147",
+        "author_id": "1915412639569891328",
+        "author_username": "PBDXLB",
+        "author_name": "漂泊的蟹老板",
+        "text": "@Chilljccu 一下子愧疚感就上来了"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 115
+    },
+    "fetched_at": "2026-10-29T00:37:03.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106647504205086911",
+    "url": "https://x.com/Chilljccu/status/2106647504205086911",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T07:27:59.000Z",
+    "lang": "",
+    "text": "@Jerry1202004691 哈哈哈",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106647504205086911",
+    "in_reply_to_id": "2106633835467378984",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106633835467378984",
+        "author_id": "1400739351215104000",
+        "author_username": "Jerry1202004691",
+        "author_name": "Jerry123 π⚡️🔶️",
+        "text": "@Chilljccu 太拼了，不要命"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 98
+    },
+    "fetched_at": "2026-10-29T00:37:03.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106631310261240169",
+    "url": "https://x.com/Chilljccu/status/2106631310261240169",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T06:23:38.000Z",
+    "lang": "",
+    "text": "@tart_egg25188 灵感是不是有点太多了？",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106631310261240169",
+    "in_reply_to_id": "2106606708349149437",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106606708349149437",
+        "author_id": "1804721568955912192",
+        "author_username": "tart_egg25188",
+        "author_name": "egg tart（互～回～）",
+        "text": "唉我又被骗了，说转88看尿尿的地方 原来是厕所"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 60
+    },
+    "fetched_at": "2026-10-29T00:37:03.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106631176094113868",
+    "url": "https://x.com/Chilljccu/status/2106631176094113868",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T06:23:06.000Z",
+    "lang": "",
+    "text": "@Dicklong1999 正确的",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106631176094113868",
+    "in_reply_to_id": "2106625960091283593",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106625960091283593",
+        "author_id": "2016377836471529473",
+        "author_username": "Dicklong1999",
+        "author_name": "liftoff",
+        "text": "@Chilljccu &gt;普通人"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 81
+    },
+    "fetched_at": "2026-10-29T00:37:03.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106631141352726644",
+    "url": "https://x.com/Chilljccu/status/2106631141352726644",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T06:22:58.000Z",
+    "lang": "",
+    "text": "@bei351009016 我去",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106631141352726644",
+    "in_reply_to_id": "2106622268277391568",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106622268277391568",
+        "author_id": "1628264584233775104",
+        "author_username": "bei351009016",
+        "author_name": "傲慢",
+        "text": "@Chilljccu 躺平的程序员"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 74
+    },
+    "fetched_at": "2026-10-29T00:37:03.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106631113108275361",
+    "url": "https://x.com/Chilljccu/status/2106631113108275361",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T06:22:51.000Z",
+    "lang": "",
+    "text": "@Ryo_onmyway 超越愤怒普通人的来了",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106631113108275361",
+    "in_reply_to_id": "2106620515578486870",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106620515578486870",
+        "author_id": "2009936998304493575",
+        "author_username": "Ryo_onmyway",
+        "author_name": "在路上的小凉",
+        "text": "@Chilljccu 愤怒程序员"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 54
+    },
+    "fetched_at": "2026-10-29T00:37:03.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106631045152153966",
+    "url": "https://x.com/Chilljccu/status/2106631045152153966",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T06:22:35.000Z",
+    "lang": "",
+    "text": "@Sixtimenight 直接把普通人拿捏了",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106631045152153966",
+    "in_reply_to_id": "2106630175278637475",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106630175278637475"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 46
+    },
+    "fetched_at": "2026-10-29T00:37:03.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106630883281350873",
+    "url": "https://x.com/Chilljccu/status/2106630883281350873",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T06:21:56.000Z",
+    "lang": "",
+    "text": "@kang53440576 很强啊！",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106630883281350873",
+    "in_reply_to_id": "2106618125982761273",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106618125982761273",
+        "author_id": "1417959463743492096",
+        "author_username": "kang53440576",
+        "author_name": "666",
+        "text": "2个月 \n6万粉丝 什么水平？ https://t.co/6QmUOSiOtQ"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 19
+    },
+    "fetched_at": "2026-10-29T00:37:03.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106630751408329083",
+    "url": "https://x.com/Chilljccu/status/2106630751408329083",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T06:21:25.000Z",
+    "lang": "",
+    "text": "@Macro_Zyaire 好啊",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106630751408329083",
+    "in_reply_to_id": "2106593873971827124",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106593873971827124",
+        "author_id": "3026402591",
+        "author_username": "Macro_Zyaire",
+        "author_name": "Leesanity（减肥版）",
+        "text": "终于可以线上办理了吗？\n\nesim 线下办理堪比 21 世纪的马拉火车。赶紧结束这场闹剧吧 https://t.co/uRQX2PkoXu"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 18
+    },
+    "fetched_at": "2026-10-29T00:37:03.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106630679752802380",
+    "url": "https://x.com/Chilljccu/status/2106630679752802380",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T06:21:08.000Z",
+    "lang": "",
+    "text": "@Macro_Zyaire 哈哈哈",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106630679752802380",
+    "in_reply_to_id": "2106626436392182185",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106626436392182185",
+        "author_id": "3026402591",
+        "author_username": "Macro_Zyaire",
+        "author_name": "Leesanity（减肥版）",
+        "text": "@Chilljccu 清淡点，看了不烧心"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 353
+    },
+    "fetched_at": "2026-10-29T00:37:03.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106630630134125008",
+    "url": "https://x.com/Chilljccu/status/2106630630134125008",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T06:20:56.000Z",
+    "lang": "",
+    "text": "@charles12388 过几年也许就会好一点",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106630630134125008",
+    "in_reply_to_id": "2106623765224604072",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106623765224604072",
+        "author_id": "2017509869621022722",
+        "author_username": "charles12388",
+        "author_name": "charles Xiong",
+        "text": "@Chilljccu 大环境不好也就对就业比较苛刻，内地本来赚钱的行业就是千军万马过独木桥，实在不行就润吧"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 38
+    },
+    "fetched_at": "2026-10-29T00:37:03.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106630511900934386",
+    "url": "https://x.com/Chilljccu/status/2106630511900934386",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T06:20:27.000Z",
+    "lang": "",
+    "text": "@Nzssxpm 就是呀，这不添乱吗？",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106630511900934386",
+    "in_reply_to_id": "2106627752724173163",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106627752724173163",
+        "author_id": "2031690356744687616",
+        "author_username": "Nzssxpm",
+        "author_name": "Mr.Niu",
+        "text": "@Chilljccu 就是啊纯添乱不呢"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 158
+    },
+    "fetched_at": "2026-10-29T00:37:03.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106630483245424723",
+    "url": "https://x.com/Chilljccu/status/2106630483245424723",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T06:20:21.000Z",
+    "lang": "",
+    "text": "@Lucky_FLYFUTURE 有可能🤨🤨",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106630483245424723",
+    "in_reply_to_id": "2106621907856674910",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106621907856674910",
+        "author_id": "2959980958",
+        "author_username": "Lucky_FLYFUTURE",
+        "author_name": "Web3大密密",
+        "text": "@Chilljccu 也许不是在跳绳吧"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 98
+    },
+    "fetched_at": "2026-10-29T00:37:03.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106630388181602696",
+    "url": "https://x.com/Chilljccu/status/2106630388181602696",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T06:19:58.000Z",
+    "lang": "",
+    "text": "@mobeiren1 😁😁",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106630388181602696",
+    "in_reply_to_id": "2106629738328719751",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106629738328719751",
+        "author_id": "1113977206533804037",
+        "author_username": "mobeiren1",
+        "author_name": "电商腿毛哥",
+        "text": "@Chilljccu 哈哈哈哈哈哈"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 20
+    },
+    "fetched_at": "2026-10-29T00:37:03.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106630364420813127",
+    "url": "https://x.com/Chilljccu/status/2106630364420813127",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T06:19:52.000Z",
+    "lang": "",
+    "text": "@APBLOODTYPE 😁😁",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106630364420813127",
+    "in_reply_to_id": "2106616319512662017",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106616319512662017",
+        "author_id": "1492459098880700418",
+        "author_username": "APBLOODTYPE",
+        "author_name": "APBLOODTYPE",
+        "text": "@Chilljccu true dude"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 9
+    },
+    "fetched_at": "2026-10-29T00:37:03.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106630334800609572",
+    "url": "https://x.com/Chilljccu/status/2106630334800609572",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T06:19:45.000Z",
+    "lang": "",
+    "text": "@itsKairoSolo 是的",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106630334800609572",
+    "in_reply_to_id": "2106622246739644615",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106622246739644615",
+        "author_id": "1043789262209126400",
+        "author_username": "itsKairoSolo",
+        "author_name": "Kairo Solo",
+        "text": "@Chilljccu 还时刻提心吊胆的会不会封掉\n\n用个 AI 可太难了"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 21
+    },
+    "fetched_at": "2026-10-29T00:37:03.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106630312092713195",
+    "url": "https://x.com/Chilljccu/status/2106630312092713195",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T06:19:40.000Z",
+    "lang": "",
+    "text": "@tart_egg25188 👾👾",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106630312092713195",
+    "in_reply_to_id": "2106612811829051546",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106612811829051546",
+        "author_id": "1804721568955912192",
+        "author_username": "tart_egg25188",
+        "author_name": "egg tart（互～回～）",
+        "text": "@Chilljccu 确实"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 9
+    },
+    "fetched_at": "2026-10-29T00:37:03.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106630225748750405",
+    "url": "https://x.com/Chilljccu/status/2106630225748750405",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T06:19:19.000Z",
+    "lang": "",
+    "text": "@Dicklong1999 那完了",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106630225748750405",
+    "in_reply_to_id": "2106621034300670037",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106621034300670037",
+        "author_id": "2016377836471529473",
+        "author_username": "Dicklong1999",
+        "author_name": "liftoff",
+        "text": "@Chilljccu 不早说！我买了豆包年会员"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 19
+    },
+    "fetched_at": "2026-10-29T00:37:03.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106619612213481708",
+    "url": "https://x.com/Chilljccu/status/2106619612213481708",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T05:37:09.000Z",
+    "lang": "",
+    "text": "骨折还要跳绳，这不是捣乱吗？ https://t.co/Bfv7sZe5so",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106619612213481708",
+    "in_reply_to_id": null,
+    "referenced_tweets": [],
+    "media": [
+      {
+        "type": "photo",
+        "url": "https://pbs.twimg.com/media/HTw3XijbQAAtZN4.jpg"
+      }
+    ],
+    "public_metrics": {
+      "like": 3,
+      "reply": 4,
+      "repost": 0,
+      "quote": 0,
+      "impression": 3407
+    },
+    "fetched_at": "2026-10-29T00:37:03.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106619250605736369",
+    "url": "https://x.com/Chilljccu/status/2106619250605736369",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T05:35:43.000Z",
+    "lang": "",
+    "text": "我们这一代的就业环境已经是现象级的了，老一辈人永远体会不到海投简历、笔试初筛、约面试、线上面试、线下面试、抱着简历作品集赶地铁、一面二面终面、试用期三个月工资八折、有责底薪、不交社保、单休、大小休、调休、挤公交地铁通勤两小时、上下班打卡、无偿加班、转岗降薪、试用期刚过就被开、失业",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106619250605736369",
+    "in_reply_to_id": null,
+    "referenced_tweets": [],
+    "media": [],
+    "public_metrics": {
+      "like": 11,
+      "reply": 2,
+      "repost": 0,
+      "quote": 0,
+      "impression": 1385
+    },
+    "fetched_at": "2026-10-29T00:37:03.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106618874783567907",
+    "url": "https://x.com/Chilljccu/status/2106618874783567907",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T05:34:13.000Z",
+    "lang": "",
+    "text": "QQ群的神秘聊天记录\n\n现在的人玩的还是蛮开的\n\n直接就在走廊里开始口了 https://t.co/mzrwDE4Oo4",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106618874783567907",
+    "in_reply_to_id": null,
+    "referenced_tweets": [],
+    "media": [
+      {
+        "type": "video",
+        "url": "https://pbs.twimg.com/amplify_video_thumb/2106618802125602816/img/4e1UIzg4DpDx-ERN.jpg"
+      },
+      {
+        "type": "photo",
+        "url": "https://pbs.twimg.com/media/HTw2sZpbEAAqCvY.jpg"
+      }
+    ],
+    "public_metrics": {
+      "like": 40,
+      "reply": 2,
+      "repost": 2,
+      "quote": 0,
+      "impression": 30381
+    },
+    "fetched_at": "2026-10-29T00:37:03.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106618647766552794",
+    "url": "https://x.com/Chilljccu/status/2106618647766552794",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T05:33:19.000Z",
+    "lang": "",
+    "text": "真正的岁月💩书来了\n\n连上课打瞌睡的问题也一并解决了 https://t.co/Sli7aXUZ1d",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106618647766552794",
+    "in_reply_to_id": null,
+    "referenced_tweets": [],
+    "media": [
+      {
+        "type": "video",
+        "url": "https://pbs.twimg.com/amplify_video_thumb/2106618608583659520/img/9zudrcy9CqAbl-16.jpg"
+      },
+      {
+        "type": "photo",
+        "url": "https://pbs.twimg.com/media/HTw2fMKa0AARTib.jpg"
+      }
+    ],
+    "public_metrics": {
+      "like": 10,
+      "reply": 13,
+      "repost": 0,
+      "quote": 0,
+      "impression": 30431
+    },
+    "fetched_at": "2026-10-29T00:37:03.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106618291494293836",
+    "url": "https://x.com/Chilljccu/status/2106618291494293836",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T05:31:54.000Z",
+    "lang": "",
+    "text": "@OrionSheepVerse 没必要赌",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106618291494293836",
+    "in_reply_to_id": "2106618117552222263",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106618117552222263",
+        "author_id": "1938020945169645568",
+        "author_username": "OrionSheepVerse",
+        "author_name": "Orion 常青de绵阳",
+        "text": "@Chilljccu 我感觉claude 是可以的"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 34
+    },
+    "fetched_at": "2026-10-29T00:37:03.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106617985888903227",
+    "url": "https://x.com/Chilljccu/status/2106617985888903227",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T05:30:41.000Z",
+    "lang": "",
+    "text": "这个X上的内容还是太清淡了\n\n没有QQ群聊天记录的带劲",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106617985888903227",
+    "in_reply_to_id": null,
+    "referenced_tweets": [],
+    "media": [],
+    "public_metrics": {
+      "like": 3,
+      "reply": 2,
+      "repost": 0,
+      "quote": 0,
+      "impression": 5937
+    },
+    "fetched_at": "2026-10-29T00:37:12.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106617121459601764",
+    "url": "https://x.com/Chilljccu/status/2106617121459601764",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T05:27:15.000Z",
+    "lang": "",
+    "text": "孙学的本质就是抢注意力\n\n只要你看到了，他就赚了",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106617121459601764",
+    "in_reply_to_id": null,
+    "referenced_tweets": [],
+    "media": [],
+    "public_metrics": {
+      "like": 2,
+      "reply": 3,
+      "repost": 0,
+      "quote": 0,
+      "impression": 1021
+    },
+    "fetched_at": "2026-10-29T00:37:12.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106616898209321083",
+    "url": "https://x.com/Chilljccu/status/2106616898209321083",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T05:26:22.000Z",
+    "lang": "",
+    "text": "@ChenshuoAI 直接不回答",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106616898209321083",
+    "in_reply_to_id": "2106514129276031459",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106514129276031459",
+        "author_id": "2074279838672924672",
+        "author_username": "ChenshuoAI",
+        "author_name": "陈硕KAI（思考中）",
+        "text": "这个要如何回答？好泛 https://t.co/XC5hEgSSdd"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 65
+    },
+    "fetched_at": "2026-10-29T00:37:12.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106616393689190748",
+    "url": "https://x.com/Chilljccu/status/2106616393689190748",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T05:24:21.000Z",
+    "lang": "",
+    "text": "@paopaoksj 这是马上要上岸了呀",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106616393689190748",
+    "in_reply_to_id": "2106566977393463584",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106566977393463584",
+        "author_id": "1512012960163631106",
+        "author_username": "paopaoksj",
+        "author_name": "泡泡看世界",
+        "text": "昨天新高420k，没想到爆了条贴\n\n我一直曝光很差，我想了很多原因\n\n最后总结出来，还是自己不够努力\n\n有点期待今天实际播放是多少\n还差40k不知道给不给机会😂 https://t.co/9rf4VNUIdk"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 7
+    },
+    "fetched_at": "2026-10-29T00:37:12.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106616108551971314",
+    "url": "https://x.com/Chilljccu/status/2106616108551971314",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T05:23:13.000Z",
+    "lang": "",
+    "text": "@Ksziqgg 坑蒙拐骗偷，从古至今都这样",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106616108551971314",
+    "in_reply_to_id": "2106260534937211173",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106260534937211173",
+        "author_id": "2075827823449976833",
+        "author_username": "Ksziqgg",
+        "author_name": "懐玉",
+        "text": "国内黑产五大派系（仅供参考非地区歧视）：\n\n1.福建帮（跨境诈骗）\n杀猪盘、网赌、虚拟币洗钱、资金转移、家族化、产业化、境外化\n闽南语成黑产加密语言\n\n2.河南帮（快进快出）\n医保套现、国学诈骗、刷单、黑五类、国补套现、矩阵引流薅羊毛\n屡遭打击，换壳快，死灰复燃"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 467
+    },
+    "fetched_at": "2026-10-29T00:37:12.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106616022967148862",
+    "url": "https://x.com/Chilljccu/status/2106616022967148862",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T05:22:53.000Z",
+    "lang": "",
+    "text": "@Lihuayu06 这鹦鹉的咬合力有点大",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106616022967148862",
+    "in_reply_to_id": "2106545386060185860",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106545386060185860",
+        "author_id": "1870722739537088512",
+        "author_username": "Lihuayu06",
+        "author_name": "Liyu",
+        "text": "笼中鸟，何时飞？🦜 https://t.co/YDcwpaBrTq"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 47
+    },
+    "fetched_at": "2026-10-29T00:37:12.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106615878460797374",
+    "url": "https://x.com/Chilljccu/status/2106615878460797374",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T05:22:19.000Z",
+    "lang": "",
+    "text": "@bigbigbigIan 既要马儿跑，又想马儿不吃草",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106615878460797374",
+    "in_reply_to_id": "2106615650672390227",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106615650672390227",
+        "author_id": "1464105586799349761",
+        "author_username": "bigbigbigIan",
+        "author_name": "zxzyy10.eth",
+        "text": "假设你有一个机器人 （就是劳动力的意思）你会给他灌输这个思想吗 这么说吧 光是让ai熬夜跑任务我都理解了大部分小老板的心理 https://t.co/T62LMxAmSC"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 13
+    },
+    "fetched_at": "2026-10-29T00:37:12.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106614431316877457",
+    "url": "https://x.com/Chilljccu/status/2106614431316877457",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T05:16:34.000Z",
+    "lang": "",
+    "text": "其实QQ群才是中国的暗网\n\n等会我将我在QQ群里看到的一系列逆天新闻发出来",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106614431316877457",
+    "in_reply_to_id": null,
+    "referenced_tweets": [],
+    "media": [],
+    "public_metrics": {
+      "like": 5,
+      "reply": 1,
+      "repost": 0,
+      "quote": 1,
+      "impression": 1879
+    },
+    "fetched_at": "2026-10-29T00:37:12.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106614140953559398",
+    "url": "https://x.com/Chilljccu/status/2106614140953559398",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T05:15:24.000Z",
+    "lang": "",
+    "text": "@btcmos 7000也太厉害了",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106614140953559398",
+    "in_reply_to_id": "2106536742086193542",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106536742086193542",
+        "author_id": "1865722200185307136",
+        "author_username": "btcmos",
+        "author_name": "香港老雷",
+        "text": "Morning，brothers and sisters ！\n\nAll in x，就对了\n\n这真的是趋势，顺便还是键政、涨粉、吹牛逼、赚钱\n\n随便发发仅仅原创收益就一个月7000美元，你有什么理由不做"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 54
+    },
+    "fetched_at": "2026-10-29T00:37:12.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106613742951907597",
+    "url": "https://x.com/Chilljccu/status/2106613742951907597",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T05:13:49.000Z",
+    "lang": "",
+    "text": "@tart_egg25188 😂😂",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106613742951907597",
+    "in_reply_to_id": "2106612753872146896",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106612753872146896",
+        "author_id": "1804721568955912192",
+        "author_username": "tart_egg25188",
+        "author_name": "egg tart（互～回～）",
+        "text": "@Chilljccu ＞程序员"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 84
+    },
+    "fetched_at": "2026-10-29T00:37:12.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106612605381128652",
+    "url": "https://x.com/Chilljccu/status/2106612605381128652",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T05:09:18.000Z",
+    "lang": "",
+    "text": "@ge_shuai99780 被坑了还好回了点血",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106612605381128652",
+    "in_reply_to_id": "2106612108683317298",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106612108683317298",
+        "author_id": "1702217445120065536",
+        "author_username": "ge_shuai99780",
+        "author_name": "Leein",
+        "text": "@Chilljccu 操，我去年啥不懂买了个包年的中转站结果也没用几次，不过已经租出去了，，"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 65
+    },
+    "fetched_at": "2026-10-29T00:37:12.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106612122545533059",
+    "url": "https://x.com/Chilljccu/status/2106612122545533059",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T05:07:23.000Z",
+    "lang": "",
+    "text": "都说ai+愤怒普通人&gt;程序员\n那么ai+程序员&gt;什么呢？",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106612122545533059",
+    "in_reply_to_id": null,
+    "referenced_tweets": [],
+    "media": [],
+    "public_metrics": {
+      "like": 4,
+      "reply": 10,
+      "repost": 0,
+      "quote": 0,
+      "impression": 2319
+    },
+    "fetched_at": "2026-10-29T00:37:12.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106611661696352451",
+    "url": "https://x.com/Chilljccu/status/2106611661696352451",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T05:05:33.000Z",
+    "lang": "",
+    "text": "@YxzRainy 支持",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106611661696352451",
+    "in_reply_to_id": "2106611351015530929",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106611351015530929",
+        "author_id": "1994485839402057728",
+        "author_username": "YxzRainy",
+        "author_name": "兴雨",
+        "text": "@Chilljccu 完全是这样的！"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 35
+    },
+    "fetched_at": "2026-10-29T00:37:12.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106611468082839867",
+    "url": "https://x.com/Chilljccu/status/2106611468082839867",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T05:04:47.000Z",
+    "lang": "",
+    "text": "@qianyuwing 太厉害了！",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106611468082839867",
+    "in_reply_to_id": "2106505419556565108",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106505419556565108",
+        "author_id": "1225880969447530496",
+        "author_username": "qianyuwing",
+        "author_name": "芊羽Wing",
+        "text": "我好像是个自媒体圣体\n\nthreads也做起来了\n\n1.7万小爆贴🥰 https://t.co/1jWYWpi7hn"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 13
+    },
+    "fetched_at": "2026-10-29T00:37:12.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106611346175664169",
+    "url": "https://x.com/Chilljccu/status/2106611346175664169",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T05:04:18.000Z",
+    "lang": "",
+    "text": "@tart_egg25188 至少长大了30天",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106611346175664169",
+    "in_reply_to_id": "2106607997858316741",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106607997858316741",
+        "author_id": "1804721568955912192",
+        "author_username": "tart_egg25188",
+        "author_name": "egg tart（互～回～）",
+        "text": "辛辛苦苦减肥一个月，终于减掉了30天"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 50
+    },
+    "fetched_at": "2026-10-29T00:37:12.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106611186011939060",
+    "url": "https://x.com/Chilljccu/status/2106611186011939060",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T05:03:40.000Z",
+    "lang": "",
+    "text": "@Xiaoyzi_Web3 没有互动的一，三是绝对不会",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106611186011939060",
+    "in_reply_to_id": "2106607689883431052",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106607689883431052",
+        "author_id": "217098360",
+        "author_username": "Xiaoyzi_Web3",
+        "author_name": "逍遥子",
+        "text": "遇到以下哪种人你会选择不回关\n\n1.没有蓝v的用户\n\n2.全是英文贴的外国人\n\n3.到处造谣，成分很特殊的群体"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 23
+    },
+    "fetched_at": "2026-10-29T00:37:12.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106611016394264712",
+    "url": "https://x.com/Chilljccu/status/2106611016394264712",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T05:02:59.000Z",
+    "lang": "",
+    "text": "@jiangping1986 助力来了",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106611016394264712",
+    "in_reply_to_id": "2106593132439802337",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106593132439802337",
+        "author_id": "734647256406712321",
+        "author_username": "jiangping1986",
+        "author_name": "吃嗯陳｜ChnnChen",
+        "text": "今天能破五千吗？ https://t.co/n3VRNAmAiX"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 9
+    },
+    "fetched_at": "2026-10-29T00:37:12.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106610969480933452",
+    "url": "https://x.com/Chilljccu/status/2106610969480933452",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T05:02:48.000Z",
+    "lang": "",
+    "text": "@Jerry1202004691 一起加油，猛猛干！",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106610969480933452",
+    "in_reply_to_id": "2106491323125576092",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106491323125576092",
+        "author_id": "1400739351215104000",
+        "author_username": "Jerry1202004691",
+        "author_name": "Jerry123 π⚡️🔶️",
+        "text": "5点了，5点了\n\n起床\n继续战斗\n\n帖子顶起来\n互动干起来\n蓝V们\n加油加油加油✊✊✊ https://t.co/I6ZpeJYl16"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 1
+    },
+    "fetched_at": "2026-10-29T00:37:12.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106610436284068093",
+    "url": "https://x.com/Chilljccu/status/2106610436284068093",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T05:00:41.000Z",
+    "lang": "",
+    "text": "买任何ai会员都不要包年\n\n因为过几天说不定更强的模型就出来了\n\n迭代的速度太快了",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106610436284068093",
+    "in_reply_to_id": null,
+    "referenced_tweets": [],
+    "media": [],
+    "public_metrics": {
+      "like": 9,
+      "reply": 8,
+      "repost": 1,
+      "quote": 1,
+      "impression": 1193
+    },
+    "fetched_at": "2026-10-29T00:37:12.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106610155630846197",
+    "url": "https://x.com/Chilljccu/status/2106610155630846197",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T04:59:34.000Z",
+    "lang": "",
+    "text": "@zhangjun027 中午好啊！",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106610155630846197",
+    "in_reply_to_id": "2106537934900052479",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106537934900052479",
+        "author_id": "1775130067003461632",
+        "author_username": "zhangjun027",
+        "author_name": "买家张俊",
+        "text": "早上8点，X创作者新的一天开始了，\n\n兄弟们，早上好啊！\n\n今天要多发帖多评论，\n\n不能偷懒哦！ https://t.co/5CVKUsMfPG"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 2
+    },
+    "fetched_at": "2026-10-29T00:37:12.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106610103269183631",
+    "url": "https://x.com/Chilljccu/status/2106610103269183631",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T04:59:22.000Z",
+    "lang": "",
+    "text": "@NoraX2026 垄断的力量",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106610103269183631",
+    "in_reply_to_id": "2106602810062086171",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106602810062086171",
+        "author_id": "2042977978267951104",
+        "author_username": "NoraX2026",
+        "author_name": "Nora X",
+        "text": "感觉三大运营商好恐怖啊…😢\n14亿人，每个人都需要买个手机号\n一个人每个月就可以收交39-129元不等…\n这得赚多少钱啊啊啊啊啊啊"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 2,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 1318
+    },
+    "fetched_at": "2026-10-29T00:37:12.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106610048520880624",
+    "url": "https://x.com/Chilljccu/status/2106610048520880624",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T04:59:09.000Z",
+    "lang": "",
+    "text": "@paopaoksj 泡泡老师进度真快呀！",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106610048520880624",
+    "in_reply_to_id": "2106551087855813054",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106551087855813054",
+        "author_id": "1512012960163631106",
+        "author_username": "paopaoksj",
+        "author_name": "泡泡看世界",
+        "text": "新人第38天，今日目标7100\n\n早上好啊，朋友们，国庆过得怎么样\n\n天天下雨真的烦😡，再肝一天，明天不下，出去嗨皮，记得按时吃早饭 https://t.co/OMDwLbAvih"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 17
+    },
+    "fetched_at": "2026-10-29T00:37:12.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106609912088527106",
+    "url": "https://x.com/Chilljccu/status/2106609912088527106",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T04:58:36.000Z",
+    "lang": "",
+    "text": "@SnozakiSakura 这，我的天",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106609912088527106",
+    "in_reply_to_id": "2106427081467035746",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2106427081467035746",
+        "author_id": "1573704119516176384",
+        "author_username": "SnozakiSakura",
+        "author_name": "草莓泡芙🍀",
+        "text": "像极了我做语文阅读理解 https://t.co/6rV9uAGntr"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 4434
+    },
+    "fetched_at": "2026-10-29T00:37:12.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2106609573616607621",
+    "url": "https://x.com/Chilljccu/status/2106609573616607621",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-04T04:57:15.000Z",
+    "lang": "",
+    "text": "遇到躲不过去的麻烦时\n学生思维：我是不是做错了？是不是要道歉？\n社会人思维：让我想想怎么找对面麻烦？",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2106609573616607621",
+    "in_reply_to_id": null,
+    "referenced_tweets": [],
+    "media": [],
+    "public_metrics": {
+      "like": 4,
+      "reply": 1,
+      "repost": 0,
+      "quote": 1,
+      "impression": 663
+    },
+    "fetched_at": "2026-10-29T00:37:12.000Z",
+    "source": "builtin-x"
   }
 ]
