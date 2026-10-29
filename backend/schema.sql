@@ -534,3 +534,26 @@ CREATE TABLE IF NOT EXISTS deleted_posts (
 -- accounts marked here (set on the page, PUT /api/v1/x/refresh/accounts),
 -- not the whole watchlist.
 ALTER TABLE authors ADD COLUMN IF NOT EXISTS auto_refresh TINYINT(1) NOT NULL DEFAULT 0;
+
+-- Repos page (2026-10-29): 入库时间 for sorting (rows added before this
+-- column get their last sync time, else now, as the closest known value),
+-- and the repo AI summaries (same shape as post_summaries).
+ALTER TABLE repos ADD COLUMN IF NOT EXISTS created_at DATETIME NULL;
+UPDATE repos SET created_at=COALESCE(last_synced_at, NOW()) WHERE created_at IS NULL;
+
+CREATE TABLE IF NOT EXISTS repo_summaries (
+  full_name  VARCHAR(255) NOT NULL,
+  lang       VARCHAR(10)  NOT NULL,
+  status     VARCHAR(16)  NOT NULL DEFAULT 'pending',
+  summary    MEDIUMTEXT,
+  key_points MEDIUMTEXT,
+  resources  MEDIUMTEXT,
+  source     VARCHAR(16)  NOT NULL DEFAULT '',
+  model      VARCHAR(64)  NOT NULL DEFAULT '',
+  error      TEXT,
+  created_at DATETIME     NOT NULL,
+  updated_at DATETIME     NOT NULL,
+  PRIMARY KEY (full_name, lang),
+  CONSTRAINT fk_repo_summaries_repo FOREIGN KEY (full_name)
+    REFERENCES repos(full_name) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

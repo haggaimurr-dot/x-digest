@@ -50,7 +50,15 @@ func (s *Store) repoTags(fullName string) ([]string, error) {
 
 func (s *Store) scanRepoRow(r *model.Repo, description, readmeIntro, tutorialSteps, language, htmlURL, homepage sql.NullString,
 	openIssues, openPRs sql.NullInt32, pushedAt, repoUpdatedAt, lastSyncedAt sql.NullString,
-	groupID, note, syncError sql.NullString) error {
+	groupID, note, syncError, createdAt, releasedAt sql.NullString) error {
+	if createdAt.Valid {
+		v := createdAt.String
+		r.CreatedAt = &v
+	}
+	if releasedAt.Valid {
+		v := releasedAt.String
+		r.ReleasedAt = &v
+	}
 	r.Description = description.String
 	r.ReadmeIntro = readmeIntro.String
 	if tutorialSteps.Valid && strings.TrimSpace(tutorialSteps.String) != "" {
@@ -91,7 +99,10 @@ func (s *Store) scanRepoRow(r *model.Repo, description, readmeIntro, tutorialSte
 }
 
 const repoColumns = `full_name,owner,name,description,readme_intro,tutorial_steps,language,stars,forks,open_issues,open_prs,
-	html_url,homepage,pushed_at,repo_updated_at,group_id,note,last_synced_at,sync_status,sync_error`
+	html_url,homepage,pushed_at,repo_updated_at,group_id,note,last_synced_at,sync_status,sync_error,
+	DATE_FORMAT(created_at,'%Y-%m-%d %H:%i:%s'),
+	(SELECT DATE_FORMAT(MAX(rr.published_at),'%Y-%m-%d %H:%i:%s') FROM repo_releases rr
+	 WHERE rr.full_name=repos.full_name AND rr.draft=0) AS released_at`
 
 func (s *Store) scanRepos(rows *sql.Rows) ([]model.Repo, error) {
 	out := []model.Repo{}
@@ -100,15 +111,15 @@ func (s *Store) scanRepos(rows *sql.Rows) ([]model.Repo, error) {
 		var description, readmeIntro, tutorialSteps, language, htmlURL, homepage sql.NullString
 		var openIssues, openPRs sql.NullInt32
 		var pushedAt, repoUpdatedAt, lastSyncedAt sql.NullString
-		var groupID, note, syncError sql.NullString
+		var groupID, note, syncError, createdAt, releasedAt sql.NullString
 		if err := rows.Scan(&r.FullName, &r.Owner, &r.Name, &description, &readmeIntro, &tutorialSteps, &language,
 			&r.Stars, &r.Forks, &openIssues, &openPRs, &htmlURL, &homepage,
 			&pushedAt, &repoUpdatedAt, &groupID, &note, &lastSyncedAt,
-			&r.SyncStatus, &syncError); err != nil {
+			&r.SyncStatus, &syncError, &createdAt, &releasedAt); err != nil {
 			return nil, err
 		}
 		if err := s.scanRepoRow(&r, description, readmeIntro, tutorialSteps, language, htmlURL, homepage, openIssues, openPRs,
-			pushedAt, repoUpdatedAt, lastSyncedAt, groupID, note, syncError); err != nil {
+			pushedAt, repoUpdatedAt, lastSyncedAt, groupID, note, syncError, createdAt, releasedAt); err != nil {
 			return nil, err
 		}
 		tags, err := s.repoTags(r.FullName)
@@ -125,22 +136,22 @@ func (s *Store) ListRepos(f RepoFilter) ([]model.Repo, error) {
 	var conds []string
 	var args []any
 	if f.Group != "" {
-		conds = append(conds, "r.group_id=?")
+		conds = append(conds, "repos.group_id=?")
 		args = append(args, f.Group)
 	}
 	if f.Tag != "" {
-		conds = append(conds, "EXISTS (SELECT 1 FROM repo_tags t WHERE t.full_name=r.full_name AND t.tag=?)")
+		conds = append(conds, "EXISTS (SELECT 1 FROM repo_tags t WHERE t.full_name=repos.full_name AND t.tag=?)")
 		args = append(args, f.Tag)
 	}
 	where := ""
 	if len(conds) > 0 {
 		where = "WHERE " + strings.Join(conds, " AND ")
 	}
-	order := "r.pushed_at DESC, r.full_name ASC"
+	order := "repos.pushed_at DESC, repos.full_name ASC"
 	if f.Sort == "stars" {
-		order = "r.stars DESC, r.full_name ASC"
+		order = "repos.stars DESC, repos.full_name ASC"
 	}
-	rows, err := s.DB.Query("SELECT "+repoColumns+" FROM repos r "+where+" ORDER BY "+order, args...)
+	rows, err := s.DB.Query("SELECT "+repoColumns+" FROM repos "+where+" ORDER BY "+order, args...)
 	if err != nil {
 		return nil, err
 	}
@@ -153,17 +164,17 @@ func (s *Store) GetRepo(fullName string) (*model.Repo, error) {
 	var description, readmeIntro, tutorialSteps, language, htmlURL, homepage sql.NullString
 	var openIssues, openPRs sql.NullInt32
 	var pushedAt, repoUpdatedAt, lastSyncedAt sql.NullString
-	var groupID, note, syncError sql.NullString
+	var groupID, note, syncError, createdAt, releasedAt sql.NullString
 	err := s.DB.QueryRow("SELECT "+repoColumns+" FROM repos WHERE full_name=?", fullName).Scan(
 		&r.FullName, &r.Owner, &r.Name, &description, &readmeIntro, &tutorialSteps, &language,
 		&r.Stars, &r.Forks, &openIssues, &openPRs, &htmlURL, &homepage,
 		&pushedAt, &repoUpdatedAt, &groupID, &note, &lastSyncedAt,
-		&r.SyncStatus, &syncError)
+		&r.SyncStatus, &syncError, &createdAt, &releasedAt)
 	if err != nil {
 		return nil, err
 	}
 	if err := s.scanRepoRow(&r, description, readmeIntro, tutorialSteps, language, htmlURL, homepage, openIssues, openPRs,
-		pushedAt, repoUpdatedAt, lastSyncedAt, groupID, note, syncError); err != nil {
+		pushedAt, repoUpdatedAt, lastSyncedAt, groupID, note, syncError, createdAt, releasedAt); err != nil {
 		return nil, err
 	}
 	if r.Tags, err = s.repoTags(fullName); err != nil {
@@ -196,12 +207,12 @@ func (s *Store) CreateRepo(r model.Repo) error {
 	defer tx.Rollback()
 	if _, err := tx.Exec(`INSERT INTO repos(full_name,owner,name,description,language,stars,forks,
 		open_issues,open_prs,html_url,homepage,pushed_at,repo_updated_at,group_id,note,
-		last_synced_at,sync_status,sync_error)
-		VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+		last_synced_at,sync_status,sync_error,created_at)
+		VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
 		r.FullName, r.Owner, r.Name, r.Description, r.Language, r.Stars, r.Forks,
 		nullInt(r.OpenIssues), nullInt(r.OpenPRs), r.HTMLURL, r.Homepage,
 		nullStr(r.PushedAt), nullStr(r.RepoUpdatedAt), groupIDArg(r.GroupID), r.Note,
-		nullStr(r.LastSyncedAt), "never", ""); err != nil {
+		nullStr(r.LastSyncedAt), "never", "", Now()); err != nil {
 		return err
 	}
 	for _, t := range r.Tags {

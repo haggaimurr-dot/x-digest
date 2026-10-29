@@ -166,11 +166,15 @@ type Repo struct {
 	GroupID       string         `json:"group_id"`
 	Note          string         `json:"note"`
 	LastSyncedAt  *string        `json:"last_synced_at"`
-	SyncStatus    string         `json:"sync_status"`
-	SyncError     string         `json:"sync_error"`
-	Tags          []string       `json:"tags"`
-	Commits       []RepoCommit   `json:"commits,omitempty"`
-	LatestRelease *RepoRelease   `json:"latest_release,omitempty"`
+	// CreatedAt is when the repo was added here (入库时间); ReleasedAt is
+	// the newest release's publish time (nil = no release yet).
+	CreatedAt     *string      `json:"created_at"`
+	ReleasedAt    *string      `json:"released_at"`
+	SyncStatus    string       `json:"sync_status"`
+	SyncError     string       `json:"sync_error"`
+	Tags          []string     `json:"tags"`
+	Commits       []RepoCommit `json:"commits,omitempty"`
+	LatestRelease *RepoRelease `json:"latest_release,omitempty"`
 }
 
 // YTChannel mirrors the yt_channels table (YouTube prototype 2026-10-26).

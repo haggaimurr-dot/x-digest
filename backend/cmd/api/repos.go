@@ -151,6 +151,10 @@ func (s *server) handleRepoSub(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	fullName := owner + "/" + repo
+	if len(parts) >= 3 && parts[2] == "summary" && (len(parts) == 3 || (len(parts) == 4 && parts[3] == "stream")) {
+		s.handleRepoSummary(w, r, fullName, len(parts) == 4) // see repo_summary.go
+		return
+	}
 	if len(parts) == 3 {
 		switch parts[2] {
 		case "replica":

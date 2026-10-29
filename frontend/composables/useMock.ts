@@ -93,7 +93,8 @@ export const MOCK_REPOS: Repo[] = [
     pushed_at: '2026-10-24T09:12:00Z', updated_at: '2026-10-24T09:12:00Z',
     html_url: 'https://github.com/nuxt/nuxt', homepage: 'https://nuxt.com',
     group_id: 'ai-tools', tags: ['框架', 'Vue'], note: '本站前端用的框架，关注大版本更新。',
-    last_synced_at: '2026-10-25T02:00:00Z', sync_status: 'synced', sync_error: null
+    last_synced_at: '2026-10-25T02:00:00Z', sync_status: 'synced', sync_error: null,
+    created_at: '2026-10-20 10:00:00', released_at: '2026-10-22 18:30:00'
   },
   {
     full_name: 'vuejs/core', owner: 'vuejs', name: 'core',
@@ -102,7 +103,8 @@ export const MOCK_REPOS: Repo[] = [
     pushed_at: '2026-10-24T07:30:00Z', updated_at: '2026-10-24T07:30:00Z',
     html_url: 'https://github.com/vuejs/core', homepage: 'https://vuejs.org',
     group_id: 'default', tags: ['框架'], note: '',
-    last_synced_at: '2026-10-24T02:00:00Z', sync_status: 'rate_limited', sync_error: 'GitHub API rate limit exceeded'
+    last_synced_at: '2026-10-24T02:00:00Z', sync_status: 'rate_limited', sync_error: 'GitHub API rate limit exceeded',
+    created_at: '2026-10-22 09:00:00', released_at: null
   }
 ]
 export function mockRepoCommits (fullName: string): RepoCommit[] { return MOCK_REPO_COMMITS[fullName] || [] }
@@ -311,7 +313,8 @@ export function useMockStore () {
       language: 'TypeScript', stars: 0, forks: 0, open_issues: null, open_prs: null,
       pushed_at: null, updated_at: new Date().toISOString(), html_url: `https://github.com/${fullName}`,
       homepage: null, group_id: groupId || 'default', tags: tags || [], note: note || '',
-      last_synced_at: new Date().toISOString(), sync_status: 'synced', sync_error: null
+      last_synced_at: new Date().toISOString(), sync_status: 'synced', sync_error: null,
+      created_at: new Date().toISOString(), released_at: null
     }
     repos.value = [repo, ...repos.value]
     persistRepos()

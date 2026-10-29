@@ -185,3 +185,30 @@ func TestSummarizePost(t *testing.T) {
 		t.Fatalf("%+v %v", res, err)
 	}
 }
+
+func TestSummarizeRepo(t *testing.T) {
+	llm := &fakeLLM{reply: func(system, user string) (string, error) {
+		for _, want := range []string{"Repository: a/b", "Description: d", "Main language: Go", "Stars: 42", "Latest release:\nv1", "README:\n# Title"} {
+			if !strings.Contains(user, want) {
+				t.Errorf("missing %q in:\n%s", want, user)
+			}
+		}
+		if !strings.Contains(system, "Simplified Chinese") {
+			t.Errorf("zh-CN should ask for Chinese")
+		}
+		return `{"summary":"s","key_points":["k"],"chapters":[{"start":0,"title":"x","summary":""}],"resources":[]}`, nil
+	}}
+	res, err := SummarizeRepo(context.Background(), llm, RepoInput{FullName: "a/b", Description: "d", Language: "Go", Stars: 42, Readme: "# Title", Release: "v1"}, "zh-CN")
+	if err != nil || res.Source != SourceTranscript || len(res.Chapters) != 0 || res.Summary != "s" {
+		t.Fatalf("%+v %v", res, err)
+	}
+	llm2 := &fakeLLM{reply: func(_, user string) (string, error) {
+		if !strings.Contains(user, "README could not be read") {
+			t.Errorf("without a README the model should be told:\n%s", user)
+		}
+		return `{"summary":"s","key_points":[],"chapters":[],"resources":[]}`, nil
+	}}
+	if res, err = SummarizeRepo(context.Background(), llm2, RepoInput{FullName: "a/b"}, "en"); err != nil || res.Source != SourceDescription {
+		t.Fatalf("%+v %v", res, err)
+	}
+}

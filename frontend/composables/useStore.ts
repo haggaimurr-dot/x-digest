@@ -475,6 +475,17 @@ export function useStore () {
     const data = await apiFetch<{ summary: YTSummary }>(`posts/${encodeURIComponent(id)}/summary?lang=${lang}${force ? '&force=1' : ''}`, { method: 'POST', body: JSON.stringify(body) })
     return data.summary
   }
+  // GitHub repo AI summary (GET/POST /api/v1/repos/{owner}/{name}/summary).
+  async function getRepoSummary (fullName: string, lang: string): Promise<YTSummary> {
+    if (mock.value) return { ...mockStore.mockYTSummary(fullName, lang), chapters: [] }
+    const data = await apiFetch<{ summary: YTSummary }>(`repos/${fullName}/summary?lang=${lang}`)
+    return data.summary
+  }
+  async function startRepoSummary (fullName: string, lang: string, force = false): Promise<YTSummary> {
+    if (mock.value) return { ...mockStore.mockYTSummary(fullName, lang), chapters: [] }
+    const data = await apiFetch<{ summary: YTSummary }>(`repos/${fullName}/summary?lang=${lang}${force ? '&force=1' : ''}`, { method: 'POST' })
+    return data.summary
+  }
   async function getYTSummary (id: string, lang: string, p: VideoPlatform = 'yt'): Promise<YTSummary> {
     if (mock.value) return mockStore.mockYTSummary(id, lang)
     const data = await apiFetch<{ summary: YTSummary }>(`${p}/videos/${encodeURIComponent(id)}/summary?lang=${lang}`)
@@ -501,7 +512,7 @@ export function useStore () {
     deleteAccount, addCategory, deleteCategory, renameCategory, restoreCategory, deletePosts, setPostReplicaEnabled, loadViews, createView, deleteView, batchCategory, batchPostSummaries, cloneReplica, loadNotifications, markNotificationsRead, createReplicaFromRepo, setPostCategories, translateTexts,
     loadRepos, loadRepoGroups, addRepo, loadRepoDetail, loadRepoCommits, loadRepoReleases,
     patchRepo, deleteRepo, syncRepo, syncAllRepos, getRepoSyncStatus, addRepoGroup, deleteRepoGroup, validateRepoFullName,
-    loadYTChannels, loadYTVideos, addYTChannel, updateYTChannel, deleteYTChannel, syncYTChannel, syncAllYTChannels, getYTSummary, startYTSummary, addYTVideo, getPostSummary, startPostSummary, importXPost, getXRefresh, startXRefresh, retryXRefresh, getXRefreshAccounts, setXRefreshAccounts,
+    loadYTChannels, loadYTVideos, addYTChannel, updateYTChannel, deleteYTChannel, syncYTChannel, syncAllYTChannels, getYTSummary, startYTSummary, addYTVideo, getPostSummary, startPostSummary, getRepoSummary, startRepoSummary, importXPost, getXRefresh, startXRefresh, retryXRefresh, getXRefreshAccounts, setXRefreshAccounts,
     loadYTGroups, addYTGroup, deleteYTGroup, setVideoState
   }
 }

@@ -76,7 +76,9 @@ export interface Repo {
   pushed_at?: string | null, updated_at?: string | null, html_url: string,
   homepage?: string | null, group_id?: string | null, tags?: string[], note?: string | null,
   readme_intro?: string | null, tutorial_steps?: TutorialStep[],
-  last_synced_at?: string | null, sync_status: RepoSyncStatus, sync_error?: string | null
+  last_synced_at?: string | null, sync_status: RepoSyncStatus, sync_error?: string | null,
+  // 入库时间 / 最新 Release 的发布时间（上海时间 "2006-01-02 15:04:05"；null = 无）
+  created_at?: string | null, released_at?: string | null
 }
 export interface RepoDetail {
   repo: Repo, commits: RepoCommit[], latest_release?: RepoRelease | null,

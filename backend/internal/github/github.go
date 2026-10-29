@@ -461,6 +461,14 @@ func (c *Client) fetchReadme(ctx context.Context, owner, repo string) (string, [
 	return intro, steps, nil
 }
 
+// FetchReadme returns the repository README as raw markdown (for the AI
+// summary); a repo without one gives a statusError (404).
+func (c *Client) FetchReadme(ctx context.Context, owner, repo string) (string, error) {
+	body, _, err := c.doWithAccept(ctx, "/repos/"+url.PathEscape(owner)+"/"+url.PathEscape(repo)+"/readme",
+		nil, "application/vnd.github.raw")
+	return string(body), err
+}
+
 func markPartial(res *SyncResult, msg string) {
 	if res.Status != "partial" {
 		res.Status = "partial"

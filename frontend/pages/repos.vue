@@ -29,8 +29,7 @@
           </label>
           <label>{{ t('repos.sort') }}
             <select class="field" v-model="sort">
-              <option value="stars">{{ t('repos.sortStars') }}</option>
-              <option value="updated">{{ t('repos.sortUpdated') }}</option>
+              <option v-for="k in REPO_SORTS" :key="k" :value="k">{{ t('repos.sort_' + k) }}</option>
             </select>
           </label>
         </div>
@@ -66,7 +65,11 @@
         <section class="repo-list" style="margin-top:16px">
           <article v-for="r in filtered" :key="r.full_name" class="post-card repo-card">
             <div class="repo-head">
-              <div style="min-width:0">
+              <a class="repo-avatar" :href="`https://github.com/${r.owner}`" target="_blank" rel="noopener" :title="r.owner">
+                <img v-if="!failedAvatars.has(r.owner)" :src="ownerAvatarUrl(r.owner)" :alt="r.owner" loading="lazy" @error="onAvatarError(r.owner)" />
+                <span v-else aria-hidden="true">{{ (r.owner || '?').slice(0, 1).toUpperCase() }}</span>
+              </a>
+              <div style="min-width:0;flex:1">
                 <h2 class="post-title" style="margin:0">
                   <a :href="r.html_url" target="_blank" rel="noopener">{{ r.full_name }}</a>
                 </h2>
@@ -83,7 +86,44 @@
               <span :title="t('repos.issuesTitle')">Issue {{ r.open_issues ?? '—' }}</span>
               <span :title="t('repos.prsTitle')">PR {{ r.open_prs ?? '—' }}</span>
               <span :title="t('repos.updatedTitle')">{{ r.pushed_at ? t('repos.updatedAt', { time: relativeTime(r.pushed_at, lang.value) }) : t('repos.updatedUnknown') }}</span>
+              <span v-if="r.released_at" :title="t('repos.releasedTitle')">{{ t('repos.releasedAt', { time: r.released_at.slice(0, 10) }) }}</span>
+              <span v-if="r.created_at" :title="t('repos.createdTitle')">{{ t('repos.createdAt', { time: r.created_at.slice(0, 10) }) }}</span>
             </div>
+
+            <!-- AI 智能摘要：README + 简介 + 最新 Release，点击时才生成 -->
+            <button class="yt-summary-toggle repo-summary-toggle" type="button" :aria-expanded="openSummary.has(r.full_name)" @click="toggleSummary(r)">
+              <span>✨ {{ openSummary.has(r.full_name) ? t('repos.summaryHide') : t('repos.summaryShow') }}</span>
+              <svg class="yt-chevron" :class="{ 'is-collapsed': !openSummary.has(r.full_name) }" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
+            </button>
+            <section v-if="openSummary.has(r.full_name)" class="yt-summary repo-summary" :aria-label="t('repos.summaryShow')">
+              <template v-for="sum in [summaryOf(r.full_name)]" :key="'s' + r.full_name">
+                <p v-if="!sum" class="yt-sum-note">{{ t('common.loading') }}</p>
+                <p v-else-if="sum.status === 'pending' || sum.status === 'none'" class="yt-sum-note"><span class="yt-spinner" aria-hidden="true" />{{ t('repos.summaryPending') }}</p>
+                <div v-else-if="sum.status === 'failed'" class="yt-sum-note">
+                  <p class="yt-sum-error">{{ t('repos.summaryFailed', { error: sum.error }) }}</p>
+                  <button class="btn btn-sm" type="button" @click="generateSummary(r, true)">{{ t('repos.summaryRetry') }}</button>
+                </div>
+                <template v-if="sum && sum.summary && sum.status !== 'pending'">
+                  <p v-for="(para, pi) in sum.summary.split(/\n\s*\n/).filter(Boolean)" :key="'p' + pi" class="yt-sum-para">{{ para }}</p>
+                  <template v-if="(sum.key_points || []).length">
+                    <h3 class="yt-sum-h">{{ t('repos.summaryPoints') }}</h3>
+                    <ul class="yt-sum-points"><li v-for="(k, ki) in sum.key_points" :key="'k' + ki">{{ k }}</li></ul>
+                  </template>
+                  <template v-if="(sum.resources || []).length">
+                    <h3 class="yt-sum-h">{{ t('repos.summaryResources') }}</h3>
+                    <ul class="yt-sum-points">
+                      <li v-for="(x, xi) in (sum.resources || [])" :key="'r' + xi">
+                        <a v-if="x.url" :href="x.url" target="_blank" rel="noopener">{{ x.name }}</a><span v-else>{{ x.name }}</span><span v-if="x.note" style="color:var(--text-muted)"> — {{ x.note }}</span>
+                      </li>
+                    </ul>
+                  </template>
+                  <div class="yt-sum-foot">
+                    <span>{{ sum.source === 'description' ? t('repos.summaryFromFacts') : t('repos.summaryFromReadme') }}<template v-if="sum.updated_at"> · {{ t('repos.summaryAt', { time: sum.updated_at }) }}</template></span>
+                    <button v-if="sum.status === 'done'" class="btn btn-sm" type="button" @click="generateSummary(r, true)">{{ t('repos.summaryRegenerate') }}</button>
+                  </div>
+                </template>
+              </template>
+            </section>
 
             <div class="chips" style="margin-top:8px">
               <span v-if="groupName(r.group_id)" class="chip active">{{ groupName(r.group_id) }}</span>
@@ -217,10 +257,13 @@
 </template>
 
 <script setup lang="ts">
-import type { Repo, RepoGroup, RepoDetail, RepoRelease } from '~/composables/types'
+import type { Repo, RepoGroup, RepoDetail, RepoRelease, YTSummary } from '~/composables/types'
 import { ApiError } from '~/composables/types'
 import { relativeTime, shanghaiTime, trunc40 } from '~/composables/useFormat'
 import { useScrollLock } from '~/composables/useScrollLock'
+import { REPO_SORTS, isRepoSort, ownerAvatarUrl, sortRepos, type RepoSort } from '~/utils/repoSort'
+import { followSummary } from '~/utils/summaryStream'
+import { apiBase } from '~/composables/useApi'
 
 const store = useStore()
 const { t, lang } = useLang()
@@ -233,7 +276,12 @@ const groups = ref<RepoGroup[]>([])
 const keyword = ref('')
 const groupFilter = ref('')
 const tagFilter = ref('')
-const sort = ref<'stars' | 'updated'>('stars')
+// 排序方式记在本机（x-digest-repos-sort）。
+const SORT_KEY = 'x-digest-repos-sort'
+const sort = ref<RepoSort>('stars_desc')
+watch(sort, (v) => { try { localStorage.setItem(SORT_KEY, v) } catch { /* private mode */ } })
+const failedAvatars = ref<Set<string>>(new Set())
+function onAvatarError (owner: string) { failedAvatars.value = new Set([...failedAvatars.value, owner]) }
 const filtersCollapsed = ref(false)
 const activeFilterCount = computed(() =>
   (keyword.value.trim() ? 1 : 0) + (groupFilter.value ? 1 : 0) + (tagFilter.value ? 1 : 0))
@@ -337,13 +385,7 @@ const filtered = computed(() => {
     if (q && !`${r.full_name}\n${r.description || ''}`.toLowerCase().includes(q)) return false
     return true
   })
-  if (sort.value === 'stars') {
-    list = [...list].sort((a, b) => (b.stars || 0) - (a.stars || 0))
-  } else {
-    const timeOf = (r: Repo) => Date.parse(r.pushed_at || r.updated_at || '') || 0
-    list = [...list].sort((a, b) => timeOf(b) - timeOf(a))
-  }
-  return list
+  return sortRepos(list, sort.value)
 })
 
 // Enqueue the listed repos' intros when EN is active (deduped by the queue).
@@ -507,7 +549,72 @@ async function doDeleteGroup (g: RepoGroup) {
   } catch (err: any) { showToast(errText(err, t('repos.deleteGroupFailed'))) }
 }
 
+// ---- AI 智能摘要（同帖子摘要：先读库，没有就生成；生成中优先 SSE，失败退回轮询） ----
+const openSummary = ref<Set<string>>(new Set())
+const summaries = ref<Record<string, YTSummary>>({})
+const pollTimers = new Map<string, ReturnType<typeof setTimeout>>()
+const streaming = new Set<string>()
+function sumKey (fullName: string) { return `${fullName}|${lang.value}` }
+function summaryOf (fullName: string): YTSummary | undefined { return summaries.value[sumKey(fullName)] }
+function setSummary (sum: YTSummary) { summaries.value = { ...summaries.value, [`${sum.video_id}|${sum.lang}`]: sum } }
+function failSummary (r: Repo, msg: string) {
+  const prev = summaryOf(r.full_name)
+  setSummary({ video_id: r.full_name, lang: lang.value, status: 'failed', summary: prev?.summary || '', key_points: prev?.key_points || [], chapters: [], resources: prev?.resources || [], source: prev?.source || '', transcript_lang: '', model: '', error: msg })
+}
+function pollSummary (r: Repo) {
+  const key = sumKey(r.full_name)
+  if (pollTimers.has(key)) return
+  const l = lang.value
+  pollTimers.set(key, setTimeout(async () => {
+    pollTimers.delete(key)
+    try {
+      const sum = await store.getRepoSummary(r.full_name, l)
+      setSummary(sum)
+      if (sum.status === 'pending' && l === lang.value) pollSummary(r)
+    } catch { if (l === lang.value) pollSummary(r) }
+  }, 4000))
+}
+function schedulePoll (r: Repo) {
+  const key = sumKey(r.full_name)
+  if (streaming.has(key) || pollTimers.has(key)) return
+  const l = lang.value
+  if (!store.mock.value && followSummary(`${apiBase()}/repos/${r.full_name}/summary/stream?lang=${l}`, (sum) => { setSummary(sum); if (sum.status !== 'pending') streaming.delete(key) }, () => { streaming.delete(key); pollSummary(r) })) {
+    streaming.add(key)
+    return
+  }
+  pollSummary(r)
+}
+async function generateSummary (r: Repo, force = false) {
+  const prev = summaryOf(r.full_name)
+  setSummary({ ...(prev || { video_id: r.full_name, lang: lang.value, summary: '', key_points: [], chapters: [], resources: [], source: '', transcript_lang: '', model: '', error: '' }), status: 'pending', error: '' })
+  try {
+    const sum = await store.startRepoSummary(r.full_name, lang.value, force)
+    setSummary(sum)
+    if (sum.status === 'pending') schedulePoll(r)
+  } catch (err: any) { failSummary(r, errText(err, t('repos.summaryLoadFailed'))) }
+}
+async function loadSummary (r: Repo) {
+  try {
+    const sum = await store.getRepoSummary(r.full_name, lang.value)
+    if (sum.status === 'none') return generateSummary(r)
+    setSummary(sum)
+    if (sum.status === 'pending') schedulePoll(r)
+  } catch (err: any) { failSummary(r, errText(err, t('repos.summaryLoadFailed'))) }
+}
+function toggleSummary (r: Repo) {
+  const s = new Set(openSummary.value)
+  if (s.has(r.full_name)) { s.delete(r.full_name); openSummary.value = s; return }
+  s.add(r.full_name); openSummary.value = s
+  const cur = summaryOf(r.full_name)
+  if (!cur || cur.status === 'none') loadSummary(r)
+}
+onUnmounted(() => { for (const tm of pollTimers.values()) clearTimeout(tm); pollTimers.clear() })
+
 onMounted(async () => {
+  try {
+    const v = localStorage.getItem(SORT_KEY)
+    if (isRepoSort(v)) sort.value = v
+  } catch { /* ignore */ }
   try {
     await reload()
   } catch (err: any) { loadError.value = errText(err, t('common.loadError')) }
