@@ -95,8 +95,21 @@
         <span v-if="step.prep">{{ t('node.prep') }}{{ step.prep }}</span>
       </div>
       <!-- 一直显示：没有任何详情的节点也要能展开，才能写备注、加子节点、上传附件。 -->
-      <div style="margin-top:8px">
+      <!-- 父节点卡片头直接给附件入口（📎），不用先展开详情；徽标显示附件数。 -->
+      <div style="margin-top:8px;display:flex;gap:6px;align-items:center">
         <IconBtn class="btn-sm" :icon="detailsOpen ? 'chevron-up' : 'list'" :class="{ 'btn-on': detailsOpen }" :badge="!detailsOpen && subCount ? subCount : undefined" :label="detailsToggleLabel" :aria-expanded="detailsOpen" @click="detailsOpen = !detailsOpen" />
+        <div class="node-menu-wrap">
+          <IconBtn class="btn-sm node-menu-btn" icon="paperclip" :class="{ 'btn-on': headerUploadOpen }" :badge="attCount || undefined" :label="t('node.uploadMenu')" aria-haspopup="menu" :aria-expanded="headerUploadOpen" @click="toggleHeaderUpload" />
+          <div v-if="headerUploadOpen" class="node-menu left" role="menu">
+            <label role="menuitem" class="menu-item-icon"><UiIcon name="image" />{{ t('node.uploadImage') }}
+              <input type="file" accept="image/*" multiple hidden @change="upload($event)" />
+            </label>
+            <label role="menuitem" class="menu-item-icon"><UiIcon name="file" />{{ t('node.uploadDocs') }}
+              <input type="file" multiple hidden :accept="acceptDocs" @change="upload($event)" />
+            </label>
+          </div>
+        </div>
+      </div>
         <div v-if="detailsOpen">
           <div v-if="children.length" class="check-list">
             <ReplicaStepNode v-for="(child, ci) in children" :key="child.idx" :replica="replica" :step="child"
@@ -144,7 +157,6 @@
             <AttachmentPreview v-if="previewAtt && step.attachments!.some(a => a.id === previewAtt!.id)" :key="previewAtt.id" :attachment="previewAtt" @close="previewAtt = null" />
           </div>
         </div>
-      </div>
     </div>
   </div>
   <p v-if="toast" style="position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--bg-elevated);border:1px solid var(--border);padding:10px 16px;border-radius:9999px;z-index:200">{{ toast }}</p>
@@ -174,6 +186,14 @@ const childDetailOpen = ref(false)
 // 各收进一个 ☰ 下拉菜单，同一时间只开一个。
 const openMenu = ref<'actions' | 'upload' | null>(null)
 const attMenuId = ref<string | null>(null)
+// 父节点卡片头的 📎 快捷上传菜单（不用展开详情）。独立状态，避免和详情区里的上传菜单冲突。
+const headerUploadOpen = ref(false)
+const attCount = computed(() => (props.step.attachments || []).length)
+function toggleHeaderUpload () {
+  headerUploadOpen.value = !headerUploadOpen.value
+  if (headerUploadOpen.value) { openMenu.value = null; attMenuId.value = null }
+  window.dispatchEvent(new CustomEvent('xd:close-node-menus', { detail: menuId }))
+}
 const menuId = useId()
 function toggleMenu (which: 'actions' | 'upload') {
   if (openMenu.value === which) { openMenu.value = null; return }
@@ -187,7 +207,7 @@ function toggleAttMenu (id: string) {
   openMenu.value = null
   window.dispatchEvent(new CustomEvent('xd:close-node-menus', { detail: menuId }))
 }
-function closeMenu () { openMenu.value = null; attMenuId.value = null }
+function closeMenu () { openMenu.value = null; attMenuId.value = null; headerUploadOpen.value = false }
 function menuBadge () { closeMenu(); onBadgeClick() }
 function menuEdit () { closeMenu(); startEditText() }
 function menuDelete () { closeMenu(); removeStep() }
@@ -200,7 +220,7 @@ function menuDeleteAtt (att: Attachment) {
   removeAttachment(att)
 }
 function onDocClick (e: MouseEvent) {
-  if (!openMenu.value && !attMenuId.value) return
+  if (!openMenu.value && !attMenuId.value && !headerUploadOpen.value) return
   if (!(e.target as HTMLElement).closest('.node-menu-wrap')) closeMenu()
 }
 function onKeyDown (e: KeyboardEvent) { if (e.key === 'Escape') closeMenu() }

@@ -110,6 +110,12 @@ CREATE TABLE IF NOT EXISTS replicas (
   INDEX idx_replicas_created (created_at DESC)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- Fuke edit-time sort (2026-10-30): updated_at tracks the last user edit
+-- (step add/delete/patch, attachment add/delete). Old rows backfill from
+-- created_at so the sort is total.
+ALTER TABLE replicas ADD COLUMN IF NOT EXISTS updated_at DATETIME NULL;
+UPDATE replicas SET updated_at=created_at WHERE updated_at IS NULL;
+
 CREATE TABLE IF NOT EXISTS replica_steps (
   id            BIGINT AUTO_INCREMENT PRIMARY KEY,
   replica_id    VARCHAR(64) NOT NULL,

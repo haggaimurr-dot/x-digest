@@ -111,6 +111,7 @@ type Replica struct {
 	PostAuthorName string          `json:"post_author_name"`
 	PostTitle      string          `json:"post_title"`
 	CreatedAt      string          `json:"created_at"`
+	UpdatedAt      string          `json:"updated_at,omitempty"`
 	Steps          []ReplicaStep   `json:"steps"`
 	Progress       ReplicaProgress `json:"progress"`
 	Existing       bool            `json:"existing,omitempty"`

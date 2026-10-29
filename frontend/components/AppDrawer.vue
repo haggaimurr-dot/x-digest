@@ -65,9 +65,9 @@ const panel = ref<HTMLElement | null>(null)
 const NAV = [
   { to: '/', icon: 'newspaper', label: 'nav.daily' },
   { to: '/repos', icon: 'book', label: 'nav.repos' },
-  { to: '/fuke', icon: 'fork', label: 'nav.fuke' },
   { to: '/youtube', icon: 'video', label: 'nav.youtube' },
-  { to: '/bilibili', icon: 'tv', label: 'nav.bilibili' }
+  { to: '/bilibili', icon: 'tv', label: 'nav.bilibili' },
+  { to: '/fuke', icon: 'fork', label: 'nav.fuke' }
 ]
 const actions = computed(() => currentPageActions())
 

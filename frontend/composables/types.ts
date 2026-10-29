@@ -47,7 +47,7 @@ export interface ReplicaStep extends Step {
 }
 export interface Replica {
   id: string, post_id: string, post_url: string, post_author: string,
-  post_author_name: string, post_title: string, created_at: string, steps: ReplicaStep[]
+  post_author_name: string, post_title: string, created_at: string, updated_at?: string, steps: ReplicaStep[]
 }
 export class ApiError extends Error {
   code: string

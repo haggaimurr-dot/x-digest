@@ -95,12 +95,14 @@ export function useStore () {
     if (mock.value) return mockStore.categories.value
     return apiFetch<Categories>('categories')
   }
-  async function loadReplicas (sort: 'time' | 'progress' = 'time'): Promise<Replica[]> {
+  async function loadReplicas (sort: 'time' | 'edited' | 'progress' = 'time'): Promise<Replica[]> {
     if (mock.value) {
       const list = [...mockStore.replicas.value]
       if (sort === 'progress') {
         const prog = (r: Replica) => r.steps.length ? r.steps.filter(s => s.status === 'done').length / r.steps.length : 0
         list.sort((a, b) => prog(b) - prog(a))
+      } else if (sort === 'edited') {
+        list.sort((a, b) => Date.parse(b.updated_at || b.created_at) - Date.parse(a.updated_at || a.created_at))
       } else list.sort((a, b) => Date.parse(b.created_at) - Date.parse(a.created_at))
       return list
     }

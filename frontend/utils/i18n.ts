@@ -408,6 +408,7 @@ export const DICT: Record<string, { zh: string, en: string }> = {
   'fuke.total': { zh: '共 {n} 个复刻', en: '{n} replicas' },
   'fuke.sort': { zh: '排序', en: 'Sort' },
   'fuke.sortTime': { zh: '按时间', en: 'By time' },
+  'fuke.sortEdited': { zh: '按编辑时间', en: 'By edit time' },
   'fuke.sortProgress': { zh: '按进度', en: 'By progress' },
   'fuke.backToDaily': { zh: '回摘要页选帖复刻', en: 'Back to Daily to replicate a post' },
   'fuke.newFlowTitle': { zh: '新建空白流程（不依赖 X 贴，从头开始）', en: 'New blank flow (not tied to an X post, start from scratch)' },

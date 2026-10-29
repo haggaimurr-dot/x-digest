@@ -14,11 +14,13 @@ import (
 
 func (s *Store) GetReplica(id string, attachDir string) (*model.Replica, error) {
 	var r model.Replica
-	err := s.DB.QueryRow("SELECT id,post_id,post_url,post_author,post_author_name,post_title,created_at FROM replicas WHERE id=?", id).
-		Scan(&r.ID, &r.PostID, &r.PostURL, &r.PostAuthor, &r.PostAuthorName, &r.PostTitle, &r.CreatedAt)
+	var updatedAt sql.NullString
+	err := s.DB.QueryRow("SELECT id,post_id,post_url,post_author,post_author_name,post_title,created_at,updated_at FROM replicas WHERE id=?", id).
+		Scan(&r.ID, &r.PostID, &r.PostURL, &r.PostAuthor, &r.PostAuthorName, &r.PostTitle, &r.CreatedAt, &updatedAt)
 	if err != nil {
 		return nil, err
 	}
+	r.UpdatedAt = updatedAt.String
 	steps, err := s.replicaSteps(id)
 	if err != nil {
 		return nil, err
@@ -103,8 +105,22 @@ func (s *Store) replicaStepAttachments(replicaID string, stepIdx int) ([]model.A
 	return out, rows.Err()
 }
 
+// touchReplica bumps a replica's updated_at (edit time) after any user
+// mutation: step add/delete/patch, attachment add/delete.
+func (s *Store) touchReplica(id string) {
+	_, _ = s.DB.Exec("UPDATE replicas SET updated_at=NOW() WHERE id=?", id)
+}
+
+func touchReplicaTx(tx *sql.Tx, id string) {
+	_, _ = tx.Exec("UPDATE replicas SET updated_at=NOW() WHERE id=?", id)
+}
+
 func (s *Store) ListReplicas(sort string) ([]model.Replica, error) {
-	rows, err := s.DB.Query("SELECT id FROM replicas ORDER BY created_at DESC")
+	order := "created_at DESC"
+	if sort == "edited" {
+		order = "updated_at DESC"
+	}
+	rows, err := s.DB.Query("SELECT id FROM replicas ORDER BY " + order)
 	if err != nil {
 		return nil, err
 	}
@@ -159,8 +175,8 @@ func (s *Store) CreateStandaloneReplica(title string) (*model.Replica, error) {
 		return nil, fmt.Errorf("empty replica title")
 	}
 	id := NewID("rep_")
-	if _, err := s.DB.Exec(`INSERT INTO replicas(id,post_id,post_url,post_author,post_author_name,post_title,created_at)
-		VALUES(?, '', '', '', '自建', ?, ?)`, id, title, Now()); err != nil {
+	if _, err := s.DB.Exec(`INSERT INTO replicas(id,post_id,post_url,post_author,post_author_name,post_title,created_at,updated_at)
+		VALUES(?, '', '', '', '自建', ?, ?, ?)`, id, title, Now(), Now()); err != nil {
 		return nil, err
 	}
 	return s.GetReplica(id, "")
@@ -192,8 +208,8 @@ func (s *Store) CreateReplicaFromPost(postID string) (*model.Replica, bool, erro
 	}
 	defer tx.Rollback()
 	id := NewID("rep_")
-	if _, err := tx.Exec(`INSERT INTO replicas(id,post_id,post_url,post_author,post_author_name,post_title,created_at)
-		VALUES(?,?,?,?,?,?,?)`, id, p.ID, p.URL, p.Author, p.AuthorName, p.Title, Now()); err != nil {
+	if _, err := tx.Exec(`INSERT INTO replicas(id,post_id,post_url,post_author,post_author_name,post_title,created_at,updated_at)
+		VALUES(?,?,?,?,?,?,?,?)`, id, p.ID, p.URL, p.Author, p.AuthorName, p.Title, Now(), Now()); err != nil {
 		return nil, false, err
 	}
 	for i, st := range p.Steps {
@@ -262,6 +278,7 @@ func (s *Store) AddReplicaStep(id, text string, parentIdx *int) (model.ReplicaSt
 	if err != nil {
 		return model.ReplicaStep{}, err
 	}
+	s.touchReplica(id)
 	return st, nil
 }
 
@@ -320,6 +337,7 @@ func (s *Store) DeleteReplicaStep(id string, idx int) ([]string, error) {
 			return nil, err
 		}
 	}
+	touchReplicaTx(tx, id)
 	return paths, tx.Commit()
 }
 
@@ -374,6 +392,7 @@ func (s *Store) PatchReplicaSteps(id string, patches []StepPatch) error {
 			return fmt.Errorf("unknown step idx: %d", p.Idx)
 		}
 	}
+	touchReplicaTx(tx, id)
 	return tx.Commit()
 }
 
@@ -416,7 +435,11 @@ func (s *Store) ReplicaExists(id string) bool {
 func (s *Store) CreateAttachment(a model.Attachment, path string) error {
 	_, err := s.DB.Exec(`INSERT INTO attachments(id,replica_id,step_idx,name,size,content_type,ext,path,created_at)
 		VALUES(?,?,?,?,?,?,?,?,?)`, a.ID, a.ReplicaID, a.StepIdx, a.Name, a.Size, a.ContentType, a.Ext, path, a.CreatedAt)
-	return err
+	if err != nil {
+		return err
+	}
+	s.touchReplica(a.ReplicaID)
+	return nil
 }
 
 func (s *Store) GetAttachment(id string) (*model.Attachment, string, error) {
@@ -432,14 +455,15 @@ func (s *Store) GetAttachment(id string) (*model.Attachment, string, error) {
 }
 
 func (s *Store) DeleteAttachment(id string) (string, error) {
-	var path string
-	err := s.DB.QueryRow("SELECT path FROM attachments WHERE id=?", id).Scan(&path)
+	var path, replicaID string
+	err := s.DB.QueryRow("SELECT path,replica_id FROM attachments WHERE id=?", id).Scan(&path, &replicaID)
 	if err != nil {
 		return "", err
 	}
 	if _, err := s.DB.Exec("DELETE FROM attachments WHERE id=?", id); err != nil {
 		return "", err
 	}
+	s.touchReplica(replicaID)
 	return path, nil
 }
 
@@ -479,8 +503,8 @@ func (s *Store) CloneReplica(id string, copyNotes bool) (*model.Replica, error) 
 		return nil, err
 	}
 	newID := NewID("rep_")
-	if _, err := tx.Exec(`INSERT INTO replicas(id,post_id,post_url,post_author,post_author_name,post_title,created_at)
-		VALUES(?, '', ?, ?, ?, ?, ?)`, newID, url, author, authorName, title.String+"（副本）", Now()); err != nil {
+	if _, err := tx.Exec(`INSERT INTO replicas(id,post_id,post_url,post_author,post_author_name,post_title,created_at,updated_at)
+		VALUES(?, '', ?, ?, ?, ?, ?, ?)`, newID, url, author, authorName, title.String+"（副本）", Now(), Now()); err != nil {
 		return nil, err
 	}
 	note := "''"
