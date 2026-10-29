@@ -79,5 +79,5 @@ export function useApi () {
     if (!res.ok) throw new ApiError(res.status, data?.error || `HTTP_${res.status}`, data?.message || t('api.uploadFailed'))
     return data as T
   }
-  return { mock, apiFetch, apiUpload }
+  return { mock, apiFetch, apiUpload, apiBase, authHeaders, askToken }
 }

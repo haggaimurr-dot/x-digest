@@ -123,6 +123,7 @@ func main() {
 	mux.HandleFunc("/api/v1/views", s.handleViews)
 	mux.HandleFunc("/api/v1/views/", s.handleView)
 	mux.HandleFunc("/api/v1/attachments/", s.handleAttachment)
+	mux.HandleFunc("/api/v1/stt", s.handleSTT)
 	log.Printf("xdigest-api listening on %s (attachments: %s)", addr, attachDir)
 	// auth first (a 401 never counts against the AI quota), then the quota.
 	handler := m.observeRequests(requireAuth(os.Getenv("API_TOKEN"), newAIQuota(atoiDefault(os.Getenv("AI_DAILY_LIMIT"), 0)).wrap(mux)))

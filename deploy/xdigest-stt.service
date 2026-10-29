@@ -1,0 +1,21 @@
+[Unit]
+Description=x-digest local speech-to-text (faster-whisper)
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/opt/xdigest-stt
+Environment=STT_MODEL_DIR=/opt/xdigest-stt/model
+Environment=STT_LISTEN=127.0.0.1
+Environment=STT_PORT=18101
+ExecStart=/opt/xdigest-stt/venv/bin/python /opt/xdigest-stt/stt_server.py
+Restart=on-failure
+RestartSec=5
+# whisper base on CPU: keep it from starving the box
+MemoryMax=1G
+CPUQuota=200%
+
+[Install]
+WantedBy=multi-user.target

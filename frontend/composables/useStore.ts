@@ -33,7 +33,7 @@ function withXContent (post: Post): Post {
 }
 
 export function useStore () {
-  const { mock, apiFetch, apiUpload } = useApi()
+  const { mock, apiFetch, apiUpload, apiBase, authHeaders, askToken } = useApi()
   const mockStore = useMockStore()
   const loading = useState<boolean>('xd-loading', () => false)
   const error = useState<string>('xd-error', () => '')
@@ -155,6 +155,23 @@ export function useStore () {
   async function renameAttachment (id: string, name: string): Promise<Attachment> {
     if (mock.value) { return mockStore.renameMockAttachment(id, name) }
     return await apiFetch<Attachment>(`attachments/${id}`, { method: 'PATCH', body: JSON.stringify({ name }) })
+  }
+  // 录音转文字：把录音 blob 发给后端的 /api/v1/stt（本地 Whisper），返回识别文本。
+  // mock 模式下直接提示不可用。
+  async function transcribeAudio (blob: Blob): Promise<string> {
+    if (mock.value) throw new Error('preview mode: transcription unavailable')
+    const base = apiBase()
+    const url = `${base.replace(/\/$/, '')}/stt`
+    const fd = new FormData()
+    fd.append('audio', blob, 'recording.webm')
+    let res: Response
+    try { res = await fetch(url, { method: 'POST', body: fd, headers: authHeaders() }) } catch (e: any) {
+      throw new Error(e?.message || 'network failed')
+    }
+    if (res.status === 401 && askToken()) return transcribeAudio(blob)
+    const data = await res.json().catch(() => null)
+    if (!res.ok) throw new Error(data?.message || `transcription failed (HTTP ${res.status})`)
+    return (data?.text || '').trim()
   }
   async function replicaAttachments (replicaId: string): Promise<Attachment[]> {
     if (mock.value) {
@@ -514,7 +531,7 @@ export function useStore () {
   return {
     mock, loading, error, loadPosts, loadWatchlist, loadWatchlistActivity, bulkAddAccounts, loadTags, loadCategories,
     loadReplicas, createReplica, createStandaloneReplica, patchReplicaSteps, addReplicaStep, deleteReplicaStep, deleteReplica, uploadAttachments,
-    deleteAttachment, renameAttachment, replicaAttachments, addGroup, deleteGroup, addAccount, patchAccount,
+    deleteAttachment, renameAttachment, transcribeAudio, replicaAttachments, addGroup, deleteGroup, addAccount, patchAccount,
     deleteAccount, addCategory, deleteCategory, renameCategory, restoreCategory, deletePosts, setPostReplicaEnabled, loadViews, createView, deleteView, batchCategory, batchPostSummaries, cloneReplica, loadNotifications, markNotificationsRead, createReplicaFromRepo, setPostCategories, translateTexts,
     loadRepos, loadRepoGroups, addRepo, loadRepoDetail, loadRepoCommits, loadRepoReleases,
     patchRepo, deleteRepo, syncRepo, syncAllRepos, getRepoSyncStatus, addRepoGroup, deleteRepoGroup, validateRepoFullName,

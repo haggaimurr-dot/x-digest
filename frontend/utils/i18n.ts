@@ -536,7 +536,14 @@ export const DICT: Record<string, { zh: string, en: string }> = {
   'note.edit': { zh: '编辑', en: 'Edit' },
   'note.ph': { zh: '写点备注…（支持 Markdown，可预览）', en: 'Write a note… (Markdown, previewable)' },
   'note.aria': { zh: '步骤备注', en: 'Step note' },
-  'note.groupAria': { zh: '备注', en: 'Note' }
+  'note.groupAria': { zh: '备注', en: 'Note' },
+  'note.record': { zh: '录音转文字', en: 'Voice to text' },
+  'note.recording': { zh: '录音中…点一下停止', en: 'Recording… tap to stop' },
+  'note.transcribing': { zh: '识别中…', en: 'Transcribing…' },
+  'note.recordFailed': { zh: '录音失败', en: 'Recording failed' },
+  'note.transcribeFailed': { zh: '识别失败', en: 'Transcription failed' },
+  'note.transcribeEmpty': { zh: '没听清，再试一次', en: 'Nothing recognized, try again' },
+  'note.micDenied': { zh: '需要麦克风权限', en: 'Microphone permission needed' },
 }
 
 let currentLang: Lang = 'zh-CN'
