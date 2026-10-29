@@ -59,7 +59,6 @@ type server struct {
 	tr        *translate.Service
 	yt        *youtube.Client
 	sum       *summaryJobs
-	comments  *commentQueue
 	repoSync  *repoSyncer
 }
 
@@ -78,10 +77,6 @@ func main() {
 	s := &server{st: st, attachDir: attachDir, gh: github.NewFromEnv(), tr: translate.NewService(translate.NewFromEnv(), st), yt: youtube.New()}
 	s.sum = newSummaryJobs(s.yt)
 	s.repoSync = s.newRepoSyncer()
-	s.comments = newCommentQueue()
-	if commentsEnabled() {
-		go s.runCommentWorker()
-	}
 	go s.purgeCategoriesLoop()
 	go s.cleanAttachmentsLoop()
 	if d := repoSyncInterval(); d > 0 {
@@ -121,10 +116,9 @@ func main() {
 	mux.HandleFunc("/api/v1/yt/channels/", s.handleYTChannelSub)
 	mux.HandleFunc("/api/v1/yt/videos", s.handleYTVideos)
 	mux.HandleFunc("/api/v1/yt/videos/", s.handleYTVideoSub)
-	mux.HandleFunc("/api/v1/yt/comments", commentsHandler(s.handleYTComments))
 	// Bilibili uploaders: same routes/JSON as /api/v1/yt (see hub.go).
 	(&videoHub{prefix: "bili", idPrefix: "bic_", kinds: map[string]bool{"video": true, "playlist": true},
-		st: st.Hub("bili"), pf: bilibili.New(), sum: s.sum, comments: newCommentQueue()}).register(mux)
+		st: st.Hub("bili"), pf: bilibili.New(), sum: s.sum}).register(mux)
 	mux.HandleFunc("/api/v1/yt/sync", s.handleYTSyncAll)
 	mux.HandleFunc("/api/v1/yt/groups", s.handleYTGroups)
 	mux.HandleFunc("/api/v1/yt/groups/", s.handleYTGroup)

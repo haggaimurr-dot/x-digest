@@ -61,3 +61,5 @@ func (q *aiQuota) wrap(next http.Handler) http.Handler {
 		next.ServeHTTP(w, r)
 	})
 }
+
+var shanghaiTZ = time.FixedZone("CST", 8*3600)

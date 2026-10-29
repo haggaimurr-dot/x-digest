@@ -10,13 +10,11 @@ package main
 //	POST                /api/v1/bili/sync
 //	GET/POST            /api/v1/bili/groups            DELETE .../{id}
 //	GET/POST            /api/v1/bili/videos/{id}/summary
-//	GET                 /api/v1/bili/comments?ids=
 //
 // Platform-specific work (resolving an uploader, syncing, reading a
-// video's subtitles and comments) goes through hubPlatform; storage is
+// video's subtitles) goes through hubPlatform; storage is
 // store.HubStore on the <prefix>_* tables. AI summaries share the
-// YouTube job pool (model, concurrency cap); comments get their own
-// queue and worker. The YouTube handlers predate this and are separate.
+// YouTube job pool (model, concurrency cap). The YouTube handlers predate this and are separate.
 
 import (
 	"context"
@@ -26,7 +24,6 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
-	"time"
 
 	"xdigest/internal/model"
 	"xdigest/internal/store"
@@ -40,7 +37,6 @@ type hubPlatform interface {
 	Resolve(ctx context.Context, input string) (channelID, name string, err error)
 	Sync(ctx context.Context, channelID, dateFrom, dateTo string, known map[string]bool) (*youtube.SyncResult, error)
 	FetchDetail(ctx context.Context, videoID string) (*youtube.VideoDetail, error)
-	FetchTopComments(ctx context.Context, videoID string, n int) ([]youtube.Comment, error)
 }
 
 type videoHub struct {
@@ -50,7 +46,6 @@ type videoHub struct {
 	st       *store.HubStore
 	pf       hubPlatform
 	sum      *summaryJobs
-	comments *commentQueue
 }
 
 func (h *videoHub) register(mux *http.ServeMux) {
@@ -62,10 +57,6 @@ func (h *videoHub) register(mux *http.ServeMux) {
 	mux.HandleFunc(base+"/sync", h.handleSyncAll)
 	mux.HandleFunc(base+"/groups", h.handleGroups)
 	mux.HandleFunc(base+"/groups/", h.handleGroup)
-	mux.HandleFunc(base+"/comments", commentsHandler(h.handleComments))
-	if commentsEnabled() {
-		go h.runCommentWorker()
-	}
 }
 
 // ---- channels ----
@@ -551,77 +542,4 @@ func (h *videoHub) runSummary(video model.YTVideo, lang, key string) {
 		Model: h.sum.llm.Model}); err != nil {
 		log.Printf("%s summary %s: store result: %v", h.prefix, video.ID, err)
 	}
-}
-
-// ---- top comments (same flow as yt_comments.go) ----
-
-func (h *videoHub) runCommentWorker() {
-	for id := range h.comments.ch {
-		h.comments.done(id, !h.fetchComments(id))
-		time.Sleep(commentsPause)
-	}
-}
-
-func (h *videoHub) fetchComments(id string) bool {
-	ctx, cancel := context.WithTimeout(context.Background(), commentsFetchTO)
-	defer cancel()
-	raw, err := h.pf.FetchTopComments(ctx, id, commentsShown)
-	if err != nil {
-		log.Printf("%s comments %s: %v", h.prefix, id, err)
-		return false
-	}
-	out := make([]model.YTComment, len(raw))
-	for i, c := range raw {
-		out[i] = model.YTComment{Author: c.Author, Text: c.Text, Likes: c.Likes}
-		if c.Timestamp > 0 {
-			out[i].PublishedAt = time.Unix(c.Timestamp, 0).In(shanghaiTZ).Format("2006-01-02 15:04:05")
-		}
-	}
-	if err := h.st.ReplaceComments(id, out); err != nil {
-		log.Printf("%s comments %s: store: %v", h.prefix, id, err)
-		return false
-	}
-	return true
-}
-
-func (h *videoHub) handleComments(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodGet {
-		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only GET")
-		return
-	}
-	var ids []string
-	seen := map[string]bool{}
-	for _, id := range strings.Split(r.URL.Query().Get("ids"), ",") {
-		if id = strings.TrimSpace(id); id != "" && !seen[id] {
-			seen[id] = true
-			ids = append(ids, id)
-		}
-	}
-	if len(ids) > maxCommentIDs {
-		writeErr(w, 422, "VALIDATION", "at most 60 ids per request")
-		return
-	}
-	states, err := h.st.GetComments(ids)
-	if err != nil {
-		writeErr(w, 500, "DB_ERROR", err.Error())
-		return
-	}
-	comments := map[string][]model.YTComment{}
-	pending := []string{}
-	for _, id := range ids {
-		st := states[id]
-		if st == nil {
-			continue
-		}
-		comments[id] = st.Comments
-		stale := st.FetchedAt == ""
-		if !stale {
-			t, err := time.ParseInLocation("2006-01-02 15:04:05", st.FetchedAt, shanghaiTZ)
-			stale = err != nil || time.Since(t) > commentsTTL
-		}
-		if stale && h.comments.enqueue(id) {
-			pending = append(pending, id)
-		}
-	}
-	writeJSON(w, 200, map[string]any{"comments": comments, "pending": pending})
 }

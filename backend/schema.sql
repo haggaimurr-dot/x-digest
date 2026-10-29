@@ -335,23 +335,11 @@ CREATE TABLE IF NOT EXISTS yt_video_summaries (
   PRIMARY KEY (video_id, lang)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- ---- YouTube top comments (added 2026-10-27) ----
--- Up to 5 most-liked top-level comments per video, shown under the
--- thumbnail. Fetched lazily in the background (one yt-dlp call per video,
--- queued when the page asks for a video whose comments were never
--- fetched or are older than 7 days). comments_fetched_at NULL = never;
--- a fetch that found no comments still sets it.
-CREATE TABLE IF NOT EXISTS yt_video_comments (
-  video_id     VARCHAR(64)  NOT NULL,
-  idx          INT          NOT NULL,
-  author       VARCHAR(256) NOT NULL DEFAULT '',
-  text         TEXT         NOT NULL,
-  like_count   INT          NOT NULL DEFAULT 0,
-  published_at DATETIME     NULL,
-  PRIMARY KEY (video_id, idx)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-ALTER TABLE yt_videos ADD COLUMN IF NOT EXISTS comments_fetched_at DATETIME NULL;
+-- ---- Video top comments: removed 2026-10-29 ----
+-- yt_video_comments / bili_video_comments and the *_videos.comments_fetched_at
+-- columns belonged to the top-comments feature, which is gone. New installs
+-- no longer create them; on an existing database back them up and drop
+-- them with backend/scripts/drop_video_comments.sql.
 
 -- ---- Bilibili uploaders (added 2026-10-27) ----
 -- Same shape as the yt_* tables (the /bilibili page reuses the YouTube
@@ -395,7 +383,6 @@ CREATE TABLE IF NOT EXISTS bili_videos (
   thumbnail_url       VARCHAR(1024) NOT NULL DEFAULT '',
   url                 VARCHAR(1024) NOT NULL DEFAULT '',
   created_at          DATETIME      NOT NULL,
-  comments_fetched_at DATETIME      NULL,
   INDEX idx_bili_videos_channel_kind (channel_id, kind, published_at DESC),
   INDEX idx_bili_videos_published (published_at DESC)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -414,16 +401,6 @@ CREATE TABLE IF NOT EXISTS bili_video_summaries (
   created_at      DATETIME     NOT NULL,
   updated_at      DATETIME     NOT NULL,
   PRIMARY KEY (video_id, lang)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-CREATE TABLE IF NOT EXISTS bili_video_comments (
-  video_id     VARCHAR(64)  NOT NULL,
-  idx          INT          NOT NULL,
-  author       VARCHAR(256) NOT NULL DEFAULT '',
-  text         TEXT         NOT NULL,
-  like_count   INT          NOT NULL DEFAULT 0,
-  published_at DATETIME     NULL,
-  PRIMARY KEY (video_id, idx)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- AI summary "resources" (tools / repos / sites the video mentions,

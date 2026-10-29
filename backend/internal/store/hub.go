@@ -111,7 +111,6 @@ func (h *HubStore) DeleteChannel(id string) error {
 	}
 	for _, stmt := range []string{
 		"DELETE s FROM {p}_video_summaries s JOIN {p}_videos v ON v.id=s.video_id WHERE v.channel_id=?",
-		"DELETE c FROM {p}_video_comments c JOIN {p}_videos v ON v.id=c.video_id WHERE v.channel_id=?",
 		"DELETE FROM {p}_videos WHERE channel_id=?",
 	} {
 		if _, err := tx.Exec(h.q(stmt), channelID); err != nil {
@@ -399,80 +398,4 @@ func (h *HubStore) FailSummary(videoID, lang, msg string) error {
 	_, err := h.DB.Exec(h.q(`UPDATE {p}_video_summaries SET status='failed',error=?,updated_at=?
 		WHERE video_id=? AND lang=?`), msg, Now(), videoID, lang)
 	return err
-}
-
-// ---- comments (same semantics as GetYTComments / ReplaceYTComments) ----
-
-func (h *HubStore) GetComments(ids []string) (map[string]*YTCommentsState, error) {
-	out := map[string]*YTCommentsState{}
-	if len(ids) == 0 {
-		return out, nil
-	}
-	ph := strings.TrimSuffix(strings.Repeat("?,", len(ids)), ",")
-	args := make([]any, len(ids))
-	for i, id := range ids {
-		args[i] = id
-	}
-	rows, err := h.DB.Query(h.q(`SELECT id, DATE_FORMAT(comments_fetched_at,'%Y-%m-%d %H:%i:%s')
-		FROM {p}_videos WHERE id IN (`+ph+`)`), args...)
-	if err != nil {
-		return nil, err
-	}
-	for rows.Next() {
-		var id string
-		var fetched sql.NullString
-		if err := rows.Scan(&id, &fetched); err != nil {
-			rows.Close()
-			return nil, err
-		}
-		out[id] = &YTCommentsState{Comments: []model.YTComment{}, FetchedAt: fetched.String}
-	}
-	rows.Close()
-	if err := rows.Err(); err != nil {
-		return nil, err
-	}
-	rows, err = h.DB.Query(h.q(`SELECT video_id,author,text,like_count,DATE_FORMAT(published_at,'%Y-%m-%d %H:%i:%s')
-		FROM {p}_video_comments WHERE video_id IN (`+ph+`) ORDER BY video_id, idx`), args...)
-	if err != nil {
-		return nil, err
-	}
-	defer rows.Close()
-	for rows.Next() {
-		var id string
-		var c model.YTComment
-		var published sql.NullString
-		if err := rows.Scan(&id, &c.Author, &c.Text, &c.Likes, &published); err != nil {
-			return nil, err
-		}
-		c.PublishedAt = published.String
-		if st := out[id]; st != nil {
-			st.Comments = append(st.Comments, c)
-		}
-	}
-	return out, rows.Err()
-}
-
-func (h *HubStore) ReplaceComments(videoID string, comments []model.YTComment) error {
-	tx, err := h.DB.Begin()
-	if err != nil {
-		return err
-	}
-	defer tx.Rollback()
-	if _, err := tx.Exec(h.q("DELETE FROM {p}_video_comments WHERE video_id=?"), videoID); err != nil {
-		return err
-	}
-	for i, c := range comments {
-		var published any
-		if c.PublishedAt != "" {
-			published = c.PublishedAt
-		}
-		if _, err := tx.Exec(h.q(`INSERT INTO {p}_video_comments(video_id,idx,author,text,like_count,published_at)
-			VALUES(?,?,?,?,?,?)`), videoID, i, c.Author, c.Text, c.Likes, published); err != nil {
-			return err
-		}
-	}
-	if _, err := tx.Exec(h.q("UPDATE {p}_videos SET comments_fetched_at=? WHERE id=?"), Now(), videoID); err != nil {
-		return err
-	}
-	return tx.Commit()
 }

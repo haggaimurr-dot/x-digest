@@ -114,17 +114,6 @@ func newFakeBili(t *testing.T) *fakeBili {
 	mux.HandleFunc("/sub-zh.json", func(w http.ResponseWriter, r *http.Request) {
 		_ = json.NewEncoder(w).Encode(map[string]any{"body": []map[string]any{{"from": 0.5, "content": "大家好"}, {"from": 3, "content": "今天讲 Go"}}})
 	})
-	mux.HandleFunc("/x/v2/reply/wbi/main", func(w http.ResponseWriter, r *http.Request) {
-		if r.URL.Query().Get("oid") != "11" || r.URL.Query().Get("mode") != "3" {
-			t.Errorf("unexpected reply query %s", r.URL.RawQuery)
-		}
-		ok(w, map[string]any{"replies": []map[string]any{
-			{"like": 5, "ctime": 1, "member": map[string]string{"uname": "a"}, "content": map[string]string{"message": "一般"}},
-			{"like": 900, "ctime": 2, "member": map[string]string{"uname": "b"}, "content": map[string]string{"message": "最赞"}},
-			{"like": 50, "ctime": 3, "member": map[string]string{"uname": "c"}, "content": map[string]string{"message": "  "}},
-			{"like": 60, "ctime": 4, "member": map[string]string{"uname": "d"}, "content": map[string]string{"message": "第二"}},
-		}})
-	})
 	f.srv = httptest.NewServer(mux)
 	t.Cleanup(f.srv.Close)
 	return f
@@ -207,17 +196,6 @@ func TestFetchDetailPrefersHumanChineseSubtitle(t *testing.T) {
 	}
 	if len(d.Chapters) != 2 || d.Chapters[1].Start != 60 || d.Duration != 605 {
 		t.Fatalf("chapters %+v duration %d", d.Chapters, d.Duration)
-	}
-}
-
-func TestFetchTopComments(t *testing.T) {
-	f := newFakeBili(t)
-	got, err := f.client().FetchTopComments(context.Background(), "BV1aa", 2)
-	if err != nil {
-		t.Fatal(err)
-	}
-	if len(got) != 2 || got[0].Text != "最赞" || got[1].Text != "第二" || got[0].Author != "b" {
-		t.Fatalf("got %+v", got)
 	}
 }
 

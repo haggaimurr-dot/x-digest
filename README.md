@@ -73,7 +73,6 @@ cd frontend && npm install && npm run dev   # http://127.0.0.1:18091，/api 代�
 | `REFRESH_INTERVAL` | 自动「更新帖子」间隔（如 `6h`，最少 10m）；未设置 = 关闭 |
 | `REPO_SYNC_INTERVAL` | 仓库自动同步间隔，默认 `24h`；`0` = 关闭。发现新 Release 时顶栏铃铛提醒 |
 | `ATTACHMENT_QUOTA_MB` | 附件总容量上限，超出 413；未设置 = 不限 |
-| `COMMENTS_ENABLED` | 视频热门评论 worker 与接口，默认关闭（接口返回 410） |
 
 ## X 日报数据流
 
@@ -163,7 +162,7 @@ X 帖子、油管、B 站共用同一套逻辑：首次点击时后台生成并�
 - **关注列表与标签** `/watchlist`（分组 + 账号 CRUD）、`GET /tags`、`GET/PUT /user-tags`、`/categories`（含 `PUT /categories/assignments`）
 - **复刻** `/replicas`（同一帖子不重复建）、`/replicas/{id}/attachments`、`/attachments/{id}[/download]`
 - **仓库** `/repos`、`/repos/{owner}/{repo}[/commits|/releases|/sync]`、`POST /repos/sync-all`、`/repos/groups`
-- **视频** `/yt/*` 与 `/bili/*` 同构：`channels`、`videos`、`videos/{id}/summary`、`sync`、`groups`、`comments`（评论接口仍在，页面已不调用）
+- **视频** `/yt/*` 与 `/bili/*` 同构：`channels`、`videos`、`videos/{id}/summary`、`sync`、`groups`（热门评论已于 2026-10-29 下线，删表脚本见 `backend/scripts/drop_video_comments.sql`）
 - **翻译** `POST /translate`（结果缓存在 `translations` 表）
 
 附件白名单：pdf doc docx xls xlsx ppt pptx txt md csv png jpg jpeg gif webp bmp avif svg ico；单个 ≤ 5MB，先全部校验再落盘，不合规返回 422。磁盘文件名用内部 id，数据库只存元数据和路径。
