@@ -112,16 +112,10 @@ func main() {
 	mux.HandleFunc("/api/v1/repos/groups", s.handleRepoGroups)
 	mux.HandleFunc("/api/v1/repos/groups/", s.handleRepoGroup)
 	mux.HandleFunc("/api/v1/repos/sync-all", s.handleRepoSyncAll)
-	mux.HandleFunc("/api/v1/yt/channels", s.handleYTChannels)
-	mux.HandleFunc("/api/v1/yt/channels/", s.handleYTChannelSub)
-	mux.HandleFunc("/api/v1/yt/videos", s.handleYTVideos)
-	mux.HandleFunc("/api/v1/yt/videos/", s.handleYTVideoSub)
+	s.registerYT(mux)
 	// Bilibili uploaders: same routes/JSON as /api/v1/yt (see hub.go).
 	(&videoHub{prefix: "bili", idPrefix: "bic_", kinds: map[string]bool{"video": true, "playlist": true},
 		st: st.Hub("bili"), pf: bilibili.New(), sum: s.sum}).register(mux)
-	mux.HandleFunc("/api/v1/yt/sync", s.handleYTSyncAll)
-	mux.HandleFunc("/api/v1/yt/groups", s.handleYTGroups)
-	mux.HandleFunc("/api/v1/yt/groups/", s.handleYTGroup)
 	mux.HandleFunc("/api/v1/translate", s.handleTranslate)
 	mux.HandleFunc("/api/v1/notifications", s.handleNotifications)
 	mux.HandleFunc("/api/v1/notifications/", s.handleNotifications)
@@ -175,4 +169,15 @@ func (s *server) handleHealth(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	writeJSON(w, 200, map[string]bool{"ok": true})
+}
+
+// registerYT serves /api/v1/yt/* (the handler tests go through it too).
+func (s *server) registerYT(mux *http.ServeMux) {
+	mux.HandleFunc("/api/v1/yt/channels", s.handleYTChannels)
+	mux.HandleFunc("/api/v1/yt/channels/", s.handleYTChannelSub)
+	mux.HandleFunc("/api/v1/yt/videos", s.handleYTVideos)
+	mux.HandleFunc("/api/v1/yt/videos/", s.handleYTVideoSub)
+	mux.HandleFunc("/api/v1/yt/sync", s.handleYTSyncAll)
+	mux.HandleFunc("/api/v1/yt/groups", s.handleYTGroups)
+	mux.HandleFunc("/api/v1/yt/groups/", s.handleYTGroup)
 }
