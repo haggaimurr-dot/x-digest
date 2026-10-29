@@ -172,9 +172,9 @@
   },
   "open": {
     "Chilljccu": {
-      "posts_added": 1846,
-      "pages": 74,
-      "next_token": "7140dibdnow9c7btwp0fs2ilsryt6wpc3d1zmbh01f3n9",
+      "posts_added": 1871,
+      "pages": 75,
+      "next_token": "7140dibdnow9c7btwp0fs2ilra74hllfbkso0mha2i980",
       "user_id": "2090442465950171136"
     },
     "gefei55": {
@@ -208,8 +208,8 @@
       "user_id": "902483821811056640"
     }
   },
-  "raw_total": 28358,
-  "last_footer": "X reads left for this user: 29 of 30 this minute (resets at 2026-10-29T00:46:00.000Z), 733 of 1000 today (resets at 2026-10-30T00:00:00.000Z).",
+  "raw_total": 28383,
+  "last_footer": "X reads left for this user: 28 of 30 this minute (resets at 2026-10-29T00:46:00.000Z), 732 of 1000 today (resets at 2026-10-30T00:00:00.000Z).",
   "stopped_reason": "queue_complete_latest10",
   "note": "Parent advanced qizong007 then handed to executor",
   "accounts": {
@@ -228,8 +228,8 @@
       "user_id": "3027431134"
     },
     "Chilljccu": {
-      "posts_added": 1846,
-      "pages_done": 74,
+      "posts_added": 1871,
+      "pages_done": 75,
       "complete": false,
       "user_id": "2090442465950171136"
     },

@@ -1110837,5 +1110837,879 @@
     },
     "fetched_at": "2026-10-29T00:45:10.000Z",
     "source": "builtin-x"
+  },
+  {
+    "id": "2105521152181559370",
+    "url": "https://x.com/Chilljccu/status/2105521152181559370",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-01T04:52:16.000Z",
+    "lang": "",
+    "text": "@sh11668 看来是真火了",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2105521152181559370",
+    "in_reply_to_id": "2105511481794314468",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2105511481794314468",
+        "author_id": "2007704695486435328",
+        "author_username": "sh11668",
+        "author_name": "梭哈哥",
+        "text": "这几把是谁啊\n有脸来喷我？？？？\n你他妈的也不撒泡尿照照自己\nJJ有没有3cm\n？？？？？ https://t.co/55sMzGros6"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 2,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 92
+    },
+    "fetched_at": "2026-10-29T00:45:46.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2105520786207613008",
+    "url": "https://x.com/Chilljccu/status/2105520786207613008",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-01T04:50:48.000Z",
+    "lang": "",
+    "text": "@suyu2018block 真名真头像在X上风险太大，尤其是国内能搜到",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2105520786207613008",
+    "in_reply_to_id": "2105477803030487099",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2105477803030487099",
+        "author_id": "1380720896038424579",
+        "author_username": "suyu2018block",
+        "author_name": "SU YU-Web4",
+        "text": "强烈建议：\n\nX上不要搞真人 真姓 真头像\n\n现在只要是流量好的帖子\n\n都会被搬运到国内平台\n\n小红书 抖音 微博 （小心风险）"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 103
+    },
+    "fetched_at": "2026-10-29T00:45:46.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2105520696474710254",
+    "url": "https://x.com/Chilljccu/status/2105520696474710254",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-01T04:50:27.000Z",
+    "lang": "",
+    "text": "@linmumu223 老马是真怕中国区把平台卷崩",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2105520696474710254",
+    "in_reply_to_id": "2105480474764439579",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2105480474764439579",
+        "author_id": "2078042698980958209",
+        "author_username": "linmumu223",
+        "author_name": "mumu木川",
+        "text": "卧槽了！\n卧槽了！\n\n老马为了让中国的𝕏牛马不要那么卷也是煞费苦心\n\n已经开始限制冲量评论\n\n连肝王梭哈哥也被限制了\n\n每发50条就限制你30分钟😂\n\n让你们不要命的卷🤣"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 19
+    },
+    "fetched_at": "2026-10-29T00:45:46.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2105520574915289308",
+    "url": "https://x.com/Chilljccu/status/2105520574915289308",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-01T04:49:58.000Z",
+    "lang": "",
+    "text": "@wangchangfu88 有钱人早避开人潮了，国庆出门的确实大部分是挤得起时间挤不起钱的",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2105520574915289308",
+    "in_reply_to_id": "2105477801386127701",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2105477801386127701",
+        "author_id": "949316104144457729",
+        "author_username": "wangchangfu88",
+        "author_name": "王长富",
+        "text": "说个反常识：\n\n国庆去旅游的\n\n95% 都是穷人"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 122
+    },
+    "fetched_at": "2026-10-29T00:45:46.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2105520435979042928",
+    "url": "https://x.com/Chilljccu/status/2105520435979042928",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-01T04:49:25.000Z",
+    "lang": "",
+    "text": "@yinlrr 我朋友也在出，说利润没到20块那么高",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2105520435979042928",
+    "in_reply_to_id": "2105513396695429455",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2105513396695429455",
+        "author_id": "2039366613582090240",
+        "author_username": "yinlrr",
+        "author_name": "因冷丨yinlr",
+        "text": "其实你们几十块钱买的多邻国年卡会员其实都在卡网批发\n\n赚钱有多简单？\n\n28的售价，月售7000毛利在20块每个\n\n收益大概140000 https://t.co/eN8EkOkaZg"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 36,
+      "reply": 6,
+      "repost": 0,
+      "quote": 0,
+      "impression": 101098
+    },
+    "fetched_at": "2026-10-29T00:45:46.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2105520153928814663",
+    "url": "https://x.com/Chilljccu/status/2105520153928814663",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-01T04:48:18.000Z",
+    "lang": "",
+    "text": "@wangchangfu88 麦当劳永远是麦辣鸡腿堡，肯德基必须原味鸡",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2105520153928814663",
+    "in_reply_to_id": "2105281515802501541",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2105281515802501541",
+        "author_id": "949316104144457729",
+        "author_username": "wangchangfu88",
+        "author_name": "王长富",
+        "text": "麦当劳最好吃的是什么？\n\n肯德基最好吃的是什么？"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 95
+    },
+    "fetched_at": "2026-10-29T00:45:46.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2105520032877023456",
+    "url": "https://x.com/Chilljccu/status/2105520032877023456",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-01T04:47:49.000Z",
+    "lang": "",
+    "text": "@suyu2018block 高频互动容易被判定成刷屏吧",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2105520032877023456",
+    "in_reply_to_id": "2105455151599567243",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2105455151599567243",
+        "author_id": "1380720896038424579",
+        "author_username": "suyu2018block",
+        "author_name": "SU YU-Web4",
+        "text": "据观察：\n\n梭哈哥和几个每天高频回复的人\n\n现在回复被限制了\n\n他们应该是持续一个月左右\n\nX就不让高频回复了"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 36
+    },
+    "fetched_at": "2026-10-29T00:45:46.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2105519473277231142",
+    "url": "https://x.com/Chilljccu/status/2105519473277231142",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-01T04:45:35.000Z",
+    "lang": "",
+    "text": "@xupaopaogm 女朋友：那我找别人？",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2105519473277231142",
+    "in_reply_to_id": "2105490999472726349",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2105490999472726349",
+        "author_id": "1844296703282925568",
+        "author_username": "xupaopaogm",
+        "author_name": "徐跑跑",
+        "text": "不懂就问：\n\n如果女朋友想找我打炮，我拒绝了她\n\n这个算违背妇女志愿吗？\n\n会不会因此进去？"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 137
+    },
+    "fetched_at": "2026-10-29T00:45:46.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2105519152593240176",
+    "url": "https://x.com/Chilljccu/status/2105519152593240176",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-01T04:44:19.000Z",
+    "lang": "",
+    "text": "@shangjian_zz 加油加油",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2105519152593240176",
+    "in_reply_to_id": "2105372105709912200",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2105372105709912200",
+        "author_id": "1764552953959178240",
+        "author_username": "shangjian_zz",
+        "author_name": "熵仔zz（不互关版）",
+        "text": "@Chilljccu 准备在咱们最新的项目过程中积累人头"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 119
+    },
+    "fetched_at": "2026-10-29T00:45:46.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2105519106531467450",
+    "url": "https://x.com/Chilljccu/status/2105519106531467450",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-01T04:44:08.000Z",
+    "lang": "",
+    "text": "@Sixtimenight 这个容易被抓",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2105519106531467450",
+    "in_reply_to_id": "2105507668576379336",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2105507668576379336"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 85
+    },
+    "fetched_at": "2026-10-29T00:45:46.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2105518948649406754",
+    "url": "https://x.com/Chilljccu/status/2105518948649406754",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-01T04:43:30.000Z",
+    "lang": "",
+    "text": "AI时代，最容易被淘汰的不是不会用AI的人。\n\n而是只会「让AI帮自己干活」的人。\n\n真正有价值的是：\n\n发现问题 → 拆解问题 → 设计流程 → 调用AI → 验证结果。\n\n工具会越来越便宜。\n\n真正贵的，是定义问题的能力。",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2105518948649406754",
+    "in_reply_to_id": null,
+    "referenced_tweets": [],
+    "media": [],
+    "public_metrics": {
+      "like": 11,
+      "reply": 2,
+      "repost": 0,
+      "quote": 0,
+      "impression": 703
+    },
+    "fetched_at": "2026-10-29T00:45:46.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2105518684773183906",
+    "url": "https://x.com/Chilljccu/status/2105518684773183906",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-01T04:42:27.000Z",
+    "lang": "",
+    "text": "@susanryanlin 小辰这波操作，属实给梭哈哥免费引流了",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2105518684773183906",
+    "in_reply_to_id": "2105480977372131378",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2105480977372131378",
+        "author_id": "2049005749775286272",
+        "author_username": "susanryanlin",
+        "author_name": "苏珊💓Susan",
+        "text": "梭哈哥被国内财经专栏作家“小辰财经”疯狂输出，哈哈哈哈哈哈 https://t.co/VFXV5QNhhd"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 73
+    },
+    "fetched_at": "2026-10-29T00:45:46.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2105518448218657107",
+    "url": "https://x.com/Chilljccu/status/2105518448218657107",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-01T04:41:31.000Z",
+    "lang": "",
+    "text": "@sh11668 哈哈哈哈梭哈哥也怕了",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2105518448218657107",
+    "in_reply_to_id": "2105505597852680402",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2105505597852680402"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 100
+    },
+    "fetched_at": "2026-10-29T00:45:46.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2105518341096169578",
+    "url": "https://x.com/Chilljccu/status/2105518341096169578",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-01T04:41:05.000Z",
+    "lang": "",
+    "text": "@btcmos 因为他粉丝基本都是理工男和中年人，哪来的小粉丝给你睡",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2105518341096169578",
+    "in_reply_to_id": "2105296648528445539",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2105296648528445539",
+        "author_id": "1865722200185307136",
+        "author_username": "btcmos",
+        "author_name": "香港老雷",
+        "text": "我非常非常好奇：\n\n这些年曝光出来大冰、吴亦凡、陈飞宇、夏克立……都有睡粉行为。\n\n罗永浩在中国互联网火了20多年，怎么就没传出来他有睡粉？\n\n是因为太丑？？还是因为太胖？？"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 6,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 2515
+    },
+    "fetched_at": "2026-10-29T00:45:46.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2105518203648827766",
+    "url": "https://x.com/Chilljccu/status/2105518203648827766",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-01T04:40:33.000Z",
+    "lang": "",
+    "text": "@tou_de74826 认知窄了，再多信息也进不来",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2105518203648827766",
+    "in_reply_to_id": "2105517869912220043",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2105517869912220043",
+        "author_id": "1876597380533149696",
+        "author_username": "tou_de74826",
+        "author_name": "明野",
+        "text": "@Chilljccu 认可 信息差其实就是自我构建的壁垒"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 19
+    },
+    "fetched_at": "2026-10-29T00:45:46.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2105518104872993102",
+    "url": "https://x.com/Chilljccu/status/2105518104872993102",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-01T04:40:09.000Z",
+    "lang": "",
+    "text": "@huoshan007 400万粉的，深浅不好测啊兄弟",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2105518104872993102",
+    "in_reply_to_id": "2105448044594663456",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2105448044594663456",
+        "author_id": "1031670310884573184",
+        "author_username": "huoshan007",
+        "author_name": "火山哥🕊️",
+        "text": "终于加上了400多万的大网红了\n\n明天去试试深浅。 https://t.co/MF1g9BFlIt"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 2,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 27765
+    },
+    "fetched_at": "2026-10-29T00:45:46.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2105517999956598992",
+    "url": "https://x.com/Chilljccu/status/2105517999956598992",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-01T04:39:44.000Z",
+    "lang": "",
+    "text": "@Li665508Li 到点了",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2105517999956598992",
+    "in_reply_to_id": "2105325167413273059",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2105325167413273059",
+        "author_id": "1865705903640698881",
+        "author_username": "Li665508Li",
+        "author_name": "Yuvi",
+        "text": "真不知道为啥推特现在为啥是这样\n\n不是赚钱就是做账号\n\n我想回到全是黄片的推特 https://t.co/LdOnFKnIhI"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 175
+    },
+    "fetched_at": "2026-10-29T00:45:46.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2105517777016742216",
+    "url": "https://x.com/Chilljccu/status/2105517777016742216",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-01T04:38:51.000Z",
+    "lang": "",
+    "text": "@isnail 学技术是手段，赚钱才是目的啊",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2105517777016742216",
+    "in_reply_to_id": "2105243201061957654",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2105243201061957654",
+        "author_id": "1650706290929446912",
+        "author_username": "isnail",
+        "author_name": "蜗牛King 👑",
+        "text": "不是！\n\n我们学这技术，学那技术，为什么就是不学赚钱？"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 18
+    },
+    "fetched_at": "2026-10-29T00:45:46.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2105517691717165458",
+    "url": "https://x.com/Chilljccu/status/2105517691717165458",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-01T04:38:30.000Z",
+    "lang": "",
+    "text": "@xupaopaogm 世界是癫了，但流量确实好用",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2105517691717165458",
+    "in_reply_to_id": "2105357009742893153",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2105357009742893153",
+        "author_id": "1844296703282925568",
+        "author_username": "xupaopaogm",
+        "author_name": "徐跑跑",
+        "text": "这个世界真有点癫了\n\n一个带货网红都开始收徒了\n\n还是这种高调跪拜式收徒\n\n如果我说我也收徒会有人来吗？ https://t.co/ADLZByO7e3"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 1276
+    },
+    "fetched_at": "2026-10-29T00:45:46.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2105517576029868343",
+    "url": "https://x.com/Chilljccu/status/2105517576029868343",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-01T04:38:03.000Z",
+    "lang": "",
+    "text": "@tart_egg25188 国庆床位紧张成这样了",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2105517576029868343",
+    "in_reply_to_id": "2105321366820110830",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2105321366820110830",
+        "author_id": "1804721568955912192",
+        "author_username": "tart_egg25188",
+        "author_name": "egg tart（互～回～）",
+        "text": "本人男同 \n国庆找个女的拼床\n绝不碰你 \n\n如果碰你了\n算你魅力大 \n把我掰直了"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 141
+    },
+    "fetched_at": "2026-10-29T00:45:46.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2105517486414414328",
+    "url": "https://x.com/Chilljccu/status/2105517486414414328",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-01T04:37:42.000Z",
+    "lang": "",
+    "text": "@wfjman 互关冲太快，系统一眼就给你标红了",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2105517486414414328",
+    "in_reply_to_id": "2105373335035191614",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2105373335035191614",
+        "author_id": "1239545982431293442",
+        "author_username": "wfjman",
+        "author_name": "梵景",
+        "text": "当人们纷纷赞叹天才的神迹时，天才陨落了，\n\n他刚开通蓝V，6小时从30涨粉900个 https://t.co/1jfTxNvuGu"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 1,
+      "reply": 0,
+      "repost": 0,
+      "quote": 0,
+      "impression": 18
+    },
+    "fetched_at": "2026-10-29T00:45:46.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2105517346815377491",
+    "url": "https://x.com/Chilljccu/status/2105517346815377491",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-01T04:37:08.000Z",
+    "lang": "",
+    "text": "@wangchangfu88 一提卖东西就觉得掉价，结果只能给人打工",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2105517346815377491",
+    "in_reply_to_id": "2105485352601370960",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2105485352601370960",
+        "author_id": "949316104144457729",
+        "author_username": "wangchangfu88",
+        "author_name": "王长富",
+        "text": "很多中国人赚不到钱的原因：\n\n有销售羞耻综合症"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 0,
+      "reply": 2,
+      "repost": 0,
+      "quote": 0,
+      "impression": 3323
+    },
+    "fetched_at": "2026-10-29T00:45:46.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2105517241961976213",
+    "url": "https://x.com/Chilljccu/status/2105517241961976213",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-01T04:36:43.000Z",
+    "lang": "",
+    "text": "所谓信息差，不是你知道一个别人不知道的秘密。\n\n而是：\n\n别人知道这件事，但不知道怎么做；\n别人知道怎么做，但不知道去哪里找客户；\n别人知道去哪里找客户，但不知道怎么成交。\n所以真正值钱的信息差，往往不是「知道」。\n而是「知道以后能执行」。",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2105517241961976213",
+    "in_reply_to_id": null,
+    "referenced_tweets": [],
+    "media": [],
+    "public_metrics": {
+      "like": 8,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 592
+    },
+    "fetched_at": "2026-10-29T00:45:46.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2105515474935255377",
+    "url": "https://x.com/Chilljccu/status/2105515474935255377",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-01T04:29:42.000Z",
+    "lang": "",
+    "text": "@YxzRainy 创作者激励本质是烧钱拉人，烧完就停",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2105515474935255377",
+    "in_reply_to_id": "2105326505958244419",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2105326505958244419",
+        "author_id": "1994485839402057728",
+        "author_username": "YxzRainy",
+        "author_name": "兴雨",
+        "text": "一个极其可怕的问题，\nX 的创作者激励，到底还能撑多久？🤔\n\n6 个月？\n一年？\n还是三年？"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 2,
+      "reply": 1,
+      "repost": 0,
+      "quote": 0,
+      "impression": 404
+    },
+    "fetched_at": "2026-10-29T00:45:46.000Z",
+    "source": "builtin-x"
+  },
+  {
+    "id": "2105515375333126490",
+    "url": "https://x.com/Chilljccu/status/2105515375333126490",
+    "author_id": "2090442465950171136",
+    "author_username": "Chilljccu",
+    "author_name": "ChiII",
+    "username": "Chilljccu",
+    "name": "ChiII",
+    "created_at": "2026-10-01T04:29:18.000Z",
+    "lang": "",
+    "text": "@xupaopaogm 每年国庆都这么传，听过太多回了",
+    "note_tweet": null,
+    "long_text": null,
+    "conversation_id": "2105515375333126490",
+    "in_reply_to_id": "2105500871115370530",
+    "referenced_tweets": [
+      {
+        "type": "replied_to",
+        "id": "2105500871115370530",
+        "author_id": "1844296703282925568",
+        "author_username": "xupaopaogm",
+        "author_name": "徐跑跑",
+        "text": "卧槽。\n\n国庆这几天别翻了\n\n谷歌、推特、油管、ChatGPT，四个都算\n\n北京那边传的是，抓住起步三年\n\n你爱信不信\n\n😱😱😱"
+      }
+    ],
+    "media": [],
+    "public_metrics": {
+      "like": 383,
+      "reply": 5,
+      "repost": 0,
+      "quote": 0,
+      "impression": 450671
+    },
+    "fetched_at": "2026-10-29T00:45:46.000Z",
+    "source": "builtin-x"
   }
 ]
