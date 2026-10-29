@@ -71,8 +71,8 @@ func TestPostSummaryBatchValidation(t *testing.T) {
 		ids31[i] = `"p` + strings.Repeat("x", i+1) + `"`
 	}
 	for body, want := range map[string]int{
-		`{"ids":[]}`:                                 422,
-		`{"ids":["a"],"lang":"fr"}`:                  422,
+		`{"ids":[]}`:                422,
+		`{"ids":["a"],"lang":"fr"}`: 422,
 		`{"ids":[` + strings.Join(ids31, ",") + `]}`: 422,
 		`{"ids":["a"],"lang":"zh-CN"}`:               503, // AI not configured
 	} {

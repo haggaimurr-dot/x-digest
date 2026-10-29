@@ -27,7 +27,7 @@ func TestSignWBIKnownVector(t *testing.T) {
 func TestParseMid(t *testing.T) {
 	for in, want := range map[string]string{
 		"946974": "946974", " UID:946974 ": "946974", "uid 2": "2",
-		"https://space.bilibili.com/946974?spm_id_from=333": "946974",
+		"https://space.bilibili.com/946974?spm_id_from=333":       "946974",
 		"https://m.bilibili.com/space/3707028792936874?plat_id=1": "3707028792936874",
 	} {
 		if got, ok := ParseMid(in); !ok || got != want {
