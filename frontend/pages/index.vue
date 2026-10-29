@@ -506,6 +506,19 @@ function currentFilter (): FilterState {
 }
 // 已生效（最近一次搜索）的条件：列表、分页、高亮都按它。
 const applied = ref<FilterState>(currentFilter())
+// ---- SSR 首屏直出（2026-10-29）----
+// 服务端用默认条件（不筛选、第 1 页、每页 20 条）取第一页，返回的 HTML 里直接带帖子；
+// 浏览器水合时沿用这份数据，不再重复请求。本机记住了筛选或每页条数时，onMounted
+// 照旧按本机条件重新加载。服务端取数失败时退回原来的客户端加载。
+const SSR_PAGE_SIZE = 20
+const { data: firstPage } = await useAsyncData('xd-posts-first', () => store.loadPosts({ page: 1, pageSize: SSR_PAGE_SIZE }).catch(() => null))
+if (firstPage.value) {
+  posts.value = firstPage.value.posts; totalPosts.value = firstPage.value.total; updatedAt.value = firstPage.value.updated_at
+  loading.value = false
+}
+function firstPageMatches () {
+  return !!firstPage.value && page.value === 1 && pageSize.value === SSR_PAGE_SIZE && sameFilter(applied.value, normalizeFilter({}))
+}
 const searchDirty = computed(() => !sameFilter(currentFilter(), applied.value))
 function runSearch () {
   applied.value = currentFilter()
@@ -985,9 +998,10 @@ onMounted(async () => {
   } catch { /* ignore */ }
   try {
     // Selections were already restored at setup; the posts load (first element)
-    // runs in parallel with the other loads and uses the restored filters.
+    // runs in parallel with the other loads and uses the restored filters. The
+    // SSR first page is reused when this browser has no other filters.
     const [, w, c, reps, tags] = await Promise.all([
-      loadPostsPage(), store.loadWatchlist(), store.loadCategories(), store.loadReplicas('time').catch(() => [] as any[]), store.loadTags()
+      firstPageMatches() ? Promise.resolve() : loadPostsPage(), store.loadWatchlist(), store.loadCategories(), store.loadReplicas('time').catch(() => [] as any[]), store.loadTags()
     ])
     watchlist.value = w; categories.value = c; tagNames.value = tags
     replicatedIds.value = new Set((reps as any[]).map(r => r.post_id))
