@@ -1,71 +1,1625 @@
 {
-  "start_time": "2026-09-27T16:00:00.000Z",
+  "start_time": "2026-09-29T00:00:00.000Z",
+  "partial_start_time": "2026-09-27T16:00:00.000Z",
   "completed_this_run": {
+    "qizong007": 788,
+    "ninthbit_ai": 10,
+    "cellinlab": 10,
+    "blockjob2022": 10,
+    "yff5188": 10,
+    "kongkongda5588": 10,
+    "shengtang135754": 10,
+    "yinlrr": 9,
+    "thedankoe": 10,
+    "LiumangtuCrypto": 10,
+    "Peter05704721": 10,
+    "tspy": 10,
+    "ValeriA_Tech": 10,
+    "TinaLearning": 10,
+    "dashen_wang": 10,
+    "oooodjdjd": 10,
+    "boring616888": 10,
+    "haoran_tang97": 10,
+    "Hicker_Moledao": 10,
+    "daqi029": 10,
+    "loki_yan_seo": 10,
+    "_FORAB": 10,
+    "wangwatchworld": 6,
+    "ba_niu80557": 10,
+    "wangzan101": 10,
+    "taozywu": 10,
+    "GeekCatX": 9,
+    "83dwn": 10,
+    "DeanHeoi": 10,
+    "songsong": 10,
+    "yaohui12138": 10,
+    "kongge_space": 10,
+    "zhizhuxia22": 10,
+    "I_am_oil_oil": 10,
+    "imwsl90": 10,
+    "Ryrenz": 10,
+    "harrisonitsme": 10,
+    "Vincent_AINotes": 10,
+    "HiTw93": 9,
+    "ai_xiaomu": 10,
+    "kun66666677": 10,
+    "NoraX2026": 10,
+    "BingLiu34173809": 8,
+    "ChenshuoAI": 9,
+    "isnail": 10,
+    "hungryturbo": 10,
+    "MinLiBuilds": 10,
+    "Hamburgerai": 10,
+    "AdrianPunk115": 10,
+    "0427SMtieshou": 10,
+    "Astronaut_1216": 10,
+    "RealElektra": 10,
+    "LiamHiedlerX": 10,
+    "435hz": 10,
+    "didengshengwu": 10,
+    "litiantian511": 10,
+    "LIGHTSEEKER1984": 10,
+    "laoyan86": 10,
+    "libapi_": 10,
+    "servasyy_ai": 10,
+    "ai_suxiaole": 10,
+    "quaintlotus142": 10,
+    "0xCheshire": 10,
+    "superwang": 10,
+    "chennan789": 10,
+    "YongyuanCui1": 10,
+    "lidangzzz": 10,
+    "zhbl01": 10,
+    "felix_zhou": 9,
+    "geekbb": 10,
+    "Gemini_Notebook": 10,
+    "Bitget_zh": 10,
+    "AI_Jasonyu": 10,
+    "trq212": 10,
+    "1999_eth": 10,
+    "gengdaJ": 8,
+    "binbinmath": 10,
+    "Khazix0918": 9,
+    "jiroucaigou": 10,
+    "seekjourney": 9,
+    "maker_jackie": 8,
+    "Obsidian": 10,
+    "kepano": 10,
+    "letsvpn": 10,
+    "gregisenberg": 10,
+    "davidsenra": 10,
+    "ChatGptAstra": 10,
+    "li9292": 10,
+    "xiangxiang103": 10,
+    "alin_zone": 10,
+    "0xAllen": 10,
+    "PandaTalk8": 10,
+    "9scholarships": 10,
+    "turingou": 9,
+    "Ningqian6688": 10,
+    "onenewbite": 10,
+    "TechShiba": 10,
+    "xiaoerzhan": 9,
+    "runes_leo": 10,
+    "Jackywine": 10,
+    "GitHub_Daily": 10,
+    "rwayne": 10,
+    "kevinma_dev_zh": 9,
+    "LufzzLiz": 10,
+    "wanerfu": 10,
+    "fhwofjow51260": 10,
+    "Formulasearch": 10,
+    "DeRonin_": 10,
+    "xiaoying_eth": 10,
+    "watreejane": 10,
+    "TEDTalks": 7,
+    "Nancyshanghai": 10,
+    "BensonTWN": 9,
+    "wangzhian8848": 10,
+    "430Yang": 9,
+    "svpino": 10,
+    "realDonaldTrump": 10,
+    "xiubing567": 8,
+    "fan128168": 10,
+    "Fan_Sa_Xi": 10,
+    "cryptonerdcn": 10,
+    "GeminiApp": 10,
+    "AxtonLiu": 10,
+    "Rourou0413": 9,
+    "gkxspace": 10,
+    "ysp2025": 10,
+    "RealYDT": 10,
+    "WiseInvest513": 10,
+    "bozhou_ai": 10,
+    "MYohei707": 10,
+    "hezhiyan7": 10,
+    "Replit": 10,
+    "li12826221": 10,
+    "agentchengfeng": 10,
+    "Anime__vibe": 10,
+    "OpenAI": 10,
+    "yupi996": 10,
+    "coder_yupi": 10,
+    "aehyok": 9,
+    "oran_ge": 10,
+    "LCA176232": 10,
+    "immersivetran": 10,
+    "LZRationalnvest": 10,
+    "Gorden_Sun": 10,
+    "TheRogerPenrose": 10,
+    "penrose": 10,
+    "Shenxiao123971": 10,
+    "HotmailfromSH": 10,
+    "xiaojingcanxue": 10,
+    "usd666666": 10,
+    "zstmfhy": 10,
+    "xu96175836": 10,
+    "AnthropicAI": 10,
+    "Linkc": 49,
+    "gch_enbsbxbs": 23,
+    "aigclink": 196,
+    "KaterJLi": 33,
+    "yanxi067": 25,
+    "miu21590": 227,
+    "keke202106": 271,
+    "Kay2289123": 104,
+    "Tokengodone": 19,
+    "fantexi997": 159,
+    "xiaohuiyuan": 130,
     "Alincqbkjc": 8,
     "Darazeevd": 154,
-    "KaterJLi": 33,
-    "Kay2289123": 104,
-    "Linkc": 49,
     "Steve202333": 17,
-    "Tokengodone": 19,
-    "aigclink": 196,
-    "fantexi997": 159,
-    "gch_enbsbxbs": 23,
-    "keke202106": 271,
-    "miu21590": 227,
-    "xiaohuiyuan": 130,
-    "yanxi067": 25
+    "Chilljccu": 2198,
+    "gefei55": 850,
+    "IntuitMachine": 1086
   },
   "open": {
-    "qizong007": {
-      "posts_added": 25,
-      "pages": 1,
-      "next_token": "7140dibdnow9c7btwp0g7610zcy3fwqs5gc5a88sntx6h",
-      "user_id": "1666307873939374080"
-    },
-    "Chilljccu": {
-      "posts_added": 74,
-      "pages": 3,
-      "next_token": "7140dibdnow9c7btwp0fsb0bcy6j7rtoqw3bnjmns6ofp",
-      "user_id": "2090442465950171136"
-    },
-    "gefei55": {
-      "posts_added": 50,
-      "pages": 2,
-      "next_token": "7140dibdnow9c7btwp0g75z7zobsid68npl2qrmk8a5h4",
-      "user_id": "362252075"
-    },
-    "IntuitMachine": {
-      "posts_added": 23,
-      "pages": 1,
-      "next_token": "7140dibdnow9c7btwp0g78322bntks2e0nvleam58xuer",
-      "user_id": "3027431134"
-    },
     "0xlangeai": {
-      "posts_added": 25,
-      "pages": 1,
-      "next_token": "7140dibdnow9c7btwp0g783nflar0d5svkvbei8p4rn06",
-      "user_id": "1759530111534243840"
+      "status": "partial",
+      "pages_done": 29,
+      "posts_added": 723
     },
     "guanmo_ai": {
-      "posts_added": 50,
-      "pages": 2,
-      "next_token": "7140dibdnow9c7btwp0g7610us0ifgne9bxeo0debrfav",
+      "status": "partial"
+    },
+    "mafang71": {
+      "status": "partial"
+    }
+  },
+  "raw_total": 31248,
+  "last_footer": "X reads left: 25/30 min, 612/1000 today",
+  "stopped_reason": "continuing 0xlangeai p29 partial",
+  "note": "Parent advanced qizong007 then handed to executor",
+  "accounts": {
+    "qizong007": {
+      "posts_added": 788,
+      "pages_done": 32,
+      "complete": true,
+      "user_id": "1666307873939374080",
+      "mode": "latest10",
+      "posts_added_l10": 10
+    },
+    "IntuitMachine": {
+      "posts_added": 1086,
+      "pages_done": 47,
+      "complete": true,
+      "user_id": "3027431134"
+    },
+    "Chilljccu": {
+      "posts_added": 2198,
+      "pages_done": 89,
+      "complete": true,
+      "user_id": "2090442465950171136"
+    },
+    "0xlangeai": {
+      "posts_added": 723,
+      "pages_done": 29,
+      "complete": false,
+      "user_id": "1759530111534243840"
+    },
+    "gefei55": {
+      "posts_added": 850,
+      "pages_done": 34,
+      "complete": true,
+      "user_id": "362252075"
+    },
+    "guanmo_ai": {
+      "posts_added": 60,
+      "pages_done": 2,
+      "complete": false,
       "user_id": "2025547057646493696"
     },
     "mafang71": {
-      "posts_added": 75,
-      "pages": 3,
-      "next_token": "7140dibdnow9c7btwp0g73ve4klnw6f40jej52t6q5640",
+      "posts_added": 83,
+      "pages_done": 3,
+      "complete": false,
       "user_id": "902483821811056640"
+    },
+    "ninthbit_ai": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1332862300609339396",
+      "mode": "latest10"
+    },
+    "cellinlab": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1131442257675083777",
+      "mode": "latest10"
+    },
+    "blockjob2022": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1359499501669519360",
+      "mode": "latest10"
+    },
+    "yff5188": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1372935630309658629",
+      "mode": "latest10"
+    },
+    "kongkongda5588": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1997017700644921344",
+      "mode": "latest10"
+    },
+    "shengtang135754": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1901144333719683072",
+      "mode": "latest10"
+    },
+    "yinlrr": {
+      "posts_added": 9,
+      "posts_added_l10": 9,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "2039366613582090240",
+      "mode": "latest10"
+    },
+    "thedankoe": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "256523056",
+      "mode": "latest10"
+    },
+    "LiumangtuCrypto": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1701953376597245952",
+      "mode": "latest10"
+    },
+    "Peter05704721": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1556490603717959680",
+      "mode": "latest10"
+    },
+    "tspy": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "17546641",
+      "mode": "latest10"
+    },
+    "ValeriA_Tech": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1800882535162933248",
+      "mode": "latest10"
+    },
+    "TinaLearning": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "909916278",
+      "mode": "latest10"
+    },
+    "dashen_wang": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1762817339882602496",
+      "mode": "latest10"
+    },
+    "oooodjdjd": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1894548093905084416",
+      "mode": "latest10"
+    },
+    "boring616888": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1912895118333661184",
+      "mode": "latest10"
+    },
+    "haoran_tang97": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1957795804003069956",
+      "mode": "latest10"
+    },
+    "Hicker_Moledao": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1774822664038703104",
+      "mode": "latest10"
+    },
+    "daqi029": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "720424990663774208",
+      "mode": "latest10"
+    },
+    "loki_yan_seo": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "629403016",
+      "mode": "latest10"
+    },
+    "_FORAB": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "4848269835",
+      "mode": "latest10"
+    },
+    "wangwatchworld": {
+      "posts_added": 6,
+      "posts_added_l10": 6,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "31083308",
+      "mode": "latest10"
+    },
+    "ba_niu80557": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1768844816744615936",
+      "mode": "latest10"
+    },
+    "wangzan101": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1813556838815911937",
+      "mode": "latest10"
+    },
+    "taozywu": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "941241167420592128",
+      "mode": "latest10"
+    },
+    "GeekCatX": {
+      "posts_added": 9,
+      "posts_added_l10": 9,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1760502863854460928",
+      "mode": "latest10"
+    },
+    "83dwn": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "617241920",
+      "mode": "latest10"
+    },
+    "DeanHeoi": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "2089570197804109824",
+      "mode": "latest10"
+    },
+    "songsong": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1444149179333312516",
+      "mode": "latest10"
+    },
+    "yaohui12138": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1926144412079280128",
+      "mode": "latest10"
+    },
+    "kongge_space": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1526823487523856385",
+      "mode": "latest10"
+    },
+    "zhizhuxia22": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1822899427633442817",
+      "mode": "latest10"
+    },
+    "I_am_oil_oil": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1949304542325342208",
+      "mode": "latest10"
+    },
+    "imwsl90": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1164388321545449472",
+      "mode": "latest10"
+    },
+    "Ryrenz": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1901372809701400576",
+      "mode": "latest10"
+    },
+    "harrisonitsme": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1483321720979468288",
+      "mode": "latest10"
+    },
+    "Vincent_AINotes": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1861449351328854016",
+      "mode": "latest10"
+    },
+    "HiTw93": {
+      "posts_added": 9,
+      "posts_added_l10": 9,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1521688129559613440",
+      "mode": "latest10"
+    },
+    "ai_xiaomu": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "885347162233610242",
+      "mode": "latest10"
+    },
+    "kun66666677": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1952285643503255552",
+      "mode": "latest10"
+    },
+    "NoraX2026": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "2042977978267951104",
+      "mode": "latest10"
+    },
+    "BingLiu34173809": {
+      "posts_added": 8,
+      "posts_added_l10": 8,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1367943697279705090",
+      "mode": "latest10"
+    },
+    "ChenshuoAI": {
+      "posts_added": 9,
+      "posts_added_l10": 9,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "2074279838672924672",
+      "mode": "latest10"
+    },
+    "isnail": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1650706290929446912",
+      "mode": "latest10"
+    },
+    "hungryturbo": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1125056504816553985",
+      "mode": "latest10"
+    },
+    "MinLiBuilds": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1679698342283186177",
+      "mode": "latest10"
+    },
+    "Hamburgerai": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1356090858454413314",
+      "mode": "latest10"
+    },
+    "AdrianPunk115": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "2047631450829471745",
+      "mode": "latest10"
+    },
+    "0427SMtieshou": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1239436070292320257",
+      "mode": "latest10"
+    },
+    "Astronaut_1216": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1792608085409939456",
+      "mode": "latest10"
+    },
+    "RealElektra": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1733948943325675520",
+      "mode": "latest10"
+    },
+    "LiamHiedlerX": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1948521410537955328",
+      "mode": "latest10"
+    },
+    "435hz": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1588829429333037056",
+      "mode": "latest10"
+    },
+    "didengshengwu": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1593547850637791233",
+      "mode": "latest10"
+    },
+    "litiantian511": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1643248727086477312",
+      "mode": "latest10"
+    },
+    "LIGHTSEEKER1984": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "3188575777",
+      "mode": "latest10"
+    },
+    "laoyan86": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1574300405026017280",
+      "mode": "latest10"
+    },
+    "libapi_": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1394577771381215235",
+      "mode": "latest10"
+    },
+    "servasyy_ai": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1998968758422179840",
+      "mode": "latest10"
+    },
+    "ai_suxiaole": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "168404402",
+      "mode": "latest10"
+    },
+    "quaintlotus142": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1346651417533173762",
+      "mode": "latest10"
+    },
+    "0xCheshire": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "851054131418505216",
+      "mode": "latest10"
+    },
+    "superwang": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "2061079550336081920",
+      "mode": "latest10"
+    },
+    "chennan789": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1355717461451005953",
+      "mode": "latest10"
+    },
+    "YongyuanCui1": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1080889639408291840",
+      "mode": "latest10"
+    },
+    "lidangzzz": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "28940967",
+      "mode": "latest10"
+    },
+    "zhbl01": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1468298589709697024",
+      "mode": "latest10"
+    },
+    "felix_zhou": {
+      "posts_added": 9,
+      "posts_added_l10": 9,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1295587780744028161",
+      "mode": "latest10"
+    },
+    "geekbb": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "168139512",
+      "mode": "latest10"
+    },
+    "Gemini_Notebook": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1846671939437252609",
+      "mode": "latest10"
+    },
+    "Bitget_zh": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1597158942668226560",
+      "mode": "latest10"
+    },
+    "AI_Jasonyu": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "756319701861601281",
+      "mode": "latest10"
+    },
+    "trq212": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "352806502",
+      "mode": "latest10"
+    },
+    "1999_eth": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1470385762348638210",
+      "mode": "latest10"
+    },
+    "gengdaJ": {
+      "posts_added": 8,
+      "posts_added_l10": 8,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1897545708770840576",
+      "mode": "latest10"
+    },
+    "binbinmath": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "751303",
+      "mode": "latest10"
+    },
+    "Khazix0918": {
+      "posts_added": 9,
+      "posts_added_l10": 9,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1492195583699951620",
+      "mode": "latest10"
+    },
+    "jiroucaigou": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1971019061153890305",
+      "mode": "latest10"
+    },
+    "seekjourney": {
+      "posts_added": 9,
+      "posts_added_l10": 9,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1639460977510092803",
+      "mode": "latest10"
+    },
+    "maker_jackie": {
+      "posts_added": 8,
+      "posts_added_l10": 8,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "881820889511219201",
+      "mode": "latest10"
+    },
+    "Obsidian": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "18912905",
+      "mode": "latest10"
+    },
+    "kepano": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "5778712",
+      "mode": "latest10"
+    },
+    "letsvpn": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1101400753984266242",
+      "mode": "latest10"
+    },
+    "gregisenberg": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "14642331",
+      "mode": "latest10"
+    },
+    "davidsenra": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "255793931",
+      "mode": "latest10"
+    },
+    "ChatGptAstra": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1870486242342879232",
+      "mode": "latest10"
+    },
+    "li9292": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1877440800",
+      "mode": "latest10"
+    },
+    "xiangxiang103": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1385766205403713536",
+      "mode": "latest10"
+    },
+    "alin_zone": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1680532920413609987",
+      "mode": "latest10"
+    },
+    "0xAllen": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "2250598513",
+      "mode": "latest10"
+    },
+    "PandaTalk8": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "885086674828578816",
+      "mode": "latest10"
+    },
+    "9scholarships": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "181864318",
+      "mode": "latest10"
+    },
+    "turingou": {
+      "posts_added": 9,
+      "posts_added_l10": 9,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "42352056",
+      "mode": "latest10"
+    },
+    "Ningqian6688": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "2009099899003170816",
+      "mode": "latest10"
+    },
+    "onenewbite": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1453346363215810560",
+      "mode": "latest10"
+    },
+    "TechShiba": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1664174083578245120",
+      "mode": "latest10"
+    },
+    "xiaoerzhan": {
+      "posts_added": 9,
+      "posts_added_l10": 9,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "57557925",
+      "mode": "latest10"
+    },
+    "runes_leo": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1578944561925468162",
+      "mode": "latest10"
+    },
+    "Jackywine": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1404738934043602947",
+      "mode": "latest10"
+    },
+    "GitHub_Daily": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1660598418409127937",
+      "mode": "latest10"
+    },
+    "rwayne": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1664742004423794688",
+      "mode": "latest10"
+    },
+    "kevinma_dev_zh": {
+      "posts_added": 9,
+      "posts_added_l10": 9,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1783506872290664448",
+      "mode": "latest10"
+    },
+    "LufzzLiz": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1598519155736645632",
+      "mode": "latest10"
+    },
+    "wanerfu": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "855303666722525184",
+      "mode": "latest10"
+    },
+    "fhwofjow51260": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1880582182466658304",
+      "mode": "latest10"
+    },
+    "Formulasearch": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1995129612888940544",
+      "mode": "latest10"
+    },
+    "DeRonin_": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1414948050817196037",
+      "mode": "latest10"
+    },
+    "xiaoying_eth": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1618873272661315584",
+      "mode": "latest10"
+    },
+    "watreejane": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "3886927514",
+      "mode": "latest10"
+    },
+    "TEDTalks": {
+      "posts_added": 7,
+      "posts_added_l10": 7,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "15492359",
+      "mode": "latest10"
+    },
+    "Nancyshanghai": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "746265547860381696",
+      "mode": "latest10"
+    },
+    "BensonTWN": {
+      "posts_added": 9,
+      "posts_added_l10": 9,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1086203224388907014",
+      "mode": "latest10"
+    },
+    "wangzhian8848": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1072109417200414720",
+      "mode": "latest10"
+    },
+    "430Yang": {
+      "posts_added": 9,
+      "posts_added_l10": 9,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1966860635163291654",
+      "mode": "latest10"
+    },
+    "svpino": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "18737039",
+      "mode": "latest10"
+    },
+    "realDonaldTrump": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "25073877",
+      "mode": "latest10"
+    },
+    "xiubing567": {
+      "posts_added": 8,
+      "posts_added_l10": 8,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1120502756102402048",
+      "mode": "latest10"
+    },
+    "fan128168": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1800558524436766720",
+      "mode": "latest10"
+    },
+    "Fan_Sa_Xi": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1718851735702409216",
+      "mode": "latest10"
+    },
+    "cryptonerdcn": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1443565229846118400",
+      "mode": "latest10"
+    },
+    "GeminiApp": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1806359170830172162",
+      "mode": "latest10"
+    },
+    "AxtonLiu": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "2997268024",
+      "mode": "latest10"
+    },
+    "Rourou0413": {
+      "posts_added": 9,
+      "posts_added_l10": 9,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1993283921749196802",
+      "mode": "latest10"
+    },
+    "gkxspace": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1881991469730594816",
+      "mode": "latest10"
+    },
+    "ysp2025": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1999431383723483136",
+      "mode": "latest10"
+    },
+    "RealYDT": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1652012591961772032",
+      "mode": "latest10"
+    },
+    "WiseInvest513": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1623903868047474688",
+      "mode": "latest10"
+    },
+    "bozhou_ai": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1717726640040783872",
+      "mode": "latest10"
+    },
+    "MYohei707": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1967874651113345024",
+      "mode": "latest10"
+    },
+    "hezhiyan7": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1554325830708314112",
+      "mode": "latest10"
+    },
+    "Replit": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "366289783",
+      "mode": "latest10"
+    },
+    "li12826221": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1554688107651350530",
+      "mode": "latest10"
+    },
+    "agentchengfeng": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1640081654101295106",
+      "mode": "latest10"
+    },
+    "Anime__vibe": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1937547411972308995",
+      "mode": "latest10"
+    },
+    "OpenAI": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "4398626122",
+      "mode": "latest10"
+    },
+    "yupi996": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "2000617411247251456",
+      "mode": "latest10"
+    },
+    "coder_yupi": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1926995988234805249",
+      "mode": "latest10"
+    },
+    "aehyok": {
+      "posts_added": 9,
+      "posts_added_l10": 9,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "2905016819",
+      "mode": "latest10"
+    },
+    "oran_ge": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "6782882",
+      "mode": "latest10"
+    },
+    "LCA176232": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1479510124079185921",
+      "mode": "latest10"
+    },
+    "immersivetran": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1652869746227040256",
+      "mode": "latest10"
+    },
+    "LZRationalnvest": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1995690021521948674",
+      "mode": "latest10"
+    },
+    "Gorden_Sun": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1657474831",
+      "mode": "latest10"
+    },
+    "TheRogerPenrose": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1853992491273318400",
+      "mode": "latest10"
+    },
+    "penrose": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "3486221",
+      "mode": "latest10"
+    },
+    "Shenxiao123971": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1939242814547914752",
+      "mode": "latest10"
+    },
+    "HotmailfromSH": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1938963008",
+      "mode": "latest10"
+    },
+    "xiaojingcanxue": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "44186175",
+      "mode": "latest10"
+    },
+    "usd666666": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1734483664548118528",
+      "mode": "latest10"
+    },
+    "zstmfhy": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1806661208642355200",
+      "mode": "latest10"
+    },
+    "xu96175836": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1669250248265302020",
+      "mode": "latest10"
+    },
+    "AnthropicAI": {
+      "posts_added": 10,
+      "posts_added_l10": 10,
+      "pages_done": 1,
+      "complete": true,
+      "user_id": "1353836358901501952",
+      "mode": "latest10"
     }
   },
-  "raw_total": 24541,
-  "enrich_remaining_own_ent": 171,
-  "enrich_remaining_ref_no_text": 25,
-  "last_footer": "X reads left for this user: 25 of 30 this minute (resets at 2026-10-28T05:51:00.000Z), 15 of 1000 today (resets at 2026-10-29T00:00:00.000Z).",
-  "stopped_reason": "daily_quota_buffer",
-  "commits": [
-    "c68cdcd"
+  "completed_l10_this_run": {
+    "IntuitMachine": 8,
+    "Chilljccu": 0,
+    "0xlangeai": 10,
+    "gefei55": 5,
+    "guanmo_ai": 10,
+    "mafang71": 8,
+    "qizong007": 10,
+    "ninthbit_ai": 10,
+    "cellinlab": 10,
+    "blockjob2022": 10,
+    "yff5188": 10,
+    "kongkongda5588": 10,
+    "shengtang135754": 10,
+    "yinlrr": 9,
+    "thedankoe": 10,
+    "LiumangtuCrypto": 10,
+    "Peter05704721": 10,
+    "tspy": 10,
+    "ValeriA_Tech": 10,
+    "TinaLearning": 10,
+    "dashen_wang": 10,
+    "oooodjdjd": 10,
+    "boring616888": 10,
+    "haoran_tang97": 10,
+    "Hicker_Moledao": 10,
+    "daqi029": 10,
+    "loki_yan_seo": 10,
+    "_FORAB": 10,
+    "wangwatchworld": 6,
+    "ba_niu80557": 10,
+    "wangzan101": 10,
+    "taozywu": 10,
+    "GeekCatX": 9,
+    "83dwn": 10,
+    "DeanHeoi": 10,
+    "songsong": 10,
+    "yaohui12138": 10,
+    "kongge_space": 10,
+    "zhizhuxia22": 10,
+    "I_am_oil_oil": 10,
+    "imwsl90": 10,
+    "Ryrenz": 10,
+    "harrisonitsme": 10,
+    "Vincent_AINotes": 10,
+    "HiTw93": 9,
+    "ai_xiaomu": 10,
+    "kun66666677": 10,
+    "NoraX2026": 10,
+    "BingLiu34173809": 8,
+    "ChenshuoAI": 9,
+    "isnail": 10,
+    "hungryturbo": 10,
+    "MinLiBuilds": 10,
+    "Hamburgerai": 10,
+    "AdrianPunk115": 10,
+    "0427SMtieshou": 10,
+    "Astronaut_1216": 10,
+    "RealElektra": 10,
+    "LiamHiedlerX": 10,
+    "435hz": 10,
+    "didengshengwu": 10,
+    "litiantian511": 10,
+    "LIGHTSEEKER1984": 10,
+    "laoyan86": 10,
+    "libapi_": 10,
+    "servasyy_ai": 10,
+    "ai_suxiaole": 10,
+    "quaintlotus142": 10,
+    "0xCheshire": 10,
+    "superwang": 10,
+    "chennan789": 10,
+    "YongyuanCui1": 10,
+    "lidangzzz": 10,
+    "zhbl01": 10,
+    "felix_zhou": 9,
+    "geekbb": 10,
+    "Gemini_Notebook": 10,
+    "Bitget_zh": 10,
+    "AI_Jasonyu": 10,
+    "trq212": 10,
+    "1999_eth": 10,
+    "gengdaJ": 8,
+    "binbinmath": 10,
+    "Khazix0918": 9,
+    "jiroucaigou": 10,
+    "seekjourney": 9,
+    "maker_jackie": 8,
+    "Obsidian": 10,
+    "kepano": 10,
+    "letsvpn": 10,
+    "gregisenberg": 10,
+    "davidsenra": 10,
+    "ChatGptAstra": 10,
+    "li9292": 10,
+    "xiangxiang103": 10,
+    "alin_zone": 10,
+    "0xAllen": 10,
+    "PandaTalk8": 10,
+    "9scholarships": 10,
+    "turingou": 9,
+    "Ningqian6688": 10,
+    "onenewbite": 10,
+    "TechShiba": 10,
+    "xiaoerzhan": 9,
+    "runes_leo": 10,
+    "Jackywine": 10,
+    "GitHub_Daily": 10,
+    "rwayne": 10,
+    "kevinma_dev_zh": 9,
+    "LufzzLiz": 10,
+    "wanerfu": 10,
+    "fhwofjow51260": 10,
+    "Formulasearch": 10,
+    "DeRonin_": 10,
+    "xiaoying_eth": 10,
+    "watreejane": 10,
+    "TEDTalks": 7,
+    "Nancyshanghai": 10,
+    "BensonTWN": 9,
+    "wangzhian8848": 10,
+    "430Yang": 9,
+    "svpino": 10,
+    "realDonaldTrump": 10,
+    "xiubing567": 8,
+    "fan128168": 10,
+    "Fan_Sa_Xi": 10,
+    "cryptonerdcn": 10,
+    "GeminiApp": 10,
+    "AxtonLiu": 10,
+    "Rourou0413": 9,
+    "gkxspace": 10,
+    "ysp2025": 10,
+    "RealYDT": 10,
+    "WiseInvest513": 10,
+    "bozhou_ai": 10,
+    "MYohei707": 10,
+    "hezhiyan7": 10,
+    "Replit": 10,
+    "li12826221": 10,
+    "agentchengfeng": 10,
+    "Anime__vibe": 10,
+    "OpenAI": 10,
+    "yupi996": 10,
+    "coder_yupi": 10,
+    "aehyok": 9,
+    "oran_ge": 10,
+    "LCA176232": 10,
+    "immersivetran": 10,
+    "LZRationalnvest": 10,
+    "Gorden_Sun": 10,
+    "TheRogerPenrose": 10,
+    "penrose": 10,
+    "Shenxiao123971": 10,
+    "HotmailfromSH": 10,
+    "xiaojingcanxue": 10,
+    "usd666666": 10,
+    "zstmfhy": 10,
+    "xu96175836": 10,
+    "AnthropicAI": 10
+  },
+  "rule": "latest10-2026-10-29",
+  "remaining_count": 0,
+  "fetched_count": 179,
+  "finished_at": "2026-10-29T00:36:04.000Z",
+  "accounts_finished_today_real": [
+    "Chilljccu",
+    "gefei55",
+    "IntuitMachine"
   ]
 }

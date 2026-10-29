@@ -29,11 +29,10 @@ func (s *server) handlePosts(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	}
-	// tag/category/user_tag take comma lists (the page's multi-select);
-	// tags/categories/user_tags are accepted as aliases.
+	// tag/category take comma lists (the page's multi-select);
+	// tags/categories are accepted as aliases.
 	f.Tags = append(splitList(q.Get("tag")), splitList(q.Get("tags"))...)
 	f.Categories = append(splitList(q.Get("category")), splitList(q.Get("categories"))...)
-	f.UserTags = append(splitList(q.Get("user_tag")), splitList(q.Get("user_tags"))...)
 	f.Kind = q.Get("kind")
 	f.MinChars = atoiDefault(q.Get("min_chars"), 0)
 	if f.MinChars < 0 {
@@ -88,11 +87,6 @@ func splitList(v string) []string {
 // page escapes and highlights it). Mirrors useFormat.firstHitSnippet.
 func firstHitSnippet(p model.Post, q string) string {
 	q = strings.TrimLeft(strings.TrimSpace(q), "#")
-	for _, pre := range []string{"标签:", "标签：", "tag:"} {
-		if strings.HasPrefix(q, pre) {
-			return ""
-		}
-	}
 	if q == "" {
 		return ""
 	}

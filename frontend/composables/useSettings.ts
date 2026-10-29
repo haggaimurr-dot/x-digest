@@ -9,7 +9,6 @@ export const LS = {
   fontFamily: 'x-digest-font-family',
   fontSize: 'x-digest-font-size',
   lang: 'xd-lang',
-  userTags: 'x-digest-user-tags',
   chipsAuthorsExpanded: 'x-digest-chips-authors-expanded',
   chipsTagsExpanded: 'x-digest-chips-tags-expanded',
   chipsCatsExpanded: 'x-digest-chips-cats-expanded',

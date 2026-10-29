@@ -12,7 +12,7 @@ import (
 	"xdigest/internal/store"
 )
 
-// ---- tags / user-tags / categories ----
+// ---- tags / categories ----
 
 func (s *server) handleTags(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
@@ -25,117 +25,6 @@ func (s *server) handleTags(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	writeJSON(w, 200, map[string]any{"tags": tags})
-}
-
-func (s *server) handleUserTags(w http.ResponseWriter, r *http.Request) {
-	switch r.Method {
-	case http.MethodGet:
-		vocab, overrides, err := s.st.UserTags()
-		if err != nil {
-			writeErr(w, 500, "DB_ERROR", err.Error())
-			return
-		}
-		writeJSON(w, 200, map[string]any{"vocabulary": vocab, "overrides": overrides})
-	case http.MethodPut:
-		// {username, tags} sets one author's override; {vocabulary: [...]}
-		// replaces the user-tag vocabulary (the tag list in settings).
-		var body struct {
-			Username   string    `json:"username"`
-			Tags       []string  `json:"tags"`
-			Vocabulary *[]string `json:"vocabulary"`
-		}
-		if !decodeBody(w, r, &body) {
-			return
-		}
-		if body.Vocabulary != nil {
-			if err := s.st.SetUserTagVocabulary(*body.Vocabulary); err != nil {
-				writeErr(w, 500, "DB_ERROR", err.Error())
-				return
-			}
-			writeJSON(w, 200, map[string]bool{"ok": true})
-			return
-		}
-		if body.Username == "" {
-			writeErr(w, 422, "VALIDATION", "username or vocabulary is required")
-			return
-		}
-		if !s.st.AccountExists(body.Username) {
-			writeErr(w, 404, "NOT_FOUND", "author not found")
-			return
-		}
-		if body.Tags == nil {
-			body.Tags = []string{}
-		}
-		if err := s.st.SetUserTagOverride(body.Username, body.Tags); err != nil {
-			writeErr(w, 500, "DB_ERROR", err.Error())
-			return
-		}
-		writeJSON(w, 200, map[string]bool{"ok": true})
-	default:
-		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only GET, PUT")
-	}
-}
-
-// /api/v1/user-tags/stats       GET  ?date_from&date_to → {tags: [{tag,authors,posts}]} (标签云)
-// /api/v1/user-tags/aliases     GET → {aliases}; POST {alias, canonical}; DELETE ?alias=
-// /api/v1/user-tags/duplicates  GET  → {groups: [[{tag,count}…]…]} (疑似重复)
-// /api/v1/user-tags/merge       POST {from: [...], to} → {ok, changed}
-func (s *server) handleUserTagSub(w http.ResponseWriter, r *http.Request) {
-	switch strings.TrimPrefix(r.URL.Path, "/api/v1/user-tags/") {
-	case "duplicates":
-		if r.Method != http.MethodGet {
-			writeErr(w, 405, "METHOD_NOT_ALLOWED", "only GET")
-			return
-		}
-		groups, err := s.st.UserTagDuplicates()
-		if err != nil {
-			writeErr(w, 500, "DB_ERROR", err.Error())
-			return
-		}
-		writeJSON(w, 200, map[string]any{"groups": groups})
-	case "stats":
-		if r.Method != http.MethodGet {
-			writeErr(w, 405, "METHOD_NOT_ALLOWED", "only GET")
-			return
-		}
-		from, to := r.URL.Query().Get("date_from"), r.URL.Query().Get("date_to")
-		if (from != "" && !validYTDate(from)) || (to != "" && !validYTDate(to)) {
-			writeErr(w, 422, "VALIDATION", "date_from/date_to must be YYYY-MM-DD")
-			return
-		}
-		stats, err := s.st.UserTagStats(from, to)
-		if err != nil {
-			writeErr(w, 500, "DB_ERROR", err.Error())
-			return
-		}
-		writeJSON(w, 200, map[string]any{"tags": stats})
-	case "aliases":
-		s.handleTagAliases(w, r)
-	case "merge":
-		if r.Method != http.MethodPost {
-			writeErr(w, 405, "METHOD_NOT_ALLOWED", "only POST")
-			return
-		}
-		var body struct {
-			From []string `json:"from"`
-			To   string   `json:"to"`
-		}
-		if !decodeBody(w, r, &body) {
-			return
-		}
-		if store.NormalizeTag(body.To) == "" || len(body.From) == 0 {
-			writeErr(w, 422, "VALIDATION", "from and to are required")
-			return
-		}
-		n, err := s.st.MergeUserTags(body.From, body.To)
-		if err != nil {
-			writeErr(w, 500, "DB_ERROR", err.Error())
-			return
-		}
-		writeJSON(w, 200, map[string]any{"ok": true, "changed": n})
-	default:
-		writeErr(w, 404, "NOT_FOUND", "not found")
-	}
 }
 
 func (s *server) handleCategories(w http.ResponseWriter, r *http.Request) {
@@ -323,44 +212,4 @@ func (s *server) handleCategoryBatch(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	writeJSON(w, 200, map[string]any{"ok": true, "changed": n})
-}
-
-func (s *server) handleTagAliases(w http.ResponseWriter, r *http.Request) {
-	switch r.Method {
-	case http.MethodGet:
-		as, err := s.st.ListTagAliases()
-		if err != nil {
-			writeErr(w, 500, "DB_ERROR", err.Error())
-			return
-		}
-		writeJSON(w, 200, map[string]any{"aliases": as})
-	case http.MethodPost:
-		var body store.TagAlias
-		if !decodeBody(w, r, &body) {
-			return
-		}
-		a, c := store.NormalizeTag(body.Alias), store.NormalizeTag(body.Canonical)
-		if a == "" || c == "" || strings.EqualFold(a, c) {
-			writeErr(w, 422, "VALIDATION", "alias and canonical are required and must differ")
-			return
-		}
-		if err := s.st.SetTagAlias(a, c); err != nil {
-			writeErr(w, 500, "DB_ERROR", err.Error())
-			return
-		}
-		writeJSON(w, 200, store.TagAlias{Alias: a, Canonical: c})
-	case http.MethodDelete:
-		ok, err := s.st.DeleteTagAlias(r.URL.Query().Get("alias"))
-		if err != nil {
-			writeErr(w, 500, "DB_ERROR", err.Error())
-			return
-		}
-		if !ok {
-			writeErr(w, 404, "NOT_FOUND", "alias not found")
-			return
-		}
-		writeJSON(w, 200, map[string]bool{"ok": true})
-	default:
-		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only GET, POST, DELETE")
-	}
 }

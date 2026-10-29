@@ -3,7 +3,6 @@ package store
 import (
 	"database/sql"
 	"encoding/json"
-	"strings"
 
 	"xdigest/internal/model"
 )
@@ -18,8 +17,6 @@ type PostFilter struct {
 	Tags          []string // any of (OR); Tag is folded in
 	Category      string
 	Categories    []string // any of (OR); "__uncat" = posts without a category
-	UserTag       string
-	UserTags      []string // any of (OR)
 	Kind          string   // posts.kind; "未分类" = empty kind
 	MinChars      int      // minimum length of text (fallback summary, then title)
 	Query         string
@@ -31,18 +28,12 @@ type PostFilter struct {
 }
 
 // ListPosts implements the SPEC filter semantics (AND across dimensions,
-// OR within one dimension's list). Query prefixes 标签:/tag: match user tags
-// only (author_tags + user_tag_overrides). The plain query searches title,
+// OR within one dimension's list). The plain query searches title,
 // summary, tags, author name/handle, industry and tech.
 func (s *Store) ListPosts(f PostFilter) (posts []model.Post, total int, updatedAt string, err error) {
 	if f.AuthorPresent && len(f.Authors) == 0 {
 		// Empty author selection = empty list (legacy semantics, not "no filter").
 		return []model.Post{}, 0, "", nil
-	}
-	if ut, ok := userTagQuery(strings.TrimSpace(f.Query)); ok && ut != "" {
-		if c, ok := s.aliasMap()[strings.ToLower(NormalizeTag(ut))]; ok {
-			f.Query = "标签:" + c
-		}
 	}
 	where, args := buildPostWhere(f)
 	if err := s.DB.QueryRow("SELECT COALESCE(MAX(updated_at_meta), '') FROM posts").Scan(&updatedAt); err != nil {
@@ -206,7 +197,7 @@ func (s *Store) GetPost(id string) (*model.Post, error) {
 	return &p, nil
 }
 
-// ---- tags / user-tags / categories ----
+// ---- tags / categories ----
 
 func (s *Store) PostTagsByFreq() ([]string, error) {
 	rows, err := s.DB.Query("SELECT tag FROM post_tags GROUP BY tag COLLATE utf8mb4_bin ORDER BY COUNT(*) DESC, tag ASC")

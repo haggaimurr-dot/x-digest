@@ -187,9 +187,6 @@ func (s *Store) DeleteAccount(username string) error {
 	if _, err := tx.Exec("DELETE FROM author_tags WHERE username=?", username); err != nil {
 		return err
 	}
-	if _, err := tx.Exec("DELETE FROM user_tag_overrides WHERE username=?", username); err != nil {
-		return err
-	}
 	if _, err := tx.Exec("DELETE FROM authors WHERE username=?", username); err != nil {
 		return err
 	}

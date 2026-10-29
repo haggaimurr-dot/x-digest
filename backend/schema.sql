@@ -32,18 +32,6 @@ CREATE TABLE IF NOT EXISTS author_tags (
     REFERENCES authors(username) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS user_tag_vocabulary (
-  tag VARCHAR(128) NOT NULL PRIMARY KEY
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-CREATE TABLE IF NOT EXISTS user_tag_overrides (
-  username VARCHAR(64)  NOT NULL,
-  tag      VARCHAR(128) NOT NULL,
-  PRIMARY KEY (username, tag),
-  CONSTRAINT fk_overrides_author FOREIGN KEY (username)
-    REFERENCES authors(username) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 CREATE TABLE IF NOT EXISTS posts (
   id              VARCHAR(64)  NOT NULL PRIMARY KEY,
   url             VARCHAR(1024) NOT NULL DEFAULT '',
@@ -479,7 +467,7 @@ ALTER TABLE posts ADD COLUMN IF NOT EXISTS replica_enabled TINYINT(1) NULL DEFAU
 
 -- Saved filter combinations on the X daily page (2026-10-28). filter_json
 -- is the page's filter state ({keyword, date_from, date_to, kind, authors,
--- tags, user_tags, categories}); the API only checks it is a JSON object.
+-- tags, categories}); the API only checks it is a JSON object.
 CREATE TABLE IF NOT EXISTS saved_views (
   id          VARCHAR(40)  NOT NULL PRIMARY KEY,
   name        VARCHAR(64)  NOT NULL,
@@ -487,13 +475,6 @@ CREATE TABLE IF NOT EXISTS saved_views (
   sort_order  INT          NOT NULL DEFAULT 0,
   created_at  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
   UNIQUE KEY uq_saved_views_name (name)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- User-tag aliases (2026-10-28): alias (e.g. cc) → canonical tag
--- (claude-code). Applied when tags are written and to 标签:xxx searches.
-CREATE TABLE IF NOT EXISTS user_tag_aliases (
-  alias     VARCHAR(128) NOT NULL PRIMARY KEY,
-  canonical VARCHAR(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Notifications (2026-10-28): the top-bar bell; written when a repo sync

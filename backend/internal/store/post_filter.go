@@ -46,14 +46,6 @@ func buildPostWhere(f PostFilter) (string, []any) {
 		}
 		conds = append(conds, "("+strings.Join(ors, " OR ")+")")
 	}
-	if uts := clean(append([]string{f.UserTag}, f.UserTags...), ""); len(uts) > 0 {
-		conds = append(conds, userTagCond(len(uts), "IN"))
-		for i := 0; i < 2; i++ {
-			for _, t := range uts {
-				args = append(args, t)
-			}
-		}
-	}
 	if f.Kind == "未分类" {
 		conds = append(conds, "COALESCE(p.kind,'')=''")
 	} else if f.Kind != "" {
@@ -66,18 +58,12 @@ func buildPostWhere(f PostFilter) (string, []any) {
 		args = append(args, f.MinChars)
 	}
 	if q := strings.TrimSpace(f.Query); q != "" {
-		if ut, ok := userTagQuery(q); ok {
-			conds = append(conds, userTagCond(1, "LIKE"))
-			like := "%" + strings.ToLower(ut) + "%"
-			args = append(args, like, like)
-		} else {
-			like := "%" + strings.TrimLeft(q, "#") + "%"
-			conds = append(conds, `(p.title LIKE ? OR p.summary LIKE ? OR p.industry LIKE ? OR p.tech LIKE ?
-				OR p.author_name LIKE ? OR p.author LIKE ? OR p.text LIKE ?
-				OR EXISTS (SELECT 1 FROM post_tags t WHERE t.post_id=p.id AND t.tag LIKE ?))`)
-			for i := 0; i < 8; i++ {
-				args = append(args, like)
-			}
+		like := "%" + strings.TrimLeft(q, "#") + "%"
+		conds = append(conds, `(p.title LIKE ? OR p.summary LIKE ? OR p.industry LIKE ? OR p.tech LIKE ?
+			OR p.author_name LIKE ? OR p.author LIKE ? OR p.text LIKE ?
+			OR EXISTS (SELECT 1 FROM post_tags t WHERE t.post_id=p.id AND t.tag LIKE ?))`)
+		for i := 0; i < 8; i++ {
+			args = append(args, like)
 		}
 	}
 	if f.DateFrom != "" {
@@ -92,31 +78,6 @@ func buildPostWhere(f PostFilter) (string, []any) {
 		return "", nil
 	}
 	return "WHERE " + strings.Join(conds, " AND "), args
-}
-
-// userTagQuery: "标签:x" / "标签：x" / "tag:x" → x. The page matches user
-// tags by substring, case-insensitively; the tag columns are utf8mb4_bin, so
-// the LIKE compares LOWER(tag) with a lower-cased pattern.
-func userTagQuery(q string) (string, bool) {
-	for _, p := range []string{"标签:", "标签：", "tag:", "TAG:", "Tag:"} {
-		if rest, ok := strings.CutPrefix(q, p); ok {
-			return strings.TrimSpace(rest), true
-		}
-	}
-	return "", false
-}
-
-// userTagCond: user tags live in author_tags (imported) and
-// user_tag_overrides (edited on the page). op "IN" takes n placeholders,
-// "LIKE" exactly one.
-func userTagCond(n int, op string) string {
-	at, uo := "at.tag COLLATE utf8mb4_bin IN ("+strings.TrimSuffix(strings.Repeat("?,", n), ",")+")", ""
-	uo = strings.Replace(at, "at.", "uo.", 1)
-	if op == "LIKE" {
-		at, uo = "LOWER(at.tag) LIKE ?", "LOWER(uo.tag) LIKE ?"
-	}
-	return `(EXISTS (SELECT 1 FROM author_tags at WHERE at.username=p.author AND ` + at + `)
-			OR EXISTS (SELECT 1 FROM user_tag_overrides uo WHERE uo.username=p.author AND ` + uo + `))`
 }
 
 func postOrder(sort string) string {
