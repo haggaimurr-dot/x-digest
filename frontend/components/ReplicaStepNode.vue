@@ -94,7 +94,8 @@
         <span v-if="step.tech">{{ t('node.tech') }}{{ step.tech }} </span>
         <span v-if="step.prep">{{ t('node.prep') }}{{ step.prep }}</span>
       </div>
-      <div v-if="hasDetail" style="margin-top:8px">
+      <!-- 一直显示：没有任何详情的节点也要能展开，才能写备注、加子节点、上传附件。 -->
+      <div style="margin-top:8px">
         <button class="btn btn-sm" type="button" @click="detailsOpen = !detailsOpen">{{ detailsToggleLabel }}</button>
         <div v-if="detailsOpen">
           <div v-if="children.length" class="check-list">
@@ -224,7 +225,6 @@ const subSummary = computed(() => {
   const n = (props.step.substeps || []).length
   return n ? `${n} 项` : ''
 })
-const hasDetail = computed(() => children.value.length > 0 || (props.step.substeps || []).length > 0 || !!(props.step.note || '').trim() || (props.step.attachments || []).length > 0)
 const detailsToggleLabel = computed(() => {
   if (detailsOpen.value) return subCount.value ? t('node.collapseSub') : t('node.collapseDetail')
   return subCount.value ? t('node.expandSub', { n: subCount.value }) : t('node.expandDetail')
