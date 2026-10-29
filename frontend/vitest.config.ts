@@ -7,7 +7,12 @@ import { defineConfig } from 'vitest/config'
 // provides the auto-imported globals (ref, computed, useLang …).
 export default defineConfig({
   // Cast: vitest bundles its own vite types, which differ from the app's.
-  plugins: [vue() as any],
+  // import.meta.client is replaced at build time by Nuxt; tests run as the
+  // browser build (vite's `define` does not reach import.meta here).
+  plugins: [vue() as any, {
+    name: 'nuxt-import-meta-client',
+    transform: (code: string) => code.includes('import.meta.client') ? code.replaceAll('import.meta.client', 'true') : undefined
+  }],
   resolve: { alias: { '~': fileURLToPath(new URL('./', import.meta.url)) } },
   test: {
     environment: 'happy-dom',
