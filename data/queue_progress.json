@@ -175,7 +175,9 @@
   },
   "open": {
     "0xlangeai": {
-      "status": "partial"
+      "status": "partial",
+      "pages_done": 29,
+      "posts_added": 723
     },
     "guanmo_ai": {
       "status": "partial"
@@ -184,9 +186,9 @@
       "status": "partial"
     }
   },
-  "raw_total": 30560,
-  "last_footer": "X reads left: 25/30 min, 640/1000 today",
-  "stopped_reason": "continuing",
+  "raw_total": 31248,
+  "last_footer": "X reads left: 25/30 min, 612/1000 today",
+  "stopped_reason": "continuing 0xlangeai p29 partial",
   "note": "Parent advanced qizong007 then handed to executor",
   "accounts": {
     "qizong007": {
@@ -210,8 +212,8 @@
       "user_id": "2090442465950171136"
     },
     "0xlangeai": {
-      "posts_added": 35,
-      "pages_done": 1,
+      "posts_added": 723,
+      "pages_done": 29,
       "complete": false,
       "user_id": "1759530111534243840"
     },
