@@ -124,7 +124,7 @@
             <!-- 左：缩略图 + 简介；右：标题、时间、标签 -->
             <div class="yt-left">
               <a :href="v.url" target="_blank" rel="noopener" :title="t('yt.watchOnYouTube')" class="yt-thumb">
-                <img v-if="v.thumbnail_url" :src="v.thumbnail_url" :alt="v.title" loading="lazy" />
+                <img v-if="v.thumbnail_url" :src="v.thumbnail_url" :alt="v.title" loading="lazy" referrerpolicy="no-referrer" />
                 <span v-else class="yt-thumb-ph">▶</span>
               </a>
               <p v-if="v.description" class="yt-desc" :class="{ 'yt-desc-open': expandedDesc.has(v.id) }"><template v-for="(part, pi) in linkParts(tr(v.description))" :key="pi"><a v-if="part.href" class="yt-desc-link" :href="part.href" :title="part.href" target="_blank" rel="noopener noreferrer">{{ part.text.replace(/^https?:\/\/(www\.)?/, '') }}</a><template v-else>{{ part.text }}</template></template></p>
