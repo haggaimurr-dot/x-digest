@@ -6,8 +6,11 @@ name: ci
 
 on:
   pull_request:
+  workflow_dispatch:
   push:
-    branches: [main]
+    # muse-dev too: its PR into main (still the old static site) has merge
+    # conflicts, and GitHub does not run pull_request workflows for those.
+    branches: [main, muse-dev]
     paths-ignore: ['data/**', 'docs/**', '**/*.md']
 
 jobs:
