@@ -272,7 +272,7 @@ const groupFilter = ref('')
 const tagFilter = ref('')
 // 排序方式记在本机（x-digest-repos-sort）。
 const SORT_KEY = 'x-digest-repos-sort'
-const sort = ref<RepoSort>('stars_desc')
+const sort = ref<RepoSort>('created_desc')
 watch(sort, (v) => { try { localStorage.setItem(SORT_KEY, v) } catch { /* private mode */ } })
 const failedAvatars = ref<Set<string>>(new Set())
 function onAvatarError (owner: string) { failedAvatars.value = new Set([...failedAvatars.value, owner]) }

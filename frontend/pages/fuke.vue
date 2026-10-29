@@ -16,7 +16,8 @@
       <div class="filter-row" style="margin-bottom:12px">
         <label>{{ t('fuke.sort') }}
           <select class="field" v-model="sort" @change="reload">
-            <option value="time">{{ t('fuke.sortTime') }}</option>
+            <option value="time">{{ t('fuke.sortImportedDesc') }}</option>
+            <option value="time_asc">{{ t('fuke.sortImportedAsc') }}</option>
             <option value="edited">{{ t('fuke.sortEdited') }}</option>
             <option value="progress">{{ t('fuke.sortProgress') }}</option>
           </select>
@@ -112,7 +113,7 @@ usePageActions(() => [
 const loading = ref(true)
 const loadError = ref('')
 const replicas = ref<Replica[]>([])
-const sort = ref<'time' | 'edited' | 'progress'>('time')
+const sort = ref<'time' | 'time_asc' | 'edited' | 'progress'>('time')
 const confirmTarget = ref<Replica | null>(null)
 useScrollLock(computed(() => confirmTarget.value !== null))
 const toast = ref('')

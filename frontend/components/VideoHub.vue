@@ -28,6 +28,15 @@
                 <option v-for="g in groups" :key="g.id" :value="g.id">{{ g.name }}</option>
               </select>
             </div>
+            <div class="cond">
+              <label class="cond-label">{{ t('index.sort') }}</label>
+              <select class="field" style="width:100%" v-model="videoSort">
+                <option value="imported_desc">{{ t('index.sortImportedDesc') }}</option>
+                <option value="imported_asc">{{ t('index.sortImportedAsc') }}</option>
+                <option value="published_desc">{{ t('index.sortPublishedDesc') }}</option>
+                <option value="published_asc">{{ t('index.sortPublishedAsc') }}</option>
+              </select>
+            </div>
             <div class="cond-date">
               <label class="cond-label">{{ t('yt.date') }}</label>
               <div style="display:flex;gap:6px">
@@ -468,12 +477,24 @@ const tagCounts = computed(() => {
 })
 // ① Videos are listed under their channel, in the channel list's order;
 // each channel block folds (remembered per browser).
+// 排序：默认导入时间降序（created_at），可在检索区切换。
+const videoSort = ref('imported_desc')
+function sortVideos (list: YTVideo[]): YTVideo[] {
+  const dir = videoSort.value.endsWith('_asc') ? 1 : -1
+  const byImport = videoSort.value.startsWith('imported')
+  return [...list].sort((a, b) => {
+    const av = byImport ? (a.created_at || '') : (a.published_at || '')
+    const bv = byImport ? (b.created_at || '') : (b.published_at || '')
+    return (av < bv ? -1 : av > bv ? 1 : a.id.localeCompare(b.id)) * dir
+  })
+}
 const groupedByChannel = computed(() => {
   const byChannel = new Map<string, YTVideo[]>()
   for (const v of filtered.value) {
     const list = byChannel.get(v.channel_id)
     if (list) list.push(v); else byChannel.set(v.channel_id, [v])
   }
+  for (const list of byChannel.values()) sortVideos(list).forEach((v, i) => { list[i] = v })
   const order = channels.value.map(c => c.channel_id)
   for (const id of byChannel.keys()) if (!order.includes(id)) order.push(id)
   return order.filter(id => byChannel.has(id)).map(id => ({

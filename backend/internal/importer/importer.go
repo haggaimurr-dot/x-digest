@@ -299,7 +299,7 @@ func Import(db *sql.DB, dataDir string) (Counts, error) {
 		}
 		// text/links never overwrite a stored value with an empty one.
 		if _, err := tx.Exec(`INSERT INTO posts(id,url,author,author_name,author_avatar,industry,tech,title,summary,note,
-				published_at,is_long,show_flowchart,updated_at_meta,text,links,kind,resources) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+				published_at,is_long,show_flowchart,updated_at_meta,text,links,kind,resources,imported_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,NOW())
 			ON DUPLICATE KEY UPDATE url=VALUES(url), author=VALUES(author), author_name=VALUES(author_name),
 				text=IF(VALUES(text)<>'',VALUES(text),text), links=IF(VALUES(links)<>'',VALUES(links),links),
 				kind=IF(VALUES(kind)<>'',VALUES(kind),kind), resources=IF(VALUES(resources)<>'',VALUES(resources),resources),

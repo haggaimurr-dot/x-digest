@@ -81,10 +81,16 @@ func buildPostWhere(f PostFilter) (string, []any) {
 }
 
 func postOrder(sort string) string {
-	if sort == "oldest" {
+	switch sort {
+	case "oldest":
 		return "p.published_at ASC, p.id ASC"
+	case "imported_asc":
+		return "p.imported_at ASC, p.id ASC"
+	case "published_desc":
+		return "p.published_at DESC, p.id ASC"
+	default: // "imported_desc" (default): newest imports first
+		return "p.imported_at DESC, p.id DESC"
 	}
-	return "p.published_at DESC, p.id ASC"
 }
 
 // clean drops empty values and duplicates, trimming the given prefix.

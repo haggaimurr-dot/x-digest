@@ -29,6 +29,15 @@
                 <option v-for="n in [50, 100, 200, 500, 1000]" :key="n" :value="n">{{ t('index.minCharsAbove', { n }) }}</option>
               </select>
             </div>
+            <div class="cond">
+              <label class="cond-label" for="x-sort">{{ t('index.sort') }}</label>
+              <select id="x-sort" class="field" style="width:100%" v-model="postSort" @change="onSortChange">
+                <option value="imported_desc">{{ t('index.sortImportedDesc') }}</option>
+                <option value="imported_asc">{{ t('index.sortImportedAsc') }}</option>
+                <option value="published_desc">{{ t('index.sortPublishedDesc') }}</option>
+                <option value="oldest">{{ t('index.sortPublishedAsc') }}</option>
+              </select>
+            </div>
           </div>
           <div class="cond" style="margin-top:8px">
             <div class="cond-label">{{ t('index.kind') }}</div>
@@ -379,6 +388,8 @@ usePageActions(() => [
 ])
 useScrollLock(computed(() => !!xDialog.value))
 // Server-side load: fetch the current page with the applied (searched) filters.
+const postSort = ref('imported_desc')
+function onSortChange () { page.value = 1; loadPostsPage() }
 async function loadPostsPage () {
   const f = applied.value
   const p = await store.loadPosts({
@@ -390,6 +401,7 @@ async function loadPostsPage () {
     minChars: f.min_chars,
     page: page.value,
     pageSize: pageSize.value,
+    sort: postSort.value,
   })
   posts.value = p.posts; totalPosts.value = p.total; updatedAt.value = p.updated_at
 }

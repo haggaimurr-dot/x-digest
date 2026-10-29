@@ -43,7 +43,7 @@ export function useStore () {
   async function loadPosts (params: {
     authors?: string[], tags?: string[], categories?: string[],
     keyword?: string, dateFrom?: string, dateTo?: string, kind?: string, minChars?: number,
-    page?: number, pageSize?: number
+    page?: number, pageSize?: number, sort?: string
   } = {}): Promise<{ updated_at: string, total: number, posts: Post[] }> {
     if (mock.value) {
       const posts = MOCK_POSTS.filter(p => !mockDeleted.value.includes(p.id)).sort((a, b) => {
@@ -63,6 +63,7 @@ export function useStore () {
     if (params.dateTo) q.set('date_to', params.dateTo)
     if (params.kind) q.set('kind', params.kind)
     if (params.minChars) q.set('min_chars', String(params.minChars))
+    if (params.sort) q.set('sort', params.sort)
     q.set('page', String(params.page || 1))
     q.set('page_size', String(params.pageSize || 20))
     const data = await apiFetch<{ updated_at: string, total: number, posts: Post[] }>(`posts?${q.toString()}`)
@@ -95,7 +96,7 @@ export function useStore () {
     if (mock.value) return mockStore.categories.value
     return apiFetch<Categories>('categories')
   }
-  async function loadReplicas (sort: 'time' | 'edited' | 'progress' = 'time'): Promise<Replica[]> {
+  async function loadReplicas (sort: 'time' | 'time_asc' | 'edited' | 'progress' = 'time'): Promise<Replica[]> {
     if (mock.value) {
       const list = [...mockStore.replicas.value]
       if (sort === 'progress') {
@@ -103,6 +104,8 @@ export function useStore () {
         list.sort((a, b) => prog(b) - prog(a))
       } else if (sort === 'edited') {
         list.sort((a, b) => Date.parse(b.updated_at || b.created_at) - Date.parse(a.updated_at || a.created_at))
+      } else if (sort === 'time_asc') {
+        list.sort((a, b) => Date.parse(a.created_at) - Date.parse(b.created_at))
       } else list.sort((a, b) => Date.parse(b.created_at) - Date.parse(a.created_at))
       return list
     }

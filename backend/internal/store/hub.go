@@ -218,6 +218,19 @@ func (h *HubStore) PruneVideosOutsideRange(channelID, from, to string) error {
 	return err
 }
 
+func hubVideoOrder(sort string) string {
+	switch sort {
+	case "imported_asc":
+		return "v.created_at ASC, v.id ASC"
+	case "published_desc":
+		return "v.published_at DESC, v.id DESC"
+	case "published_asc":
+		return "v.published_at ASC, v.id ASC"
+	default: // "imported_desc": newest imports first
+		return "v.created_at DESC, v.id DESC"
+	}
+}
+
 func (h *HubStore) ListVideos(f YTVideoFilter) ([]model.YTVideo, error) {
 	limit := f.Limit
 	if limit <= 0 {
@@ -256,7 +269,7 @@ func (h *HubStore) ListVideos(f YTVideoFilter) ([]model.YTVideo, error) {
 		DATE_FORMAT(v.created_at,'%Y-%m-%d %H:%i:%s'),
 		COALESCE(DATE_FORMAT(v.watched_at,'%Y-%m-%d %H:%i:%s'),''),v.watch_later
 		FROM {p}_videos v LEFT JOIN {p}_channels c ON c.channel_id=v.channel_id `+
-		where+` ORDER BY v.published_at DESC, v.id DESC LIMIT ?`), append(args, limit)...)
+		where+` ORDER BY `+hubVideoOrder(f.Sort)+` LIMIT ?`), append(args, limit)...)
 	if err != nil {
 		return nil, err
 	}

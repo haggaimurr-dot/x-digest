@@ -19,6 +19,8 @@ type YTVideoFilter struct {
 	Limit     int
 	// WatchLater: only videos marked 稍后观看.
 	WatchLater bool
+	// Sort: "imported_desc" (default), "imported_asc", "published_desc", "published_asc".
+	Sort string
 }
 
 // scanYTChannel fills a channel's nullable columns after a row scan.

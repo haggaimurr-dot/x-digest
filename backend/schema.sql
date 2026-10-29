@@ -53,7 +53,9 @@ CREATE TABLE IF NOT EXISTS posts (
   is_long         TINYINT(1)   NOT NULL DEFAULT 0,
   show_flowchart  TINYINT(1)   NULL,
   updated_at_meta DATETIME     NULL,
+  imported_at   DATETIME     NULL,
   INDEX idx_posts_published (published_at DESC, id ASC),
+  INDEX idx_posts_imported (imported_at DESC, id ASC),
   INDEX idx_posts_author (author)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -563,3 +565,7 @@ CREATE TABLE IF NOT EXISTS repo_summaries (
   CONSTRAINT fk_repo_summaries_repo FOREIGN KEY (full_name)
     REFERENCES repos(full_name) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- 2026-10-30: posts.imported_at (import time). Backfill with published_at as proxy.
+ALTER TABLE posts ADD COLUMN IF NOT EXISTS imported_at DATETIME NULL;
+UPDATE posts SET imported_at = published_at WHERE imported_at IS NULL;

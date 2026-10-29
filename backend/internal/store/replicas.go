@@ -119,6 +119,8 @@ func (s *Store) ListReplicas(sort string) ([]model.Replica, error) {
 	order := "created_at DESC"
 	if sort == "edited" {
 		order = "updated_at DESC"
+	} else if sort == "time_asc" {
+		order = "created_at ASC"
 	}
 	rows, err := s.DB.Query("SELECT id FROM replicas ORDER BY " + order)
 	if err != nil {

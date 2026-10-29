@@ -339,7 +339,8 @@ func (h *videoHub) handleVideos(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	videos, err := h.st.ListVideos(store.YTVideoFilter{ChannelID: q.Get("channel_id"), Q: q.Get("q"),
-		DateFrom: q.Get("date_from"), DateTo: q.Get("date_to"), Kind: kind, Limit: limit, WatchLater: q.Get("watch_later") == "1"})
+		DateFrom: q.Get("date_from"), DateTo: q.Get("date_to"), Kind: kind, Limit: limit, WatchLater: q.Get("watch_later") == "1",
+		Sort: q.Get("sort")})
 	if err != nil {
 		writeErr(w, 500, "DB_ERROR", err.Error())
 		return
