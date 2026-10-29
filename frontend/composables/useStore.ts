@@ -463,11 +463,25 @@ export function useStore () {
   // X post AI summary: same flow as the video one; POST sends the original
   // text/links (they live in x-content.json on the page, not in the DB).
   // X daily: single-post import / account refresh (backend x_import.go).
-  async function importXPost (url: string, force = false, tags: string[] = [], groupId?: string): Promise<{ post: Post, existed?: boolean, account_created?: boolean }> {
+  async function importXPost (url: string, force = false, tags: string[] = [], groupId?: string, postGroupId?: string): Promise<{ post: Post, existed?: boolean, account_created?: boolean }> {
     if (mock.value) throw new ApiError(501, 'MOCK', '演示模式不支持导入')
-    const data = await apiFetch<{ post: Post, existed?: boolean, account_created?: boolean }>('posts/import', { method: 'POST', body: JSON.stringify({ url: url.trim(), force, tags, group_id: groupId || undefined }) })
+    const data = await apiFetch<{ post: Post, existed?: boolean, account_created?: boolean }>('posts/import', { method: 'POST', body: JSON.stringify({ url: url.trim(), force, tags, group_id: groupId || undefined, post_group_id: postGroupId || undefined }) })
     data.post = withXContent(data.post)
     return data
+  }
+  async function loadTags (): Promise<string[]> {
+    if (mock.value) return []
+    const data = await apiFetch<{ tags: string[] }>('tags')
+    return data.tags || []
+  }
+  async function loadPostGroups (): Promise<{ id: string, name: string, fixed?: boolean }[]> {
+    if (mock.value) return []
+    const data = await apiFetch<{ groups: { id: string, name: string, fixed?: boolean }[] }>('post-groups')
+    return data.groups || []
+  }
+  async function ensurePostGroup (name: string): Promise<{ id: string, groups: { id: string, name: string }[] }> {
+    if (mock.value) throw new ApiError(501, 'MOCK', '演示模式不支持')
+    return apiFetch('post-groups', { method: 'POST', body: JSON.stringify({ name: name.trim() }) })
   }
   async function getXRefresh (): Promise<XRefreshJob> {
     if (mock.value) return { running: false, accounts: [], configured: false }
@@ -538,7 +552,7 @@ export function useStore () {
     deleteAccount, addCategory, deleteCategory, renameCategory, restoreCategory, deletePosts, setPostReplicaEnabled, loadViews, createView, deleteView, batchCategory, batchPostSummaries, cloneReplica, loadNotifications, markNotificationsRead, createReplicaFromRepo, setPostCategories, translateTexts,
     loadRepos, loadRepoGroups, addRepo, loadRepoDetail, loadRepoCommits, loadRepoReleases,
     patchRepo, deleteRepo, syncRepo, syncAllRepos, getRepoSyncStatus, addRepoGroup, deleteRepoGroup, validateRepoFullName,
-    loadYTChannels, loadYTVideos, addYTChannel, updateYTChannel, deleteYTChannel, syncYTChannel, syncAllYTChannels, getYTSummary, startYTSummary, addYTVideo, getPostSummary, startPostSummary, getRepoSummary, startRepoSummary, importXPost, getXRefresh, startXRefresh, retryXRefresh, getXRefreshAccounts, setXRefreshAccounts,
+    loadYTChannels, loadYTVideos, addYTChannel, updateYTChannel, deleteYTChannel, syncYTChannel, syncAllYTChannels, getYTSummary, startYTSummary, addYTVideo, getPostSummary, startPostSummary, getRepoSummary, startRepoSummary, importXPost, loadTags, loadPostGroups, ensurePostGroup, getXRefresh, startXRefresh, retryXRefresh, getXRefreshAccounts, setXRefreshAccounts,
     loadYTGroups, addYTGroup, deleteYTGroup, setVideoState
   }
 }

@@ -95,6 +95,7 @@ func main() {
 	mux.HandleFunc("/api/v1/healthz", s.handleHealth)
 	mux.HandleFunc("/api/v1/posts", s.handlePosts)
 	mux.HandleFunc("/api/v1/posts/", s.handlePost)
+	mux.HandleFunc("/api/v1/post-groups", s.handlePostGroups)
 	mux.HandleFunc("/api/v1/watchlist", s.handleWatchlist)
 	mux.HandleFunc("/api/v1/watchlist/groups", s.handleGroups)
 	mux.HandleFunc("/api/v1/watchlist/groups/", s.handleGroup)

@@ -26,6 +26,8 @@ export interface Post {
   replica_enabled?: boolean | null
   tags?: string[]
   steps?: Step[]
+  group_id?: string
+  group_name?: string
   // AI post type from cmd/digest ("" = not classified) and link explanations.
   kind?: string
   resources?: Array<{ url: string, name: string, note: string }>

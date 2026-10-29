@@ -3,6 +3,7 @@ package store
 import (
 	"database/sql"
 	"encoding/json"
+	"strings"
 
 	"xdigest/internal/model"
 )
@@ -45,8 +46,9 @@ func (s *Store) ListPosts(f PostFilter) (posts []model.Post, total int, updatedA
 	offset := (f.Page - 1) * f.PageSize
 	qargs := append(append([]any{}, args...), f.PageSize, offset)
 	rows, err := s.DB.Query(`SELECT p.id,p.url,p.author,p.author_name,COALESCE(NULLIF(p.author_avatar,''),(SELECT a.avatar FROM authors a WHERE a.username=p.author),''),p.industry,p.tech,
-		p.title,p.summary,p.note,p.published_at,p.is_long,p.show_flowchart,COALESCE(p.text,''),COALESCE(p.links,''),p.kind,COALESCE(p.resources,''),p.replica_enabled
-		FROM posts p `+where+` ORDER BY `+postOrder(f.Sort)+` LIMIT ? OFFSET ?`, qargs...)
+		p.title,p.summary,p.note,p.published_at,p.is_long,p.show_flowchart,COALESCE(p.text,''),COALESCE(p.links,''),p.kind,COALESCE(p.resources,''),p.replica_enabled,
+		p.group_id,COALESCE(g.name,'')
+		FROM posts p LEFT JOIN post_groups g ON g.id=p.group_id `+where+` ORDER BY `+postOrder(f.Sort)+` LIMIT ? OFFSET ?`, qargs...)
 	if err != nil {
 		return nil, 0, "", err
 	}
@@ -55,14 +57,17 @@ func (s *Store) ListPosts(f PostFilter) (posts []model.Post, total int, updatedA
 	for rows.Next() {
 		var p model.Post
 		var show, replica sql.NullBool
-		var note sql.NullString
+		var note, groupID, groupName sql.NullString
 		var links, resources string
 		if err := rows.Scan(&p.ID, &p.URL, &p.Author, &p.AuthorName, &p.AuthorAvatar, &p.Industry, &p.Tech,
-			&p.Title, &p.Summary, &note, &p.PublishedAt, &p.IsLong, &show, &p.Text, &links, &p.Kind, &resources, &replica); err != nil {
+			&p.Title, &p.Summary, &note, &p.PublishedAt, &p.IsLong, &show, &p.Text, &links, &p.Kind, &resources, &replica,
+			&groupID, &groupName); err != nil {
 			return nil, 0, "", err
 		}
 		p.ReplicaEnabled = nullBoolPtr(replica)
 		p.Note = note.String
+		p.GroupID = groupID.String
+		p.GroupName = groupName.String
 		p.Links = decodeLinks(links)
 		p.Resources = decodeResources(resources)
 		if show.Valid {
@@ -198,6 +203,63 @@ func (s *Store) GetPost(id string) (*model.Post, error) {
 }
 
 // ---- tags / categories ----
+
+// ---- post groups (post-level, separate from author groups) ----
+
+type PostGroup struct {
+	ID    string `json:"id"`
+	Name  string `json:"name"`
+	Fixed bool   `json:"fixed"`
+}
+
+func (s *Store) ListPostGroups() ([]PostGroup, error) {
+	rows, err := s.DB.Query(`SELECT id, name, fixed FROM post_groups ORDER BY fixed DESC, name`)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	out := []PostGroup{}
+	for rows.Next() {
+		var g PostGroup
+		var fixed bool
+		if err := rows.Scan(&g.ID, &g.Name, &fixed); err != nil {
+			return nil, err
+		}
+		g.Fixed = fixed
+		out = append(out, g)
+	}
+	return out, rows.Err()
+}
+
+// EnsurePostGroup returns the ID of the group with the given name, creating it if needed.
+func (s *Store) EnsurePostGroup(name string) (string, error) {
+	name = strings.TrimSpace(name)
+	if name == "" {
+		return "other", nil
+	}
+	var id string
+	err := s.DB.QueryRow(`SELECT id FROM post_groups WHERE name=?`, name).Scan(&id)
+	if err == nil {
+		return id, nil
+	}
+	if err != sql.ErrNoRows {
+		return "", err
+	}
+	id = NewID("pg")
+	if _, err := s.DB.Exec(`INSERT INTO post_groups(id, name, fixed) VALUES(?,?,0)`, id, name); err != nil {
+		return "", err
+	}
+	return id, nil
+}
+
+// SetPostGroup sets the group of a post.
+func (s *Store) SetPostGroup(postID, groupID string) error {
+	if groupID == "" {
+		groupID = "other"
+	}
+	_, err := s.DB.Exec(`UPDATE posts SET group_id=? WHERE id=?`, groupID, postID)
+	return err
+}
 
 func (s *Store) PostTagsByFreq() ([]string, error) {
 	rows, err := s.DB.Query("SELECT tag FROM post_tags GROUP BY tag COLLATE utf8mb4_bin ORDER BY COUNT(*) DESC, tag ASC")

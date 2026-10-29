@@ -9,10 +9,22 @@
         <p style="color:var(--text-muted);font-size:13px;margin:6px 0 0">
           拉取原文后用中转站 AI 解析（标题、类型、标签、资源说明），帖子作者不在关注列表时会自动加入下方选择的分组。约 5–30 秒。
         </p>
+        <div style="margin-top:8px">
+          <label style="font-size:13px;color:var(--text-muted)">标签（点选已有，或输入新增，逗号/空格分隔）</label>
+          <div class="chips" style="margin:4px 0">
+            <button v-for="t in allTags" :key="t" type="button" class="chip" :class="{ active: selectedTags.has(t) }"
+              :disabled="importing" @click="toggleTag(t)">{{ t }}</button>
+          </div>
+          <input class="field" style="width:100%" v-model="newTagsText" placeholder="新增标签，如：AI, 教程" :disabled="importing" />
+        </div>
         <div style="display:flex;gap:8px;margin-top:8px">
           <div style="flex:1">
-            <label style="font-size:13px;color:var(--text-muted)">标签（逗号或空格分隔）</label>
-            <input class="field" style="width:100%" v-model="importTags" placeholder="如：AI, 教程" :disabled="importing" />
+            <label style="font-size:13px;color:var(--text-muted)">帖子分组（点选已有）</label>
+            <div class="chips" style="margin:4px 0">
+              <button v-for="g in postGroups" :key="g.id" type="button" class="chip" :class="{ active: selectedPostGroup === g.id }"
+                :disabled="importing" @click="selectedPostGroup = selectedPostGroup === g.id ? '' : g.id">{{ g.name }}</button>
+            </div>
+            <input class="field" style="width:100%;margin-top:4px" v-model="newGroupName" placeholder="或新增分组名" :disabled="importing" />
           </div>
           <div style="flex:1">
             <label style="font-size:13px;color:var(--text-muted)">新作者分组</label>
@@ -102,9 +114,30 @@ const store = useStore()
 // ---- single post (one link, or several pasted at once) ----
 const url = ref('')
 const urlEl = ref<HTMLTextAreaElement | null>(null)
-const importTags = ref('')
 const importGroupId = ref('')
 const groups = computed(() => props.groups || [])
+// Tags: select existing + type new ones.
+const allTags = ref<string[]>([])
+const selectedTags = ref<Set<string>>(new Set())
+const newTagsText = ref('')
+function toggleTag (t: string) {
+  const s = new Set(selectedTags.value)
+  if (s.has(t)) s.delete(t); else s.add(t)
+  selectedTags.value = s
+}
+// Post groups: select existing + type a new name.
+const postGroups = ref<{ id: string, name: string }[]>([])
+const selectedPostGroup = ref('')
+const newGroupName = ref('')
+onMounted(async () => {
+  try {
+    const t = await store.loadTags()
+    allTags.value = t.slice(0, 50) // top 50 by frequency
+  } catch { /* noop */ }
+  try {
+    postGroups.value = await store.loadPostGroups()
+  } catch { /* noop */ }
+})
 // Per-link result of a batch import: 成功 / 已存在 / 格式错误 / 失败.
 const batchRows = ref<Array<{ url: string, state: 'pending' | 'running' | 'done' | 'error', text: string }>>([])
 const importing = ref(false)
@@ -118,8 +151,17 @@ async function doImport (force = false) {
   batchRows.value = []
   importing.value = true; importErr.value = false; importMsg.value = ''; existedId.value = ''
   try {
-    const tags = importTags.value.split(/[,，\s]+/).map(t => t.trim()).filter(Boolean)
-    const r = await store.importXPost(url.value, force, tags, importGroupId.value || undefined)
+    const tags = [...selectedTags.value, ...newTagsText.value.split(/[,，\s]+/).map(t => t.trim()).filter(Boolean)]
+    const uniqTags = [...new Set(tags)]
+    // New group name takes precedence over selected existing group.
+    let postGroupId = selectedPostGroup.value || undefined
+    const newName = newGroupName.value.trim()
+    if (newName) {
+      const g = await store.ensurePostGroup(newName)
+      postGroupId = g.id
+      postGroups.value = g.groups
+    }
+    const r = await store.importXPost(url.value, force, uniqTags, importGroupId.value || undefined, postGroupId)
     if (r.existed) {
       existedId.value = r.post.id
       importMsg.value = `已在库中：${r.post.title || r.post.id}`

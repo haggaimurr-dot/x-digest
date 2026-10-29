@@ -94,7 +94,7 @@ func (x *xImporter) register(mux *http.ServeMux) {
 }
 
 // importRaw analyses one fetched post and stores it with its author.
-func (x *xImporter) importRaw(ctx context.Context, raw map[string]any, tags []string, groupID string) (accountCreated bool, err error) {
+func (x *xImporter) importRaw(ctx context.Context, raw map[string]any, tags []string, groupID, postGroupID string) (accountCreated bool, err error) {
 	p, err := xpost.AnalyzeWithFallback(ctx, x.llm, x.fb, raw)
 	if err != nil {
 		return false, fmt.Errorf("AI 解析失败：%w", err)
@@ -127,6 +127,12 @@ func (x *xImporter) importRaw(ctx context.Context, raw map[string]any, tags []st
 			return false, err
 		}
 	}
+	// Post-level group (separate from the author's group).
+	if postGroupID != "" {
+		if err := x.st.SetPostGroup(p.ID, postGroupID); err != nil {
+			return false, err
+		}
+	}
 	return created, nil
 }
 
@@ -136,10 +142,11 @@ func (x *xImporter) handleImport(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	var body struct {
-		URL     string   `json:"url"`
-		Force   bool     `json:"force"`
-		Tags    []string `json:"tags"`
-		GroupID string   `json:"group_id"`
+		URL         string   `json:"url"`
+		Force       bool     `json:"force"`
+		Tags        []string `json:"tags"`
+		GroupID     string   `json:"group_id"`      // author group (new authors)
+		PostGroupID string   `json:"post_group_id"` // post group
 	}
 	if !decodeBody(w, r, &body) {
 		return
@@ -173,7 +180,7 @@ func (x *xImporter) handleImport(w http.ResponseWriter, r *http.Request) {
 		writeErr(w, code, "FETCH_FAILED", err.Error())
 		return
 	}
-	created, err := x.importRaw(ctx, raw, body.Tags, body.GroupID)
+	created, err := x.importRaw(ctx, raw, body.Tags, body.GroupID, body.PostGroupID)
 	if err != nil {
 		writeErr(w, 502, "IMPORT_FAILED", err.Error())
 		return
@@ -535,7 +542,7 @@ func (x *xImporter) importIDs(ctx context.Context, a *refreshAccount, ids []stri
 				}
 			}
 			if err == nil {
-				_, err = x.importRaw(ctx, raw, nil, "")
+				_, err = x.importRaw(ctx, raw, nil, "", "")
 			}
 			switch {
 			case err == nil:

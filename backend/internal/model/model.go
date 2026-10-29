@@ -33,6 +33,8 @@ type Post struct {
 	ShowFlowchart *bool      `json:"show_flowchart"`
 	Tags          []string   `json:"tags"`
 	Steps         []PostStep `json:"steps"`
+	GroupID       string     `json:"group_id,omitempty"`
+	GroupName     string     `json:"group_name,omitempty"`
 	// Original post text and its links (from raw_posts.json at import).
 	Text  string   `json:"text"`
 	Links []string `json:"links"`

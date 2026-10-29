@@ -255,3 +255,33 @@ func atoiDefault(v string, def int) int {
 	}
 	return n
 }
+
+// ---- post groups (post-level, separate from author groups) ----
+
+func (s *server) handlePostGroups(w http.ResponseWriter, r *http.Request) {
+	switch r.Method {
+	case http.MethodGet:
+		groups, err := s.st.ListPostGroups()
+		if err != nil {
+			writeErr(w, 500, "DB_ERROR", err.Error())
+			return
+		}
+		writeJSON(w, 200, map[string]any{"groups": groups})
+	case http.MethodPost:
+		var body struct {
+			Name string `json:"name"`
+		}
+		if !decodeBody(w, r, &body) {
+			return
+		}
+		id, err := s.st.EnsurePostGroup(body.Name)
+		if err != nil {
+			writeErr(w, 500, "DB_ERROR", err.Error())
+			return
+		}
+		groups, _ := s.st.ListPostGroups()
+		writeJSON(w, 201, map[string]any{"id": id, "groups": groups})
+	default:
+		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only GET, POST")
+	}
+}

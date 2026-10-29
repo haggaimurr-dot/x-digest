@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS posts (
   show_flowchart  TINYINT(1)   NULL,
   updated_at_meta DATETIME     NULL,
   imported_at   DATETIME     NULL,
+  group_id      VARCHAR(64)  NULL,
   INDEX idx_posts_published (published_at DESC, id ASC),
   INDEX idx_posts_imported (imported_at DESC, id ASC),
   INDEX idx_posts_author (author)
@@ -72,6 +73,14 @@ CREATE TABLE IF NOT EXISTS post_steps (
     REFERENCES posts(id) ON DELETE CASCADE ON UPDATE CASCADE,
   INDEX idx_post_steps_post (post_id, idx)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS post_groups (
+  id    VARCHAR(64)  NOT NULL PRIMARY KEY,
+  name  VARCHAR(128) NOT NULL,
+  fixed TINYINT(1)   NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT IGNORE INTO post_groups (id, name, fixed) VALUES ('other', '默认', 1);
 
 CREATE TABLE IF NOT EXISTS post_tags (
   post_id VARCHAR(64)  NOT NULL,
@@ -587,3 +596,6 @@ CREATE TABLE IF NOT EXISTS repo_summaries (
 -- 2026-10-30: posts.imported_at (import time). Backfill with published_at as proxy.
 ALTER TABLE posts ADD COLUMN IF NOT EXISTS imported_at DATETIME NULL;
 UPDATE posts SET imported_at = published_at WHERE imported_at IS NULL;
+
+-- 2026-10-30: posts.group_id (post-level groups, separate from author groups).
+ALTER TABLE posts ADD COLUMN IF NOT EXISTS group_id VARCHAR(64) NULL;
