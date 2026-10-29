@@ -326,8 +326,11 @@ func encodeQuery(v url.Values) string {
 
 var (
 	midRe      = regexp.MustCompile(`^\d{1,20}$`)
-	spaceURLRe = regexp.MustCompile(`space\.bilibili\.com/(\d{1,20})`)
+	spaceURLRe = regexp.MustCompile(`(?:space\.bilibili\.com/|bilibili\.com/space/)(\d{1,20})`)
 	uidRe      = regexp.MustCompile(`(?i)^uid[:：\s]*(\d{1,20})$`)
+	// b23.tv short links, e.g. https://b23.tv/Jmkrb3h (usually a shared
+	// space link). Resolved via a single no-follow request in Resolve.
+	b23Re = regexp.MustCompile(`(?i)(?:https?://)?b23\.tv/([A-Za-z0-9]+)`)
 )
 
 // ParseMid extracts a numeric mid from "123", "UID:123" or a
@@ -346,11 +349,54 @@ func ParseMid(input string) (string, bool) {
 	return "", false
 }
 
+// resolveB23 follows a b23.tv short link with a single request that does
+// NOT follow redirects, and returns the redirect target (normally a
+// https://space.bilibili.com/<UID> or m.bilibili.com/space/<UID> URL).
+// Returns ("", nil) when the input is not a b23.tv link.
+func resolveB23(ctx context.Context, input string) (string, error) {
+	m := b23Re.FindStringSubmatch(strings.TrimSpace(input))
+	if m == nil {
+		return "", nil
+	}
+	target := m[0]
+	if !strings.HasPrefix(strings.ToLower(target), "http") {
+		target = "https://" + target
+	}
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, target, nil)
+	if err != nil {
+		return "", err
+	}
+	req.Header.Set("User-Agent", "Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36")
+	noFollow := &http.Client{
+		CheckRedirect: func(req *http.Request, via []*http.Request) error {
+			return http.ErrUseLastResponse
+		},
+		Timeout: 15 * time.Second,
+	}
+	resp, err := noFollow.Do(req)
+	if err != nil {
+		return "", err
+	}
+	defer resp.Body.Close()
+	if loc := resp.Header.Get("Location"); loc != "" {
+		return loc, nil
+	}
+	return "", fmt.Errorf("b23.tv 短链没有返回跳转目标")
+}
+
 // Resolve checks the uploader exists and returns its mid and name.
 func (c *Client) Resolve(ctx context.Context, input string) (mid, name string, err error) {
-	mid, ok := ParseMid(input)
+	s := strings.TrimSpace(input)
+	if b23Re.MatchString(s) {
+		resolved, rerr := resolveB23(ctx, s)
+		if rerr != nil {
+			return "", "", fmt.Errorf("b23.tv 短链解析失败：%v", rerr)
+		}
+		s = resolved
+	}
+	mid, ok := ParseMid(s)
 	if !ok {
-		return "", "", errors.New("请输入 B站 UID（数字）或个人空间链接 https://space.bilibili.com/<UID>")
+		return "", "", errors.New("请输入 B站 UID（数字）、个人空间链接 https://space.bilibili.com/<UID> 或 b23.tv 短链")
 	}
 	var d struct {
 		Card struct {

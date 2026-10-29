@@ -28,6 +28,7 @@ func TestParseMid(t *testing.T) {
 	for in, want := range map[string]string{
 		"946974": "946974", " UID:946974 ": "946974", "uid 2": "2",
 		"https://space.bilibili.com/946974?spm_id_from=333": "946974",
+		"https://m.bilibili.com/space/3707028792936874?plat_id=1": "3707028792936874",
 	} {
 		if got, ok := ParseMid(in); !ok || got != want {
 			t.Errorf("ParseMid(%q) = %q,%v", in, got, ok)
@@ -35,6 +36,11 @@ func TestParseMid(t *testing.T) {
 	}
 	if _, ok := ParseMid("@someone"); ok {
 		t.Error("@handle is not a mid")
+	}
+	for _, in := range []string{"https://b23.tv/Jmkrb3h", "b23.tv/Jmkrb3h"} {
+		if !b23Re.MatchString(in) {
+			t.Errorf("b23Re should match %q", in)
+		}
 	}
 }
 
