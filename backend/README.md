@@ -7,11 +7,11 @@ MariaDB schema 与本地导入 CLI；不含 Nuxt 前端，不改前端目录，�
 
 | 文件 | 说明 |
 |---|---|
-| `cmd/api/main.go` | HTTP API 入口与路由（标准库 net/http）；各领域 handler 按文件拆分：`posts.go`、`watchlist.go`、`categories.go`、`replicas.go`、`attachments.go`、`repos.go`（+`repos_sync.go`）、`yt.go`、`hub.go`、`translate.go`、`x_import.go`、`auth.go` |
+| `cmd/api/main.go` | HTTP API 入口与路由（标准库 net/http）；各领域 handler 按文件拆分：`posts.go`、`watchlist.go`、`categories.go`、`replicas.go`、`attachments.go`、`repos.go`（+`repos_sync.go`）、`hub.go`（油管 / B 站共用，+`hub_yt.go`、`hub_single.go`、`hub_summary.go`）、`translate.go`、`x_import.go`、`auth.go` |
 | `cmd/maint/main.go` | 运维 CLI `xdigest-maint`（清理翻译缓存、清理软删类别） |
 | `cmd/import/main.go` | 本地导入 CLI `xdigest-import` |
 | `internal/model/model.go` | API 的 JSON 结构 |
-| `internal/store/*.go` | MariaDB 访问，按领域拆分：`posts.go`、`post_filter.go`、`categories.go`、`user_tags.go`、`replicas.go`、`repos.go`、`yt.go`、`hub.go`、`translations.go`、`refresh_jobs.go` |
+| `internal/store/*.go` | MariaDB 访问，按领域拆分：`posts.go`、`post_filter.go`、`categories.go`、`replicas.go`、`repos.go`、`hub.go`（油管 / B 站共用）、`translations.go`、`refresh_jobs.go` |
 | `internal/importer/importer.go` | 旧站 JSON → DB 的幂等导入逻辑 |
 | `schema.sql` | 新库 `xdigest` 的建表语句（utf8mb4 / utf8mb4_unicode_ci） |
 | `db-user.sql` | 专用 DB 用户创建模板（密码为占位符，见下） |

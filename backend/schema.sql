@@ -506,6 +506,13 @@ ALTER TABLE yt_videos ADD COLUMN IF NOT EXISTS watch_later TINYINT(1) NOT NULL D
 ALTER TABLE bili_videos ADD COLUMN IF NOT EXISTS watched_at DATETIME NULL DEFAULT NULL;
 ALTER TABLE bili_videos ADD COLUMN IF NOT EXISTS watch_later TINYINT(1) NOT NULL DEFAULT 0;
 
+-- YouTube moved onto the shared video hub (2026-10-29): the hub code reads
+-- sync_mode / added_manually for every platform, so the bili tables get the
+-- same two columns as yt (Bilibili has no add-by-URL yet; they stay at the
+-- defaults).
+ALTER TABLE bili_channels ADD COLUMN IF NOT EXISTS sync_mode VARCHAR(16) NOT NULL DEFAULT 'full';
+ALTER TABLE bili_videos ADD COLUMN IF NOT EXISTS added_manually TINYINT(1) NOT NULL DEFAULT 0;
+
 -- Settings cloud sync (2026-10-28): one row per API token (sha256 hex of
 -- the token; "default" when the server has no API_TOKEN).
 CREATE TABLE IF NOT EXISTS user_settings (

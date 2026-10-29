@@ -1,6 +1,6 @@
 package store
 
-// YouTube store tests run against a scratch MariaDB database on the
+// Video hub store tests (on the yt_* tables) run against a scratch MariaDB database on the
 // local machine (never the Shanghai server). Set XDIGEST_TEST_DSN to a
 // server DSN with multiStatements enabled, e.g.:
 //
@@ -91,14 +91,14 @@ func testYTVideos() []model.YTVideo {
 // Upserting the same videos twice must never duplicate rows; a re-fetch
 // updates the title in place.
 func TestYTUpsertNoDuplicate(t *testing.T) {
-	st := testYTStore(t)
-	if err := st.CreateYTChannel(testYTChannel()); err != nil {
+	st := testYTStore(t).Hub("yt")
+	if err := st.CreateChannel(testYTChannel()); err != nil {
 		t.Fatalf("CreateYTChannel: %v", err)
 	}
-	if err := st.UpsertYTVideos(testChannelID, testYTVideos()); err != nil {
+	if err := st.UpsertVideos(testChannelID, testYTVideos()); err != nil {
 		t.Fatalf("upsert #1: %v", err)
 	}
-	videos, err := st.ListYTVideos(YTVideoFilter{})
+	videos, err := st.ListVideos(YTVideoFilter{})
 	if err != nil {
 		t.Fatalf("ListYTVideos: %v", err)
 	}
@@ -116,10 +116,10 @@ func TestYTUpsertNoDuplicate(t *testing.T) {
 	again := testYTVideos()
 	again[0].Title = "First video (updated title)"
 	again = append(again, model.YTVideo{ID: "ZZZ999YYY88", ChannelID: testChannelID, Title: "Third video", Description: "about birds", PublishedAt: "2026-10-21 14:00:00", URL: "https://www.youtube.com/watch?v=ZZZ999YYY88", CreatedAt: Now()})
-	if err := st.UpsertYTVideos(testChannelID, again); err != nil {
+	if err := st.UpsertVideos(testChannelID, again); err != nil {
 		t.Fatalf("upsert #2: %v", err)
 	}
-	videos, err = st.ListYTVideos(YTVideoFilter{})
+	videos, err = st.ListVideos(YTVideoFilter{})
 	if err != nil {
 		t.Fatalf("ListYTVideos: %v", err)
 	}
@@ -132,53 +132,53 @@ func TestYTUpsertNoDuplicate(t *testing.T) {
 }
 
 func TestYTVideoFilters(t *testing.T) {
-	st := testYTStore(t)
-	if err := st.CreateYTChannel(testYTChannel()); err != nil {
+	st := testYTStore(t).Hub("yt")
+	if err := st.CreateChannel(testYTChannel()); err != nil {
 		t.Fatalf("CreateYTChannel: %v", err)
 	}
-	if err := st.UpsertYTVideos(testChannelID, testYTVideos()); err != nil {
+	if err := st.UpsertVideos(testChannelID, testYTVideos()); err != nil {
 		t.Fatalf("upsert: %v", err)
 	}
 	// Keyword matches title/description.
-	got, err := st.ListYTVideos(YTVideoFilter{Q: "cats"})
+	got, err := st.ListVideos(YTVideoFilter{Q: "cats"})
 	if err != nil || len(got) != 1 || got[0].ID != "dQw4w9WgXcQ" {
 		t.Fatalf("Q=cats: got %v err %v", got, err)
 	}
-	got, err = st.ListYTVideos(YTVideoFilter{Q: "dogs"})
+	got, err = st.ListVideos(YTVideoFilter{Q: "dogs"})
 	if err != nil || len(got) != 1 || got[0].ID != "abc123DEF45" {
 		t.Fatalf("Q=dogs: got %v err %v", got, err)
 	}
 	// Date range: only the 2026-10-24 video falls in 10-23..10-25.
-	got, err = st.ListYTVideos(YTVideoFilter{DateFrom: "2026-10-23", DateTo: "2026-10-25"})
+	got, err = st.ListVideos(YTVideoFilter{DateFrom: "2026-10-23", DateTo: "2026-10-25"})
 	if err != nil || len(got) != 1 || got[0].ID != "dQw4w9WgXcQ" {
 		t.Fatalf("date range: got %v err %v", got, err)
 	}
 	// Channel filter + limit.
-	got, err = st.ListYTVideos(YTVideoFilter{ChannelID: testChannelID, Limit: 1})
+	got, err = st.ListVideos(YTVideoFilter{ChannelID: testChannelID, Limit: 1})
 	if err != nil || len(got) != 1 {
 		t.Fatalf("channel+limit: got %v err %v", got, err)
 	}
-	got, err = st.ListYTVideos(YTVideoFilter{ChannelID: "UC_doesnotexist"})
+	got, err = st.ListVideos(YTVideoFilter{ChannelID: "UC_doesnotexist"})
 	if err != nil || len(got) != 0 {
 		t.Fatalf("unknown channel: got %v err %v", got, err)
 	}
 }
 
 func TestYTChannelDeleteCascadesVideos(t *testing.T) {
-	st := testYTStore(t)
-	if err := st.CreateYTChannel(testYTChannel()); err != nil {
+	st := testYTStore(t).Hub("yt")
+	if err := st.CreateChannel(testYTChannel()); err != nil {
 		t.Fatalf("CreateYTChannel: %v", err)
 	}
-	if err := st.UpsertYTVideos(testChannelID, testYTVideos()); err != nil {
+	if err := st.UpsertVideos(testChannelID, testYTVideos()); err != nil {
 		t.Fatalf("upsert: %v", err)
 	}
-	if err := st.DeleteYTChannel("ytc_test1"); err != nil {
+	if err := st.DeleteChannel("ytc_test1"); err != nil {
 		t.Fatalf("DeleteYTChannel: %v", err)
 	}
-	if _, err := st.GetYTChannel("ytc_test1"); !errors.Is(err, sql.ErrNoRows) {
+	if _, err := st.GetChannel("ytc_test1"); !errors.Is(err, sql.ErrNoRows) {
 		t.Fatalf("channel should be gone, err=%v", err)
 	}
-	videos, err := st.ListYTVideos(YTVideoFilter{})
+	videos, err := st.ListVideos(YTVideoFilter{})
 	if err != nil {
 		t.Fatalf("ListYTVideos: %v", err)
 	}
@@ -188,11 +188,11 @@ func TestYTChannelDeleteCascadesVideos(t *testing.T) {
 }
 
 func TestYTChannelDateRangeUpdate(t *testing.T) {
-	st := testYTStore(t)
-	if err := st.CreateYTChannel(testYTChannel()); err != nil {
+	st := testYTStore(t).Hub("yt")
+	if err := st.CreateChannel(testYTChannel()); err != nil {
 		t.Fatalf("CreateYTChannel: %v", err)
 	}
-	ch, err := st.GetYTChannel("ytc_test1")
+	ch, err := st.GetChannel("ytc_test1")
 	if err != nil {
 		t.Fatalf("GetYTChannel: %v", err)
 	}
@@ -200,10 +200,10 @@ func TestYTChannelDateRangeUpdate(t *testing.T) {
 		t.Fatalf("fresh channel range = %v/%v, want nil/nil", ch.DateFrom, ch.DateTo)
 	}
 	from, to := "2026-10-01", "2026-10-31"
-	if err := st.UpdateYTChannel("ytc_test1", "", &from, &to); err != nil {
+	if err := st.UpdateChannel("ytc_test1", "", &from, &to); err != nil {
 		t.Fatalf("UpdateYTChannel: %v", err)
 	}
-	ch, err = st.GetYTChannel("ytc_test1")
+	ch, err = st.GetChannel("ytc_test1")
 	if err != nil {
 		t.Fatalf("GetYTChannel: %v", err)
 	}
@@ -211,10 +211,10 @@ func TestYTChannelDateRangeUpdate(t *testing.T) {
 		t.Fatalf("range after update = %v/%v, want %s/%s", ch.DateFrom, ch.DateTo, from, to)
 	}
 	// Nil clears a bound (NULL = no limit).
-	if err := st.UpdateYTChannel("ytc_test1", "", nil, &to); err != nil {
+	if err := st.UpdateChannel("ytc_test1", "", nil, &to); err != nil {
 		t.Fatalf("UpdateYTChannel clear: %v", err)
 	}
-	ch, err = st.GetYTChannel("ytc_test1")
+	ch, err = st.GetChannel("ytc_test1")
 	if err != nil {
 		t.Fatalf("GetYTChannel: %v", err)
 	}
@@ -224,8 +224,8 @@ func TestYTChannelDateRangeUpdate(t *testing.T) {
 }
 
 func TestYTVideoKindFilterAndNullableDate(t *testing.T) {
-	st := testYTStore(t)
-	if err := st.CreateYTChannel(testYTChannel()); err != nil {
+	st := testYTStore(t).Hub("yt")
+	if err := st.CreateChannel(testYTChannel()); err != nil {
 		t.Fatalf("CreateYTChannel: %v", err)
 	}
 	videos := []model.YTVideo{
@@ -235,21 +235,21 @@ func TestYTVideoKindFilterAndNullableDate(t *testing.T) {
 		// NULL and read back as "".
 		{ID: "PL0000000001", ChannelID: testChannelID, Kind: "playlist", Title: "A playlist", Description: "list desc", PublishedAt: "", URL: "https://www.youtube.com/playlist?list=PL0000000001", CreatedAt: Now()},
 	}
-	if err := st.UpsertYTVideos(testChannelID, videos); err != nil {
+	if err := st.UpsertVideos(testChannelID, videos); err != nil {
 		t.Fatalf("upsert: %v", err)
 	}
-	got, err := st.ListYTVideos(YTVideoFilter{Kind: "playlist"})
+	got, err := st.ListVideos(YTVideoFilter{Kind: "playlist"})
 	if err != nil || len(got) != 1 || got[0].ID != "PL0000000001" {
 		t.Fatalf("kind=playlist: got %v err %v", got, err)
 	}
 	if got[0].PublishedAt != "" {
 		t.Fatalf("playlist published_at = %q, want empty (NULL)", got[0].PublishedAt)
 	}
-	got, err = st.ListYTVideos(YTVideoFilter{Kind: "short"})
+	got, err = st.ListVideos(YTVideoFilter{Kind: "short"})
 	if err != nil || len(got) != 1 || got[0].ID != "short0000001" {
 		t.Fatalf("kind=short: got %v err %v", got, err)
 	}
-	got, err = st.ListYTVideos(YTVideoFilter{Kind: "video"})
+	got, err = st.ListVideos(YTVideoFilter{Kind: "video"})
 	if err != nil || len(got) != 1 || got[0].ID != "vid000000001" {
 		t.Fatalf("kind=video: got %v err %v", got, err)
 	}
@@ -258,10 +258,10 @@ func TestYTVideoKindFilterAndNullableDate(t *testing.T) {
 	stale := []model.YTVideo{
 		{ID: "vid000000001", ChannelID: testChannelID, Kind: "video", Title: "A video", Description: "", PublishedAt: "", URL: "https://www.youtube.com/watch?v=vid000000001", CreatedAt: Now()},
 	}
-	if err := st.UpsertYTVideos(testChannelID, stale); err != nil {
+	if err := st.UpsertVideos(testChannelID, stale); err != nil {
 		t.Fatalf("re-upsert: %v", err)
 	}
-	got, err = st.ListYTVideos(YTVideoFilter{Kind: "video"})
+	got, err = st.ListVideos(YTVideoFilter{Kind: "video"})
 	if err != nil || len(got) != 1 {
 		t.Fatalf("after re-upsert: got %v err %v", got, err)
 	}
@@ -271,8 +271,8 @@ func TestYTVideoKindFilterAndNullableDate(t *testing.T) {
 }
 
 func TestYTPruneOutsideRange(t *testing.T) {
-	st := testYTStore(t)
-	if err := st.CreateYTChannel(testYTChannel()); err != nil {
+	st := testYTStore(t).Hub("yt")
+	if err := st.CreateChannel(testYTChannel()); err != nil {
 		t.Fatalf("CreateYTChannel: %v", err)
 	}
 	videos := []model.YTVideo{
@@ -281,22 +281,25 @@ func TestYTPruneOutsideRange(t *testing.T) {
 		{ID: "new000000001", ChannelID: testChannelID, Kind: "short", Title: "New", Description: "d", PublishedAt: "2026-10-28 10:00:00", URL: "https://www.youtube.com/shorts/new000000001", CreatedAt: Now()},
 		{ID: "PL0000000001", ChannelID: testChannelID, Kind: "playlist", Title: "List", Description: "d", PublishedAt: "", URL: "https://www.youtube.com/playlist?list=PL0000000001", CreatedAt: Now()},
 	}
-	if err := st.UpsertYTVideos(testChannelID, videos); err != nil {
+	if err := st.UpsertVideos(testChannelID, videos); err != nil {
 		t.Fatalf("upsert: %v", err)
 	}
 	// No bounds = no-op.
-	if err := st.PruneYTVideosOutsideRange(testChannelID, "", ""); err != nil {
+	if err := st.PruneVideosOutsideRange(testChannelID, "", ""); err != nil {
 		t.Fatalf("prune no-op: %v", err)
 	}
-	if got, _ := st.ListYTVideos(YTVideoFilter{}); len(got) != 4 {
+	if got, _ := st.ListVideos(YTVideoFilter{}); len(got) != 4 {
 		t.Fatalf("no-op prune removed rows: got %d", len(got))
 	}
-	// Range 10-23..10-25 drops the 10-20 video and the 10-28 short;
-	// the in-range video and the (dateless) playlist stay.
-	if err := st.PruneYTVideosOutsideRange(testChannelID, "2026-10-23", "2026-10-25"); err != nil {
+	// Range 10-23..10-25 drops the 10-28 short; the in-range video, the
+	// (dateless) playlist and the 10-20 video added by URL stay.
+	if err := st.MarkVideoManual("old000000001"); err != nil {
+		t.Fatal(err)
+	}
+	if err := st.PruneVideosOutsideRange(testChannelID, "2026-10-23", "2026-10-25"); err != nil {
 		t.Fatalf("prune: %v", err)
 	}
-	got, err := st.ListYTVideos(YTVideoFilter{})
+	got, err := st.ListVideos(YTVideoFilter{})
 	if err != nil {
 		t.Fatalf("list: %v", err)
 	}
@@ -304,26 +307,30 @@ func TestYTPruneOutsideRange(t *testing.T) {
 	for _, v := range got {
 		ids[v.ID] = true
 	}
-	if len(got) != 2 || !ids["mid000000001"] || !ids["PL0000000001"] {
-		t.Fatalf("after prune: got %v, want mid000000001 + PL0000000001", got)
+	if len(got) != 3 || !ids["mid000000001"] || !ids["PL0000000001"] || !ids["old000000001"] {
+		t.Fatalf("after prune: got %v, want mid + playlist + the manual old video", got)
+	}
+	urls, err := st.ManualVideoURLs(testChannelID)
+	if err != nil || len(urls) != 1 || urls[0] != "https://www.youtube.com/watch?v=old000000001" {
+		t.Fatalf("ManualVideoURLs = %v, %v", urls, err)
 	}
 }
 
 func TestYTGroupDeleteMovesChannels(t *testing.T) {
-	st := testYTStore(t)
-	g, err := st.CreateYTGroup("测试分组")
+	st := testYTStore(t).Hub("yt")
+	g, err := st.CreateGroup("测试分组")
 	if err != nil {
 		t.Fatalf("CreateYTGroup: %v", err)
 	}
 	ch := testYTChannel()
 	ch.GroupID = g.ID
-	if err := st.CreateYTChannel(ch); err != nil {
+	if err := st.CreateChannel(ch); err != nil {
 		t.Fatalf("CreateYTChannel: %v", err)
 	}
-	if code, err := st.DeleteYTGroup(g.ID); code != "" || err != nil {
+	if code, err := st.DeleteGroup(g.ID); code != "" || err != nil {
 		t.Fatalf("DeleteYTGroup: code=%q err=%v", code, err)
 	}
-	after, err := st.GetYTChannel("ytc_test1")
+	after, err := st.GetChannel("ytc_test1")
 	if err != nil {
 		t.Fatalf("GetYTChannel: %v", err)
 	}
@@ -331,7 +338,7 @@ func TestYTGroupDeleteMovesChannels(t *testing.T) {
 		t.Fatalf("channel group after delete = %q, want 'other'", after.GroupID)
 	}
 	// The fixed default group cannot be deleted.
-	if code, _ := st.DeleteYTGroup("other"); code != "GROUP_FIXED" {
+	if code, _ := st.DeleteGroup("other"); code != "GROUP_FIXED" {
 		t.Fatalf("deleting fixed group: code=%q, want GROUP_FIXED", code)
 	}
 }

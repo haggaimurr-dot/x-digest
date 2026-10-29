@@ -1,11 +1,9 @@
 package store
 
-// HubStore is the video-platform store keyed by a table prefix: prefix
-// "bili" reads and writes bili_groups / bili_channels / bili_videos /
-// bili_video_summaries / bili_video_comments (2026-10-27). The tables
-// have the same shape as the yt_* ones and the rows are the same model
-// types, so the Bilibili page reuses the YouTube page as is. (The
-// YouTube functions in store.go predate it and still use yt_* directly.)
+// HubStore is the video-platform store keyed by a table prefix: "yt" reads
+// and writes yt_groups / yt_channels / yt_videos / yt_video_summaries,
+// "bili" the bili_* tables of the same shape (2026-10-27). YouTube moved
+// onto it on 2026-10-29; the old yt-only store functions are gone.
 
 import (
 	"database/sql"
@@ -33,7 +31,7 @@ func (h *HubStore) channelCols() string {
 	DATE_FORMAT(c.date_from,'%Y-%m-%d'),DATE_FORMAT(c.date_to,'%Y-%m-%d'),
 	DATE_FORMAT(c.created_at,'%Y-%m-%d %H:%i:%s'),DATE_FORMAT(c.last_synced_at,'%Y-%m-%d %H:%i:%s'),
 	c.sync_status,COALESCE(c.sync_error,''),
-	(SELECT COUNT(*) FROM {p}_videos v WHERE v.channel_id=c.channel_id) AS video_count
+	(SELECT COUNT(*) FROM {p}_videos v WHERE v.channel_id=c.channel_id) AS video_count,c.sync_mode
 	FROM {p}_channels c `)
 }
 
@@ -44,7 +42,7 @@ func scanHubChannel(r rowScanner) (model.YTChannel, error) {
 	var groupID, lastSyncedAt, dateFrom, dateTo sql.NullString
 	var videoCount int
 	err := r.Scan(&c.ID, &c.ChannelID, &c.Handle, &c.Name, &groupID, &dateFrom, &dateTo,
-		&c.CreatedAt, &lastSyncedAt, &c.SyncStatus, &c.SyncError, &videoCount)
+		&c.CreatedAt, &lastSyncedAt, &c.SyncStatus, &c.SyncError, &videoCount, &c.SyncMode)
 	if err != nil {
 		return c, err
 	}
@@ -83,12 +81,26 @@ func (h *HubStore) ChannelExists(id string) bool {
 	return n > 0
 }
 
+// CreateChannel inserts a channel row; an empty SyncMode means "full".
+// Callers check for duplicates first.
 func (h *HubStore) CreateChannel(c model.YTChannel) error {
+	mode := c.SyncMode
+	if mode == "" {
+		mode = "full"
+	}
 	_, err := h.DB.Exec(h.q(`INSERT INTO {p}_channels(id,channel_id,handle,name,group_id,date_from,date_to,
-		created_at,last_synced_at,sync_status,sync_error) VALUES(?,?,?,?,?,?,?,?,?,?,?)`),
+		created_at,last_synced_at,sync_status,sync_error,sync_mode) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)`),
 		c.ID, c.ChannelID, c.Handle, c.Name, groupIDArg(c.GroupID), dateArg(c.DateFrom), dateArg(c.DateTo),
-		c.CreatedAt, nil, c.SyncStatus, c.SyncError)
+		c.CreatedAt, nil, c.SyncStatus, c.SyncError, mode)
 	return err
+}
+
+// dateArg maps a nil *string to NULL so an unset date means "no limit".
+func dateArg(d *string) any {
+	if d == nil {
+		return nil
+	}
+	return *d
 }
 
 func (h *HubStore) UpdateChannel(id, groupID string, dateFrom, dateTo *string) error {
@@ -135,8 +147,12 @@ func (h *HubStore) UpdateChannelMeta(id, name, status, syncErr string) error {
 	return err
 }
 
-// UpsertVideos has the same never-clobber-with-empty rules as
-// UpsertYTVideos.
+// UpsertVideos inserts new videos and updates re-fetched ones (the id
+// PRIMARY KEY makes a re-sync an update, never a duplicate). A re-fetch
+// never clobbers a known value with an empty one: description,
+// published_at, duration and live_status only change when the incoming
+// value is non-empty. Title, thumbnail, URL and kind come from the listing
+// and are always overwritten. Empty PublishedAt → NULL, empty Kind → video.
 func (h *HubStore) UpsertVideos(channelID string, videos []model.YTVideo) error {
 	if len(videos) == 0 {
 		return nil
@@ -179,7 +195,10 @@ func (h *HubStore) UpsertVideos(channelID string, videos []model.YTVideo) error 
 	return tx.Commit()
 }
 
-// PruneVideosOutsideRange mirrors PruneYTVideosOutsideRange.
+// PruneVideosOutsideRange deletes a channel's non-playlist rows published
+// outside [from, to] (to includes the whole day; "" = no bound, both "" =
+// no-op). Playlists have no date and are kept; so are rows with no date yet
+// (the next sync backfills them) and videos added by URL.
 func (h *HubStore) PruneVideosOutsideRange(channelID, from, to string) error {
 	if from == "" && to == "" {
 		return nil
@@ -195,7 +214,7 @@ func (h *HubStore) PruneVideosOutsideRange(channelID, from, to string) error {
 		args = append(args, to)
 	}
 	_, err := h.DB.Exec(h.q(`DELETE FROM {p}_videos WHERE channel_id=? AND kind<>'playlist'
-		AND published_at IS NOT NULL AND (`+strings.Join(outside, " OR ")+")"), args...)
+		AND added_manually=0 AND published_at IS NOT NULL AND (`+strings.Join(outside, " OR ")+")"), args...)
 	return err
 }
 
@@ -296,7 +315,8 @@ func (h *HubStore) CreateGroup(name string) (model.Group, error) {
 	return g, err
 }
 
-// DeleteGroup mirrors DeleteYTGroup (channels move to the default group).
+// DeleteGroup moves the group's channels to the default group, then
+// deletes it; the fixed default group cannot be deleted.
 func (h *HubStore) DeleteGroup(id string) (code string, err error) {
 	var fixed bool
 	if err = h.DB.QueryRow(h.q("SELECT fixed FROM {p}_groups WHERE id=?"), id).Scan(&fixed); err != nil {
@@ -332,8 +352,41 @@ func (h *HubStore) GroupExists(id string) bool {
 	return n > 0
 }
 
-// ---- AI summaries (same semantics as the YTSummary functions) ----
+// ---- single-mode channels: only the videos added by URL ----
 
+// SetChannelSyncMode switches a channel between "full" and "single".
+func (h *HubStore) SetChannelSyncMode(id, mode string) error {
+	_, err := h.DB.Exec(h.q("UPDATE {p}_channels SET sync_mode=? WHERE id=?"), mode, id)
+	return err
+}
+
+// MarkVideoManual flags a video as added by URL (date pruning keeps it).
+func (h *HubStore) MarkVideoManual(id string) error {
+	_, err := h.DB.Exec(h.q("UPDATE {p}_videos SET added_manually=1 WHERE id=?"), id)
+	return err
+}
+
+// ManualVideoURLs returns the URLs of a channel's videos added by URL.
+func (h *HubStore) ManualVideoURLs(channelID string) ([]string, error) {
+	rows, err := h.DB.Query(h.q("SELECT url FROM {p}_videos WHERE channel_id=? AND added_manually=1"), channelID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var out []string
+	for rows.Next() {
+		var u string
+		if err := rows.Scan(&u); err != nil {
+			return nil, err
+		}
+		out = append(out, u)
+	}
+	return out, rows.Err()
+}
+
+// ---- AI summaries ----
+
+// GetSummary returns the summary row of (video, lang); ok=false when none.
 func (h *HubStore) GetSummary(videoID, lang string) (sum model.YTSummary, ok bool, err error) {
 	var summary, keyPoints, chapters, errText sql.NullString
 	var resources string

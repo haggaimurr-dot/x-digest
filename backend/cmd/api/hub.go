@@ -1,35 +1,34 @@
 package main
 
-// videoHub serves one video platform under /api/v1/<prefix>/ with the
-// same routes and JSON as the YouTube endpoints (2026-10-27), so the
-// frontend page is shared. Bilibili is the first platform on it:
+// videoHub serves one video platform under /api/v1/<prefix>/ with the same
+// routes and JSON for every platform, so the frontend page is shared
+// (2026-10-27). YouTube ("yt", hub_yt.go) and Bilibili ("bili") run on it;
+// YouTube moved over from its own handlers on 2026-10-29.
 //
-//	GET/POST            /api/v1/bili/channels
-//	GET/PATCH/DELETE    /api/v1/bili/channels/{id}     POST .../sync
-//	GET                 /api/v1/bili/videos
-//	POST                /api/v1/bili/sync
-//	GET/POST            /api/v1/bili/groups            DELETE .../{id}
-//	GET/POST            /api/v1/bili/videos/{id}/summary
+//	GET/POST            /api/v1/<p>/channels
+//	GET/PATCH/DELETE    /api/v1/<p>/channels/{id}     POST .../sync[?full=1]
+//	GET                 /api/v1/<p>/videos            POST: add one video by URL (hub_single.go)
+//	PATCH               /api/v1/<p>/videos/{id}       watch state (video_state.go)
+//	POST                /api/v1/<p>/sync
+//	GET/POST            /api/v1/<p>/groups            DELETE .../{id}
+//	GET/POST            /api/v1/<p>/videos/{id}/summary   GET .../summary/stream
 //
-// Platform-specific work (resolving an uploader, syncing, reading a
-// video's subtitles) goes through hubPlatform; storage is
-// store.HubStore on the <prefix>_* tables. AI summaries share the
-// YouTube job pool (model, concurrency cap). The YouTube handlers predate this and are separate.
+// Platform-specific work (resolving a channel, syncing, reading a video's
+// subtitles, reading one video by URL) goes through hubPlatform; storage is
+// store.HubStore on the <prefix>_* tables. AI summaries share one job pool
+// (model, concurrency cap) with the post summaries.
 
 import (
 	"context"
 	"database/sql"
 	"errors"
-	"log"
 	"net/http"
 	"strconv"
 	"strings"
 
 	"xdigest/internal/model"
 	"xdigest/internal/store"
-	"xdigest/internal/translate"
 	"xdigest/internal/youtube"
-	"xdigest/internal/ytsummary"
 )
 
 type hubPlatform interface {
@@ -39,6 +38,12 @@ type hubPlatform interface {
 	FetchDetail(ctx context.Context, videoID string) (*youtube.VideoDetail, error)
 }
 
+// singleVideoPlatform is a hubPlatform that can read one video by URL
+// (YouTube). Without it POST /videos answers 405.
+type singleVideoPlatform interface {
+	FetchVideo(ctx context.Context, input string) (*youtube.SingleVideo, error)
+}
+
 type videoHub struct {
 	prefix   string // URL segment and table prefix, e.g. "bili"
 	idPrefix string // channel row id prefix, e.g. "bic_"
@@ -46,6 +51,12 @@ type videoHub struct {
 	st       *store.HubStore
 	pf       hubPlatform
 	sum      *summaryJobs
+	// playlistName is the platform's word for a playlist row in messages
+	// ("播放列表" / "合集").
+	playlistName string
+	// handle picks a new channel's display handle from the request (input,
+	// the "handle" field) and the resolved channel ID; nil = "UID <id>".
+	handle func(input, given, channelID string) string
 }
 
 func (h *videoHub) register(mux *http.ServeMux) {
@@ -61,10 +72,28 @@ func (h *videoHub) register(mux *http.ServeMux) {
 
 // ---- channels ----
 
+// syncChannel syncs one channel into <p>_videos. A failed sync keeps the
+// old videos and only records the error; after a successful one, rows
+// outside the channel's date range are pruned. Videos already stored
+// complete (a description, and a date unless a playlist) are passed as
+// known so the platform can skip re-reading them.
 func (h *videoHub) syncChannel(id string) (*model.YTChannel, error) {
 	ch, err := h.st.GetChannel(id)
 	if err != nil {
 		return nil, err
+	}
+	if ch.SyncMode == "single" {
+		return h.refreshSingle(ch) // only the videos added by URL
+	}
+	known := map[string]bool{}
+	existing, err := h.st.ListVideos(store.YTVideoFilter{ChannelID: ch.ChannelID, Limit: 1000})
+	if err != nil {
+		return nil, err
+	}
+	for _, v := range existing {
+		if v.Description != "" && (v.Kind == "playlist" || v.PublishedAt != "") {
+			known[v.ID] = true
+		}
 	}
 	dateFrom, dateTo := "", ""
 	if ch.DateFrom != nil {
@@ -73,7 +102,7 @@ func (h *videoHub) syncChannel(id string) (*model.YTChannel, error) {
 	if ch.DateTo != nil {
 		dateTo = *ch.DateTo
 	}
-	res, err := h.pf.Sync(context.Background(), ch.ChannelID, dateFrom, dateTo, nil)
+	res, err := h.pf.Sync(context.Background(), ch.ChannelID, dateFrom, dateTo, known)
 	if err == nil && res.Status == "failed" {
 		err = errors.New(res.Error)
 	}
@@ -114,6 +143,7 @@ func (h *videoHub) handleChannels(w http.ResponseWriter, r *http.Request) {
 		var body struct {
 			ChannelID string `json:"channel_id"`
 			URL       string `json:"url"`
+			Handle    string `json:"handle"`
 			GroupID   string `json:"group_id"`
 			DateFrom  string `json:"date_from"`
 			DateTo    string `json:"date_to"`
@@ -138,6 +168,9 @@ func (h *videoHub) handleChannels(w http.ResponseWriter, r *http.Request) {
 		if input == "" {
 			input = strings.TrimSpace(body.URL)
 		}
+		if input == "" {
+			input = strings.TrimSpace(body.Handle)
+		}
 		channelID, name, err := h.pf.Resolve(r.Context(), input)
 		if err != nil {
 			writeErr(w, 422, "VALIDATION", err.Error())
@@ -150,7 +183,11 @@ func (h *videoHub) handleChannels(w http.ResponseWriter, r *http.Request) {
 			writeErr(w, 500, "DB_ERROR", err.Error())
 			return
 		}
-		ch := model.YTChannel{ID: store.NewID(h.idPrefix), ChannelID: channelID, Handle: "UID " + channelID,
+		handle := "UID " + channelID
+		if h.handle != nil {
+			handle = h.handle(input, strings.TrimSpace(body.Handle), channelID)
+		}
+		ch := model.YTChannel{ID: store.NewID(h.idPrefix), ChannelID: channelID, Handle: handle,
 			Name: name, GroupID: body.GroupID, CreatedAt: store.Now(), SyncStatus: "never"}
 		if dateFrom != "" {
 			ch.DateFrom = &dateFrom
@@ -188,6 +225,14 @@ func (h *videoHub) handleChannelSub(w http.ResponseWriter, r *http.Request) {
 		if r.Method != http.MethodPost {
 			writeErr(w, 405, "METHOD_NOT_ALLOWED", "only POST")
 			return
+		}
+		// ?full=1 on a single-mode channel = 同步该账号全部视频: switch it
+		// to full mode, then run the normal sync.
+		if r.URL.Query().Get("full") == "1" {
+			if err := h.st.SetChannelSyncMode(id, "full"); err != nil {
+				writeErr(w, 500, "DB_ERROR", err.Error())
+				return
+			}
 		}
 		ch, err := h.syncChannel(id)
 		if err != nil {
@@ -275,6 +320,10 @@ func (h *videoHub) handleChannelSub(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *videoHub) handleVideos(w http.ResponseWriter, r *http.Request) {
+	if pf, ok := h.pf.(singleVideoPlatform); ok && r.Method == http.MethodPost {
+		h.addVideo(w, r, pf) // hub_single.go
+		return
+	}
 	if r.Method != http.MethodGet {
 		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only GET")
 		return
@@ -308,8 +357,14 @@ func (h *videoHub) handleSyncAll(w http.ResponseWriter, r *http.Request) {
 		writeErr(w, 500, "DB_ERROR", err.Error())
 		return
 	}
-	synced, failed := 0, 0
+	synced, failed, skipped := 0, 0, 0
 	for _, ch := range channels {
+		// Single-mode channels are not pulled in full by 同步全部; their
+		// own 同步该账号全部视频 does that.
+		if ch.SyncMode == "single" {
+			skipped++
+			continue
+		}
 		updated, err := h.syncChannel(ch.ID)
 		if err != nil {
 			writeErr(w, 500, "DB_ERROR", err.Error())
@@ -321,7 +376,7 @@ func (h *videoHub) handleSyncAll(w http.ResponseWriter, r *http.Request) {
 			failed++
 		}
 	}
-	writeJSON(w, 200, map[string]any{"synced": synced, "failed": failed, "total": len(channels)})
+	writeJSON(w, 200, map[string]any{"synced": synced, "failed": failed, "total": len(channels), "skipped": skipped})
 }
 
 func (h *videoHub) handleGroups(w http.ResponseWriter, r *http.Request) {
@@ -375,171 +430,5 @@ func (h *videoHub) handleGroup(w http.ResponseWriter, r *http.Request) {
 		writeErr(w, 500, "DB_ERROR", err.Error())
 	default:
 		writeJSON(w, 200, map[string]bool{"ok": true})
-	}
-}
-
-// ---- AI summary (same flow as yt_summary.go) ----
-
-func (h *videoHub) handleVideoSub(w http.ResponseWriter, r *http.Request) {
-	parts := strings.Split(strings.TrimPrefix(r.URL.Path, "/api/v1/"+h.prefix+"/videos/"), "/")
-	if len(parts) == 1 && parts[0] != "" {
-		patchVideoState(w, r, h.st, h.prefix, parts[0]) // see video_state.go
-		return
-	}
-	stream := len(parts) == 3 && parts[2] == "stream"
-	if (len(parts) != 2 && !stream) || parts[0] == "" || parts[1] != "summary" {
-		writeErr(w, 404, "NOT_FOUND", "not found")
-		return
-	}
-	lang := r.URL.Query().Get("lang")
-	if lang == "" {
-		lang = translate.TargetZh
-	}
-	if !translate.ValidTarget(lang) {
-		writeErr(w, 422, "VALIDATION", "lang must be zh-CN or en")
-		return
-	}
-	video, err := h.st.GetVideo(parts[0])
-	if errors.Is(err, sql.ErrNoRows) {
-		writeErr(w, 404, "NOT_FOUND", "video not found")
-		return
-	}
-	if err != nil {
-		writeErr(w, 500, "DB_ERROR", err.Error())
-		return
-	}
-	if stream {
-		serveSummaryStream(w, r, h.sum, h.jobKey(video.ID, lang), func() (model.YTSummary, error) { return h.currentSummary(video.ID, lang) })
-		return
-	}
-	switch r.Method {
-	case http.MethodGet:
-		sum, err := h.currentSummary(video.ID, lang)
-		if err != nil {
-			writeErr(w, 500, "DB_ERROR", err.Error())
-			return
-		}
-		writeJSON(w, 200, map[string]any{"summary": sum})
-	case http.MethodPost:
-		h.startSummary(w, video, lang, r.URL.Query().Get("force") == "1")
-	default:
-		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only GET, POST")
-	}
-}
-
-func (h *videoHub) jobKey(id, lang string) string { return h.prefix + ":" + id + "|" + lang }
-
-func (h *videoHub) currentSummary(id, lang string) (model.YTSummary, error) {
-	sum, ok, err := h.st.GetSummary(id, lang)
-	if err != nil {
-		return sum, err
-	}
-	if !ok {
-		return model.YTSummary{VideoID: id, Lang: lang, Status: "none", KeyPoints: []string{}, Chapters: []model.YTSummaryChapter{}}, nil
-	}
-	if sum.Status == "pending" && !h.sum.running(h.jobKey(id, lang)) {
-		sum.Status, sum.Error = "failed", "上次生成被中断（服务重启），请重试"
-	}
-	return sum, nil
-}
-
-func (h *videoHub) startSummary(w http.ResponseWriter, video model.YTVideo, lang string, force bool) {
-	if video.Kind == "playlist" {
-		writeErr(w, 422, "NOT_SUPPORTED", "合集不支持 AI 摘要，请对其中的单个视频生成")
-		return
-	}
-	if !h.sum.llm.Configured() {
-		writeErr(w, 503, "AI_NOT_CONFIGURED", "AI 未配置：服务器需要设置 TRANSLATE_API_KEY")
-		return
-	}
-	reply := func(status int) {
-		cur, err := h.currentSummary(video.ID, lang)
-		if err != nil {
-			writeErr(w, 500, "DB_ERROR", err.Error())
-			return
-		}
-		if cur.Status == "done" && status == 202 {
-			status = 200
-		}
-		writeJSON(w, status, map[string]any{"summary": cur})
-	}
-	if !force {
-		cur, err := h.currentSummary(video.ID, lang)
-		if err != nil {
-			writeErr(w, 500, "DB_ERROR", err.Error())
-			return
-		}
-		if cur.Status == "done" || cur.Status == "pending" {
-			reply(202)
-			return
-		}
-	}
-	key := h.jobKey(video.ID, lang)
-	if !h.sum.claim(key) {
-		reply(202)
-		return
-	}
-	if err := h.st.StartSummary(video.ID, lang); err != nil {
-		h.sum.release(key)
-		writeErr(w, 500, "DB_ERROR", err.Error())
-		return
-	}
-	go h.runSummary(video, lang, key)
-	reply(202)
-}
-
-func (h *videoHub) runSummary(video model.YTVideo, lang, key string) {
-	defer h.sum.release(key)
-	ctx, cancel := context.WithTimeout(context.Background(), summaryJobTimeout)
-	defer cancel()
-	fail := func(msg string) {
-		if r := []rune(msg); len(r) > maxSummaryErrChars {
-			msg = string(r[:maxSummaryErrChars]) + "…"
-		}
-		log.Printf("%s summary %s (%s) failed: %s", h.prefix, video.ID, lang, msg)
-		_ = h.st.FailSummary(video.ID, lang, msg)
-	}
-	select {
-	case h.sum.sem <- struct{}{}:
-		defer func() { <-h.sum.sem }()
-	case <-ctx.Done():
-		fail("排队超时，请稍后重试")
-		return
-	}
-	detail, err := h.pf.FetchDetail(ctx, video.ID)
-	if err != nil {
-		fail("读取视频信息失败：" + err.Error())
-		return
-	}
-	if detail.Title == "" {
-		detail.Title = video.Title
-	}
-	if detail.Description == "" {
-		detail.Description = video.Description
-	}
-	if detail.Duration == 0 {
-		detail.Duration = video.Duration
-	}
-	res, err := ytsummary.Summarize(ctx, h.sum.llm, detail, lang)
-	if err != nil {
-		fail("AI 摘要失败：" + err.Error())
-		return
-	}
-	chapters := make([]model.YTSummaryChapter, len(res.Chapters))
-	for i, c := range res.Chapters {
-		chapters[i] = model.YTSummaryChapter{Start: c.Start, Title: c.Title, Summary: c.Summary}
-	}
-	resources := make([]model.YTSummaryResource, len(res.Resources))
-	for i, x := range res.Resources {
-		resources[i] = model.YTSummaryResource{Name: x.Name, URL: x.URL, Note: x.Note}
-	}
-	keyPoints := res.KeyPoints
-	if keyPoints == nil {
-		keyPoints = []string{}
-	}
-	if err := h.st.FinishSummary(model.YTSummary{VideoID: video.ID, Lang: lang, Summary: res.Summary,
-		KeyPoints: keyPoints, Chapters: chapters, Resources: resources, Source: res.Source, TranscriptLang: detail.TranscriptLang,
-		Model: h.sum.llm.Model}); err != nil {
-		log.Printf("%s summary %s: store result: %v", h.prefix, video.ID, err)
 	}
 }

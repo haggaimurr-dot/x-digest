@@ -107,7 +107,7 @@ func testYTServer(t *testing.T, yt *youtube.Client) *server {
 		t.Fatalf("apply schema.sql: %v", err)
 	}
 	t.Setenv("TRANSLATE_API_KEY", "") // summaries answer 503, never a real model call
-	return &server{st: st, yt: yt, sum: newSummaryJobs(yt)}
+	return &server{st: st, yt: yt, sum: newSummaryJobs()}
 }
 
 // testYTServerWithFakeBin is testYTServer with syncs driven by the fake

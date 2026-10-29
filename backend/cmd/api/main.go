@@ -19,7 +19,7 @@
 //	BILI_HTTP_PROXY         optional proxy for Bilibili requests.
 //	TRANSLATE_MODEL         translation chat model, default deepseek-flash.
 //	                       The same relay/key/model also write the
-//	                       YouTube AI summaries (see yt_summary.go).
+//	                       video AI summaries (hub_summary.go).
 //	GROK_API_KEY            relay key of the Grok group: X account refresh
 //	                       (x_import.go; also GROK_MODEL, X_HTTP_PROXY).
 //	API_TOKEN               bearer token required for every write request
@@ -76,7 +76,7 @@ func main() {
 		log.Fatalf("db connect: %v", err)
 	}
 	s := &server{st: st, attachDir: attachDir, gh: github.NewFromEnv(), tr: translate.NewService(translate.NewFromEnv(), st), yt: youtube.New()}
-	s.sum = newSummaryJobs(s.yt)
+	s.sum = newSummaryJobs()
 	s.repoSync = s.newRepoSyncer()
 	s.office = newOfficeConverter()
 	go s.purgeCategoriesLoop()
@@ -113,9 +113,9 @@ func main() {
 	mux.HandleFunc("/api/v1/repos/groups/", s.handleRepoGroup)
 	mux.HandleFunc("/api/v1/repos/sync-all", s.handleRepoSyncAll)
 	s.registerYT(mux)
-	// Bilibili uploaders: same routes/JSON as /api/v1/yt (see hub.go).
+	// YouTube channels and Bilibili uploaders: same routes/JSON (hub.go).
 	(&videoHub{prefix: "bili", idPrefix: "bic_", kinds: map[string]bool{"video": true, "playlist": true},
-		st: st.Hub("bili"), pf: bilibili.New(), sum: s.sum}).register(mux)
+		st: st.Hub("bili"), pf: bilibili.New(), sum: s.sum, playlistName: "合集"}).register(mux)
 	mux.HandleFunc("/api/v1/translate", s.handleTranslate)
 	mux.HandleFunc("/api/v1/notifications", s.handleNotifications)
 	mux.HandleFunc("/api/v1/notifications/", s.handleNotifications)
@@ -169,15 +169,4 @@ func (s *server) handleHealth(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	writeJSON(w, 200, map[string]bool{"ok": true})
-}
-
-// registerYT serves /api/v1/yt/* (the handler tests go through it too).
-func (s *server) registerYT(mux *http.ServeMux) {
-	mux.HandleFunc("/api/v1/yt/channels", s.handleYTChannels)
-	mux.HandleFunc("/api/v1/yt/channels/", s.handleYTChannelSub)
-	mux.HandleFunc("/api/v1/yt/videos", s.handleYTVideos)
-	mux.HandleFunc("/api/v1/yt/videos/", s.handleYTVideoSub)
-	mux.HandleFunc("/api/v1/yt/sync", s.handleYTSyncAll)
-	mux.HandleFunc("/api/v1/yt/groups", s.handleYTGroups)
-	mux.HandleFunc("/api/v1/yt/groups/", s.handleYTGroup)
 }
