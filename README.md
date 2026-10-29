@@ -13,7 +13,7 @@
 |---|---|
 | `/` X 日报 | 推文按作者分组展示：左栏原文（超过 120 字默认折叠）、右栏标题 / 标签 / 内容简介、提及的资源、查看原帖；按作者、标签、分类、用户标签、关键词、日期筛选并分页；点击生成 AI 摘要；「导入单帖」「更新帖子」；关注列表（分组、折叠、搜索）与标签管理 |
 | `/fuke` 复刻 | 把教程类帖子的实现步骤建成复刻清单：每步 idle / active / done 三态、Markdown 备注、附件上传与浏览器内预览 |
-| `/repos` 仓库 | 追踪 GitHub 仓库：描述、语言、星标、Fork、开放 Issue / PR、最近 10 条提交、最新 Release；分组、标签、备注；单仓刷新和全部同步 |
+| `/repos` 仓库 | 追踪 GitHub 仓库：作者头像、描述、语言、星标、Fork、开放 Issue / PR、最近 10 条提交、最新 Release；按星标 / 入库时间 / 发布时间升降序排序；分组、标签、备注；点击生成 AI 智能摘要；单仓刷新和全部同步 |
 | `/youtube` 油管 | 按频道同步视频 / 播放列表；可添加单个视频（同时登记所属频道）；按账号分组的视频卡片、自动标签、提及的资源；点击生成 AI 摘要（章节 + 全文） |
 | `/bilibili` B站 | 与油管同一套页面和接口 |
 
@@ -161,7 +161,7 @@ X 帖子、油管、B 站共用同一套逻辑：首次点击时后台生成并�
 - **帖子** `GET /posts?author=&tag=&category=&user_tag=&q=&date_from=&date_to=&page=&page_size=`（page_size 默认 200、上限 1000；`author=` 为空时返回空列表；`q=标签:xxx` / `tag:xxx` 只匹配用户标签）、`GET /posts/{id}`、`/posts/{id}/summary`、`POST /posts/import`、`/x/refresh`
 - **关注列表与标签** `/watchlist`（分组 + 账号 CRUD）、`GET /tags`、`GET/PUT /user-tags`、`/categories`（含 `PUT /categories/assignments`）
 - **复刻** `/replicas`（同一帖子不重复建）、`/replicas/{id}/attachments`、`/attachments/{id}[/download]`
-- **仓库** `/repos`、`/repos/{owner}/{repo}[/commits|/releases|/sync]`、`POST /repos/sync-all`、`/repos/groups`
+- **仓库** `/repos`、`/repos/{owner}/{repo}[/commits|/releases|/sync]`、`/repos/{owner}/{repo}/summary[/stream]`（AI 智能摘要）、`POST /repos/sync-all`、`/repos/groups`
 - **视频** `/yt/*` 与 `/bili/*` 同构：`channels`、`videos`、`videos/{id}/summary`、`sync`、`groups`（热门评论已于 2026-10-29 下线，删表脚本见 `backend/scripts/drop_video_comments.sql`）
 - **翻译** `POST /translate`（结果缓存在 `translations` 表）
 
