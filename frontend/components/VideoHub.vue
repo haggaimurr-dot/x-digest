@@ -313,7 +313,8 @@ const tabs: Array<{ key: YTKind, label: string }> = ([
   { key: 'playlist', label: 'yt.tabPlaylist' }
 ] as Array<{ key: YTKind, label: string }>).filter(tab => P === 'yt' || tab.key === 'video' || tab.key === 'playlist')
 const activeTab = ref<YTKind>('video')
-const filtersCollapsed = ref(false)
+// 默认折叠，省空间；点漏斗图标展开（用户 2026-10-30）
+const filtersCollapsed = ref(true)
 const tagFilter = ref('')
 const activeFilterCount = computed(() =>
   (keyword.value.trim() ? 1 : 0) + (channelFilter.value ? 1 : 0) + (groupFilter.value ? 1 : 0) +
