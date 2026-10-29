@@ -14,6 +14,12 @@ CREATE TABLE IF NOT EXISTS watchlist_groups (
   fixed TINYINT(1)   NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- The default group (2026-10-29): new authors (导入单帖 / 关注列表批量添加)
+-- go here. cmd/import also creates it from config/watchlist.json, but a
+-- fresh database that only ran this file had none, so the first import
+-- failed on fk_authors_group (found by the first CI / E2E run).
+INSERT IGNORE INTO watchlist_groups (id, name, fixed) VALUES ('other', '默认', 1);
+
 CREATE TABLE IF NOT EXISTS authors (
   username VARCHAR(64)  NOT NULL PRIMARY KEY,
   name     VARCHAR(128) NOT NULL DEFAULT '',

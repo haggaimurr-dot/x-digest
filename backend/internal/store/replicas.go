@@ -34,8 +34,8 @@ func (s *Store) GetReplica(id string, attachDir string) (*model.Replica, error) 
 }
 
 func (s *Store) replicaSteps(replicaID string) ([]model.ReplicaStep, error) {
-	rows, err := s.DB.Query(`SELECT idx,text,tools,tech,prep,substeps_json,status,note,is_custom,parent_idx FROM replica_steps
-		WHERE replica_id=? ORDER BY idx`, replicaID)
+	rows, err := s.DB.Query(`SELECT idx,COALESCE(text,''),tools,tech,COALESCE(prep,''),COALESCE(substeps_json,''),status,COALESCE(note,''),is_custom,parent_idx
+		FROM replica_steps WHERE replica_id=? ORDER BY idx`, replicaID)
 	if err != nil {
 		return nil, err
 	}
