@@ -445,9 +445,9 @@ export function useStore () {
     return data.channel || data || null
   }
   // Add one YouTube video by URL; its channel is registered (single mode) when not followed yet.
-  async function addYTVideo (url: string, groupId?: string | null): Promise<{ video: YTVideo, channel: YTChannel, channel_created: boolean }> {
+  async function addYTVideo (url: string, groupId?: string | null, p: VideoPlatform = 'yt', tags: string[] = []): Promise<{ video: YTVideo, channel: YTChannel, channel_created: boolean }> {
     if (!url.trim()) throw new ApiError(422, 'VALIDATION', t('yt.videoInputLabel'))
-    return apiFetch('yt/videos', { method: 'POST', body: JSON.stringify({ url: url.trim(), group_id: groupId || undefined }) })
+    return apiFetch(`${p}/videos`, { method: 'POST', body: JSON.stringify({ url: url.trim(), group_id: groupId || undefined, tags }) })
   }
   async function syncAllYTChannels (p: VideoPlatform = 'yt'): Promise<{ synced: number, failed: number, total: number, skipped?: number }> {
     if (mock.value) {
@@ -463,9 +463,9 @@ export function useStore () {
   // X post AI summary: same flow as the video one; POST sends the original
   // text/links (they live in x-content.json on the page, not in the DB).
   // X daily: single-post import / account refresh (backend x_import.go).
-  async function importXPost (url: string, force = false): Promise<{ post: Post, existed?: boolean, account_created?: boolean }> {
+  async function importXPost (url: string, force = false, tags: string[] = [], groupId?: string): Promise<{ post: Post, existed?: boolean, account_created?: boolean }> {
     if (mock.value) throw new ApiError(501, 'MOCK', '演示模式不支持导入')
-    const data = await apiFetch<{ post: Post, existed?: boolean, account_created?: boolean }>('posts/import', { method: 'POST', body: JSON.stringify({ url: url.trim(), force }) })
+    const data = await apiFetch<{ post: Post, existed?: boolean, account_created?: boolean }>('posts/import', { method: 'POST', body: JSON.stringify({ url: url.trim(), force, tags, group_id: groupId || undefined }) })
     data.post = withXContent(data.post)
     return data
   }

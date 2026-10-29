@@ -98,7 +98,9 @@ export interface YTVideo {
   url: string, created_at: string,
   kind?: 'video' | 'short' | 'live' | 'playlist', duration?: number, live_status?: string
   // Watch state (PATCH /{yt|bili}/videos/{id}): watched_at "" = not watched.
-  watched_at?: string, watch_later?: boolean
+  watched_at?: string, watch_later?: boolean,
+  // User tags (from import dialog).
+  tags?: string[]
 }
 // AI summary of one video in one language (GET/POST /api/v1/yt/videos/{id}/summary).
 export interface YTSummaryChapter { start: number, title: string, summary: string }

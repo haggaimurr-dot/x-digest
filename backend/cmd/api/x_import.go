@@ -94,7 +94,7 @@ func (x *xImporter) register(mux *http.ServeMux) {
 }
 
 // importRaw analyses one fetched post and stores it with its author.
-func (x *xImporter) importRaw(ctx context.Context, raw map[string]any) (accountCreated bool, err error) {
+func (x *xImporter) importRaw(ctx context.Context, raw map[string]any, tags []string, groupID string) (accountCreated bool, err error) {
 	p, err := xpost.AnalyzeWithFallback(ctx, x.llm, x.fb, raw)
 	if err != nil {
 		return false, fmt.Errorf("AI 解析失败：%w", err)
@@ -111,14 +111,23 @@ func (x *xImporter) importRaw(ctx context.Context, raw map[string]any) (accountC
 	for _, r := range p.Resources {
 		row.Resources = append(row.Resources, store.XPostResource{URL: r.URL, Name: r.Name, Note: r.Note})
 	}
-	created, err := x.st.EnsureAuthor(p.Author, p.AuthorName, row.AuthorAvatar, xpost.Str(raw, "author_bio"))
+	created, err := x.st.EnsureAuthor(p.Author, p.AuthorName, row.AuthorAvatar, xpost.Str(raw, "author_bio"), groupID)
 	if err != nil {
 		return false, err
 	}
 	if av := x.st.AuthorAvatar(p.Author); av != "" {
 		row.AuthorAvatar = av
 	}
-	return created, x.st.UpsertXPost(row)
+	if err := x.st.UpsertXPost(row); err != nil {
+		return false, err
+	}
+	// User tags from the import dialog (merged with AI tags by UpsertXPost).
+	if len(tags) > 0 {
+		if err := x.st.AddPostTags(p.ID, tags); err != nil {
+			return false, err
+		}
+	}
+	return created, nil
 }
 
 func (x *xImporter) handleImport(w http.ResponseWriter, r *http.Request) {
@@ -127,8 +136,10 @@ func (x *xImporter) handleImport(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	var body struct {
-		URL   string `json:"url"`
-		Force bool   `json:"force"`
+		URL     string   `json:"url"`
+		Force   bool     `json:"force"`
+		Tags    []string `json:"tags"`
+		GroupID string   `json:"group_id"`
 	}
 	if !decodeBody(w, r, &body) {
 		return
@@ -162,7 +173,7 @@ func (x *xImporter) handleImport(w http.ResponseWriter, r *http.Request) {
 		writeErr(w, code, "FETCH_FAILED", err.Error())
 		return
 	}
-	created, err := x.importRaw(ctx, raw)
+	created, err := x.importRaw(ctx, raw, body.Tags, body.GroupID)
 	if err != nil {
 		writeErr(w, 502, "IMPORT_FAILED", err.Error())
 		return
@@ -524,7 +535,7 @@ func (x *xImporter) importIDs(ctx context.Context, a *refreshAccount, ids []stri
 				}
 			}
 			if err == nil {
-				_, err = x.importRaw(ctx, raw)
+				_, err = x.importRaw(ctx, raw, nil, "")
 			}
 			switch {
 			case err == nil:

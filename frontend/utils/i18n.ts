@@ -354,6 +354,8 @@ export const DICT: Record<string, { zh: string, en: string }> = {
   'yt.inputPh': { zh: '例如 UC_x5XG1OV2P6uZZ5FSM9Ttw，或 https://www.youtube.com/@handle', en: 'e.g. UC_x5XG1OV2P6uZZ5FSM9Ttw, or https://www.youtube.com/@handle' },
   'yt.inputHint': { zh: '不需要 API key：通过频道公开内容同步视频、Shorts、直播和播放列表。', en: 'No API key needed: syncs videos, Shorts, live streams and playlists from the channel’s public content.' },
   'yt.groupLabel': { zh: '分组', en: 'Group' },
+  'yt.tagsLabel': { zh: '标签（逗号或空格分隔）', en: 'Tags (comma/space separated)' },
+  'yt.tagsPh': { zh: '如：AI, 教程', en: 'e.g. AI, tutorial' },
   'yt.adding': { zh: '添加中…', en: 'Adding…' },
   'yt.add': { zh: '添加', en: 'Add' },
   'yt.added': { zh: '已添加 {name}', en: 'Added {name}' },

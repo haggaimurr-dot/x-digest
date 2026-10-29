@@ -321,6 +321,24 @@ ALTER TABLE yt_videos ADD COLUMN IF NOT EXISTS added_manually TINYINT(1) NOT NUL
 -- summary). source: transcript | description (no subtitles found).
 -- video_id is by value, no FK (same as yt_videos.channel_id); rows are
 -- removed with their channel.
+CREATE TABLE IF NOT EXISTS yt_video_tags (
+  video_id VARCHAR(64) NOT NULL,
+  tag      VARCHAR(128) NOT NULL,
+  PRIMARY KEY (video_id, tag),
+  CONSTRAINT fk_yt_video_tags_video FOREIGN KEY (video_id)
+    REFERENCES yt_videos(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  INDEX idx_yt_video_tags_tag (tag)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS bili_video_tags (
+  video_id VARCHAR(64) NOT NULL,
+  tag      VARCHAR(128) NOT NULL,
+  PRIMARY KEY (video_id, tag),
+  CONSTRAINT fk_bili_video_tags_video FOREIGN KEY (video_id)
+    REFERENCES bili_videos(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  INDEX idx_bili_video_tags_tag (tag)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 CREATE TABLE IF NOT EXISTS yt_video_summaries (
   video_id        VARCHAR(64)  NOT NULL,
   lang            VARCHAR(10)  NOT NULL,

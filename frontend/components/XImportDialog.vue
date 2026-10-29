@@ -7,8 +7,21 @@
         <label>帖子链接（可一次粘贴多条，每行一条）</label>
         <textarea ref="urlEl" class="field" v-model="url" rows="4" placeholder="https://x.com/用户名/status/…" :disabled="importing" @keydown.ctrl.enter="doImport()" />
         <p style="color:var(--text-muted);font-size:13px;margin:6px 0 0">
-          拉取原文后用中转站 AI 解析（标题、类型、标签、资源说明），帖子作者不在关注列表时会自动加入「默认」分组。约 5–30 秒。
+          拉取原文后用中转站 AI 解析（标题、类型、标签、资源说明），帖子作者不在关注列表时会自动加入下方选择的分组。约 5–30 秒。
         </p>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <div style="flex:1">
+            <label style="font-size:13px;color:var(--text-muted)">标签（逗号或空格分隔）</label>
+            <input class="field" style="width:100%" v-model="importTags" placeholder="如：AI, 教程" :disabled="importing" />
+          </div>
+          <div style="flex:1">
+            <label style="font-size:13px;color:var(--text-muted)">新作者分组</label>
+            <select class="field" style="width:100%" v-model="importGroupId" :disabled="importing">
+              <option value="">默认</option>
+              <option v-for="g in groups" :key="g.id" :value="g.id">{{ g.name }}</option>
+            </select>
+          </div>
+        </div>
         <p v-if="importMsg" class="xi-msg" :class="{ 'xi-err': importErr }">{{ importMsg }}</p>
         <ul v-if="batchRows.length" class="xi-rows">
           <li v-for="(r, i) in batchRows" :key="i" :class="'xi-' + r.state">
@@ -76,19 +89,22 @@
 </template>
 
 <script setup lang="ts">
-import type { WatchlistAccount as Account, XRefreshAccount, XRefreshAccounts, XRefreshJob } from '~/composables/types'
+import type { WatchlistAccount as Account, WatchlistGroup, XRefreshAccount, XRefreshAccounts, XRefreshJob } from '~/composables/types'
 import { parseImportLinks } from '~/utils/importLinks'
 
 // Two dialogs of the X daily page: import one post by link, and refresh
 // selected (or all) watchlist accounts up to their newest posts. Emits
 // `changed` when posts/watchlist changed so the page reloads them.
-const props = defineProps<{ mode: 'post' | 'refresh', accounts: Account[] }>()
+const props = defineProps<{ mode: 'post' | 'refresh', accounts: Account[], groups?: WatchlistGroup[] }>()
 const emit = defineEmits<{ (e: 'close'): void, (e: 'changed'): void }>()
 const store = useStore()
 
 // ---- single post (one link, or several pasted at once) ----
 const url = ref('')
 const urlEl = ref<HTMLTextAreaElement | null>(null)
+const importTags = ref('')
+const importGroupId = ref('')
+const groups = computed(() => props.groups || [])
 // Per-link result of a batch import: 成功 / 已存在 / 格式错误 / 失败.
 const batchRows = ref<Array<{ url: string, state: 'pending' | 'running' | 'done' | 'error', text: string }>>([])
 const importing = ref(false)
@@ -102,7 +118,8 @@ async function doImport (force = false) {
   batchRows.value = []
   importing.value = true; importErr.value = false; importMsg.value = ''; existedId.value = ''
   try {
-    const r = await store.importXPost(url.value, force)
+    const tags = importTags.value.split(/[,，\s]+/).map(t => t.trim()).filter(Boolean)
+    const r = await store.importXPost(url.value, force, tags, importGroupId.value || undefined)
     if (r.existed) {
       existedId.value = r.post.id
       importMsg.value = `已在库中：${r.post.title || r.post.id}`

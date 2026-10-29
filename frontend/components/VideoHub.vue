@@ -231,6 +231,8 @@
           <option value="">{{ t('yt.ungrouped') }}</option>
           <option v-for="g in groups" :key="g.id" :value="g.id">{{ g.name }}</option>
         </select>
+        <label>{{ t('yt.tagsLabel') }}</label>
+        <input class="field" v-model="addForm.tagsText" :placeholder="t('yt.tagsPh')" />
         <template v-if="addMode === 'channel'">
         <label>{{ t('yt.rangeLabel') }}</label>
         <div style="display:flex;gap:6px">
@@ -343,7 +345,7 @@ const syncAllMsg = ref('')
 const showAdd = ref(false)
 const addBusy = ref(false)
 const addError = ref('')
-const addForm = ref({ input: '', group_id: '', date_from: '', date_to: '' })
+const addForm = ref({ input: '', group_id: '', date_from: '', date_to: '', tagsText: '' })
 const showEdit = ref(false)
 const editBusy = ref(false)
 const editError = ref('')
@@ -468,6 +470,11 @@ function tagsOf (v: YTVideo): string[] {
   const key = `${v.id}\u0000${v.title}\u0000${v.description || ''}`
   let tags = tagCache.get(key)
   if (!tags) { tags = videoTags(v.title, v.description || ''); tagCache.set(key, tags) }
+  // Merge user tags (from import) with auto-extracted tags.
+  if (v.tags?.length) {
+    const seen = new Set(tags)
+    for (const t of v.tags) if (!seen.has(t)) { tags.push(t); seen.add(t) }
+  }
   return tags
 }
 const tagCounts = computed(() => {
@@ -653,7 +660,8 @@ async function doAdd () {
   addError.value = ''
   try {
     if (addMode.value === 'video') {
-      const res = await store.addYTVideo(input, addForm.value.group_id || null)
+      const tags = addForm.value.tagsText.split(/[,，\s]+/).map(t => t.trim()).filter(Boolean)
+      const res = await store.addYTVideo(input, addForm.value.group_id || null, P, tags)
       await reload()
       showAdd.value = false
       const name = res.channel.name || res.channel.channel_id

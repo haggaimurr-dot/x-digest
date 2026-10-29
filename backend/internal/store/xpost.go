@@ -36,9 +36,12 @@ type XPostRow struct {
 // EnsureAuthor makes sure the post's author is on the watchlist (default
 // group for a new one) and fills an empty name/avatar/bio. created reports
 // a new account.
-func (s *Store) EnsureAuthor(username, name, avatar, bio string) (created bool, err error) {
-	res, err := s.DB.Exec(`INSERT IGNORE INTO authors(username,name,avatar,group_id,bio) VALUES(?,?,?,'other',?)`,
-		username, name, avatar, bio)
+func (s *Store) EnsureAuthor(username, name, avatar, bio, groupID string) (created bool, err error) {
+	if groupID == "" {
+		groupID = "other"
+	}
+	res, err := s.DB.Exec(`INSERT IGNORE INTO authors(username,name,avatar,group_id,bio) VALUES(?,?,?,?,?)`,
+		username, name, avatar, groupID, bio)
 	if err != nil {
 		return false, err
 	}
@@ -48,6 +51,20 @@ func (s *Store) EnsureAuthor(username, name, avatar, bio string) (created bool, 
 	_, err = s.DB.Exec(`UPDATE authors SET name=IF(name='',?,name), avatar=IF(avatar='',?,avatar), bio=IF(bio='',?,bio)
 		WHERE username=?`, name, avatar, bio, username)
 	return false, err
+}
+
+// AddPostTags inserts user tags for a post (INSERT IGNORE; keeps AI tags).
+func (s *Store) AddPostTags(postID string, tags []string) error {
+	for _, tag := range tags {
+		tag = strings.TrimSpace(tag)
+		if tag == "" {
+			continue
+		}
+		if _, err := s.DB.Exec(`INSERT IGNORE INTO post_tags(post_id, tag) VALUES(?,?)`, postID, tag); err != nil {
+			return err
+		}
+	}
+	return nil
 }
 
 // PostExists reports whether a post id is already stored.

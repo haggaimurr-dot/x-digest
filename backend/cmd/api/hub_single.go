@@ -57,8 +57,9 @@ func (o *optString) UnmarshalJSON(b []byte) error {
 
 func (h *videoHub) addVideo(w http.ResponseWriter, r *http.Request, pf singleVideoPlatform) {
 	var body struct {
-		URL     string `json:"url"`
-		GroupID string `json:"group_id"`
+		URL     string   `json:"url"`
+		GroupID string   `json:"group_id"`
+		Tags    []string `json:"tags"`
 	}
 	if !decodeBody(w, r, &body) {
 		return
@@ -95,6 +96,12 @@ func (h *videoHub) addVideo(w http.ResponseWriter, r *http.Request, pf singleVid
 	if err := h.st.MarkVideoManual(sv.Video.ID); err != nil {
 		writeErr(w, 500, "DB_ERROR", err.Error())
 		return
+	}
+	if len(body.Tags) > 0 {
+		if err := h.st.SetVideoTags(sv.Video.ID, body.Tags); err != nil {
+			writeErr(w, 500, "DB_ERROR", err.Error())
+			return
+		}
 	}
 	if created || ch.SyncMode == "single" {
 		name := ch.Name

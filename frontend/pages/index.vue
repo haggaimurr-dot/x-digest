@@ -329,7 +329,7 @@
         </div>
       </div>
     </div>
-    <XImportDialog v-if="xDialog" :mode="xDialog" :accounts="watchlist.accounts" @close="xDialog = null" @changed="reloadPosts" />
+    <XImportDialog v-if="xDialog" :mode="xDialog" :accounts="watchlist.accounts" :groups="watchlist.groups" @close="xDialog = null" @changed="reloadPosts" />
     <p v-if="toast" style="position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--bg-elevated);border:1px solid var(--border);padding:10px 16px;border-radius:9999px;z-index:200;display:flex;gap:10px;align-items:center">{{ toast }}<button v-if="toastAction" class="btn btn-sm btn-primary" type="button" @click="runToastAction">{{ toastAction.label }}</button></p>
   </div>
 </template>

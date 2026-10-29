@@ -288,7 +288,70 @@ func (h *HubStore) ListVideos(f YTVideoFilter) ([]model.YTVideo, error) {
 		v.Duration = int(duration.Int64)
 		out = append(out, v)
 	}
-	return out, rows.Err()
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	// User tags (bulk load).
+	if len(out) > 0 {
+		ids := make([]string, len(out))
+		for i, v := range out {
+			ids[i] = v.ID
+		}
+		tagsByVideo := h.videoTags(ids)
+		for i, v := range out {
+			if tags := tagsByVideo[v.ID]; len(tags) > 0 {
+				out[i].Tags = tags
+			}
+		}
+	}
+	return out, nil
+}
+
+// videoTags returns user tags for the given video IDs.
+func (h *HubStore) videoTags(ids []string) map[string][]string {
+	out := map[string][]string{}
+	if len(ids) == 0 {
+		return out
+	}
+	placeholders := strings.Repeat("?,", len(ids)-1) + "?"
+	rows, err := h.DB.Query(h.q(`SELECT video_id, tag FROM {p}_video_tags WHERE video_id IN (`+placeholders+`) ORDER BY tag`), stringSliceToAny(ids)...)
+	if err != nil {
+		return out
+	}
+	defer rows.Close()
+	for rows.Next() {
+		var vid, tag string
+		if err := rows.Scan(&vid, &tag); err != nil {
+			continue
+		}
+		out[vid] = append(out[vid], tag)
+	}
+	return out
+}
+
+// SetVideoTags replaces the user tags for a video.
+func (h *HubStore) SetVideoTags(videoID string, tags []string) error {
+	if _, err := h.DB.Exec(h.q(`DELETE FROM {p}_video_tags WHERE video_id=?`), videoID); err != nil {
+		return err
+	}
+	for _, tag := range tags {
+		tag = strings.TrimSpace(tag)
+		if tag == "" {
+			continue
+		}
+		if _, err := h.DB.Exec(h.q(`INSERT IGNORE INTO {p}_video_tags(video_id, tag) VALUES(?,?)`), videoID, tag); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func stringSliceToAny(s []string) []any {
+	out := make([]any, len(s))
+	for i, v := range s {
+		out[i] = v
+	}
+	return out
 }
 
 func (h *HubStore) GetVideo(id string) (model.YTVideo, error) {

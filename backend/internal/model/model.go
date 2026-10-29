@@ -224,6 +224,8 @@ type YTVideo struct {
 	// Watch state: WatchedAt "" = not watched (Shanghai wall time otherwise).
 	WatchedAt  string `json:"watched_at"`
 	WatchLater bool   `json:"watch_later"`
+	// User tags (yt_video_tags / bili_video_tags).
+	Tags []string `json:"tags,omitempty"`
 }
 
 // YTSummaryChapter is one AI summary chapter (Start in whole seconds).
