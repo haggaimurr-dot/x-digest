@@ -12,7 +12,9 @@ export default defineConfig({
   expect: { timeout: 15_000 },
   fullyParallel: false,
   workers: 1, // the flows share one database
-  retries: process.env.CI ? 1 : 0,
+  // No retries: the flows are serial on one database, and a retry restarts
+  // from the first flow, which then finds its post already imported.
+  retries: 0,
   reporter: process.env.CI ? [['list'], ['html', { open: 'never' }]] : 'list',
   use: {
     baseURL: 'http://127.0.0.1:18080',

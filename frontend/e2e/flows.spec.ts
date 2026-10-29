@@ -66,7 +66,11 @@ test('附件上传：给节点上传文件、预览、删除', async ({ page }) 
 
   await row.getByRole('button', { name: '更多操作' }).click()
   await row.getByRole('menuitem', { name: '预览' }).click()
-  await expect(node.getByText('E2E 附件内容：部署检查清单')).toBeVisible()
+  // The preview is a dialog teleported to <body>, named after the file.
+  const preview = page.getByRole('dialog', { name: 'e2e-notes.txt' })
+  await expect(preview.getByText('E2E 附件内容：部署检查清单')).toBeVisible()
+  await page.keyboard.press('Escape')
+  await expect(preview).toHaveCount(0)
 
   // Still there after a reload (stored on the server, not only in the page).
   await page.reload()
