@@ -321,20 +321,6 @@
           </div>
         </div>
 
-        <div class="settings-section">
-          <h3>{{ t('settings.webhook') }}</h3>
-          <label>{{ t('settings.webhookUrl') }}</label>
-          <input class="field" v-model="webhookUrlDraft" placeholder="https://…" />
-          <label>{{ t('settings.webhookKey') }}</label>
-          <input class="field" v-model="webhookKeyDraft" :placeholder="t('settings.webhookKeyPh')" type="password" />
-          <p v-if="webhookMsg" style="color:var(--text-muted)">{{ webhookMsg }}</p>
-          <div class="modal-actions" style="justify-content:flex-start">
-            <button class="btn btn-sm btn-primary" type="button" @click="saveWebhookDraft">{{ t('settings.save') }}</button>
-            <button class="btn btn-sm" type="button" @click="clearWebhookDraft">{{ t('settings.clear') }}</button>
-            <button class="btn btn-sm" type="button" @click="triggerWebhook">{{ t('settings.triggerOnce') }}</button>
-          </div>
-        </div>
-
         <div class="modal-actions">
           <button class="btn btn-primary" type="button" @click="showSettings = false">{{ t('settings.done') }}</button>
         </div>
@@ -362,7 +348,6 @@ const store = useStore()
 const settings = useSettings()
 const { t, lang } = useLang()
 const { tr, enqueue, translating } = useTranslate()
-const { saveWebhook, clearWebhook, postWebhook } = settings
 
 const loading = ref(true)
 const loadError = ref('')
@@ -414,10 +399,6 @@ async function reloadPosts () {
   } catch { /* the next action retries */ }
 }
 const toast = ref('')
-const webhookBusy = ref(false)
-const webhookMsg = ref('')
-const webhookUrlDraft = ref('')
-const webhookKeyDraft = ref('')
 const newGroupName = ref('')
 const newAccount = ref({ username: '', name: '', group: 'other' })
 
@@ -992,19 +973,6 @@ async function doImportSettings (e: Event) {
     setTimeout(() => location.reload(), 800)
   } catch (err: any) { showToast(err?.message || '导入失败') }
 }
-function saveWebhookDraft () { saveWebhook(webhookUrlDraft.value.trim(), webhookKeyDraft.value); webhookMsg.value = t('settings.webhookSaved') }
-function clearWebhookDraft () { clearWebhook(); webhookUrlDraft.value = ''; webhookKeyDraft.value = ''; webhookMsg.value = t('settings.webhookCleared') }
-async function triggerWebhook () {
-  if (webhookBusy.value) return
-  webhookBusy.value = true
-  try {
-    const r = await postWebhook()
-    showToast(t('index.webhookSent', { detail: `${r.via}${r.status ? ` · ${r.status}` : ''}` }))
-    webhookMsg.value = t('index.lastSent', { detail: `${r.via}${r.status ? ` · HTTP ${r.status}` : ''}` })
-  } catch (err: any) { showToast(err?.message || t('index.webhookFailed')); webhookMsg.value = err?.message || t('index.sendFailed') }
-  finally { webhookBusy.value = false }
-}
-
 onMounted(async () => {
   settings.load()
   try {
@@ -1015,8 +983,6 @@ onMounted(async () => {
     const v = JSON.parse(localStorage.getItem(AUTHOR_COLLAPSE_KEY) || '[]')
     if (Array.isArray(v)) collapsedAuthors.value = new Set(v.filter((x: unknown) => typeof x === 'string'))
   } catch { /* ignore */ }
-  webhookUrlDraft.value = settings.webhookUrl.value
-  webhookKeyDraft.value = settings.webhookKey.value
   try {
     // Selections were already restored at setup; the posts load (first element)
     // runs in parallel with the other loads and uses the restored filters.

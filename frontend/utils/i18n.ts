@@ -73,7 +73,6 @@ export const DICT: Record<string, { zh: string, en: string }> = {
   'api.tokenPrompt': { zh: '此操作需要 API Token（服务器 API_TOKEN），请输入：', en: 'This action needs the API token (server API_TOKEN):' },
 
   // ---- settings (useSettings) ----
-  'settings.webhookNotConfigured': { zh: '请先在设置中配置 Webhook URL 与 key', en: 'Configure the Webhook URL and key in Settings first' },
 
   // ---- store validators (useStore) ----
   'store.unsupportedFile': { zh: '不支持的文件类型：{name}', en: 'Unsupported file type: {name}' },
@@ -132,10 +131,6 @@ export const DICT: Record<string, { zh: string, en: string }> = {
   'index.replicateDone': { zh: '已生成复刻，去复刻页查看', en: 'Replica created — see the Replicas page' },
   'index.replicatedAlready': { zh: '已复刻', en: 'Already replicated' },
   'index.replicateFailed': { zh: '生成复刻失败', en: 'Failed to create replica' },
-  'index.webhookSent': { zh: 'Webhook 已发送（{detail}）', en: 'Webhook sent ({detail})' },
-  'index.lastSent': { zh: '上次发送：{detail}', en: 'Last sent: {detail}' },
-  'index.webhookFailed': { zh: 'Webhook 发送失败', en: 'Webhook failed to send' },
-  'index.sendFailed': { zh: '发送失败', en: 'Failed to send' },
 
   // ---- settings modal ----
   'settings.title': { zh: '设置', en: 'Settings' },
@@ -162,16 +157,7 @@ export const DICT: Record<string, { zh: string, en: string }> = {
   'settings.vocabHintSuffix': { zh: ' 搜索）。', en: ' search).' },
   'settings.add': { zh: '添加', en: 'Add' },
   'settings.overrideByAuthor': { zh: '按作者覆盖自定义标签（保存后即用于该作者的用户标签过滤）', en: 'Per-author custom-tag overrides (saved tags are used for that author’s user-tag filter)' },
-  'settings.webhook': { zh: 'Webhook（仅存浏览器 localStorage，不发往服务端）', en: 'Webhook (stored only in this browser’s localStorage, never sent to the server)' },
-  'settings.webhookUrl': { zh: 'Webhook URL', en: 'Webhook URL' },
-  'settings.webhookKey': { zh: 'Webhook Key', en: 'Webhook Key' },
-  'settings.webhookKeyPh': { zh: 'key（已带 Bearer 时不重复加）', en: 'key (Bearer is not added twice if already present)' },
-  'settings.save': { zh: '保存', en: 'Save' },
-  'settings.clear': { zh: '清除', en: 'Clear' },
-  'settings.triggerOnce': { zh: '触发一次', en: 'Trigger once' },
   'settings.done': { zh: '完成', en: 'Done' },
-  'settings.webhookSaved': { zh: 'Webhook 已保存到本浏览器 localStorage。', en: 'Webhook saved to this browser’s localStorage.' },
-  'settings.webhookCleared': { zh: 'Webhook 已清除。', en: 'Webhook cleared.' },
   'settings.groupNameEmpty': { zh: '请先输入分组名称', en: 'Enter a group name first' },
   'settings.groupAdded': { zh: '分组已新增', en: 'Group added' },
   'settings.groupAddFailed': { zh: '新增分组失败，请重试', en: 'Failed to add group, please retry' },

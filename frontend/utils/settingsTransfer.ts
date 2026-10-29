@@ -2,7 +2,7 @@ import { LS } from '~/composables/useSettings'
 
 // Settings export / import (stopgap until settings sync to the server).
 // Only display preferences and filter selections travel; secrets
-// (API token, webhook key) and mock-mode data never do.
+// (API token) and mock-mode data never do.
 export const TRANSFER_KEYS: string[] = [
   LS.theme, LS.fontFamily, LS.fontSize, LS.lang, LS.selectedAuthors, LS.selectedCats,
   LS.chipsAuthorsExpanded, LS.chipsTagsExpanded, LS.chipsCatsExpanded, LS.filtersCollapsed,
