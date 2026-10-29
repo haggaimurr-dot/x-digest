@@ -17,9 +17,9 @@
           </li>
         </ul>
         <div class="modal-actions">
-          <button v-if="existedId" class="btn" type="button" :disabled="importing" @click="doImport(true)">重新解析</button>
-          <button class="btn" type="button" @click="$emit('close')">关闭</button>
-          <button class="btn btn-primary" type="button" :disabled="importing || !url.trim()" @click="doImport()">{{ importing ? '导入中…' : '导入' }}</button>
+          <IconBtn v-if="existedId" icon="sparkles" label="重新解析" :disabled="importing" @click="doImport(true)" />
+          <IconBtn icon="x" label="关闭" @click="$emit('close')" />
+          <IconBtn class="btn-primary" :icon="importing ? 'refresh' : 'download'" :busy="importing" :label="importing ? '导入中…' : '导入'" :disabled="importing || !url.trim()" @click="doImport()" />
         </div>
       </template>
 
@@ -44,9 +44,9 @@
               <span v-else>服务器未开启（未设置 REFRESH_INTERVAL）；已配置 {{ auto.usernames.length }} 个账号，开启后生效</span>
             </p>
             <div class="xi-auto-actions">
-              <button class="btn btn-sm" type="button" :disabled="autoSaving || !selected.size" @click="saveAuto([...selected])">{{ selected.size ? `设所选 ${selected.size} 个为定时账号` : '先在上方选择账号' }}</button>
-              <button class="btn btn-sm" type="button" :disabled="!auto.usernames.length" @click="selected = new Set(auto.usernames)">选中定时账号</button>
-              <button class="btn btn-sm" type="button" :disabled="autoSaving || !auto.usernames.length" @click="saveAuto([])">清空定时账号</button>
+              <IconBtn class="btn-sm" icon="clock" plus :badge="selected.size || undefined" :label="selected.size ? `设所选 ${selected.size} 个为定时账号` : '先在上方选择账号'" :disabled="autoSaving || !selected.size" @click="saveAuto([...selected])" />
+              <IconBtn class="btn-sm" icon="list-checks" label="选中定时账号" :disabled="!auto.usernames.length" @click="selected = new Set(auto.usernames)" />
+              <IconBtn class="btn-sm btn-danger" icon="eraser" label="清空定时账号" :disabled="autoSaving || !auto.usernames.length" @click="saveAuto([])" />
             </div>
           </div>
         </template>
@@ -66,11 +66,9 @@
         </div>
         <p v-if="refreshMsg" class="xi-msg" :class="{ 'xi-err': refreshErr }">{{ refreshMsg }}</p>
         <div class="modal-actions">
-          <button class="btn" type="button" @click="$emit('close')">{{ job.running ? '后台继续' : '关闭' }}</button>
-          <button v-if="!job.running && failedCount" class="btn" type="button" :disabled="starting" @click="doRetry">重试失败（{{ failedCount }} 帖）</button>
-          <button v-if="!job.running" class="btn btn-primary" type="button" :disabled="starting" @click="doRefresh">
-            {{ selected.size ? `更新所选 ${selected.size} 个账号` : '更新全部账号' }}
-          </button>
+          <IconBtn :icon="job.running ? 'minimize' : 'x'" :label="job.running ? '后台继续' : '关闭'" @click="$emit('close')" />
+          <IconBtn v-if="!job.running && failedCount" icon="reset" :badge="failedCount" :label="`重试失败（${failedCount} 帖）`" :disabled="starting" @click="doRetry" />
+          <IconBtn v-if="!job.running" class="btn-primary" icon="refresh" :busy="starting" :badge="selected.size || undefined" :label="selected.size ? `更新所选 ${selected.size} 个账号` : '更新全部账号'" :disabled="starting" @click="doRefresh" />
         </div>
       </template>
     </div>

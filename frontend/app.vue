@@ -11,12 +11,12 @@
           <NuxtLink to="/bilibili">{{ t('nav.bilibili') }}</NuxtLink>
           <NotificationBell />
           <div class="appearance-wrap">
-            <button class="btn btn-sm lang-toggle" type="button" :aria-expanded="showAppearance" aria-haspopup="dialog" @click.stop="showAppearance = !showAppearance">Aa {{ t('settings.appearance') }}</button>
+            <IconBtn class="btn-sm lang-toggle" icon="palette" :label="t('settings.appearance')" :class="{ 'btn-on': showAppearance }" :aria-expanded="showAppearance" aria-haspopup="dialog" @click.stop="showAppearance = !showAppearance" />
             <div v-if="showAppearance" class="appearance-pop" role="dialog" :aria-label="t('settings.appearance')" @click.stop>
               <div class="appearance-label">{{ t('settings.theme') }}</div>
               <div class="appearance-row">
-                <button class="btn btn-sm" :class="{ 'btn-primary': theme === 'dark' }" type="button" @click="setTheme('dark')">{{ t('settings.dark') }}</button>
-                <button class="btn btn-sm" :class="{ 'btn-primary': theme === 'light' }" type="button" @click="setTheme('light')">{{ t('settings.light') }}</button>
+                <IconBtn class="btn-sm" icon="moon" :label="t('settings.dark')" :class="{ 'btn-primary': theme === 'dark' }" :aria-pressed="theme === 'dark'" @click="setTheme('dark')" />
+                <IconBtn class="btn-sm" icon="sun" :label="t('settings.light')" :class="{ 'btn-primary': theme === 'light' }" :aria-pressed="theme === 'light'" @click="setTheme('light')" />
               </div>
               <div class="appearance-label">{{ t('settings.fontSize') }}</div>
               <div class="appearance-row">
@@ -31,8 +31,7 @@
               </select>
             </div>
           </div>
-          <button class="btn btn-sm lang-toggle" type="button" @click="toggleLang"
-            :aria-label="lang === 'en' ? t('lang.switchToZh') : t('lang.switchToEn')">{{ lang === 'en' ? '中文' : 'EN' }}</button>
+          <IconBtn class="btn-sm lang-toggle" icon="languages" :label="lang === 'en' ? t('lang.switchToZh') : t('lang.switchToEn')" @click="toggleLang" />
         </nav>
       </div>
     </header>

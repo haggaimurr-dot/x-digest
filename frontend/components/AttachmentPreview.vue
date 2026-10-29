@@ -4,8 +4,8 @@
       <div ref="panelRef" class="preview-panel" role="dialog" aria-modal="true" :aria-label="attachment.name">
         <div class="preview-header">
           <span class="preview-title">{{ attachment.name }}</span>
-          <button class="btn btn-sm" type="button" @click="toggleFullscreen">{{ isFullscreen ? t('preview.exitFullscreen') : t('preview.fullscreen') }}</button>
-          <button class="btn btn-sm" type="button" :aria-label="t('preview.close')" @click="emit('close')">✕</button>
+          <IconBtn class="btn-sm tip-below" :icon="isFullscreen ? 'minimize' : 'maximize'" :label="isFullscreen ? t('preview.exitFullscreen') : t('preview.fullscreen')" @click="toggleFullscreen" />
+          <IconBtn class="btn-sm tip-below" icon="x" :size="18" :label="t('preview.close')" @click="emit('close')" />
         </div>
         <div class="preview-body">
           <div v-if="loading">{{ t('preview.loading') }}</div>
@@ -15,9 +15,9 @@
             <div v-else-if="kind === 'pdf'">
               <p v-if="convertedPdf" style="color:var(--text-muted);font-size:13px;margin:0 0 6px">{{ t('preview.convertedNote') }}</p>
               <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px">
-                <button class="btn btn-sm" type="button" :disabled="pdfPage <= 1" @click="pdfPage--">{{ t('preview.prevPage') }}</button>
+                <IconBtn class="btn-sm" icon="chevron-left" :label="t('preview.prevPage')" :disabled="pdfPage <= 1" @click="pdfPage--" />
                 <span>{{ t('preview.pageOf', { cur: pdfPage, total: pdfPages }) }}</span>
-                <button class="btn btn-sm" type="button" :disabled="pdfPage >= pdfPages" @click="pdfPage++">{{ t('preview.nextPage') }}</button>
+                <IconBtn class="btn-sm" icon="chevron-right" :label="t('preview.nextPage')" :disabled="pdfPage >= pdfPages" @click="pdfPage++" />
               </div>
               <canvas ref="pdfCanvas" class="preview-pdf" />
             </div>
@@ -37,9 +37,9 @@
             </div>
             <div v-else-if="kind === 'pptx'">
               <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-                <button class="btn btn-sm" type="button" :disabled="slideIdx <= 0" @click="slideIdx--">{{ t('preview.prevPage') }}</button>
+                <IconBtn class="btn-sm" icon="chevron-left" :label="t('preview.prevPage')" :disabled="slideIdx <= 0" @click="slideIdx--" />
                 <span>{{ t('preview.pageOf', { cur: slideIdx + 1, total: slides.length }) }}</span>
-                <button class="btn btn-sm" type="button" :disabled="slideIdx >= slides.length - 1" @click="slideIdx++">{{ t('preview.nextPage') }}</button>
+                <IconBtn class="btn-sm" icon="chevron-right" :label="t('preview.nextPage')" :disabled="slideIdx >= slides.length - 1" @click="slideIdx++" />
               </div>
               <div v-if="slides[slideIdx]" class="rich-content" style="white-space:pre-wrap">{{ slides[slideIdx].text }}</div>
               <div v-if="slides[slideIdx]?.images?.length" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">

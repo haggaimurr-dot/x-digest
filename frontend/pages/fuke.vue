@@ -20,13 +20,13 @@
             <option value="progress">{{ t('fuke.sortProgress') }}</option>
           </select>
         </label>
-        <NuxtLink to="/" class="btn btn-sm">{{ t('fuke.backToDaily') }}</NuxtLink>
+        <NuxtLink to="/" class="btn btn-sm btn-icon" :aria-label="t('fuke.backToDaily')" :data-tip="t('fuke.backToDaily')"><UiIcon name="arrow-left" /></NuxtLink>
       </div>
       <div style="margin-bottom:12px;border:1px solid var(--border);border-radius:12px;padding:12px">
         <div class="chip-group-title" style="margin-top:0">{{ t('fuke.newFlowTitle') }}</div>
         <div class="filter-row">
           <input class="field grow" style="flex:1" type="text" v-model="newFlowTitle" :placeholder="t('fuke.newFlowPh')" :aria-label="t('fuke.newFlowAria')" />
-          <button class="btn btn-sm btn-primary" type="button" :disabled="!newFlowTitle.trim()" @click="createFlow">{{ t('fuke.createFlow') }}</button>
+          <IconBtn class="btn-sm btn-primary" icon="plus" :label="t('fuke.createFlow')" :disabled="!newFlowTitle.trim()" @click="createFlow" />
         </div>
       </div>
       <p v-if="!loading && !replicas.length" class="empty">{{ t('fuke.empty') }}</p>
@@ -35,13 +35,13 @@
         <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px">
           <div class="flow-eyebrow">FLOW · {{ topSteps(r).length }} NODES</div>
           <div class="flow-head-side">
-          <button class="btn btn-sm btn-quiet flow-collapse-btn" type="button" @click="toggleCollapsed(r.id)" :aria-expanded="!isCollapsed(r.id)" :aria-label="isCollapsed(r.id) ? t('fuke.expandFlow') : t('fuke.collapseFlow')" :title="isCollapsed(r.id) ? t('fuke.expandFlow') : t('fuke.collapseFlow')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" :style="{ transform: isCollapsed(r.id) ? 'rotate(-90deg)' : 'none' }"><path d="M6 9l6 6 6-6" /></svg></button>
+          <IconBtn class="btn-sm btn-quiet flow-collapse-btn" :icon="isCollapsed(r.id) ? 'chevron-right' : 'chevron-down'" :size="18" :label="isCollapsed(r.id) ? t('fuke.expandFlow') : t('fuke.collapseFlow')" :aria-expanded="!isCollapsed(r.id)" @click="toggleCollapsed(r.id)" />
           <div class="node-menu-wrap flow-menu-wrap">
-            <button class="btn btn-sm btn-quiet node-menu-btn" type="button" @click="toggleFlowMenu(r.id)" :aria-label="t('fuke.flowMenu')" aria-haspopup="menu" :aria-expanded="openFlowMenu === r.id">⋯</button>
+            <IconBtn class="btn-sm btn-quiet node-menu-btn" icon="more" :size="18" :label="t('fuke.flowMenu')" aria-haspopup="menu" :aria-expanded="openFlowMenu === r.id" @click="toggleFlowMenu(r.id)" />
             <div v-if="openFlowMenu === r.id" class="node-menu" role="menu">
-              <button type="button" role="menuitem" @click="menuExport(r)">导出 Markdown</button>
-              <button type="button" role="menuitem" @click="menuClone(r)">复制为新流程</button>
-              <button type="button" role="menuitem" class="danger" @click="menuDeleteFlow(r)">{{ t('fuke.deleteReplica') }}</button>
+              <button type="button" role="menuitem" class="menu-item-icon" @click="menuExport(r)"><UiIcon name="file-down" />导出 Markdown</button>
+              <button type="button" role="menuitem" class="menu-item-icon" @click="menuClone(r)"><UiIcon name="copy" />复制为新流程</button>
+              <button type="button" role="menuitem" class="danger menu-item-icon" @click="menuDeleteFlow(r)"><UiIcon name="trash" />{{ t('fuke.deleteReplica') }}</button>
             </div>
           </div>
           </div>
@@ -64,7 +64,7 @@
           <div class="chip-group-title" style="margin-top:0">{{ t('fuke.customNodes') }}</div>
           <input class="field" style="width:100%" type="text" v-model="newStepText[r.id]" :placeholder="t('fuke.newStepPh')" :aria-label="t('fuke.newStepAria')" />
           <div style="margin-top:6px">
-            <button class="btn btn-sm btn-primary" type="button" :disabled="!((newStepText[r.id] || '').trim())" @click="addStep(r)">{{ t('fuke.addStep') }}</button>
+            <IconBtn class="btn-sm btn-primary" icon="plus" :label="t('fuke.addStep')" :disabled="!((newStepText[r.id] || '').trim())" @click="addStep(r)" />
           </div>
         </div>
         <div class="flow-list" style="margin-top:12px">
@@ -74,8 +74,8 @@
         </div>
         <div v-if="topSteps(r).length" class="flow-action">
           <div class="flow-current">{{ currentNode(r) ? t('fuke.currentNode', { num: currentNum(r), title: tr(currentNode(r)!.text) }) : t('fuke.allDone') }}</div>
-          <button v-if="currentNode(r)" class="flow-complete-btn" type="button" @click="completeCurrent(r)">{{ currentActionLabel(r) }}</button>
-          <button v-else class="flow-complete-btn" type="button" disabled>{{ t('fuke.allDone') }}</button>
+          <button v-if="currentNode(r)" class="flow-complete-btn with-icon" type="button" @click="completeCurrent(r)"><UiIcon name="circle-check" :size="18" />{{ currentActionLabel(r) }}</button>
+          <button v-else class="flow-complete-btn with-icon" type="button" disabled><UiIcon name="check-check" :size="18" />{{ t('fuke.allDone') }}</button>
         </div>
         </template>
       </article>
@@ -86,8 +86,8 @@
         <h2>{{ t('fuke.deleteTitle') }}</h2>
         <p>{{ t('fuke.deleteBody', { title: tr(confirmTarget.post_title) }) }}</p>
         <div class="modal-actions">
-          <button class="btn" type="button" @click="confirmTarget = null">{{ t('common.cancel') }}</button>
-          <button class="btn btn-danger" type="button" @click="doDelete">{{ t('common.delete') }}</button>
+          <IconBtn icon="x" :label="t('common.cancel')" @click="confirmTarget = null" />
+          <IconBtn class="btn-danger" icon="trash" :label="t('common.delete')" @click="doDelete" />
         </div>
       </div>
     </div>

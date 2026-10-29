@@ -4,7 +4,7 @@
     <div class="combo-box" @click="focusInput">
       <span v-for="v in modelValue" :key="v" class="combo-chip">
         {{ labelOf(v) }}
-        <button type="button" @click.stop="remove(v)" :aria-label="t('combo.remove', { label: labelOf(v) })">✕</button>
+        <button type="button" @click.stop="remove(v)" :aria-label="t('combo.remove', { label: labelOf(v) })"><UiIcon name="x" :size="12" :stroke="2.6" /></button>
       </span>
       <input ref="inputRef" v-model="query" type="text" :placeholder="modelValue.length ? '' : placeholder"
         :aria-label="label" @focus="open = true" @input="open = true"
@@ -20,13 +20,15 @@
       <p v-else class="combo-empty">{{ query.trim() ? t('combo.noMatch') : t('combo.allPicked') }}</p>
       <div class="combo-foot">
         <span class="combo-picked">{{ t('combo.picked', { n: modelValue.length }) }}</span>
-        <button type="button" class="btn btn-sm btn-primary" @mousedown.prevent @click="confirm">{{ t('combo.confirm') }}</button>
+        <IconBtn class="btn-sm btn-primary" icon="check" :label="t('combo.confirm')" @mousedown.prevent @click="confirm" />
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import IconBtn from '~/components/IconBtn.vue'
+import UiIcon from '~/components/UiIcon.vue'
 export interface ComboOption { value: string, label: string, count?: number }
 const props = defineProps<{
   label: string

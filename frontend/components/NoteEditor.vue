@@ -2,7 +2,7 @@
   <div class="note-editor">
     <div class="note-toolbar" role="group" :aria-label="t('note.groupAria')">
       <span role="status" style="color:var(--text-muted);font-size:13px;align-self:center">{{ t('note.markdown') }}</span>
-      <button class="btn btn-sm" type="button" :aria-pressed="preview" @click="preview = !preview">{{ preview ? t('note.edit') : t('note.preview') }}</button>
+      <IconBtn class="btn-sm" :icon="preview ? 'pencil' : 'eye'" :label="preview ? t('note.edit') : t('note.preview')" :aria-pressed="preview" @click="preview = !preview" />
     </div>
     <!-- Markdown preview: marked output always goes through DOMPurify. -->
     <div v-if="preview" class="rich-content note-preview" v-html="previewHtml" />
@@ -13,6 +13,7 @@
 </template>
 
 <script setup lang="ts">
+import IconBtn from '~/components/IconBtn.vue'
 import { marked } from 'marked'
 import { safeHtml } from '~/utils/sanitize'
 import { insertAt } from '~/utils/textInsert'

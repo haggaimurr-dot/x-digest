@@ -65,7 +65,7 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
 .note-translated-label { display: inline-block; font-size: 11px; border: 1px solid var(--border); border-radius: 9999px; padding: 0 6px; margin-right: 6px; }
 .note-editor textarea { width: 100%; background: var(--bg); color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 8px; font: inherit; }
 .note-toolbar { display: flex; gap: 4px; flex-wrap: wrap; margin: 6px 0; }
-.note-toolbar button { cursor: pointer; border: 1px solid var(--border); background: var(--bg-elevated); color: var(--text); border-radius: 6px; padding: 3px 8px; }
+.note-toolbar button:not(.btn-icon) { cursor: pointer; border: 1px solid var(--border); background: var(--bg-elevated); color: var(--text); border-radius: 6px; padding: 3px 8px; }
 .progress-bar { height: 8px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 9999px; overflow: hidden; }
 .progress-bar > div { height: 100%; background: var(--accent); }
 .attachment-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; padding: 6px 0; min-width: 0; }
@@ -344,3 +344,47 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
 .xi-state { color: var(--text-muted); }
 .xi-running .xi-state { color: var(--accent); }
 .xi-error { color: var(--danger-text); flex-basis: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* ---------- 图形按钮（IconBtn / UiIcon） ----------
+   图标描边用 currentColor，按钮底色/边框/文字色全部走 --bg-elevated / --text / --accent 等主题变量，
+   深/浅主题切换（html[data-theme]）时自动跟随，无需单独配色。 */
+.ui-icon { display: block; flex-shrink: 0; }
+.btn { transition: background-color .15s, border-color .15s, color .15s, box-shadow .15s, transform .08s; }
+.btn:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--accent-soft), 0 0 0 1px var(--accent); }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.btn-icon { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 5px; width: 36px; height: 36px; padding: 0; line-height: 1; vertical-align: middle; flex-shrink: 0; }
+.btn-sm.btn-icon { width: 30px; height: 30px; padding: 0; }
+.btn-icon:not(.btn-primary):not(.btn-danger):not(.btn-quiet):not(.btn-on) { border-color: var(--chip-border); }
+.btn-icon.has-badge { width: auto; padding: 0 10px 0 9px; }
+.btn-icon:not(:disabled):hover { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+.btn-icon:not(:disabled):active { transform: scale(.94); }
+.btn-icon.btn-primary:not(:disabled):hover { background: var(--accent-hover); border-color: var(--accent-hover); color: #fff; }
+.btn-icon.btn-danger { background: transparent; }
+.btn-icon.btn-danger:not(:disabled):hover { background: color-mix(in srgb, var(--danger) 12%, transparent); border-color: var(--danger); color: var(--danger-text); }
+.btn-icon.btn-quiet { background: transparent; border-color: transparent; }
+.btn-icon.btn-quiet:not(:disabled):hover { background: var(--bg-hover-soft); border-color: var(--border); color: var(--text); }
+/* 开关类按钮的「已开启」态（已看 / 稍后观看 / 对照 …） */
+.btn-icon.btn-on { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+.btn-icon-glyph { position: relative; display: inline-flex; }
+.btn-icon-plus { position: absolute; right: -5px; bottom: -4px; width: 11px; height: 11px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--accent); color: #fff; box-shadow: 0 0 0 1.5px var(--bg-elevated); }
+.btn-primary .btn-icon-plus { background: #fff; color: var(--accent); box-shadow: none; }
+.btn-icon-badge { font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.btn-icon.is-busy .ui-icon { animation: icon-spin 1s linear infinite; }
+@keyframes icon-spin { to { transform: rotate(360deg); } }
+/* 悬浮提示：反色气泡（深色主题白底黑字、浅色主题黑底白字） */
+.btn-icon[data-tip]::after { content: attr(data-tip); position: absolute; left: 50%; bottom: calc(100% + 7px); transform: translate(-50%, 3px); padding: 4px 8px; border-radius: 6px; background: var(--text); color: var(--bg); font-size: 12px; font-weight: 500; line-height: 1.35; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity .12s, transform .12s; z-index: 400; box-shadow: 0 4px 14px rgba(0,0,0,.25); }
+.btn-icon[data-tip]:hover::after, .btn-icon[data-tip]:focus-visible::after { opacity: 1; transform: translate(-50%, 0); transition-delay: .25s; }
+/* 顶栏按钮都在右侧：提示放到按钮下方并右对齐，避免被视口裁掉 */
+.topbar .btn-icon[data-tip]::after { bottom: auto; top: calc(100% + 7px); left: auto; right: 0; transform: translateY(-3px); }
+.topbar .btn-icon[data-tip]:hover::after, .topbar .btn-icon[data-tip]:focus-visible::after { transform: translateY(0); }
+@media (hover: none) { .btn-icon[data-tip]::after { display: none; } }
+@media (prefers-reduced-motion: reduce) { .btn, .btn-icon[data-tip]::after { transition: none; } .btn-icon.is-busy .ui-icon { animation: none; } }
+/* 下拉菜单项：前置小图标 */
+.node-menu .menu-item-icon { display: flex; align-items: center; gap: 8px; }
+.node-menu .menu-item-icon .ui-icon { color: var(--text-muted); }
+.node-menu .danger .ui-icon { color: currentColor; }
+/* 带图标的文字型控件（摘要折叠条、稍后观看 chip、主操作按钮） */
+.with-icon { display: inline-flex; align-items: center; gap: 6px; }
+.flow-complete-btn.with-icon { display: flex; justify-content: center; }
+.btn-group { display: inline-flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.x-text-tool { margin: 6px 4px 0 0; }
+.tag-input-x, .combo-chip button { display: inline-flex; align-items: center; justify-content: center; }

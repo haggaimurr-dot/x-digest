@@ -4,9 +4,9 @@
       <div class="filter-row" style="margin-bottom:12px">
         <span class="updated" style="color:var(--text-muted)">{{ updatedAt ? t('index.updatedAt', { time: updatedAt }) : '' }}</span>
         <span style="flex:1" />
-        <button class="btn btn-sm" type="button" @click="xDialog = 'post'">导入单帖</button>
-        <button class="btn btn-sm" type="button" @click="xDialog = 'refresh'">更新帖子</button>
-        <button class="btn btn-sm" type="button" @click="showSettings = true">{{ t('index.settings') }}</button>
+        <IconBtn class="btn-sm" icon="link" plus label="导入单帖" @click="xDialog = 'post'" />
+        <IconBtn class="btn-sm" icon="refresh" label="更新帖子" @click="xDialog = 'refresh'" />
+        <IconBtn class="btn-sm" icon="settings" :label="t('index.settings')" @click="showSettings = true" />
       </div>
       <p v-if="loadError" style="color:var(--danger-text)">{{ loadError }}</p>
       <p v-if="loading">{{ t('common.loading') }}</p>
@@ -14,7 +14,7 @@
       <!-- 搜索区：所有条件放在一个大框里，改条件不会立即检索，点「搜索」（或在关键词框回车）才生效；「重置」清空条件并检索全部。 -->
       <section class="filter-panel search-panel" v-if="!loading" role="search" :aria-label="t('index.searchPanel')">
         <div class="filter-row" style="justify-content:space-between">
-          <button class="btn btn-sm" type="button" @click="filtersCollapsed = !filtersCollapsed" :aria-expanded="!filtersCollapsed">{{ filtersCollapsed ? t('index.expandFilters') : t('index.collapseFilters') }}</button>
+          <IconBtn class="btn-sm" icon="filter" :class="{ 'btn-on': !filtersCollapsed }" :label="filtersCollapsed ? t('index.expandFilters') : t('index.collapseFilters')" :aria-expanded="!filtersCollapsed" @click="filtersCollapsed = !filtersCollapsed" />
           <span class="active-count" v-if="filtersCollapsed && activeFilterCount">{{ t('index.selectedFilters', { n: activeFilterCount }) }}</span>
         </div>
         <form v-show="!filtersCollapsed" class="search-box" @submit.prevent="runSearch">
@@ -41,16 +41,16 @@
             </div>
           </div>
           <div class="filter-row search-actions">
-            <button class="btn btn-primary" type="submit">{{ t('index.search') }}</button>
-            <button class="btn" type="button" @click="resetFilters">{{ t('index.reset') }}</button>
+            <IconBtn class="btn-primary" type="submit" icon="search" :label="t('index.search')" />
+            <IconBtn icon="reset" :label="t('index.reset')" @click="resetFilters" />
             <span v-if="searchDirty" class="active-count">{{ t('index.pendingSearch') }}</span>
             <span style="flex:1" />
             <select v-if="savedViews.length" class="field" style="width:auto" :aria-label="t('index.views')" :value="currentViewId" @change="applyView(($event.target as HTMLSelectElement).value)">
               <option value="">{{ t('index.viewsPick') }}</option>
               <option v-for="v in savedViews" :key="v.id" :value="v.id">{{ v.name }}</option>
             </select>
-            <button class="btn btn-sm" type="button" @click="saveCurrentView">{{ t('index.viewSave') }}</button>
-            <button v-if="currentViewId" class="btn btn-sm btn-danger" type="button" @click="deleteCurrentView">{{ t('index.viewDelete') }}</button>
+            <IconBtn class="btn-sm" icon="bookmark" plus :label="t('index.viewSave')" @click="saveCurrentView" />
+            <IconBtn v-if="currentViewId" class="btn-sm btn-danger" icon="bookmark-x" :label="t('index.viewDelete')" @click="deleteCurrentView" />
           </div>
           <div class="filter-row" style="margin-top:4px">
             <span class="result-count">{{ t('index.resultCount', { n: totalPosts }) }}</span>
@@ -65,18 +65,18 @@
            下方整行为资源与可折叠的 AI 摘要（含流程图）。 -->
       <!-- 多选：批量归类 / 批量生成 AI 摘要 / 批量删除 -->
       <div class="filter-row" style="margin:8px 0">
-        <button class="btn btn-sm" :class="{ 'btn-primary': selectMode }" type="button" @click="toggleSelectMode">{{ selectMode ? '退出多选' : '多选' }}</button>
+        <IconBtn class="btn-sm" icon="list-checks" :class="{ 'btn-primary': selectMode }" :label="selectMode ? '退出多选' : '多选'" :aria-pressed="selectMode" @click="toggleSelectMode" />
         <template v-if="selectMode">
           <span class="active-count">已选 {{ selectedPosts.size }} 帖</span>
-          <button class="btn btn-sm" type="button" @click="selectPage">全选本页</button>
+          <IconBtn class="btn-sm" icon="check-check" label="全选本页" @click="selectPage" />
           <select v-model="batchCat" class="field" style="width:auto" aria-label="批量归类的类别">
             <option value="">选择类别…</option>
             <option v-for="c in categories.categories" :key="c.id" :value="c.id">{{ c.name }}</option>
           </select>
-          <button class="btn btn-sm" type="button" :disabled="!batchCat || !selectedPosts.size || batchBusy" @click="batchCategory('add')">归入</button>
-          <button class="btn btn-sm" type="button" :disabled="!batchCat || !selectedPosts.size || batchBusy" @click="batchCategory('remove')">移出</button>
-          <button class="btn btn-sm btn-primary" type="button" :disabled="!selectedPosts.size || batchBusy" @click="batchSummaries">批量生成 AI 摘要</button>
-          <button class="btn btn-sm btn-danger" type="button" :disabled="!selectedPosts.size || batchBusy" @click="deleteSelected">删除所选</button>
+          <IconBtn class="btn-sm" icon="folder-plus" label="归入所选类别" :disabled="!batchCat || !selectedPosts.size || batchBusy" @click="batchCategory('add')" />
+          <IconBtn class="btn-sm" icon="folder-minus" label="移出所选类别" :disabled="!batchCat || !selectedPosts.size || batchBusy" @click="batchCategory('remove')" />
+          <IconBtn class="btn-sm btn-primary" icon="sparkles" label="批量生成 AI 摘要" :busy="batchBusy" :disabled="!selectedPosts.size || batchBusy" @click="batchSummaries" />
+          <IconBtn class="btn-sm btn-danger" icon="trash" label="删除所选" :disabled="!selectedPosts.size || batchBusy" @click="deleteSelected" />
           <span v-if="batchMsg" class="active-count">{{ batchMsg }}</span>
         </template>
       </div>
@@ -100,14 +100,14 @@
                 <p v-else class="x-orig-text">原文暂未收录，<a :href="post.url" target="_blank" rel="noopener" style="color:var(--accent)">点击查看原推文</a>。</p>
               </div>
               <!-- 原文/译文对照：按段落交替显示，译文走翻译缓存 -->
-              <button v-if="post.text" class="yt-desc-more" type="button" :aria-pressed="bilingual.has(post.id)" @click="toggleBilingual(post)">{{ bilingual.has(post.id) ? '关闭对照' : '对照' }}</button>
+              <IconBtn v-if="post.text" class="btn-sm x-text-tool" icon="languages" :class="{ 'btn-on': bilingual.has(post.id) }" :label="bilingual.has(post.id) ? '关闭原文/译文对照' : '原文/译文对照'" :aria-pressed="bilingual.has(post.id)" @click="toggleBilingual(post)" />
               <div v-if="bilingual.has(post.id)" class="bilingual">
                 <template v-for="(para, i) in paragraphsOf(post.text || '')" :key="i">
                   <p class="bi-orig">{{ para }}</p>
                   <p class="bi-tr">{{ tr(para) === para ? (translating ? '翻译中…' : '（与当前语言相同，无需翻译）') : tr(para) }}</p>
                 </template>
               </div>
-              <button v-if="isLongText(post.text)" class="yt-desc-more" type="button" :aria-expanded="expandedOriginal.has(post.id)" :aria-controls="`original-${post.id}`" @click="toggleOriginal(post.id)">{{ expandedOriginal.has(post.id) ? '收起' : '展开' }}</button>
+              <IconBtn v-if="isLongText(post.text)" class="btn-sm x-text-tool" :icon="expandedOriginal.has(post.id) ? 'chevron-up' : 'chevron-down'" :label="expandedOriginal.has(post.id) ? '收起原文' : '展开原文'" :aria-expanded="expandedOriginal.has(post.id)" :aria-controls="`original-${post.id}`" @click="toggleOriginal(post.id)" />
             </div>
             <div class="yt-info">
               <p v-if="post.title" class="x-brief"><span class="x-brief-label">内容简介：</span><span v-html="highlightHtml(tr(post.title), plainKeyword)" /></p>
@@ -119,12 +119,10 @@
               </div>
               <div v-if="post.note" style="margin-top:6px"><span class="note-pill">{{ post.note }}</span></div>
               <div class="yt-actions">
-                <button class="btn btn-sm cat-toggle" type="button" :aria-expanded="catMenuPost === post.id" @click="catMenuPost = catMenuPost === post.id ? null : post.id">{{ t('index.category') }}</button>
-                <button v-if="isReplicable(post)" class="btn btn-sm" :class="{ 'btn-primary': replicatedIds.has(post.id) }" type="button" @click="replicate(post)">
-                  {{ replicatedIds.has(post.id) ? t('index.replicated') : t('index.replicate') }}
-                </button>
-                <NuxtLink v-if="replicatedIds.has(post.id)" to="/fuke" class="btn btn-sm">{{ t('index.goFuke') }}</NuxtLink>
-                <button class="btn btn-sm btn-danger" type="button" :disabled="deleting.has(post.id)" @click="deletePost(post)">删除</button>
+                <IconBtn class="btn-sm cat-toggle" icon="tag" :class="{ 'btn-on': catMenuPost === post.id }" :label="t('index.category')" :aria-expanded="catMenuPost === post.id" @click="catMenuPost = catMenuPost === post.id ? null : post.id" />
+                <IconBtn v-if="isReplicable(post)" class="btn-sm" icon="fork" :class="{ 'btn-primary': replicatedIds.has(post.id) }" :label="replicatedIds.has(post.id) ? t('index.replicated') : t('index.replicate')" @click="replicate(post)" />
+                <NuxtLink v-if="replicatedIds.has(post.id)" to="/fuke" class="btn btn-sm btn-icon" :aria-label="t('index.goFuke')" :data-tip="t('index.goFuke')"><UiIcon name="arrow-up-right" /></NuxtLink>
+                <IconBtn class="btn-sm btn-danger" icon="trash" label="删除" :disabled="deleting.has(post.id)" @click="deletePost(post)" />
               </div>
               <div v-if="catMenuPost === post.id" class="cat-menu" style="margin-top:8px">
                 <div v-for="c in categories.categories" :key="c.id" class="cat-menu-item" style="display:flex;gap:6px;align-items:center">
@@ -132,12 +130,12 @@
                     <input type="checkbox" :checked="catsOf(post.id).includes(c.id)" @change="togglePostCat(post.id, c.id, ($event.target as HTMLInputElement).checked)" />
                     <span>{{ c.name }}</span>
                   </label>
-                  <button class="btn btn-sm" type="button" :title="t('index.catRename')" :aria-label="t('index.catRename')" @click="renameCat(c.id, c.name)">✎</button>
-                  <button class="btn btn-sm" type="button" :title="t('index.catDelete')" :aria-label="t('index.catDelete')" @click="removeCat(c.id, c.name)">✕</button>
+                  <IconBtn class="btn-sm btn-quiet" icon="pencil" :label="t('index.catRename')" @click="renameCat(c.id, c.name)" />
+                  <IconBtn class="btn-sm btn-quiet" icon="trash" :label="t('index.catDelete')" @click="removeCat(c.id, c.name)" />
                 </div>
                 <div style="display:flex;gap:6px;margin-top:6px">
                   <input class="field" v-model="newCatName" :placeholder="t('index.newCatPh')" maxlength="20" />
-                  <button class="btn btn-sm btn-primary" type="button" @click="createCat(post.id)">{{ t('index.newCat') }}</button>
+                  <IconBtn class="btn-sm btn-primary" icon="plus" :label="t('index.newCat')" @click="createCat(post.id)" />
                 </div>
                 <label v-if="isLongPost(post)" style="display:flex;gap:6px;align-items:center;margin-top:6px;font-size:13px">
                   复刻入口
@@ -148,7 +146,7 @@
                   </select>
                 </label>
                 <div style="display:flex;justify-content:flex-end;margin-top:6px">
-                  <button class="btn btn-sm" type="button" @click="catMenuPost = null">完成</button>
+                  <IconBtn class="btn-sm" icon="check" label="完成" @click="catMenuPost = null" />
                 </div>
               </div>
             </div>
@@ -164,7 +162,7 @@
             </div>
             <!-- AI 摘要：只对长文（字数 > 100）提供。点击时才调中转站 API 生成并入库（同油管），之后直接读库；可复刻帖子的流程图也在这里 -->
             <button v-if="isLongPost(post)" class="yt-summary-toggle" type="button" :aria-expanded="openSummary.has(post.id)" @click="toggleSummary(post)">
-              <span>✨ {{ openSummary.has(post.id) ? '收起 AI 摘要' : 'AI 摘要' }}<template v-if="hasFlow(post)"> · {{ t('index.stepsSummary', { n: post.steps!.length }) }}</template></span>
+              <span class="with-icon"><UiIcon name="sparkles" />{{ openSummary.has(post.id) ? '收起 AI 摘要' : 'AI 摘要' }}<template v-if="hasFlow(post)"> · {{ t('index.stepsSummary', { n: post.steps!.length }) }}</template></span>
               <svg class="yt-chevron" :class="{ 'is-collapsed': !openSummary.has(post.id) }" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
             </button>
             <section v-if="isLongPost(post) && openSummary.has(post.id)" class="yt-summary" aria-label="AI 摘要">
@@ -173,7 +171,7 @@
                 <p v-else-if="sum.status === 'pending' || sum.status === 'none'" class="yt-sum-note"><span class="yt-spinner" aria-hidden="true" />正在调用 AI 生成摘要，通常需要十几秒…</p>
                 <div v-else-if="sum.status === 'failed'" class="yt-sum-note">
                   <p class="yt-sum-error">生成失败：{{ sum.error }}</p>
-                  <button class="btn btn-sm" type="button" @click="generateSummary(post, true)">重试</button>
+                  <IconBtn class="btn-sm" icon="reset" label="重试" @click="generateSummary(post, true)" />
                 </div>
                 <template v-if="sum && sum.summary && sum.status !== 'pending'">
                   <h3 class="yt-sum-h">全文摘要</h3>
@@ -184,7 +182,7 @@
                   </template>
                   <div class="yt-sum-foot">
                     <span>{{ sum.source === 'description' ? '原文未收录，只根据标题和已有信息生成，内容可能不完整' : '根据推文原文生成' }}<template v-if="sum.updated_at"> · 生成于 {{ sum.updated_at }}</template></span>
-                    <button v-if="sum.status === 'done'" class="btn btn-sm" type="button" @click="generateSummary(post, true)">重新生成</button>
+                    <IconBtn v-if="sum.status === 'done'" class="btn-sm" icon="refresh" label="重新生成" @click="generateSummary(post, true)" />
                   </div>
                 </template>
               </template>
@@ -201,7 +199,7 @@
                     <span v-if="step.prep" class="flow-chip"><span class="flow-chip-label">{{ t('index.prep') }}</span>{{ step.prep }}</span>
                   </div>
                   <div v-if="(step.substeps || []).length" style="margin-top:6px">
-                    <button class="btn btn-sm" type="button" @click="toggleSubsteps(post.id, i)">{{ substepsOpen.has(`${post.id}:${i}`) ? t('index.collapseSubsteps') : t('index.expandSubsteps', { n: step.substeps!.length }) }}</button>
+                    <IconBtn class="btn-sm" :icon="substepsOpen.has(`${post.id}:${i}`) ? 'chevron-up' : 'list'" :badge="substepsOpen.has(`${post.id}:${i}`) ? undefined : step.substeps!.length" :label="substepsOpen.has(`${post.id}:${i}`) ? t('index.collapseSubsteps') : t('index.expandSubsteps', { n: step.substeps!.length })" @click="toggleSubsteps(post.id, i)" />
                     <ol v-if="substepsOpen.has(`${post.id}:${i}`)">
                       <li v-for="(sub, j) in step.substeps!.slice(0, 5)" :key="j" :title="sub.text">{{ `${i + 1}.${j + 1} ` }}{{ trunc40(tr(sub.text)) }}<span v-if="sub.source" style="color:var(--text-muted)"> — {{ sub.source }}</span></li>
                     </ol>
@@ -216,12 +214,12 @@
         </div>
         <p v-if="!loading && !totalPosts" class="empty">{{ t('index.noPosts') }}</p>
         <nav v-if="totalPosts" class="x-pager" aria-label="分页">
-          <button class="btn btn-sm" type="button" :disabled="page <= 1" @click="goPage(page - 1)">上一页</button>
+          <IconBtn class="btn-sm" icon="chevron-left" label="上一页" :disabled="page <= 1" @click="goPage(page - 1)" />
           <template v-for="(it, ii) in pageItems" :key="'pg' + ii">
             <span v-if="it === '…'" class="x-pager-gap">…</span>
             <button v-else class="btn btn-sm" :class="{ 'btn-primary': it === page }" type="button" :aria-current="it === page ? 'page' : undefined" @click="goPage(it)">{{ it }}</button>
           </template>
-          <button class="btn btn-sm" type="button" :disabled="page >= pageCount" @click="goPage(page + 1)">下一页</button>
+          <IconBtn class="btn-sm" icon="chevron-right" label="下一页" :disabled="page >= pageCount" @click="goPage(page + 1)" />
           <label class="x-pager-size">每页
             <select class="field" :value="pageSize" @change="setPageSize(Number(($event.target as HTMLSelectElement).value))">
               <option v-for="n in PAGE_SIZES" :key="n" :value="n">{{ n }} 条</option>
@@ -237,9 +235,9 @@
       <div class="modal-card" role="dialog" aria-modal="true" :aria-label="t('settings.title')">
         <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
           <h2 style="margin:0">{{ t('settings.title') }}</h2>
-          <button class="btn btn-sm" type="button" @click="showSettings = false" :aria-label="t('settings.close')">✕</button>
+          <IconBtn class="btn-sm btn-quiet" icon="x" :size="18" :label="t('settings.close')" @click="showSettings = false" />
         </div>
-        <p style="color:var(--text-muted);font-size:13px;margin:6px 0 0">主题、字号、字体在顶栏右上角「Aa 外观」里设置，对所有页面生效。</p>
+        <p style="color:var(--text-muted);font-size:13px;margin:6px 0 0">主题、字号、字体在顶栏右上角「外观」（调色板图标）里设置，对所有页面生效。</p>
 
         <div class="settings-section">
           <h3>{{ t('settings.watchlist') }}</h3>
@@ -252,7 +250,7 @@
               <select class="field" v-model="newAccount.group">
                 <option v-for="g in watchlist.groups" :key="g.id" :value="g.id">{{ g.name }}</option>
               </select>
-              <button class="btn btn-sm btn-primary" type="button" @click="doAddAccount">{{ t('settings.addAuthor') }}</button>
+              <IconBtn class="btn-sm btn-primary" icon="user-plus" :label="t('settings.addAuthor')" @click="doAddAccount" />
             </div>
           </div>
           <!-- 已关注作者：按分组折叠 + 搜索；点「编辑」才展开该作者的编辑项 -->
@@ -261,7 +259,7 @@
             <summary>批量导入关注列表</summary>
             <textarea class="field" v-model="bulkHandles" rows="3" placeholder="每行或用逗号分隔：alice, @bob, https://x.com/carol" />
             <div style="display:flex;gap:8px;align-items:center;margin-top:6px">
-              <button class="btn btn-sm btn-primary" type="button" :disabled="!bulkHandles.trim() || bulkBusy" @click="doBulkAdd">导入到「默认」分组</button>
+              <IconBtn class="btn-sm btn-primary" icon="users" plus label="导入到「默认」分组" :busy="bulkBusy" :disabled="!bulkHandles.trim() || bulkBusy" @click="doBulkAdd" />
               <span v-if="bulkMsg" class="active-count">{{ bulkMsg }}</span>
             </div>
           </details>
@@ -282,14 +280,14 @@
                   <a class="wl-author-handle" :href="`https://x.com/${a.username}`" target="_blank" rel="noopener">@{{ a.username }}</a>
                   <span class="chip-count" :title="'近 30 天发帖数'">30 天 {{ posts30d[a.username] ?? 0 }} 帖</span>
                   <span style="flex:1" />
-                  <button class="btn btn-sm" type="button" :aria-expanded="editingAuthor === a.username" @click="editingAuthor = editingAuthor === a.username ? '' : a.username">{{ editingAuthor === a.username ? '收起' : '编辑' }}</button>
+                  <IconBtn class="btn-sm" :icon="editingAuthor === a.username ? 'chevron-up' : 'pencil'" :class="{ 'btn-on': editingAuthor === a.username }" :label="editingAuthor === a.username ? '收起' : '编辑'" :aria-expanded="editingAuthor === a.username" @click="editingAuthor = editingAuthor === a.username ? '' : a.username" />
                 </div>
                 <div v-if="editingAuthor === a.username" class="wl-author-edit">
                   <label>{{ t('settings.displayNamePh') }}<input class="field" :value="a.name" @change="doPatchAccount(a.username, { name: ($event.target as HTMLInputElement).value })" /></label>
                   <label>分组<select class="field" :value="a.group" @change="doPatchAccount(a.username, { group: ($event.target as HTMLSelectElement).value })">
                     <option v-for="g in watchlist.groups" :key="g.id" :value="g.id">{{ g.name }}</option>
                   </select></label>
-                  <div style="display:flex;justify-content:flex-end"><button class="btn btn-sm btn-danger" type="button" @click="doDeleteAccount(a.username)">{{ t('settings.deleteAuthor') }}</button></div>
+                  <div style="display:flex;justify-content:flex-end"><IconBtn class="btn-sm btn-danger" icon="user-x" :label="t('settings.deleteAuthor')" @click="doDeleteAccount(a.username)" /></div>
                 </div>
               </div>
             </template>
@@ -303,11 +301,11 @@
           <template v-if="showGroupMgr">
             <div style="display:flex;gap:6px;flex-wrap:wrap">
               <input class="field" v-model="newGroupName" :placeholder="t('settings.newGroupPh')" style="flex:1;min-width:140px" @keyup.enter="doAddGroup" />
-              <button class="btn btn-sm btn-primary" type="button" @click="doAddGroup">{{ t('settings.addGroup') }}</button>
+              <IconBtn class="btn-sm btn-primary" icon="folder-plus" :label="t('settings.addGroup')" @click="doAddGroup" />
             </div>
             <div v-for="g in watchlist.groups" :key="g.id" class="watch-row">
               <strong>{{ g.name }}</strong><span style="color:var(--text-muted)">({{ g.id }})</span>
-              <button v-if="!g.fixed" class="btn btn-sm btn-danger" type="button" @click="doDeleteGroup(g.id)">{{ t('settings.deleteGroup') }}</button>
+              <IconBtn v-if="!g.fixed" class="btn-sm btn-danger" icon="trash" :label="t('settings.deleteGroup')" @click="doDeleteGroup(g.id)" />
             </div>
           </template>
         </div>
@@ -316,13 +314,13 @@
           <h3>导出 / 导入设置</h3>
           <p style="color:var(--text-muted);font-size:13px;margin:0">把主题、字体、语言、筛选记忆导出成 JSON，在另一台设备导入（不含 API Token 等密钥）。</p>
           <div class="modal-actions" style="justify-content:flex-start">
-            <button class="btn btn-sm" type="button" @click="doExportSettings">导出设置</button>
-            <label class="btn btn-sm" style="cursor:pointer">导入设置<input type="file" accept="application/json,.json" style="display:none" @change="doImportSettings" /></label>
+            <IconBtn class="btn-sm" icon="download" label="导出设置" @click="doExportSettings" />
+            <label class="btn btn-sm btn-icon" style="cursor:pointer" aria-label="导入设置" data-tip="导入设置"><UiIcon name="upload" /><input type="file" accept="application/json,.json" style="display:none" @change="doImportSettings" /></label>
           </div>
         </div>
 
         <div class="modal-actions">
-          <button class="btn btn-primary" type="button" @click="showSettings = false">{{ t('settings.done') }}</button>
+          <IconBtn class="btn-primary" icon="check" :label="t('settings.done')" @click="showSettings = false" />
         </div>
       </div>
     </div>

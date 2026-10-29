@@ -10,12 +10,12 @@
         <div class="filter-row">
           <span style="color:var(--text-muted)">{{ t('yt.total', { n: channels.length, v: videos.length }) }}</span>
           <span style="flex:1" />
-          <button class="btn btn-sm" type="button" @click="syncAll" :disabled="syncAllBusy">{{ syncAllBusy ? t('yt.syncing') : t('yt.syncAll') }}</button>
-          <button v-if="P === 'yt'" class="btn btn-sm" type="button" @click="openAdd('video')">{{ t('yt.addVideo') }}</button>
-          <button class="btn btn-sm btn-primary" type="button" @click="openAdd('channel')">{{ t('yt.addChannel') }}</button>
+          <IconBtn class="btn-sm" icon="refresh" :busy="syncAllBusy" :label="syncAllBusy ? t('yt.syncing') : t('yt.syncAll')" :disabled="syncAllBusy" @click="syncAll" />
+          <IconBtn v-if="P === 'yt'" class="btn-sm" icon="video" plus :label="t('yt.addVideo')" @click="openAdd('video')" />
+          <IconBtn class="btn-sm btn-primary" icon="tv" plus :label="t('yt.addChannel')" @click="openAdd('channel')" />
         </div>
         <div class="filter-row" style="justify-content:space-between;margin-top:8px">
-          <button class="btn btn-sm" type="button" @click="filtersCollapsed = !filtersCollapsed" :aria-expanded="!filtersCollapsed">{{ filtersCollapsed ? t('yt.expandFilters') : t('yt.collapseFilters') }}</button>
+          <IconBtn class="btn-sm" icon="filter" :class="{ 'btn-on': !filtersCollapsed }" :label="filtersCollapsed ? t('yt.expandFilters') : t('yt.collapseFilters')" :aria-expanded="!filtersCollapsed" @click="filtersCollapsed = !filtersCollapsed" />
           <span class="active-count" v-if="filtersCollapsed && activeFilterCount">{{ t('index.selectedFilters', { n: activeFilterCount }) }}</span>
         </div>
         <div v-show="!filtersCollapsed">
@@ -55,7 +55,7 @@
             </div>
           </div>
           <div class="filter-row" style="margin-top:8px">
-            <button class="btn btn-sm" type="button" @click="clearAll">{{ t('yt.clearAll') }}</button>
+            <IconBtn class="btn-sm" icon="eraser" :label="t('yt.clearAll')" @click="clearAll" />
           </div>
         </div>
         <p v-if="syncAllMsg" style="color:var(--text-muted)">{{ syncAllMsg }}</p>
@@ -80,12 +80,12 @@
               {{ c.last_synced_at ? t('yt.lastSynced', { time: shanghaiTime(c.last_synced_at) }) : t('yt.neverSyncedShort') }}
             </span>
             <span v-if="c.sync_error" style="color:var(--danger-text)" :title="c.sync_error">{{ trunc40(c.sync_error) }}</span>
-            <button class="btn btn-sm" type="button" @click="openEdit(c)">{{ t('yt.editRange') }}</button>
-            <button class="btn btn-sm" type="button" @click="doSync(c)" :disabled="syncing.has(c.id)">
-              {{ syncing.has(c.id) ? t('yt.refreshing') : t('yt.sync') }}
-            </button>
-            <button v-if="c.sync_mode === 'single'" class="btn btn-sm btn-primary" type="button" @click="doSync(c, true)" :disabled="syncing.has(c.id)">{{ t('yt.syncChannelAll') }}</button>
-            <button class="btn btn-sm btn-danger" type="button" @click="doDelete(c)">{{ t('common.delete') }}</button>
+            <span class="btn-group">
+            <IconBtn class="btn-sm" icon="calendar" :label="t('yt.editRange')" @click="openEdit(c)" />
+            <IconBtn class="btn-sm" icon="refresh" :busy="syncing.has(c.id)" :label="syncing.has(c.id) ? t('yt.refreshing') : t('yt.sync')" :disabled="syncing.has(c.id)" @click="doSync(c)" />
+            <IconBtn v-if="c.sync_mode === 'single'" class="btn-sm btn-primary" icon="cloud-download" :label="t('yt.syncChannelAll')" :disabled="syncing.has(c.id)" @click="doSync(c, true)" />
+            <IconBtn class="btn-sm btn-danger" icon="trash" :label="t('common.delete')" @click="doDelete(c)" />
+            </span>
           </div>
           </template>
           <button class="yt-section-toggle" type="button" style="margin-top:10px" :aria-expanded="!collapsedSections.groups" @click="toggleSection('groups')">
@@ -95,11 +95,11 @@
           <template v-if="!collapsedSections.groups">
           <div style="display:flex;gap:6px;flex-wrap:wrap">
             <input class="field" v-model="newGroupName" :placeholder="t('yt.newGroupPh')" style="flex:1;min-width:140px" />
-            <button class="btn btn-sm btn-primary" type="button" @click="doAddGroup">{{ t('yt.addGroup') }}</button>
+            <IconBtn class="btn-sm btn-primary" icon="folder-plus" :label="t('yt.addGroup')" @click="doAddGroup" />
           </div>
           <div v-for="g in groups" :key="g.id" class="watch-row">
             <strong>{{ g.name }}</strong><span style="color:var(--text-muted)">（{{ channelCountIn(g.id) }}）</span>
-            <button v-if="!g.fixed" class="btn btn-sm btn-danger" type="button" @click="doDeleteGroup(g)">{{ t('yt.deleteGroup') }}</button>
+            <IconBtn v-if="!g.fixed" class="btn-sm btn-danger" icon="trash" :label="t('yt.deleteGroup')" @click="doDeleteGroup(g)" />
           </div>
           </template>
         </section>
@@ -109,7 +109,7 @@
           <button v-for="tab in tabs" :key="tab.key" type="button" class="chip"
             :class="{ active: activeTab === tab.key }" role="tab" :aria-selected="activeTab === tab.key"
             @click="activeTab = tab.key">{{ t(tab.label) }}（{{ tabCounts[tab.key] }}）</button>
-          <button type="button" class="chip" :class="{ active: watchLaterOnly }" :aria-pressed="watchLaterOnly" @click="watchLaterOnly = !watchLaterOnly">🕒 稍后观看（{{ watchLaterCount }}）</button>
+          <button type="button" class="chip" :class="{ active: watchLaterOnly }" :aria-pressed="watchLaterOnly" @click="watchLaterOnly = !watchLaterOnly"><span class="with-icon"><UiIcon name="clock" :size="14" />稍后观看（{{ watchLaterCount }}）</span></button>
         </div>
 
         <!-- 空状态 -->
@@ -133,9 +133,7 @@
               </a>
               <p v-if="v.description" class="yt-desc" :class="{ 'yt-desc-open': expandedDesc.has(v.id) }"><template v-for="(part, pi) in linkParts(tr(v.description))" :key="pi"><a v-if="part.href" class="yt-desc-link" :href="part.href" :title="part.href" target="_blank" rel="noopener noreferrer">{{ part.text.replace(/^https?:\/\/(www\.)?/, '') }}</a><template v-else>{{ part.text }}</template></template></p>
               <p v-else class="yt-desc-empty">{{ t('yt.noDesc') }}</p>
-              <button v-if="(v.description || '').length > 80" class="yt-desc-more" type="button" @click="toggleDesc(v.id)">
-                {{ expandedDesc.has(v.id) ? t('yt.collapseDesc') : t('yt.expandDesc') }}
-              </button>
+              <IconBtn v-if="(v.description || '').length > 80" class="btn-sm x-text-tool" :icon="expandedDesc.has(v.id) ? 'chevron-up' : 'chevron-down'" :label="expandedDesc.has(v.id) ? t('yt.collapseDesc') : t('yt.expandDesc')" :aria-expanded="expandedDesc.has(v.id)" @click="toggleDesc(v.id)" />
             </div>
             <div class="yt-info">
               <h2 class="post-title yt-title">
@@ -163,12 +161,12 @@
               </ul>
             </div>
             <div class="yt-watch-row">
-              <button class="btn btn-sm" type="button" :aria-pressed="!!v.watched_at" @click="toggleWatched(v)">{{ v.watched_at ? '✓ 已看' : '标记已看' }}</button>
-              <button class="btn btn-sm" type="button" :aria-pressed="!!v.watch_later" @click="toggleWatchLater(v)">{{ v.watch_later ? '移出稍后观看' : '🕒 稍后观看' }}</button>
+              <IconBtn class="btn-sm" icon="circle-check" :class="{ 'btn-on': !!v.watched_at }" :label="v.watched_at ? '已看（点击取消）' : '标记已看'" :aria-pressed="!!v.watched_at" @click="toggleWatched(v)" />
+              <IconBtn class="btn-sm" icon="clock" :class="{ 'btn-on': !!v.watch_later }" :label="v.watch_later ? '移出稍后观看' : '稍后观看'" :aria-pressed="!!v.watch_later" @click="toggleWatchLater(v)" />
             </div>
             <!-- AI 摘要：整行放在卡片模块下方（不在右侧栏内），点按展开/收起，默认收起。 -->
             <button v-if="videoKind(v) !== 'playlist'" class="yt-summary-toggle" type="button" :aria-expanded="openSummary.has(v.id)" @click="toggleSummary(v)">
-              <span>✨ {{ openSummary.has(v.id) ? t('yt.aiSummaryHide') : t('yt.aiSummary') }}</span>
+              <span class="with-icon"><UiIcon name="sparkles" />{{ openSummary.has(v.id) ? t('yt.aiSummaryHide') : t('yt.aiSummary') }}</span>
               <svg class="yt-chevron" :class="{ 'is-collapsed': !openSummary.has(v.id) }" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
             </button>
             <section v-if="openSummary.has(v.id)" class="yt-summary" :aria-label="t('yt.aiSummary')">
@@ -177,7 +175,7 @@
                 <p v-else-if="sum.status === 'pending' || sum.status === 'none'" class="yt-sum-note"><span class="yt-spinner" aria-hidden="true" />{{ t('yt.aiPending') }}</p>
                 <div v-else-if="sum.status === 'failed'" class="yt-sum-note">
                   <p class="yt-sum-error">{{ t('yt.aiFailed', { msg: sum.error || '' }) }}</p>
-                  <button class="btn btn-sm" type="button" @click="generateSummary(v, true)">{{ t('yt.aiRetry') }}</button>
+                  <IconBtn class="btn-sm" icon="reset" :label="t('yt.aiRetry')" @click="generateSummary(v, true)" />
                 </div>
                 <template v-if="sum && sum.summary && sum.status !== 'pending'">
                   <h3 class="yt-sum-h">{{ t('yt.aiFullSummary') }}</h3>
@@ -190,7 +188,7 @@
                   <!-- 点章节时间：在这里内嵌播放器并跳到该时间点 -->
                   <div v-if="playerSrc[v.id]" class="yt-embed">
                     <iframe :ref="el => setPlayerEl(v.id, el)" :src="playerSrc[v.id]" title="player" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen />
-                    <button class="btn btn-sm" type="button" @click="closePlayer(v.id)">关闭播放器</button>
+                    <IconBtn class="btn-sm" icon="x" label="关闭播放器" @click="closePlayer(v.id)" />
                   </div>
                   <ol v-if="sum.chapters.length" class="yt-chapters">
                     <li v-for="c in sum.chapters" :key="'c' + c.start" class="yt-chapter">
@@ -204,7 +202,7 @@
                   <p v-else class="yt-sum-note">{{ t('yt.aiNoChapters') }}</p>
                   <div class="yt-sum-foot">
                     <span>{{ sum.source === 'description' ? t('yt.aiSourceDescription') : t('yt.aiSourceTranscript', { lang: sum.transcript_lang || '—' }) }}<template v-if="sum.updated_at"> · {{ t('yt.aiGeneratedAt', { time: sum.updated_at }) }}</template></span>
-                    <button v-if="sum.status === 'done'" class="btn btn-sm" type="button" @click="generateSummary(v, true)">{{ t('yt.aiRegenerate') }}</button>
+                    <IconBtn v-if="sum.status === 'done'" class="btn-sm" icon="refresh" :label="t('yt.aiRegenerate')" @click="generateSummary(v, true)" />
                   </div>
                 </template>
               </template>
@@ -238,8 +236,8 @@
         </template>
         <p v-if="addError" style="color:var(--danger-text)">{{ addError }}</p>
         <div class="modal-actions">
-          <button class="btn" type="button" @click="showAdd = false">{{ t('common.cancel') }}</button>
-          <button class="btn btn-primary" type="button" @click="doAdd" :disabled="addBusy">{{ addBusy ? t('yt.adding') : t('yt.add') }}</button>
+          <IconBtn icon="x" :label="t('common.cancel')" @click="showAdd = false" />
+          <IconBtn class="btn-primary" icon="check" :label="addBusy ? t('yt.adding') : t('yt.add')" :disabled="addBusy" @click="doAdd" />
         </div>
       </div>
     </div>
@@ -261,8 +259,8 @@
         <p style="color:var(--text-muted);font-size:13px">{{ t('yt.rangeHint') }}</p>
         <p v-if="editError" style="color:var(--danger-text)">{{ editError }}</p>
         <div class="modal-actions">
-          <button class="btn" type="button" @click="showEdit = false">{{ t('common.cancel') }}</button>
-          <button class="btn btn-primary" type="button" @click="doEdit" :disabled="editBusy">{{ t('common.save') }}</button>
+          <IconBtn icon="x" :label="t('common.cancel')" @click="showEdit = false" />
+          <IconBtn class="btn-primary" icon="check" :label="t('common.save')" :disabled="editBusy" @click="doEdit" />
         </div>
       </div>
     </div>

@@ -1,12 +1,12 @@
 <template>
   <div class="bell-wrap" @click.stop>
-    <button class="btn btn-sm lang-toggle bell-btn" type="button" :aria-label="`通知（${unread} 条未读）`" :aria-expanded="open" @click="toggle">
-      <span aria-hidden="true">🔔</span><span v-if="unread" class="bell-count">{{ unread > 99 ? '99+' : unread }}</span>
+    <button class="btn btn-sm btn-icon lang-toggle bell-btn" :class="{ 'btn-on': open }" type="button" :aria-label="`通知（${unread} 条未读）`" data-tip="通知" :aria-expanded="open" @click="toggle">
+      <UiIcon name="bell" /><span v-if="unread" class="bell-count">{{ unread > 99 ? '99+' : unread }}</span>
     </button>
     <div v-if="open" class="bell-pop" role="dialog" aria-label="通知">
       <div class="bell-head">
         <strong>通知</strong>
-        <button v-if="unread" class="btn btn-sm" type="button" @click="markAll">全部已读</button>
+        <IconBtn v-if="unread" class="btn-sm" icon="check-check" label="全部已读" @click="markAll" />
       </div>
       <p v-if="!items.length" class="bell-empty">暂无通知（关注的仓库发布新 Release 时会提醒）</p>
       <a v-for="n in items" :key="n.id" class="bell-item" :class="{ unread: !n.read_at }" :href="n.url || undefined" target="_blank" rel="noopener" @click="markOne(n)">

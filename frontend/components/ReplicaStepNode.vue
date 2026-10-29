@@ -5,13 +5,13 @@
       <button type="button" class="check-box" :class="{ checked: step.status === 'done' }"
         :title="t('node.childAriaStatus', { status: statusNames[step.status] })"
         :aria-label="t('node.childAriaStatus', { status: statusNames[step.status] })"
-        @click="toggleChildStatus">{{ step.status === 'done' ? '✓' : '' }}</button>
+        @click="toggleChildStatus"><UiIcon v-if="step.status === 'done'" name="check" :size="13" :stroke="3" /></button>
       <span class="check-text" :class="{ 'is-done': step.status === 'done' }" :title="t('node.toggleChildDetail')" @click="childDetailOpen = !childDetailOpen">{{ tr(step.text) }}</span>
       <div v-if="step.is_custom" class="node-menu-wrap">
-        <button class="btn btn-sm btn-quiet node-menu-btn" type="button" @click="toggleMenu('actions')" :aria-label="t('node.menu')" aria-haspopup="menu" :aria-expanded="openMenu === 'actions'">☰</button>
+        <IconBtn class="btn-sm btn-quiet node-menu-btn" icon="more" :size="18" :label="t('node.menu')" aria-haspopup="menu" :aria-expanded="openMenu === 'actions'" @click="toggleMenu('actions')" />
         <div v-if="openMenu === 'actions'" class="node-menu" role="menu">
-          <button type="button" role="menuitem" @click="menuEdit">{{ t('common.edit') }}</button>
-          <button type="button" role="menuitem" class="danger" @click="menuDelete">{{ t('common.delete') }}</button>
+          <button type="button" role="menuitem" class="menu-item-icon" @click="menuEdit"><UiIcon name="pencil" />{{ t('common.edit') }}</button>
+          <button type="button" role="menuitem" class="danger menu-item-icon" @click="menuDelete"><UiIcon name="trash" />{{ t('common.delete') }}</button>
         </div>
       </div>
     </div>
@@ -19,20 +19,20 @@
       <div v-if="editingText !== null" style="margin:6px 0">
         <input class="field" style="width:100%" type="text" v-model="editingText" :aria-label="t('node.editTextAria')" />
         <div style="margin-top:6px;display:flex;gap:6px">
-          <button class="btn btn-sm btn-primary" type="button" @click="saveStepText">{{ t('node.saveText') }}</button>
-          <button class="btn btn-sm" type="button" @click="editingText = null">{{ t('common.cancel') }}</button>
+          <IconBtn class="btn-sm btn-primary" icon="check" :label="t('node.saveText')" @click="saveStepText" />
+          <IconBtn class="btn-sm" icon="x" :label="t('common.cancel')" @click="editingText = null" />
         </div>
       </div>
       <p v-if="(step.note || '').trim() && tr(step.note || '') !== (step.note || '')" class="note-translated"><span class="note-translated-label">{{ t('node.noteTranslation') }}</span>{{ tr(step.note || '') }}</p>
       <NoteEditor :model-value="step.note || ''" :upload-image="uploadPastedImage" @update:model-value="step.note = $event" @save="saveNote($event)" />
       <div style="margin-top:8px;display:flex;align-items:center;gap:6px">
         <div class="node-menu-wrap">
-          <button class="btn btn-sm btn-quiet node-menu-btn" type="button" @click="toggleMenu('upload')" :aria-label="t('node.uploadMenu')" aria-haspopup="menu" :aria-expanded="openMenu === 'upload'">☰</button>
+          <IconBtn class="btn-sm node-menu-btn" icon="paperclip" :class="{ 'btn-on': openMenu === 'upload' }" :label="t('node.uploadMenu')" aria-haspopup="menu" :aria-expanded="openMenu === 'upload'" @click="toggleMenu('upload')" />
           <div v-if="openMenu === 'upload'" class="node-menu left" role="menu">
-            <label role="menuitem">{{ t('node.uploadImage') }}
+            <label role="menuitem" class="menu-item-icon"><UiIcon name="image" />{{ t('node.uploadImage') }}
               <input type="file" accept="image/*" multiple hidden @change="upload($event)" />
             </label>
-            <label role="menuitem">{{ t('node.uploadDocs') }}
+            <label role="menuitem" class="menu-item-icon"><UiIcon name="file" />{{ t('node.uploadDocs') }}
               <input type="file" multiple hidden :accept="acceptDocs" @change="upload($event)" />
             </label>
           </div>
@@ -43,11 +43,11 @@
         <div v-for="att in step.attachments" :key="att.id" class="attachment-row">
           <span class="attachment-name">{{ att.name }}</span>
           <div class="node-menu-wrap">
-            <button class="btn btn-sm btn-quiet node-menu-btn" type="button" @click="toggleAttMenu(att.id)" :aria-label="t('node.menu')" aria-haspopup="menu" :aria-expanded="attMenuId === att.id">☰</button>
+            <IconBtn class="btn-sm btn-quiet node-menu-btn" icon="more" :size="18" :label="t('node.menu')" aria-haspopup="menu" :aria-expanded="attMenuId === att.id" @click="toggleAttMenu(att.id)" />
             <div v-if="attMenuId === att.id" class="node-menu" role="menu">
-              <button type="button" role="menuitem" @click="menuPreviewAtt(att)">{{ previewAtt?.id === att.id ? t('common.collapsePreview') : t('common.preview') }}</button>
-              <a role="menuitem" :href="att.download_url" download @click="attMenuId = null">{{ t('common.download') }}</a>
-              <button type="button" role="menuitem" class="danger" @click="menuDeleteAtt(att)">{{ t('node.deleteAtt') }}</button>
+              <button type="button" role="menuitem" class="menu-item-icon" @click="menuPreviewAtt(att)"><UiIcon :name="previewAtt?.id === att.id ? 'eye-off' : 'eye'" />{{ previewAtt?.id === att.id ? t('common.collapsePreview') : t('common.preview') }}</button>
+              <a role="menuitem" class="menu-item-icon" :href="att.download_url" download @click="attMenuId = null"><UiIcon name="download" />{{ t('common.download') }}</a>
+              <button type="button" role="menuitem" class="danger menu-item-icon" @click="menuDeleteAtt(att)"><UiIcon name="trash" />{{ t('node.deleteAtt') }}</button>
             </div>
           </div>
         </div>
@@ -61,7 +61,7 @@
     <div class="flow-rail">
       <button type="button" class="status-dot" :class="`is-${step.status}`"
         :title="t('node.statusClick', { status: statusNames[step.status] })" :aria-label="t('node.ariaStatus', { num, status: statusNames[step.status] })"
-        @click="cycleStatus">{{ step.status === 'done' ? '✓' : num.padStart(2, '0') }}</button>
+        @click="cycleStatus"><UiIcon v-if="step.status === 'done'" name="check" :size="15" :stroke="2.8" /><template v-else>{{ num.padStart(2, '0') }}</template></button>
       <span class="flow-line" v-if="!isLast" />
     </div>
     <div class="flow-card replica-node-card" style="flex:1;min-width:0">
@@ -73,11 +73,11 @@
         <div class="node-head-side">
           <span class="node-pill" :class="`pill-${step.status}`">{{ statusNames[step.status] }}</span>
           <div v-if="step.is_custom" class="node-menu-wrap">
-            <button class="btn btn-sm btn-quiet node-menu-btn" type="button" @click="toggleMenu('actions')" :aria-label="t('node.menu')" aria-haspopup="menu" :aria-expanded="openMenu === 'actions'">☰</button>
+            <IconBtn class="btn-sm btn-quiet node-menu-btn" icon="more" :size="18" :label="t('node.menu')" aria-haspopup="menu" :aria-expanded="openMenu === 'actions'" @click="toggleMenu('actions')" />
             <div v-if="openMenu === 'actions'" class="node-menu" role="menu">
-              <button type="button" role="menuitem" :title="t('node.badgeTitleToggle')" @click="menuBadge">{{ t('node.badgeCustom') }}</button>
-              <button type="button" role="menuitem" @click="menuEdit">{{ t('common.edit') }}</button>
-              <button type="button" role="menuitem" class="danger" @click="menuDelete">{{ t('common.delete') }}</button>
+              <button type="button" role="menuitem" class="menu-item-icon" :title="t('node.badgeTitleToggle')" @click="menuBadge"><UiIcon name="star" />{{ t('node.badgeCustom') }}</button>
+              <button type="button" role="menuitem" class="menu-item-icon" @click="menuEdit"><UiIcon name="pencil" />{{ t('common.edit') }}</button>
+              <button type="button" role="menuitem" class="danger menu-item-icon" @click="menuDelete"><UiIcon name="trash" />{{ t('common.delete') }}</button>
             </div>
           </div>
         </div>
@@ -85,8 +85,8 @@
       <div v-if="editingText !== null" style="margin:6px 0">
         <input class="field" style="width:100%" type="text" v-model="editingText" :aria-label="t('node.editTextAria')" />
         <div style="margin-top:6px;display:flex;gap:6px">
-          <button class="btn btn-sm btn-primary" type="button" @click="saveStepText">{{ t('node.saveText') }}</button>
-          <button class="btn btn-sm" type="button" @click="editingText = null">{{ t('common.cancel') }}</button>
+          <IconBtn class="btn-sm btn-primary" icon="check" :label="t('node.saveText')" @click="saveStepText" />
+          <IconBtn class="btn-sm" icon="x" :label="t('common.cancel')" @click="editingText = null" />
         </div>
       </div>
       <div v-if="step.tools || step.tech || step.prep" style="color:var(--text-muted);font-size:13px">
@@ -96,7 +96,7 @@
       </div>
       <!-- 一直显示：没有任何详情的节点也要能展开，才能写备注、加子节点、上传附件。 -->
       <div style="margin-top:8px">
-        <button class="btn btn-sm" type="button" @click="detailsOpen = !detailsOpen">{{ detailsToggleLabel }}</button>
+        <IconBtn class="btn-sm" :icon="detailsOpen ? 'chevron-up' : 'list'" :class="{ 'btn-on': detailsOpen }" :badge="!detailsOpen && subCount ? subCount : undefined" :label="detailsToggleLabel" :aria-expanded="detailsOpen" @click="detailsOpen = !detailsOpen" />
         <div v-if="detailsOpen">
           <div v-if="children.length" class="check-list">
             <ReplicaStepNode v-for="(child, ci) in children" :key="child.idx" :replica="replica" :step="child"
@@ -110,19 +110,19 @@
           <div style="margin-top:8px">
             <input class="field" style="width:100%" type="text" v-model="newChildText" :placeholder="t('node.childPh')" :aria-label="t('node.childAria')" />
             <div style="margin-top:6px">
-              <button class="btn btn-sm btn-primary" type="button" :disabled="!newChildText.trim()" @click="addChild">{{ t('node.addChildBtn') }}</button>
+              <IconBtn class="btn-sm btn-primary" icon="plus" :label="t('node.addChildBtn')" :disabled="!newChildText.trim()" @click="addChild" />
             </div>
           </div>
           <p v-if="(step.note || '').trim() && tr(step.note || '') !== (step.note || '')" class="note-translated"><span class="note-translated-label">{{ t('node.noteTranslation') }}</span>{{ tr(step.note || '') }}</p>
           <NoteEditor :model-value="step.note || ''" :upload-image="uploadPastedImage" @update:model-value="step.note = $event" @save="saveNote($event)" />
           <div style="margin-top:8px;display:flex;align-items:center;gap:6px">
             <div class="node-menu-wrap">
-              <button class="btn btn-sm btn-quiet node-menu-btn" type="button" @click="toggleMenu('upload')" :aria-label="t('node.uploadMenu')" aria-haspopup="menu" :aria-expanded="openMenu === 'upload'">☰</button>
+              <IconBtn class="btn-sm node-menu-btn" icon="paperclip" :class="{ 'btn-on': openMenu === 'upload' }" :label="t('node.uploadMenu')" aria-haspopup="menu" :aria-expanded="openMenu === 'upload'" @click="toggleMenu('upload')" />
               <div v-if="openMenu === 'upload'" class="node-menu left" role="menu">
-                <label role="menuitem">{{ t('node.uploadImage') }}
+                <label role="menuitem" class="menu-item-icon"><UiIcon name="image" />{{ t('node.uploadImage') }}
                   <input type="file" accept="image/*" multiple hidden @change="upload($event)" />
                 </label>
-                <label role="menuitem">{{ t('node.uploadDocs') }}
+                <label role="menuitem" class="menu-item-icon"><UiIcon name="file" />{{ t('node.uploadDocs') }}
                   <input type="file" multiple hidden :accept="acceptDocs" @change="upload($event)" />
                 </label>
               </div>
@@ -133,11 +133,11 @@
             <div v-for="att in step.attachments" :key="att.id" class="attachment-row">
               <span class="attachment-name">{{ att.name }}</span>
               <div class="node-menu-wrap">
-                <button class="btn btn-sm btn-quiet node-menu-btn" type="button" @click="toggleAttMenu(att.id)" :aria-label="t('node.menu')" aria-haspopup="menu" :aria-expanded="attMenuId === att.id">☰</button>
+                <IconBtn class="btn-sm btn-quiet node-menu-btn" icon="more" :size="18" :label="t('node.menu')" aria-haspopup="menu" :aria-expanded="attMenuId === att.id" @click="toggleAttMenu(att.id)" />
                 <div v-if="attMenuId === att.id" class="node-menu" role="menu">
-                  <button type="button" role="menuitem" @click="menuPreviewAtt(att)">{{ previewAtt?.id === att.id ? t('common.collapsePreview') : t('common.preview') }}</button>
-                  <a role="menuitem" :href="att.download_url" download @click="attMenuId = null">{{ t('common.download') }}</a>
-                  <button type="button" role="menuitem" class="danger" @click="menuDeleteAtt(att)">{{ t('node.deleteAtt') }}</button>
+                  <button type="button" role="menuitem" class="menu-item-icon" @click="menuPreviewAtt(att)"><UiIcon :name="previewAtt?.id === att.id ? 'eye-off' : 'eye'" />{{ previewAtt?.id === att.id ? t('common.collapsePreview') : t('common.preview') }}</button>
+                  <a role="menuitem" class="menu-item-icon" :href="att.download_url" download @click="attMenuId = null"><UiIcon name="download" />{{ t('common.download') }}</a>
+                  <button type="button" role="menuitem" class="danger menu-item-icon" @click="menuDeleteAtt(att)"><UiIcon name="trash" />{{ t('node.deleteAtt') }}</button>
                 </div>
               </div>
             </div>

@@ -10,11 +10,11 @@
         <div class="filter-row">
           <span style="color:var(--text-muted)">{{ t('repos.total', { n: filtered.length }) }}</span>
           <span style="flex:1" />
-          <button class="btn btn-sm" type="button" @click="syncAll" :disabled="syncAllBusy">{{ syncAllBusy ? t('repos.syncing') : t('repos.syncAll') }}</button>
-          <button class="btn btn-sm btn-primary" type="button" @click="openAdd">{{ t('repos.addRepo') }}</button>
+          <IconBtn class="btn-sm" icon="refresh" :busy="syncAllBusy" :label="syncAllBusy ? t('repos.syncing') : t('repos.syncAll')" :disabled="syncAllBusy" @click="syncAll" />
+          <IconBtn class="btn-sm btn-primary" icon="book" plus :label="t('repos.addRepo')" @click="openAdd" />
         </div>
         <div class="filter-row" style="justify-content:space-between;margin-top:8px">
-          <button class="btn btn-sm" type="button" @click="filtersCollapsed = !filtersCollapsed" :aria-expanded="!filtersCollapsed">{{ filtersCollapsed ? t('repos.expandFilters') : t('repos.collapseFilters') }}</button>
+          <IconBtn class="btn-sm" icon="filter" :class="{ 'btn-on': !filtersCollapsed }" :label="filtersCollapsed ? t('repos.expandFilters') : t('repos.collapseFilters')" :aria-expanded="!filtersCollapsed" @click="filtersCollapsed = !filtersCollapsed" />
           <span class="active-count" v-if="filtersCollapsed && activeFilterCount">{{ t('index.selectedFilters', { n: activeFilterCount }) }}</span>
         </div>
         <div v-show="!filtersCollapsed">
@@ -49,11 +49,11 @@
           <h3 style="margin:8px 0">{{ t('repos.groupManage') }}</h3>
           <div style="display:flex;gap:6px;flex-wrap:wrap">
             <input class="field" v-model="newGroupName" :placeholder="t('repos.newGroupPh')" style="flex:1;min-width:140px" />
-            <button class="btn btn-sm btn-primary" type="button" @click="doAddGroup">{{ t('repos.addGroup') }}</button>
+            <IconBtn class="btn-sm btn-primary" icon="folder-plus" :label="t('repos.addGroup')" @click="doAddGroup" />
           </div>
           <div v-for="g in groups" :key="g.id" class="watch-row">
             <strong>{{ g.name }}</strong><span style="color:var(--text-muted)">{{ t('repos.reposInGroup', { n: repoCountIn(g.id) }) }}</span>
-            <button v-if="!g.fixed" class="btn btn-sm btn-danger" type="button" @click="doDeleteGroup(g)">{{ t('repos.deleteGroup') }}</button>
+            <IconBtn v-if="!g.fixed" class="btn-sm btn-danger" icon="trash" :label="t('repos.deleteGroup')" @click="doDeleteGroup(g)" />
           </div>
         </section>
 
@@ -92,7 +92,7 @@
 
             <!-- AI 智能摘要：README + 简介 + 最新 Release，点击时才生成 -->
             <button class="yt-summary-toggle repo-summary-toggle" type="button" :aria-expanded="openSummary.has(r.full_name)" @click="toggleSummary(r)">
-              <span>✨ {{ openSummary.has(r.full_name) ? t('repos.summaryHide') : t('repos.summaryShow') }}</span>
+              <span class="with-icon"><UiIcon name="sparkles" />{{ openSummary.has(r.full_name) ? t('repos.summaryHide') : t('repos.summaryShow') }}</span>
               <svg class="yt-chevron" :class="{ 'is-collapsed': !openSummary.has(r.full_name) }" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
             </button>
             <section v-if="openSummary.has(r.full_name)" class="yt-summary repo-summary" :aria-label="t('repos.summaryShow')">
@@ -101,7 +101,7 @@
                 <p v-else-if="sum.status === 'pending' || sum.status === 'none'" class="yt-sum-note"><span class="yt-spinner" aria-hidden="true" />{{ t('repos.summaryPending') }}</p>
                 <div v-else-if="sum.status === 'failed'" class="yt-sum-note">
                   <p class="yt-sum-error">{{ t('repos.summaryFailed', { error: sum.error }) }}</p>
-                  <button class="btn btn-sm" type="button" @click="generateSummary(r, true)">{{ t('repos.summaryRetry') }}</button>
+                  <IconBtn class="btn-sm" icon="reset" :label="t('repos.summaryRetry')" @click="generateSummary(r, true)" />
                 </div>
                 <template v-if="sum && sum.summary && sum.status !== 'pending'">
                   <p v-for="(para, pi) in sum.summary.split(/\n\s*\n/).filter(Boolean)" :key="'p' + pi" class="yt-sum-para">{{ para }}</p>
@@ -119,7 +119,7 @@
                   </template>
                   <div class="yt-sum-foot">
                     <span>{{ sum.source === 'description' ? t('repos.summaryFromFacts') : t('repos.summaryFromReadme') }}<template v-if="sum.updated_at"> · {{ t('repos.summaryAt', { time: sum.updated_at }) }}</template></span>
-                    <button v-if="sum.status === 'done'" class="btn btn-sm" type="button" @click="generateSummary(r, true)">{{ t('repos.summaryRegenerate') }}</button>
+                    <IconBtn v-if="sum.status === 'done'" class="btn-sm" icon="refresh" :label="t('repos.summaryRegenerate')" @click="generateSummary(r, true)" />
                   </div>
                 </template>
               </template>
@@ -141,14 +141,10 @@
             </div>
 
             <div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap">
-              <button class="btn btn-sm" type="button" @click="toggleDetail(r)" :disabled="detailLoading.has(r.full_name)">
-                {{ expanded.has(r.full_name) ? t('repos.collapseDetail') : t('repos.expandDetail') }}
-              </button>
-              <button class="btn btn-sm" type="button" @click="doSync(r)" :disabled="syncing.has(r.full_name)">
-                {{ syncing.has(r.full_name) ? t('repos.refreshing') : t('repos.refresh') }}
-              </button>
-              <button class="btn btn-sm" type="button" @click="openEdit(r)">{{ t('common.edit') }}</button>
-              <button class="btn btn-sm btn-danger" type="button" @click="doDelete(r)">{{ t('common.delete') }}</button>
+              <IconBtn class="btn-sm" :icon="expanded.has(r.full_name) ? 'chevron-up' : 'info'" :class="{ 'btn-on': expanded.has(r.full_name) }" :busy="detailLoading.has(r.full_name)" :label="expanded.has(r.full_name) ? t('repos.collapseDetail') : t('repos.expandDetail')" :aria-expanded="expanded.has(r.full_name)" :disabled="detailLoading.has(r.full_name)" @click="toggleDetail(r)" />
+              <IconBtn class="btn-sm" icon="refresh" :busy="syncing.has(r.full_name)" :label="syncing.has(r.full_name) ? t('repos.refreshing') : t('repos.refresh')" :disabled="syncing.has(r.full_name)" @click="doSync(r)" />
+              <IconBtn class="btn-sm" icon="pencil" :label="t('common.edit')" @click="openEdit(r)" />
+              <IconBtn class="btn-sm btn-danger" icon="trash" :label="t('common.delete')" @click="doDelete(r)" />
             </div>
 
             <!-- 详情区 -->
@@ -173,7 +169,7 @@
                   </div>
                 </div>
                 <div v-if="(details[r.full_name]!.repo.tutorial_steps || []).length" style="margin-top:8px">
-                  <button class="btn btn-sm btn-primary" type="button" @click="replicateRepo(r.full_name)">按这些步骤建复刻</button>
+                  <IconBtn class="btn-sm btn-primary" icon="fork" label="按这些步骤建复刻" @click="replicateRepo(r.full_name)" />
                 </div>
                 <p v-else style="color:var(--text-muted)">{{ t('repos.noTutorial') }}</p>
 
@@ -181,7 +177,7 @@
                 <div v-if="detailReleases(r).length">
                   <div v-for="rel in detailReleases(r)" :key="rel.tag_name" class="release-item">
                     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-                      <button class="btn btn-sm" type="button" @click="toggleRelease(r, rel)">{{ isReleaseOpen(r, rel) ? t('repos.collapseRelease') : t('repos.expandRelease') }}</button>
+                      <IconBtn class="btn-sm" :icon="isReleaseOpen(r, rel) ? 'chevron-up' : 'chevron-down'" :label="isReleaseOpen(r, rel) ? t('repos.collapseRelease') : t('repos.expandRelease')" :aria-expanded="isReleaseOpen(r, rel)" @click="toggleRelease(r, rel)" />
                       <a :href="rel.html_url" target="_blank" rel="noopener"><strong>{{ rel.tag_name }}</strong></a>
                       <span v-if="rel.name && rel.name !== rel.tag_name" style="color:var(--text-muted)">{{ rel.name }}</span>
                       <span v-if="rel.draft" class="chip active">{{ t('repos.draft') }}</span>
@@ -225,8 +221,8 @@
         <textarea v-model="addForm.note" rows="2" :placeholder="t('repos.notePh')" />
         <p v-if="addError" style="color:var(--danger-text)">{{ addError }}</p>
         <div class="modal-actions">
-          <button class="btn" type="button" @click="showAdd = false">{{ t('common.cancel') }}</button>
-          <button class="btn btn-primary" type="button" @click="doAdd" :disabled="addBusy">{{ addBusy ? t('repos.adding') : t('repos.add') }}</button>
+          <IconBtn icon="x" :label="t('common.cancel')" @click="showAdd = false" />
+          <IconBtn class="btn-primary" icon="check" :label="addBusy ? t('repos.adding') : t('repos.add')" :disabled="addBusy" @click="doAdd" />
         </div>
       </div>
     </div>
@@ -246,8 +242,8 @@
         <textarea v-model="editForm.note" rows="2" :placeholder="t('repos.notePh')" />
         <p v-if="editError" style="color:var(--danger-text)">{{ editError }}</p>
         <div class="modal-actions">
-          <button class="btn" type="button" @click="editTarget = null">{{ t('common.cancel') }}</button>
-          <button class="btn btn-primary" type="button" @click="doEdit" :disabled="editBusy">{{ editBusy ? t('repos.saving') : t('common.save') }}</button>
+          <IconBtn icon="x" :label="t('common.cancel')" @click="editTarget = null" />
+          <IconBtn class="btn-primary" icon="check" :label="editBusy ? t('repos.saving') : t('common.save')" :disabled="editBusy" @click="doEdit" />
         </div>
       </div>
     </div>

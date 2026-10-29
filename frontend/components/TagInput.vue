@@ -3,7 +3,7 @@
     <div class="tag-input-box" @click="inputEl?.focus()">
       <span v-for="tg in modelValue" :key="tg" class="tag-input-chip">
         {{ tg }}
-        <button type="button" class="tag-input-x" :aria-label="`移除 ${tg}`" @click.stop="remove(tg)">×</button>
+        <button type="button" class="tag-input-x" :aria-label="`移除 ${tg}`" @click.stop="remove(tg)"><UiIcon name="x" :size="12" :stroke="2.6" /></button>
       </span>
       <input ref="inputEl" v-model="draft" class="tag-input-field" type="text" :placeholder="modelValue.length ? '' : placeholder"
         @keydown.enter.prevent="add(draft)" @keydown="onKey" @blur="add(draft)" />
@@ -16,6 +16,7 @@
 </template>
 
 <script setup lang="ts">
+import UiIcon from '~/components/UiIcon.vue'
 // Chip-style tag editor: type and press Enter (or comma) to add, × to
 // remove, click a suggestion to add it. Emits the full new list on every
 // change; the parent saves it.
