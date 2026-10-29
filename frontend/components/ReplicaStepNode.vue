@@ -7,6 +7,7 @@
         :aria-label="t('node.childAriaStatus', { status: statusNames[step.status] })"
         @click="toggleChildStatus"><UiIcon v-if="step.status === 'done'" name="check" :size="13" :stroke="3" /></button>
       <span class="check-text" :class="{ 'is-done': step.status === 'done' }" :title="t('node.toggleChildDetail')" @click="childDetailOpen = !childDetailOpen">{{ tr(step.text) }}</span>
+      <IconBtn class="btn-sm btn-quiet" icon="paperclip" :size="16" :badge="attCount || undefined" :label="t('resource.title')" :title="t('resource.title')" @click="openResource" />
       <div v-if="step.is_custom" class="node-menu-wrap">
         <IconBtn class="btn-sm btn-quiet node-menu-btn" icon="more" :size="18" :label="t('node.menu')" aria-haspopup="menu" :aria-expanded="openMenu === 'actions'" @click="toggleMenu('actions')" />
         <div v-if="openMenu === 'actions'" class="node-menu" role="menu">
@@ -25,35 +26,8 @@
       </div>
       <p v-if="(step.note || '').trim() && tr(step.note || '') !== (step.note || '')" class="note-translated"><span class="note-translated-label">{{ t('node.noteTranslation') }}</span>{{ tr(step.note || '') }}</p>
       <NoteEditor :model-value="step.note || ''" :upload-image="uploadPastedImage" @update:model-value="step.note = $event" @save="saveNote($event)" />
-      <div style="margin-top:8px;display:flex;align-items:center;gap:6px">
-        <div class="node-menu-wrap">
-          <IconBtn class="btn-sm node-menu-btn" icon="paperclip" :class="{ 'btn-on': openMenu === 'upload' }" :label="t('node.uploadMenu')" aria-haspopup="menu" :aria-expanded="openMenu === 'upload'" @click="toggleMenu('upload')" />
-          <div v-if="openMenu === 'upload'" class="node-menu left" role="menu">
-            <label role="menuitem" class="menu-item-icon"><UiIcon name="image" />{{ t('node.uploadImage') }}
-              <input type="file" accept="image/*" multiple hidden @change="upload($event)" />
-            </label>
-            <label role="menuitem" class="menu-item-icon"><UiIcon name="file" />{{ t('node.uploadDocs') }}
-              <input type="file" multiple hidden :accept="acceptDocs" @change="upload($event)" />
-            </label>
-          </div>
-        </div>
-        <span style="color:var(--text-muted);font-size:13px">{{ t('node.uploadHint') }}</span>
-      </div>
-      <div v-if="(step.attachments || []).length">
-        <div v-for="att in step.attachments" :key="att.id" class="attachment-row">
-          <span class="attachment-name">{{ att.name }}</span>
-          <div class="node-menu-wrap">
-            <IconBtn class="btn-sm btn-quiet node-menu-btn" icon="more" :size="18" :label="t('node.menu')" aria-haspopup="menu" :aria-expanded="attMenuId === att.id" @click="toggleAttMenu(att.id)" />
-            <div v-if="attMenuId === att.id" class="node-menu" role="menu">
-              <button type="button" role="menuitem" class="menu-item-icon" @click="menuPreviewAtt(att)"><UiIcon :name="previewAtt?.id === att.id ? 'eye-off' : 'eye'" />{{ previewAtt?.id === att.id ? t('common.collapsePreview') : t('common.preview') }}</button>
-              <a role="menuitem" class="menu-item-icon" :href="att.download_url" download @click="attMenuId = null"><UiIcon name="download" />{{ t('common.download') }}</a>
-              <button type="button" role="menuitem" class="danger menu-item-icon" @click="menuDeleteAtt(att)"><UiIcon name="trash" />{{ t('node.deleteAtt') }}</button>
-            </div>
-          </div>
-        </div>
-        <AttachmentPreview v-if="previewAtt && step.attachments!.some(a => a.id === previewAtt!.id)" :key="previewAtt.id" :attachment="previewAtt" @close="previewAtt = null" />
-      </div>
     </div>
+    <ResourceManager v-model:open="resourceOpen" :replica-id="replica.id" :step-idx="step.idx" :items="resourceItems" />
   </div>
 
   <!-- 顶层节点：时间线卡片（圆标 + 卡片 + 状态徽标）。 -->
@@ -98,17 +72,7 @@
       <!-- 父节点卡片头直接给附件入口（📎），不用先展开详情；徽标显示附件数。 -->
       <div style="margin-top:8px;display:flex;gap:6px;align-items:center">
         <IconBtn class="btn-sm" :icon="detailsOpen ? 'chevron-up' : 'list'" :class="{ 'btn-on': detailsOpen }" :badge="!detailsOpen && subCount ? subCount : undefined" :label="detailsToggleLabel" :aria-expanded="detailsOpen" @click="detailsOpen = !detailsOpen" />
-        <div class="node-menu-wrap">
-          <IconBtn class="btn-sm node-menu-btn" icon="paperclip" :class="{ 'btn-on': headerUploadOpen }" :badge="attCount || undefined" :label="t('node.uploadMenu')" aria-haspopup="menu" :aria-expanded="headerUploadOpen" @click="toggleHeaderUpload" />
-          <div v-if="headerUploadOpen" class="node-menu left" role="menu">
-            <label role="menuitem" class="menu-item-icon"><UiIcon name="image" />{{ t('node.uploadImage') }}
-              <input type="file" accept="image/*" multiple hidden @change="upload($event)" />
-            </label>
-            <label role="menuitem" class="menu-item-icon"><UiIcon name="file" />{{ t('node.uploadDocs') }}
-              <input type="file" multiple hidden :accept="acceptDocs" @change="upload($event)" />
-            </label>
-          </div>
-        </div>
+        <IconBtn class="btn-sm" icon="paperclip" :badge="attCount || undefined" :label="t('resource.title')" :title="t('resource.title')" @click="openResource" />
       </div>
         <div v-if="detailsOpen">
           <div v-if="children.length" class="check-list">
@@ -128,36 +92,9 @@
           </div>
           <p v-if="(step.note || '').trim() && tr(step.note || '') !== (step.note || '')" class="note-translated"><span class="note-translated-label">{{ t('node.noteTranslation') }}</span>{{ tr(step.note || '') }}</p>
           <NoteEditor :model-value="step.note || ''" :upload-image="uploadPastedImage" @update:model-value="step.note = $event" @save="saveNote($event)" />
-          <div style="margin-top:8px;display:flex;align-items:center;gap:6px">
-            <div class="node-menu-wrap">
-              <IconBtn class="btn-sm node-menu-btn" icon="paperclip" :class="{ 'btn-on': openMenu === 'upload' }" :label="t('node.uploadMenu')" aria-haspopup="menu" :aria-expanded="openMenu === 'upload'" @click="toggleMenu('upload')" />
-              <div v-if="openMenu === 'upload'" class="node-menu left" role="menu">
-                <label role="menuitem" class="menu-item-icon"><UiIcon name="image" />{{ t('node.uploadImage') }}
-                  <input type="file" accept="image/*" multiple hidden @change="upload($event)" />
-                </label>
-                <label role="menuitem" class="menu-item-icon"><UiIcon name="file" />{{ t('node.uploadDocs') }}
-                  <input type="file" multiple hidden :accept="acceptDocs" @change="upload($event)" />
-                </label>
-              </div>
-            </div>
-            <span style="color:var(--text-muted);font-size:13px">{{ t('node.uploadHint') }}</span>
-          </div>
-          <div v-if="(step.attachments || []).length">
-            <div v-for="att in step.attachments" :key="att.id" class="attachment-row">
-              <span class="attachment-name">{{ att.name }}</span>
-              <div class="node-menu-wrap">
-                <IconBtn class="btn-sm btn-quiet node-menu-btn" icon="more" :size="18" :label="t('node.menu')" aria-haspopup="menu" :aria-expanded="attMenuId === att.id" @click="toggleAttMenu(att.id)" />
-                <div v-if="attMenuId === att.id" class="node-menu" role="menu">
-                  <button type="button" role="menuitem" class="menu-item-icon" @click="menuPreviewAtt(att)"><UiIcon :name="previewAtt?.id === att.id ? 'eye-off' : 'eye'" />{{ previewAtt?.id === att.id ? t('common.collapsePreview') : t('common.preview') }}</button>
-                  <a role="menuitem" class="menu-item-icon" :href="att.download_url" download @click="attMenuId = null"><UiIcon name="download" />{{ t('common.download') }}</a>
-                  <button type="button" role="menuitem" class="danger menu-item-icon" @click="menuDeleteAtt(att)"><UiIcon name="trash" />{{ t('node.deleteAtt') }}</button>
-                </div>
-              </div>
-            </div>
-            <AttachmentPreview v-if="previewAtt && step.attachments!.some(a => a.id === previewAtt!.id)" :key="previewAtt.id" :attachment="previewAtt" @close="previewAtt = null" />
-          </div>
         </div>
     </div>
+    <ResourceManager v-model:open="resourceOpen" :replica-id="replica.id" :step-idx="step.idx" :items="resourceItems" />
   </div>
   <p v-if="toast" style="position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--bg-elevated);border:1px solid var(--border);padding:10px 16px;border-radius:9999px;z-index:200">{{ toast }}</p>
 </template>
@@ -165,7 +102,6 @@
 <script setup lang="ts">
 import type { Replica, ReplicaStep, Attachment } from '~/composables/types'
 import { trunc40 } from '~/composables/useFormat'
-import { ATTACHMENT_EXTS, IMAGE_EXTS } from '~/composables/useStore'
 
 const props = defineProps<{ replica: Replica, step: ReplicaStep, num: string, isLast: boolean, isChild?: boolean }>()
 const store = useStore()
@@ -174,53 +110,31 @@ const { tr, enqueue } = useTranslate()
 const toast = ref('')
 const statusNames = computed<Record<string, string>>(() => ({ idle: t('node.statusIdle'), active: t('node.statusActive'), done: t('node.statusDone') }))
 const NEXT: Record<string, 'idle' | 'active' | 'done'> = { idle: 'active', active: 'done', done: 'idle' }
-const acceptDocs = '.' + ATTACHMENT_EXTS.filter(e => !IMAGE_EXTS.includes(e)).join(',.')
 const editingText = ref<string | null>(null)
 const newChildText = ref('')
-const previewAtt = ref<Attachment | null>(null)
+// 资源管理弹窗：父子节点共用，增删改查都在里面。
+const resourceOpen = ref(false)
+const resourceItems = computed<Attachment[]>(() => props.step.attachments || (props.step.attachments = []))
+const attCount = computed(() => resourceItems.value.length)
+function openResource () { resourceOpen.value = true }
 // 详情区：进行中的节点默认展开，状态变化时跟着走（完成变收起、开始变展开）。
 const detailsOpen = ref(props.step.status === 'active')
 watch(() => props.step.status, (s) => { detailsOpen.value = s === 'active' })
 const childDetailOpen = ref(false)
-// 汉堡菜单：节点操作（自建节点 / 编辑 / 删除）与上传（图片 / 文档）
-// 各收进一个 ☰ 下拉菜单，同一时间只开一个。
-const openMenu = ref<'actions' | 'upload' | null>(null)
-const attMenuId = ref<string | null>(null)
-// 父节点卡片头的 📎 快捷上传菜单（不用展开详情）。独立状态，避免和详情区里的上传菜单冲突。
-const headerUploadOpen = ref(false)
-const attCount = computed(() => (props.step.attachments || []).length)
-function toggleHeaderUpload () {
-  headerUploadOpen.value = !headerUploadOpen.value
-  if (headerUploadOpen.value) { openMenu.value = null; attMenuId.value = null }
-  window.dispatchEvent(new CustomEvent('xd:close-node-menus', { detail: menuId }))
-}
+// 汉堡菜单：节点操作（自建节点 / 编辑 / 删除），同一时间只开一个。
+const openMenu = ref<'actions' | null>(null)
 const menuId = useId()
-function toggleMenu (which: 'actions' | 'upload') {
+function toggleMenu (which: 'actions') {
   if (openMenu.value === which) { openMenu.value = null; return }
   openMenu.value = which
-  attMenuId.value = null
   window.dispatchEvent(new CustomEvent('xd:close-node-menus', { detail: menuId }))
 }
-function toggleAttMenu (id: string) {
-  if (attMenuId.value === id) { attMenuId.value = null; return }
-  attMenuId.value = id
-  openMenu.value = null
-  window.dispatchEvent(new CustomEvent('xd:close-node-menus', { detail: menuId }))
-}
-function closeMenu () { openMenu.value = null; attMenuId.value = null; headerUploadOpen.value = false }
+function closeMenu () { openMenu.value = null }
 function menuBadge () { closeMenu(); onBadgeClick() }
 function menuEdit () { closeMenu(); startEditText() }
 function menuDelete () { closeMenu(); removeStep() }
-function menuPreviewAtt (att: Attachment) {
-  previewAtt.value = previewAtt.value?.id === att.id ? null : att
-  attMenuId.value = null
-}
-function menuDeleteAtt (att: Attachment) {
-  attMenuId.value = null
-  removeAttachment(att)
-}
 function onDocClick (e: MouseEvent) {
-  if (!openMenu.value && !attMenuId.value && !headerUploadOpen.value) return
+  if (!openMenu.value) return
   if (!(e.target as HTMLElement).closest('.node-menu-wrap')) closeMenu()
 }
 function onKeyDown (e: KeyboardEvent) { if (e.key === 'Escape') closeMenu() }
@@ -278,26 +192,6 @@ async function uploadPastedImage (file: File): Promise<string> {
 }
 async function saveNote (note: string) {
   try { await store.patchReplicaSteps(props.replica.id, [{ idx: props.step.idx, note }]) } catch (e: any) { showToast(e?.message || t('node.noteSaveFailed')) }
-}
-async function upload (e: Event) {
-  const input = e.target as HTMLInputElement
-  const files = [...(input.files || [])]
-  input.value = ''
-  if (!files.length) return
-  closeMenu()
-  try {
-    const made = await store.uploadAttachments(props.replica.id, props.step.idx, files)
-    props.step.attachments = [...(props.step.attachments || []), ...made]
-    showToast(t('node.uploaded', { n: made.length }))
-  } catch (err: any) { showToast(err?.message || t('node.uploadFailed')) }
-}
-async function removeAttachment (att: Attachment) {
-  if (!confirm(t('node.deleteAttConfirm', { name: att.name }))) return
-  try {
-    await store.deleteAttachment(att.id)
-    props.step.attachments = (props.step.attachments || []).filter(a => a.id !== att.id)
-    if (previewAtt.value?.id === att.id) previewAtt.value = null
-  } catch (err: any) { showToast(err?.message || t('node.deleteAttFailed')) }
 }
 function startEditText () { editingText.value = props.step.text }
 // 点徽标要有反应：外层节点展开 / 收起详情，子节点没有子流程，点徽标改为编辑文字。

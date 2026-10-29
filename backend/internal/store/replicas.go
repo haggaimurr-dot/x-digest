@@ -467,6 +467,26 @@ func (s *Store) DeleteAttachment(id string) (string, error) {
 	return path, nil
 }
 
+// RenameAttachment updates the display name of an attachment. The file on
+// disk keeps its ID-based name; only the DB record changes. It counts as an
+// edit of the owning replica.
+func (s *Store) RenameAttachment(id, name string) error {
+	name = strings.TrimSpace(name)
+	if name == "" {
+		return fmt.Errorf("empty attachment name")
+	}
+	var replicaID string
+	err := s.DB.QueryRow("SELECT replica_id FROM attachments WHERE id=?", id).Scan(&replicaID)
+	if err != nil {
+		return err
+	}
+	if _, err := s.DB.Exec("UPDATE attachments SET name=? WHERE id=?", name, id); err != nil {
+		return err
+	}
+	s.touchReplica(replicaID)
+	return nil
+}
+
 func (s *Store) ListReplicaAttachments(replicaID string) ([]model.Attachment, error) {
 	rows, err := s.DB.Query(`SELECT id,replica_id,step_idx,name,size,content_type,ext,created_at FROM attachments
 		WHERE replica_id=? ORDER BY step_idx, created_at`, replicaID)

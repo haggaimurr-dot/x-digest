@@ -292,6 +292,10 @@ export function useMockStore () {
     for (const r of replicas.value) for (const s of r.steps) s.attachments = (s.attachments || []).filter(a => a.id !== id)
     persist()
   }
+  function renameMockAttachment (id: string, name: string) {
+    for (const r of replicas.value) for (const s of r.steps) for (const a of (s.attachments || [])) if (a.id === id) { a.name = name; persist(); return a }
+    throw new Error('attachment not found')
+  }
   // ---------- GitHub repos mock state ----------
   const repoGroups = useState<RepoGroup[]>('mock-repo-groups', () => JSON.parse(JSON.stringify(MOCK_REPO_GROUPS)))
   const repos = useState<Repo[]>('mock-repos', () => JSON.parse(JSON.stringify(MOCK_REPOS)))
@@ -437,5 +441,5 @@ export function useMockStore () {
       ]
     }
   }
-  return { watchlist, categories, userTagOverrides, vocabulary, replicas, persist, mockYTSummary, createReplica, createMockStandaloneReplica, patchReplicaSteps, deleteReplica, addMockReplicaStep, deleteMockReplicaStep, addMockAttachments, deleteMockAttachment, repoGroups, repos, addMockRepo, patchMockRepo, deleteMockRepo, syncMockRepo, addMockRepoGroup, deleteMockRepoGroup, ytGroups, ytChannels, ytVideos, addMockYTChannel, patchMockYTChannel, deleteMockYTChannel, syncMockYTChannel, addMockYTGroup, deleteMockYTGroup }
+  return { watchlist, categories, userTagOverrides, vocabulary, replicas, persist, mockYTSummary, createReplica, createMockStandaloneReplica, patchReplicaSteps, deleteReplica, addMockReplicaStep, deleteMockReplicaStep, addMockAttachments, deleteMockAttachment, renameMockAttachment, repoGroups, repos, addMockRepo, patchMockRepo, deleteMockRepo, syncMockRepo, addMockRepoGroup, deleteMockRepoGroup, ytGroups, ytChannels, ytVideos, addMockYTChannel, patchMockYTChannel, deleteMockYTChannel, syncMockYTChannel, addMockYTGroup, deleteMockYTGroup }
 }

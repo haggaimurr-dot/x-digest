@@ -152,6 +152,10 @@ export function useStore () {
     if (mock.value) { mockStore.deleteMockAttachment(id); return }
     await apiFetch(`attachments/${id}`, { method: 'DELETE' })
   }
+  async function renameAttachment (id: string, name: string): Promise<Attachment> {
+    if (mock.value) { return mockStore.renameMockAttachment(id, name) }
+    return await apiFetch<Attachment>(`attachments/${id}`, { method: 'PATCH', body: JSON.stringify({ name }) })
+  }
   async function replicaAttachments (replicaId: string): Promise<Attachment[]> {
     if (mock.value) {
       const r = mockStore.replicas.value.find(x => x.id === replicaId)
@@ -510,7 +514,7 @@ export function useStore () {
   return {
     mock, loading, error, loadPosts, loadWatchlist, loadWatchlistActivity, bulkAddAccounts, loadTags, loadCategories,
     loadReplicas, createReplica, createStandaloneReplica, patchReplicaSteps, addReplicaStep, deleteReplicaStep, deleteReplica, uploadAttachments,
-    deleteAttachment, replicaAttachments, addGroup, deleteGroup, addAccount, patchAccount,
+    deleteAttachment, renameAttachment, replicaAttachments, addGroup, deleteGroup, addAccount, patchAccount,
     deleteAccount, addCategory, deleteCategory, renameCategory, restoreCategory, deletePosts, setPostReplicaEnabled, loadViews, createView, deleteView, batchCategory, batchPostSummaries, cloneReplica, loadNotifications, markNotificationsRead, createReplicaFromRepo, setPostCategories, translateTexts,
     loadRepos, loadRepoGroups, addRepo, loadRepoDetail, loadRepoCommits, loadRepoReleases,
     patchRepo, deleteRepo, syncRepo, syncAllRepos, getRepoSyncStatus, addRepoGroup, deleteRepoGroup, validateRepoFullName,

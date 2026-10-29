@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"io"
@@ -208,7 +209,29 @@ func (s *server) handleAttachment(w http.ResponseWriter, r *http.Request) {
 		_ = os.Remove(path)
 		removePreview(s.attachDir, id)
 		writeJSON(w, 200, map[string]bool{"ok": true})
+	case http.MethodPatch:
+		var body struct {
+			Name string `json:"name"`
+		}
+		if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
+			writeErr(w, 400, "BAD_JSON", "request body is not valid JSON")
+			return
+		}
+		if err := s.st.RenameAttachment(id, body.Name); err != nil {
+			if errors.Is(err, sql.ErrNoRows) {
+				writeErr(w, 404, "NOT_FOUND", "attachment not found")
+				return
+			}
+			writeErr(w, 400, "INVALID_NAME", err.Error())
+			return
+		}
+		att, _, err := s.st.GetAttachment(id)
+		if err != nil {
+			writeErr(w, 500, "DB_ERROR", err.Error())
+			return
+		}
+		writeJSON(w, 200, att)
 	default:
-		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only GET, DELETE")
+		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only GET, PATCH, DELETE")
 	}
 }
