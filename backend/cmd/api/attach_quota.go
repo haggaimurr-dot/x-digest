@@ -37,6 +37,9 @@ func (s *server) cleanAttachmentsLoop() {
 		} else if len(removed) > 0 {
 			log.Printf("attachment cleanup: removed %d orphan files", len(removed))
 		}
+		if err == nil {
+			cleanOrphanPreviews(s.attachDir, known)
+		}
 		time.Sleep(24 * time.Hour)
 	}
 }

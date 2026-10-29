@@ -60,6 +60,7 @@ type server struct {
 	yt        *youtube.Client
 	sum       *summaryJobs
 	repoSync  *repoSyncer
+	office    *officeConverter
 }
 
 func main() {
@@ -77,6 +78,7 @@ func main() {
 	s := &server{st: st, attachDir: attachDir, gh: github.NewFromEnv(), tr: translate.NewService(translate.NewFromEnv(), st), yt: youtube.New()}
 	s.sum = newSummaryJobs(s.yt)
 	s.repoSync = s.newRepoSyncer()
+	s.office = newOfficeConverter()
 	go s.purgeCategoriesLoop()
 	go s.cleanAttachmentsLoop()
 	if d := repoSyncInterval(); d > 0 {

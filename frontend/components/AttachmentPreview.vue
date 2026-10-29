@@ -13,6 +13,7 @@
           <template v-else>
             <img v-if="kind === 'image'" class="preview-image" :src="previewUrl" :alt="attachment.name" />
             <div v-else-if="kind === 'pdf'">
+              <p v-if="convertedPdf" style="color:var(--text-muted);font-size:13px;margin:0 0 6px">{{ t('preview.convertedNote') }}</p>
               <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px">
                 <button class="btn btn-sm" type="button" :disabled="pdfPage <= 1" @click="pdfPage--">{{ t('preview.prevPage') }}</button>
                 <span>{{ t('preview.pageOf', { cur: pdfPage, total: pdfPages }) }}</span>
@@ -146,6 +147,16 @@ function onFullscreenChange () { isFullscreen.value = !!document.fullscreenEleme
 function onKeydown (e: KeyboardEvent) {
   // 全屏时 Esc 由浏览器先用来退出全屏，不应同时关掉预览。
   if (e.key === 'Escape' && !document.fullscreenElement) emit('close')
+}
+const convertedPdf = ref(false)
+async function fetchConvertedPdf (): Promise<ArrayBuffer | null> {
+  const a: any = props.attachment
+  const u = props.attachment.download_url
+  if (a.__blob || !u?.endsWith('/download')) return null
+  try {
+    const res = await fetch(u.replace(/\/download$/, '/preview.pdf'))
+    return res.ok ? await res.arrayBuffer() : null
+  } catch { return null }
 }
 async function fetchBytes (): Promise<ArrayBuffer> {
   const a: any = props.attachment
@@ -289,6 +300,19 @@ onMounted(async () => {
       kind.value = 'zip'; return
     }
     if (['doc', 'ppt', 'xls'].includes(e)) {
+      // The server converts legacy Office files to PDF with LibreOffice
+      // (GET …/preview.pdf); without it (501) or on failure, fall back to
+      // best-effort text extraction.
+      const pdf = await fetchConvertedPdf()
+      if (pdf) {
+        await loadPdf(pdf)
+        convertedPdf.value = true
+        kind.value = 'pdf'
+        loading.value = false
+        await nextTick()
+        await renderPdfPage()
+        return
+      }
       const buf = await fetchBytes()
       textContent.value = extractStrings(buf)
       kind.value = 'legacy'; return

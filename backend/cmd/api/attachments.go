@@ -175,6 +175,10 @@ func (s *server) handleAttachment(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, path)
 		return
 	}
+	if len(parts) == 2 && parts[1] == "preview.pdf" {
+		s.handleAttachmentPreview(w, r, id)
+		return
+	}
 	if len(parts) != 1 {
 		writeErr(w, 404, "NOT_FOUND", "not found")
 		return
@@ -202,6 +206,7 @@ func (s *server) handleAttachment(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		_ = os.Remove(path)
+		removePreview(s.attachDir, id)
 		writeJSON(w, 200, map[string]bool{"ok": true})
 	default:
 		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only GET, DELETE")
