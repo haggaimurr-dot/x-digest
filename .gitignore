@@ -13,3 +13,5 @@ backend/xdigest-import
 frontend/coverage/
 backend/xdigest-maint
 backend/*.exe
+frontend/playwright-report/
+frontend/test-results/

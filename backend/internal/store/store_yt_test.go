@@ -25,6 +25,10 @@ func testYTStore(t *testing.T) *Store {
 	t.Helper()
 	serverDSN := os.Getenv("XDIGEST_TEST_DSN")
 	if serverDSN == "" {
+		// CI sets XDIGEST_REQUIRE_DB so a lost DSN fails instead of silently skipping.
+		if os.Getenv("XDIGEST_REQUIRE_DB") != "" {
+			t.Fatal("XDIGEST_REQUIRE_DB is set but XDIGEST_TEST_DSN is empty")
+		}
 		t.Skip("XDIGEST_TEST_DSN not set; skipping DB-backed YouTube store tests")
 	}
 	srv, err := sql.Open("mysql", serverDSN)
