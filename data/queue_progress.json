@@ -154,13 +154,27 @@
     "usd666666": 10,
     "zstmfhy": 10,
     "xu96175836": 10,
-    "AnthropicAI": 10
+    "AnthropicAI": 10,
+    "Linkc": 49,
+    "gch_enbsbxbs": 23,
+    "aigclink": 196,
+    "KaterJLi": 33,
+    "yanxi067": 25,
+    "miu21590": 227,
+    "keke202106": 271,
+    "Kay2289123": 104,
+    "Tokengodone": 19,
+    "fantexi997": 159,
+    "xiaohuiyuan": 130,
+    "Alincqbkjc": 8,
+    "Darazeevd": 154,
+    "Steve202333": 17
   },
   "open": {
     "Chilljccu": {
-      "posts_added": 1746,
-      "pages": 70,
-      "next_token": "7140dibdnow9c7btwp0fs2ilyvqhjxa7k37hs4pnyygj7",
+      "posts_added": 1846,
+      "pages": 74,
+      "next_token": "7140dibdnow9c7btwp0fs2ilsryt6wpc3d1zmbh01f3n9",
       "user_id": "2090442465950171136"
     },
     "gefei55": {
@@ -194,8 +208,8 @@
       "user_id": "902483821811056640"
     }
   },
-  "raw_total": 28258,
-  "last_footer": "X reads left for this user: 29 of 30 this minute (resets at 2026-10-29T00:45:00.000Z), 737 of 1000 today (resets at 2026-10-30T00:00:00.000Z).",
+  "raw_total": 28358,
+  "last_footer": "X reads left for this user: 29 of 30 this minute (resets at 2026-10-29T00:46:00.000Z), 733 of 1000 today (resets at 2026-10-30T00:00:00.000Z).",
   "stopped_reason": "queue_complete_latest10",
   "note": "Parent advanced qizong007 then handed to executor",
   "accounts": {
@@ -214,8 +228,8 @@
       "user_id": "3027431134"
     },
     "Chilljccu": {
-      "posts_added": 1746,
-      "pages_done": 70,
+      "posts_added": 1846,
+      "pages_done": 74,
       "complete": false,
       "user_id": "2090442465950171136"
     },
