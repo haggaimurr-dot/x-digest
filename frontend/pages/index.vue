@@ -3,10 +3,6 @@
     <main class="feed-col" style="max-width:760px;margin:0 auto;padding:16px;min-width:0">
       <div class="filter-row" style="margin-bottom:12px">
         <span class="updated" style="color:var(--text-muted)">{{ updatedAt ? t('index.updatedAt', { time: updatedAt }) : '' }}</span>
-        <span style="flex:1" />
-        <IconBtn class="btn-sm" icon="link" plus label="导入单帖" @click="xDialog = 'post'" />
-        <IconBtn class="btn-sm" icon="refresh" label="更新帖子" @click="xDialog = 'refresh'" />
-        <IconBtn class="btn-sm" icon="settings" :label="t('index.settings')" @click="showSettings = true" />
       </div>
       <p v-if="loadError" style="color:var(--danger-text)">{{ loadError }}</p>
       <p v-if="loading">{{ t('common.loading') }}</p>
@@ -237,7 +233,7 @@
           <h2 style="margin:0">{{ t('settings.title') }}</h2>
           <IconBtn class="btn-sm btn-quiet" icon="x" :size="18" :label="t('settings.close')" @click="showSettings = false" />
         </div>
-        <p style="color:var(--text-muted);font-size:13px;margin:6px 0 0">主题、字号、字体在顶栏右上角「外观」（调色板图标）里设置，对所有页面生效。</p>
+        <p style="color:var(--text-muted);font-size:13px;margin:6px 0 0">主题、字号、字体在左上角菜单（☰）的「外观」里设置，对所有页面生效。</p>
 
         <div class="settings-section">
           <h3>{{ t('settings.watchlist') }}</h3>
@@ -338,6 +334,7 @@ import { followSummary } from '~/utils/summaryStream'
 import { exportSettings, importSettings } from '~/utils/settingsTransfer'
 import { normalizeFilter, sameFilter, type FilterState } from '~/utils/filterView'
 import { apiBase } from '~/composables/useApi'
+import { usePageActions } from '~/composables/usePageActions'
 import { avatarUrl, avatarColor, avatarInitial, relativeTime, shanghaiTime, highlightHtml, firstHitSnippet, shouldShowFlowchart, trunc40, isLongPost } from '~/composables/useFormat'
 import { useScrollLock } from '~/composables/useScrollLock'
 import { linkParts, descResources } from '~/utils/videoTags'
@@ -373,6 +370,12 @@ const newCatName = ref('')
 const showSettings = ref(false)
 useScrollLock(showSettings)
 const xDialog = ref<'post' | 'refresh' | null>(null)
+// 页面级操作放进侧边菜单（AppDrawer）
+usePageActions(() => [
+  { key: 'import', icon: 'link', plus: true, label: '导入单帖', run: () => { xDialog.value = 'post' } },
+  { key: 'refresh', icon: 'refresh', label: '更新帖子', run: () => { xDialog.value = 'refresh' } },
+  { key: 'settings', icon: 'settings', label: t('index.settings'), run: () => { showSettings.value = true } }
+])
 useScrollLock(computed(() => !!xDialog.value))
 // Server-side load: fetch the current page with the applied (searched) filters.
 async function loadPostsPage () {

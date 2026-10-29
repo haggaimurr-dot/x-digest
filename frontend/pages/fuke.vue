@@ -20,7 +20,6 @@
             <option value="progress">{{ t('fuke.sortProgress') }}</option>
           </select>
         </label>
-        <NuxtLink to="/" class="btn btn-sm btn-icon" :aria-label="t('fuke.backToDaily')" :data-tip="t('fuke.backToDaily')"><UiIcon name="arrow-left" /></NuxtLink>
       </div>
       <div style="margin-bottom:12px;border:1px solid var(--border);border-radius:12px;padding:12px">
         <div class="chip-group-title" style="margin-top:0">{{ t('fuke.newFlowTitle') }}</div>
@@ -100,10 +99,15 @@ import { replicaBoard, replicaMarkdown } from '~/utils/replicaExport'
 import type { Replica, ReplicaStep } from '~/composables/types'
 import { shanghaiTime } from '~/composables/useFormat'
 import { useScrollLock } from '~/composables/useScrollLock'
+import { usePageActions } from '~/composables/usePageActions'
 
 const store = useStore()
 const { t, lang } = useLang()
 const { tr, enqueue, translating } = useTranslate()
+// 页面级操作放进侧边菜单（AppDrawer）
+usePageActions(() => [
+  { key: 'back', icon: 'arrow-left', label: t('fuke.backToDaily'), run: () => { navigateTo('/') } }
+])
 const loading = ref(true)
 const loadError = ref('')
 const replicas = ref<Replica[]>([])

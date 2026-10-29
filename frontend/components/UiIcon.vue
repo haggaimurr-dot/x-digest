@@ -64,7 +64,9 @@ const ICONS: Record<string, string> = {
   'file-down': '<path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><path d="M14 2v6h6"/><path d="M12 12v6M9 15l3 3 3-3"/>',
   star: '<path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/>',
   list: '<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>',
-  play: '<path d="m6 3 14 9-14 9V3z"/>'
+  play: '<path d="m6 3 14 9-14 9V3z"/>',
+  menu: '<path d="M4 6h16M4 12h16M4 18h16"/>',
+  newspaper: '<path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8v4h-8V6Z"/>'
 }
 withDefaults(defineProps<{ name: string, size?: number | string, stroke?: number | string }>(), { size: 16, stroke: 1.85 })
 </script>

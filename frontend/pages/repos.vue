@@ -9,9 +9,6 @@
         <!-- 工具条 -->
         <div class="filter-row">
           <span style="color:var(--text-muted)">{{ t('repos.total', { n: filtered.length }) }}</span>
-          <span style="flex:1" />
-          <IconBtn class="btn-sm" icon="refresh" :busy="syncAllBusy" :label="syncAllBusy ? t('repos.syncing') : t('repos.syncAll')" :disabled="syncAllBusy" @click="syncAll" />
-          <IconBtn class="btn-sm btn-primary" icon="book" plus :label="t('repos.addRepo')" @click="openAdd" />
         </div>
         <div class="filter-row" style="justify-content:space-between;margin-top:8px">
           <IconBtn class="btn-sm" icon="filter" :class="{ 'btn-on': !filtersCollapsed }" :label="filtersCollapsed ? t('repos.expandFilters') : t('repos.collapseFilters')" :aria-expanded="!filtersCollapsed" @click="filtersCollapsed = !filtersCollapsed" />
@@ -260,6 +257,7 @@ import { useScrollLock } from '~/composables/useScrollLock'
 import { REPO_SORTS, isRepoSort, ownerAvatarUrl, sortRepos, type RepoSort } from '~/utils/repoSort'
 import { followSummary } from '~/utils/summaryStream'
 import { apiBase } from '~/composables/useApi'
+import { usePageActions } from '~/composables/usePageActions'
 
 const store = useStore()
 const { t, lang } = useLang()
@@ -289,6 +287,11 @@ const detailError = ref<Record<string, string>>({})
 const openReleases = ref<Set<string>>(new Set())
 const syncing = ref<Set<string>>(new Set())
 const syncAllBusy = ref(false)
+// 页面级操作放进侧边菜单（AppDrawer）
+usePageActions(() => [
+  { key: 'add', icon: 'book', plus: true, primary: true, label: t('repos.addRepo'), run: openAdd },
+  { key: 'sync', icon: 'refresh', busy: syncAllBusy.value, disabled: syncAllBusy.value, label: syncAllBusy.value ? t('repos.syncing') : t('repos.syncAll'), run: syncAll }
+])
 const syncAllMsg = ref('')
 
 const showAdd = ref(false)

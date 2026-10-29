@@ -10,6 +10,7 @@ test.describe.configure({ mode: 'serial' })
 
 test('导入单帖：粘贴链接后帖子入库并出现在列表中', async ({ page }) => {
   await page.goto('/')
+  await page.getByRole('button', { name: '菜单' }).click()
   await page.getByRole('button', { name: '导入单帖' }).click()
   const dialog = page.getByRole('dialog', { name: '导入单帖' })
   await dialog.locator('textarea').fill(POST_URL)
@@ -22,6 +23,7 @@ test('导入单帖：粘贴链接后帖子入库并出现在列表中', async ({
   await expect(page.locator('article.post-card', { hasText: POST_TITLE })).toBeVisible()
 
   // Importing it again reports it as already stored.
+  await page.getByRole('button', { name: '菜单' }).click()
   await page.getByRole('button', { name: '导入单帖' }).click()
   await dialog.locator('textarea').fill(POST_URL)
   await dialog.getByRole('button', { name: '导入', exact: true }).click()

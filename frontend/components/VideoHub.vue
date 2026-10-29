@@ -9,10 +9,6 @@
         <!-- 工具条 -->
         <div class="filter-row">
           <span style="color:var(--text-muted)">{{ t('yt.total', { n: channels.length, v: videos.length }) }}</span>
-          <span style="flex:1" />
-          <IconBtn class="btn-sm" icon="refresh" :busy="syncAllBusy" :label="syncAllBusy ? t('yt.syncing') : t('yt.syncAll')" :disabled="syncAllBusy" @click="syncAll" />
-          <IconBtn v-if="P === 'yt'" class="btn-sm" icon="video" plus :label="t('yt.addVideo')" @click="openAdd('video')" />
-          <IconBtn class="btn-sm btn-primary" icon="tv" plus :label="t('yt.addChannel')" @click="openAdd('channel')" />
         </div>
         <div class="filter-row" style="justify-content:space-between;margin-top:8px">
           <IconBtn class="btn-sm" icon="filter" :class="{ 'btn-on': !filtersCollapsed }" :label="filtersCollapsed ? t('yt.expandFilters') : t('yt.collapseFilters')" :aria-expanded="!filtersCollapsed" @click="filtersCollapsed = !filtersCollapsed" />
@@ -280,6 +276,7 @@ import { useScrollLock } from '~/composables/useScrollLock'
 import { followSummary } from '~/utils/summaryStream'
 import { embedUrl, seekMessage } from '~/utils/embedPlayer'
 import { apiBase } from '~/composables/useApi'
+import { usePageActions } from '~/composables/usePageActions'
 
 const store = useStore()
 // One page for every video platform (YouTube, Bilibili): the API routes
@@ -325,6 +322,12 @@ const activeFilterCount = computed(() =>
 const expandedDesc = ref<Set<string>>(new Set())
 const syncing = ref<Set<string>>(new Set())
 const syncAllBusy = ref(false)
+// 页面级操作放进侧边菜单（AppDrawer）
+usePageActions(() => [
+  { key: 'channel', icon: 'tv', plus: true, primary: true, label: t('yt.addChannel'), run: () => openAdd('channel') },
+  ...(P === 'yt' ? [{ key: 'video', icon: 'video', plus: true, label: t('yt.addVideo'), run: () => openAdd('video') }] : []),
+  { key: 'sync', icon: 'refresh', busy: syncAllBusy.value, disabled: syncAllBusy.value, label: syncAllBusy.value ? t('yt.syncing') : t('yt.syncAll'), run: syncAll }
+])
 const syncAllMsg = ref('')
 
 const showAdd = ref(false)
