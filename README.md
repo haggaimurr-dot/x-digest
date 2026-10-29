@@ -29,7 +29,7 @@ backend/          Go 后端
   schema.sql        建表语句（幂等，可重复执行）
 data/             raw_posts.json（原文暂存）、posts.json（解析结果）、avatars.json、采集队列进度
 config/           watchlist.json（关注列表）、user-tags.json（用户标签词表）
-avatars/          作者头像（前端 public/avatars 有同一份副本）
+avatars/          作者头像，服务器 nginx 用；frontend/public/avatars 是同一份副本，给本地开发和演示模式用（两份都保留，2026-10-29 决定不合并）
 scripts/          append_raw_posts.py：按 id 去重追加原文
 tests/            test_raw_posts_dedup.py
 deploy/           部署脚本、systemd 单元、nginx vhost
@@ -76,16 +76,16 @@ cd frontend && npm install && npm run dev   # http://127.0.0.1:18091，/api 代�
 
 ## X 日报数据流
 
+**2026-10-29 起，新帖只从页面入库**：外部 Grok Bot routine 停止拉取，不再向仓库提交 `posts.json`。
+
 ```
-config/watchlist.json
-  → 采集 X 原文与头像 → data/raw_posts.json（按 id 去重追加）
-  → backend/cmd/digest（AI 解析标题、行业、技术、标签、简介，教程类加步骤）→ data/posts.json
-  → backend/cmd/import（幂等 upsert）→ MariaDB → Go API → Nuxt 页面
+页面「导入单帖」（贴链接）/「更新帖子」（手动选账号，或 REFRESH_INTERVAL 定时更新配置的账号）
+  → fxtwitter 拉原文 → 中转站 AI 解析 → 直接写入 MariaDB → Go API → Nuxt 页面
 ```
 
-- 原文采集由外部 Grok Bot routine 完成（folder id `x`，由统一调度维护，改规则时更新该 routine，不在本仓库另建一份）。`data/following_queue.txt` / `queue_progress.json` / `fetched_accounts.txt` 记录批量采集进度。
-- `posts.json` 的增量由 bot 自动提交（提交信息「posts.json：解析 bot 新拉取的帖子」）。
-- 网页上的「导入单帖」和「更新帖子」**直接写数据库**，不写 `raw_posts.json` / `posts.json`；之后再跑 `cmd/import` 不会删除这些帖子。
+- `data/` 冻结为历史数据：`raw_posts.json` / `posts.json` 只保留停用前 bot 采集的内容，不再增长。它仍是新环境初始化（`cmd/import`）和前端演示模式（`frontend/scripts/sync-x-content.mjs`）的数据来源，所以没有移出仓库；不改写 git 历史。
+- 服务器上「拉取仓库 → `cmd/import`」的定时任务需要停掉（不在本仓库，见 `docs/迭代一功能优化与新增实施方案未完成收尾实施方案.md`）；手动再跑 `cmd/import` 是安全的：幂等，不会删除页面导入的帖子，也会跳过页面上删除过的帖子。
+- `cmd/digest`、`scripts/append_raw_posts.py` 只用于重新处理历史数据，日常不再使用。
 
 ### 导入单帖 / 更新帖子
 
