@@ -132,6 +132,12 @@ export interface XRefreshJob {
   accounts: XRefreshAccount[]
 }
 
+// GET/PUT /api/v1/x/refresh/accounts: the scheduled refresh's accounts.
+export interface XRefreshAccounts {
+  usernames: string[]
+  interval: string // e.g. "6h0m0s"; '' = REFRESH_INTERVAL not set
+}
+
 // GET/POST /api/v1/repos/sync-all (background job).
 export interface RepoSyncJob {
   running: boolean, total: number, done: number, synced: number, failed: number, rate_limited: number,

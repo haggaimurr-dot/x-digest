@@ -27,15 +27,27 @@
       <template v-else>
         <h2>更新到最新帖子</h2>
         <p style="color:var(--text-muted);font-size:13px;margin:0 0 8px">
-          从每个账号已入库的最新帖子之后开始拉取（没有帖子的账号拉最近 30 天），新帖用中转站 AI 解析后入库；15 字以内的短回复跳过。不选账号 = 全部账号。
+          从每个账号已入库的最新帖子之后开始拉取（没有帖子的账号拉最近 30 天），新帖用中转站 AI 解析后入库；15 字以内的短回复跳过。不选账号 = 全部账号。定时更新只更新下方配置的账号。
         </p>
         <template v-if="!job.running">
           <input class="field wl-search" v-model="search" type="search" placeholder="搜索账号" style="width:100%" />
           <div class="chips xi-accounts">
             <button type="button" class="chip" :class="{ active: !selected.size }" @click="selected = new Set()">全部账号（{{ accounts.length }}）</button>
             <button v-for="a in shownAccounts" :key="a.username" type="button" class="chip" :class="{ active: selected.has(a.username) }" @click="toggle(a.username)">
-              {{ a.name || a.username }} <span class="chip-count">@{{ a.username }}</span>
+              {{ a.name || a.username }} <span class="chip-count">@{{ a.username }}</span><span v-if="autoSet.has(a.username)" class="chip-count" title="定时更新账号"> · 定时</span>
             </button>
+          </div>
+          <div class="xi-auto">
+            <p class="xi-auto-head">
+              <strong>定时更新</strong>
+              <span v-if="auto.interval">每 {{ intervalText }} 自动更新 {{ auto.usernames.length }} 个账号<template v-if="!auto.usernames.length">（未配置账号，定时任务不会运行）</template></span>
+              <span v-else>服务器未开启（未设置 REFRESH_INTERVAL）；已配置 {{ auto.usernames.length }} 个账号，开启后生效</span>
+            </p>
+            <div class="xi-auto-actions">
+              <button class="btn btn-sm" type="button" :disabled="autoSaving || !selected.size" @click="saveAuto([...selected])">{{ selected.size ? `设所选 ${selected.size} 个为定时账号` : '先在上方选择账号' }}</button>
+              <button class="btn btn-sm" type="button" :disabled="!auto.usernames.length" @click="selected = new Set(auto.usernames)">选中定时账号</button>
+              <button class="btn btn-sm" type="button" :disabled="autoSaving || !auto.usernames.length" @click="saveAuto([])">清空定时账号</button>
+            </div>
           </div>
         </template>
         <div v-if="job.accounts.length" class="xi-progress">
@@ -66,7 +78,7 @@
 </template>
 
 <script setup lang="ts">
-import type { WatchlistAccount as Account, XRefreshAccount, XRefreshJob } from '~/composables/types'
+import type { WatchlistAccount as Account, XRefreshAccount, XRefreshAccounts, XRefreshJob } from '~/composables/types'
 import { parseImportLinks } from '~/utils/importLinks'
 
 // Two dialogs of the X daily page: import one post by link, and refresh
@@ -183,6 +195,27 @@ async function doRefresh () {
   } finally { starting.value = false }
 }
 
+// ---- scheduled refresh accounts (REFRESH_INTERVAL refreshes only these) ----
+const auto = ref<XRefreshAccounts>({ usernames: [], interval: '' })
+const autoSet = computed(() => new Set(auto.value.usernames))
+const autoSaving = ref(false)
+// Go duration ("6h0m0s", "90m0s") → "6 小时" / "1 小时 30 分钟".
+const intervalText = computed(() => {
+  const m = /^(?:(\d+)h)?(?:(\d+)m)?/.exec(auto.value.interval) || []
+  const h = Number(m[1] || 0); const min = Number(m[2] || 0)
+  return [h ? `${h} 小时` : '', min ? `${min} 分钟` : ''].filter(Boolean).join(' ') || auto.value.interval
+})
+async function saveAuto (usernames: string[]) {
+  autoSaving.value = true; refreshErr.value = false
+  try {
+    auto.value = await store.setXRefreshAccounts(usernames)
+    refreshMsg.value = usernames.length ? `已设为定时更新账号：${auto.value.usernames.length} 个` : '已清空定时更新账号'
+  } catch (err: any) {
+    refreshErr.value = true
+    refreshMsg.value = err?.message || '保存失败'
+  } finally { autoSaving.value = false }
+}
+
 const failedCount = computed(() => job.value.accounts.reduce((n, a) => n + (a.failed_ids?.length || 0), 0))
 async function doRetry () {
   starting.value = true; refreshErr.value = false; refreshMsg.value = ''
@@ -199,6 +232,7 @@ async function doRetry () {
 
 onMounted(async () => {
   if (props.mode === 'post') { nextTick(() => urlEl.value?.focus()); return }
+  store.getXRefreshAccounts().then(a => { auto.value = a }).catch(() => { /* older server */ })
   try {
     job.value = await store.getXRefresh()
     lastAdded = job.value.added || 0

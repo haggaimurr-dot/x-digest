@@ -70,7 +70,7 @@ cd frontend && npm install && npm run dev   # http://127.0.0.1:18091，/api 代�
 | `API_TOKEN` | 写接口令牌：所有 POST/PUT/PATCH/DELETE 需带 `X-API-Token`（或 `Authorization: Bearer`），否则 401；页面遇到 401 会弹框输入并存本机。未设置时不校验（仅限本地开发） |
 | `AI_DAILY_LIMIT` | 全站每日 AI 请求上限（摘要、导入、更新帖子、翻译），超出 429；0 / 未设置 = 不限 |
 | `SUMMARY_CONCURRENCY` | AI 摘要同时运行数（1–16，默认 2） |
-| `REFRESH_INTERVAL` | 自动「更新帖子」间隔（如 `6h`，最少 10m）；未设置 = 关闭 |
+| `REFRESH_INTERVAL` | 定时「更新帖子」间隔（如 `6h`，最少 10m）；未设置 = 关闭。只更新在「更新帖子」弹窗中设为「定时账号」的账号（`authors.auto_refresh`），未配置账号时不运行 |
 | `REPO_SYNC_INTERVAL` | 仓库自动同步间隔，默认 `24h`；`0` = 关闭。发现新 Release 时顶栏铃铛提醒 |
 | `ATTACHMENT_QUOTA_MB` | 附件总容量上限，超出 413；未设置 = 不限 |
 
@@ -90,7 +90,7 @@ config/watchlist.json
 ### 导入单帖 / 更新帖子
 
 - **导入单帖** `POST /api/v1/posts/import {url, force}`：用 fxtwitter 拉原文（长文、X 文章、引用、回复上下文、图片、头像）→ AI 解析（与 `cmd/digest` 同一提示词）→ 写库；作者不在关注列表时自动加入「默认」分组。
-- **更新帖子** `POST/GET /api/v1/x/refresh`：选账号（不选 = 全部），后台任务用 Grok `x_search` 找每个账号最新已入库帖之后的新帖 id，再逐条拉原文、解析、入库；15 字以内的短回复跳过。Grok 只提供 id，正文和作者以 fxtwitter 为准，模型编造的 id 不会入库。页面轮询进度。
+- **更新帖子** `POST/GET /api/v1/x/refresh`（定时账号：`GET/PUT /api/v1/x/refresh/accounts`）：选账号（不选 = 全部），后台任务用 Grok `x_search` 找每个账号最新已入库帖之后的新帖 id，再逐条拉原文、解析、入库；15 字以内的短回复跳过。Grok 只提供 id，正文和作者以 fxtwitter 为准，模型编造的 id 不会入库。页面轮询进度。
 - 主模型拒绝（中转站对个别话题返回 403）时改用 Grok 重试。
 
 ### 批量解析与导入（服务器本地 CLI，不暴露成 HTTP 接口）

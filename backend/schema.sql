@@ -535,3 +535,8 @@ CREATE TABLE IF NOT EXISTS deleted_posts (
   id         VARCHAR(64) NOT NULL PRIMARY KEY,
   deleted_at DATETIME    NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Scheduled 更新帖子 (2026-10-29): REFRESH_INTERVAL refreshes only the
+-- accounts marked here (set on the page, PUT /api/v1/x/refresh/accounts),
+-- not the whole watchlist.
+ALTER TABLE authors ADD COLUMN IF NOT EXISTS auto_refresh TINYINT(1) NOT NULL DEFAULT 0;

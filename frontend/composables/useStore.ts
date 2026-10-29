@@ -2,7 +2,7 @@ import { rawAvatar } from '~/utils/x-post.mjs'
 import xContent from '~/assets/mock/x-content.json'
 // Data layer: real /api/v1 by default, mock fallback when NUXT_PUBLIC_USE_MOCK=1.
 // Pages only ever talk to this layer, never to raw fetch or raw mock data.
-import type { Post, Watchlist, Categories, Replica, ReplicaStep, Attachment, Repo, RepoGroup, RepoDetail, RepoRelease, RepoSyncJob, SavedView, YTChannel, YTVideo, YTSummary, XRefreshJob } from './types'
+import type { Post, Watchlist, Categories, Replica, ReplicaStep, Attachment, Repo, RepoGroup, RepoDetail, RepoRelease, RepoSyncJob, SavedView, YTChannel, YTVideo, YTSummary, XRefreshJob, XRefreshAccounts } from './types'
 import { ApiError } from './types'
 // Video platforms sharing the /api/v1/<p>/ routes and the VideoHub page.
 export type VideoPlatform = 'yt' | 'bili'
@@ -38,6 +38,7 @@ export function useStore () {
   const loading = useState<boolean>('xd-loading', () => false)
   const error = useState<string>('xd-error', () => '')
   const mockDeleted = useState<string[]>('xd-mock-deleted-posts', () => [])
+  const mockAutoRefresh = useState<string[]>('xd-mock-auto-refresh', () => [])
 
   async function loadPosts (params: {
     authors?: string[], tags?: string[], userTags?: string[], categories?: string[],
@@ -479,6 +480,16 @@ export function useStore () {
     if (mock.value) throw new ApiError(501, 'MOCK', '演示模式不支持更新')
     return apiFetch<XRefreshJob>('x/refresh', { method: 'POST', body: JSON.stringify({ usernames }) })
   }
+  // Accounts the scheduled refresh (REFRESH_INTERVAL) covers; interval is
+  // '' when the schedule is off on the server. Mock mode keeps them in memory.
+  async function getXRefreshAccounts (): Promise<XRefreshAccounts> {
+    if (mock.value) return { usernames: [...mockAutoRefresh.value], interval: '' }
+    return apiFetch<XRefreshAccounts>('x/refresh/accounts')
+  }
+  async function setXRefreshAccounts (usernames: string[]): Promise<XRefreshAccounts> {
+    if (mock.value) { mockAutoRefresh.value = [...new Set(usernames)].sort(); return { usernames: [...mockAutoRefresh.value], interval: '' } }
+    return apiFetch<XRefreshAccounts>('x/refresh/accounts', { method: 'PUT', body: JSON.stringify({ usernames }) })
+  }
   // Re-import only the posts that failed in the last refresh job.
   async function retryXRefresh (): Promise<XRefreshJob> {
     return apiFetch<XRefreshJob>('x/refresh/retry', { method: 'POST' })
@@ -519,7 +530,7 @@ export function useStore () {
     deleteAccount, addCategory, deleteCategory, renameCategory, restoreCategory, mergeUserTags, deletePosts, setPostReplicaEnabled, loadViews, createView, deleteView, batchCategory, batchPostSummaries, loadTagAliases, setTagAlias, deleteTagAlias, cloneReplica, loadNotifications, markNotificationsRead, createReplicaFromRepo, setPostCategories, setUserTags, setUserTagVocabulary, translateTexts,
     loadRepos, loadRepoGroups, addRepo, loadRepoDetail, loadRepoCommits, loadRepoReleases,
     patchRepo, deleteRepo, syncRepo, syncAllRepos, getRepoSyncStatus, addRepoGroup, deleteRepoGroup, validateRepoFullName,
-    loadYTChannels, loadYTVideos, addYTChannel, updateYTChannel, deleteYTChannel, syncYTChannel, syncAllYTChannels, getYTSummary, startYTSummary, addYTVideo, getPostSummary, startPostSummary, importXPost, getXRefresh, startXRefresh, retryXRefresh,
+    loadYTChannels, loadYTVideos, addYTChannel, updateYTChannel, deleteYTChannel, syncYTChannel, syncAllYTChannels, getYTSummary, startYTSummary, addYTVideo, getPostSummary, startPostSummary, importXPost, getXRefresh, startXRefresh, retryXRefresh, getXRefreshAccounts, setXRefreshAccounts,
     loadYTGroups, addYTGroup, deleteYTGroup, setVideoState
   }
 }

@@ -32,9 +32,11 @@ import (
 //	GET  /api/v1/x/refresh      job status (poll).
 //	POST /api/v1/x/refresh/retry re-import only the posts that failed in the
 //	     last job (no Grok call).
+//	GET/PUT /api/v1/x/refresh/accounts  the accounts the scheduled refresh
+//	     covers (x_refresh_accounts.go).
 //
-//	REFRESH_INTERVAL  automatic whole-watchlist refresh, e.g. "6h" (Go
-//	                  duration, at least 10m; unset = off).
+//	REFRESH_INTERVAL  scheduled refresh of the configured accounts, e.g. "6h"
+//	                  (Go duration, at least 10m; unset = off).
 //
 // Jobs are saved to refresh_jobs after every account (refreshJobStore), so a
 // restart resumes a running job without asking Grok again for the accounts
@@ -55,6 +57,9 @@ type refreshJobStore interface {
 type xImporter struct {
 	st   *store.Store
 	jobs refreshJobStore
+	auto autoRefreshStore
+	// interval is the scheduled refresh period (0 = off), shown on the page.
+	interval time.Duration
 	// doAccount processes one account (refreshAccount; swapped in tests).
 	doAccount func(*refreshAccount)
 	fx        *xpost.Fetcher
@@ -72,7 +77,7 @@ func newXImporter(st *store.Store) *xImporter {
 	if m := os.Getenv("DIGEST_MODEL"); m != "" {
 		llm.Model = m
 	}
-	x := &xImporter{st: st, jobs: st, fx: xpost.NewFetcherFromEnv(), gk: xpost.NewFinderFromEnv(), llm: llm, fb: xpost.NewGrokChatFromEnv()}
+	x := &xImporter{st: st, jobs: st, auto: st, fx: xpost.NewFetcherFromEnv(), gk: xpost.NewFinderFromEnv(), llm: llm, fb: xpost.NewGrokChatFromEnv()}
 	x.doAccount = x.refreshAccount
 	return x
 }
@@ -81,7 +86,9 @@ func (x *xImporter) register(mux *http.ServeMux) {
 	mux.HandleFunc("/api/v1/posts/import", x.handleImport)
 	mux.HandleFunc("/api/v1/x/refresh", x.handleRefresh)
 	mux.HandleFunc("/api/v1/x/refresh/retry", x.handleRetry)
+	mux.HandleFunc("/api/v1/x/refresh/accounts", x.handleRefreshAccounts)
 	if d, err := time.ParseDuration(os.Getenv("REFRESH_INTERVAL")); err == nil && d >= 10*time.Minute {
+		x.interval = d
 		go x.scheduleRefresh(d, time.NewTicker(d).C)
 	}
 }
@@ -285,17 +292,21 @@ func (x *xImporter) running() bool {
 	return x.job != nil && x.job.Running
 }
 
-// scheduleRefresh runs a whole-watchlist refresh every interval
-// (REFRESH_INTERVAL, e.g. "6h"; unset/0 = off). A tick while a job is
-// running is skipped.
+// scheduleRefresh refreshes the configured accounts (authors.auto_refresh,
+// set on the page) every interval (REFRESH_INTERVAL, e.g. "6h"; unset/0 =
+// off). A tick while a job is running, or with no account configured, is
+// skipped.
 func (x *xImporter) scheduleRefresh(interval time.Duration, tick <-chan time.Time) {
 	for range tick {
 		if !x.gk.Configured() || !x.llm.Configured() {
 			continue
 		}
-		names, err := x.st.WatchUsernames()
+		names, err := x.auto.AutoRefreshUsernames()
 		if err != nil {
 			log.Printf("scheduled x refresh: %v", err)
+			continue
+		}
+		if len(names) == 0 {
 			continue
 		}
 		accs := make([]*refreshAccount, len(names))
