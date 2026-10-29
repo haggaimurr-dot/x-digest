@@ -168,49 +168,25 @@
     "xiaohuiyuan": 130,
     "Alincqbkjc": 8,
     "Darazeevd": 154,
-    "Steve202333": 17
+    "Steve202333": 17,
+    "Chilljccu": 2198,
+    "gefei55": 850,
+    "IntuitMachine": 1086
   },
   "open": {
-    "Chilljccu": {
-      "posts_added": 1871,
-      "pages": 75,
-      "next_token": "7140dibdnow9c7btwp0fs2ilra74hllfbkso0mha2i980",
-      "user_id": "2090442465950171136"
-    },
-    "gefei55": {
-      "posts_added": 55,
-      "pages": 2,
-      "next_token": "7140dibdnow9c7btwp0g75z7zobsid68npl2qrmk8a5h4",
-      "user_id": "362252075"
-    },
-    "IntuitMachine": {
-      "posts_added": 31,
-      "pages": 1,
-      "next_token": "7140dibdnow9c7btwp0g78322bntks2e0nvleam58xuer",
-      "user_id": "3027431134"
-    },
     "0xlangeai": {
-      "posts_added": 35,
-      "pages": 1,
-      "next_token": "7140dibdnow9c7btwp0g783nflar0d5svkvbei8p4rn06",
-      "user_id": "1759530111534243840"
+      "status": "partial"
     },
     "guanmo_ai": {
-      "posts_added": 60,
-      "pages": 2,
-      "next_token": "7140dibdnow9c7btwp0g7610us0ifgne9bxeo0debrfav",
-      "user_id": "2025547057646493696"
+      "status": "partial"
     },
     "mafang71": {
-      "posts_added": 83,
-      "pages": 3,
-      "next_token": "7140dibdnow9c7btwp0g73ve4klnw6f40jej52t6q5640",
-      "user_id": "902483821811056640"
+      "status": "partial"
     }
   },
-  "raw_total": 28383,
-  "last_footer": "X reads left for this user: 28 of 30 this minute (resets at 2026-10-29T00:46:00.000Z), 732 of 1000 today (resets at 2026-10-30T00:00:00.000Z).",
-  "stopped_reason": "queue_complete_latest10",
+  "raw_total": 30560,
+  "last_footer": "X reads left: 25/30 min, 640/1000 today",
+  "stopped_reason": "continuing",
   "note": "Parent advanced qizong007 then handed to executor",
   "accounts": {
     "qizong007": {
@@ -222,15 +198,15 @@
       "posts_added_l10": 10
     },
     "IntuitMachine": {
-      "posts_added": 31,
-      "pages_done": 1,
-      "complete": false,
+      "posts_added": 1086,
+      "pages_done": 47,
+      "complete": true,
       "user_id": "3027431134"
     },
     "Chilljccu": {
-      "posts_added": 1871,
-      "pages_done": 75,
-      "complete": false,
+      "posts_added": 2198,
+      "pages_done": 89,
+      "complete": true,
       "user_id": "2090442465950171136"
     },
     "0xlangeai": {
@@ -240,9 +216,9 @@
       "user_id": "1759530111534243840"
     },
     "gefei55": {
-      "posts_added": 55,
-      "pages_done": 2,
-      "complete": false,
+      "posts_added": 850,
+      "pages_done": 34,
+      "complete": true,
       "user_id": "362252075"
     },
     "guanmo_ai": {
@@ -1638,5 +1614,10 @@
   "rule": "latest10-2026-10-29",
   "remaining_count": 0,
   "fetched_count": 179,
-  "finished_at": "2026-10-29T00:36:04.000Z"
+  "finished_at": "2026-10-29T00:36:04.000Z",
+  "accounts_finished_today_real": [
+    "Chilljccu",
+    "gefei55",
+    "IntuitMachine"
+  ]
 }
