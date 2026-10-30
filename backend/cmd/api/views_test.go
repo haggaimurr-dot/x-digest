@@ -106,6 +106,15 @@ func TestRepoSyncInterval(t *testing.T) {
 type fakeVideoState struct {
 	platform, id   string
 	watched, later *bool
+	tags           []string
+}
+
+func (f *fakeVideoState) SetVideoTags(id string, tags []string) error {
+	if id == "missing" {
+		return sql.ErrNoRows
+	}
+	f.id, f.tags = id, tags
+	return nil
 }
 
 func (f *fakeVideoState) SetVideoState(platform, id string, watched, later *bool) error {
@@ -134,6 +143,18 @@ func TestPatchVideoState(t *testing.T) {
 	}
 	if c := do("PATCH", `{"watched":true}`, "missing"); c != 404 {
 		t.Fatalf("missing: %d", c)
+	}
+	if c := do("PATCH", `{"tags":[" AI ","AI","-Claude",""]}`, "BV2"); c != 200 || f.id != "BV2" || strings.Join(f.tags, "|") != "AI|-Claude" {
+		t.Fatalf("tags: %d %+v", c, f)
+	}
+	if c := do("PATCH", `{"tags":[]}`, "BV2"); c != 200 || f.tags == nil || len(f.tags) != 0 {
+		t.Fatalf("clear tags: %d %+v", c, f)
+	}
+	if c := do("PATCH", `{"tags":["`+strings.Repeat("长", 65)+`"]}`, "BV2"); c != 422 {
+		t.Fatalf("long tag: %d", c)
+	}
+	if c := do("PATCH", `{"tags":["a"]}`, "missing"); c != 404 {
+		t.Fatalf("tags missing: %d", c)
 	}
 	if c := do("GET", ``, "BV1"); c != 405 {
 		t.Fatalf("GET: %d", c)

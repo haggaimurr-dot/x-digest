@@ -329,8 +329,16 @@ func (h *HubStore) videoTags(ids []string) map[string][]string {
 	return out
 }
 
-// SetVideoTags replaces the user tags for a video.
+// SetVideoTags replaces the user tags for a video; sql.ErrNoRows for an
+// unknown video.
 func (h *HubStore) SetVideoTags(videoID string, tags []string) error {
+	var n int
+	if err := h.DB.QueryRow(h.q(`SELECT COUNT(*) FROM {p}_videos WHERE id=?`), videoID).Scan(&n); err != nil {
+		return err
+	}
+	if n == 0 {
+		return sql.ErrNoRows
+	}
 	if _, err := h.DB.Exec(h.q(`DELETE FROM {p}_video_tags WHERE video_id=?`), videoID); err != nil {
 		return err
 	}

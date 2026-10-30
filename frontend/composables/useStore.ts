@@ -415,6 +415,11 @@ export function useStore () {
     if (mock.value) return
     await apiFetch(`${p}/videos/${encodeURIComponent(id)}`, { method: 'PATCH', body: JSON.stringify(state) })
   }
+  // Replaces the video's user tags ("-name" hides an auto-extracted tag).
+  async function setVideoTags (id: string, tags: string[], p: VideoPlatform = 'yt') {
+    if (mock.value) return
+    await apiFetch(`${p}/videos/${encodeURIComponent(id)}`, { method: 'PATCH', body: JSON.stringify({ tags }) })
+  }
   async function loadYTGroups (p: VideoPlatform = 'yt'): Promise<RepoGroup[]> {
     if (mock.value) return [...mockStore.ytGroups.value]
     const data = await apiFetch<{ groups: RepoGroup[] } | RepoGroup[]>(`${p}/groups`)
@@ -557,6 +562,6 @@ export function useStore () {
     loadRepos, loadRepoGroups, addRepo, loadRepoDetail, loadRepoCommits, loadRepoReleases,
     patchRepo, deleteRepo, syncRepo, syncAllRepos, getRepoSyncStatus, addRepoGroup, deleteRepoGroup, validateRepoFullName,
     loadYTChannels, loadYTVideos, addYTChannel, updateYTChannel, deleteYTChannel, syncYTChannel, syncAllYTChannels, getYTSummary, startYTSummary, addYTVideo, getPostSummary, startPostSummary, getRepoSummary, startRepoSummary, importXPost, loadTags, loadPostGroups, ensurePostGroup, previewYTVideo, getXRefresh, startXRefresh, retryXRefresh, getXRefreshAccounts, setXRefreshAccounts,
-    loadYTGroups, addYTGroup, deleteYTGroup, setVideoState
+    loadYTGroups, addYTGroup, deleteYTGroup, setVideoState, setVideoTags
   }
 }

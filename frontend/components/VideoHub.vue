@@ -37,13 +37,6 @@
                 <option value="published_asc">{{ t('index.sortPublishedAsc') }}</option>
               </select>
             </div>
-            <div class="cond-date">
-              <label class="cond-label">{{ t('yt.date') }}</label>
-              <div style="display:flex;gap:6px">
-                <input type="date" class="field" style="flex:1;min-width:0" v-model="dateFrom" :aria-label="t('yt.dateFromAria')" />
-                <input type="date" class="field" style="flex:1;min-width:0" v-model="dateTo" :aria-label="t('yt.dateToAria')" />
-              </div>
-            </div>
           </div>
           <div v-if="channels.length" style="margin-top:8px">
             <div class="chip-group-title">{{ t('yt.channel') }}</div>
@@ -73,24 +66,37 @@
             <span>{{ t('yt.channels') }}</span><span class="yt-section-count">（{{ channels.length }}）</span>
           </button>
           <template v-if="!collapsedSections.channels">
-          <div v-for="c in channels" :key="c.id" class="watch-row">
-            <strong>{{ c.name || c.channel_id }}</strong>
-            <span v-if="c.handle" style="color:var(--text-muted)">{{ c.handle }}</span>
-            <span v-if="groupName(c.group_id)" class="chip active">{{ groupName(c.group_id) }}</span>
-            <span style="color:var(--text-muted)">{{ t('yt.videosCount', { n: c.video_count }) }}</span>
-            <span style="color:var(--text-muted)">{{ rangeText(c) }}</span>
-            <span v-if="c.sync_mode === 'single'" class="chip yt-single-badge" :title="t('yt.singleModeHint')">{{ t('yt.singleMode') }}</span>
-            <span :class="['sync-badge', `sync-${c.sync_status}`]">{{ syncLabel(c.sync_status) }}</span>
-            <span style="color:var(--text-muted)">
-              {{ c.last_synced_at ? t('yt.lastSynced', { time: shanghaiTime(c.last_synced_at) }) : t('yt.neverSyncedShort') }}
-            </span>
-            <span v-if="c.sync_error" style="color:var(--danger-text)" :title="c.sync_error">{{ trunc40(c.sync_error) }}</span>
-            <span class="btn-group">
-            <IconBtn class="btn-sm" icon="calendar" :label="t('yt.editRange')" @click="openEdit(c)" />
-            <IconBtn class="btn-sm" icon="refresh" :busy="syncing.has(c.id)" :label="syncing.has(c.id) ? t('yt.refreshing') : t('yt.sync')" :disabled="syncing.has(c.id)" @click="doSync(c)" />
-            <IconBtn v-if="c.sync_mode === 'single'" class="btn-sm btn-primary" icon="cloud-download" :label="t('yt.syncChannelAll')" :disabled="syncing.has(c.id)" @click="doSync(c, true)" />
-            <IconBtn class="btn-sm btn-danger" icon="trash" :label="t('common.delete')" @click="doDelete(c)" />
-            </span>
+          <div class="ch-list">
+          <div v-for="c in channels" :key="c.id" class="ch-row" :class="{ 'is-open': openChannels.has(c.id) }">
+            <!-- 默认只显示名称、分组、视频数与同步状态；其余信息和操作在菜单按钮后面 -->
+            <div class="ch-head">
+              <span :class="['ch-dot', `sync-${c.sync_status}`]" :title="syncLabel(c.sync_status)" aria-hidden="true" />
+              <strong class="ch-name" :title="c.name || c.channel_id">{{ c.name || c.channel_id }}</strong>
+              <span v-if="groupName(c.group_id)" class="chip active ch-chip">{{ groupName(c.group_id) }}</span>
+              <span class="ch-count">{{ t('yt.videosCount', { n: c.video_count }) }}</span>
+              <IconBtn class="btn-sm btn-quiet ch-menu" :class="{ 'btn-on': openChannels.has(c.id) }" :icon="openChannels.has(c.id) ? 'x' : 'menu'"
+                :label="openChannels.has(c.id) ? t('yt.channelCollapse') : t('yt.channelExpand')" :aria-expanded="openChannels.has(c.id)" @click="toggleChannel(c.id)" />
+            </div>
+            <div v-if="openChannels.has(c.id)" class="ch-body">
+              <dl class="ch-meta">
+                <template v-if="c.handle"><dt>{{ t('yt.handle') }}</dt><dd>{{ c.handle }}</dd></template>
+                <dt>{{ t('yt.rangeLabel') }}</dt><dd>{{ rangeText(c) }}</dd>
+                <dt>{{ t('yt.syncState') }}</dt>
+                <dd>
+                  <span :class="['sync-badge', `sync-${c.sync_status}`]">{{ syncLabel(c.sync_status) }}</span>
+                  <span v-if="c.sync_mode === 'single'" class="chip yt-single-badge" :title="t('yt.singleModeHint')">{{ t('yt.singleMode') }}</span>
+                  {{ c.last_synced_at ? t('yt.lastSynced', { time: shanghaiTime(c.last_synced_at) }) : t('yt.neverSyncedShort') }}
+                </dd>
+                <template v-if="c.sync_error"><dt>{{ t('yt.syncErrorLabel') }}</dt><dd style="color:var(--danger-text)" :title="c.sync_error">{{ trunc40(c.sync_error) }}</dd></template>
+              </dl>
+              <div class="ch-actions">
+                <button type="button" class="btn btn-sm with-icon" @click="openEdit(c)"><UiIcon name="calendar" />{{ t('yt.editRange') }}</button>
+                <button type="button" class="btn btn-sm with-icon" :disabled="syncing.has(c.id)" @click="doSync(c)"><UiIcon name="refresh" :class="{ 'icon-spin': syncing.has(c.id) }" />{{ syncing.has(c.id) ? t('yt.refreshing') : t('yt.sync') }}</button>
+                <button v-if="c.sync_mode === 'single'" type="button" class="btn btn-sm btn-primary with-icon" :disabled="syncing.has(c.id)" @click="doSync(c, true)"><UiIcon name="cloud-download" />{{ t('yt.syncChannelAll') }}</button>
+                <button type="button" class="btn btn-sm btn-danger with-icon" @click="doDelete(c)"><UiIcon name="trash" />{{ t('common.delete') }}</button>
+              </div>
+            </div>
+          </div>
           </div>
           </template>
           <button class="yt-section-toggle" type="button" style="margin-top:10px" :aria-expanded="!collapsedSections.groups" @click="toggleSection('groups')">
@@ -116,6 +122,8 @@
             @click="activeTab = tab.key">{{ t(tab.label) }}（{{ tabCounts[tab.key] }}）</button>
           <button type="button" class="chip" :class="{ active: watchLaterOnly }" :aria-pressed="watchLaterOnly" @click="watchLaterOnly = !watchLaterOnly"><span class="with-icon"><UiIcon name="clock" :size="14" />稍后观看（{{ watchLaterCount }}）</span></button>
         </div>
+
+        <datalist :id="`${P}-tag-options`"><option v-for="tc in tagCounts" :key="tc.tag" :value="tc.tag" /></datalist>
 
         <!-- 空状态 -->
         <p v-if="!channels.length" class="empty" style="margin-top:16px">{{ t('yt.empty') }}</p>
@@ -151,7 +159,15 @@
                 <span class="chip yt-tag">{{ kindLabel(v) }}</span>
                 <span v-if="v.live_status === 'is_live'" class="chip active yt-tag">{{ t('yt.liveNow') }}</span>
                 <span v-else-if="v.live_status === 'was_live'" class="chip yt-tag">{{ t('yt.liveReplay') }}</span>
-                <button v-for="tag in tagsOf(v)" :key="tag" type="button" class="chip yt-tag yt-topic" :class="{ active: tagFilter === tag }" @click="tagFilter = tagFilter === tag ? '' : tag">#{{ tag }}</button>
+                <span v-for="tag in tagsOf(v)" :key="tag" class="chip yt-tag yt-topic yt-tag-edit" :class="{ active: tagFilter === tag }">
+                  <button type="button" class="yt-tag-name" :aria-pressed="tagFilter === tag" @click="tagFilter = tagFilter === tag ? '' : tag">#{{ tag }}</button>
+                  <button type="button" class="yt-tag-x" :aria-label="t('yt.removeTag', { tag })" :data-tip="t('yt.removeTag', { tag })" @click="removeTag(v, tag)"><UiIcon name="x" :size="11" :stroke="2.6" /></button>
+                </span>
+                <form v-if="tagDraftFor === v.id" class="yt-tag-form" @submit.prevent="commitTagDraft(v)">
+                  <input :ref="el => { if (el) (el as HTMLInputElement).focus() }" v-model="tagDraft" class="field yt-tag-input" :list="`${P}-tag-options`" maxlength="64"
+                    :placeholder="t('yt.newTagPh')" :aria-label="t('yt.addTag')" @keydown.esc="tagDraftFor = ''" @blur="commitTagDraft(v)" />
+                </form>
+                <button v-else type="button" class="chip yt-tag yt-tag-add" :aria-label="t('yt.addTag')" :data-tip="t('yt.addTag')" @click="startTagDraft(v)"><UiIcon name="plus" :size="12" :stroke="2.6" /></button>
               </div>
             </div>
             <!-- 视频提及的资源：简介里的链接 + AI 摘要识别出的工具/仓库/网站 -->
@@ -318,7 +334,7 @@ import type { VideoPlatform } from '~/composables/useStore'
 import { DICT } from '~/utils/i18n'
 import { videoTags, descResources, linkParts } from '~/utils/videoTags'
 import { ApiError } from '~/composables/types'
-import { relativeTime, shanghaiTime, shanghaiDayBound, trunc40 } from '~/composables/useFormat'
+import { relativeTime, shanghaiTime, trunc40 } from '~/composables/useFormat'
 import { useScrollLock } from '~/composables/useScrollLock'
 import { followSummary } from '~/utils/summaryStream'
 import { embedUrl, seekMessage } from '~/utils/embedPlayer'
@@ -349,8 +365,6 @@ const groups = ref<RepoGroup[]>([])
 const keyword = ref('')
 const channelFilter = ref('')
 const groupFilter = ref('')
-const dateFrom = ref('')
-const dateTo = ref('')
 type YTKind = 'video' | 'short' | 'live' | 'playlist'
 // Bilibili has no Shorts / live tabs: only uploads and 合集·系列.
 const tabs: Array<{ key: YTKind, label: string }> = ([
@@ -364,8 +378,7 @@ const activeTab = ref<YTKind>('video')
 const filtersCollapsed = ref(true)
 const tagFilter = ref('')
 const activeFilterCount = computed(() =>
-  (keyword.value.trim() ? 1 : 0) + (channelFilter.value ? 1 : 0) + (groupFilter.value ? 1 : 0) +
-  (dateFrom.value || dateTo.value ? 1 : 0) + (tagFilter.value ? 1 : 0))
+  (keyword.value.trim() ? 1 : 0) + (channelFilter.value ? 1 : 0) + (groupFilter.value ? 1 : 0) + (tagFilter.value ? 1 : 0))
 
 const expandedDesc = ref<Set<string>>(new Set())
 const syncing = ref<Set<string>>(new Set())
@@ -428,18 +441,6 @@ function rangeText (c: YTChannel): string {
   if (!c.date_from && !c.date_to) return t('yt.allTime')
   return `${c.date_from || '…'} ~ ${c.date_to || '…'}`
 }
-function matchesDate (v: YTVideo): boolean {
-  const from = shanghaiDayBound(dateFrom.value, false)
-  const to = shanghaiDayBound(dateTo.value, true)
-  if (from == null && to == null) return true
-  // Unknown date (playlists, metadata not fetched yet) cannot be
-  // excluded by a date filter — keep it visible.
-  const ts = Date.parse(v.published_at || '')
-  if (Number.isNaN(ts)) return true
-  if (from != null && ts < from) return false
-  if (to != null && ts > to) return false
-  return true
-}
 
 const channelById = computed(() => {
   const m = new Map<string, YTChannel>()
@@ -456,7 +457,6 @@ const filteredExceptKind = computed(() => {
       const g = channelById.value.get(v.channel_id)?.group_id || ''
       if (groupFilter.value === '__ungrouped') { if (g) return false } else if (g !== groupFilter.value) return false
     }
-    if (!matchesDate(v)) return false
     if (tagFilter.value && !tagsOf(v).includes(tagFilter.value)) return false
     return true
   })
@@ -512,7 +512,7 @@ function loadPageSize () {
     if (PAGE_SIZES.includes(n)) pageSize.value = n
   } catch { /* ignore */ }
 }
-watch([keyword, channelFilter, groupFilter, tagFilter, dateFrom, dateTo, activeTab, watchLaterOnly], () => { page.value = 1 })
+watch([keyword, channelFilter, groupFilter, tagFilter, activeTab, watchLaterOnly], () => { page.value = 1 })
 // 删除频道 / 取消稍后观看等让列表变短时，不停在空页上。
 watch(pageCount, (n) => { if (page.value > n) page.value = n })
 // 封面：B 站图床（hdslb.com）拒绝外站 Referer，<img> 用 no-referrer；
@@ -534,18 +534,45 @@ async function toggleWatchLater (v: YTVideo) {
   try { await store.setVideoState(v.id, { watch_later: !prev }, P) } catch (e: any) { v.watch_later = prev; showToast(errText(e, '保存失败')) }
 }
 // Topic tags from title + description (utils/videoTags.ts), cached per
-// video text; the tag chips list every tag present, most used first.
+// video text, merged with the user's tags (v.tags). A "-name" user tag hides
+// that auto tag, so any tag on a card can be removed.
 const tagCache = new Map<string, string[]>()
-function tagsOf (v: YTVideo): string[] {
+function autoTagsOf (v: YTVideo): string[] {
   const key = `${v.id}\u0000${v.title}\u0000${v.description || ''}`
   let tags = tagCache.get(key)
   if (!tags) { tags = videoTags(v.title, v.description || ''); tagCache.set(key, tags) }
-  // Merge user tags (from import) with auto-extracted tags.
-  if (v.tags?.length) {
-    const seen = new Set(tags)
-    for (const t of v.tags) if (!seen.has(t)) { tags.push(t); seen.add(t) }
-  }
   return tags
+}
+function tagsOf (v: YTVideo): string[] {
+  const user = v.tags || []
+  const hidden = new Set(user.filter(x => x.startsWith('-')).map(x => x.slice(1)))
+  const out = autoTagsOf(v).filter(x => !hidden.has(x))
+  for (const x of user) if (!x.startsWith('-') && !out.includes(x)) out.push(x)
+  return out
+}
+async function saveTags (v: YTVideo, next: string[]) {
+  const prev = v.tags
+  v.tags = next
+  try { await store.setVideoTags(v.id, next, P) } catch (e: any) { v.tags = prev; showToast(errText(e, '保存失败')) }
+}
+function removeTag (v: YTVideo, tag: string) {
+  const user = (v.tags || []).filter(x => x !== tag)
+  if (autoTagsOf(v).includes(tag)) user.push(`-${tag}`)
+  if (tagFilter.value === tag && !videos.value.some(o => o !== v && tagsOf(o).includes(tag))) tagFilter.value = ''
+  saveTags(v, user)
+}
+// 卡片上直接加标签：点 + 出输入框，回车 / 失焦保存，Esc 取消。
+const tagDraftFor = ref('')
+const tagDraft = ref('')
+function startTagDraft (v: YTVideo) { tagDraftFor.value = v.id; tagDraft.value = '' }
+function commitTagDraft (v: YTVideo) {
+  if (tagDraftFor.value !== v.id) return
+  const tag = tagDraft.value.trim().replace(/^#/, '')
+  tagDraftFor.value = ''
+  if (!tag || tag.startsWith('-') || tagsOf(v).includes(tag)) return
+  const user = (v.tags || []).filter(x => x !== `-${tag}`)
+  if (!autoTagsOf(v).includes(tag)) user.push(tag)
+  saveTags(v, user)
 }
 const tagCounts = computed(() => {
   const counts = new Map<string, number>()
@@ -607,7 +634,6 @@ watch([paged, lang], () => {
 
 function clearAll () {
   keyword.value = ''; channelFilter.value = ''; groupFilter.value = ''; tagFilter.value = ''
-  dateFrom.value = ''; dateTo.value = ''
   activeTab.value = 'video'
 }
 // ---- AI summary (per video, in the current UI language) ----
@@ -695,6 +721,13 @@ const collapsedSections = ref<{ channels: boolean, groups: boolean }>({ channels
 function toggleSection (k: 'channels' | 'groups') {
   collapsedSections.value = { ...collapsedSections.value, [k]: !collapsedSections.value[k] }
   try { localStorage.setItem(SECTIONS_KEY, JSON.stringify(collapsedSections.value)) } catch { /* private mode */ }
+}
+// 关注的频道 / UP 主：每行默认收起，菜单按钮展开详情和操作（只在本页内记住）。
+const openChannels = ref<Set<string>>(new Set())
+function toggleChannel (id: string) {
+  const s = new Set(openChannels.value)
+  if (s.has(id)) s.delete(id); else s.add(id)
+  openChannels.value = s
 }
 function loadSections () {
   try {
@@ -854,4 +887,33 @@ onMounted(async () => {
 .yt-embed { margin: 6px 0 10px; }
 .yt-embed iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 10px; margin-bottom: 6px; background: #000; }
 .yt-watch-row { display: flex; gap: 6px; margin: 8px 0; flex-wrap: wrap; }
+/* card tags: name + remove button in one chip, + chip to add */
+.yt-tag-edit { display: inline-flex; align-items: center; gap: 2px; padding-right: 3px; }
+.yt-tag-edit button { background: none; border: 0; color: inherit; font: inherit; padding: 0; cursor: pointer; }
+.yt-tag-x { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 9999px; color: var(--text-muted) !important; opacity: .55; }
+.yt-tag-edit:hover .yt-tag-x, .yt-tag-x:focus-visible { opacity: 1; }
+.yt-tag-x:hover { background: var(--danger); color: #fff !important; }
+.yt-tag-add { display: inline-flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text-muted); border-style: dashed; padding: 2px 8px; }
+.yt-tag-add:hover { color: var(--accent); border-color: var(--accent); }
+.yt-tag-form { display: inline-flex; margin: 0; }
+.yt-tag-input { width: 120px; padding: 2px 8px; font-size: 12px; border-radius: 9999px; min-height: 0; }
+@media (hover: none) { .yt-tag-x { opacity: 1; } }
+/* followed channels / uploaders */
+.ch-list { display: flex; flex-direction: column; gap: 6px; margin: 6px 0; }
+.ch-row { border: 1px solid var(--border); border-radius: 10px; background: var(--bg-elevated); }
+.ch-row.is-open { border-color: var(--chip-border); }
+.ch-head { display: flex; align-items: center; gap: 8px; padding: 6px 6px 6px 12px; min-width: 0; }
+.ch-dot { width: 8px; height: 8px; border-radius: 9999px; flex: none; background: #f7b500; }
+.ch-dot.sync-synced { background: var(--success); }
+.ch-dot.sync-failed, .ch-dot.sync-rate_limited { background: var(--danger); }
+.ch-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ch-chip { font-size: 12px; padding: 1px 8px; flex: none; }
+.ch-count { color: var(--text-muted); font-size: 13px; white-space: nowrap; margin-left: auto; }
+.ch-menu { flex: none; }
+.ch-body { border-top: 1px solid var(--border); padding: 10px 12px 12px; }
+.ch-meta { display: grid; grid-template-columns: max-content 1fr; gap: 6px 12px; margin: 0 0 10px; font-size: 13px; }
+.ch-meta dt { color: var(--text-muted); }
+.ch-meta dd { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; min-width: 0; overflow-wrap: anywhere; }
+.ch-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+.icon-spin { animation: icon-spin 1s linear infinite; }
 </style>
