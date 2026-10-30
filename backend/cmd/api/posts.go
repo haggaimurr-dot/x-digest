@@ -220,9 +220,33 @@ func (s *server) patchPost(w http.ResponseWriter, r *http.Request, id string) {
 	if !decodeBody(w, r, &body) {
 		return
 	}
+	// {"tags": [...]} replaces the post's tags (the 日报 card's × / +).
+	if rawTags, ok := body["tags"]; ok {
+		var in []string
+		if err := json.Unmarshal(rawTags, &in); err != nil {
+			writeErr(w, 422, "VALIDATION", "tags must be an array of strings")
+			return
+		}
+		tags := cleanVideoTags(in)
+		if tags == nil {
+			writeErr(w, 422, "VALIDATION", "too many tags or a tag is too long")
+			return
+		}
+		if err := s.st.SetPostTags(id, tags); errors.Is(err, sql.ErrNoRows) {
+			writeErr(w, 404, "NOT_FOUND", "post not found")
+			return
+		} else if err != nil {
+			writeErr(w, 500, "DB_ERROR", err.Error())
+			return
+		}
+		if _, ok := body["replica_enabled"]; !ok {
+			writeJSON(w, 200, map[string]any{"ok": true, "tags": tags})
+			return
+		}
+	}
 	raw, ok := body["replica_enabled"]
 	if !ok {
-		writeErr(w, 422, "VALIDATION", "replica_enabled is required (true, false or null)")
+		writeErr(w, 422, "VALIDATION", "replica_enabled or tags is required")
 		return
 	}
 	var v *bool

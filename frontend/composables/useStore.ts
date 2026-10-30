@@ -280,6 +280,11 @@ export function useStore () {
     if (ids.length === 1) return apiFetch(`posts/${encodeURIComponent(ids[0]!)}`, { method: 'DELETE' })
     return apiFetch('posts/batch-delete', { method: 'POST', body: JSON.stringify({ ids }) })
   }
+  // Replaces the post's tags (日报 card × / +).
+  async function setPostTags (id: string, tags: string[]) {
+    if (mock.value) return
+    await apiFetch(`posts/${encodeURIComponent(id)}`, { method: 'PATCH', body: JSON.stringify({ tags }) })
+  }
   async function setPostReplicaEnabled (id: string, v: boolean | null) {
     if (mock.value) return
     await apiFetch(`posts/${id}`, { method: 'PATCH', body: JSON.stringify({ replica_enabled: v }) })
@@ -558,7 +563,7 @@ export function useStore () {
     mock, loading, error, loadPosts, loadWatchlist, loadWatchlistActivity, bulkAddAccounts, loadTags, loadCategories,
     loadReplicas, createReplica, createStandaloneReplica, patchReplicaSteps, addReplicaStep, deleteReplicaStep, deleteReplica, uploadAttachments,
     deleteAttachment, renameAttachment, transcribeAudio, replicaAttachments, addGroup, deleteGroup, addAccount, patchAccount,
-    deleteAccount, addCategory, deleteCategory, renameCategory, restoreCategory, deletePosts, setPostReplicaEnabled, loadViews, createView, deleteView, batchCategory, batchPostSummaries, cloneReplica, loadNotifications, markNotificationsRead, createReplicaFromRepo, setPostCategories, translateTexts,
+    deleteAccount, addCategory, deleteCategory, renameCategory, restoreCategory, deletePosts, setPostReplicaEnabled, setPostTags, loadViews, createView, deleteView, batchCategory, batchPostSummaries, cloneReplica, loadNotifications, markNotificationsRead, createReplicaFromRepo, setPostCategories, translateTexts,
     loadRepos, loadRepoGroups, addRepo, loadRepoDetail, loadRepoCommits, loadRepoReleases,
     patchRepo, deleteRepo, syncRepo, syncAllRepos, getRepoSyncStatus, addRepoGroup, deleteRepoGroup, validateRepoFullName,
     loadYTChannels, loadYTVideos, addYTChannel, updateYTChannel, deleteYTChannel, syncYTChannel, syncAllYTChannels, getYTSummary, startYTSummary, addYTVideo, getPostSummary, startPostSummary, getRepoSummary, startRepoSummary, importXPost, loadTags, loadPostGroups, ensurePostGroup, previewYTVideo, getXRefresh, startXRefresh, retryXRefresh, getXRefreshAccounts, setXRefreshAccounts,

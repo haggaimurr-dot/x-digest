@@ -40,6 +40,8 @@ func TestPatchPostValidation(t *testing.T) {
 	for body, want := range map[string]int{
 		`{}`:                        422,
 		`{"replica_enabled":"yes"}`: 422,
+		`{"tags":"AI"}`:             422,
+		`{"tags":[1]}`:              422,
 		`not json`:                  400,
 	} {
 		rec := httptest.NewRecorder()

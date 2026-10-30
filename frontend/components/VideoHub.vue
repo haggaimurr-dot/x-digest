@@ -911,17 +911,6 @@ onMounted(async () => {
 .yt-embed { margin: 6px 0 10px; }
 .yt-embed iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 10px; margin-bottom: 6px; background: #000; }
 .yt-watch-row { display: flex; gap: 6px; margin: 8px 0; flex-wrap: wrap; }
-/* card tags: name + remove button in one chip, + chip to add */
-.yt-tag-edit { display: inline-flex; align-items: center; gap: 2px; padding-right: 3px; }
-.yt-tag-edit button { background: none; border: 0; color: inherit; font: inherit; padding: 0; cursor: pointer; }
-.yt-tag-x { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 9999px; color: var(--text-muted) !important; opacity: .55; }
-.yt-tag-edit:hover .yt-tag-x, .yt-tag-x:focus-visible { opacity: 1; }
-.yt-tag-x:hover { background: var(--danger); color: #fff !important; }
-.yt-tag-add { display: inline-flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text-muted); border-style: dashed; padding: 2px 8px; }
-.yt-tag-add:hover { color: var(--accent); border-color: var(--accent); }
-.yt-tag-form { display: inline-flex; margin: 0; }
-.yt-tag-input { width: 120px; padding: 2px 8px; font-size: 12px; border-radius: 9999px; min-height: 0; }
-@media (hover: none) { .yt-tag-x { opacity: 1; } }
 /* followed channels / uploaders */
 .ch-list { display: flex; flex-direction: column; gap: 6px; margin: 6px 0; }
 .ch-row { border: 1px solid var(--border); border-radius: 10px; background: var(--bg-elevated); }

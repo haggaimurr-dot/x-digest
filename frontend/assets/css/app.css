@@ -420,3 +420,15 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
   .filter-row:has(> .btn-icon) { flex-direction: row; align-items: center; }
   .filter-row:has(> .btn-icon) > .field, .filter-row:has(> .btn-icon) > select { flex: 1 1 100%; }
 }
+
+/* Editable tag chips (video cards and 日报 post cards): name + ×, dashed + to add. */
+.yt-tag-edit { display: inline-flex; align-items: center; gap: 2px; padding-right: 3px; }
+.yt-tag-edit button { background: none; border: 0; color: inherit; font: inherit; padding: 0; cursor: pointer; }
+.yt-tag-x { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 9999px; color: var(--text-muted) !important; opacity: .55; }
+.yt-tag-edit:hover .yt-tag-x, .yt-tag-x:focus-visible { opacity: 1; }
+.yt-tag-x:hover { background: var(--danger); color: #fff !important; }
+.yt-tag-add { display: inline-flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text-muted); border-style: dashed; padding: 2px 8px; }
+.yt-tag-add:hover { color: var(--accent); border-color: var(--accent); }
+.yt-tag-form { display: inline-flex; margin: 0; }
+.yt-tag-input { width: 120px; padding: 2px 8px; font-size: 12px; border-radius: 9999px; min-height: 0; }
+@media (hover: none) { .yt-tag-x { opacity: 1; } }

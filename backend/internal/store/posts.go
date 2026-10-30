@@ -112,6 +112,28 @@ func (s *Store) SetPostReplicaEnabled(id string, v *bool) error {
 	return nil
 }
 
+// SetPostTags replaces the post's tags; sql.ErrNoRows for an unknown post.
+// A later re-import (更新帖子) writes the imported tags again.
+func (s *Store) SetPostTags(id string, tags []string) error {
+	if !s.PostExists(id) {
+		return sql.ErrNoRows
+	}
+	tx, err := s.DB.Begin()
+	if err != nil {
+		return err
+	}
+	defer tx.Rollback()
+	if _, err := tx.Exec("DELETE FROM post_tags WHERE post_id=?", id); err != nil {
+		return err
+	}
+	for _, t := range tags {
+		if _, err := tx.Exec("INSERT IGNORE INTO post_tags(post_id,tag) VALUES(?,?)", id, t); err != nil {
+			return err
+		}
+	}
+	return tx.Commit()
+}
+
 // decodeResources reads posts.resources (JSON array; "" = none).
 func decodeResources(raw string) []model.PostResource {
 	out := []model.PostResource{}

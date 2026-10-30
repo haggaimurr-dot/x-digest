@@ -119,7 +119,15 @@
               <p class="yt-meta"><a class="yt-meta-link" :href="post.url" target="_blank" rel="noopener">{{ shanghaiTime(post.published_at) }}（{{ relativeTime(post.published_at, lang.value) }}）</a><span v-if="post.industry"> · {{ post.industry }}</span><span v-if="post.tech"> · {{ post.tech }}</span></p>
               <div class="yt-tags">
                 <button v-if="post.kind" type="button" class="chip active yt-tag" :class="{ 'x-kind-on': applied.kind === post.kind }" @click="searchKind(post.kind)">{{ post.kind }}</button>
-                <button v-for="tg in (post.tags || []).filter(tag => tag !== '复刻' || isReplicable(post)).slice(0, 8)" :key="tg" type="button" class="chip yt-tag yt-topic" :class="{ active: applied.tags.includes(tg) }" @click="selectTagOnly(tg)">#{{ tg }}</button>
+                <span v-for="tg in (post.tags || []).filter(tag => tag !== '复刻' || isReplicable(post))" :key="tg" class="chip yt-tag yt-topic yt-tag-edit" :class="{ active: applied.tags.includes(tg) }">
+                  <button type="button" class="yt-tag-name" :aria-pressed="applied.tags.includes(tg)" @click="selectTagOnly(tg)">#{{ tg }}</button>
+                  <button type="button" class="yt-tag-x" :aria-label="`删除标签 ${tg}`" :data-tip="`删除标签 ${tg}`" @click="removePostTag(post, tg)"><UiIcon name="x" :size="11" :stroke="2.6" /></button>
+                </span>
+                <form v-if="tagDraftFor === post.id" class="yt-tag-form" @submit.prevent="commitPostTag(post)">
+                  <input :ref="el => { if (el) (el as HTMLInputElement).focus() }" v-model="tagDraft" class="field yt-tag-input" list="x-post-tag-options" maxlength="64"
+                    placeholder="新标签，回车保存" aria-label="添加标签" @keydown.esc="tagDraftFor = ''" @blur="commitPostTag(post)" />
+                </form>
+                <button v-else type="button" class="chip yt-tag yt-tag-add" aria-label="添加标签" data-tip="添加标签" @click="tagDraftFor = post.id; tagDraft = ''"><UiIcon name="plus" :size="12" :stroke="2.6" /></button>
                 <span v-for="cid in catsOf(post.id)" :key="cid" class="chip active yt-tag">{{ categoryName(cid) }}</span>
               </div>
               <div v-if="post.note" style="margin-top:6px"><span class="note-pill">{{ post.note }}</span></div>
@@ -221,6 +229,7 @@
         <ListPager v-if="totalPosts" :page="page" :page-count="pageCount" :page-size="pageSize" :total="totalPosts" :sizes="PAGE_SIZES"
           @update:page="goPage" @update:page-size="setPageSize" />
       </section>
+      <datalist id="x-post-tag-options"><option v-for="tg in tagNames" :key="tg" :value="tg" /></datalist>
     </main>
 
     <!-- Settings modal -->
@@ -579,6 +588,25 @@ const authorOptions = computed(() => {
   return [...listed, ...unlisted]
 })
 const tagOptions = computed(() => tagNames.value.map(t => ({ value: t, label: t })))
+// 卡片上直接增删标签（与油管 / B站一致）：× 删除，+ 输入新标签，回车 / 失焦保存，Esc 取消。
+const tagDraftFor = ref('')
+const tagDraft = ref('')
+async function savePostTags (post: Post, next: string[]) {
+  const prev = post.tags
+  post.tags = next
+  try {
+    await store.setPostTags(post.id, next)
+    for (const tg of next) if (!tagNames.value.includes(tg)) tagNames.value = [...tagNames.value, tg]
+  } catch (e: any) { post.tags = prev; showToast(e?.message || '保存失败') }
+}
+function removePostTag (post: Post, tag: string) { savePostTags(post, (post.tags || []).filter(x => x !== tag)) }
+function commitPostTag (post: Post) {
+  if (tagDraftFor.value !== post.id) return
+  const tag = tagDraft.value.trim().replace(/^#/, '')
+  tagDraftFor.value = ''
+  if (!tag || (post.tags || []).includes(tag)) return
+  savePostTags(post, [...(post.tags || []), tag])
+}
 const catOptions = computed(() => [
   ...categories.value.categories.map(c => ({ value: c.id, label: c.name })),
   { value: '__uncat', label: t('index.uncategorized') }
