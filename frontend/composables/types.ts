@@ -28,6 +28,7 @@ export interface Post {
   steps?: Step[]
   group_id?: string
   group_name?: string
+  images?: PostImage[]
   // AI post type from cmd/digest ("" = not classified) and link explanations.
   kind?: string
   resources?: Array<{ url: string, name: string, note: string }>
@@ -152,3 +153,11 @@ export interface RepoSyncJob {
 
 // Saved filter view of the X daily page (/api/v1/views).
 export interface SavedView { id: string, name: string, filter: unknown, sort_order: number }
+
+export interface PostImage {
+  id: string
+  idx: number
+  width: number
+  height: number
+  size_bytes: number
+}

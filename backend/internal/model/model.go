@@ -35,6 +35,7 @@ type Post struct {
 	Steps         []PostStep `json:"steps"`
 	GroupID       string     `json:"group_id,omitempty"`
 	GroupName     string     `json:"group_name,omitempty"`
+	Images        []PostImage `json:"images,omitempty"`
 	// Original post text and its links (from raw_posts.json at import).
 	Text  string   `json:"text"`
 	Links []string `json:"links"`
@@ -261,4 +262,13 @@ type YTSummary struct {
 	Error          string              `json:"error"`
 	CreatedAt      string              `json:"created_at"`
 	UpdatedAt      string              `json:"updated_at"`
+}
+
+// PostImage is a downloaded + compressed X post image.
+type PostImage struct {
+	ID        string `json:"id"`
+	Idx       int    `json:"idx"`
+	Width     int    `json:"width"`
+	Height    int    `json:"height"`
+	SizeBytes int    `json:"size_bytes"`
 }

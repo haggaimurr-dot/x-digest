@@ -104,6 +104,12 @@
                 <p v-if="post.text" class="x-orig-text" :class="{ 'yt-desc-open': expandedOriginal.has(post.id) }" :id="`original-${post.id}`"><template v-for="(part, pi) in linkParts(post.text)" :key="pi"><a v-if="part.href" class="yt-desc-link" :href="part.href" :title="part.href" target="_blank" rel="noopener noreferrer">{{ part.text.replace(/^https?:\/\/(www\.)?/, '') }}</a><span v-else v-html="highlightHtml(part.text, plainKeyword)" /></template></p>
                 <p v-else class="x-orig-text">原文暂未收录，<a :href="post.url" target="_blank" rel="noopener" style="color:var(--accent)">点击查看原推文</a>。</p>
               </div>
+              <!-- 帖子图片（导入时下载压缩） -->
+              <div v-if="post.images && post.images.length" class="x-images">
+                <a v-for="img in post.images" :key="img.id" :href="`/api/v1/post-images/${img.id}`" target="_blank" rel="noopener">
+                  <img :src="`/api/v1/post-images/${img.id}`" :alt="`图片 ${img.idx + 1}`" loading="lazy" />
+                </a>
+              </div>
               <!-- 原文/译文对照：按段落交替显示，译文走翻译缓存 -->
               <IconBtn v-if="post.text" class="btn-sm x-text-tool" icon="languages" :class="{ 'btn-on': bilingual.has(post.id) }" :label="bilingual.has(post.id) ? '关闭原文/译文对照' : '原文/译文对照'" :aria-pressed="bilingual.has(post.id)" @click="toggleBilingual(post)" />
               <div v-if="bilingual.has(post.id)" class="bilingual">

@@ -432,3 +432,9 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
 .yt-tag-form { display: inline-flex; margin: 0; }
 .yt-tag-input { width: 120px; padding: 2px 8px; font-size: 12px; border-radius: 9999px; min-height: 0; }
 @media (hover: none) { .yt-tag-x { opacity: 1; } }
+
+/* X post images (downloaded + compressed at import) */
+.x-images { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0; }
+.x-images a { display: block; border-radius: 8px; overflow: hidden; }
+.x-images img { display: block; max-width: 200px; max-height: 200px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); }
+.x-images img:hover { opacity: 0.9; }

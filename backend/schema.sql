@@ -602,3 +602,18 @@ UPDATE posts SET imported_at = published_at WHERE imported_at IS NULL;
 
 -- 2026-10-30: posts.group_id (post-level groups, separate from author groups).
 ALTER TABLE posts ADD COLUMN IF NOT EXISTS group_id VARCHAR(64) NULL;
+
+-- 2026-10-31: post_images (original X post images, downloaded + compressed at import).
+CREATE TABLE IF NOT EXISTS post_images (
+  id           VARCHAR(64)  NOT NULL PRIMARY KEY,
+  post_id      VARCHAR(64)  NOT NULL,
+  idx          INT          NOT NULL DEFAULT 0,
+  original_url TEXT         NOT NULL,
+  local_path   VARCHAR(255) NOT NULL,
+  width        INT          NOT NULL DEFAULT 0,
+  height       INT          NOT NULL DEFAULT 0,
+  size_bytes   INT          NOT NULL DEFAULT 0,
+  created_at   DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE KEY uq_post_images_post_idx (post_id, idx),
+  INDEX idx_post_images_post (post_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

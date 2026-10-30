@@ -309,3 +309,25 @@ func (s *server) handlePostGroups(w http.ResponseWriter, r *http.Request) {
 		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only GET, POST")
 	}
 }
+
+// handlePostImage serves a compressed post image by its ID.
+// GET /api/v1/post-images/{id}
+func (s *server) handlePostImage(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodGet {
+		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only GET")
+		return
+	}
+	id := strings.TrimPrefix(r.URL.Path, "/api/v1/post-images/")
+	if id == "" || strings.Contains(id, "/") {
+		writeErr(w, 404, "NOT_FOUND", "image not found")
+		return
+	}
+	p, err := s.st.PostImagePath(id)
+	if err != nil {
+		writeErr(w, 404, "NOT_FOUND", "image not found")
+		return
+	}
+	w.Header().Set("Content-Type", "image/jpeg")
+	w.Header().Set("Cache-Control", "public, max-age=86400")
+	http.ServeFile(w, r, p)
+}

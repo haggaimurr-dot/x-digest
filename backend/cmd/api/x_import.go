@@ -9,6 +9,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
 	"strings"
 	"sync"
 	"time"
@@ -133,6 +134,8 @@ func (x *xImporter) importRaw(ctx context.Context, raw map[string]any, tags []st
 			return false, err
 		}
 	}
+	// Download + compress post images (best-effort, never fails the import).
+	x.savePostImages(ctx, p.ID, raw)
 	return created, nil
 }
 
@@ -559,3 +562,42 @@ func (x *xImporter) importIDs(ctx context.Context, a *refreshAccount, ids []stri
 }
 
 var errSkip = errors.New("skip")
+
+// postImageDir is where compressed X post images are stored.
+var postImageDir = "/var/lib/xdigest/post-images"
+
+// savePostImages downloads photo media from the raw tweet, compresses each,
+// and records them. Best-effort: failures are logged, never fail the import.
+func (x *xImporter) savePostImages(ctx context.Context, postID string, raw map[string]any) {
+	media, _ := raw["media"].([]any)
+	if len(media) == 0 {
+		return
+	}
+	n := 0
+	for _, m := range media {
+		if n >= xpost.MaxImagesPerPost {
+			break
+		}
+		mm, ok := m.(map[string]any)
+		if !ok {
+			continue
+		}
+		if typ, _ := mm["type"].(string); typ != "photo" {
+			continue
+		}
+		u, _ := mm["url"].(string)
+		if u == "" {
+			continue
+		}
+		dl, err := xpost.DownloadAndCompress(ctx, u)
+		if err != nil {
+			continue
+		}
+		name := fmt.Sprintf("%s_%d.jpg", postID, n)
+		if _, err := xpost.SaveImage(postImageDir, name, dl.Data); err != nil {
+			continue
+		}
+		_ = x.st.AddPostImage(postID, n, u, filepath.Join(postImageDir, name), dl.Width, dl.Height, len(dl.Data))
+		n++
+	}
+}

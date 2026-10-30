@@ -82,6 +82,10 @@ func (s *Store) ListPosts(f PostFilter) (posts []model.Post, total int, updatedA
 		if err != nil {
 			return nil, 0, "", err
 		}
+		p.Images, err = s.ListPostImages(p.ID)
+		if err != nil {
+			return nil, 0, "", err
+		}
 		posts = append(posts, p)
 	}
 	return posts, total, updatedAt, rows.Err()
@@ -281,6 +285,51 @@ func (s *Store) SetPostGroup(postID, groupID string) error {
 	}
 	_, err := s.DB.Exec(`UPDATE posts SET group_id=? WHERE id=?`, groupID, postID)
 	return err
+}
+
+// ---- post images (downloaded + compressed X post images) ----
+
+type PostImage struct {
+	ID          string `json:"id"`
+	PostID      string `json:"post_id"`
+	Idx         int    `json:"idx"`
+	OriginalURL string `json:"original_url"`
+	Width       int    `json:"width"`
+	Height      int    `json:"height"`
+	SizeBytes   int    `json:"size_bytes"`
+}
+
+func (s *Store) AddPostImage(postID string, idx int, originalURL, localPath string, width, height, sizeBytes int) error {
+	_, err := s.DB.Exec(`INSERT INTO post_images(id, post_id, idx, original_url, local_path, width, height, size_bytes)
+		VALUES(?,?,?,?,?,?,?,?)
+		ON DUPLICATE KEY UPDATE original_url=VALUES(original_url), local_path=VALUES(local_path),
+			width=VALUES(width), height=VALUES(height), size_bytes=VALUES(size_bytes)`,
+		NewID("pimg"), postID, idx, originalURL, localPath, width, height, sizeBytes)
+	return err
+}
+
+func (s *Store) ListPostImages(postID string) ([]model.PostImage, error) {
+	rows, err := s.DB.Query(`SELECT id, idx, width, height, size_bytes
+		FROM post_images WHERE post_id=? ORDER BY idx`, postID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	out := []model.PostImage{}
+	for rows.Next() {
+		var im model.PostImage
+		if err := rows.Scan(&im.ID, &im.Idx, &im.Width, &im.Height, &im.SizeBytes); err != nil {
+			return nil, err
+		}
+		out = append(out, im)
+	}
+	return out, rows.Err()
+}
+
+func (s *Store) PostImagePath(imageID string) (string, error) {
+	var p string
+	err := s.DB.QueryRow(`SELECT local_path FROM post_images WHERE id=?`, imageID).Scan(&p)
+	return p, err
 }
 
 func (s *Store) PostTagsByFreq() ([]string, error) {
