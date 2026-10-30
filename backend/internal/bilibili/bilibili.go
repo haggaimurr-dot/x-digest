@@ -602,6 +602,13 @@ type viewData struct {
 	Title    string `json:"title"`
 	Desc     string `json:"desc"`
 	Duration int    `json:"duration"`
+	Pic      string `json:"pic"`
+	Pubdate  int64  `json:"pubdate"`
+	Owner    struct {
+		Mid  int64  `json:"mid"`
+		Name string `json:"name"`
+		Face string `json:"face"`
+	} `json:"owner"`
 }
 
 func (c *Client) view(ctx context.Context, bvid string) (*viewData, error) {
@@ -686,4 +693,65 @@ func (c *Client) FetchDetail(ctx context.Context, bvid string) (*youtube.VideoDe
 		d.TranscriptAuto = strings.HasPrefix(sub.Lan, "ai-") || sub.AIType != 0
 	}
 	return d, nil
+}
+
+// bvidRe extracts a BV ID from a Bilibili video URL or bare ID.
+var bvidRe = regexp.MustCompile(`(?i)BV[0-9a-zA-Z]{10}`)
+
+func parseBVID(input string) (string, error) {
+	in := strings.TrimSpace(input)
+	if in == "" {
+		return "", fmt.Errorf("请输入视频链接")
+	}
+	// b23.tv short link: resolve to the real URL first.
+	if strings.Contains(in, "b23.tv") {
+		resolved, err := resolveB23(context.Background(), in)
+		if err != nil {
+			return "", fmt.Errorf("短链解析失败：%v", err)
+		}
+		if resolved != "" {
+			in = resolved
+		}
+	}
+	m := bvidRe.FindString(in)
+	if m == "" {
+		return "", fmt.Errorf("识别不到 BV 号，请填写 B 站视频链接或 BV 号")
+	}
+	// Normalize: BV IDs are case-sensitive, but the prefix is always "BV".
+	return "BV" + m[2:], nil
+}
+
+// FetchVideo reads one video by URL (add-by-URL, single-mode channels).
+// It also returns the UP主 (uploader) info so the channel can be created.
+func (c *Client) FetchVideo(ctx context.Context, input string) (*youtube.SingleVideo, error) {
+	bvid, err := parseBVID(input)
+	if err != nil {
+		return nil, err
+	}
+	v, err := c.view(ctx, bvid)
+	if err != nil {
+		return nil, fmt.Errorf("读取视频失败：%v", err)
+	}
+	if v.Owner.Mid == 0 {
+		return nil, fmt.Errorf("读不到视频所属的 UP 主")
+	}
+	mid := strconv.FormatInt(v.Owner.Mid, 10)
+	pub := time.Unix(v.Pubdate, 0).In(shanghai)
+	video := model.YTVideo{
+		ID:           v.Bvid,
+		ChannelID:    mid,
+		Kind:         "video",
+		Title:        strings.TrimSpace(v.Title),
+		Description:  strings.TrimSpace(v.Desc),
+		PublishedAt:  pub.Format("2006-01-02 15:04:05"),
+		Duration:     v.Duration,
+		ThumbnailURL: v.Pic,
+		URL:          "https://www.bilibili.com/video/" + v.Bvid,
+		CreatedAt:    time.Now().In(shanghai).Format("2006-01-02 15:04:05"),
+	}
+	return &youtube.SingleVideo{
+		Video:       video,
+		ChannelID:   mid,
+		ChannelName: strings.TrimSpace(v.Owner.Name),
+	}, nil
 }

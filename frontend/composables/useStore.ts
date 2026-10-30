@@ -445,6 +445,10 @@ export function useStore () {
     return data.channel || data || null
   }
   // Add one YouTube video by URL; its channel is registered (single mode) when not followed yet.
+  async function previewYTVideo (url: string, p: VideoPlatform = 'yt'): Promise<{ video: YTVideo, channel: { channel_id: string, name: string, handle?: string }, existing_channel?: YTChannel }> {
+    if (mock.value) throw new ApiError(501, 'MOCK', '演示模式不支持预览')
+    return apiFetch(`${p}/videos/preview`, { method: 'POST', body: JSON.stringify({ url: url.trim() }) })
+  }
   async function addYTVideo (url: string, groupId?: string | null, p: VideoPlatform = 'yt', tags: string[] = []): Promise<{ video: YTVideo, channel: YTChannel, channel_created: boolean }> {
     if (!url.trim()) throw new ApiError(422, 'VALIDATION', t('yt.videoInputLabel'))
     return apiFetch(`${p}/videos`, { method: 'POST', body: JSON.stringify({ url: url.trim(), group_id: groupId || undefined, tags }) })
@@ -552,7 +556,7 @@ export function useStore () {
     deleteAccount, addCategory, deleteCategory, renameCategory, restoreCategory, deletePosts, setPostReplicaEnabled, loadViews, createView, deleteView, batchCategory, batchPostSummaries, cloneReplica, loadNotifications, markNotificationsRead, createReplicaFromRepo, setPostCategories, translateTexts,
     loadRepos, loadRepoGroups, addRepo, loadRepoDetail, loadRepoCommits, loadRepoReleases,
     patchRepo, deleteRepo, syncRepo, syncAllRepos, getRepoSyncStatus, addRepoGroup, deleteRepoGroup, validateRepoFullName,
-    loadYTChannels, loadYTVideos, addYTChannel, updateYTChannel, deleteYTChannel, syncYTChannel, syncAllYTChannels, getYTSummary, startYTSummary, addYTVideo, getPostSummary, startPostSummary, getRepoSummary, startRepoSummary, importXPost, loadTags, loadPostGroups, ensurePostGroup, getXRefresh, startXRefresh, retryXRefresh, getXRefreshAccounts, setXRefreshAccounts,
+    loadYTChannels, loadYTVideos, addYTChannel, updateYTChannel, deleteYTChannel, syncYTChannel, syncAllYTChannels, getYTSummary, startYTSummary, addYTVideo, getPostSummary, startPostSummary, getRepoSummary, startRepoSummary, importXPost, loadTags, loadPostGroups, ensurePostGroup, previewYTVideo, getXRefresh, startXRefresh, retryXRefresh, getXRefreshAccounts, setXRefreshAccounts,
     loadYTGroups, addYTGroup, deleteYTGroup, setVideoState
   }
 }

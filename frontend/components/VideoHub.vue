@@ -223,29 +223,63 @@
     <div v-if="showAdd" class="modal-backdrop" @click.self="showAdd = false">
       <div class="modal-card" role="dialog" aria-modal="true" :aria-label="addMode === 'video' ? t('yt.addVideoTitle') : t('yt.addTitle')">
         <h2>{{ addMode === 'video' ? t('yt.addVideoTitle') : t('yt.addTitle') }}</h2>
-        <label>{{ addMode === 'video' ? t('yt.videoInputLabel') : t('yt.inputLabel') }}</label>
-        <input class="field" v-model="addForm.input" :placeholder="addMode === 'video' ? t('yt.videoInputPh') : t('yt.inputPh')" @keyup.enter="doAdd" />
-        <p style="color:var(--text-muted);font-size:13px">{{ addMode === 'video' ? t('yt.videoInputHint') : t('yt.inputHint') }}</p>
+        <template v-if="addMode === 'video'">
+          <!-- Step 1: URL input -->
+          <div v-if="!videoPreview">
+            <label>{{ t('yt.videoInputLabel') }}</label>
+            <input class="field" v-model="addForm.input" :placeholder="t('yt.videoInputPh')" @keyup.enter="doPreview" />
+            <p style="color:var(--text-muted);font-size:13px">{{ t('yt.videoInputHint') }}</p>
+            <p v-if="addError" style="color:var(--danger-text)">{{ addError }}</p>
+            <div class="modal-actions">
+              <IconBtn icon="x" :label="t('common.cancel')" @click="showAdd = false" />
+              <IconBtn class="btn-primary" icon="search" :label="addBusy ? t('yt.fetching') : t('yt.fetchInfo')" :disabled="addBusy || !addForm.input.trim()" @click="doPreview" />
+            </div>
+          </div>
+          <!-- Step 2: Confirmation with video + UP主 info -->
+          <div v-else>
+            <div style="display:flex;gap:12px;margin-bottom:12px">
+              <img v-if="videoPreview.video.thumbnail_url" :src="videoPreview.video.thumbnail_url" :referrerpolicy="P === 'bili' ? 'no-referrer' : undefined" style="width:120px;height:68px;object-fit:cover;border-radius:6px;flex-shrink:0" />
+              <div style="flex:1;min-width:0">
+                <div style="font-weight:600;font-size:14px;margin-bottom:4px">{{ videoPreview.video.title }}</div>
+                <div style="font-size:12px;color:var(--text-muted)">UP主：{{ videoPreview.channel.name }}</div>
+                <div v-if="videoPreview.existing_channel" style="font-size:12px;color:var(--warning-text)">该 UP 主已在库中</div>
+              </div>
+            </div>
+            <label>{{ t('yt.tagsLabel') }}</label>
+            <input class="field" v-model="addForm.tagsText" :placeholder="t('yt.tagsPh')" />
+            <label>{{ t('yt.upGroupLabel') }}</label>
+            <select class="field" v-model="addForm.group_id">
+              <option value="">{{ t('yt.ungrouped') }}</option>
+              <option v-for="g in groups" :key="g.id" :value="g.id">{{ g.name }}</option>
+            </select>
+            <p v-if="addError" style="color:var(--danger-text)">{{ addError }}</p>
+            <div class="modal-actions">
+              <IconBtn icon="arrow-left" :label="t('common.back')" @click="videoPreview = null; addError = ''" />
+              <IconBtn class="btn-primary" icon="check" :label="addBusy ? t('yt.adding') : t('yt.confirmImport')" :disabled="addBusy" @click="doAdd" />
+            </div>
+          </div>
+        </template>
+        <template v-else>
+        <label>{{ t('yt.inputLabel') }}</label>
+        <input class="field" v-model="addForm.input" :placeholder="t('yt.inputPh')" @keyup.enter="doAdd" />
+        <p style="color:var(--text-muted);font-size:13px">{{ t('yt.inputHint') }}</p>
         <label>{{ t('yt.groupLabel') }}</label>
         <select class="field" v-model="addForm.group_id">
           <option value="">{{ t('yt.ungrouped') }}</option>
           <option v-for="g in groups" :key="g.id" :value="g.id">{{ g.name }}</option>
         </select>
-        <label>{{ t('yt.tagsLabel') }}</label>
-        <input class="field" v-model="addForm.tagsText" :placeholder="t('yt.tagsPh')" />
-        <template v-if="addMode === 'channel'">
         <label>{{ t('yt.rangeLabel') }}</label>
         <div style="display:flex;gap:6px">
           <input type="date" class="field" style="flex:1;min-width:0" v-model="addForm.date_from" :aria-label="t('yt.rangeFrom')" />
           <input type="date" class="field" style="flex:1;min-width:0" v-model="addForm.date_to" :aria-label="t('yt.rangeTo')" />
         </div>
         <p style="color:var(--text-muted);font-size:13px">{{ t('yt.rangeHint') }}</p>
-        </template>
         <p v-if="addError" style="color:var(--danger-text)">{{ addError }}</p>
         <div class="modal-actions">
           <IconBtn icon="x" :label="t('common.cancel')" @click="showAdd = false" />
           <IconBtn class="btn-primary" icon="check" :label="addBusy ? t('yt.adding') : t('yt.add')" :disabled="addBusy" @click="doAdd" />
         </div>
+        </template>
       </div>
     </div>
 
@@ -337,7 +371,7 @@ const syncAllBusy = ref(false)
 // 页面级操作放进侧边菜单（AppDrawer）
 usePageActions(() => [
   { key: 'channel', icon: 'tv', plus: true, primary: true, label: t('yt.addChannel'), run: () => openAdd('channel') },
-  ...(P === 'yt' ? [{ key: 'video', icon: 'video', plus: true, label: t('yt.addVideo'), run: () => openAdd('video') }] : []),
+  { key: 'video', icon: 'video', plus: true, label: t('yt.addVideo'), run: () => openAdd('video') },
   { key: 'sync', icon: 'refresh', busy: syncAllBusy.value, disabled: syncAllBusy.value, label: syncAllBusy.value ? t('yt.syncing') : t('yt.syncAll'), run: syncAll }
 ])
 const syncAllMsg = ref('')
@@ -647,11 +681,24 @@ async function reload () {
 }
 // 添加频道 / 添加单个视频（仅油管）：单个视频会连带登记它所属的频道（单视频模式）。
 const addMode = ref<'channel' | 'video'>('channel')
+const videoPreview = ref<any>(null)
 function openAdd (mode: 'channel' | 'video' = 'channel') {
   addMode.value = mode
-  addForm.value = { input: '', group_id: '', date_from: '', date_to: '' }
+  addForm.value = { input: '', group_id: '', date_from: '', date_to: '', tagsText: '' }
   addError.value = ''
+  videoPreview.value = null
   showAdd.value = true
+}
+async function doPreview () {
+  const input = addForm.value.input.trim()
+  if (!input) { addError.value = t('yt.inputLabel'); return }
+  addBusy.value = true
+  addError.value = ''
+  try {
+    videoPreview.value = await store.previewYTVideo(input, P)
+  } catch (err: any) {
+    addError.value = errText(err, t('yt.fetchFailed'))
+  } finally { addBusy.value = false }
 }
 async function doAdd () {
   const input = addForm.value.input.trim()

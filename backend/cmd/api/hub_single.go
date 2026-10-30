@@ -11,7 +11,7 @@ package main
 // videos added by URL, 同步全部 skips it, and its own 同步该账号全部视频
 // (POST .../channels/{id}/sync?full=1) switches it to a normal channel.
 // Videos added this way are flagged added_manually so a channel's date
-// range never prunes them. Only platforms with FetchVideo (YouTube) serve it.
+// range never prunes them. Only platforms with FetchVideo (YouTube, Bilibili) serve it.
 
 import (
 	"context"
@@ -160,4 +160,39 @@ func (h *videoHub) refreshSingle(ch model.YTChannel) (*model.YTChannel, error) {
 	}
 	out, err := h.st.GetChannel(ch.ID)
 	return &out, err
+}
+
+// handleVideoPreview fetches a video's metadata + its uploader info WITHOUT
+// saving anything. The frontend shows it for confirmation before importing.
+func (h *videoHub) handleVideoPreview(w http.ResponseWriter, r *http.Request) {
+	pf, ok := h.pf.(singleVideoPlatform)
+	if !ok {
+		writeErr(w, 405, "METHOD_NOT_ALLOWED", "single video import not supported")
+		return
+	}
+	if r.Method != http.MethodPost {
+		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only POST")
+		return
+	}
+	var body struct {
+		URL string `json:"url"`
+	}
+	if !decodeBody(w, r, &body) {
+		return
+	}
+	sv, err := pf.FetchVideo(r.Context(), body.URL)
+	if err != nil {
+		writeErr(w, 422, "VALIDATION", err.Error())
+		return
+	}
+	// Check if the channel already exists (to show its current group).
+	var existing *model.YTChannel
+	if ch, err := h.st.GetChannelByChannelID(sv.ChannelID); err == nil {
+		existing = &ch
+	}
+	writeJSON(w, 200, map[string]any{
+		"video":   sv.Video,
+		"channel": map[string]any{"channel_id": sv.ChannelID, "name": sv.ChannelName, "handle": sv.Handle},
+		"existing_channel": existing,
+	})
 }

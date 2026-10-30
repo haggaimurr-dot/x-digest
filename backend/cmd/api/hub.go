@@ -65,6 +65,7 @@ func (h *videoHub) register(mux *http.ServeMux) {
 	mux.HandleFunc(base+"/channels/", h.handleChannelSub)
 	mux.HandleFunc(base+"/videos", h.handleVideos)
 	mux.HandleFunc(base+"/videos/", h.handleVideoSub)
+	mux.HandleFunc(base+"/videos/preview", h.handleVideoPreview)
 	mux.HandleFunc(base+"/sync", h.handleSyncAll)
 	mux.HandleFunc(base+"/groups", h.handleGroups)
 	mux.HandleFunc(base+"/groups/", h.handleGroup)
