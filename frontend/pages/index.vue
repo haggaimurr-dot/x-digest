@@ -218,20 +218,8 @@
           </template>
         </div>
         <p v-if="!loading && !totalPosts" class="empty">{{ t('index.noPosts') }}</p>
-        <nav v-if="totalPosts" class="x-pager" aria-label="分页">
-          <IconBtn class="btn-sm" icon="chevron-left" label="上一页" :disabled="page <= 1" @click="goPage(page - 1)" />
-          <template v-for="(it, ii) in pageItems" :key="'pg' + ii">
-            <span v-if="it === '…'" class="x-pager-gap">…</span>
-            <button v-else class="btn btn-sm" :class="{ 'btn-primary': it === page }" type="button" :aria-current="it === page ? 'page' : undefined" @click="goPage(it)">{{ it }}</button>
-          </template>
-          <IconBtn class="btn-sm" icon="chevron-right" label="下一页" :disabled="page >= pageCount" @click="goPage(page + 1)" />
-          <label class="x-pager-size">每页
-            <select class="field" :value="pageSize" @change="setPageSize(Number(($event.target as HTMLSelectElement).value))">
-              <option v-for="n in PAGE_SIZES" :key="n" :value="n">{{ n }} 条</option>
-            </select>
-          </label>
-          <span class="x-pager-info">共 {{ totalPosts }} 条</span>
-        </nav>
+        <ListPager v-if="totalPosts" :page="page" :page-count="pageCount" :page-size="pageSize" :total="totalPosts" :sizes="PAGE_SIZES"
+          @update:page="goPage" @update:page-size="setPageSize" />
       </section>
     </main>
 
@@ -502,14 +490,6 @@ function goPage (n: number) {
   page.value = Math.min(Math.max(1, n), pageCount.value)
   if (import.meta.client) document.querySelector('.timeline')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
 }
-// 页码条：首尾 + 当前页附近，其余用省略号。
-const pageItems = computed<Array<number | '…'>>(() => {
-  const n = pageCount.value; const c = page.value
-  const keep = [...new Set([1, n, c - 1, c, c + 1].filter(x => x >= 1 && x <= n))].sort((a, b) => a - b)
-  const out: Array<number | '…'> = []
-  keep.forEach((x, i) => { if (i && x - keep[i - 1] > 1) out.push('…'); out.push(x) })
-  return out
-})
 // ---- 搜索：条件改动只改草稿，点「搜索」/回车才检索；「重置」清空后检索全部 ----
 // 当前草稿条件（同保存视图的格式）。
 function currentFilter (): FilterState {

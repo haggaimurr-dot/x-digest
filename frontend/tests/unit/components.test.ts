@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
 import TagInput from '~/components/TagInput.vue'
 import FilterCombo from '~/components/FilterCombo.vue'
+import ListPager from '~/components/ListPager.vue'
 
 describe('TagInput', () => {
   it('adds comma-separated tags without duplicates', async () => {
@@ -58,5 +59,28 @@ describe('FilterCombo', () => {
     await input.trigger('focus')
     await input.setValue('zzz')
     expect(w.find('.combo-empty').exists()).toBe(true)
+  })
+})
+
+describe('ListPager', () => {
+  const props = { page: 5, pageCount: 9, pageSize: 20, total: 170, sizes: [20, 50, 100] }
+  it('shows first / last and the pages around the current one', () => {
+    const w = mount(ListPager, { props })
+    expect(w.findAll('.x-pager > button:not(.btn-icon), .x-pager-gap').map(e => e.text())).toEqual(['1', '…', '4', '5', '6', '…', '9'])
+    expect(w.find('[aria-current="page"]').text()).toBe('5')
+    expect(w.find('.x-pager-info').text()).toBe('共 170 条')
+  })
+  it('emits page and page-size changes', async () => {
+    const w = mount(ListPager, { props })
+    await w.find('[aria-label="下一页"]').trigger('click')
+    await w.findAll('.x-pager > button').find(b => b.text() === '9')!.trigger('click')
+    expect(w.emitted('update:page')).toEqual([[6], [9]])
+    await w.find('select').setValue('100')
+    expect(w.emitted('update:pageSize')).toEqual([[100]])
+  })
+  it('disables prev on the first page and next on the last', () => {
+    const w = mount(ListPager, { props: { ...props, page: 1, pageCount: 1 } })
+    expect(w.find('[aria-label="上一页"]').attributes('disabled')).toBeDefined()
+    expect(w.find('[aria-label="下一页"]').attributes('disabled')).toBeDefined()
   })
 })

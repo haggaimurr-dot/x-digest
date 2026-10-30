@@ -5,3 +5,5 @@ import { t } from '~/utils/i18n'
 const g = globalThis as any
 for (const k of ['ref', 'computed', 'watch', 'nextTick', 'onMounted', 'onBeforeUnmount', 'onUnmounted', 'reactive']) g[k] = (vue as any)[k]
 g.useLang = () => ({ t, lang: vue.ref('zh') })
+// NoteEditor reads the store for speech-to-text; the tests never record audio.
+g.useStore = () => ({})

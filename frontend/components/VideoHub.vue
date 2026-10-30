@@ -122,7 +122,7 @@
         <p v-else-if="!filtered.length" class="empty" style="margin-top:16px">{{ t('yt.noMatch') }}</p>
 
         <!-- 视频卡片（最新在前） -->
-        <section class="repo-list" style="margin-top:16px">
+        <section ref="listEl" class="repo-list" style="margin-top:16px">
           <div v-for="grp in groupedByChannel" :key="grp.id" class="yt-channel-block">
           <button class="yt-channel-head" type="button" :aria-expanded="!collapsedChannels.has(grp.id)" @click="toggleChannelVideos(grp.id)">
             <svg class="yt-chevron" :class="{ 'is-collapsed': collapsedChannels.has(grp.id) }" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
@@ -133,8 +133,8 @@
             <!-- 左：缩略图 + 简介；右：标题、时间、标签 -->
             <div class="yt-left">
               <a :href="v.url" target="_blank" rel="noopener" :title="t('yt.watchOnYouTube')" class="yt-thumb">
-                <img v-if="v.thumbnail_url" :src="v.thumbnail_url" :alt="v.title" loading="lazy" referrerpolicy="no-referrer" />
-                <span v-else class="yt-thumb-ph">▶</span>
+                <img v-if="v.thumbnail_url && !brokenThumbs.has(v.id)" :src="thumbSrc(v)" :alt="v.title" loading="lazy" referrerpolicy="no-referrer" @error="onThumbError(v.id)" />
+                <span v-else class="yt-thumb-ph"><UiIcon name="play" :size="22" /></span>
               </a>
               <p v-if="v.description" class="yt-desc" :class="{ 'yt-desc-open': expandedDesc.has(v.id) }"><template v-for="(part, pi) in linkParts(tr(v.description))" :key="pi"><a v-if="part.href" class="yt-desc-link" :href="part.href" :title="part.href" target="_blank" rel="noopener noreferrer">{{ part.text.replace(/^https?:\/\/(www\.)?/, '') }}</a><template v-else>{{ part.text }}</template></template></p>
               <p v-else class="yt-desc-empty">{{ t('yt.noDesc') }}</p>
@@ -215,6 +215,8 @@
           </article>
           </template>
           </div>
+          <ListPager v-if="filtered.length" :page="page" :page-count="pageCount" :page-size="pageSize" :total="filtered.length" :sizes="PAGE_SIZES"
+            @update:page="goPage" @update:page-size="setPageSize" />
         </section>
       </template>
     </main>
@@ -487,6 +489,40 @@ function closePlayer (id: string) {
 // 已看 / 稍后观看（PATCH /{yt|bili}/videos/{id}），乐观更新，失败回滚。
 const watchLaterOnly = ref(false)
 const watchLaterCount = computed(() => filteredExceptKind.value.filter(v => v.watch_later).length)
+// ---- 分页：每页 20 / 50 / 100 条（按平台记在本机），筛选或页签变化回到第 1 页 ----
+const PAGE_SIZES = [20, 50, 100]
+const PAGE_SIZE_KEY = `x-digest-${P}-page-size`
+const pageSize = ref(20)
+const page = ref(1)
+const listEl = ref<HTMLElement | null>(null)
+const pageCount = computed(() => Math.max(1, Math.ceil(filtered.value.length / pageSize.value)))
+// 先按当前排序（导入 / 发布时间）排好再切页，第 1 页才是排序最前的那些。
+const paged = computed(() => sortVideos(filtered.value).slice((page.value - 1) * pageSize.value, page.value * pageSize.value))
+function setPageSize (n: number) {
+  pageSize.value = n; page.value = 1
+  try { localStorage.setItem(PAGE_SIZE_KEY, String(n)) } catch { /* private mode */ }
+}
+function goPage (n: number) {
+  page.value = Math.min(Math.max(1, n), pageCount.value)
+  listEl.value?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
+function loadPageSize () {
+  try {
+    const n = Number(localStorage.getItem(PAGE_SIZE_KEY))
+    if (PAGE_SIZES.includes(n)) pageSize.value = n
+  } catch { /* ignore */ }
+}
+watch([keyword, channelFilter, groupFilter, tagFilter, dateFrom, dateTo, activeTab, watchLaterOnly], () => { page.value = 1 })
+// 删除频道 / 取消稍后观看等让列表变短时，不停在空页上。
+watch(pageCount, (n) => { if (page.value > n) page.value = n })
+// 封面：B 站图床（hdslb.com）拒绝外站 Referer，<img> 用 no-referrer；
+// 并请求 16:9 裁切的 webp（与油管封面同比例，体积也小）。加载失败显示占位。
+function thumbSrc (v: YTVideo): string {
+  const u = v.thumbnail_url || ''
+  return P === 'bili' && /hdslb\.com\/.+\.(jpe?g|png|webp)$/i.test(u) ? `${u}@480w_270h_1c.webp` : u
+}
+const brokenThumbs = ref<Set<string>>(new Set())
+function onThumbError (id: string) { brokenThumbs.value = new Set(brokenThumbs.value).add(id) }
 async function toggleWatched (v: YTVideo) {
   const prev = v.watched_at
   v.watched_at = prev ? '' : new Date().toISOString()
@@ -520,6 +556,7 @@ const tagCounts = computed(() => {
 // each channel block folds (remembered per browser).
 // 排序：默认导入时间降序（created_at），可在检索区切换。
 const videoSort = ref('imported_desc')
+watch(videoSort, () => { page.value = 1 })
 function sortVideos (list: YTVideo[]): YTVideo[] {
   const dir = videoSort.value.endsWith('_asc') ? 1 : -1
   const byImport = videoSort.value.startsWith('imported')
@@ -531,7 +568,7 @@ function sortVideos (list: YTVideo[]): YTVideo[] {
 }
 const groupedByChannel = computed(() => {
   const byChannel = new Map<string, YTVideo[]>()
-  for (const v of filtered.value) {
+  for (const v of paged.value) {
     const list = byChannel.get(v.channel_id)
     if (list) list.push(v); else byChannel.set(v.channel_id, [v])
   }
@@ -563,8 +600,9 @@ function resourcesOf (v: YTVideo): Array<{ label: string, url: string, note?: st
   }
   return out
 }
-watch([filtered, lang], () => {
-  enqueue(filtered.value.flatMap(v => [v.title, v.description || '']))
+// Only the current page is translated.
+watch([paged, lang], () => {
+  enqueue(paged.value.flatMap(v => [v.title, v.description || '']))
 })
 
 function clearAll () {
@@ -803,6 +841,7 @@ async function doDeleteGroup (g: RepoGroup) {
 
 onMounted(async () => {
   loadSections()
+  loadPageSize()
   try {
     await reload()
   } catch (err: any) { loadError.value = errText(err, t('common.loadError')) }
