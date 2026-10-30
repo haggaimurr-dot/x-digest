@@ -113,10 +113,12 @@ func main() {
 	mux.HandleFunc("/api/v1/repos/groups", s.handleRepoGroups)
 	mux.HandleFunc("/api/v1/repos/groups/", s.handleRepoGroup)
 	mux.HandleFunc("/api/v1/repos/sync-all", s.handleRepoSyncAll)
-	s.registerYT(mux)
+	ytHub := s.registerYT(mux)
 	// YouTube channels and Bilibili uploaders: same routes/JSON (hub.go).
-	(&videoHub{prefix: "bili", idPrefix: "bic_", kinds: map[string]bool{"video": true, "playlist": true},
-		st: st.Hub("bili"), pf: bilibili.New(), sum: s.sum, playlistName: "合集"}).register(mux)
+	biliHub := &videoHub{prefix: "bili", idPrefix: "bic_", kinds: map[string]bool{"video": true, "playlist": true},
+		st: st.Hub("bili"), pf: bilibili.New(), sum: s.sum, playlistName: "合集"}
+	biliHub.register(mux)
+	scheduleStarredSync(ytHub, biliHub) // 特别关注: daily at 05:00, see hub_daily.go
 	mux.HandleFunc("/api/v1/translate", s.handleTranslate)
 	mux.HandleFunc("/api/v1/notifications", s.handleNotifications)
 	mux.HandleFunc("/api/v1/notifications/", s.handleNotifications)

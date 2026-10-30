@@ -393,6 +393,12 @@ func (h *HubStore) ListGroups() ([]model.Group, error) {
 	return out, rows.Err()
 }
 
+// EnsureGroup adds a fixed group (kept if it already exists).
+func (h *HubStore) EnsureGroup(id, name string) error {
+	_, err := h.DB.Exec(h.q("INSERT IGNORE INTO {p}_groups(id,name,fixed) VALUES(?,?,1)"), id, name)
+	return err
+}
+
 func (h *HubStore) CreateGroup(name string) (model.Group, error) {
 	g := model.Group{ID: NewID("grp_"), Name: name}
 	_, err := h.DB.Exec(h.q("INSERT INTO {p}_groups(id,name,fixed) VALUES(?,?,0)"), g.ID, g.Name)

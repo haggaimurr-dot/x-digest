@@ -56,9 +56,11 @@ func ytHandle(input, given, _ string) string {
 }
 
 // registerYT serves /api/v1/yt/* (the handler tests go through it too).
-func (s *server) registerYT(mux *http.ServeMux) {
-	(&videoHub{prefix: "yt", idPrefix: "ytc_",
+func (s *server) registerYT(mux *http.ServeMux) *videoHub {
+	h := &videoHub{prefix: "yt", idPrefix: "ytc_",
 		kinds: map[string]bool{"video": true, "short": true, "live": true, "playlist": true},
 		st:    s.st.Hub("yt"), pf: ytPlatform{s.yt}, sum: s.sum,
-		playlistName: "播放列表", handle: ytHandle}).register(mux)
+		playlistName: "播放列表", handle: ytHandle}
+	h.register(mux)
+	return h
 }

@@ -112,6 +112,7 @@ export function mockRepoCommits (fullName: string): RepoCommit[] { return MOCK_R
 // ---------- YouTube channels mock (dev-only; shapes follow the 2026-10-26 contract) ----------
 export const MOCK_YT_GROUPS: RepoGroup[] = [
   { id: 'default', name: '默认', fixed: true },
+  { id: 'starred', name: '特别关注', fixed: true },
   { id: 'dev', name: '开发' }
 ]
 export const MOCK_YT_CHANNELS: YTChannel[] = [

@@ -266,6 +266,8 @@ CREATE TABLE IF NOT EXISTS yt_groups (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT IGNORE INTO yt_groups (id, name, fixed) VALUES ('other', '默认', 1);
+-- 特别关注: synced every day at 05:00 (cmd/api/hub_daily.go).
+INSERT IGNORE INTO yt_groups (id, name, fixed) VALUES ('starred', '特别关注', 1);
 
 CREATE TABLE IF NOT EXISTS yt_channels (
   id             VARCHAR(64)  NOT NULL PRIMARY KEY,
@@ -382,6 +384,7 @@ CREATE TABLE IF NOT EXISTS bili_groups (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT IGNORE INTO bili_groups (id, name, fixed) VALUES ('other', '默认', 1);
+INSERT IGNORE INTO bili_groups (id, name, fixed) VALUES ('starred', '特别关注', 1);
 
 CREATE TABLE IF NOT EXISTS bili_channels (
   id             VARCHAR(64)  NOT NULL PRIMARY KEY,

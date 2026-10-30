@@ -72,13 +72,22 @@
             <div class="ch-head">
               <span :class="['ch-dot', `sync-${c.sync_status}`]" :title="syncLabel(c.sync_status)" aria-hidden="true" />
               <strong class="ch-name" :title="c.name || c.channel_id">{{ c.name || c.channel_id }}</strong>
-              <span v-if="groupName(c.group_id)" class="chip active ch-chip">{{ groupName(c.group_id) }}</span>
+              <span v-if="c.group_id === STARRED" class="chip ch-chip ch-starred" :data-tip="t('yt.starredHint')"><UiIcon name="star" :size="12" />{{ groupName(c.group_id) || t('yt.starred') }}</span>
+              <span v-else-if="groupName(c.group_id)" class="chip active ch-chip">{{ groupName(c.group_id) }}</span>
               <span class="ch-count">{{ t('yt.videosCount', { n: c.video_count }) }}</span>
               <IconBtn class="btn-sm btn-quiet ch-menu" :class="{ 'btn-on': openChannels.has(c.id) }" :icon="openChannels.has(c.id) ? 'x' : 'menu'"
                 :label="openChannels.has(c.id) ? t('yt.channelCollapse') : t('yt.channelExpand')" :aria-expanded="openChannels.has(c.id)" @click="toggleChannel(c.id)" />
             </div>
             <div v-if="openChannels.has(c.id)" class="ch-body">
               <dl class="ch-meta">
+                <dt>{{ t('yt.groupLabel') }}</dt>
+                <dd>
+                  <select class="field ch-group" :value="c.group_id || ''" :disabled="groupBusy.has(c.id)" :aria-label="t('yt.groupLabel')" @change="setChannelGroup(c, ($event.target as HTMLSelectElement).value)">
+                    <option value="">{{ t('yt.ungrouped') }}</option>
+                    <option v-for="g in groups" :key="g.id" :value="g.id">{{ g.id === STARRED ? '★ ' : '' }}{{ g.name }}</option>
+                  </select>
+                  <span v-if="c.group_id === STARRED" class="ch-hint">{{ t('yt.starredHint') }}</span>
+                </dd>
                 <template v-if="c.handle"><dt>{{ t('yt.handle') }}</dt><dd>{{ c.handle }}</dd></template>
                 <dt>{{ t('yt.rangeLabel') }}</dt><dd>{{ rangeText(c) }}</dd>
                 <dt>{{ t('yt.syncState') }}</dt>
@@ -722,6 +731,21 @@ function toggleSection (k: 'channels' | 'groups') {
   collapsedSections.value = { ...collapsedSections.value, [k]: !collapsedSections.value[k] }
   try { localStorage.setItem(SECTIONS_KEY, JSON.stringify(collapsedSections.value)) } catch { /* private mode */ }
 }
+// 分组：在频道行里直接改。「特别关注」（固定分组 starred）每天 05:00 由后端定时拉新。
+const STARRED = 'starred'
+const groupBusy = ref<Set<string>>(new Set())
+async function setChannelGroup (c: YTChannel, groupId: string) {
+  groupBusy.value = new Set([...groupBusy.value, c.id])
+  try {
+    const updated = await store.updateYTChannel(c.id, { group_id: groupId || null }, P)
+    channels.value = channels.value.map(x => x.id === updated.id ? updated : x)
+    showToast(t('yt.groupChanged', { name: c.name || c.channel_id, group: groupName(groupId) || t('yt.ungrouped') }))
+  } catch (err: any) {
+    showToast(errText(err, t('yt.rangeUpdateFailed')))
+  } finally {
+    const s = new Set(groupBusy.value); s.delete(c.id); groupBusy.value = s
+  }
+}
 // 关注的频道 / UP 主：每行默认收起，菜单按钮展开详情和操作（只在本页内记住）。
 const openChannels = ref<Set<string>>(new Set())
 function toggleChannel (id: string) {
@@ -915,5 +939,8 @@ onMounted(async () => {
 .ch-meta dt { color: var(--text-muted); }
 .ch-meta dd { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; min-width: 0; overflow-wrap: anywhere; }
 .ch-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+.ch-group { width: auto; flex: 0 1 200px; min-width: 140px; padding: 4px 8px; font-size: 13px; }
+.ch-hint { color: var(--text-muted); font-size: 12px; }
+.ch-starred { display: inline-flex; align-items: center; gap: 3px; color: #f7b500; border-color: #f7b500; }
 .icon-spin { animation: icon-spin 1s linear infinite; }
 </style>
