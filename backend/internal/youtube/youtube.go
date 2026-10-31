@@ -162,6 +162,7 @@ type Client struct {
 	BaseURL       string
 	Bin           string
 	Proxy         string
+	CookieFile    string
 	Runner        func(ctx context.Context, args []string) ([]byte, error)
 	BackfillDelay time.Duration
 }
@@ -204,6 +205,15 @@ func (c *Client) proxyURL() string {
 	return strings.TrimSpace(os.Getenv("YT_HTTP_PROXY"))
 }
 
+// cookieFile returns the path to the YouTube cookies file (Netscape format),
+// used to bypass "Sign in to confirm you're not a bot". Empty if not configured.
+func (c *Client) cookieFile() string {
+	if strings.TrimSpace(c.CookieFile) != "" {
+		return strings.TrimSpace(c.CookieFile)
+	}
+	return strings.TrimSpace(os.Getenv("YT_COOKIE_FILE"))
+}
+
 func (c *Client) backfillDelay() time.Duration {
 	if c.BackfillDelay != 0 {
 		return c.BackfillDelay
@@ -224,6 +234,9 @@ func (c *Client) runYtDlp(ctx context.Context, args ...string) ([]byte, error) {
 	full := []string{}
 	if proxy := c.proxyURL(); proxy != "" {
 		full = append(full, "--proxy", proxy)
+	}
+	if ck := c.cookieFile(); ck != "" {
+		full = append(full, "--cookies", ck)
 	}
 	full = append(full, args...)
 	cmd := exec.CommandContext(ctx, c.binPath(), full...)
