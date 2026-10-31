@@ -323,6 +323,7 @@ export const DICT: Record<string, { zh: string, en: string }> = {
   'yt.fetchFailed': { zh: '获取视频信息失败', en: 'Failed to fetch video info' },
   'yt.confirmImport': { zh: '确认导入', en: 'Confirm import' },
   'yt.upGroupLabel': { zh: 'UP主所属分组', en: "Uploader's group" },
+  'yt.newGroupPh': { zh: '或输入新分组名，自动创建', en: 'Or type a new group name to create it' },
   'yt.singleMode': { zh: '单视频', en: 'Single videos' },
   'yt.singleModeHint': { zh: '只包含手动添加的视频；「同步全部」不会拉取该频道', en: 'Only holds videos added by URL; “Sync all” skips this channel' },
   'yt.syncChannelAll': { zh: '同步该账号全部视频', en: 'Sync all videos of this channel' },

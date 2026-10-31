@@ -279,6 +279,7 @@
               <option value="">{{ t('yt.ungrouped') }}</option>
               <option v-for="g in groups" :key="g.id" :value="g.id">{{ g.name }}</option>
             </select>
+            <input class="field" style="margin-top:6px" v-model="addForm.newGroupName" :placeholder="t('yt.newGroupPh')" />
             <p v-if="addError" style="color:var(--danger-text)">{{ addError }}</p>
             <div class="modal-actions">
               <IconBtn icon="arrow-left" :label="t('common.back')" @click="videoPreview = null; addError = ''" />
@@ -779,7 +780,7 @@ const addMode = ref<'channel' | 'video'>('channel')
 const videoPreview = ref<any>(null)
 function openAdd (mode: 'channel' | 'video' = 'channel') {
   addMode.value = mode
-  addForm.value = { input: '', group_id: '', date_from: '', date_to: '', tagsText: '' }
+  addForm.value = { input: '', group_id: '', date_from: '', date_to: '', tagsText: '', newGroupName: '' }
   addError.value = ''
   videoPreview.value = null
   showAdd.value = true
@@ -803,7 +804,14 @@ async function doAdd () {
   try {
     if (addMode.value === 'video') {
       const tags = addForm.value.tagsText.split(/[,，\s]+/).map(t => t.trim()).filter(Boolean)
-      const res = await store.addYTVideo(input, addForm.value.group_id || null, P, tags)
+      let groupId = addForm.value.group_id || null
+      const newName = (addForm.value.newGroupName || '').trim()
+      if (newName) {
+        const g = await store.addYTGroup(newName, P)
+        groupId = g.id
+        await reload()
+      }
+      const res = await store.addYTVideo(input, groupId, P, tags)
       await reload()
       showAdd.value = false
       const name = res.channel.name || res.channel.channel_id
