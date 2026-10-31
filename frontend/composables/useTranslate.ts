@@ -30,9 +30,15 @@ const pendingCount = ref(0)
 
 function cacheKey (target: Lang, source: string): string { return `${target}\x00${source}` }
 function hasCJK (s: string): boolean { return /[\u4e00-\u9fff]/.test(s) }
+function hasKana (s: string): boolean { return /[\u3040-\u309f\u30a0-\u30ff]/.test(s) }
+function hasHangul (s: string): boolean { return /[\uac00-\ud7af]/.test(s) }
 // A text needs translation only when it is (mostly) in the other language.
+// Japanese (kana) and Korean (hangul) also use CJK kanji, so they must be
+// detected separately when the target is Chinese.
 function needsTranslation (s: string, target: Lang): boolean {
-  return target === 'en' ? hasCJK(s) : !hasCJK(s)
+  if (target === 'en') return hasCJK(s) || hasKana(s) || hasHangul(s)
+  if (hasKana(s) || hasHangul(s)) return true
+  return !hasCJK(s)
 }
 
 export function useTranslate () {
