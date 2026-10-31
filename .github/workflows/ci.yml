@@ -1,0 +1,133 @@
+# CI (2026-10-28): Go vet/test against a throwaway MariaDB (so the
+# XDIGEST_TEST_DSN store/API tests run instead of skipping), and the Nuxt
+# build + unit tests, and the end-to-end flows (e2e job). data/ is frozen
+# history since the bot was retired (2026-10-29); changes there do not trigger it.
+name: ci
+
+on:
+  pull_request:
+  workflow_dispatch:
+  push:
+    # muse-dev too: its PR into main (still the old static site) has merge
+    # conflicts, and GitHub does not run pull_request workflows for those.
+    branches: [main, muse-dev]
+    paths-ignore: ['data/**', 'docs/**', '**/*.md']
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    services:
+      mariadb:
+        image: mariadb:10.11
+        env:
+          MARIADB_ROOT_PASSWORD: ci
+        ports: ['3306:3306']
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-interval=5s --health-timeout=5s --health-retries=20
+    defaults:
+      run:
+        working-directory: backend
+    env:
+      XDIGEST_TEST_DSN: root:ci@tcp(127.0.0.1:3306)/?parseTime=true&multiStatements=true
+      # DB-backed tests and the LibreOffice preview test must run here, not skip.
+      XDIGEST_REQUIRE_DB: '1'
+      XDIGEST_REQUIRE_SOFFICE: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: backend/go.mod
+          cache-dependency-path: backend/go.sum
+      - name: Install LibreOffice (legacy Office preview test)
+        run: sudo apt-get update -q && sudo apt-get install -y -q --no-install-recommends libreoffice-writer-nogui
+      - run: go vet ./...
+      - run: test -z "$(gofmt -l cmd internal)" || (gofmt -l cmd internal; exit 1)
+      - name: Warn about Go files over 600 lines
+        run: |
+          find cmd internal -name '*.go' ! -name '*_test.go' -exec wc -l {} + | grep -v ' total$' |
+            awk '$1 > 600 { printf "::warning file=backend/%s::%d lines (keep source files under 600)\n", $2, $1 }'
+      - run: go test ./...
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+
+  # Import a post → replicate it → attach a file, through the real API and
+  # the built Nuxt app; fxtwitter and the AI relay are stubbed (e2e/stub.mjs).
+  e2e:
+    runs-on: ubuntu-latest
+    services:
+      mariadb:
+        image: mariadb:10.11
+        env:
+          MARIADB_ROOT_PASSWORD: ci
+        ports: ['3306:3306']
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-interval=5s --health-timeout=5s --health-retries=20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: backend/go.mod
+          cache-dependency-path: backend/go.sum
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Create schema
+        run: mysql -h 127.0.0.1 -u root -pci < backend/schema.sql
+      - name: Build and start the API
+        working-directory: backend
+        run: |
+          go build -o /tmp/xdigest-api ./cmd/api
+          mkdir -p /tmp/xdigest-att
+          XDIGEST_ADDR=127.0.0.1:18090 \
+          XDIGEST_DSN='root:ci@tcp(127.0.0.1:3306)/xdigest' \
+          XDIGEST_ATTACHMENT_DIR=/tmp/xdigest-att \
+          XPOST_API_BASE=http://127.0.0.1:18099 \
+          TRANSLATE_API_BASE=http://127.0.0.1:18099 \
+          TRANSLATE_API_KEY=e2e \
+          nohup /tmp/xdigest-api > /tmp/xdigest-api.log 2>&1 &
+      - name: Build and start the web app
+        working-directory: frontend
+        run: |
+          npm ci
+          npm run build
+          PORT=18091 NUXT_SERVER_API_BASE=http://127.0.0.1:18090/api/v1 \
+            nohup node .output/server/index.mjs > /tmp/xdigest-web.log 2>&1 &
+      - name: Install Playwright browser
+        working-directory: frontend
+        run: npx playwright install --with-deps chromium
+      - name: Wait for API and web app
+        run: |
+          curl -sf --retry 30 --retry-delay 1 --retry-all-errors http://127.0.0.1:18090/healthz
+          curl -sf --retry 30 --retry-delay 1 --retry-all-errors -o /dev/null http://127.0.0.1:18091/
+      - name: Run E2E
+        working-directory: frontend
+        run: npx playwright test
+      - name: Upload report and logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-report
+          path: |
+            frontend/playwright-report
+            frontend/test-results
+            /tmp/xdigest-api.log
+            /tmp/xdigest-web.log
+          retention-days: 7

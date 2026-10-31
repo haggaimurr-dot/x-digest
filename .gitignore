@@ -6,3 +6,12 @@
 uploads/
 node_modules/
 screenshots/
+frontend/.nuxt/
+frontend/.output/
+backend/xdigest-api
+backend/xdigest-import
+frontend/coverage/
+backend/xdigest-maint
+backend/*.exe
+frontend/playwright-report/
+frontend/test-results/

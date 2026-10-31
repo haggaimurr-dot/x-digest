@@ -1,2 +1,0 @@
-dingbat-to-unicode 1.0.2
-License: BSD-2-Clause

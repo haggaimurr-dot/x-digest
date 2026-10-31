@@ -1,2 +1,0 @@
-mammoth 1.13.0
-License: BSD-2-Clause

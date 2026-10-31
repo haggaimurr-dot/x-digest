@@ -1,2 +1,0 @@
-sprintf-js 1.0.3
-License: BSD-3-Clause

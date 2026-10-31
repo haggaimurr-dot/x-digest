@@ -1,0 +1,9 @@
+[Unit]
+Description=x-digest daily backup (MariaDB dump + attachments)
+After=mariadb.service
+
+[Service]
+Type=oneshot
+ExecStart=/opt/xdigest/deploy/xdigest-backup.sh
+Nice=10
+IOSchedulingClass=idle

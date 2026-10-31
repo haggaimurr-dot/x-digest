@@ -1,2 +1,0 @@
-setimmediate 1.0.5
-License: MIT

@@ -1,0 +1,333 @@
+package main
+
+import (
+	"database/sql"
+	"encoding/json"
+	"errors"
+	"net/http"
+	"strconv"
+	"strings"
+
+	"xdigest/internal/model"
+	"xdigest/internal/store"
+)
+
+// ---- posts ----
+
+func (s *server) handlePosts(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodGet {
+		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only GET")
+		return
+	}
+	q := r.URL.Query()
+	_, authorPresent := q["author"]
+	f := store.PostFilter{AuthorPresent: authorPresent}
+	if v := q.Get("author"); v != "" {
+		for _, a := range strings.Split(v, ",") {
+			if a = strings.TrimSpace(a); a != "" {
+				f.Authors = append(f.Authors, a)
+			}
+		}
+	}
+	// tag/category take comma lists (the page's multi-select);
+	// tags/categories are accepted as aliases.
+	f.Tags = append(splitList(q.Get("tag")), splitList(q.Get("tags"))...)
+	f.Categories = append(splitList(q.Get("category")), splitList(q.Get("categories"))...)
+	f.Kind = q.Get("kind")
+	f.MinChars = atoiDefault(q.Get("min_chars"), 0)
+	if f.MinChars < 0 {
+		f.MinChars = 0
+	}
+	f.Query = q.Get("q")
+	f.DateFrom = q.Get("date_from")
+	f.DateTo = q.Get("date_to")
+	f.Sort = q.Get("sort")
+	f.Page = atoiDefault(q.Get("page"), 1)
+	if f.Page < 1 {
+		f.Page = 1
+	}
+	f.PageSize = atoiDefault(q.Get("page_size"), 200)
+	if f.PageSize < 1 {
+		f.PageSize = 200
+	}
+	if f.PageSize > 20000 {
+		f.PageSize = 20000
+	}
+	posts, total, updatedAt, err := s.st.ListPosts(f)
+	if err != nil {
+		writeErr(w, 500, "DB_ERROR", err.Error())
+		return
+	}
+	// snippet: first keyword hit in the first post (the page shows it as a
+	// hint above the list), so the page does not need every post to find it.
+	snippet := ""
+	if len(posts) > 0 && f.Query != "" {
+		snippet = firstHitSnippet(posts[0], f.Query)
+	}
+	writeJSON(w, 200, map[string]any{
+		"updated_at": updatedAt, "total": total,
+		"page": f.Page, "page_size": f.PageSize, "posts": posts,
+		"has_more": f.Page*f.PageSize < total, "snippet": snippet,
+	})
+}
+
+// splitList: "a,b, c" → [a b c]; "" → nil.
+func splitList(v string) []string {
+	var out []string
+	for _, x := range strings.Split(v, ",") {
+		if x = strings.TrimSpace(x); x != "" {
+			out = append(out, x)
+		}
+	}
+	return out
+}
+
+// firstHitSnippet: ~30 chars before and ~50 after the first case-insensitive
+// hit across title / text / tags / author / industry / tech (plain text; the
+// page escapes and highlights it). Mirrors useFormat.firstHitSnippet.
+func firstHitSnippet(p model.Post, q string) string {
+	q = strings.TrimLeft(strings.TrimSpace(q), "#")
+	if q == "" {
+		return ""
+	}
+	needle := []rune(strings.ToLower(q))
+	for _, f := range []string{p.Title, p.Text, strings.Join(p.Tags, " "), p.AuthorName, p.Author, p.Industry, p.Tech} {
+		r := []rune(f)
+		lower := []rune(strings.ToLower(f))
+		if len(lower) != len(r) {
+			lower = r // odd case mappings: fall back to exact match
+		}
+		idx := runeIndex(lower, needle)
+		if idx < 0 {
+			continue
+		}
+		start, end := max(0, idx-30), min(len(r), idx+len(needle)+50)
+		out := string(r[start:end])
+		if start > 0 {
+			out = "…" + out
+		}
+		if end < len(r) {
+			out += "…"
+		}
+		return out
+	}
+	return ""
+}
+
+func runeIndex(h, n []rune) int {
+	for i := 0; i+len(n) <= len(h); i++ {
+		match := true
+		for j := range n {
+			if h[i+j] != n[j] {
+				match = false
+				break
+			}
+		}
+		if match {
+			return i
+		}
+	}
+	return -1
+}
+
+func (s *server) handlePost(w http.ResponseWriter, r *http.Request) {
+	if r.URL.Path == "/api/v1/posts/batch-delete" {
+		s.handlePostsBatchDelete(w, r)
+		return
+	}
+	if r.URL.Path == "/api/v1/posts/summary/batch" {
+		s.handlePostSummaryBatch(w, r) // see post_summary.go
+		return
+	}
+	if id, ok := strings.CutSuffix(strings.TrimPrefix(r.URL.Path, "/api/v1/posts/"), "/summary/stream"); ok && id != "" && !strings.Contains(id, "/") {
+		s.handlePostSummaryStream(w, r, id) // see post_summary.go
+		return
+	}
+	if id, ok := strings.CutSuffix(strings.TrimPrefix(r.URL.Path, "/api/v1/posts/"), "/summary"); ok && id != "" && !strings.Contains(id, "/") {
+		s.handlePostSummary(w, r, id) // see post_summary.go
+		return
+	}
+	id := strings.TrimPrefix(r.URL.Path, "/api/v1/posts/")
+	if id == "" || strings.Contains(id, "/") {
+		writeErr(w, 404, "NOT_FOUND", "post not found")
+		return
+	}
+	switch r.Method {
+	case http.MethodGet:
+	case http.MethodPatch:
+		s.patchPost(w, r, id)
+		return
+	case http.MethodDelete:
+		n, err := s.st.DeletePosts([]string{id})
+		if err != nil {
+			writeErr(w, 500, "DB_ERROR", err.Error())
+			return
+		}
+		if n == 0 {
+			writeErr(w, 404, "NOT_FOUND", "post not found")
+			return
+		}
+		writeJSON(w, 200, map[string]int{"deleted": n})
+		return
+	default:
+		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only GET, PATCH, DELETE")
+		return
+	}
+	p, err := s.st.GetPost(id)
+	if errors.Is(err, sql.ErrNoRows) {
+		writeErr(w, 404, "NOT_FOUND", "post not found")
+		return
+	}
+	if err != nil {
+		writeErr(w, 500, "DB_ERROR", err.Error())
+		return
+	}
+	writeJSON(w, 200, p)
+}
+
+const maxBatchDelete = 500
+
+// POST /api/v1/posts/batch-delete {"ids": [...]} → {"deleted": n}.
+// Unknown ids are skipped (n counts the posts actually removed).
+func (s *server) handlePostsBatchDelete(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only POST")
+		return
+	}
+	var body struct {
+		IDs []string `json:"ids"`
+	}
+	if !decodeBody(w, r, &body) {
+		return
+	}
+	ids := splitList(strings.Join(body.IDs, ","))
+	if len(ids) == 0 || len(ids) > maxBatchDelete {
+		writeErr(w, 422, "VALIDATION", "ids must hold 1–500 post ids")
+		return
+	}
+	n, err := s.st.DeletePosts(ids)
+	if err != nil {
+		writeErr(w, 500, "DB_ERROR", err.Error())
+		return
+	}
+	writeJSON(w, 200, map[string]int{"deleted": n})
+}
+
+// PATCH /api/v1/posts/{id} {"replica_enabled": true|false|null}
+// sets the manual 复刻 switch (null = back to automatic).
+func (s *server) patchPost(w http.ResponseWriter, r *http.Request, id string) {
+	var body map[string]json.RawMessage
+	if !decodeBody(w, r, &body) {
+		return
+	}
+	// {"tags": [...]} replaces the post's tags (the 日报 card's × / +).
+	if rawTags, ok := body["tags"]; ok {
+		var in []string
+		if err := json.Unmarshal(rawTags, &in); err != nil {
+			writeErr(w, 422, "VALIDATION", "tags must be an array of strings")
+			return
+		}
+		tags := cleanVideoTags(in)
+		if tags == nil {
+			writeErr(w, 422, "VALIDATION", "too many tags or a tag is too long")
+			return
+		}
+		if err := s.st.SetPostTags(id, tags); errors.Is(err, sql.ErrNoRows) {
+			writeErr(w, 404, "NOT_FOUND", "post not found")
+			return
+		} else if err != nil {
+			writeErr(w, 500, "DB_ERROR", err.Error())
+			return
+		}
+		if _, ok := body["replica_enabled"]; !ok {
+			writeJSON(w, 200, map[string]any{"ok": true, "tags": tags})
+			return
+		}
+	}
+	raw, ok := body["replica_enabled"]
+	if !ok {
+		writeErr(w, 422, "VALIDATION", "replica_enabled or tags is required")
+		return
+	}
+	var v *bool
+	if err := json.Unmarshal(raw, &v); err != nil {
+		writeErr(w, 422, "VALIDATION", "replica_enabled must be true, false or null")
+		return
+	}
+	if err := s.st.SetPostReplicaEnabled(id, v); errors.Is(err, sql.ErrNoRows) {
+		writeErr(w, 404, "NOT_FOUND", "post not found")
+		return
+	} else if err != nil {
+		writeErr(w, 500, "DB_ERROR", err.Error())
+		return
+	}
+	p, err := s.st.GetPost(id)
+	if err != nil {
+		writeErr(w, 500, "DB_ERROR", err.Error())
+		return
+	}
+	writeJSON(w, 200, p)
+}
+
+func atoiDefault(v string, def int) int {
+	if v == "" {
+		return def
+	}
+	n, err := strconv.Atoi(v)
+	if err != nil {
+		return def
+	}
+	return n
+}
+
+// ---- post groups (post-level, separate from author groups) ----
+
+func (s *server) handlePostGroups(w http.ResponseWriter, r *http.Request) {
+	switch r.Method {
+	case http.MethodGet:
+		groups, err := s.st.ListPostGroups()
+		if err != nil {
+			writeErr(w, 500, "DB_ERROR", err.Error())
+			return
+		}
+		writeJSON(w, 200, map[string]any{"groups": groups})
+	case http.MethodPost:
+		var body struct {
+			Name string `json:"name"`
+		}
+		if !decodeBody(w, r, &body) {
+			return
+		}
+		id, err := s.st.EnsurePostGroup(body.Name)
+		if err != nil {
+			writeErr(w, 500, "DB_ERROR", err.Error())
+			return
+		}
+		groups, _ := s.st.ListPostGroups()
+		writeJSON(w, 201, map[string]any{"id": id, "groups": groups})
+	default:
+		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only GET, POST")
+	}
+}
+
+// handlePostImage serves a compressed post image by its ID.
+// GET /api/v1/post-images/{id}
+func (s *server) handlePostImage(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodGet {
+		writeErr(w, 405, "METHOD_NOT_ALLOWED", "only GET")
+		return
+	}
+	id := strings.TrimPrefix(r.URL.Path, "/api/v1/post-images/")
+	if id == "" || strings.Contains(id, "/") {
+		writeErr(w, 404, "NOT_FOUND", "image not found")
+		return
+	}
+	p, err := s.st.PostImagePath(id)
+	if err != nil {
+		writeErr(w, 404, "NOT_FOUND", "image not found")
+		return
+	}
+	w.Header().Set("Content-Type", "image/jpeg")
+	w.Header().Set("Cache-Control", "public, max-age=86400")
+	http.ServeFile(w, r, p)
+}

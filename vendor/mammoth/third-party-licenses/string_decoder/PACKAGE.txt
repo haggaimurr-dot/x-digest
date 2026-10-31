@@ -1,2 +1,0 @@
-string_decoder 1.1.1
-License: MIT

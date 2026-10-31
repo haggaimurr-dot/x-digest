@@ -1,0 +1,162 @@
+{
+  "groups": [
+    {
+      "id": "special",
+      "name": "特别关注",
+      "fixed": true
+    },
+    {
+      "id": "other",
+      "name": "默认",
+      "fixed": true
+    }
+  ],
+  "accounts": [
+    {
+      "username": "ai_xiaomu",
+      "name": "黄小木",
+      "avatar": "avatars/ai_xiaomu.jpg",
+      "group": "special",
+      "tags": [
+        "AI 工具",
+        "编程开发",
+        "创业商业"
+      ],
+      "bio": "👨‍💻 爱整活的程序员，OPC实践中，只工作不上班。\n💼 分享 AIGC 经验，AI小白教程，FDE踩坑案例。\n📚 3 * Dgx Spark 玩家，本地越狱大模型爱好者。"
+    },
+    {
+      "username": "miles_mazy",
+      "name": "Miles Ma",
+      "avatar": "avatars/miles_mazy.jpg",
+      "group": "special",
+      "bio": "- 大厂AI算法专家，26年6月裸辞转型FDE\n- 来X记录转型的一切，2个月3万粉，一周三篇百万长文\n- 专注企业 AI 培训、落地、交付\n- 我的 AI & X增长答疑社群 199🚪V：miles_mzy",
+      "tags": [
+        "AI 工具",
+        "编程开发",
+        "创业商业",
+        "自媒体运营"
+      ]
+    },
+    {
+      "username": "gkxspace",
+      "name": "余温",
+      "avatar": "avatars/gkxspace.jpg",
+      "group": "special",
+      "bio": "🌸连续创业者 | 专注 AI 产品 | 项目营收 7 位数+\n✨记录真实AI创业：AI干货分享、项目复盘、踩坑总结\n💗付费咨询 & AI 商业化方案 & 企业 AI 服务\n📮yuwengkx@gmail.com",
+      "tags": [
+        "AI 工具",
+        "产品设计",
+        "创业商业"
+      ]
+    },
+    {
+      "username": "shengtang135754",
+      "name": "麦麦提",
+      "avatar": "avatars/shengtang135754.jpg",
+      "group": "special",
+      "bio": "Tibo首席观察员|全球AI分析师|vibe coding|CISA(全球23万人)|CFA(全球30万人)|谷歌AI训练师|日本留子\n一个只爱张元英的AI博主，除了分享AI以外就是分享张元英。\n交流QQ👗 1124042308",
+      "tags": [
+        "AI 工具",
+        "科技资讯",
+        "编程开发"
+      ]
+    },
+    {
+      "username": "mjjwiki",
+      "name": "MJJ百科",
+      "avatar": "avatars/mjjwiki.jpg",
+      "group": "special",
+      "bio": "🌐 分享各种百科知识，包括IT技术教程、AI资讯、投资心得、U卡福利、加密货币、新闻点评、生活点滴等等。\n🤝 践行落伍者 MJJ 精神，互助共享，一路同行！",
+      "tags": [
+        "科技资讯",
+        "编程开发",
+        "投资理财",
+        "加密货币"
+      ]
+    },
+    {
+      "username": "Astronaut_1216",
+      "name": "叫我阿杭",
+      "avatar": "avatars/Astronaut_1216.jpg",
+      "group": "special",
+      "bio": "🐺01年 连续创业者 | 提示词专家丨AI工具测评分享丨前AI产品经理\n📚文科生丨AI自媒体博主丨独立开发丨AI收入6位数\n🌳企业培训 & AI课学习 /付费社群：Solo π LAB\n📮产品千万曝光campain商务合作：a1165094791@gmail.com；VX：zephyr136",
+      "tags": [
+        "AI 工具",
+        "自媒体运营",
+        "创业商业",
+        "编程开发"
+      ]
+    },
+    {
+      "username": "Khazix0918",
+      "name": "数字生命卡兹克",
+      "avatar": "avatars/Khazix0918.jpg",
+      "group": "special",
+      "tags": [
+        "AI 工具",
+        "科技资讯"
+      ],
+      "bio": "愿我们永远对世界保持好奇。\n公众号：数字生命卡兹克"
+    },
+    {
+      "username": "ChenshuoAI",
+      "name": "陈硕KAI（思考中）",
+      "avatar": "avatars/ChenshuoAI.jpg",
+      "group": "special",
+      "bio": "🌍探索 AI × Web3 | 只输出高信息密度思考｜全网同名｜不是程序员｜不接商单｜不追热点｜发点自己和对别人有帮助的｜不同意就是你对\n🌐 bolg：https://t.co/lGtm3GhXGN | 联系：800354@gmail.com",
+      "tags": [
+        "AI 工具",
+        "加密货币"
+      ]
+    },
+    {
+      "username": "yaojingang",
+      "name": "姚金刚",
+      "avatar": "avatars/yaojingang.jpg",
+      "group": "special",
+      "bio": "第二届GEO大会开始报名 11-21/22日 深圳南山\n报名入口：https://t.co/2iYAFjYaCd\nAI营销与教育科技创业者，持续开源GEOFlow / YAO Skills / AI Tools  \n周更《姚金刚认知随笔》：https://t.co/IOUcygwMdR",
+      "tags": [
+        "AI 工具",
+        "创业商业",
+        "编程开发"
+      ]
+    },
+    {
+      "username": "0xlangeai",
+      "name": "蓝哥AI",
+      "avatar": "avatars/0xlangeai.jpg",
+      "group": "special",
+      "tags": [
+        "AI 工具",
+        "编程开发",
+        "创业商业"
+      ],
+      "bio": "🚀 连续创业者 | 前独角兽架构师\n🏗️ Grok Bot 、Muse 、Hermes 重度用户 | AI 工具测评\n✍️ 写写 AI编程、 AI企服、AI出海 内容\nGrok Bot Template Hub: https://t.co/xo4Lw6dY7D\n199 付费答疑群: langeai666"
+    },
+    {
+      "username": "LiumangtuCrypto",
+      "name": "流氓兔🐰",
+      "avatar": "avatars/LiumangtuCrypto.jpg",
+      "group": "special",
+      "bio": "互联网老油条 🧈\n币圈小白兔 🐰\n专注于搞钱 💵 \n分享财商 🤔、金融 🏦、加密货币 🪙 等\n\n找我合作👉：https://t.co/wOJTP9u9dS",
+      "tags": [
+        "投资理财",
+        "加密货币",
+        "AI 工具"
+      ]
+    },
+    {
+      "username": "Saccc_c",
+      "name": "Sac",
+      "avatar": "avatars/Saccc_c.jpg",
+      "group": "special",
+      "bio": "✨小王子游戏原创作者：https://t.co/M2ZityNFz6\n🔥 探索 AI 的边界｜探索 AI 时代的财富自由之路\n正在研究：3D AI ｜AIGC ｜Agent trading\n商务合作：📮： johnnyyin19@gmail.com| tg：@Sac_yin",
+      "tags": [
+        "AI 工具",
+        "产品设计",
+        "编程开发",
+        "加密货币"
+      ]
+    }
+  ]
+}
