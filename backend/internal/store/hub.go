@@ -326,7 +326,7 @@ func (h *HubStore) videoComments(ids []string) map[string]string {
 	for i, id := range ids {
 		args[i] = id
 	}
-	rows, err := h.DB.Query(h.q(`SELECT video_id, comment FROM {p}_video_comments WHERE video_id IN (`+ph+`)`), args...)
+	rows, err := h.DB.Query(h.q(`SELECT video_id, comment FROM {p}_video_user_notes WHERE video_id IN (`+ph+`)`), args...)
 	if err != nil {
 		return out
 	}
@@ -387,21 +387,17 @@ func (h *HubStore) SetVideoTags(videoID string, tags []string) error {
 	return nil
 }
 
-// DeleteVideo removes a video and its associated data (tags, comments, state).
+// DeleteVideo removes a video and its associated data (tags, notes, state).
+// Note: {p}_videos uses `id` as PK; tags/notes/state use `video_id`.
 func (h *HubStore) DeleteVideo(videoID string) error {
-	tables := []string{"{p}_videos", "{p}_video_tags", "{p}_video_comments"}
-	for _, t := range tables {
+	if _, err := h.DB.Exec(h.q(`DELETE FROM {p}_videos WHERE id=?`), videoID); err != nil {
+		return err
+	}
+	for _, t := range []string{"{p}_video_tags", "{p}_video_user_notes", "{p}_video_state"} {
 		if _, err := h.DB.Exec(h.q(`DELETE FROM `+t+` WHERE video_id=?`), videoID); err != nil {
-			// Ignore missing tables (e.g. comments table not yet created).
 			if !strings.Contains(err.Error(), "doesn't exist") {
 				return err
 			}
-		}
-	}
-	// Also clean up video state if the table exists.
-	if _, err := h.DB.Exec(h.q(`DELETE FROM {p}_video_state WHERE video_id=?`), videoID); err != nil {
-		if !strings.Contains(err.Error(), "doesn't exist") {
-			return err
 		}
 	}
 	return nil
@@ -411,10 +407,10 @@ func (h *HubStore) DeleteVideo(videoID string) error {
 func (h *HubStore) SetVideoComment(videoID, comment string) error {
 	comment = strings.TrimSpace(comment)
 	if comment == "" {
-		_, err := h.DB.Exec(h.q(`DELETE FROM {p}_video_comments WHERE video_id=?`), videoID)
+		_, err := h.DB.Exec(h.q(`DELETE FROM {p}_video_user_notes WHERE video_id=?`), videoID)
 		return err
 	}
-	_, err := h.DB.Exec(h.q(`INSERT INTO {p}_video_comments(video_id, comment) VALUES(?,?)
+	_, err := h.DB.Exec(h.q(`INSERT INTO {p}_video_user_notes(video_id, comment) VALUES(?,?)
 		ON DUPLICATE KEY UPDATE comment=VALUES(comment)`), videoID, comment)
 	return err
 }
@@ -422,7 +418,7 @@ func (h *HubStore) SetVideoComment(videoID, comment string) error {
 // GetVideoComment returns a video's comment, or empty string if none.
 func (h *HubStore) GetVideoComment(videoID string) (string, error) {
 	var c string
-	err := h.DB.QueryRow(h.q(`SELECT comment FROM {p}_video_comments WHERE video_id=?`), videoID).Scan(&c)
+	err := h.DB.QueryRow(h.q(`SELECT comment FROM {p}_video_user_notes WHERE video_id=?`), videoID).Scan(&c)
 	if err == sql.ErrNoRows {
 		return "", nil
 	}

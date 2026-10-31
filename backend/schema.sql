@@ -618,13 +618,13 @@ CREATE TABLE IF NOT EXISTS post_images (
   INDEX idx_post_images_post (post_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- 2026-10-31: video comments (user notes on videos).
-CREATE TABLE IF NOT EXISTS yt_video_comments (
+-- 2026-10-31: video user notes (renamed: yt/bili_video_comments already exist for YouTube native comments).
+CREATE TABLE IF NOT EXISTS yt_video_user_notes (
   video_id   VARCHAR(64)  NOT NULL PRIMARY KEY,
   comment    TEXT         NOT NULL,
   updated_at DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-CREATE TABLE IF NOT EXISTS bili_video_comments (
+CREATE TABLE IF NOT EXISTS bili_video_user_notes (
   video_id   VARCHAR(64)  NOT NULL PRIMARY KEY,
   comment    TEXT         NOT NULL,
   updated_at DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
