@@ -191,9 +191,10 @@
               </ul>
             </div>
             <div class="yt-watch-row">
-              <IconBtn class="btn-sm" icon="circle-check" :class="{ 'btn-on': !!v.watched_at }" :label="v.watched_at ? '已看（点击取消）' : '标记已看'" :aria-pressed="!!v.watched_at" @click="toggleWatched(v)" />
-              <IconBtn class="btn-sm" icon="clock" :class="{ 'btn-on': !!v.watch_later }" :label="v.watch_later ? '移出稍后观看' : '稍后观看'" :aria-pressed="!!v.watch_later" @click="toggleWatchLater(v)" />
+              <IconBtn class="btn-sm" icon="message" :label="t('yt.comment')" @click="openComment(v)" />
+              <IconBtn class="btn-sm btn-danger" icon="trash" :label="t('yt.removeVideo')" @click="removeVideo(v)" />
             </div>
+            <div v-if="v.comment" class="yt-comment">{{ v.comment }}</div>
             <!-- AI 摘要：整行放在卡片模块下方（不在右侧栏内），点按展开/收起，默认收起。 -->
             <button v-if="videoKind(v) !== 'playlist'" class="yt-summary-toggle" type="button" :aria-expanded="openSummary.has(v.id)" @click="toggleSummary(v)">
               <span class="with-icon"><UiIcon name="sparkles" />{{ openSummary.has(v.id) ? t('yt.aiSummaryHide') : t('yt.aiSummary') }}</span>
@@ -335,6 +336,18 @@
     </div>
 
     <p v-if="toast" style="position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--bg-elevated);border:1px solid var(--border);padding:10px 16px;border-radius:9999px;z-index:200">{{ toast }}</p>
+    <!-- 视频评论对话框 -->
+    <div v-if="showComment" class="modal-mask" @click.self="showComment = false">
+      <div class="modal-card" role="dialog" aria-modal="true" :aria-label="t('yt.comment')">
+        <h2>{{ t('yt.comment') }}</h2>
+        <p v-if="commentVideo" style="font-size:13px;color:var(--text-muted);margin-bottom:8px">{{ commentVideo.title }}</p>
+        <textarea class="field" v-model="commentText" :placeholder="t('yt.commentPh')" rows="4" style="width:100%;resize:vertical"></textarea>
+        <div class="modal-actions">
+          <IconBtn icon="x" :label="t('common.cancel')" @click="showComment = false" />
+          <IconBtn class="btn-primary" icon="check" :label="commentBusy ? t('common.saving') : t('common.save')" :disabled="commentBusy" @click="saveComment" />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -461,7 +474,7 @@ const filteredExceptKind = computed(() => {
   const q = keyword.value.trim().toLowerCase()
   return videos.value.filter((v) => {
     // Filtering always uses the original text, never the translation.
-    if (q && !((v.title || '').toLowerCase().includes(q) || (v.description || '').toLowerCase().includes(q))) return false
+    if (q && !((v.title || '').toLowerCase().includes(q) || (v.description || '').toLowerCase().includes(q) || (v.comment || '').toLowerCase().includes(q))) return false
     if (channelFilter.value && v.channel_id !== channelFilter.value) return false
     if (groupFilter.value) {
       const g = channelById.value.get(v.channel_id)?.group_id || ''
@@ -542,6 +555,36 @@ async function toggleWatchLater (v: YTVideo) {
   const prev = !!v.watch_later
   v.watch_later = !prev
   try { await store.setVideoState(v.id, { watch_later: !prev }, P) } catch (e: any) { v.watch_later = prev; showToast(errText(e, '保存失败')) }
+}
+// Video comment
+const showComment = ref(false)
+const commentVideo = ref<YTVideo | null>(null)
+const commentText = ref('')
+const commentBusy = ref(false)
+function openComment (v: YTVideo) {
+  commentVideo.value = v
+  commentText.value = v.comment || ''
+  showComment.value = true
+}
+async function saveComment () {
+  if (!commentVideo.value) return
+  commentBusy.value = true
+  try {
+    await store.setVideoState(commentVideo.value.id, { comment: commentText.value.trim() }, P)
+    commentVideo.value.comment = commentText.value.trim()
+    showComment.value = false
+    showToast(t('yt.commentSaved'))
+  } catch (e: any) { showToast(errText(e, t('yt.saveFailed'))) }
+  finally { commentBusy.value = false }
+}
+// Video remove
+async function removeVideo (v: YTVideo) {
+  if (!confirm(t('yt.removeConfirm', { title: v.title }))) return
+  try {
+    await store.deleteYTVideo(v.id, P)
+    await reload()
+    showToast(t('yt.removed'))
+  } catch (e: any) { showToast(errText(e, t('yt.removeFailed'))) }
 }
 // Topic tags from title + description (utils/videoTags.ts), cached per
 // video text, merged with the user's tags (v.tags). A "-name" user tag hides

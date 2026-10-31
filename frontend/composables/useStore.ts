@@ -416,7 +416,11 @@ export function useStore () {
     const data = await apiFetch<{ videos: YTVideo[] } | YTVideo[]>(`${p}/videos?limit=500`)
     return Array.isArray(data) ? data : (data.videos || [])
   }
-  async function setVideoState (id: string, state: { watched?: boolean, watch_later?: boolean }, p: VideoPlatform = 'yt') {
+  async function deleteYTVideo (id: string, p: VideoPlatform = 'yt'): Promise<void> {
+    if (mock.value) throw new ApiError(501, 'MOCK', '演示模式不支持删除')
+    await apiFetch(`${p}/videos/${encodeURIComponent(id)}`, { method: 'DELETE' })
+  }
+  async function setVideoState (id: string, state: { watched?: boolean, watch_later?: boolean, comment?: string }, p: VideoPlatform = 'yt') {
     if (mock.value) return
     await apiFetch(`${p}/videos/${encodeURIComponent(id)}`, { method: 'PATCH', body: JSON.stringify(state) })
   }
@@ -567,6 +571,6 @@ export function useStore () {
     loadRepos, loadRepoGroups, addRepo, loadRepoDetail, loadRepoCommits, loadRepoReleases,
     patchRepo, deleteRepo, syncRepo, syncAllRepos, getRepoSyncStatus, addRepoGroup, deleteRepoGroup, validateRepoFullName,
     loadYTChannels, loadYTVideos, addYTChannel, updateYTChannel, deleteYTChannel, syncYTChannel, syncAllYTChannels, getYTSummary, startYTSummary, addYTVideo, getPostSummary, startPostSummary, getRepoSummary, startRepoSummary, importXPost, loadTags, loadPostGroups, ensurePostGroup, previewYTVideo, getXRefresh, startXRefresh, retryXRefresh, getXRefreshAccounts, setXRefreshAccounts,
-    loadYTGroups, addYTGroup, deleteYTGroup, setVideoState, setVideoTags
+    loadYTGroups, addYTGroup, deleteYTGroup, setVideoState, deleteYTVideo, setVideoTags
   }
 }

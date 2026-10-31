@@ -17,6 +17,7 @@ import (
 type videoStateStore interface {
 	SetVideoState(platform, id string, watched, later *bool) error
 	SetVideoTags(videoID string, tags []string) error
+	SetVideoComment(videoID, comment string) error
 }
 
 func patchVideoState(w http.ResponseWriter, r *http.Request, st videoStateStore, platform, id string) {
@@ -28,12 +29,13 @@ func patchVideoState(w http.ResponseWriter, r *http.Request, st videoStateStore,
 		Watched    *bool     `json:"watched"`
 		WatchLater *bool     `json:"watch_later"`
 		Tags       *[]string `json:"tags"`
+		Comment    *string   `json:"comment"`
 	}
 	if !decodeBody(w, r, &body) {
 		return
 	}
-	if body.Watched == nil && body.WatchLater == nil && body.Tags == nil {
-		writeErr(w, 422, "VALIDATION", "watched, watch_later or tags is required")
+	if body.Watched == nil && body.WatchLater == nil && body.Tags == nil && body.Comment == nil {
+		writeErr(w, 422, "VALIDATION", "watched, watch_later, tags or comment is required")
 		return
 	}
 	var tags []string
@@ -49,6 +51,9 @@ func patchVideoState(w http.ResponseWriter, r *http.Request, st videoStateStore,
 	}
 	if err == nil && body.Tags != nil {
 		err = st.SetVideoTags(id, tags)
+	}
+	if err == nil && body.Comment != nil {
+		err = st.SetVideoComment(id, *body.Comment)
 	}
 	if errors.Is(err, sql.ErrNoRows) {
 		writeErr(w, 404, "NOT_FOUND", "video not found")

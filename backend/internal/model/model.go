@@ -229,6 +229,8 @@ type YTVideo struct {
 	WatchLater bool   `json:"watch_later"`
 	// User tags (yt_video_tags / bili_video_tags).
 	Tags []string `json:"tags,omitempty"`
+	// User comment (yt_video_comments / bili_video_comments).
+	Comment string `json:"comment,omitempty"`
 }
 
 // YTSummaryChapter is one AI summary chapter (Start in whole seconds).

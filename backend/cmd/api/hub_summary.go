@@ -25,6 +25,14 @@ import (
 func (h *videoHub) handleVideoSub(w http.ResponseWriter, r *http.Request) {
 	parts := strings.Split(strings.TrimPrefix(r.URL.Path, "/api/v1/"+h.prefix+"/videos/"), "/")
 	if len(parts) == 1 && parts[0] != "" {
+		if r.Method == http.MethodDelete {
+			if err := h.st.DeleteVideo(parts[0]); err != nil {
+				writeErr(w, 500, "DB_ERROR", err.Error())
+				return
+			}
+			writeJSON(w, 200, map[string]bool{"ok": true})
+			return
+		}
 		patchVideoState(w, r, h.st, h.prefix, parts[0]) // see video_state.go
 		return
 	}

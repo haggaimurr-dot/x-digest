@@ -104,6 +104,8 @@ export interface YTVideo {
   watched_at?: string, watch_later?: boolean,
   // User tags (from import dialog).
   tags?: string[]
+  // User comment.
+  comment?: string
 }
 // AI summary of one video in one language (GET/POST /api/v1/yt/videos/{id}/summary).
 export interface YTSummaryChapter { start: number, title: string, summary: string }

@@ -303,8 +303,41 @@ func (h *HubStore) ListVideos(f YTVideoFilter) ([]model.YTVideo, error) {
 				out[i].Tags = tags
 			}
 		}
+		// User comments (bulk load).
+		commentsByVideo := h.videoComments(ids)
+		for i, v := range out {
+			if c := commentsByVideo[v.ID]; c != "" {
+				out[i].Comment = c
+			}
+		}
 	}
 	return out, nil
+}
+
+// videoComments returns user comments for the given video IDs.
+func (h *HubStore) videoComments(ids []string) map[string]string {
+	out := map[string]string{}
+	if len(ids) == 0 {
+		return out
+	}
+	ph := strings.Repeat("?,", len(ids))
+	ph = ph[:len(ph)-1]
+	args := make([]any, len(ids))
+	for i, id := range ids {
+		args[i] = id
+	}
+	rows, err := h.DB.Query(h.q(`SELECT video_id, comment FROM {p}_video_comments WHERE video_id IN (`+ph+`)`), args...)
+	if err != nil {
+		return out
+	}
+	defer rows.Close()
+	for rows.Next() {
+		var vid, c string
+		if err := rows.Scan(&vid, &c); err == nil {
+			out[vid] = c
+		}
+	}
+	return out
 }
 
 // videoTags returns user tags for the given video IDs.
@@ -352,6 +385,48 @@ func (h *HubStore) SetVideoTags(videoID string, tags []string) error {
 		}
 	}
 	return nil
+}
+
+// DeleteVideo removes a video and its associated data (tags, comments, state).
+func (h *HubStore) DeleteVideo(videoID string) error {
+	tables := []string{"{p}_videos", "{p}_video_tags", "{p}_video_comments"}
+	for _, t := range tables {
+		if _, err := h.DB.Exec(h.q(`DELETE FROM `+t+` WHERE video_id=?`), videoID); err != nil {
+			// Ignore missing tables (e.g. comments table not yet created).
+			if !strings.Contains(err.Error(), "doesn't exist") {
+				return err
+			}
+		}
+	}
+	// Also clean up video state if the table exists.
+	if _, err := h.DB.Exec(h.q(`DELETE FROM {p}_video_state WHERE video_id=?`), videoID); err != nil {
+		if !strings.Contains(err.Error(), "doesn't exist") {
+			return err
+		}
+	}
+	return nil
+}
+
+// SetVideoComment sets or clears a video's comment. Empty string clears it.
+func (h *HubStore) SetVideoComment(videoID, comment string) error {
+	comment = strings.TrimSpace(comment)
+	if comment == "" {
+		_, err := h.DB.Exec(h.q(`DELETE FROM {p}_video_comments WHERE video_id=?`), videoID)
+		return err
+	}
+	_, err := h.DB.Exec(h.q(`INSERT INTO {p}_video_comments(video_id, comment) VALUES(?,?)
+		ON DUPLICATE KEY UPDATE comment=VALUES(comment)`), videoID, comment)
+	return err
+}
+
+// GetVideoComment returns a video's comment, or empty string if none.
+func (h *HubStore) GetVideoComment(videoID string) (string, error) {
+	var c string
+	err := h.DB.QueryRow(h.q(`SELECT comment FROM {p}_video_comments WHERE video_id=?`), videoID).Scan(&c)
+	if err == sql.ErrNoRows {
+		return "", nil
+	}
+	return c, err
 }
 
 func stringSliceToAny(s []string) []any {
