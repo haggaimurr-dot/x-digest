@@ -26,6 +26,8 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"net/http"
+	"net/url"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -302,6 +304,13 @@ func (c *Client) FetchVideo(ctx context.Context, input string) (*SingleVideo, er
 	defer cancel()
 	out, err := c.runYtDlp(ctx, "--dump-json", "--no-playlist", "--no-warnings", "--skip-download", in)
 	if len(out) == 0 {
+		// YouTube bot detection ("Sign in to confirm you're not a bot") blocks
+		// yt-dlp. Fall back to oEmbed for basic metadata (no auth needed).
+		if err != nil && strings.Contains(err.Error(), "not a bot") {
+			if sv, ferr := c.fetchVideoOEmbed(ctx, in); ferr == nil {
+				return sv, nil
+			}
+		}
 		return nil, fmt.Errorf("读取视频失败（链接无效或视频不可见）：%v", err)
 	}
 	var m singleMeta
@@ -340,4 +349,87 @@ func (c *Client) FetchVideo(ctx context.Context, input string) (*SingleVideo, er
 		handle = ""
 	}
 	return &SingleVideo{Video: v, ChannelID: m.ChannelID, ChannelName: strings.TrimSpace(m.Channel), Handle: handle}, nil
+}
+
+// oembedResponse is the subset of YouTube oEmbed we use for the bot-block fallback.
+type oembedResponse struct {
+	Title        string `json:"title"`
+	AuthorName   string `json:"author_name"`
+	AuthorURL    string `json:"author_url"`
+	ThumbnailURL string `json:"thumbnail_url"`
+}
+
+// fetchVideoOEmbed fetches basic video metadata via YouTube's oEmbed endpoint.
+// Used when yt-dlp is blocked by bot detection. Returns title, author name,
+// thumbnail and the @handle; description/duration/publish date are unavailable.
+func (c *Client) fetchVideoOEmbed(ctx context.Context, videoURL string) (*SingleVideo, error) {
+	// Extract video ID from URL.
+	vid := ""
+	if m := regexp.MustCompile(`(?:v=|youtu\.be/|/shorts/|/embed/|/live/)([A-Za-z0-9_-]{11})`).FindStringSubmatch(videoURL); m != nil {
+		vid = m[1]
+	} else if len(videoURL) == 11 {
+		vid = videoURL
+	}
+	if vid == "" {
+		return nil, fmt.Errorf("无法从链接提取视频 ID")
+	}
+	apiURL := "https://www.youtube.com/oembed?url=" + url.QueryEscape("https://www.youtube.com/watch?v="+vid) + "&format=json"
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, apiURL, nil)
+	if err != nil {
+		return nil, err
+	}
+	req.Header.Set("User-Agent", "Mozilla/5.0 (compatible; x-digest/1.0)")
+	client := &http.Client{Timeout: 15 * time.Second}
+	// Use proxy if configured (same as yt-dlp).
+	if proxy := c.proxyURL(); proxy != "" {
+		if pu, perr := url.Parse(proxy); perr == nil {
+			client.Transport = &http.Transport{Proxy: http.ProxyURL(pu)}
+		}
+	}
+	resp, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("oEmbed 请求失败：%v", err)
+	}
+	defer resp.Body.Close()
+	if resp.StatusCode != 200 {
+		return nil, fmt.Errorf("oEmbed 返回 HTTP %d", resp.StatusCode)
+	}
+	var oe oembedResponse
+	if err := json.NewDecoder(resp.Body).Decode(&oe); err != nil {
+		return nil, fmt.Errorf("解析 oEmbed 失败：%v", err)
+	}
+	if oe.Title == "" {
+		return nil, fmt.Errorf("oEmbed 未返回标题")
+	}
+	// Extract @handle from author_url (https://www.youtube.com/@handle).
+	handle := ""
+	channelID := ""
+	if m := regexp.MustCompile(`youtube\.com/(@[^/]+)`).FindStringSubmatch(oe.AuthorURL); m != nil {
+		handle = m[1]
+		channelID = handle // use handle as the channel identifier
+	}
+	if channelID == "" {
+		// Fall back to author name as identifier.
+		channelID = "oembed_" + oe.AuthorName
+	}
+	v := model.YTVideo{
+		ID:           vid,
+		ChannelID:    channelID,
+		Kind:         "video",
+		Title:        strings.TrimSpace(oe.Title),
+		ThumbnailURL: oe.ThumbnailURL,
+		URL:          "https://www.youtube.com/watch?v=" + vid,
+		CreatedAt:    time.Now().In(shanghai).Format("2006-01-02 15:04:05"),
+	}
+	// Detect shorts from the original URL.
+	if strings.Contains(videoURL, "/shorts/") {
+		v.Kind = "short"
+		v.URL = "https://www.youtube.com/shorts/" + vid
+	}
+	return &SingleVideo{
+		Video:       v,
+		ChannelID:   channelID,
+		ChannelName: strings.TrimSpace(oe.AuthorName),
+		Handle:      handle,
+	}, nil
 }
