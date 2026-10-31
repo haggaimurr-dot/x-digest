@@ -438,3 +438,6 @@ mark.search-hit { background: rgba(29,155,240,.35); color: inherit; border-radiu
 .x-images a { display: block; border-radius: 8px; overflow: hidden; }
 .x-images img { display: block; max-width: 200px; max-height: 200px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); }
 .x-images img:hover { opacity: 0.9; }
+
+/* Centered modal variant (e.g. video comment dialog) */
+.modal-backdrop.modal-centered { align-items: center; padding: 12px; }

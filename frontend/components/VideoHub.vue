@@ -337,7 +337,7 @@
 
     <p v-if="toast" style="position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--bg-elevated);border:1px solid var(--border);padding:10px 16px;border-radius:9999px;z-index:200">{{ toast }}</p>
     <!-- 视频评论对话框 -->
-    <div v-if="showComment" class="modal-mask" @click.self="showComment = false">
+    <div v-if="showComment" class="modal-backdrop modal-centered" @click.self="showComment = false">
       <div class="modal-card" role="dialog" aria-modal="true" :aria-label="t('yt.comment')">
         <h2>{{ t('yt.comment') }}</h2>
         <p v-if="commentVideo" style="font-size:13px;color:var(--text-muted);margin-bottom:8px">{{ commentVideo.title }}</p>

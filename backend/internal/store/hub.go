@@ -389,7 +389,10 @@ func (h *HubStore) SetVideoTags(videoID string, tags []string) error {
 
 // DeleteVideo removes a video and its associated data (tags, notes, state).
 // Note: {p}_videos uses `id` as PK; tags/notes/state use `video_id`.
+// If the video's channel has no remaining videos, the channel is deleted too.
 func (h *HubStore) DeleteVideo(videoID string) error {
+	var channelID string
+	_ = h.DB.QueryRow(h.q(`SELECT channel_id FROM {p}_videos WHERE id=?`), videoID).Scan(&channelID)
 	if _, err := h.DB.Exec(h.q(`DELETE FROM {p}_videos WHERE id=?`), videoID); err != nil {
 		return err
 	}
@@ -398,6 +401,13 @@ func (h *HubStore) DeleteVideo(videoID string) error {
 			if !strings.Contains(err.Error(), "doesn't exist") {
 				return err
 			}
+		}
+	}
+	// Delete the channel if it has no videos left.
+	if channelID != "" {
+		var n int
+		if err := h.DB.QueryRow(h.q(`SELECT COUNT(*) FROM {p}_videos WHERE channel_id=?`), channelID).Scan(&n); err == nil && n == 0 {
+			_, _ = h.DB.Exec(h.q(`DELETE FROM {p}_channels WHERE channel_id=?`), channelID)
 		}
 	}
 	return nil
